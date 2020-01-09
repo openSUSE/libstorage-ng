@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-04 09:26+0200\n"
+"POT-Creation-Date: 2020-01-09 12:29+0100\n"
 "PO-Revision-Date: 2001-10-18 11:02+0200\n"
 "Last-Translator: Janez Krek <janez.krek@euroteh.si>\n"
 "Language-Team: Slovenian\n"
@@ -33,7 +33,7 @@ msgstr ""
 
 #. TRANSLATORS:
 #. %1$s is replaced with the device name (e.g. /dev/sdc1),
-#. %2$s is replaced with the size (e.g. 60 GiB)
+#. %2$s is replaced with the size (e.g. 60.00 GiB)
 #, fuzzy, c-format
 msgid "%1$s (%2$s)"
 msgstr "Spreminjanje velikosti particije %1 na %2 MB"
@@ -56,7 +56,7 @@ msgstr "Spreminjanje velikosti particije %1 na %2 MB"
 #. TRANSLATORS:
 #. %1$s is replaced with the the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the a list of cache devices with size
-#. (e.g. "/dev/sdb1 (64 GiB), /dev/sdc1 (160 GiB)")
+#. (e.g. "/dev/sdb1 (64.00 GiB) and /dev/sdc1 (160.00 GiB)")
 #, c-format
 msgid "%1$s is cached by %2$s"
 msgstr ""
@@ -76,7 +76,7 @@ msgstr "Izbrana disketna enota %1"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Activate logical volume %1$s (%2$s) on volume group %3$s"
@@ -84,7 +84,7 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Activate thin logical volume %1$s (%2$s) on volume group %3$s"
@@ -92,7 +92,7 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
@@ -124,7 +124,7 @@ msgstr "Izbrana disketna enota %1"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Activating logical volume %1$s (%2$s) on volume group %3$s"
@@ -142,7 +142,7 @@ msgstr "Kreiraj razširjeno particijo %2 (%3)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Activating thin logical volume %1$s (%2$s) on volume group %3$s"
@@ -150,7 +150,7 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Activating thin pool logical volume %1$s (%2$s) on volume group %3$s"
@@ -158,9 +158,9 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the device name (e.g. /dev/sdc1),
-#. %2$s is replaced by the device size (e.g. 2.0 GiB),
-#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
-#. and /dev/sdb2 (2.0 GiB))
+#. %2$s is replaced by the device size (e.g. 2.00 GiB),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
 #, fuzzy, c-format
 msgid "Add %1$s (%2$s) to btrfs on %3$s"
 msgstr "Spreminjanje velikosti particije %1 na %2 MB"
@@ -189,8 +189,8 @@ msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the mount point (e.g. /home),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, fuzzy, c-format
 msgid "Add mount point %1$s of %2$s to /etc/fstab"
 msgstr "Nastavi priključno točko %1 v %2"
@@ -198,17 +198,17 @@ msgstr "Nastavi priključno točko %1 v %2"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the mount point (e.g. /home),
 #. %2$s is replaced by the subvolume path (e.g. home),
-#. %3$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %3$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Add mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/sdc1),
-#. %2$s is replaced by the device size (e.g. 2.0 GiB),
-#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
-#. and /dev/sdb2 (2.0 GiB))
+#. %2$s is replaced by the device size (e.g. 2.00 GiB),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
 #, fuzzy, c-format
 msgid "Adding %1$s (%2$s) to btrfs on %3$s"
 msgstr "Spreminjanje velikosti particije %1 na %2 MB"
@@ -237,8 +237,8 @@ msgstr ""
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the mount point (e.g. /home),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, fuzzy, c-format
 msgid "Adding mount point %1$s of %2$s to /etc/fstab"
 msgstr "Nastavi priključno točko %1 v %2"
@@ -246,8 +246,8 @@ msgstr "Nastavi priključno točko %1 v %2"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the mount point (e.g. /home),
 #. %2$s is replaced by the subvolume path (e.g. home),
-#. %3$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %3$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Adding mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
 msgstr ""
@@ -255,7 +255,7 @@ msgstr ""
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
-#. %3$s is replaced by size (e.g. 2 GiB)
+#. %3$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Attach bcache cache set on %1$s to bcache %2$s (%3$s)"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
@@ -263,7 +263,7 @@ msgstr "Kreiraj razširjeno particijo %2 (%3)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
-#. %3$s is replaced by size (e.g. 2 GiB)
+#. %3$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Attaching bcache cache set on %1$s to bcache %2$s (%3$s)"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
@@ -283,6 +283,10 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Bcache Cache Set"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "BitLocker"
 msgstr ""
 
 #. TRANSLATORS: name of object
@@ -307,8 +311,8 @@ msgstr "Preverjanje razdelka %1"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, fuzzy, c-format
 msgid "Clear option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr "Ustvari logični nosilec"
@@ -333,8 +337,8 @@ msgstr "Izdelava izmenjalnega prostora na razdelku %1..."
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Clearing option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr ""
@@ -348,12 +352,12 @@ msgstr ""
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#. %6$s is replaced with a comma-spearated list of the devices
+#. %6$s is replaced with a list of the devices
 #. the RAID is built from and their sizes: e.g.
-#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#. /dev/sda (512.00 GiB), /dev/sdb (512.00 GiB) and /dev/sdc (512.00 GiB)
 #, fuzzy, c-format
 msgid ""
 "Create %1$s %2$s (%3$s) for %4$s with %5$s\n"
@@ -363,10 +367,10 @@ msgstr "Kreiraj razširjeno particijo %2 (%3)"
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0)
-#. %3$s is replaced with the size (e.g. 2 GiB)
-#. %4$s is replaced with a comma-spearated list of the devices
+#. %3$s is replaced with the size (e.g. 2.00 GiB)
+#. %4$s is replaced with a list of the devices
 #. the RAID is built from and their sizes: e.g.
-#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#. /dev/sda (512.00 GiB), /dev/sdb (512.00 GiB) and /dev/sdc (512.00 GiB)
 #, fuzzy, c-format
 msgid ""
 "Create %1$s %2$s (%3$s) for swap\n"
@@ -376,10 +380,10 @@ msgstr "Ustvari logični nosilec"
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
-#. %3$s is replaced with the size (e.g. 2 GiB),
-#. %4$s is replaced with a comma-spearated list of the devices
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
+#. %4$s is replaced with a list of the devices
 #. the RAID is built from and their sizes: e.g.
-#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#. /dev/sda (512.00 GiB), /dev/sdb (512.00 GiB) and /dev/sdc (512.00 GiB)
 #, fuzzy, c-format
 msgid "Create %1$s %2$s (%3$s) from %4$s"
 msgstr "Ustvari logični nosilec"
@@ -387,11 +391,11 @@ msgstr "Ustvari logični nosilec"
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#. %5$s is replaced with a comma-spearated list of the devices
+#. %5$s is replaced with a list of the devices
 #. the RAID is built from and their sizes: e.g.
-#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#. /dev/sda (512.00 GiB), /dev/sdb (512.00 GiB) and /dev/sdc (512.00 GiB)
 #, fuzzy, c-format
 msgid ""
 "Create %1$s %2$s (%3$s) with %4$s\n"
@@ -400,8 +404,8 @@ msgstr "Kreiraj razširjeno particijo %2 (%3)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
-#. /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB))
 #, fuzzy, c-format
 msgid "Create %1$s on %2$s"
 msgstr "Ustvari logični nosilec"
@@ -421,7 +425,7 @@ msgstr "Kreiraj VG %1"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s"
@@ -429,7 +433,7 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the volume group name (e.g. system),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
@@ -440,7 +444,7 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
@@ -448,7 +452,7 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the volume group name (e.g. system),
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
@@ -457,21 +461,21 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB)
+#. %2$s is replaced with the size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Create LVM physical volume over %1$s (%2$s)"
 msgstr "Ustvari logični nosilec"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB)
+#. %2$s is replaced with the size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Create LVM physical volume over encrypted %1$s (%2$s)"
 msgstr "Ustvari logični nosilec"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB)
+#. %2$s is replaced with the size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Create LVM volume device over %1$s (%2$s)"
 msgstr "Ustvari logični nosilec"
@@ -479,9 +483,9 @@ msgstr "Ustvari logični nosilec"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
-#. %3$s is replaced by size (e.g. 2 GiB),
-#. %4$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
-#. /dev/sdb2 (1 GiB))
+#. %3$s is replaced by size (e.g. 2.00 GiB),
+#. %4$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB))
 #, fuzzy, c-format
 msgid "Create MD %1$s %2$s (%3$s) from %4$s"
 msgstr "Ustvari logični nosilec"
@@ -494,7 +498,7 @@ msgstr "Preverjanje razdelka %1"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Create bcache %1$s (%2$s)"
 msgstr "Ustvari logični nosilec"
@@ -502,7 +506,7 @@ msgstr "Ustvari logični nosilec"
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB)
+#. %3$s is replaced with the size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Create bcache %1$s on %2$s (%3$s)"
 msgstr "Ustvari logični nosilec"
@@ -510,7 +514,7 @@ msgstr "Ustvari logični nosilec"
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
@@ -520,7 +524,7 @@ msgstr "Kreiraj razširjeno particijo %2 (%3)"
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB)
+#. %3$s is replaced with the size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Create bcache %1$s on %2$s (%3$s) for swap"
 msgstr "Ustvari logični nosilec"
@@ -528,7 +532,7 @@ msgstr "Ustvari logični nosilec"
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
 msgid "Create bcache %1$s on %2$s (%3$s) with %4$s"
@@ -536,7 +540,7 @@ msgstr "Ustvari logični nosilec"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Create bcache cache set on %1$s (%2$s)"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
@@ -544,10 +548,10 @@ msgstr "Kreiraj razširjeno particijo %2 (%3)"
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB)
-#. %4$s is replaced with a comma-spearated list of the devices
+#. %3$s is replaced with the size (e.g. 2.00 GiB)
+#. %4$s is replaced with a list of the devices
 #. the RAID is built from and their sizes: e.g.
-#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#. /dev/sda (512.00 GiB), /dev/sdb (512.00 GiB) and /dev/sdc (512.00 GiB)
 #, fuzzy, c-format
 msgid ""
 "Create encrypted %1$s %2$s (%3$s)\n"
@@ -557,12 +561,12 @@ msgstr "Kreiraj razširjeno particijo %2 (%3)"
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#. %6$s is replaced with a comma-spearated list of the devices
+#. %6$s is replaced with a list of the devices
 #. the RAID is built from and their sizes: e.g.
-#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#. /dev/sda (512.00 GiB), /dev/sdb (512.00 GiB) and /dev/sdc (512.00 GiB)
 #, fuzzy, c-format
 msgid ""
 "Create encrypted %1$s %2$s (%3$s) for %4$s with %5$s\n"
@@ -572,10 +576,10 @@ msgstr "Kreiraj razširjeno particijo %2 (%3)"
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0)
-#. %3$s is replaced with the size (e.g. 2 GiB)
-#. %4$s is replaced with a comma-spearated list of the devices
+#. %3$s is replaced with the size (e.g. 2.00 GiB)
+#. %4$s is replaced with a list of the devices
 #. the RAID is built from and their sizes: e.g.
-#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#. /dev/sda (512.00 GiB), /dev/sdb (512.00 GiB) and /dev/sdc (512.00 GiB)
 #, fuzzy, c-format
 msgid ""
 "Create encrypted %1$s %2$s (%3$s) for swap\n"
@@ -585,11 +589,11 @@ msgstr "Kreiraj razširjeno particijo %2 (%3)"
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#. %5$s is replaced with a comma-spearated list of the devices
+#. %5$s is replaced with a list of the devices
 #. the RAID is built from and their sizes: e.g.
-#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#. /dev/sda (512.00 GiB), /dev/sdb (512.00 GiB) and /dev/sdc (512.00 GiB)
 #, fuzzy, c-format
 msgid ""
 "Create encrypted %1$s %2$s (%3$s) with %4$s\n"
@@ -598,7 +602,7 @@ msgstr "Kreiraj razširjeno particijo %2 (%3)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s"
@@ -606,7 +610,7 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the volume group name (e.g. system),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
@@ -618,7 +622,7 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the volume group name (e.g. system)
 #, fuzzy, c-format
 msgid ""
@@ -627,7 +631,7 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the volume group name (e.g. system),
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
@@ -639,7 +643,7 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB)
+#. %3$s is replaced with the size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s)"
 msgstr "Ustvari logični nosilec"
@@ -647,7 +651,7 @@ msgstr "Ustvari logični nosilec"
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
@@ -657,7 +661,7 @@ msgstr "Kreiraj razširjeno particijo %2 (%3)"
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB)
+#. %3$s is replaced with the size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s) for swap"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
@@ -665,7 +669,7 @@ msgstr "Kreiraj razširjeno particijo %2 (%3)"
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s) with %4$s"
@@ -673,21 +677,21 @@ msgstr "Kreiraj razširjeno particijo %2 (%3)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB)
+#. %2$s is replaced with the size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Create encrypted partition %1$s (%2$s)"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB)
+#. %2$s is replaced with the size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Create encrypted partition %1$s (%2$s) as LVM physical volume"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the mount point (e.g. /home),
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
@@ -696,14 +700,14 @@ msgstr "Kreiraj razširjeno particijo %2 (%3)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB)
+#. %2$s is replaced with the size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Create encrypted partition %1$s (%2$s) for swap"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
 msgid "Create encrypted partition %1$s (%2$s) with %3$s"
@@ -717,19 +721,21 @@ msgstr "Izbrana disketna enota %1"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Create extended partition %1$s (%2$s)"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
 
 #. TRANSLATORS:
-#. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2)
+#. %1$s is replaced with the names of the devices with sizes (e.g. /dev/sda1
+#. (10.00 GiB) and /dev/sda2 (10.00 GiB))
 #, fuzzy, c-format
 msgid "Create file system btrfs on %1$s"
 msgstr "Ustvari logični nosilec"
 
 #. TRANSLATORS:
-#. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
+#. %1$s is replaced with the names of the devices with sizes (e.g. /dev/sda1
+#. (10.00 GiB) and /dev/sda2 (10.00 GiB)),
 #. %2$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Create file system btrfs on %1$s and mount at %2$s"
@@ -737,14 +743,14 @@ msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the device name (e.g. /dev/vda),
-#. %2$s is replaced by the size (e.g. 20 GiB)
+#. %2$s is replaced by the size (e.g. 20.00 GiB)
 #, fuzzy, c-format
 msgid "Create hard disk %1$s (%2$s)"
 msgstr "Ustvari logični nosilec"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Create implicit partition %1$s (%2$s)"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
@@ -757,14 +763,14 @@ msgstr "Preverjanje razdelka %1"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Create logical partition %1$s (%2$s)"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Create logical volume %1$s (%2$s) on volume group %3$s"
@@ -772,17 +778,17 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB)
+#. %2$s is replaced with the size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Create partition %1$s (%2$s)"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the partition id string (e.g. Linux LVM)
 #, fuzzy, c-format
 msgid "Create partition %1$s (%2$s) as %3$s"
@@ -790,14 +796,14 @@ msgstr "Kreiraj razširjeno particijo %2 (%3)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB)
+#. %2$s is replaced with the size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Create partition %1$s (%2$s) as LVM physical volume"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the mount point (e.g. /home),
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
@@ -806,14 +812,14 @@ msgstr "Kreiraj razširjeno particijo %2 (%3)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB)
+#. %2$s is replaced with the size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Create partition %1$s (%2$s) for swap"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
 msgid "Create partition %1$s (%2$s) with %3$s"
@@ -827,32 +833,34 @@ msgstr "Ustvari logični nosilec"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Create primary partition %1$s (%2$s)"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #. TRANSLATORS:
 #. %1$s is replaced with the subvolume path (e.g. var/log),
-#. %2$s is replaced with the block device name (e.g. /dev/sda1)
+#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
+#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
 #, fuzzy, c-format
 msgid "Create subvolume %1$s on %2$s"
 msgstr "Ustvari logični nosilec"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the subvolume path (e.g. var/log),
-#. %2$s is replaced with the block device name (e.g. /dev/sda1)
+#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
+#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
 #, fuzzy, c-format
 msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"
 msgstr "Ustvari logični nosilec"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Create thin logical volume %1$s (%2$s) on volume group %3$s"
@@ -860,7 +868,7 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Create thin pool logical volume %1$s (%2$s) on volume group %3$s"
@@ -868,32 +876,33 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced with the volume group name (e.g. system),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #, fuzzy, c-format
 msgid "Create volume group %1$s (%2$s)"
 msgstr "Ustvari logični nosilec"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
-#. %2$s is replaced by size (e.g. 2 GiB),
-#. %3$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
-#. /dev/sdb2 (1 GiB))
+#. %2$s is replaced by size (e.g. 2.00 GiB),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB))
 #, fuzzy, c-format
 msgid "Create volume group %1$s (%2$s) from %3$s"
 msgstr "Ustvari logični nosilec"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced with the volume group name (e.g. system),
-#. %2$s is replaced with the size (e.g. 2 GiB),
-#. %3$s is replaced with the name of devices (e.g. /dev/sda1, /dev/sda2)
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
+#. %3$s is replaced with the name of devices and their sizes (e.g. /dev/sda1
+#. (10.00 GiB and /dev/sda2 (10.00 GiB))
 #, fuzzy, c-format
 msgid "Create volume group %1$s (%2$s) with %3$s"
 msgstr "Ustvari logični nosilec"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
-#. /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB))
 #, fuzzy, c-format
 msgid "Creating %1$s on %2$s"
 msgstr "Spremeni velikost particije %1 na %2"
@@ -913,9 +922,9 @@ msgstr "Formatiranje %1"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
-#. %3$s is replaced by size (e.g. 2 GiB),
-#. %4$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
-#. /dev/sdb2 (1 GiB))
+#. %3$s is replaced by size (e.g. 2.00 GiB),
+#. %4$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB))
 #, fuzzy, c-format
 msgid "Creating MD %1$s %2$s (%3$s) from %4$s"
 msgstr "Ustvari logični nosilec"
@@ -928,14 +937,14 @@ msgstr "Preverjanje razdelka %1"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Creating bcache %1$s (%2$s)"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Creating bcache cache set %1$s (%2$s)"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
@@ -948,21 +957,21 @@ msgstr "Izbrana disketna enota %1"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Creating extended partition %1$s (%2$s)"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/vda),
-#. %2$s is replaced by the size (e.g. 20 GiB)
+#. %2$s is replaced by the size (e.g. 20.00 GiB)
 #, fuzzy, c-format
 msgid "Creating hard disk %1$s (%2$s)"
 msgstr "Ustvari logični nosilec"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Creating implicit partition %1$s (%2$s)"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
@@ -975,14 +984,14 @@ msgstr "Preverjanje razdelka %1"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Creating logical partition %1$s (%2$s)"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Creating logical volume %1$s (%2$s) on volume group %3$s"
@@ -990,7 +999,7 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Creating partition %1$s (%2$s)"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
@@ -1003,22 +1012,22 @@ msgstr "Ustvari logični nosilec"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Creating primary partition %1$s (%2$s)"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, fuzzy, c-format
 msgid "Creating subvolume %1$s on %2$s"
 msgstr "Ustvari logični nosilec"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Creating thin logical volume %1$s (%2$s) on volume group %3$s"
@@ -1026,7 +1035,7 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Creating thin pool logical volume %1$s (%2$s) on volume group %3$s"
@@ -1034,9 +1043,9 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
-#. %2$s is replaced by size (e.g. 2 GiB),
-#. %3$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
-#. /dev/sdb2 (1 GiB))
+#. %2$s is replaced by size (e.g. 2.00 GiB),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB))
 #, fuzzy, c-format
 msgid "Creating volume group %1$s (%2$s) from %3$s"
 msgstr "Ustvari skupino nosilcev"
@@ -1054,24 +1063,39 @@ msgstr "Preverjanje razdelka %1"
 msgid "DM RAID"
 msgstr ""
 
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "DOS12 Partition"
+msgstr "Preverjanje razdelka %1"
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "DOS16 Partition"
+msgstr "Preverjanje razdelka %1"
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "DOS32 Partition"
+msgstr "Preverjanje razdelka %1"
+
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
-#. %3$s is replaced by size (e.g. 2 GiB)
+#. %3$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Deactivate MD %1$s %2$s (%3$s)"
 msgstr "Ustvari skupino nosilcev"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Deactivate bcache %1$s (%2$s)"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Deactivate bcache cache set on %1$s (%2$s)"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
@@ -1084,7 +1108,7 @@ msgstr "Izbrana disketna enota %1"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Deactivate logical volume %1$s (%2$s) on volume group %3$s"
@@ -1092,14 +1116,14 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by multipath name (e.g. /dev/mapper/36005076305ffc73a00000000000013b4),
-#. %2$s is replaced by size (e.g. 1 TiB)
+#. %2$s is replaced by size (e.g. 1.00 TiB)
 #, fuzzy, c-format
 msgid "Deactivate multipath %1$s (%2$s)"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Deactivate thin logical volume %1$s (%2$s) on volume group %3$s"
@@ -1107,7 +1131,7 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Deactivate thin pool logical volume %1$s (%2$s) on volume group %3$s"
@@ -1116,21 +1140,21 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
-#. %3$s is replaced by size (e.g. 2 GiB)
+#. %3$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Deactivating MD %1$s %2$s (%3$s)"
 msgstr "Spremeni velikost particije %1 na %2"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Deactivating bcache %1$s (%2$s)"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Deactivating bcache cache set on %1$s (%2$s)"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
@@ -1143,7 +1167,7 @@ msgstr "Izbrana disketna enota %1"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Deactivating logical volume %1$s (%2$s) on volume group %3$s"
@@ -1151,14 +1175,14 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by multipath name (e.g. /dev/mapper/36005076305ffc73a00000000000013b4),
-#. %2$s is replaced by size (e.g. 1 TiB)
+#. %2$s is replaced by size (e.g. 1.00 TiB)
 #, fuzzy, c-format
 msgid "Deactivating multipath %1$s (%2$s)"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Deactivating thin logical volume %1$s (%2$s) on volume group %3$s"
@@ -1166,7 +1190,7 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Deactivating thin pool logical volume %1$s (%2$s) on volume group %3$s"
@@ -1175,15 +1199,15 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0)
-#. %3$s is replaced with the size (e.g. 2 GiB)
+#. %3$s is replaced with the size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Delete %1$s %2$s (%3$s)"
 msgstr "Spremeni velikost particije %1 na %2"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, fuzzy, c-format
 msgid "Delete %1$s on %2$s"
 msgstr "Spremeni velikost particije %1 na %2"
@@ -1203,7 +1227,7 @@ msgstr "Preverjanje razdelka %1"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
-#. %3$s is replaced by size (e.g. 2GiB)
+#. %3$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Delete MD %1$s %2$s (%3$s)"
 msgstr "Spremeni velikost particije %1 na %2"
@@ -1216,7 +1240,7 @@ msgstr "Preverjanje razdelka %1"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Delete bcache %1$s (%2$s)"
 msgstr "Spremeni velikost particije %1 na %2"
@@ -1224,14 +1248,14 @@ msgstr "Spremeni velikost particije %1 na %2"
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB)
+#. %3$s is replaced with the size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Delete bcache %1$s on %2$s (%3$s)"
 msgstr "Spremeni velikost particije %1 na %2"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Delete bcache cache set on %1$s (%2$s)"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
@@ -1244,20 +1268,21 @@ msgstr "Izbrana disketna enota %1"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Delete extended partition %1$s (%2$s)"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
 
 #. TRANSLATORS:
-#. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2)
+#. %1$s is replaced with the names of the devices with sizes (e.g. /dev/sda1
+#. (10.00 GiB and /dev/sda2 (10.00 GiB))
 #, fuzzy, c-format
 msgid "Delete file system btrfs on %1$s"
 msgstr "Odstranim logični nosilec %1?"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Delete implicit partition %1$s (%2$s)"
 msgstr "Spremeni velikost particije %1 na %2"
@@ -1270,14 +1295,14 @@ msgstr "Preverjanje razdelka %1"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Delete logical partition %1$s (%2$s)"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Delete logical volume %1$s (%2$s) on volume group %3$s"
@@ -1285,10 +1310,10 @@ msgstr "Odstranim logični nosilec %1?"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB)
+#. %2$s is replaced with the size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Delete partition %1$s (%2$s)"
 msgstr "Spremeni velikost particije %1 na %2"
@@ -1301,25 +1326,26 @@ msgstr "Odstranim logični nosilec %1?"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Delete primary partition %1$s (%2$s)"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #. TRANSLATORS:
 #. %1$s is replaced with the subvolume path (e.g. var/log),
-#. %2$s is replaced with the block device name (e.g. /dev/sda1)
+#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
+#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
 #, fuzzy, c-format
 msgid "Delete subvolume %1$s on %2$s"
 msgstr "Ustvari logični nosilec"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Delete thin logical volume %1$s (%2$s) on volume group %3$s"
@@ -1327,7 +1353,7 @@ msgstr "Odstranim logični nosilec %1?"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Delete thin pool logical volume %1$s (%2$s) on volume group %3$s"
@@ -1335,15 +1361,15 @@ msgstr "Odstranim logični nosilec %1?"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Delete volume group %1$s (%2$s)"
 msgstr "Ustvari logični nosilec"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, fuzzy, c-format
 msgid "Deleting %1$s on %2$s"
 msgstr "Spremeni velikost particije %1 na %2"
@@ -1363,7 +1389,7 @@ msgstr "Preverjanje razdelka %1"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
-#. %3$s is replaced by size (e.g. 2GiB)
+#. %3$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Deleting MD %1$s %2$s (%3$s)"
 msgstr "Spremeni velikost particije %1 na %2"
@@ -1376,14 +1402,14 @@ msgstr "Preverjanje razdelka %1"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Deleting bcache %1$s (%2$s)"
 msgstr "Spremeni velikost particije %1 na %2"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Deleting bcache cache set on %1$s (%2$s)"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
@@ -1396,14 +1422,14 @@ msgstr "Izbrana disketna enota %1"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Deleting extended partition %1$s (%2$s)"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Deleting implicit partition %1$s (%2$s)"
 msgstr "Spremeni velikost particije %1 na %2"
@@ -1416,14 +1442,14 @@ msgstr "Preverjanje razdelka %1"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Deleting logical partition %1$s (%2$s)"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Deleting logical volume %1$s (%2$s) on volume group %3$s"
@@ -1431,7 +1457,7 @@ msgstr "Odstranim logični nosilec %1?"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Deleting partition %1$s (%2$s)"
 msgstr "Spremeni velikost particije %1 na %2"
@@ -1444,22 +1470,22 @@ msgstr "Odstranim logični nosilec %1?"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Deleting primary partition %1$s (%2$s)"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, fuzzy, c-format
 msgid "Deleting subvolume %1$s on %2$s"
 msgstr "Ustvari logični nosilec"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Deleting thin logical volume %1$s (%2$s) on volume group %3$s"
@@ -1467,7 +1493,7 @@ msgstr "Odstranim logični nosilec %1?"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Deleting thin pool logical volume %1$s (%2$s) on volume group %3$s"
@@ -1475,7 +1501,7 @@ msgstr "Odstranim logični nosilec %1?"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Deleting volume group %1$s (%2$s)"
 msgstr "Ustvari skupino nosilcev"
@@ -1483,7 +1509,7 @@ msgstr "Ustvari skupino nosilcev"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
-#. %3$s is replaced by size (e.g. 2 GiB)
+#. %3$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Detach bcache cache set on %1$s from bcache %2$s (%3$s)"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
@@ -1491,7 +1517,7 @@ msgstr "Kreiraj razširjeno particijo %2 (%3)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
-#. %3$s is replaced by size (e.g. 2 GiB)
+#. %3$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Detaching bcache cache set on %1$s from bcache %2$s (%3$s)"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
@@ -1563,7 +1589,7 @@ msgstr "GB"
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #, fuzzy, c-format
 msgid "Encrypt %1$s %2$s (%3$s)"
 msgstr "Ustvari logični nosilec"
@@ -1571,7 +1597,7 @@ msgstr "Ustvari logični nosilec"
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
@@ -1581,7 +1607,7 @@ msgstr "Kreiraj %1 particijo velikosti  %2 (%3 z %4)"
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
 msgid "Encrypt %1$s %2$s (%3$s) with %4$s"
@@ -1589,7 +1615,7 @@ msgstr "Kreiraj %1 particijo velikosti  %2 (%3 z %4)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s"
@@ -1597,7 +1623,7 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the volume group name (e.g. system),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
@@ -1609,7 +1635,7 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the volume group name (e.g. system),
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
@@ -1619,7 +1645,7 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #, fuzzy, c-format
 msgid "Encrypt bcache %1$s on %2$s (%3$s)"
 msgstr "Ustvari logični nosilec"
@@ -1627,7 +1653,7 @@ msgstr "Ustvari logični nosilec"
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
@@ -1637,7 +1663,7 @@ msgstr "Kreiraj %1 particijo velikosti  %2 (%3 z %4)"
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
 msgid "Encrypt bcache %1$s on %2$s (%3$s) with %4$s"
@@ -1645,14 +1671,14 @@ msgstr "Kreiraj %1 particijo velikosti  %2 (%3 z %4)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #, fuzzy, c-format
 msgid "Encrypt partition %1$s (%2$s)"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the mount point (e.g. /home),
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
@@ -1661,7 +1687,7 @@ msgstr "Kreiraj %1 particijo velikosti  %2 (%3 z %4)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
 msgid "Encrypt partition %1$s (%2$s) with %3$s"
@@ -1683,6 +1709,10 @@ msgstr ""
 msgid "Ext4"
 msgstr ""
 
+#. TRANSLATORS: name of partition type
+msgid "Extended Partition"
+msgstr ""
+
 #. TRANSLATORS: name of object
 msgid "F2FS"
 msgstr ""
@@ -1690,7 +1720,7 @@ msgstr ""
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
@@ -1700,7 +1730,7 @@ msgstr "Kreiraj %1 particijo velikosti  %2 (%3 z %4)"
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #. %4$s is replaced with the file system type (e.g. ext4)
 #, fuzzy, c-format
 msgid "Format %1$s %2$s (%3$s) with %4$s"
@@ -1708,7 +1738,7 @@ msgstr "Kreiraj %1 particijo velikosti  %2 (%3 z %4)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the volume group name (e.g. system),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
@@ -1719,7 +1749,7 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the volume group name (e.g. system),
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
@@ -1729,7 +1759,7 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
@@ -1739,7 +1769,7 @@ msgstr "Kreiraj %1 particijo velikosti  %2 (%3 z %4)"
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #. %4$s is replaced with the file system type (e.g. ext4)
 #, fuzzy, c-format
 msgid "Format bcache %1$s on %2$s (%3$s) with %4$s"
@@ -1747,21 +1777,21 @@ msgstr "Kreiraj %1 particijo velikosti  %2 (%3 z %4)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB)
+#. %2$s is replaced with the size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Format partition %1$s (%2$s) as encryped swap"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB)
+#. %2$s is replaced with the size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Format partition %1$s (%2$s) as swap"
 msgstr "Kreiraj razširjeno particijo %2 (%3)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the mount point (e.g. /home),
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
@@ -1770,7 +1800,7 @@ msgstr "Kreiraj %1 particijo velikosti  %2 (%3 z %4)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
 msgid "Format partition %1$s (%2$s) with %3$s"
@@ -1797,10 +1827,10 @@ msgstr "GB"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by file system (e.g. ext4),
-#. %3$s is replaced by several devices (e.g /dev/sda1 (1.0 GiB) and
-#. /dev/sdb2 (1.0 GiB)),
-#. %4$s is replaced by old size (e.g. 1.0 GiB),
-#. %5$s is replaced by new size (e.g. 2.0 GiB)
+#. %3$s is replaced by several devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB)),
+#. %4$s is replaced by old size (e.g. 1.00 GiB),
+#. %5$s is replaced by new size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Grow %1$s of %2$s on %3$s from %4$s to %5$s"
 msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
@@ -1808,16 +1838,16 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by old size (e.g. 1.0 GiB),
-#. %4$s is replaced by new size (e.g. 2.0 GiB)
+#. %3$s is replaced by old size (e.g. 1.00 GiB),
+#. %4$s is replaced by new size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Grow %1$s on %2$s from %3$s to %4$s"
 msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 1.0 GiB),
-#. %3$s is replaced by new size (e.g. 2.0 GiB)
+#. %2$s is replaced by old size (e.g. 1.00 GiB),
+#. %3$s is replaced by new size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Grow encryption layer device on %1$s from %2$s to %3$s"
 msgstr "Kreiraj %1 particijo velikosti  %2 (%3 z %4)"
@@ -1825,24 +1855,24 @@ msgstr "Kreiraj %1 particijo velikosti  %2 (%3 z %4)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 1.0 GiB),
-#. %4$s is replaced by new size (e.g. 2.0 GiB)
+#. %3$s is replaced by old size (e.g. 1.00 GiB),
+#. %4$s is replaced by new size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Grow logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 1.0 GiB),
-#. %3$s is replaced by new size (e.g. 2.0 GiB)
+#. %2$s is replaced by old size (e.g. 1.00 GiB),
+#. %3$s is replaced by new size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Grow partition %1$s from %2$s to %3$s"
 msgstr "Kreiraj %1 particijo velikosti  %2 (%3 z %4)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
-#. %2$s is replaced by old size (e.g. 1.0 GiB),
-#. %3$s is replaced by new size (e.g. 2.0 GiB)
+#. %2$s is replaced by old size (e.g. 1.00 GiB),
+#. %3$s is replaced by new size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Grow physical volume on %1$s from %2$s to %3$s"
 msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
@@ -1850,8 +1880,8 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 1.0 GiB),
-#. %4$s is replaced by new size (e.g. 2.0 GiB)
+#. %3$s is replaced by old size (e.g. 1.00 GiB),
+#. %4$s is replaced by new size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Grow thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
@@ -1859,8 +1889,8 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 1.0 GiB),
-#. %4$s is replaced by new size (e.g. 2.0 GiB)
+#. %3$s is replaced by old size (e.g. 1.00 GiB),
+#. %4$s is replaced by new size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid ""
 "Grow thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
@@ -1869,10 +1899,10 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by file system (e.g. ext4),
-#. %3$s is replaced by several devices (e.g /dev/sda1 (1.0 GiB) and
-#. /dev/sdb2 (1.0 GiB)),
-#. %4$s is replaced by old size (e.g. 1.0 GiB),
-#. %5$s is replaced by new size (e.g. 2.0 GiB)
+#. %3$s is replaced by several devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB)),
+#. %4$s is replaced by old size (e.g. 1.00 GiB),
+#. %5$s is replaced by new size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Growing %1$s of %2$s on %3$s from %4$s to %5$s"
 msgstr "Kreiraj %1 particijo velikosti  %2 (%3 z %4)"
@@ -1880,16 +1910,16 @@ msgstr "Kreiraj %1 particijo velikosti  %2 (%3 z %4)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by old size (e.g. 1.0 GiB),
-#. %4$s is replaced by new size (e.g. 2.0 GiB)
+#. %3$s is replaced by old size (e.g. 1.00 GiB),
+#. %4$s is replaced by new size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Growing %1$s on %2$s from %3$s to %4$s"
 msgstr "Kreiraj %1 particijo velikosti  %2 (%3 z %4)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 1.0 GiB),
-#. %3$s is replaced by new size (e.g. 2.0 GiB)
+#. %2$s is replaced by old size (e.g. 1.00 GiB),
+#. %3$s is replaced by new size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Growing encryption layer device on %1$s from %2$s to %3$s"
 msgstr "Kreiraj %1 particijo velikosti  %2 (%3 z %4)"
@@ -1897,24 +1927,24 @@ msgstr "Kreiraj %1 particijo velikosti  %2 (%3 z %4)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 1.0 GiB),
-#. %4$s is replaced by new size (e.g. 2.0 GiB)
+#. %3$s is replaced by old size (e.g. 1.00 GiB),
+#. %4$s is replaced by new size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Growing logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 1.0 GiB),
-#. %3$s is replaced by new size (e.g. 2.0 GiB)
+#. %2$s is replaced by old size (e.g. 1.00 GiB),
+#. %3$s is replaced by new size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Growing partition %1$s from %2$s to %3$s"
 msgstr "Kreiraj %1 particijo velikosti  %2 (%3 z %4)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
-#. %2$s is replaced by old size (e.g. 1.0 GiB),
-#. %3$s is replaced by new size (e.g. 2.0 GiB)
+#. %2$s is replaced by old size (e.g. 1.00 GiB),
+#. %3$s is replaced by new size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Growing physical volume on %1$s from %2$s to %3$s"
 msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
@@ -1922,8 +1952,8 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 1.0 GiB),
-#. %4$s is replaced by new size (e.g. 2.0 GiB)
+#. %3$s is replaced by old size (e.g. 1.00 GiB),
+#. %4$s is replaced by new size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Growing thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
@@ -1931,8 +1961,8 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 1.0 GiB),
-#. %4$s is replaced by new size (e.g. 2.0 GiB)
+#. %3$s is replaced by old size (e.g. 1.00 GiB),
+#. %4$s is replaced by new size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid ""
 "Growing thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
@@ -2019,15 +2049,15 @@ msgstr ""
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #. %4$s is replaced with the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Mount %1$s %2$s (%3$s) at %4$s"
 msgstr "Priključevanje korenskega razdelka %1 na %2"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB)),
+#. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB)),
 #. %2$s is replaced by the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Mount %1$s at %2$s"
@@ -2035,7 +2065,7 @@ msgstr "Priključevanje korenskega razdelka %1 na %2"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the volume group name (e.g. system),
 #. %4$s is replaced with the mount point (e.g. /home)
 #, fuzzy, c-format
@@ -2056,14 +2086,15 @@ msgstr ""
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #. %4$s is replaced with the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Mount bcache %1$s on %2$s (%3$s) at %4$s"
 msgstr "Kreiraj %1 particijo velikosti  %2 (%3 z %4)"
 
 #. TRANSLATORS:
-#. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
+#. %1$s is replaced with the names of the devices with sizes (e.g. /dev/sda1
+#. (10.00 GiB) and /dev/sda2 (10.00 GiB)),
 #. %2$s is replaced with the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Mount file system btrfs on %1$s at %2$s"
@@ -2071,7 +2102,7 @@ msgstr "Priključevanje korenskega razdelka %1 na %2"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Mount partition %1$s (%2$s) at %3$s"
@@ -2079,16 +2110,16 @@ msgstr "Kreiraj %1 particijo velikosti  %2 (%3 z %4)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. home),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB)),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB)),
 #. %3$s is replaced by the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Mount subvolume %1$s on %2$s at %3$s"
 msgstr "Kreiraj %1 particijo velikosti  %2 (%3 z %4)"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB)),
+#. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB)),
 #. %2$s is replaced by the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Mounting %1$s at %2$s"
@@ -2096,8 +2127,8 @@ msgstr "Priključevanje korenskega razdelka %1 na %2"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. home),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #. %3$s is replaced by the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Mounting subvolume %1$s on %2$s at %3$s"
@@ -2114,6 +2145,11 @@ msgstr ""
 #. TRANSLATORS: name of object
 msgid "NTFS"
 msgstr ""
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "NTFS Partition"
+msgstr "Preverjanje razdelka %1"
 
 #. TRANSLATORS: symbol for "peta" (best keep untranslated)
 #, fuzzy
@@ -2327,14 +2363,14 @@ msgid "Reducing volume group %1$s by missing physical volumes"
 msgstr ""
 
 #. TRANSLATORS: name of object
-msgid "Reiserfs"
+msgid "ReiserFS"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the device name (e.g. /dev/sdc1),
-#. %2$s is replaced by the device size (e.g. 2.0 GiB),
-#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
-#. and /dev/sdb2 (2.0 GiB))
+#. %2$s is replaced by the device size (e.g. 2.00 GiB),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
 #, fuzzy, c-format
 msgid "Remove %1$s (%2$s) from btrfs on %3$s"
 msgstr "Odmakni napravo %1 iz /etc/fstab"
@@ -2363,8 +2399,8 @@ msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the mount point (e.g. /home),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, fuzzy, c-format
 msgid "Remove mount point %1$s of %2$s from /etc/fstab"
 msgstr "Nastavi priključno točko %1 v %2"
@@ -2372,17 +2408,17 @@ msgstr "Nastavi priključno točko %1 v %2"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the mount point (e.g. /home),
 #. %2$s is replaced by the subvolume path (e.g. home),
-#. %3$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %3$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Remove mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/sdc1),
-#. %2$s is replaced by the device size (e.g. 2.0 GiB),
-#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
-#. and /dev/sdb2 (2.0 GiB))
+#. %2$s is replaced by the device size (e.g. 2.00 GiB),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
 #, fuzzy, c-format
 msgid "Removing %1$s (%2$s) from btrfs on %3$s"
 msgstr "Odmakni napravo %1 iz /etc/fstab"
@@ -2411,8 +2447,8 @@ msgstr ""
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by thr mount point (e.g. /home),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, fuzzy, c-format
 msgid "Removing mount point %1$s of %2$s from /etc/fstab"
 msgstr "Nastavi priključno točko %1 v %2"
@@ -2420,8 +2456,8 @@ msgstr "Nastavi priključno točko %1 v %2"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the mount point (e.g. /home),
 #. %2$s is replaced by the subvolume path (e.g. home),
-#. %3$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %3$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, fuzzy, c-format
 msgid "Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
 msgstr "Nastavi priključno točko %1 v %2"
@@ -2477,8 +2513,8 @@ msgstr "Formatiranje %1"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
-#. /dev/sdb2 (1.0 GiB)),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB)),
 #. %3$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
 #, fuzzy, c-format
 msgid "Set UUID of %1$s on %2$s to %3$s"
@@ -2493,15 +2529,15 @@ msgstr "Spremeni velikost particije %1 na %2"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by cache mode (e.g. writeback),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
-#. %3$s is replaced by size (e.g. 2 GiB)
+#. %3$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Set cache mode to %1$s for bcache %2$s (%3$s)"
 msgstr "Ustvari logični nosilec"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, fuzzy, c-format
 msgid "Set default subvolume to subvolume %1$s on %2$s"
 msgstr "Ustvari logični nosilec"
@@ -2530,8 +2566,8 @@ msgstr "Spremeni velikost particije %1 na %2"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
-#. /dev/sdb2 (1.0 GiB)),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB)),
 #. %3$s is replaced by label (e.g. ROOT)
 #, fuzzy, c-format
 msgid "Set label of %1$s on %2$s to %3$s"
@@ -2545,8 +2581,8 @@ msgstr "Preverjanje razdelka %1"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Set option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr ""
@@ -2559,16 +2595,16 @@ msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
-#. /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB))
 #, fuzzy, c-format
 msgid "Set tune options of %1$s on %2$s"
 msgstr "Spremeni velikost particije %1 na %2"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
-#. /dev/sdb2 (1.0 GiB)),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB)),
 #. %3$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
 #, fuzzy, c-format
 msgid "Setting UUID of %1$s on %2$s to %3$s"
@@ -2583,15 +2619,15 @@ msgstr "Priključevanje korenskega razdelka %1 na %2"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by cache mode (e.g. writeback),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
-#. %3$s is replaced by size (e.g. 2 GiB)
+#. %3$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Setting cache mode to %1$s for bcache %2$s (%3$s)"
 msgstr "Ustvari logični nosilec"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, fuzzy, c-format
 msgid "Setting default subvolume to subvolume %1$s on %2$s"
 msgstr "Ustvari logični nosilec"
@@ -2620,8 +2656,8 @@ msgstr "Priključevanje korenskega razdelka %1 na %2"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
-#. /dev/sdb2 (1.0 GiB)),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB)),
 #. %3$s is replaced by label (e.g. ROOT)
 #, fuzzy, c-format
 msgid "Setting label of %1$s on %2$s to %3$s"
@@ -2635,8 +2671,8 @@ msgstr "Priključevanje korenskega razdelka %1 na %2"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Setting option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr ""
@@ -2649,8 +2685,8 @@ msgstr ""
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
-#. /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB))
 #, fuzzy, c-format
 msgid "Setting tune options of %1$s on %2$s"
 msgstr "Priključevanje korenskega razdelka %1 na %2"
@@ -2658,10 +2694,10 @@ msgstr "Priključevanje korenskega razdelka %1 na %2"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by file system (e.g. ext4),
-#. %3$s is replaced by several devices (e.g /dev/sda1 (1.0 GiB) and
-#. /dev/sdb2 (1.0 GiB)),
-#. %4$s is replaced by old size (e.g. 2.0 GiB),
-#. %5$s is replaced by new size (e.g. 1.0 GiB)
+#. %3$s is replaced by several devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB)),
+#. %4$s is replaced by old size (e.g. 2.00 GiB),
+#. %5$s is replaced by new size (e.g. 1.00 GiB)
 #, fuzzy, c-format
 msgid "Shrink %1$s of %2$s on %3$s from %4$s to %5$s"
 msgstr "&Skrči Windows particijo"
@@ -2669,16 +2705,16 @@ msgstr "&Skrči Windows particijo"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by old size (e.g. 2.0 GiB),
-#. %4$s is replaced by new size (e.g. 1.0 GiB)
+#. %3$s is replaced by old size (e.g. 2.00 GiB),
+#. %4$s is replaced by new size (e.g. 1.00 GiB)
 #, fuzzy, c-format
 msgid "Shrink %1$s on %2$s from %3$s to %4$s"
 msgstr "&Skrči Windows particijo"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 2.0 GiB),
-#. %3$s is replaced by new size (e.g. 1.0 GiB)
+#. %2$s is replaced by old size (e.g. 2.00 GiB),
+#. %3$s is replaced by new size (e.g. 1.00 GiB)
 #, c-format
 msgid "Shrink encryption layer device on %1$s from %2$s to %3$s"
 msgstr ""
@@ -2686,24 +2722,24 @@ msgstr ""
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 2.0 GiB),
-#. %4$s is replaced by new size (e.g. 1.0 GiB)
+#. %3$s is replaced by old size (e.g. 2.00 GiB),
+#. %4$s is replaced by new size (e.g. 1.00 GiB)
 #, fuzzy, c-format
 msgid "Shrink logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "Odstranim logični nosilec %1?"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 2.0 GiB),
-#. %3$s is replaced by new size (e.g. 1.0 GiB)
+#. %2$s is replaced by old size (e.g. 2.00 GiB),
+#. %3$s is replaced by new size (e.g. 1.00 GiB)
 #, fuzzy, c-format
 msgid "Shrink partition %1$s from %2$s to %3$s"
 msgstr "Spremeni velikost particije %1 na %2"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
-#. %2$s is replaced by old size (e.g. 2.0 GiB),
-#. %3$s is replaced by new size (e.g. 1.0 GiB)
+#. %2$s is replaced by old size (e.g. 2.00 GiB),
+#. %3$s is replaced by new size (e.g. 1.00 GiB)
 #, fuzzy, c-format
 msgid "Shrink physical volume on %1$s from %2$s to %3$s"
 msgstr "Odstranim logični nosilec %1?"
@@ -2711,8 +2747,8 @@ msgstr "Odstranim logični nosilec %1?"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 2.0 GiB),
-#. %4$s is replaced by new size (e.g. 1.0 GiB)
+#. %3$s is replaced by old size (e.g. 2.00 GiB),
+#. %4$s is replaced by new size (e.g. 1.00 GiB)
 #, fuzzy, c-format
 msgid "Shrink thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
@@ -2720,8 +2756,8 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 2.0 GiB),
-#. %4$s is replaced by new size (e.g. 1.0 GiB)
+#. %3$s is replaced by old size (e.g. 2.00 GiB),
+#. %4$s is replaced by new size (e.g. 1.00 GiB)
 #, fuzzy, c-format
 msgid ""
 "Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
@@ -2730,10 +2766,10 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by file system (e.g. ext4),
-#. %3$s is replaced by several devices (e.g /dev/sda1 (1.0 GiB) and
-#. /dev/sdb2 (1.0 GiB)),
-#. %4$s is replaced by old size (e.g. 2.0 GiB),
-#. %5$s is replaced by new size (e.g. 1.0 GiB)
+#. %3$s is replaced by several devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB)),
+#. %4$s is replaced by old size (e.g. 2.00 GiB),
+#. %5$s is replaced by new size (e.g. 1.00 GiB)
 #, fuzzy, c-format
 msgid "Shrinking %1$s of %2$s on %3$s from %4$s to %5$s"
 msgstr "Spreminjanje velikosti particije %1 na %2 MB"
@@ -2741,16 +2777,16 @@ msgstr "Spreminjanje velikosti particije %1 na %2 MB"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by old size (e.g. 2.0 GiB),
-#. %4$s is replaced by new size (e.g. 1.0 GiB)
+#. %3$s is replaced by old size (e.g. 2.00 GiB),
+#. %4$s is replaced by new size (e.g. 1.00 GiB)
 #, fuzzy, c-format
 msgid "Shrinking %1$s on %2$s from %3$s to %4$s"
 msgstr "Spreminjanje velikosti particije %1 na %2 MB"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 2.0 GiB),
-#. %3$s is replaced by new size (e.g. 1.0 GiB)
+#. %2$s is replaced by old size (e.g. 2.00 GiB),
+#. %3$s is replaced by new size (e.g. 1.00 GiB)
 #, fuzzy, c-format
 msgid "Shrinking encryption layer device on %1$s from %2$s to %3$s"
 msgstr "Priključevanje korenskega razdelka %1 na %2"
@@ -2758,24 +2794,24 @@ msgstr "Priključevanje korenskega razdelka %1 na %2"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 2.0 GiB),
-#. %4$s is replaced by new size (e.g. 1.0 GiB)
+#. %3$s is replaced by old size (e.g. 2.00 GiB),
+#. %4$s is replaced by new size (e.g. 1.00 GiB)
 #, fuzzy, c-format
 msgid "Shrinking logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 2.0 GiB),
-#. %3$s is replaced by new size (e.g. 1.0 GiB)
+#. %2$s is replaced by old size (e.g. 2.00 GiB),
+#. %3$s is replaced by new size (e.g. 1.00 GiB)
 #, fuzzy, c-format
 msgid "Shrinking partition %1$s from %2$s to %3$s"
 msgstr "Priključevanje korenskega razdelka %1 na %2"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
-#. %2$s is replaced by old size (e.g. 2.0 GiB),
-#. %3$s is replaced by new size (e.g. 1.0 GiB)
+#. %2$s is replaced by old size (e.g. 2.00 GiB),
+#. %3$s is replaced by new size (e.g. 1.00 GiB)
 #, fuzzy, c-format
 msgid "Shrinking physical volume on %1$s from %2$s to %3$s"
 msgstr "Odstranim logični nosilec %1?"
@@ -2783,8 +2819,8 @@ msgstr "Odstranim logični nosilec %1?"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 2.0 GiB),
-#. %4$s is replaced by new size (e.g. 1.0 GiB)
+#. %3$s is replaced by old size (e.g. 2.00 GiB),
+#. %4$s is replaced by new size (e.g. 1.00 GiB)
 #, fuzzy, c-format
 msgid ""
 "Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
@@ -2793,8 +2829,8 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 2.0 GiB),
-#. %4$s is replaced by new size (e.g. 1.0 GiB)
+#. %3$s is replaced by old size (e.g. 2.00 GiB),
+#. %4$s is replaced by new size (e.g. 1.00 GiB)
 #, fuzzy, c-format
 msgid ""
 "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to "
@@ -2828,8 +2864,8 @@ msgid "UDF"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB)),
+#. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB)),
 #. %2$s is replaced by the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Unmount %1$s at %2$s"
@@ -2843,7 +2879,8 @@ msgid "Unmount NFS %1$s at %2$s"
 msgstr "Priključevanje korenskega razdelka %1 na %2"
 
 #. TRANSLATORS:
-#. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
+#. %1$s is replaced with the names of the devices with sizes (e.g. /dev/sda1
+#. (10.00 GiB) and /dev/sda2 (10.00 GiB)),
 #. %2$s is replaced with the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Unmount file system btrfs on %1$s at %2$s"
@@ -2851,16 +2888,16 @@ msgstr "Priključevanje korenskega razdelka %1 na %2"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. home),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #. %3$s is replaced by the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Unmount subvolume %1$s on %2$s at %3$s"
 msgstr "Odstranim logični nosilec %1?"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB)),
+#. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB)),
 #. %2$s is replaced by the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Unmounting %1$s at %2$s"
@@ -2868,8 +2905,8 @@ msgstr "Priključevanje korenskega razdelka %1 na %2"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. home),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB)),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB)),
 #. %3$s is replaced by the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Unmounting subvolume %1$s on %2$s at %3$s"
@@ -2877,16 +2914,16 @@ msgstr "Odstranim logični nosilec %1?"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the mount point (e.g. /home),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, fuzzy, c-format
 msgid "Update mount point %1$s of %2$s in /etc/fstab"
 msgstr "Nastavi priključno točko %1 v %2"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the mount point (e.g. /home),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, fuzzy, c-format
 msgid "Updating mount point %1$s of %2$s in /etc/fstab"
 msgstr "Nastavi priključno točko %1 v %2"
