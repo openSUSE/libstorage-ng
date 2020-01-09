@@ -291,6 +291,9 @@ namespace storage
 
 	mount_opts.parse( EtcFstab::fstab_decode( get_column( col++ ) ), line_no );
 
+	dump_pass = 0;
+	fsck_pass = 0;
+
 	if ( column_count >= FSTAB_COLUMN_COUNT - 1 )
 	    dump_pass = atoi( get_column( col++ ).c_str() );
 
