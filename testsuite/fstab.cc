@@ -146,29 +146,23 @@ BOOST_AUTO_TEST_CASE(parse_and_format_without_optional_columns)
     for (int i = 0; i < fstab.get_entry_count(); ++i)
         BOOST_CHECK_EQUAL(output[i], expected_output[i]);
 
-    int i = 0;
-    BOOST_CHECK_EQUAL(fstab.get_entry(i++)->get_device(), "/space");
-    BOOST_CHECK_EQUAL(fstab.get_entry(i++)->get_device(), "/dev/sda1");
+    BOOST_CHECK_EQUAL(fstab.get_entry(0)->get_device(), "/space");
+    BOOST_CHECK_EQUAL(fstab.get_entry(1)->get_device(), "/dev/sda1");
 
-    i=0;
-    BOOST_CHECK_EQUAL(fstab.get_entry(i++)->get_mount_point(), "/tmp/space");
-    BOOST_CHECK_EQUAL(fstab.get_entry(i++)->get_mount_point(), "/");
+    BOOST_CHECK_EQUAL(fstab.get_entry(0)->get_mount_point(), "/tmp/space");
+    BOOST_CHECK_EQUAL(fstab.get_entry(1)->get_mount_point(), "/");
 
-    i=0;
-    BOOST_CHECK_EQUAL(toString(fstab.get_entry(i++)->get_fs_type()), "unknown");
-    BOOST_CHECK_EQUAL(toString(fstab.get_entry(i++)->get_fs_type()), "xfs");
+    BOOST_CHECK_EQUAL(toString(fstab.get_entry(0)->get_fs_type()), "unknown");
+    BOOST_CHECK_EQUAL(toString(fstab.get_entry(1)->get_fs_type()), "xfs");
 
-    i=0;
-    BOOST_CHECK_EQUAL(fstab.get_entry(i++)->get_mount_opts().empty(), false);
-    BOOST_CHECK_EQUAL(fstab.get_entry(i++)->get_mount_opts().empty(), true);
+    BOOST_CHECK_EQUAL(fstab.get_entry(0)->get_mount_opts().empty(), false);
+    BOOST_CHECK_EQUAL(fstab.get_entry(1)->get_mount_opts().empty(), true);
 
-    i=0;
-    BOOST_CHECK_EQUAL(fstab.get_entry(i++)->get_dump_pass(), 0);
-    BOOST_CHECK_EQUAL(fstab.get_entry(i++)->get_dump_pass(), 1);
+    BOOST_CHECK_EQUAL(fstab.get_entry(0)->get_dump_pass(), 0);
+    BOOST_CHECK_EQUAL(fstab.get_entry(1)->get_dump_pass(), 1);
 
-    i=0;
-    BOOST_CHECK_EQUAL(fstab.get_entry(i++)->get_fsck_pass(), 0);
-    BOOST_CHECK_EQUAL(fstab.get_entry(i++)->get_fsck_pass(), 0);
+    BOOST_CHECK_EQUAL(fstab.get_entry(0)->get_fsck_pass(), 0);
+    BOOST_CHECK_EQUAL(fstab.get_entry(1)->get_fsck_pass(), 0);
 }
 
 
