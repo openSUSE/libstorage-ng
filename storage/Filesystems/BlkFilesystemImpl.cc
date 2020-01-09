@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -184,7 +184,8 @@ namespace storage
 		it->second.fs_type != FsType::SWAP && it->second.fs_type != FsType::NTFS &&
 		it->second.fs_type != FsType::VFAT && it->second.fs_type != FsType::ISO9660 &&
 		it->second.fs_type != FsType::UDF && it->second.fs_type != FsType::JFS &&
-		it->second.fs_type != FsType::F2FS && it->second.fs_type != FsType::EXFAT)
+		it->second.fs_type != FsType::F2FS && it->second.fs_type != FsType::EXFAT &&
+		it->second.fs_type != FsType::BITLOCKER)
 	    {
 		y2war("detected unsupported filesystem " << toString(it->second.fs_type) << " on " <<
 		      blk_device->get_name());

@@ -46,7 +46,9 @@ libfilesystems_la_SOURCES =				\
 	Nfs.h			Nfs.cc			\
 	NfsImpl.h		NfsImpl.cc		\
 	F2fs.h			F2fs.cc			\
-	F2fsImpl.h		F2fsImpl.cc
+	F2fsImpl.h		F2fsImpl.cc		\
+	Bitlocker.h		Bitlocker.cc		\
+	BitlockerImpl.h		BitlockerImpl.cc
 
 pkgincludedir = $(includedir)/storage/Filesystems
 
@@ -70,5 +72,6 @@ pkginclude_HEADERS =		\
 	Udf.h			\
 	Swap.h			\
 	Nfs.h			\
-	F2fs.h
+	F2fs.h			\
+	Bitlocker.h
 

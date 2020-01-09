@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -71,6 +71,7 @@
 #include "storage/Filesystems/Swap.h"
 #include "storage/Filesystems/Iso9660.h"
 #include "storage/Filesystems/Udf.h"
+#include "storage/Filesystems/Bitlocker.h"
 #include "storage/Filesystems/Nfs.h"
 #include "storage/Filesystems/MountPoint.h"
 #include "storage/Holders/HolderImpl.h"
@@ -705,6 +706,7 @@ namespace storage
 	{ "Swap", &Swap::load },
 	{ "Iso9660", &Iso9660::load },
 	{ "Udf", &Udf::load },
+	{ "Bitlocker", &Bitlocker::load },
 	{ "Nfs", &Nfs::load },
 	{ "MountPoint", &MountPoint::load }
     };

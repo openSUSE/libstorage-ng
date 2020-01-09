@@ -38,6 +38,7 @@
 %catches(storage::ParseException, storage::OverflowException) storage::humanstring_to_byte(const std::string &str, bool classic);
 %catches(storage::NullPointerException) storage::is_bcache(const Device *device);
 %catches(storage::NullPointerException) storage::is_bcache_cset(const Device *device);
+%catches(storage::NullPointerException) storage::is_bitlocker(const Device *device);
 %catches(storage::NullPointerException) storage::is_blk_device(const Device *device);
 %catches(storage::NullPointerException) storage::is_blk_filesystem(const Device *device);
 %catches(storage::NullPointerException) storage::is_btrfs(const Device *device);
@@ -93,6 +94,8 @@
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_bcache(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_bcache_cset(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_bcache_cset(const Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_bitlocker(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_bitlocker(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_blk_device(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_blk_device(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_blk_filesystem(Device *device);

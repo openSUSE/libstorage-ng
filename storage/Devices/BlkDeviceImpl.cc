@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -52,6 +52,7 @@
 #include "storage/Filesystems/Exfat.h"
 #include "storage/Filesystems/Iso9660.h"
 #include "storage/Filesystems/Udf.h"
+#include "storage/Filesystems/Bitlocker.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/FreeInfo.h"
 #include "storage/Prober.h"
@@ -685,7 +686,8 @@ namespace storage
 	{ FsType::EXFAT, &Exfat::create },
 	{ FsType::XFS, &Xfs::create },
 	{ FsType::JFS, &Jfs::create },
-	{ FsType::F2FS, &F2fs::create }
+	{ FsType::F2FS, &F2fs::create },
+	{ FsType::BITLOCKER, &Bitlocker::create }
     };
 
 

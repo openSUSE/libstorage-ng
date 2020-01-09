@@ -19,6 +19,10 @@
 %rename("exists_in_staging?") "exists_in_staging";
 %rename("exists_in_system?") "exists_in_system";
 
+// TODO rename all supports_*, maybe more
+
+%rename("supports_mount?") "supports_mount";
+
 %define use_ostream(CLASS)
 
 %extend CLASS

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# requirements: partition /dev/sdb1 with a filesystem
+# requirements: partition /dev/sdc1 with a filesystem
 
 
 from sys import exit
@@ -19,10 +19,14 @@ staging = storage.get_staging()
 
 print(staging)
 
-partition = Partition.find_by_name(staging, "/dev/sdb1")
+partition = Partition.find_by_name(staging, "/dev/sdc1")
 blk_filesystem = partition.get_blk_filesystem()
 
-content_info = blk_filesystem.detect_content_info()
+try:
+    content_info = blk_filesystem.detect_content_info()
+except Exception as exception:
+    print(exception.what())
+    exit(1)
 
 print(content_info)
 

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -59,7 +59,7 @@ namespace storage
     const vector<string> EnumTraits<FsType>::names({
 	"unknown", "auto", "reiserfs", "ext2", "ext3", "ext4", "btrfs", "vfat", "xfs", "jfs", "hfs",
 	"ntfs", "swap", "hfsplus", "nfs", "nfs4", "tmpfs", "iso9660", "udf", "nilfs2", "minix",
-	"ntfs-3g", "f2fs", "exfat"
+	"ntfs-3g", "f2fs", "exfat", "BitLocker"
     });
 
 
@@ -566,6 +566,11 @@ namespace storage
 	: mountable(mountable), tmp_mount()
     {
 	y2mil("EnsureMounted " << *mountable);
+
+	if (!mountable->supports_mount())
+	{
+	    ST_THROW(Exception("mount not supported"));
+	}
 
 	if (mount_needed())
 	{
