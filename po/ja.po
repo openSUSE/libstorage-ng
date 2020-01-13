@@ -11,10 +11,10 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-09 12:29+0100\n"
-"PO-Revision-Date: 2019-09-05 00:51+0000\n"
+"PO-Revision-Date: 2020-01-14 00:54+0000\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
-"Language-Team: Japanese <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/ja/>\n"
+"Language-Team: Japanese <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -302,7 +302,7 @@ msgstr "Bcache キャッシュセット"
 
 #. TRANSLATORS: name of object
 msgid "BitLocker"
-msgstr ""
+msgstr "BitLocker"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs"
@@ -1100,19 +1100,16 @@ msgid "DM RAID"
 msgstr "DM RAID"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "DOS12 Partition"
-msgstr "パーティション"
+msgstr "DOS12 パーティション"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "DOS16 Partition"
-msgstr "パーティション"
+msgstr "DOS16 パーティション"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "DOS32 Partition"
-msgstr "パーティション"
+msgstr "DOS32 パーティション"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -1775,9 +1772,8 @@ msgid "Ext4"
 msgstr "Ext4"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Extended Partition"
-msgstr "EFI システムパーティション"
+msgstr "拡張パーティション"
 
 #. TRANSLATORS: name of object
 msgid "F2FS"
@@ -2226,9 +2222,8 @@ msgid "NTFS"
 msgstr "NTFS"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "NTFS Partition"
-msgstr "パーティション"
+msgstr "NTFS パーティション"
 
 #. TRANSLATORS: symbol for "peta" (best keep untranslated)
 msgid "P"
@@ -2432,9 +2427,8 @@ msgstr ""
 "存在しない物理ボリュームによってボリュームグループ %1$s を縮小しています"
 
 #. TRANSLATORS: name of object
-#, fuzzy
 msgid "ReiserFS"
-msgstr "Reiserfs"
+msgstr "ReiserFS"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the device name (e.g. /dev/sdc1),
