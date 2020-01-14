@@ -2,7 +2,7 @@
 <Mockup>
   <Commands>
     <Command>
-      <name>/sbin/udevadm settle --timeout=20</name>
+      <name>/usr/bin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
       <name>/usr/bin/echo -e -n 'Fix\n' | /usr/sbin/parted ---pretend-input-tty '/dev/sdb' print</name>

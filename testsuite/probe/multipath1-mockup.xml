@@ -95,7 +95,7 @@
       <stdout>  `- 0:0:1:1085554707 sdc 8:32 active ready running</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/dasdb'</name>
+      <name>/usr/bin/udevadm info '/dev/dasdb'</name>
       <stdout>P: /devices/css0/0.0.0003/0.0.0150/block/dasdb</stdout>
       <stdout>N: dasdb</stdout>
       <stdout>S: disk/by-id/ccw-0X0150</stdout>
@@ -122,8 +122,8 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/dasdb1'</name>
-      <name>/sbin/udevadm info '/dev/disk/by-path/ccw-0.0.0150-part1'</name>
+      <name>/usr/bin/udevadm info '/dev/dasdb1'</name>
+      <name>/usr/bin/udevadm info '/dev/disk/by-path/ccw-0.0.0150-part1'</name>
       <stdout>P: /devices/css0/0.0.0003/0.0.0150/block/dasdb/dasdb1</stdout>
       <stdout>N: dasdb1</stdout>
       <stdout>S: disk/by-id/ccw-0X0150-part1</stdout>
@@ -157,8 +157,8 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/dasdb2'</name>
-      <name>/sbin/udevadm info '/dev/disk/by-path/ccw-0.0.0150-part2'</name>
+      <name>/usr/bin/udevadm info '/dev/dasdb2'</name>
+      <name>/usr/bin/udevadm info '/dev/disk/by-path/ccw-0.0.0150-part2'</name>
       <stdout>P: /devices/css0/0.0.0003/0.0.0150/block/dasdb/dasdb2</stdout>
       <stdout>N: dasdb2</stdout>
       <stdout>S: disk/by-id/ccw-0X0150-part2</stdout>
@@ -192,8 +192,8 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/dasdb3'</name>
-      <name>/sbin/udevadm info '/dev/disk/by-path/ccw-0.0.0150-part3'</name>
+      <name>/usr/bin/udevadm info '/dev/dasdb3'</name>
+      <name>/usr/bin/udevadm info '/dev/disk/by-path/ccw-0.0.0150-part3'</name>
       <stdout>P: /devices/css0/0.0.0003/0.0.0150/block/dasdb/dasdb3</stdout>
       <stdout>N: dasdb3</stdout>
       <stdout>S: disk/by-id/ccw-0X0150-part3</stdout>
@@ -228,7 +228,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/mapper/36005076305ffc73a00000000000013b4'</name>
+      <name>/usr/bin/udevadm info '/dev/mapper/36005076305ffc73a00000000000013b4'</name>
       <stdout>P: /devices/virtual/block/dm-0</stdout>
       <stdout>N: dm-0</stdout>
       <stdout>L: 50</stdout>
@@ -268,7 +268,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/mapper/36005076305ffc73a00000000000013b4-part1'</name>
+      <name>/usr/bin/udevadm info '/dev/mapper/36005076305ffc73a00000000000013b4-part1'</name>
       <stdout>P: /devices/virtual/block/dm-1</stdout>
       <stdout>N: dm-1</stdout>
       <stdout>L: 50</stdout>
@@ -326,7 +326,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/mapper/36005076305ffc73a00000000000013b5'</name>
+      <name>/usr/bin/udevadm info '/dev/mapper/36005076305ffc73a00000000000013b5'</name>
       <stdout>P: /devices/virtual/block/dm-3</stdout>
       <stdout>N: dm-3</stdout>
       <stdout>L: 50</stdout>
@@ -370,7 +370,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sda'</name>
+      <name>/usr/bin/udevadm info '/dev/sda'</name>
       <stdout>P: /devices/css0/0.0.0008/0.0.fa00/host0/rport-0:0-0/target0:0:0/0:0:0:1085554707/block/sda</stdout>
       <stdout>N: sda</stdout>
       <stdout>S: disk/by-id/scsi-36005076305ffc73a00000000000013b4</stdout>
@@ -423,18 +423,18 @@
     </Command>
     <Command>
       <!-- output faked and incomplete -->
-      <name>/sbin/udevadm info '/dev/sda1'</name>
+      <name>/usr/bin/udevadm info '/dev/sda1'</name>
       <stdout>P: /devices/css0/0.0.0008/0.0.fa00/host0/rport-0:0-0/target0:0:0/0:0:0:1085554707/block/sda/sda1</stdout>
       <stdout>N: sda1</stdout>
     </Command>
     <Command>
       <!-- output faked and incomplete -->
-      <name>/sbin/udevadm info '/dev/sda2'</name>
+      <name>/usr/bin/udevadm info '/dev/sda2'</name>
       <stdout>P: /devices/css0/0.0.0008/0.0.fa00/host0/rport-0:0-0/target0:0:0/0:0:0:1085554707/block/sda/sda2</stdout>
       <stdout>N: sda2</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sdb'</name>
+      <name>/usr/bin/udevadm info '/dev/sdb'</name>
       <stdout>P: /devices/css0/0.0.0008/0.0.fa00/host0/rport-0:0-0/target0:0:0/0:0:0:1085620243/block/sdb</stdout>
       <stdout>N: sdb</stdout>
       <stdout>S: disk/by-id/scsi-36005076305ffc73a00000000000013b5</stdout>
@@ -486,7 +486,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sdc'</name>
+      <name>/usr/bin/udevadm info '/dev/sdc'</name>
       <stdout>P: /devices/css0/0.0.0008/0.0.fa00/host0/rport-0:0-1/target0:0:1/0:0:1:1085554707/block/sdc</stdout>
       <stdout>N: sdc</stdout>
       <stdout>S: disk/by-id/scsi-36005076305ffc73a00000000000013b4</stdout>
@@ -539,18 +539,18 @@
     </Command>
     <Command>
       <!-- output faked and incomplete -->
-      <name>/sbin/udevadm info '/dev/sdc1'</name>
+      <name>/usr/bin/udevadm info '/dev/sdc1'</name>
       <stdout>P: /devices/css0/0.0.0008/0.0.fa00/host0/rport-0:0-1/target0:0:1/0:0:1:1085554707/block/sdc/sdc1</stdout>
       <stdout>N: sdc1</stdout>
     </Command>
     <Command>
       <!-- output faked and incomplete -->
-      <name>/sbin/udevadm info '/dev/sdc2'</name>
+      <name>/usr/bin/udevadm info '/dev/sdc2'</name>
       <stdout>P: /devices/css0/0.0.0008/0.0.fa00/host0/rport-0:0-1/target0:0:1/0:0:1:1085554707/block/sdc/sdc2</stdout>
       <stdout>N: sdc2</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sdd'</name>
+      <name>/usr/bin/udevadm info '/dev/sdd'</name>
       <stdout>P: /devices/css0/0.0.0008/0.0.fa00/host0/rport-0:0-1/target0:0:1/0:0:1:1085620243/block/sdd</stdout>
       <stdout>N: sdd</stdout>
       <stdout>S: disk/by-id/scsi-36005076305ffc73a00000000000013b5</stdout>
@@ -602,7 +602,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm settle --timeout=20</name>
+      <name>/usr/bin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
       <name>/usr/bin/getconf PAGESIZE</name>

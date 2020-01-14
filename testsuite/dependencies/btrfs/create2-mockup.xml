@@ -2,7 +2,7 @@
 <Mockup>
   <Commands>
     <Command>
-      <name>/sbin/udevadm settle --timeout=20</name>
+      <name>/usr/bin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
       <name>/sbin/mkfs.btrfs --force --metadata=RAID1 --data=RAID0 --nodiscard '/dev/sda' '/dev/sdb' '/dev/sdc' '/dev/sdd'</name>

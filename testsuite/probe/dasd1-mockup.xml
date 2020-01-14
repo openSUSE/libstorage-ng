@@ -68,7 +68,7 @@
       <stdout>                         000cc040 4fd356c0  02030000 0000a000</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/dasda'</name>
+      <name>/usr/bin/udevadm info '/dev/dasda'</name>
       <stdout>P: /devices/css0/0.0.0003/0.0.0150/block/dasda</stdout>
       <stdout>N: dasda</stdout>
       <stdout>S: disk/by-id/ccw-0X0150</stdout>
@@ -95,8 +95,8 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/dasda1'</name>
-      <name>/sbin/udevadm info '/dev/disk/by-path/ccw-0.0.0150-part1'</name>
+      <name>/usr/bin/udevadm info '/dev/dasda1'</name>
+      <name>/usr/bin/udevadm info '/dev/disk/by-path/ccw-0.0.0150-part1'</name>
       <stdout>P: /devices/css0/0.0.0003/0.0.0150/block/dasda/dasda1</stdout>
       <stdout>N: dasda1</stdout>
       <stdout>S: disk/by-id/ccw-0X0150-part1</stdout>
@@ -130,8 +130,8 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/dasda2'</name>
-      <name>/sbin/udevadm info '/dev/disk/by-path/ccw-0.0.0150-part2'</name>
+      <name>/usr/bin/udevadm info '/dev/dasda2'</name>
+      <name>/usr/bin/udevadm info '/dev/disk/by-path/ccw-0.0.0150-part2'</name>
       <stdout>P: /devices/css0/0.0.0003/0.0.0150/block/dasda/dasda2</stdout>
       <stdout>N: dasda2</stdout>
       <stdout>S: disk/by-id/ccw-0X0150-part2</stdout>
@@ -165,8 +165,8 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/dasda3'</name>
-      <name>/sbin/udevadm info '/dev/disk/by-path/ccw-0.0.0150-part3'</name>
+      <name>/usr/bin/udevadm info '/dev/dasda3'</name>
+      <name>/usr/bin/udevadm info '/dev/disk/by-path/ccw-0.0.0150-part3'</name>
       <stdout>P: /devices/css0/0.0.0003/0.0.0150/block/dasda/dasda3</stdout>
       <stdout>N: dasda3</stdout>
       <stdout>S: disk/by-id/ccw-0X0150-part3</stdout>
@@ -201,7 +201,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm settle --timeout=20</name>
+      <name>/usr/bin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
       <name>/usr/bin/df --block-size=1 --output=size,used,avail,fstype '/suse/aschnell'</name>

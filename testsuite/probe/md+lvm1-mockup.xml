@@ -99,7 +99,7 @@
       <stdout>  }</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/mapper/vg--a-lv--a'</name>
+      <name>/usr/bin/udevadm info '/dev/mapper/vg--a-lv--a'</name>
       <stdout>P: /devices/virtual/block/dm-6</stdout>
       <stdout>N: dm-6</stdout>
       <stdout>L: 0</stdout>
@@ -132,7 +132,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/mapper/vg--b-lv--b'</name>
+      <name>/usr/bin/udevadm info '/dev/mapper/vg--b-lv--b'</name>
       <stdout>P: /devices/virtual/block/dm-5</stdout>
       <stdout>N: dm-5</stdout>
       <stdout>L: 0</stdout>
@@ -165,7 +165,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/md/md-b'</name>
+      <name>/usr/bin/udevadm info '/dev/md/md-b'</name>
       <stdout>P: /devices/virtual/block/md127</stdout>
       <stdout>N: md127</stdout>
       <stdout>L: 100</stdout>
@@ -214,7 +214,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/md0'</name>
+      <name>/usr/bin/udevadm info '/dev/md0'</name>
       <stdout>P: /devices/virtual/block/md0</stdout>
       <stdout>N: md0</stdout>
       <stdout>L: 100</stdout>
@@ -260,7 +260,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/md127'</name>
+      <name>/usr/bin/udevadm info '/dev/md127'</name>
       <stdout>P: /devices/virtual/block/md127</stdout>
       <stdout>N: md127</stdout>
       <stdout>L: 100</stdout>
@@ -309,7 +309,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sdc'</name>
+      <name>/usr/bin/udevadm info '/dev/sdc'</name>
       <stdout>P: /devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc</stdout>
       <stdout>N: sdc</stdout>
       <stdout>L: 0</stdout>
@@ -360,7 +360,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sdc1'</name>
+      <name>/usr/bin/udevadm info '/dev/sdc1'</name>
       <stdout>P: /devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc/sdc1</stdout>
       <stdout>N: sdc1</stdout>
       <stdout>L: 0</stdout>
@@ -437,7 +437,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sdc2'</name>
+      <name>/usr/bin/udevadm info '/dev/sdc2'</name>
       <stdout>P: /devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc/sdc2</stdout>
       <stdout>N: sdc2</stdout>
       <stdout>L: 0</stdout>
@@ -514,7 +514,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sdd'</name>
+      <name>/usr/bin/udevadm info '/dev/sdd'</name>
       <stdout>P: /devices/pci0000:00/0000:00:14.0/usb2/2-8/2-8:1.0/host9/target9:0:0/9:0:0:0/block/sdd</stdout>
       <stdout>N: sdd</stdout>
       <stdout>L: 0</stdout>
@@ -565,7 +565,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sdd1'</name>
+      <name>/usr/bin/udevadm info '/dev/sdd1'</name>
       <stdout>P: /devices/pci0000:00/0000:00:14.0/usb2/2-8/2-8:1.0/host9/target9:0:0/9:0:0:0/block/sdd/sdd1</stdout>
       <stdout>N: sdd1</stdout>
       <stdout>L: 0</stdout>
@@ -642,7 +642,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sdd2'</name>
+      <name>/usr/bin/udevadm info '/dev/sdd2'</name>
       <stdout>P: /devices/pci0000:00/0000:00:14.0/usb2/2-8/2-8:1.0/host9/target9:0:0/9:0:0:0/block/sdd/sdd2</stdout>
       <stdout>N: sdd2</stdout>
       <stdout>L: 0</stdout>
@@ -719,7 +719,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sr0'</name>
+      <name>/usr/bin/udevadm info '/dev/sr0'</name>
       <stdout>P: /devices/pci0000:00/0000:00:17.0/ata7/host6/target6:0:0/6:0:0:0/block/sr0</stdout>
       <stdout>N: sr0</stdout>
       <stdout>L: -100</stdout>
@@ -782,7 +782,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/vg-a/lv-a'</name>
+      <name>/usr/bin/udevadm info '/dev/vg-a/lv-a'</name>
       <stdout>P: /devices/virtual/block/dm-6</stdout>
       <stdout>N: dm-6</stdout>
       <stdout>L: 0</stdout>
@@ -815,7 +815,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/vg-b/lv-b'</name>
+      <name>/usr/bin/udevadm info '/dev/vg-b/lv-b'</name>
       <stdout>P: /devices/virtual/block/dm-5</stdout>
       <stdout>N: dm-5</stdout>
       <stdout>L: 0</stdout>
@@ -848,7 +848,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm settle --timeout=20</name>
+      <name>/usr/bin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
       <name>/sbin/vgs --reportformat json --units b --nosuffix --options vg_name,vg_uuid,vg_attr,vg_extent_size,vg_extent_count,vg_free_count</name>

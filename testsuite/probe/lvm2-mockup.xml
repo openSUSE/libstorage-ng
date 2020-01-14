@@ -69,7 +69,7 @@
       <stdout>  }</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/dm-4'</name>
+      <name>/usr/bin/udevadm info '/dev/dm-4'</name>
       <stdout>P: /devices/virtual/block/dm-4</stdout>
       <stdout>N: dm-4</stdout>
       <stdout>S: disk/by-id/dm-name-system-swap</stdout>
@@ -102,7 +102,7 @@
       <stdout>E: USEC_INITIALIZED=3220380</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/mapper/system-home'</name>
+      <name>/usr/bin/udevadm info '/dev/mapper/system-home'</name>
       <stdout>P: /devices/virtual/block/dm-6</stdout>
       <stdout>N: dm-6</stdout>
       <stdout>S: disk/by-id/dm-name-system-home</stdout>
@@ -134,7 +134,7 @@
       <stdout>E: USEC_INITIALIZED=14057865</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/mapper/system-root'</name>
+      <name>/usr/bin/udevadm info '/dev/mapper/system-root'</name>
       <stdout>P: /devices/virtual/block/dm-3</stdout>
       <stdout>N: dm-3</stdout>
       <stdout>S: disk/by-id/dm-name-system-root</stdout>
@@ -167,7 +167,7 @@
       <stdout>E: USEC_INITIALIZED=3105114</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/mapper/system-swap'</name>
+      <name>/usr/bin/udevadm info '/dev/mapper/system-swap'</name>
       <stdout>P: /devices/virtual/block/dm-4</stdout>
       <stdout>N: dm-4</stdout>
       <stdout>S: disk/by-id/dm-name-system-swap</stdout>
@@ -200,7 +200,7 @@
       <stdout>E: USEC_INITIALIZED=3220380</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sda'</name>
+      <name>/usr/bin/udevadm info '/dev/sda'</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda</stdout>
       <stdout>N: sda</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB09d89637-d9690549</stdout>
@@ -248,7 +248,7 @@
       <stdout>E: USEC_INITIALIZED=12033392</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sda1'</name>
+      <name>/usr/bin/udevadm info '/dev/sda1'</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda1</stdout>
       <stdout>N: sda1</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB09d89637-d9690549-part1</stdout>
@@ -312,7 +312,7 @@
       <stdout>E: USEC_INITIALIZED=12812805</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sda2'</name>
+      <name>/usr/bin/udevadm info '/dev/sda2'</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda2</stdout>
       <stdout>N: sda2</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB09d89637-d9690549-part2</stdout>
@@ -379,7 +379,7 @@
       <stdout>E: USEC_INITIALIZED=12885390</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sr0'</name>
+      <name>/usr/bin/udevadm info '/dev/sr0'</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.1/ata4/host3/target3:0:0/3:0:0:0/block/sr0</stdout>
       <stdout>N: sr0</stdout>
       <stdout>L: -100</stdout>
@@ -446,7 +446,7 @@
       <stdout>E: USEC_INITIALIZED=11340413</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/system/home'</name>
+      <name>/usr/bin/udevadm info '/dev/system/home'</name>
       <stdout>P: /devices/virtual/block/dm-6</stdout>
       <stdout>N: dm-6</stdout>
       <stdout>S: disk/by-id/dm-name-system-home</stdout>
@@ -478,7 +478,7 @@
       <stdout>E: USEC_INITIALIZED=14057865</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/system/root'</name>
+      <name>/usr/bin/udevadm info '/dev/system/root'</name>
       <stdout>P: /devices/virtual/block/dm-3</stdout>
       <stdout>N: dm-3</stdout>
       <stdout>S: disk/by-id/dm-name-system-root</stdout>
@@ -511,7 +511,7 @@
       <stdout>E: USEC_INITIALIZED=3105114</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/system/swap'</name>
+      <name>/usr/bin/udevadm info '/dev/system/swap'</name>
       <stdout>P: /devices/virtual/block/dm-4</stdout>
       <stdout>N: dm-4</stdout>
       <stdout>S: disk/by-id/dm-name-system-swap</stdout>
@@ -544,7 +544,7 @@
       <stdout>E: USEC_INITIALIZED=3220380</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm settle --timeout=20</name>
+      <name>/usr/bin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
       <name>/sbin/vgs --reportformat json --units b --nosuffix --options vg_name,vg_uuid,vg_attr,vg_extent_size,vg_extent_count,vg_free_count</name>

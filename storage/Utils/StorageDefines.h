@@ -98,7 +98,7 @@
 #define DASDFMTBIN "/sbin/dasdfmt"
 #define DASDVIEWBIN "/sbin/dasdview"
 
-#define UDEVADM_BIN "/sbin/udevadm"
+#define UDEVADM_BIN "/usr/bin/udevadm"
 #define UDEVADM_BIN_SETTLE UDEVADM_BIN " settle --timeout=20"
 
 #define RPCBINDBIN     "/sbin/rpcbind"

@@ -2,7 +2,7 @@
 <Mockup>
   <Commands>
     <Command>
-      <name>/sbin/udevadm settle --timeout=20</name>
+      <name>/usr/bin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
       <name>/sbin/lvresize --force 'testvg/secondlv' --extents 640</name>

@@ -31,7 +31,7 @@
       <name>/sbin/multipath -d -v 2 -ll</name>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/mapper/cr-test3'</name>
+      <name>/usr/bin/udevadm info '/dev/mapper/cr-test3'</name>
       <stdout>P: /devices/virtual/block/dm-7</stdout>
       <stdout>N: dm-7</stdout>
       <stdout>L: 0</stdout>
@@ -62,7 +62,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/mapper/cr-test4'</name>
+      <name>/usr/bin/udevadm info '/dev/mapper/cr-test4'</name>
       <stdout>P: /devices/virtual/block/dm-8</stdout>
       <stdout>N: dm-8</stdout>
       <stdout>L: 0</stdout>
@@ -93,7 +93,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sdc'</name>
+      <name>/usr/bin/udevadm info '/dev/sdc'</name>
       <stdout>P: /devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc</stdout>
       <stdout>N: sdc</stdout>
       <stdout>L: 0</stdout>
@@ -144,7 +144,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sdc1'</name>
+      <name>/usr/bin/udevadm info '/dev/sdc1'</name>
       <stdout>P: /devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc/sdc1</stdout>
       <stdout>N: sdc1</stdout>
       <stdout>L: 0</stdout>
@@ -203,7 +203,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sdc2'</name>
+      <name>/usr/bin/udevadm info '/dev/sdc2'</name>
       <stdout>P: /devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc/sdc2</stdout>
       <stdout>N: sdc2</stdout>
       <stdout>L: 0</stdout>
@@ -262,7 +262,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sdc3'</name>
+      <name>/usr/bin/udevadm info '/dev/sdc3'</name>
       <stdout>P: /devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc/sdc3</stdout>
       <stdout>N: sdc3</stdout>
       <stdout>L: 0</stdout>
@@ -321,7 +321,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sdc4'</name>
+      <name>/usr/bin/udevadm info '/dev/sdc4'</name>
       <stdout>P: /devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc/sdc4</stdout>
       <stdout>N: sdc4</stdout>
       <stdout>L: 0</stdout>
@@ -380,7 +380,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm settle --timeout=20</name>
+      <name>/usr/bin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
       <name>/usr/bin/getconf PAGESIZE</name>

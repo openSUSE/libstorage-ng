@@ -100,7 +100,7 @@
       <name>/sbin/multipath -d -v 2 -ll</name>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/loop0'</name>
+      <name>/usr/bin/udevadm info '/dev/loop0'</name>
       <stdout>P: /devices/virtual/block/loop0</stdout>
       <stdout>N: loop0</stdout>
       <stdout>E: DEVNAME=/dev/loop0</stdout>
@@ -117,7 +117,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/loop1'</name>
+      <name>/usr/bin/udevadm info '/dev/loop1'</name>
       <stdout>P: /devices/virtual/block/loop1</stdout>
       <stdout>N: loop1</stdout>
       <stdout>E: DEVNAME=/dev/loop1</stdout>
@@ -134,7 +134,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/loop2'</name>
+      <name>/usr/bin/udevadm info '/dev/loop2'</name>
       <stdout>P: /devices/virtual/block/loop2</stdout>
       <stdout>N: loop2</stdout>
       <stdout>E: DEVNAME=/dev/loop2</stdout>
@@ -151,7 +151,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/loop3'</name>
+      <name>/usr/bin/udevadm info '/dev/loop3'</name>
       <stdout>P: /devices/virtual/block/loop3</stdout>
       <stdout>N: loop3</stdout>
       <stdout>E: DEVNAME=/dev/loop3</stdout>
@@ -168,7 +168,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/loop4'</name>
+      <name>/usr/bin/udevadm info '/dev/loop4'</name>
       <stdout>P: /devices/virtual/block/loop4</stdout>
       <stdout>N: loop4</stdout>
       <stdout>E: DEVNAME=/dev/loop4</stdout>
@@ -185,7 +185,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/loop5'</name>
+      <name>/usr/bin/udevadm info '/dev/loop5'</name>
       <stdout>P: /devices/virtual/block/loop5</stdout>
       <stdout>N: loop5</stdout>
       <stdout>E: DEVNAME=/dev/loop5</stdout>
@@ -202,7 +202,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/loop6'</name>
+      <name>/usr/bin/udevadm info '/dev/loop6'</name>
       <stdout>P: /devices/virtual/block/loop6</stdout>
       <stdout>N: loop6</stdout>
       <stdout>E: DEVNAME=/dev/loop6</stdout>
@@ -219,7 +219,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/xvda'</name>
+      <name>/usr/bin/udevadm info '/dev/xvda'</name>
       <stdout>P: /devices/vbd-51712/block/xvda</stdout>
       <stdout>N: xvda</stdout>
       <stdout>S: disk/by-label/SLE-15-Installer-DVD-x86_646.001</stdout>
@@ -251,7 +251,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/xvda1'</name>
+      <name>/usr/bin/udevadm info '/dev/xvda1'</name>
       <stdout>P: /devices/vbd-51712/block/xvda/xvda1</stdout>
       <stdout>N: xvda1</stdout>
       <stdout>S: disk/by-label/SLE-15-Installer-DVD-x86_646.001</stdout>
@@ -292,7 +292,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/xvda2'</name>
+      <name>/usr/bin/udevadm info '/dev/xvda2'</name>
       <stdout>P: /devices/vbd-51712/block/xvda/xvda2</stdout>
       <stdout>N: xvda2</stdout>
       <stdout>S: disk/by-label/SLE-15-Installer-DVD-x86_646.001</stdout>
@@ -334,7 +334,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/xvdb'</name>
+      <name>/usr/bin/udevadm info '/dev/xvdb'</name>
       <stdout>P: /devices/vbd-51728/block/xvdb</stdout>
       <stdout>N: xvdb</stdout>
       <stdout>E: DEVNAME=/dev/xvdb</stdout>
@@ -351,7 +351,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/xvdb1'</name>
+      <name>/usr/bin/udevadm info '/dev/xvdb1'</name>
       <stdout>P: /devices/vbd-51728/block/xvdb/xvdb1</stdout>
       <stdout>N: xvdb1</stdout>
       <stdout>S: disk/by-partuuid/52d26b49-cad2-4092-8f0a-0310da915ae5</stdout>
@@ -384,7 +384,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/xvdb2'</name>
+      <name>/usr/bin/udevadm info '/dev/xvdb2'</name>
       <stdout>P: /devices/vbd-51728/block/xvdb/xvdb2</stdout>
       <stdout>N: xvdb2</stdout>
       <stdout>S: disk/by-partuuid/39982024-ea34-42ca-bab1-347932a878ce</stdout>
@@ -417,7 +417,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/xvdc1'</name>
+      <name>/usr/bin/udevadm info '/dev/xvdc1'</name>
       <stdout>P: /devices/vbd-51745/block/xvdc1</stdout>
       <stdout>N: xvdc1</stdout>
       <stdout>S: disk/by-uuid/7608bc33-8dfd-4ae0-8f38-e5923deb9631</stdout>
@@ -438,7 +438,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm settle --timeout=20</name>
+      <name>/usr/bin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
       <name>/usr/bin/getconf PAGESIZE</name>
