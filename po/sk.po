@@ -6,10 +6,10 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-09 12:29+0100\n"
-"PO-Revision-Date: 2019-09-04 15:51+0000\n"
+"PO-Revision-Date: 2020-01-14 18:53+0000\n"
 "Last-Translator: Ferdinand Galko <galko.ferdinand@gmail.com>\n"
-"Language-Team: Slovak <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/sk/>\n"
+"Language-Team: Slovak <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -289,7 +289,7 @@ msgstr "Sada vyrovnávacej pamäte Bcache"
 
 #. TRANSLATORS: name of object
 msgid "BitLocker"
-msgstr ""
+msgstr "BitLocker"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs"
@@ -1091,19 +1091,16 @@ msgid "DM RAID"
 msgstr "DM RAID"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "DOS12 Partition"
-msgstr "Oddiel"
+msgstr "Oddiel DOS12"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "DOS16 Partition"
-msgstr "Oddiel"
+msgstr "Oddiel DOS16"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "DOS32 Partition"
-msgstr "Oddiel"
+msgstr "Oddiel DOS32"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -1754,9 +1751,8 @@ msgid "Ext4"
 msgstr "Ext4"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Extended Partition"
-msgstr "Systémový oddiel EFI"
+msgstr "Rozšírený oddiel"
 
 #. TRANSLATORS: name of object
 msgid "F2FS"
@@ -2197,9 +2193,8 @@ msgid "NTFS"
 msgstr "NTFS"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "NTFS Partition"
-msgstr "Oddiel"
+msgstr "Oddiel NTFS"
 
 #. TRANSLATORS: symbol for "peta" (best keep untranslated)
 msgid "P"
@@ -2402,9 +2397,8 @@ msgid "Reducing volume group %1$s by missing physical volumes"
 msgstr "Redukovanie skupiny zväzkov %1$s podľa chýbajúcich fyzických zväzkov"
 
 #. TRANSLATORS: name of object
-#, fuzzy
 msgid "ReiserFS"
-msgstr "Reiserfs"
+msgstr "ReiserFS"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the device name (e.g. /dev/sdc1),
