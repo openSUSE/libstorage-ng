@@ -386,7 +386,7 @@ namespace storage
 	    }
 	}
 
-	if ((!lhs.active && active) || (lhs.path != path))
+	if (active && (!lhs.active || lhs.path != path))
 	{
 	    actions.push_back(new Action::Mount(get_sid()));
 	}
