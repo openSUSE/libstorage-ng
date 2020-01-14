@@ -14,10 +14,10 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-09 12:29+0100\n"
-"PO-Revision-Date: 2019-12-15 19:54+0000\n"
+"PO-Revision-Date: 2020-01-14 13:53+0000\n"
 "Last-Translator: Sarah Kriesch <ada.lovelace@gmx.de>\n"
-"Language-Team: German <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/de/>\n"
+"Language-Team: German <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -295,7 +295,7 @@ msgstr "Bcache-Cacheset"
 
 #. TRANSLATORS: name of object
 msgid "BitLocker"
-msgstr ""
+msgstr "BitLocker"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs"
@@ -1102,19 +1102,16 @@ msgid "DM RAID"
 msgstr "DM-RAID"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "DOS12 Partition"
-msgstr "Partition"
+msgstr "DOS12-Partition"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "DOS16 Partition"
-msgstr "Partition"
+msgstr "DOS16-Partition"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "DOS32 Partition"
-msgstr "Partition"
+msgstr "DOS32-Partition"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -1764,9 +1761,8 @@ msgid "Ext4"
 msgstr "Ext4"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Extended Partition"
-msgstr "EFI-System-Partition"
+msgstr "Erweiterte Partition"
 
 #. TRANSLATORS: name of object
 msgid "F2FS"
@@ -2213,9 +2209,8 @@ msgid "NTFS"
 msgstr "NTFS"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "NTFS Partition"
-msgstr "Partition"
+msgstr "NTFS-Partition"
 
 #. TRANSLATORS: symbol for "peta" (best keep untranslated)
 msgid "P"
@@ -2418,9 +2413,8 @@ msgid "Reducing volume group %1$s by missing physical volumes"
 msgstr "Volume-Gruppe %1$s wird um fehlende physische Volumes verringert"
 
 #. TRANSLATORS: name of object
-#, fuzzy
 msgid "ReiserFS"
-msgstr "Reiserfs"
+msgstr "ReiserFS"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the device name (e.g. /dev/sdc1),
