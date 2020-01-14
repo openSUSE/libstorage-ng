@@ -25,7 +25,7 @@
       <name>/sbin/multipath -d -v 2 -ll</name>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sdc'</name>
+      <name>/usr/bin/udevadm info '/dev/sdc'</name>
       <stdout>P: /devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.6/1-1.6:1.0/host7/target7:0:0/7:0:0:0/block/sdc</stdout>
       <stdout>N: sdc</stdout>
       <stdout>S: disk/by-id/usb-WD_My_Passport_25E2_575842314436354C33384445-0:0</stdout>
@@ -72,7 +72,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sdc1'</name>
+      <name>/usr/bin/udevadm info '/dev/sdc1'</name>
       <stdout>P: /devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.6/1-1.6:1.0/host7/target7:0:0/7:0:0:0/block/sdc/sdc1</stdout>
       <stdout>N: sdc1</stdout>
       <stdout>S: disk/by-id/usb-WD_My_Passport_25E2_575842314436354C33384445-0:0-part1</stdout>
@@ -132,7 +132,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sdc2'</name>
+      <name>/usr/bin/udevadm info '/dev/sdc2'</name>
       <stdout>P: /devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.6/1-1.6:1.0/host7/target7:0:0/7:0:0:0/block/sdc/sdc2</stdout>
       <stdout>N: sdc2</stdout>
       <stdout>S: disk/by-id/usb-WD_My_Passport_25E2_575842314436354C33384445-0:0-part2</stdout>
@@ -192,7 +192,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sdc3'</name>
+      <name>/usr/bin/udevadm info '/dev/sdc3'</name>
       <stdout>P: /devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.6/1-1.6:1.0/host7/target7:0:0/7:0:0:0/block/sdc/sdc3</stdout>
       <stdout>N: sdc3</stdout>
       <stdout>S: disk/by-id/usb-WD_My_Passport_25E2_575842314436354C33384445-0:0-part3</stdout>
@@ -252,7 +252,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm settle --timeout=20</name>
+      <name>/usr/bin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
       <name>/usr/bin/getconf PAGESIZE</name>

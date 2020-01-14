@@ -67,7 +67,7 @@
       <stdout>ID 294 gen 191 parent 258 top level 258 path &lt;FS_TREE&gt;/@/.snapshots/8/snapshot</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sda'</name>
+      <name>/usr/bin/udevadm info '/dev/sda'</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda</stdout>
       <stdout>N: sda</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB09d89637-d9690549</stdout>
@@ -118,7 +118,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sda1'</name>
+      <name>/usr/bin/udevadm info '/dev/sda1'</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda1</stdout>
       <stdout>N: sda1</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB09d89637-d9690549-part1</stdout>
@@ -184,7 +184,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sda2'</name>
+      <name>/usr/bin/udevadm info '/dev/sda2'</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda2</stdout>
       <stdout>N: sda2</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB09d89637-d9690549-part2</stdout>
@@ -253,7 +253,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sr0'</name>
+      <name>/usr/bin/udevadm info '/dev/sr0'</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.1/ata4/host3/target3:0:0/3:0:0:0/block/sr0</stdout>
       <stdout>N: sr0</stdout>
       <stdout>L: -100</stdout>
@@ -322,7 +322,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm settle --timeout=20</name>
+      <name>/usr/bin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
       <name>/usr/bin/lsattr -d (device:/dev/sda2 path:@)</name>

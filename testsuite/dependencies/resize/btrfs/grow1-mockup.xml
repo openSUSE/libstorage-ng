@@ -2,7 +2,7 @@
 <Mockup>
   <Commands>
     <Command>
-      <name>/sbin/udevadm settle --timeout=20</name>
+      <name>/usr/bin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
       <name>/usr/sbin/parted --script --ignore-busy '/dev/sdc' unit s resizepart 1 23070719</name>

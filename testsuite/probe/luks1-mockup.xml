@@ -28,7 +28,7 @@
       <stdout>cr_home: 0 16779264 crypt aes-xts-plain64 0000000000000000000000000000000000000000000000000000000000000000 0 8:2 4096</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/mapper/cr_home'</name>
+      <name>/usr/bin/udevadm info '/dev/mapper/cr_home'</name>
       <stdout>P: /devices/virtual/block/dm-0</stdout>
       <stdout>N: dm-0</stdout>
       <stdout>L: 50</stdout>
@@ -68,7 +68,7 @@
       <stdout>E: USEC_INITIALIZED=32865604</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sda'</name>
+      <name>/usr/bin/udevadm info '/dev/sda'</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda</stdout>
       <stdout>N: sda</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB56faa9ee-37629d93</stdout>
@@ -117,7 +117,7 @@
       <stdout>E: USEC_INITIALIZED=5248818</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sda1'</name>
+      <name>/usr/bin/udevadm info '/dev/sda1'</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda1</stdout>
       <stdout>N: sda1</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB56faa9ee-37629d93-part1</stdout>
@@ -181,7 +181,7 @@
       <stdout>E: USEC_INITIALIZED=5648925</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sda2'</name>
+      <name>/usr/bin/udevadm info '/dev/sda2'</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda2</stdout>
       <stdout>N: sda2</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB56faa9ee-37629d93-part2</stdout>
@@ -243,7 +243,7 @@
       <stdout>E: USEC_INITIALIZED=5718331</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sr0'</name>
+      <name>/usr/bin/udevadm info '/dev/sr0'</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.1/ata3/host2/target2:0:0/2:0:0:0/block/sr0</stdout>
       <stdout>N: sr0</stdout>
       <stdout>L: -100</stdout>
@@ -311,7 +311,7 @@
       <stdout>E: USEC_INITIALIZED=5360379</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/disk/by-id/ata-VBOX_HARDDISK_VB56faa9ee-37629d93-part2'</name>
+      <name>/usr/bin/udevadm info '/dev/disk/by-id/ata-VBOX_HARDDISK_VB56faa9ee-37629d93-part2'</name>
       <!-- output faked and incomplete -->
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda2</stdout>
       <stdout>N: sda2</stdout>
@@ -319,7 +319,7 @@
       <stdout>E: MINOR=2</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm settle --timeout=20</name>
+      <name>/usr/bin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
       <name>/usr/bin/getconf PAGESIZE</name>

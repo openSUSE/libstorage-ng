@@ -70,7 +70,7 @@
       <exit-code>127</exit-code>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sda'</name>
+      <name>/usr/bin/udevadm info '/dev/sda'</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda</stdout>
       <stdout>N: sda</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB4fc3dfc5-aa799b6b</stdout>
@@ -123,7 +123,7 @@
       <stdout>E: USEC_INITIALIZED=6341600</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sda1'</name>
+      <name>/usr/bin/udevadm info '/dev/sda1'</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda1</stdout>
       <stdout>N: sda1</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB4fc3dfc5-aa799b6b-part1</stdout>
@@ -185,7 +185,7 @@
       <stdout>E: USEC_INITIALIZED=7700475</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sda2'</name>
+      <name>/usr/bin/udevadm info '/dev/sda2'</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda2</stdout>
       <stdout>N: sda2</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB4fc3dfc5-aa799b6b-part2</stdout>
@@ -254,7 +254,7 @@
       <stdout>E: USEC_INITIALIZED=7584297</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sda3'</name>
+      <name>/usr/bin/udevadm info '/dev/sda3'</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda3</stdout>
       <stdout>N: sda3</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB4fc3dfc5-aa799b6b-part3</stdout>
@@ -322,7 +322,7 @@
       <stdout>E: USEC_INITIALIZED=7720243</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sdb'</name>
+      <name>/usr/bin/udevadm info '/dev/sdb'</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb</stdout>
       <stdout>N: sdb</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB4649dc61-b06d8b58</stdout>
@@ -375,7 +375,7 @@
       <stdout>E: USEC_INITIALIZED=6547871</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sdb1'</name>
+      <name>/usr/bin/udevadm info '/dev/sdb1'</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb1</stdout>
       <stdout>N: sdb1</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB4649dc61-b06d8b58-part1</stdout>
@@ -445,7 +445,7 @@
       <stdout>E: USEC_INITIALIZED=8168703</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sdc'</name>
+      <name>/usr/bin/udevadm info '/dev/sdc'</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata3/host2/target2:0:0/2:0:0:0/block/sdc</stdout>
       <stdout>N: sdc</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB01e5cf40-184ff1c7</stdout>
@@ -498,7 +498,7 @@
       <stdout>E: USEC_INITIALIZED=6490326</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sdc1'</name>
+      <name>/usr/bin/udevadm info '/dev/sdc1'</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata3/host2/target2:0:0/2:0:0:0/block/sdc/sdc1</stdout>
       <stdout>N: sdc1</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB01e5cf40-184ff1c7-part1</stdout>
@@ -568,7 +568,7 @@
       <stdout>E: USEC_INITIALIZED=6634238</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sdd'</name>
+      <name>/usr/bin/udevadm info '/dev/sdd'</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata4/host3/target3:0:0/3:0:0:0/block/sdd</stdout>
       <stdout>N: sdd</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB8eb60729-ee6542cf</stdout>
@@ -622,7 +622,7 @@
       <stdout>E: USEC_INITIALIZED=6484905</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sdd1'</name>
+      <name>/usr/bin/udevadm info '/dev/sdd1'</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata4/host3/target3:0:0/3:0:0:0/block/sdd/sdd1</stdout>
       <stdout>N: sdd1</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB8eb60729-ee6542cf-part1</stdout>
@@ -693,7 +693,7 @@
       <stdout>E: USEC_INITIALIZED=8173278</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sde'</name>
+      <name>/usr/bin/udevadm info '/dev/sde'</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata5/host4/target4:0:0/4:0:0:0/block/sde</stdout>
       <stdout>N: sde</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB1dbb6c8d-bfa29af4</stdout>
@@ -747,7 +747,7 @@
       <stdout>E: USEC_INITIALIZED=6471316</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sde1'</name>
+      <name>/usr/bin/udevadm info '/dev/sde1'</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata5/host4/target4:0:0/4:0:0:0/block/sde/sde1</stdout>
       <stdout>N: sde1</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB1dbb6c8d-bfa29af4-part1</stdout>
@@ -818,7 +818,7 @@
       <stdout>E: USEC_INITIALIZED=6637697</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/sr0'</name>
+      <name>/usr/bin/udevadm info '/dev/sr0'</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.1/ata7/host6/target6:0:0/6:0:0:0/block/sr0</stdout>
       <stdout>N: sr0</stdout>
       <stdout>L: -100</stdout>
@@ -884,7 +884,7 @@
       <stdout>E: USEC_INITIALIZED=6365146</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm settle --timeout=20</name>
+      <name>/usr/bin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
       <name>/usr/bin/getconf PAGESIZE</name>

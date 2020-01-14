@@ -88,7 +88,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = MKFSXFSBIN " -q -f -m crc=1 " + get_mkfs_options() + " " +
+	string cmd_line = MKFS_XFS_BIN " -q -f " + get_mkfs_options() + " " +
 	    quote(blk_device->get_name());
 
 	wait_for_devices();

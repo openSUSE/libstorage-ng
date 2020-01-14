@@ -177,7 +177,7 @@
       <exit-code>127</exit-code>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/dasda'</name>
+      <name>/usr/bin/udevadm info '/dev/dasda'</name>
       <stdout>P: /devices/css0/0.0.0016/0.0.3333/block/dasda</stdout>
       <stdout>N: dasda</stdout>
       <stdout>S: disk/by-path/ccw-0.0.3333</stdout>
@@ -196,7 +196,7 @@
       <stdout>E: USEC_INITIALIZED=6835278</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/dasda1'</name>
+      <name>/usr/bin/udevadm info '/dev/dasda1'</name>
       <stdout>P: /devices/css0/0.0.0016/0.0.3333/block/dasda/dasda1</stdout>
       <stdout>N: dasda1</stdout>
       <stdout>S: disk/by-path/ccw-0.0.3333-part1</stdout>
@@ -216,7 +216,7 @@
       <stdout>E: USEC_INITIALIZED=14104054324</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/dasdb'</name>
+      <name>/usr/bin/udevadm info '/dev/dasdb'</name>
       <stdout>P: /devices/css0/0.0.0003/0.0.0150/block/dasdb</stdout>
       <stdout>N: dasdb</stdout>
       <stdout>S: disk/by-id/ccw-0X0150</stdout>
@@ -241,7 +241,7 @@
       <stdout>E: USEC_INITIALIZED=6835334</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/dasdb1'</name>
+      <name>/usr/bin/udevadm info '/dev/dasdb1'</name>
       <stdout>P: /devices/css0/0.0.0003/0.0.0150/block/dasdb/dasdb1</stdout>
       <stdout>N: dasdb1</stdout>
       <stdout>S: disk/by-id/ccw-0X0150-part1</stdout>
@@ -273,7 +273,7 @@
       <stdout>E: USEC_INITIALIZED=6956324</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/dasdb2'</name>
+      <name>/usr/bin/udevadm info '/dev/dasdb2'</name>
       <stdout>P: /devices/css0/0.0.0003/0.0.0150/block/dasdb/dasdb2</stdout>
       <stdout>N: dasdb2</stdout>
       <stdout>S: disk/by-id/ccw-0X0150-part2</stdout>
@@ -305,7 +305,7 @@
       <stdout>E: USEC_INITIALIZED=6907660</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/dasdb3'</name>
+      <name>/usr/bin/udevadm info '/dev/dasdb3'</name>
       <stdout>P: /devices/css0/0.0.0003/0.0.0150/block/dasdb/dasdb3</stdout>
       <stdout>N: dasdb3</stdout>
       <stdout>S: disk/by-id/ccw-0X0150-part3</stdout>
@@ -337,7 +337,7 @@
       <stdout>E: USEC_INITIALIZED=6957187</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/dasdc'</name>
+      <name>/usr/bin/udevadm info '/dev/dasdc'</name>
       <stdout>P: /devices/css0/0.0.0004/0.0.0160/block/dasdc</stdout>
       <stdout>N: dasdc</stdout>
       <stdout>S: disk/by-id/ccw-0X0160</stdout>
@@ -362,7 +362,7 @@
       <stdout>E: USEC_INITIALIZED=6831972</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/dasdc1'</name>
+      <name>/usr/bin/udevadm info '/dev/dasdc1'</name>
       <stdout>P: /devices/css0/0.0.0004/0.0.0160/block/dasdc/dasdc1</stdout>
       <stdout>N: dasdc1</stdout>
       <stdout>S: disk/by-id/ccw-0X0160-part1</stdout>
@@ -394,7 +394,7 @@
       <stdout>E: USEC_INITIALIZED=6845855</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm settle --timeout=20</name>
+      <name>/usr/bin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
       <name>/usr/bin/getconf PAGESIZE</name>

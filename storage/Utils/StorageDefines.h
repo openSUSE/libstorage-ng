@@ -98,7 +98,7 @@
 #define DASDFMTBIN "/sbin/dasdfmt"
 #define DASDVIEWBIN "/sbin/dasdview"
 
-#define UDEVADM_BIN "/sbin/udevadm"
+#define UDEVADM_BIN "/usr/bin/udevadm"
 #define UDEVADM_BIN_SETTLE UDEVADM_BIN " settle --timeout=20"
 
 #define RPCBINDBIN     "/sbin/rpcbind"
@@ -123,7 +123,7 @@
 #define DUMPE2FS_BIN "/sbin/dumpe2fs"
 
 #define MKSWAPBIN      "/sbin/mkswap"
-#define MKFSXFSBIN     "/sbin/mkfs.xfs"
+#define MKFS_XFS_BIN "/sbin/mkfs.xfs"
 #define MKFSJFSBIN "/sbin/mkfs.jfs"
 #define MKFSFATBIN	"/sbin/mkfs.fat"
 #define MKFSNTFSBIN	"/sbin/mkfs.ntfs"

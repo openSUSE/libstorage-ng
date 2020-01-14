@@ -2,7 +2,7 @@
 <Mockup>
   <Commands>
     <Command>
-      <name>/sbin/udevadm settle --timeout=20</name>
+      <name>/usr/bin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
       <name>/sbin/mdadm --create '/dev/md0' --run --level=raid10 --metadata=1.0 --homehost=any --bitmap=internal --chunk=512 --raid-devices=4 '/dev/sda' '/dev/sdc' '/dev/sdb' '/dev/sdd'</name>

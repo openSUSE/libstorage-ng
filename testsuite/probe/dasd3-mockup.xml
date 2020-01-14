@@ -10,7 +10,7 @@
       <name>/sbin/blkid -c '/dev/null'</name>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/vda'</name>
+      <name>/usr/bin/udevadm info '/dev/vda'</name>
       <stdout>P: /devices/css0/0.0.0000/0.0.0000/virtio0/block/vda</stdout>
       <stdout>N: vda</stdout>
       <stdout>S: disk/by-path/ccw-0.0.0000</stdout>
@@ -26,7 +26,7 @@
       <stdout>E: TAGS=:systemd:</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm settle --timeout=20</name>
+      <name>/usr/bin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
       <name>/usr/bin/getconf PAGESIZE</name>
