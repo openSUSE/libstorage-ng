@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2018] SUSE LLC
+ * Copyright (c) [2017-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -372,7 +372,7 @@ namespace storage
 	    actions.push_back(new Action::RemoveFromEtcFstab(get_sid()));
 	}
 
-	if ((lhs.active && !active) || (lhs.path != path))
+	if (lhs.active && (!active || lhs.path != path))
 	{
 	    actions.push_back(new Action::Unmount(get_sid()));
 	}
