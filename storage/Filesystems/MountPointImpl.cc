@@ -372,6 +372,9 @@ namespace storage
 	    actions.push_back(new Action::RemoveFromEtcFstab(get_sid()));
 	}
 
+	// A unmount action could be required when the device is set as unmounted in the target system
+	// or when its mount path has changed. But the unmount action only makes sense if the device is
+	// currently mounted in the system.
 	if (lhs.active && (!active || lhs.path != path))
 	{
 	    actions.push_back(new Action::Unmount(get_sid()));
@@ -386,6 +389,9 @@ namespace storage
 	    }
 	}
 
+	// A mount action could be required when the device is currently unmounted in the system or when
+	// its mount path has changed. But the mount action only makes sense if the device is set as
+	// mounted in the target system.
 	if (active && (!lhs.active || lhs.path != path))
 	{
 	    actions.push_back(new Action::Mount(get_sid()));
