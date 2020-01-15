@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2019] SUSE LLC
+ * Copyright (c) [2017-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -383,7 +383,10 @@ namespace storage
 	    actions.push_back(new Action::RemoveFromEtcFstab(get_sid()));
 	}
 
-	if ((lhs.active && !active) || (lhs.path != path))
+	// A unmount action could be required when the device is set as unmounted in the target system
+	// or when its mount path has changed. But the unmount action only makes sense if the device is
+	// currently mounted in the system.
+	if (lhs.active && (!active || lhs.path != path))
 	{
 	    actions.push_back(new Action::Unmount(get_sid()));
 	}
@@ -397,7 +400,10 @@ namespace storage
 	    }
 	}
 
-	if ((!lhs.active && active) || (lhs.path != path))
+	// A mount action could be required when the device is currently unmounted in the system or when
+	// its mount path has changed. But the mount action only makes sense if the device is set as
+	// mounted in the target system.
+	if (active && (!lhs.active || lhs.path != path))
 	{
 	    actions.push_back(new Action::Mount(get_sid()));
 	}
