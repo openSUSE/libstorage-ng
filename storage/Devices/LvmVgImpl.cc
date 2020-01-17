@@ -760,7 +760,11 @@ namespace storage
 	if (!is_lvm_pv(device))
 	    return false;
 
-	return to_lvm_pv(device)->get_lvm_vg()->get_sid() == get_sid();
+	const LvmPv* lvm_pv = to_lvm_pv(device);
+	if (!lvm_pv->has_lvm_vg())
+	    return false;
+
+	return lvm_pv->get_lvm_vg()->get_sid() == get_sid();
     }
 
 
