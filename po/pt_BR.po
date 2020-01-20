@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-09 12:29+0100\n"
-"PO-Revision-Date: 2020-01-14 00:54+0000\n"
+"PO-Revision-Date: 2020-01-20 02:53+0000\n"
 "Last-Translator: Rodrigo Macedo <rmsolucoeseminformatic4@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.opensuse.org/projects/"
 "libstorage/ng-master/pt_BR/>\n"
@@ -295,7 +295,7 @@ msgstr "Conjunto de Caches Bcache"
 
 #. TRANSLATORS: name of object
 msgid "BitLocker"
-msgstr ""
+msgstr "BitLocker"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs"
