@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -65,10 +65,10 @@ namespace storage
 
     CmdPvs::CmdPvs()
     {
-	SystemCmd cmd(PVSBIN " " COMMON_LVM_OPTIONS " --all --options pv_name,pv_uuid,"
-		      "vg_name,vg_uuid,pv_attr,pe_start");
-	if (cmd.retcode() == 0 && !cmd.stdout().empty())
-	    parse(cmd.stdout());
+	SystemCmd cmd(PVS_BIN " " COMMON_LVM_OPTIONS " --all --options pv_name,pv_uuid,"
+		      "vg_name,vg_uuid,pv_attr,pe_start", SystemCmd::DoThrow);
+
+	parse(cmd.stdout());
     }
 
 
@@ -154,12 +154,11 @@ namespace storage
 
     CmdLvs::CmdLvs()
     {
-	SystemCmd cmd(LVSBIN " " COMMON_LVM_OPTIONS " --all --options lv_name,lv_uuid,vg_name,"
+	SystemCmd cmd(LVS_BIN " " COMMON_LVM_OPTIONS " --all --options lv_name,lv_uuid,vg_name,"
 		      "vg_uuid,lv_role,lv_attr,lv_size,stripes,stripe_size,chunk_size,pool_lv,"
-		      "pool_lv_uuid,data_lv,data_lv_uuid,metadata_lv,metadata_lv_uuid");
+		      "pool_lv_uuid,data_lv,data_lv_uuid,metadata_lv,metadata_lv_uuid", SystemCmd::DoThrow);
 
-	if (cmd.retcode() == 0 && !cmd.stdout().empty())
-	    parse(cmd.stdout());
+	parse(cmd.stdout());
     }
 
 
@@ -331,10 +330,10 @@ namespace storage
 
     CmdVgs::CmdVgs()
     {
-	SystemCmd cmd(VGSBIN " " COMMON_LVM_OPTIONS " --options vg_name,vg_uuid,vg_attr,"
-		      "vg_extent_size,vg_extent_count,vg_free_count");
-	if (cmd.retcode() == 0 && !cmd.stdout().empty())
-	    parse(cmd.stdout());
+	SystemCmd cmd(VGS_BIN " " COMMON_LVM_OPTIONS " --options vg_name,vg_uuid,vg_attr,"
+		      "vg_extent_size,vg_extent_count,vg_free_count", SystemCmd::DoThrow);
+
+	parse(cmd.stdout());
     }
 
 

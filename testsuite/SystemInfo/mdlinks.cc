@@ -19,7 +19,7 @@ void
 check(const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command(LSBIN " -1l --sort=none " + quote("/dev/md"), input);
+    Mockup::set_command(LS_BIN " -1l --sort=none " + quote("/dev/md"), input);
 
     MdLinks mdlinks;
 
@@ -39,7 +39,7 @@ check_error(const vector<string>& input, const vector<string>& error_input, cons
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
     Mockup::Command command(input, error_input, 1);
-    Mockup::set_command(LSBIN " -1l --sort=none " + quote("/dev/md"), command);
+    Mockup::set_command(LS_BIN " -1l --sort=none " + quote("/dev/md"), command);
 
     MdLinks mdlinks;
 

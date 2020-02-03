@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -34,16 +34,9 @@ namespace storage
     Dasdview::Dasdview(const string& device)
 	: device(device), bus_id(), type(DasdType::UNKNOWN), format(DasdFormat::NONE)
     {
-	SystemCmd cmd(DASDVIEWBIN " --extended " + quote(device));
+	SystemCmd cmd(DASDVIEW_BIN " --extended " + quote(device), SystemCmd::DoThrow);
 
-	if (cmd.retcode() == 0)
-	{
-	    parse(cmd.stdout());
-	}
-	else
-	{
-	    y2err("dasdview failed");
-	}
+	parse(cmd.stdout());
     }
 
 

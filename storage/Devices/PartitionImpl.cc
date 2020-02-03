@@ -724,7 +724,7 @@ namespace storage
 	const Partitionable* partitionable = get_partitionable();
 	const PartitionTable* partition_table = get_partition_table();
 
-	string cmd_line = PARTEDBIN " --script --wipesignatures " + quote(partitionable->get_name()) +
+	string cmd_line = PARTED_BIN " --script --wipesignatures " + quote(partitionable->get_name()) +
 	    " unit s mkpart ";
 
 	if (is_msdos(partition_table))
@@ -783,7 +783,7 @@ namespace storage
 
 	const Partitionable* partitionable = get_partitionable();
 
-	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) +
+	string cmd_line = PARTED_BIN " --script " + quote(partitionable->get_name()) +
 	    " unit s print";
 
 	SystemCmd cmd(cmd_line, SystemCmd::NoThrow);
@@ -854,7 +854,7 @@ namespace storage
 	const Partitionable* partitionable = get_partitionable();
 	const PartitionTable* partition_table = get_partition_table();
 
-	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " set " +
+	string cmd_line = PARTED_BIN " --script " + quote(partitionable->get_name()) + " set " +
 	    to_string(get_number()) + " ";
 
 	if (is_msdos(partition_table))
@@ -949,7 +949,7 @@ namespace storage
     {
 	const Partitionable* partitionable = get_partitionable();
 
-	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " set " +
+	string cmd_line = PARTED_BIN " --script " + quote(partitionable->get_name()) + " set " +
 	    to_string(get_number()) + " boot " + (is_boot() ? "on" : "off");
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
@@ -987,7 +987,7 @@ namespace storage
     {
 	const Partitionable* partitionable = get_partitionable();
 
-	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " set " +
+	string cmd_line = PARTED_BIN " --script " + quote(partitionable->get_name()) + " set " +
 	    to_string(get_number()) + " legacy_boot " + (is_legacy_boot() ? "on" : "off");
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
@@ -1076,7 +1076,7 @@ namespace storage
 
 	const Partitionable* partitionable = get_partitionable();
 
-	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " rm " +
+	string cmd_line = PARTED_BIN " --script " + quote(partitionable->get_name()) + " rm " +
 	    to_string(get_number());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
@@ -1094,7 +1094,7 @@ namespace storage
 
 	const Partitionable* partitionable = get_partitionable();
 
-	string cmd_line = EFIBOOTMGRBIN " --verbose --delete --disk " +
+	string cmd_line = EFIBOOTMGR_BIN " --verbose --delete --disk " +
 	    quote(partitionable->get_name()) + " --part " + to_string(get_number());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
@@ -1154,7 +1154,7 @@ namespace storage
 	const Partition* partition_rhs = to_partition(action->get_device(commit_data.actiongraph, RHS));
 	const Partitionable* partitionable = get_partitionable();
 
-	string cmd_line = PARTEDBIN " --script --ignore-busy " + quote(partitionable->get_name()) +
+	string cmd_line = PARTED_BIN " --script --ignore-busy " + quote(partitionable->get_name()) +
 	    " unit s resizepart " + to_string(get_number()) + " ";
 
 	unsigned long long factor = parted_sector_adjustment_factor();

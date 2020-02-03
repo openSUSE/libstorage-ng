@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -25,6 +25,8 @@
 #define STORAGE_STORAGE_DEFINES_H
 
 
+// paths
+
 #define DEV_DIR "/dev"
 #define DEV_MD_DIR "/dev/md"
 #define DEV_MAPPER_DIR "/dev/mapper"
@@ -36,107 +38,110 @@
 
 #define SYSFS_DIR "/sys"
 
-#define SHBIN "/bin/sh"
+
+// commands
+
+#define SH_BIN "/bin/sh"
 
 #define ECHO_BIN "/usr/bin/echo"
 #define CAT_BIN "/usr/bin/cat"
 
-#define UNAMEBIN "/usr/bin/uname"
-#define GETCONFBIN "/usr/bin/getconf"
+#define UNAME_BIN "/usr/bin/uname"
+#define GETCONF_BIN "/usr/bin/getconf"
 
-#define PARTEDBIN "/usr/sbin/parted"
+#define PARTED_BIN "/usr/sbin/parted"
 
-#define MDADMBIN "/sbin/mdadm"
+#define MDADM_BIN "/sbin/mdadm"
 
-#define PVCREATEBIN "/sbin/pvcreate"
-#define PVREMOVEBIN "/sbin/pvremove"
-#define PVRESIZEBIN "/sbin/pvresize"
-#define PVSBIN "/sbin/pvs"
+#define PVCREATE_BIN "/sbin/pvcreate"
+#define PVREMOVE_BIN "/sbin/pvremove"
+#define PVRESIZE_BIN "/sbin/pvresize"
+#define PVS_BIN "/sbin/pvs"
 
-#define LVCREATEBIN "/sbin/lvcreate"
-#define LVREMOVEBIN "/sbin/lvremove"
-#define LVRESIZEBIN "/sbin/lvresize"
-#define LVCHANGEBIN "/sbin/lvchange"
-#define LVSBIN "/sbin/lvs"
+#define LVCREATE_BIN "/sbin/lvcreate"
+#define LVREMOVE_BIN "/sbin/lvremove"
+#define LVRESIZE_BIN "/sbin/lvresize"
+#define LVCHANGE_BIN "/sbin/lvchange"
+#define LVS_BIN "/sbin/lvs"
 
-#define VGCREATEBIN "/sbin/vgcreate"
-#define VGREMOVEBIN "/sbin/vgremove"
-#define VGEXTENDBIN "/sbin/vgextend"
-#define VGREDUCEBIN "/sbin/vgreduce"
-#define VGSBIN "/sbin/vgs"
-#define VGSCANBIN "/sbin/vgscan"
-#define VGCHANGEBIN "/sbin/vgchange"
+#define VGCREATE_BIN "/sbin/vgcreate"
+#define VGREMOVE_BIN "/sbin/vgremove"
+#define VGEXTEND_BIN "/sbin/vgextend"
+#define VGREDUCE_BIN "/sbin/vgreduce"
+#define VGS_BIN "/sbin/vgs"
+#define VGCHANGE_BIN "/sbin/vgchange"
 
-#define CRYPTSETUPBIN "/sbin/cryptsetup"
-#define MULTIPATHBIN "/sbin/multipath"
-#define MULTIPATHDBIN "/sbin/multipathd"
-#define DMSETUPBIN "/sbin/dmsetup"
-#define DMRAIDBIN "/sbin/dmraid"
-#define BTRFSBIN "/sbin/btrfs"
-#define WIPEFSBIN "/sbin/wipefs"
+#define CRYPTSETUP_BIN "/sbin/cryptsetup"
+#define MULTIPATH_BIN "/sbin/multipath"
+#define MULTIPATHD_BIN "/sbin/multipathd"
+#define DMSETUP_BIN "/sbin/dmsetup"
+#define DMRAID_BIN "/sbin/dmraid"
+#define BTRFS_BIN "/sbin/btrfs"
+#define WIPEFS_BIN "/sbin/wipefs"
 
 #define BCACHE_BIN "/usr/sbin/bcache"
 
-#define MOUNTBIN "/bin/mount"
-#define UMOUNTBIN "/bin/umount"
-#define SWAPONBIN "/sbin/swapon"
-#define SWAPOFFBIN "/sbin/swapoff"
+#define MOUNT_BIN "/bin/mount"
+#define UMOUNT_BIN "/bin/umount"
+#define SWAPON_BIN "/sbin/swapon"
+#define SWAPOFF_BIN "/sbin/swapoff"
 
 #define DD_BIN "/bin/dd"
 
-#define BLKIDBIN "/sbin/blkid"
-#define LSSCSIBIN "/usr/bin/lsscsi"
+#define BLKID_BIN "/sbin/blkid"
+#define LSSCSI_BIN "/usr/bin/lsscsi"
 
-#define LSBIN "/bin/ls"
-#define DFBIN "/usr/bin/df"
-#define TESTBIN "/usr/bin/test"
-#define STATBIN "/usr/bin/stat"
+#define LS_BIN "/bin/ls"
+#define DF_BIN "/usr/bin/df"
+#define TEST_BIN "/usr/bin/test"
+#define STAT_BIN "/usr/bin/stat"
 
-#define LSATTRBIN "/usr/bin/lsattr"
-#define CHATTRBIN "/usr/bin/chattr"
+#define LSATTR_BIN "/usr/bin/lsattr"
+#define CHATTR_BIN "/usr/bin/chattr"
 
-#define DASDFMTBIN "/sbin/dasdfmt"
-#define DASDVIEWBIN "/sbin/dasdview"
+#define DASDVIEW_BIN "/sbin/dasdview"
 
 #define UDEVADM_BIN "/usr/bin/udevadm"
 #define UDEVADM_BIN_SETTLE UDEVADM_BIN " settle --timeout=20"
 
-#define RPCBINDBIN     "/sbin/rpcbind"
+#define RPCBIND_BIN "/sbin/rpcbind"
 
-#define EFIBOOTMGRBIN "/usr/sbin/efibootmgr"
+#define EFIBOOTMGR_BIN "/usr/sbin/efibootmgr"
 
 #define NTFSRESIZE_BIN "/usr/sbin/ntfsresize"
-#define XFSGROWFSBIN  "/usr/sbin/xfs_growfs"
-#define REISERFSRESIZEBIN "/sbin/resize_reiserfs"
+#define XFSGROWFS_BIN "/usr/sbin/xfs_growfs"
+#define REISERFSRESIZE_BIN "/sbin/resize_reiserfs"
 #define RESIZE2FS_BIN "/usr/sbin/resize2fs"
-#define FATRESIZEBIN "/usr/sbin/fatresize"
+#define FATRESIZE_BIN "/usr/sbin/fatresize"
 
-#define TUNE2FSBIN     "/sbin/tune2fs"
-#define TUNEREISERFSBIN "/sbin/reiserfstune"
-#define XFSADMINBIN    "/usr/sbin/xfs_admin"
-#define TUNEJFSBIN "/sbin/jfs_tune"
-#define NTFSLABELBIN   "/usr/sbin/ntfslabel"
-#define FATLABELBIN	"/usr/sbin/fatlabel"
-#define SWAPLABELBIN   "/sbin/swaplabel"
-#define EXFAT_LABEL_BIN "/sbin/exfatlabel"
+#define TUNE2FS_BIN "/sbin/tune2fs"
+#define TUNEREISERFS_BIN "/sbin/reiserfstune"
+#define XFSADMIN_BIN "/usr/sbin/xfs_admin"
+#define TUNEJFS_BIN "/sbin/jfs_tune"
+#define NTFSLABEL_BIN "/usr/sbin/ntfslabel"
+#define FATLABEL_BIN "/usr/sbin/fatlabel"
+#define SWAPLABEL_BIN "/sbin/swaplabel"
+#define EXFATLABEL_BIN "/sbin/exfatlabel"
 
 #define DUMPE2FS_BIN "/sbin/dumpe2fs"
 
-#define MKSWAPBIN      "/sbin/mkswap"
+#define MKSWAP_BIN "/sbin/mkswap"
 #define MKFS_XFS_BIN "/sbin/mkfs.xfs"
-#define MKFSJFSBIN "/sbin/mkfs.jfs"
-#define MKFSFATBIN	"/sbin/mkfs.fat"
-#define MKFSNTFSBIN	"/sbin/mkfs.ntfs"
-#define MKFSREISERFSBIN "/sbin/mkreiserfs"
-#define MKFSEXT2BIN    "/sbin/mke2fs"
-#define MKFSBTRFSBIN   "/sbin/mkfs.btrfs"
-#define MKFSF2FSBIN "/usr/sbin/mkfs.f2fs"
+#define MKFS_JFS_BIN "/sbin/mkfs.jfs"
+#define MKFS_FAT_BIN "/sbin/mkfs.fat"
+#define MKFS_NTFS_BIN "/sbin/mkfs.ntfs"
+#define MKFS_REISERFS_BIN "/sbin/mkreiserfs"
+#define MKFS_EXT2_BIN "/sbin/mke2fs"
+#define MKFS_BTRFS_BIN "/sbin/mkfs.btrfs"
+#define MKFS_F2FS_BIN "/usr/sbin/mkfs.f2fs"
 #define MKFS_EXFAT_BIN "/sbin/mkfs.exfat"
 #define MKFS_UDF_BIN "/usr/sbin/mkfs.udf"
 
 #define DOT_BIN "/usr/bin/dot"
 #define DISPLAY_BIN "/usr/bin/display"
 
+
+//regexes
 
 #define UUID_REGEX "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
 

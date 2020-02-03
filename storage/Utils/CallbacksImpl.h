@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2018-2019] SUSE LLC
+ * Copyright (c) [2018-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -32,6 +32,7 @@ namespace storage
 
     class Text;
     class Exception;
+    class ProbeCallbacksV2;
 
 
     /**
@@ -50,9 +51,21 @@ namespace storage
 
     /**
      * Call the error callback of callbacks and handle return value.
+     *
+     * Also calls ST_CAUGHT().
      */
     void
     error_callback(const Callbacks* callbacks, const Text& message, const Exception& exception);
+
+
+    /**
+     * Call the missing_command callback of callback and handle return value.
+     *
+     * Also calls ST_CAUGHT().
+     */
+    void
+    missing_command_callback(const ProbeCallbacksV2* callbacks, const Text& message, const std::string& command,
+			     uint64_t features, const Exception& exception);
 
 }
 

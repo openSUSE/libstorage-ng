@@ -8,7 +8,7 @@ from storage import *
 from storageitu import *
 
 
-class MyProbeCallbacks(ProbeCallbacks):
+class MyProbeCallbacks(ProbeCallbacksV2):
 
     def __init__(self):
         super(MyProbeCallbacks, self).__init__()
@@ -22,6 +22,14 @@ class MyProbeCallbacks(ProbeCallbacks):
         print(message)
         print(what)
         return True
+
+    def missing_command(self, message, what, command, used_features):
+        print("missing command callback")
+        print(message)
+        print(what)
+        print(command)
+        print(used_features)
+        return False
 
 
 set_logger(get_logfile_logger())
@@ -40,6 +48,7 @@ except LockException as exception:
 try:
     storage.probe(my_probe_callbacks)
 except Exception as exception:
+    print("caught exception")
     print(exception.what())
     exit(1)
 

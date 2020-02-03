@@ -86,7 +86,7 @@ namespace storage
 		       bool read_only, const vector<string>& options)
 	: TmpDir(path, name_template)
     {
-	string cmd_line = MOUNTBIN;
+	string cmd_line = MOUNT_BIN;
 
 	// TODO also check options for 'ro' and 'rw'?
 
@@ -106,7 +106,7 @@ namespace storage
     {
 	try
 	{
-	    SystemCmd cmd(UMOUNTBIN " " + quote(get_fullname()), SystemCmd::DoThrow);
+	    SystemCmd cmd(UMOUNT_BIN " " + quote(get_fullname()), SystemCmd::DoThrow);
 	}
 	catch (const Exception& exception)
 	{

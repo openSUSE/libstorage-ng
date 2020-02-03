@@ -22,7 +22,7 @@ void
 check(const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command(BTRFSBIN " filesystem show", input);
+    Mockup::set_command(BTRFS_BIN " filesystem show", input);
 
     CmdBtrfsFilesystemShow cmdbtrfsfilesystemshow;
 
@@ -44,7 +44,7 @@ void
 check_parse_exception(const vector<string>& input)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command(BTRFSBIN " filesystem show", input);
+    Mockup::set_command(BTRFS_BIN " filesystem show", input);
 
     BOOST_CHECK_THROW({ CmdBtrfsFilesystemShow cmdbtrfsfilesystemshow; }, ParseException);
 }
@@ -56,7 +56,7 @@ check_systemcmd_exception(const vector<string>& input, const vector<string>& std
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
     // "input" is (mocked) "stdout" of command
     Mockup::Command command(input, stderr, 1);
-    Mockup::set_command(BTRFSBIN " filesystem show", command);
+    Mockup::set_command(BTRFS_BIN " filesystem show", command);
 
     BOOST_CHECK_THROW({ CmdBtrfsFilesystemShow cmdbtrfsfilesystemshow; }, SystemCmdException);
 }

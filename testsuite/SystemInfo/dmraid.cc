@@ -19,7 +19,7 @@ void
 check(const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command(DMRAIDBIN " --sets=active -ccc", input);
+    Mockup::set_command(DMRAID_BIN " --sets=active -ccc", input);
 
     CmdDmraid cmd_dmraid;
 
@@ -38,7 +38,7 @@ void
 check_exception(const vector<string>& input)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command(DMRAIDBIN " --sets=active -ccc", input);
+    Mockup::set_command(DMRAID_BIN " --sets=active -ccc", input);
 
     BOOST_CHECK_THROW({ CmdDmraid cmd_dmraid; }, Exception);
 }

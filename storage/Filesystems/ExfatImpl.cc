@@ -91,7 +91,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = EXFAT_LABEL_BIN " " + quote(blk_device->get_name()) + " " +
+	string cmd_line = EXFATLABEL_BIN " " + quote(blk_device->get_name()) + " " +
 	    quote(get_label());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);

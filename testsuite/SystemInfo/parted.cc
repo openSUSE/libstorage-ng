@@ -20,7 +20,7 @@ check(const string& device, const vector<string>& stdout, const vector<string>& 
       const vector<string>& result)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command(PARTEDBIN " --script --machine " + quote(device) + " unit s print",
+    Mockup::set_command(PARTED_BIN " --script --machine " + quote(device) + " unit s print",
 			RemoteCommand(stdout, stderr, 0));
 
     Parted parted(device);
@@ -47,7 +47,7 @@ void
 check_exception(const string& device, const vector<string>& input)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command(PARTEDBIN " --script --machine " + quote(device) + " unit s print", input);
+    Mockup::set_command(PARTED_BIN " --script --machine " + quote(device) + " unit s print", input);
 
     BOOST_CHECK_THROW({ Parted parted(device); }, ParseException);
 }

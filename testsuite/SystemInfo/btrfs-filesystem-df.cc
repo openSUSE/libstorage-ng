@@ -22,7 +22,7 @@ void
 check(const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command(BTRFSBIN " filesystem df (device:/dev/system/btrfs)", input);
+    Mockup::set_command(BTRFS_BIN " filesystem df (device:/dev/system/btrfs)", input);
 
     CmdBtrfsFilesystemDf cmd_btrfs_filesystem_get_default(
 	CmdBtrfsFilesystemDf::key_t("/dev/system/btrfs"), "/btrfs"

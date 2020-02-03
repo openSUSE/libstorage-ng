@@ -18,7 +18,7 @@ void
 check(const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command(VGSBIN " --reportformat json --units b --nosuffix --options vg_name,"
+    Mockup::set_command(VGS_BIN " --reportformat json --units b --nosuffix --options vg_name,"
 			"vg_uuid,vg_attr,vg_extent_size,vg_extent_count,vg_free_count", input);
 
     CmdVgs cmd_vgs;

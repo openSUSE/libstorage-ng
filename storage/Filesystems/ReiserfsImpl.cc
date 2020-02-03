@@ -64,7 +64,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = MKFSREISERFSBIN " -f -f " + get_mkfs_options() + " " +
+	string cmd_line = MKFS_REISERFS_BIN " -f -f " + get_mkfs_options() + " " +
 	    quote(blk_device->get_name());
 
 	wait_for_devices();
@@ -84,7 +84,7 @@ namespace storage
 
 	// TODO handle mounted
 
-	string cmd_line = TUNEREISERFSBIN " -l " + quote(get_label()) + " " +
+	string cmd_line = TUNEREISERFS_BIN " -l " + quote(get_label()) + " " +
 	    quote(blk_device->get_name());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
@@ -96,7 +96,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = TUNEREISERFSBIN " " + get_tune_options() + " " + quote(blk_device->get_name());
+	string cmd_line = TUNEREISERFS_BIN " " + get_tune_options() + " " + quote(blk_device->get_name());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
@@ -109,7 +109,7 @@ namespace storage
 
 	const BlkDevice* blk_device_rhs = reiserfs_rhs->get_impl().get_blk_device();
 
-	string cmd_line = REISERFSRESIZEBIN " -f";
+	string cmd_line = REISERFSRESIZE_BIN " -f";
 	if (action->resize_mode == ResizeMode::SHRINK)
 	    cmd_line = "echo y | " + cmd_line + " -s " +
 		to_string(blk_device_rhs->get_size() / KiB) + "K";

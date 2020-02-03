@@ -529,7 +529,7 @@ namespace storage
 	do_pre_mount();
 	wait_for_devices();
 
-	string cmd_line = MOUNTBIN " -t " + toString(mount_point->get_mount_type());
+	string cmd_line = MOUNT_BIN " -t " + toString(mount_point->get_mount_type());
 
 	MountOpts mount_opts = mount_point->get_impl().get_mount_options();
 	if (force_rw)
@@ -553,7 +553,7 @@ namespace storage
 
 	string real_mount_point = storage->get_impl().prepend_rootprefix(mount_point->get_path());
 
-	string cmd_line = UMOUNTBIN " " + quote(real_mount_point);
+	string cmd_line = UMOUNT_BIN " " + quote(real_mount_point);
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 

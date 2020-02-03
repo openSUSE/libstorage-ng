@@ -406,11 +406,9 @@ namespace storage
 	    }
 	    catch (const Exception& exception)
 	    {
-		ST_CAUGHT(exception);
-
 		// TRANSLATORS: error message
-		error_callback(prober.get_probe_callbacks(), sformat(_("Probing file system with UUID %s failed"),
-								     detected_btrfs.uuid), exception);
+		prober.handle(exception, sformat(_("Probing file system with UUID %s failed"),
+						 detected_btrfs.uuid), UF_BTRFS);
 	    }
 	}
     }
@@ -698,7 +696,7 @@ namespace storage
     void
     Btrfs::Impl::do_create()
     {
-	string cmd_line = MKFSBTRFSBIN " --force";
+	string cmd_line = MKFS_BTRFS_BIN " --force";
 
 	if (metadata_raid_level != BtrfsRaidLevel::DEFAULT)
 	    cmd_line += " --metadata=" + toString(metadata_raid_level);
@@ -744,7 +742,7 @@ namespace storage
 	    to_filesystem_user(get_devicegraph()->find_holder(action->blk_device->get_sid(), get_sid()));
 	unsigned int devid = filesystem_user->get_impl().get_id();
 
-	string cmd_line = BTRFSBIN " filesystem resize " + to_string(devid) + ":";
+	string cmd_line = BTRFS_BIN " filesystem resize " + to_string(devid) + ":";
 	if (action->resize_mode == ResizeMode::SHRINK)
 	    cmd_line += to_string(blk_device_rhs->get_size());
 	else
@@ -785,7 +783,7 @@ namespace storage
 
 	// TODO handle mounted
 
-	string cmd_line = BTRFSBIN " filesystem label " + quote(blk_device->get_name()) + " " +
+	string cmd_line = BTRFS_BIN " filesystem label " + quote(blk_device->get_name()) + " " +
 	    quote(get_label());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
@@ -804,7 +802,7 @@ namespace storage
 	if (blk_devices.size() < 2)
 	    return;
 
-	string cmd_line = BTRFSBIN " device scan";
+	string cmd_line = BTRFS_BIN " device scan";
 
 	for (const BlkDevice* blk_device : blk_devices)
 	    cmd_line += " " + quote(blk_device->get_name());
@@ -894,7 +892,7 @@ namespace storage
 
 	EnsureMounted ensure_mounted(get_filesystem(), false);
 
-	string cmd_line = BTRFSBIN " device remove " + quote(blk_device->get_name()) + " " +
+	string cmd_line = BTRFS_BIN " device remove " + quote(blk_device->get_name()) + " " +
 	    quote(ensure_mounted.get_any_mount_point());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
@@ -908,7 +906,7 @@ namespace storage
 
 	EnsureMounted ensure_mounted(get_filesystem(), false);
 
-	string cmd_line = BTRFSBIN " device add " + quote(blk_device->get_name()) + " " +
+	string cmd_line = BTRFS_BIN " device add " + quote(blk_device->get_name()) + " " +
 	    quote(ensure_mounted.get_any_mount_point());
 
 	storage::wait_for_devices({ blk_device });

@@ -25,7 +25,7 @@ BOOST_AUTO_TEST_CASE(exception1)
     };
 
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command(PARTEDBIN " --script --machine '/dev/sda' unit s print", input);
+    Mockup::set_command(PARTED_BIN " --script --machine '/dev/sda' unit s print", input);
 
     SystemInfo system_info;
 

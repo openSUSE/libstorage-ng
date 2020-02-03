@@ -135,7 +135,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = MKFSEXT2BIN " -t " + toString(get_type()) + " -v -F " +
+	string cmd_line = MKFS_EXT2_BIN " -t " + toString(get_type()) + " -v -F " +
 	    get_mkfs_options() + " " + quote(blk_device->get_name());
 
 	wait_for_devices();
@@ -153,7 +153,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = TUNE2FSBIN " -L " + quote(get_label()) + " " + quote(blk_device->get_name());
+	string cmd_line = TUNE2FS_BIN " -L " + quote(get_label()) + " " + quote(blk_device->get_name());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
@@ -164,7 +164,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = TUNE2FSBIN " " + get_tune_options() + " " + quote(blk_device->get_name());
+	string cmd_line = TUNE2FS_BIN " " + get_tune_options() + " " + quote(blk_device->get_name());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }

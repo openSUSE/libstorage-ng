@@ -910,7 +910,7 @@ namespace storage
     void
     BlkDevice::Impl::wipe_device() const
     {
-	string cmd_line = WIPEFSBIN " --all " + quote(get_name());
+	string cmd_line = WIPEFS_BIN " --all " + quote(get_name());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }

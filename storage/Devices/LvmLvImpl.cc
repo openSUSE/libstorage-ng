@@ -181,7 +181,7 @@ namespace storage
 
 	    try
 	    {
-		SystemCmd cmd(VGCHANGEBIN " --activate y", SystemCmd::DoThrow);
+		SystemCmd cmd(VGCHANGE_BIN " --activate y", SystemCmd::DoThrow);
 	    }
 	    catch (const Exception& exception)
 	    {
@@ -217,7 +217,7 @@ namespace storage
     {
 	y2mil("deactivate_lvm_lvs");
 
-	string cmd_line = VGCHANGEBIN " --activate n";
+	string cmd_line = VGCHANGE_BIN " --activate n";
 
 	SystemCmd cmd(cmd_line);
 
@@ -794,7 +794,7 @@ namespace storage
 	const LvmVg* lvm_vg = get_lvm_vg();
 	const Region& region = get_region();
 
-	string cmd_line = LVCREATEBIN;
+	string cmd_line = LVCREATE_BIN;
 
 	switch (lv_type)
 	{
@@ -856,7 +856,7 @@ namespace storage
 
 	const LvmVg* lvm_vg = get_lvm_vg();
 
-	string cmd_line = LVSBIN " --options vg_name,lv_name,lv_uuid,lv_size --units b " +
+	string cmd_line = LVS_BIN " --options vg_name,lv_name,lv_uuid,lv_size --units b " +
 	    quote(lvm_vg->get_vg_name() + "/" + lv_name);
 
 	SystemCmd cmd(cmd_line, SystemCmd::NoThrow);
@@ -1018,7 +1018,7 @@ namespace storage
 
 	const LvmLv* lvm_lv_rhs = to_lvm_lv(action->get_device(commit_data.actiongraph, RHS));
 
-	string cmd_line = LVRESIZEBIN;
+	string cmd_line = LVRESIZE_BIN;
 
 	if (action->resize_mode == ResizeMode::SHRINK)
 	    cmd_line += " --force";
@@ -1091,7 +1091,7 @@ namespace storage
     {
 	const LvmVg* lvm_vg = get_lvm_vg();
 
-	string cmd_line = LVREMOVEBIN " --force " + quote(lvm_vg->get_vg_name() + "/" + lv_name);
+	string cmd_line = LVREMOVE_BIN " --force " + quote(lvm_vg->get_vg_name() + "/" + lv_name);
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
@@ -1158,7 +1158,7 @@ namespace storage
     {
 	const LvmVg* lvm_vg = get_lvm_vg();
 
-	string cmd_line = LVCHANGEBIN " --activate y " + quote(lvm_vg->get_vg_name() + "/" + lv_name);
+	string cmd_line = LVCHANGE_BIN " --activate y " + quote(lvm_vg->get_vg_name() + "/" + lv_name);
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
@@ -1225,7 +1225,7 @@ namespace storage
     {
 	const LvmVg* lvm_vg = get_lvm_vg();
 
-	string cmd_line = LVCHANGEBIN " --activate n " + quote(lvm_vg->get_vg_name() + "/" + lv_name);
+	string cmd_line = LVCHANGE_BIN " --activate n " + quote(lvm_vg->get_vg_name() + "/" + lv_name);
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }

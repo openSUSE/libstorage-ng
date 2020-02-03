@@ -45,9 +45,8 @@ namespace storage
 	  gpt_undersized(false), gpt_backup_broken(false), gpt_pmbr_boot(false),
 	  logical_sector_size(0), physical_sector_size(0)
     {
-	SystemCmd::Options options(PARTEDBIN " --script --machine " + quote(device) +
-				   " unit s print");
-	options.throw_behaviour = SystemCmd::DoThrow;
+	SystemCmd::Options options(PARTED_BIN " --script --machine " + quote(device) +
+				   " unit s print", SystemCmd::DoThrow);
 	options.verify = [](int) { return true; };
 
 	SystemCmd cmd(options);

@@ -891,9 +891,13 @@
       <stdout>4096</stdout>
     </Command>
     <Command>
+      <!-- output faked -->
       <name>/usr/bin/lsscsi --transport</name>
-      <stderr>bash: /usr/bin/lsscsi: No such file or directory</stderr>
-      <exit-code>127</exit-code>
+      <stdout>[0:0:0:0]    disk    sata:                           /dev/sda </stdout>
+      <stdout>[1:0:0:0]    disk    sata:                           /dev/sdb </stdout>
+      <stdout>[2:0:0:0]    disk    sata:                           /dev/sdc </stdout>
+      <stdout>[3:0:0:0]    disk    sata:                           /dev/sdd </stdout>
+      <stdout>[4:0:0:0]    disk    sata:                           /dev/sde </stdout>
     </Command>
     <Command>
       <name>/usr/bin/stat --format '%f' '/dev/sda'</name>

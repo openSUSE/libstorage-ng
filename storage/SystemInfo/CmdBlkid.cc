@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -40,17 +40,17 @@ namespace storage
 
     Blkid::Blkid()
     {
-	SystemCmd cmd(BLKIDBIN " -c '/dev/null'");
-	if (cmd.retcode() == 0)
-	    parse(cmd.stdout());
+	SystemCmd cmd(BLKID_BIN " -c '/dev/null'", SystemCmd::DoThrow);
+
+	parse(cmd.stdout());
     }
 
 
     Blkid::Blkid(const string& device)
     {
-	SystemCmd cmd(BLKIDBIN " -c '/dev/null' " + quote(device));
-	if (cmd.retcode() == 0)
-	    parse(cmd.stdout());
+	SystemCmd cmd(BLKID_BIN " -c '/dev/null' " + quote(device), SystemCmd::DoThrow);
+
+	parse(cmd.stdout());
     }
 
 

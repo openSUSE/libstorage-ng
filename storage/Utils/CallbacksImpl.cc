@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2018-2019] SUSE LLC
+ * Copyright (c) [2018-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -24,6 +24,7 @@
 #include "storage/Utils/Text.h"
 #include "storage/Utils/ExceptionImpl.h"
 #include "storage/Utils/LoggerImpl.h"
+#include "storage/Storage.h"
 
 
 namespace storage
@@ -70,6 +71,29 @@ namespace storage
 		ST_THROW(Aborted("aborted"));
 
 	    y2mil("user decides to continue after error");
+	}
+	else
+	{
+	    ST_RETHROW(exception);
+	}
+    }
+
+
+    void
+    missing_command_callback(const ProbeCallbacksV2* callbacks, const Text& message, const std::string& command,
+			     uint64_t features, const Exception& exception)
+    {
+	ST_CAUGHT(exception);
+
+	if (typeid(exception) == typeid(Aborted))
+	    ST_RETHROW(exception);
+
+	if (callbacks)
+	{
+	    if (!callbacks->missing_command(message.translated, exception.what(), command, features))
+		ST_THROW(Aborted("aborted"));
+
+	    y2mil("user decides to continue after missing command");
 	}
 	else
 	{

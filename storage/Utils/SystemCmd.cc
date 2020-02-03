@@ -170,6 +170,10 @@ namespace storage
 	    _outputLines[IDX_STDOUT] = mockup_command.stdout;
 	    _outputLines[IDX_STDERR] = mockup_command.stderr;
 	    _cmdRet = mockup_command.exit_code;
+
+	    if (_cmdRet == 127 && do_throw())
+		ST_THROW(CommandNotFoundException(this));
+
 	    return 0;
 	}
 
@@ -362,13 +366,13 @@ namespace storage
 			SYSCALL_FAILED_NOTHROW( "close( stderr ) failed in child process" );
 		    }
 		    closeOpenFds();
-		    _cmdRet = execle(SHBIN, SHBIN, "-c", command().c_str(), nullptr, &env[0]);
+		    _cmdRet = execle(SH_BIN, SH_BIN, "-c", command().c_str(), nullptr, &env[0]);
 
 		    // execle() should not return. If we get here, it failed.
 		    // Throwing an exception here would not make any sense, however:
 		    // We are in the forked child process, and there is nothing
 		    // to return to that could make use of an exception.
-		    y2err("execle() failed: THIS SHOULD NOT HAPPEN \"SHBIN\" Ret:" <<
+		    y2err("execle() failed: THIS SHOULD NOT HAPPEN \"SH_BIN\" Ret:" <<
 			  _cmdRet << " errno: " << errno);
 		    y2err( "Exiting child process" );
 		    exit(127); // same as "command not found" in the shell

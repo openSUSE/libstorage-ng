@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -141,11 +141,8 @@ namespace storage
 	    }
 	    catch (const Exception& exception)
 	    {
-		ST_CAUGHT(exception);
-
 		// TRANSLATORS: error message
-		error_callback(prober.get_probe_callbacks(), sformat(_("Probing disk %s failed"),
-								     name), exception);
+		prober.handle(exception, sformat(_("Probing disk %s failed"), name), 0);
 	    }
 	}
     }

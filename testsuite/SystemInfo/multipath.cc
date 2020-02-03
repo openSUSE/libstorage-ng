@@ -18,7 +18,7 @@ void
 check(const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command(MULTIPATHBIN " -d -v 2 -ll", input);
+    Mockup::set_command(MULTIPATH_BIN " -d -v 2 -ll", input);
 
     CmdMultipath cmd_multipath;
 

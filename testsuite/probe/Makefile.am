@@ -17,7 +17,8 @@ check_PROGRAMS =								\
 	bcache1.test bcache2.test btrfs1.test btrfs2.test btrfs3.test		\
 	dasd1.test dasd2.test dasd3.test external-journal.test			\
 	dmraid1.test md-imsm1.test md-ddf1.test nfs1.test ntfs1.test xen1.test	\
-	ambiguous1.test md+lvm1.test plain-encryption1.test
+	ambiguous1.test md+lvm1.test plain-encryption1.test missing1.test	\
+	error1.test
 
 AM_DEFAULT_SOURCE_EXT = .cc
 
@@ -61,5 +62,7 @@ EXTRA_DIST = disk-mockup.xml disk-devicegraph.xml				\
 	ntfs1-mockup.xml ntfs1-devicegraph.xml					\
 	external-journal-mockup.xml external-journal-devicegraph.xml		\
 	ambiguous1-mockup.xml ambiguous1-devicegraph.xml			\
-	md+lvm1-mockup.xml md+lvm1-devicegraph.xml
+	md+lvm1-mockup.xml md+lvm1-devicegraph.xml				\
+	missing1-mockup.xml							\
+	error1-mockup.xml
 

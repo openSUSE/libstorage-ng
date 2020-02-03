@@ -223,7 +223,7 @@ namespace storage
 		    dm_name = next_free_cr_auto_name(system_info);
 	    }
 
-	    string cmd_line = CRYPTSETUPBIN " --batch-mode luksOpen " + quote(name) + " " +
+	    string cmd_line = CRYPTSETUP_BIN " --batch-mode luksOpen " + quote(name) + " " +
 		quote(dm_name) + " --tries 1 --key-file -";
 
 	    SystemCmd::Options cmd_options(cmd_line, SystemCmd::DoThrow);
@@ -329,7 +329,7 @@ namespace storage
 	    if (!boost::starts_with(value.second.uuid, "CRYPT-LUKS"))
 		continue;
 
-	    string cmd_line = CRYPTSETUPBIN " --batch-mode close " + quote(value.first);
+	    string cmd_line = CRYPTSETUP_BIN " --batch-mode close " + quote(value.first);
 
 	    SystemCmd cmd(cmd_line);
 
@@ -571,7 +571,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = CRYPTSETUPBIN " --batch-mode luksFormat " + quote(blk_device->get_name());
+	string cmd_line = CRYPTSETUP_BIN " --batch-mode luksFormat " + quote(blk_device->get_name());
 
 	switch (get_type())
 	{
@@ -611,7 +611,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = CRYPTSETUPBIN " --batch-mode erase " + quote(blk_device->get_name());
+	string cmd_line = CRYPTSETUP_BIN " --batch-mode erase " + quote(blk_device->get_name());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
@@ -627,7 +627,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = CRYPTSETUPBIN " --batch-mode luksOpen " + quote(blk_device->get_name()) +
+	string cmd_line = CRYPTSETUP_BIN " --batch-mode luksOpen " + quote(blk_device->get_name()) +
 	    " " + quote(get_dm_table_name()) + " --tries 1 " + get_open_options();
 
 	add_key_file_option_and_execute(cmd_line);
@@ -637,7 +637,7 @@ namespace storage
     void
     Luks::Impl::do_deactivate() const
     {
-	string cmd_line = CRYPTSETUPBIN " --batch-mode close " + quote(get_dm_table_name());
+	string cmd_line = CRYPTSETUP_BIN " --batch-mode close " + quote(get_dm_table_name());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }

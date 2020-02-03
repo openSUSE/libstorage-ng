@@ -80,7 +80,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = MKFSFATBIN " -v " + get_mkfs_options() + " " + quote(blk_device->get_name());
+	string cmd_line = MKFS_FAT_BIN " -v " + get_mkfs_options() + " " + quote(blk_device->get_name());
 
 	wait_for_devices();
 
@@ -97,7 +97,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = FATLABELBIN " " + quote(blk_device->get_name()) + " " +
+	string cmd_line = FATLABEL_BIN " " + quote(blk_device->get_name()) + " " +
 	    quote(get_label());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
@@ -111,7 +111,7 @@ namespace storage
 
 	const BlkDevice* blk_device_rhs = vfat_rhs->get_impl().get_blk_device();
 
-	string cmd_line = FATRESIZEBIN " " + quote(action->blk_device->get_name());
+	string cmd_line = FATRESIZE_BIN " " + quote(action->blk_device->get_name());
 	if (action->resize_mode == ResizeMode::SHRINK)
 	    cmd_line += " " + to_string(blk_device_rhs->get_size() / KiB);
 

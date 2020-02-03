@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -38,10 +38,10 @@ namespace storage
 
     CmdDmsetupInfo::CmdDmsetupInfo()
     {
-	SystemCmd cmd(DMSETUPBIN " --columns --separator '/' --noheadings -o name,major,minor,"
-		      "segments,subsystem,uuid info");
-	if (cmd.retcode() == 0 && !cmd.stdout().empty())
-	    parse(cmd.stdout());
+	SystemCmd cmd(DMSETUP_BIN " --columns --separator '/' --noheadings -o name,major,minor,"
+		      "segments,subsystem,uuid info", SystemCmd::DoThrow);
+
+	parse(cmd.stdout());
     }
 
 
@@ -105,9 +105,9 @@ namespace storage
 
     CmdDmsetupTable::CmdDmsetupTable()
     {
-	SystemCmd c(DMSETUPBIN " table");
-	if (c.retcode() == 0 && !c.stdout().empty())
-	    parse(c.stdout());
+	SystemCmd c(DMSETUP_BIN " table", SystemCmd::DoThrow);
+
+	parse(c.stdout());
     }
 
 
