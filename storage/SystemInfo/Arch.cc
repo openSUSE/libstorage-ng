@@ -105,8 +105,7 @@ namespace storage
 	}
 	else
 	{
-	    SystemCmd::Options options(TEST_BIN " -d '/sys/firmware/efi/vars'");
-	    options.throw_behaviour = SystemCmd::DoThrow;
+	    SystemCmd::Options options(TEST_BIN " -d '/sys/firmware/efi/vars'", SystemCmd::DoThrow);
 	    options.verify = [](int exit_code) { return exit_code == 0 || exit_code == 1; };
 
 	    SystemCmd cmd(options);

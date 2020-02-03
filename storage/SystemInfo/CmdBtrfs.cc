@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2017-2019] SUSE LLC
+ * Copyright (c) [2017-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -40,8 +40,7 @@ namespace storage
 
     CmdBtrfsFilesystemShow::CmdBtrfsFilesystemShow()
     {
-	SystemCmd::Options cmd_options(BTRFS_BIN " filesystem show");
-	cmd_options.throw_behaviour = SystemCmd::DoThrow;
+	SystemCmd::Options cmd_options(BTRFS_BIN " filesystem show", SystemCmd::DoThrow);
 	cmd_options.verify = [](int) { return true; };
 
 	SystemCmd cmd(cmd_options);
@@ -162,9 +161,9 @@ namespace storage
 
     CmdBtrfsSubvolumeList::CmdBtrfsSubvolumeList(const key_t& key, const string& mount_point)
     {
-	SystemCmd::Options cmd_options(BTRFS_BIN " subvolume list -a -p " + quote(mount_point));
+	SystemCmd::Options cmd_options(BTRFS_BIN " subvolume list -a -p " + quote(mount_point),
+				       SystemCmd::DoThrow);
 	cmd_options.mockup_key = BTRFS_BIN " subvolume list -a -p (device:" + key + ")";
-	cmd_options.throw_behaviour = SystemCmd::DoThrow;
 
 	SystemCmd cmd(cmd_options);
 	if (cmd.retcode() == 0)
@@ -241,9 +240,9 @@ namespace storage
     CmdBtrfsSubvolumeGetDefault::CmdBtrfsSubvolumeGetDefault(const key_t& key, const string& mount_point)
 	: id(BtrfsSubvolume::Impl::unknown_id)
     {
-	SystemCmd::Options cmd_options(BTRFS_BIN " subvolume get-default " + quote(mount_point));
+	SystemCmd::Options cmd_options(BTRFS_BIN " subvolume get-default " + quote(mount_point),
+				       SystemCmd::DoThrow);
 	cmd_options.mockup_key = BTRFS_BIN " subvolume get-default (device:" + key + ")";
-	cmd_options.throw_behaviour = SystemCmd::DoThrow;
 
 	SystemCmd cmd(cmd_options);
 	if (cmd.retcode() == 0)
@@ -283,9 +282,9 @@ namespace storage
     CmdBtrfsFilesystemDf::CmdBtrfsFilesystemDf(const key_t& key, const string& mount_point)
 	: metadata_raid_level(BtrfsRaidLevel::UNKNOWN), data_raid_level(BtrfsRaidLevel::UNKNOWN)
     {
-	SystemCmd::Options cmd_options(BTRFS_BIN " filesystem df " + quote(mount_point));
+	SystemCmd::Options cmd_options(BTRFS_BIN " filesystem df " + quote(mount_point),
+				       SystemCmd::DoThrow);
 	cmd_options.mockup_key = BTRFS_BIN " filesystem df (device:" + key + ")";
-	cmd_options.throw_behaviour = SystemCmd::DoThrow;
 
 	SystemCmd cmd(cmd_options);
 	if (cmd.retcode() == 0)

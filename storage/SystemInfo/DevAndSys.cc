@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -40,9 +40,7 @@ namespace storage
     Dir::Dir(const string& path)
 	: path(path)
     {
-	SystemCmd cmd(LS_BIN " -1 --sort=none " + quote(path));
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("ls failure for " + path));
+	SystemCmd cmd(LS_BIN " -1 --sort=none " + quote(path), SystemCmd::DoThrow);
 
 	parse(cmd.stdout());
 
@@ -163,9 +161,7 @@ namespace storage
     {
 	// TODO use cmd(STAT_BIN " --format '%F %N' " + quote(path) + "/*")?
 
-	SystemCmd cmd(LS_BIN " -1l --sort=none " + quote(path));
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("ls failure for " + path));
+	SystemCmd cmd(LS_BIN " -1l --sort=none " + quote(path), SystemCmd::DoThrow);
 
 	return parse(cmd.stdout());
     }

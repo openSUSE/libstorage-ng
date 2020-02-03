@@ -46,8 +46,7 @@ namespace storage
 	  logical_sector_size(0), physical_sector_size(0)
     {
 	SystemCmd::Options options(PARTED_BIN " --script --machine " + quote(device) +
-				   " unit s print");
-	options.throw_behaviour = SystemCmd::DoThrow;
+				   " unit s print", SystemCmd::DoThrow);
 	options.verify = [](int) { return true; };
 
 	SystemCmd cmd(options);
