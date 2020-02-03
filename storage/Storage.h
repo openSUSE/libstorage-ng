@@ -205,7 +205,7 @@ namespace storage
 	 * may be empty. command is the missing command.
 	 *
 	 * used_features reports for which storage feature the command
-	 * is needed. used_features may be zero, e.g. is a command
+	 * is needed. used_features may be zero, e.g. if a command
 	 * fails for which the library has hard dependencies.
 	 *
 	 * If it returns true the error is ignored as good as possible.
