@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2017,2019] SUSE LLC
+ * Copyright (c) [2017-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -336,9 +336,9 @@ namespace storage
     MdadmDetail::MdadmDetail(const string& device)
 	: uuid(), devname(), metadata(), level(MdLevel::UNKNOWN), device(device)
     {
-	SystemCmd cmd(MDADMBIN " --detail " + quote(device) + " --export");
-	if (cmd.retcode() == 0)
-	    parse(cmd.stdout());
+	SystemCmd cmd(MDADM_BIN " --detail " + quote(device) + " --export", SystemCmd::DoThrow);
+
+	parse(cmd.stdout());
     }
 
 
@@ -411,9 +411,9 @@ namespace storage
     MdadmExamine::MdadmExamine(const vector<string>& devices)
 	: devices(devices)
     {
-	SystemCmd cmd(MDADMBIN " --examine " + quote(devices) + " --brief");
-	if (cmd.retcode() == 0)
-	    parse(cmd.stdout());
+	SystemCmd cmd(MDADM_BIN " --examine " + quote(devices) + " --brief", SystemCmd::DoThrow);
+
+	parse(cmd.stdout());
     }
 
 

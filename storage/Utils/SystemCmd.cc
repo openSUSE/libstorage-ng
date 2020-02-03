@@ -170,6 +170,10 @@ namespace storage
 	    _outputLines[IDX_STDOUT] = mockup_command.stdout;
 	    _outputLines[IDX_STDERR] = mockup_command.stderr;
 	    _cmdRet = mockup_command.exit_code;
+
+	    if (_cmdRet == 127 && do_throw())
+		ST_THROW(CommandNotFoundException(this));
+
 	    return 0;
 	}
 

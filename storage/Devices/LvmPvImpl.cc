@@ -346,7 +346,7 @@ namespace storage
 
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = PVSBIN " --options pv_name,pv_uuid,pv_size,pe_start --units b " +
+	string cmd_line = PVS_BIN " --options pv_name,pv_uuid,pv_size,pe_start --units b " +
 	    quote(blk_device->get_name());
 
 	SystemCmd cmd(cmd_line, SystemCmd::NoThrow);

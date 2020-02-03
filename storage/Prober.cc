@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -28,6 +28,7 @@
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/CallbacksImpl.h"
+#include "storage/Utils/SystemCmd.h"
 #include "storage/StorageImpl.h"
 #include "storage/DevicegraphImpl.h"
 #include "storage/Devices/DiskImpl.h"
@@ -47,6 +48,7 @@
 #include "storage/Filesystems/BtrfsImpl.h"
 #include "storage/Filesystems/NfsImpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
+#include "storage/UsedFeatures.h"
 
 
 namespace storage
@@ -200,10 +202,8 @@ namespace storage
 	}
 	catch (const Exception& exception)
 	{
-	    ST_CAUGHT(exception);
-
 	    // TRANSLATORS: error message
-	    error_callback(probe_callbacks, _("Probing failed"), exception);
+	    handle(exception, _("Probing failed"), 0);
 	}
 
 	// Pass 1a
@@ -219,10 +219,8 @@ namespace storage
 	}
 	catch (const Exception& exception)
 	{
-	    ST_CAUGHT(exception);
-
 	    // TRANSLATORS: error message
-	    error_callback(probe_callbacks, _("Probing disks failed"), exception);
+	    handle(exception, _("Probing disks failed"), 0);
 	}
 
 	// TRANSLATORS: progress message
@@ -234,10 +232,8 @@ namespace storage
 	}
 	catch (const Exception& exception)
 	{
-	    ST_CAUGHT(exception);
-
 	    // TRANSLATORS: error message
-	    error_callback(probe_callbacks, _("Probing DASDs failed"), exception);
+	    handle(exception, _("Probing DASDs failed"), UF_DASD);
 	}
 
 	// TRANSLATORS: progress message
@@ -249,10 +245,8 @@ namespace storage
 	}
 	catch (const Exception& exception)
 	{
-	    ST_CAUGHT(exception);
-
 	    // TRANSLATORS: error message
-	    error_callback(probe_callbacks, _("Probing stray block devices failed"), exception);
+	    handle(exception, _("Probing stray block devices failed"), 0);
 	}
 
 	// TRANSLATORS: progress message
@@ -264,10 +258,8 @@ namespace storage
 	}
 	catch (const Exception& exception)
 	{
-	    ST_CAUGHT(exception);
-
 	    // TRANSLATORS: error message
-	    error_callback(probe_callbacks, _("Probing multipath failed"), exception);
+	    handle(exception, _("Probing multipath failed"), UF_MULTIPATH);
 	}
 
 	// TRANSLATORS: progress message
@@ -282,7 +274,7 @@ namespace storage
 	    ST_CAUGHT(exception);
 
 	    // TRANSLATORS: error message
-	    error_callback(probe_callbacks, _("Probing DM RAIDs failed"), exception);
+	    handle(exception, _("Probing DM RAIDs failed"), UF_DMRAID);
 	}
 
 	// TRANSLATORS: progress message
@@ -292,17 +284,13 @@ namespace storage
 	{
 	    if (system_info.getBlkid().any_md())
 	    {
-		// TODO check whether md tools are installed
-
 		Md::Impl::probe_mds(*this);
 	    }
 	}
 	catch (const Exception& exception)
 	{
-	    ST_CAUGHT(exception);
-
 	    // TRANSLATORS: error message
-	    error_callback(probe_callbacks, _("Probing MD RAIDs failed"), exception);
+	    handle(exception, _("Probing MD RAIDs failed"), UF_MDRAID);
 	}
 
 	// TRANSLATORS: progress message
@@ -312,8 +300,6 @@ namespace storage
 	{
 	    if (system_info.getBlkid().any_lvm())
 	    {
-		// TODO check whether lvm tools are installed
-
 		LvmVg::Impl::probe_lvm_vgs(*this);
 		LvmPv::Impl::probe_lvm_pvs(*this);
 		LvmLv::Impl::probe_lvm_lvs(*this);
@@ -324,10 +310,8 @@ namespace storage
 	}
 	catch (const Exception& exception)
 	{
-	    ST_CAUGHT(exception);
-
 	    // TRANSLATORS: error message
-	    error_callback(probe_callbacks, _("Probing LVM failed"), exception);
+	    handle(exception, _("Probing LVM failed"), UF_LVM);
 	}
 
 	// TRANSLATORS: progress message
@@ -337,18 +321,14 @@ namespace storage
 	{
 	    if (system_info.getBlkid().any_bcache())
 	    {
-		// TODO check whether bcache-tools are installed
-
 		Bcache::Impl::probe_bcaches(*this);
 		BcacheCset::Impl::probe_bcache_csets(*this);
 	    }
 	}
 	catch (const Exception& exception)
 	{
-	    ST_CAUGHT(exception);
-
 	    // TRANSLATORS: error message
-	    error_callback(probe_callbacks, _("Probing bcache failed"), exception);
+	    handle(exception, _("Probing bcache failed"), UF_BCACHE);
 	}
 
 	// Pass 1b
@@ -368,10 +348,8 @@ namespace storage
 	}
 	catch (const Exception& exception)
 	{
-	    ST_CAUGHT(exception);
-
 	    // TRANSLATORS: error message
-	    error_callback(probe_callbacks, _("Probing device relationships failed"), exception);
+	    handle(exception, _("Probing device relationships failed"), 0);
 	}
 
 	// Pass 1c
@@ -395,10 +373,8 @@ namespace storage
 	}
 	catch (const Exception& exception)
 	{
-	    ST_CAUGHT(exception);
-
 	    // TRANSLATORS: error message
-	    error_callback(probe_callbacks, _("Probing partitions failed"), exception);
+	    handle(exception, _("Probing partitions failed"), 0);
 	}
 
 	// Pass 1d
@@ -410,16 +386,12 @@ namespace storage
 
 	try
 	{
-	    // TODO check whether cryptsetup tools are installed
-
 	    PlainEncryption::Impl::probe_plain_encryptions(*this);
 	}
 	catch (const Exception& exception)
 	{
-	    ST_CAUGHT(exception);
-
 	    // TRANSLATORS: error message
-	    error_callback(probe_callbacks, _("Probing plain encryptions failed"), exception);
+	    handle(exception, _("Probing plain encryptions failed"), UF_PLAIN_ENCRYPTION);
 	}
 
 	// TRANSLATORS: progress message
@@ -429,17 +401,13 @@ namespace storage
 	{
 	    if (system_info.getBlkid().any_luks())
 	    {
-		// TODO check whether cryptsetup tools are installed
-
 		Luks::Impl::probe_lukses(*this);
 	    }
 	}
 	catch (const Exception& exception)
 	{
-	    ST_CAUGHT(exception);
-
 	    // TRANSLATORS: error message
-	    error_callback(probe_callbacks, _("Probing LUKS failed"), exception);
+	    handle(exception, _("Probing LUKS failed"), UF_LUKS);
 	}
 
 	// Pass 1e
@@ -455,10 +423,8 @@ namespace storage
 	}
 	catch (const Exception& exception)
 	{
-	    ST_CAUGHT(exception);
-
 	    // TRANSLATORS: error message
-	    error_callback(probe_callbacks, _("Probing device relationships failed"), exception);
+	    handle(exception, _("Probing device relationships failed"), 0);
 	}
 
 	// Pass 1f
@@ -478,10 +444,8 @@ namespace storage
 	}
 	catch (const Exception& exception)
 	{
-	    ST_CAUGHT(exception);
-
 	    // TRANSLATORS: error message
-	    error_callback(probe_callbacks, _("Probing additional attributes failed"), exception);
+	    handle(exception, _("Probing additional attributes failed"), 0);
 	}
 
 	// Pass 2
@@ -502,10 +466,8 @@ namespace storage
 	}
 	catch (const Exception& exception)
 	{
-	    ST_CAUGHT(exception);
-
 	    // TRANSLATORS: error message
-	    error_callback(probe_callbacks, _("Probing file systems failed"), exception);
+	    handle(exception, _("Probing file systems failed"), UF_BTRFS);
 	}
 
 	// TRANSLATORS: progress message
@@ -517,10 +479,8 @@ namespace storage
 	}
 	catch (const Exception& exception)
 	{
-	    ST_CAUGHT(exception);
-
 	    // TRANSLATORS: error message
-	    error_callback(probe_callbacks, _("Probing NFS failed"), exception);
+	    handle(exception, _("Probing NFS failed"), UF_NFS);
 	}
 
 	y2mil("prober done");
@@ -564,6 +524,24 @@ namespace storage
 	}
 
 	pending_holders.clear();
+    }
+
+
+    void
+    Prober::handle(const Exception& exception, const Text& message, uint64_t used_features) const
+    {
+	const ProbeCallbacksV2* probe_callbacks_v2 = dynamic_cast<const ProbeCallbacksV2*>(probe_callbacks);
+
+	if (probe_callbacks_v2 && typeid(exception) == typeid(CommandNotFoundException))
+	{
+	    missing_command_callback(probe_callbacks_v2, message,
+				     dynamic_cast<const CommandNotFoundException&>(exception).command(),
+				     used_features, exception);
+	}
+	else
+	{
+	    error_callback(probe_callbacks, message, exception);
+	}
     }
 
 }

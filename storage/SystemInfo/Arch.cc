@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -71,8 +71,9 @@ namespace storage
     void
     Arch::probe()
     {
-	SystemCmd cmd1(UNAMEBIN " -m");
-	if (cmd1.retcode() == 0 && cmd1.stdout().size() == 1)
+	SystemCmd cmd1(UNAME_BIN " -m", SystemCmd::DoThrow);
+
+	if (cmd1.stdout().size() == 1)
 	    arch = cmd1.stdout().front();
 
 	if (is_ppc())
@@ -104,7 +105,12 @@ namespace storage
 	}
 	else
 	{
-	    SystemCmd cmd(TESTBIN " -d '/sys/firmware/efi/vars'");
+	    SystemCmd::Options options(TEST_BIN " -d '/sys/firmware/efi/vars'");
+	    options.throw_behaviour = SystemCmd::DoThrow;
+	    options.verify = [](int exit_code) { return exit_code == 0 || exit_code == 1; };
+
+	    SystemCmd cmd(options);
+
 	    efiboot = cmd.retcode() == 0;
 	}
 
@@ -114,8 +120,9 @@ namespace storage
 	    efiboot = string(tenv) == "yes";
 	}
 
-	SystemCmd cmd2(GETCONFBIN " PAGESIZE");
-	if (cmd2.retcode() == 0 && cmd2.stdout().size() == 1)
+	SystemCmd cmd2(GETCONF_BIN " PAGESIZE", SystemCmd::DoThrow);
+
+	if (cmd2.stdout().size() == 1)
 	    cmd2.stdout().front() >> page_size;
 
 	y2mil(*this);

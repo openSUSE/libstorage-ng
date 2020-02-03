@@ -19,7 +19,7 @@ void
 check(const string& name, const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command(CRYPTSETUPBIN " luksDump " + quote(name), input);
+    Mockup::set_command(CRYPTSETUP_BIN " luksDump " + quote(name), input);
 
     CmdCryptsetupLuksDump cmd_cryptsetup_luks_dump(name);
 

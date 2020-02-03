@@ -18,6 +18,7 @@
       <udev-id>scsi-SATA_VBOX_HARDDISK_VB4fc3dfc5-aa799b6b</udev-id>
       <range>256</range>
       <rotational>true</rotational>
+      <transport>SATA</transport>
     </Disk>
     <Disk>
       <sid>43</sid>
@@ -36,6 +37,7 @@
       <udev-id>scsi-SATA_VBOX_HARDDISK_VB4649dc61-b06d8b58</udev-id>
       <range>256</range>
       <rotational>true</rotational>
+      <transport>SATA</transport>
     </Disk>
     <Disk>
       <sid>44</sid>
@@ -54,6 +56,7 @@
       <udev-id>scsi-SATA_VBOX_HARDDISK_VB01e5cf40-184ff1c7</udev-id>
       <range>256</range>
       <rotational>true</rotational>
+      <transport>SATA</transport>
     </Disk>
     <Disk>
       <sid>45</sid>
@@ -71,6 +74,7 @@
       <udev-id>scsi-1ATA_VBOX_HARDDISK_VB8eb60729-ee6542cf</udev-id>
       <udev-id>scsi-SATA_VBOX_HARDDISK_VB8eb60729-ee6542cf</udev-id>
       <range>256</range>
+      <transport>SATA</transport>
     </Disk>
     <Disk>
       <sid>46</sid>
@@ -88,6 +92,7 @@
       <udev-id>scsi-1ATA_VBOX_HARDDISK_VB1dbb6c8d-bfa29af4</udev-id>
       <udev-id>scsi-SATA_VBOX_HARDDISK_VB1dbb6c8d-bfa29af4</udev-id>
       <range>256</range>
+      <transport>SATA</transport>
     </Disk>
     <Gpt>
       <sid>47</sid>

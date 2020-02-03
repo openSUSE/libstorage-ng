@@ -232,7 +232,7 @@ namespace storage
     {
 	const Partitionable* partitionable = get_partitionable();
 
-	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " mklabel gpt";
+	string cmd_line = PARTED_BIN " --script " + quote(partitionable->get_name()) + " mklabel gpt";
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
@@ -275,7 +275,7 @@ namespace storage
 
 	string answers = backup_broken ? "'OK\\nFix\\n'" : "'Fix\\n'";
 
-	string cmd_line(ECHO_BIN " -e -n " + answers + " | " PARTEDBIN " ---pretend-input-tty " +
+	string cmd_line(ECHO_BIN " -e -n " + answers + " | " PARTED_BIN " ---pretend-input-tty " +
 			quote(partitionable->get_name()) + " print");
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
@@ -317,7 +317,7 @@ namespace storage
     {
 	const Partitionable* partitionable = get_partitionable();
 
-	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) +
+	string cmd_line = PARTED_BIN " --script " + quote(partitionable->get_name()) +
 	    " disk_set pmbr_boot " + (is_pmbr_boot() ? "on" : "off");
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);

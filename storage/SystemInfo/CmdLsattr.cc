@@ -39,8 +39,8 @@ namespace storage
     CmdLsattr::CmdLsattr(const key_t& key, const string& mountpoint, const string& path)
 	: mountpoint(mountpoint), path(path)
     {
-	SystemCmd::Options cmd_options(LSATTRBIN " -d " + quote(mountpoint + "/" + path));
-	cmd_options.mockup_key = LSATTRBIN " -d (device:" + get<0>(key) + " path:" + get<1>(key) + ")";
+	SystemCmd::Options cmd_options(LSATTR_BIN " -d " + quote(mountpoint + "/" + path));
+	cmd_options.mockup_key = LSATTR_BIN " -d (device:" + get<0>(key) + " path:" + get<1>(key) + ")";
 	cmd_options.throw_behaviour = SystemCmd::DoThrow;
 
 	SystemCmd cmd(cmd_options);

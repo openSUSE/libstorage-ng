@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -188,6 +188,30 @@ namespace storage
     public:
 
 	virtual ~ProbeCallbacks() {}
+
+    };
+
+
+    class ProbeCallbacksV2 : public ProbeCallbacks
+    {
+    public:
+
+	virtual ~ProbeCallbacksV2() {}
+
+	/**
+	 * Callback for missing commands.
+	 *
+	 * message is translated. what is usually not translated and
+	 * may be empty. command is the missing command.
+	 *
+	 * used_features reports for which storage feature the command
+	 * is needed. used_features may be zero, e.g. is a command
+	 * fails for which the library has hard dependencies.
+	 *
+	 * If it returns true the error is ignored as good as possible.
+	 */
+	virtual bool missing_command(const std::string& message, const std::string& what,
+				     const std::string& command, uint64_t used_features) const = 0;
 
     };
 

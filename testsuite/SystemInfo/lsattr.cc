@@ -22,7 +22,7 @@ void
 check(const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command(LSATTRBIN " -d (device:/dev/system/btrfs path:/var/lib/mariadb)", input);
+    Mockup::set_command(LSATTR_BIN " -d (device:/dev/system/btrfs path:/var/lib/mariadb)", input);
 
     CmdLsattr cmd_lsattr(
 	CmdLsattr::key_t("/dev/system/btrfs", "/var/lib/mariadb"), "/btrfs", "/var/lib/mariadb"

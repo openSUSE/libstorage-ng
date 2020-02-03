@@ -300,7 +300,7 @@ namespace storage
     {
 	const Partitionable* partitionable = get_partitionable();
 
-	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " mklabel msdos";
+	string cmd_line = PARTED_BIN " --script " + quote(partitionable->get_name()) + " mklabel msdos";
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 

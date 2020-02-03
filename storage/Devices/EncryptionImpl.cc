@@ -492,7 +492,7 @@ namespace storage
     {
 	const Encryption* encryption_rhs = to_encryption(action->get_device(commit_data.actiongraph, RHS));
 
-	string cmd_line = CRYPTSETUPBIN " resize " + quote(get_dm_table_name());
+	string cmd_line = CRYPTSETUP_BIN " resize " + quote(get_dm_table_name());
 
 	if (action->resize_mode == ResizeMode::SHRINK)
 	    cmd_line += " --size " + to_string(encryption_rhs->get_impl().get_size() / (512 * B));

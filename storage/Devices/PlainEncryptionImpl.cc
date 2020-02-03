@@ -195,7 +195,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = CRYPTSETUPBIN " --batch-mode plainOpen " + quote(blk_device->get_name()) + " "
+	string cmd_line = CRYPTSETUP_BIN " --batch-mode plainOpen " + quote(blk_device->get_name()) + " "
 	    + quote(get_dm_table_name()) + " --tries 1 " + get_open_options();
 
 	add_key_file_option_and_execute(cmd_line);
@@ -205,7 +205,7 @@ namespace storage
     void
     PlainEncryption::Impl::do_deactivate() const
     {
-	string cmd_line = CRYPTSETUPBIN " --batch-mode close " + quote(get_dm_table_name());
+	string cmd_line = CRYPTSETUP_BIN " --batch-mode close " + quote(get_dm_table_name());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }

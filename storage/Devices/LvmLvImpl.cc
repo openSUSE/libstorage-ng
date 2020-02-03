@@ -856,7 +856,7 @@ namespace storage
 
 	const LvmVg* lvm_vg = get_lvm_vg();
 
-	string cmd_line = LVSBIN " --options vg_name,lv_name,lv_uuid,lv_size --units b " +
+	string cmd_line = LVS_BIN " --options vg_name,lv_name,lv_uuid,lv_size --units b " +
 	    quote(lvm_vg->get_vg_name() + "/" + lv_name);
 
 	SystemCmd cmd(cmd_line, SystemCmd::NoThrow);

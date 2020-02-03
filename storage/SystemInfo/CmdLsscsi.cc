@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2010-2014] Novell, Inc.
+ * Copyright (c) [2010-2020] Novell, Inc.
  *
  * All Rights Reserved.
  *
@@ -37,9 +37,9 @@ namespace storage
 
     Lsscsi::Lsscsi()
     {
-	SystemCmd cmd(LSSCSIBIN " --transport");
-	if (cmd.retcode() == 0)
-	    parse(cmd.stdout());
+	SystemCmd cmd(LSSCSI_BIN " --transport", SystemCmd::DoThrow);
+
+	parse(cmd.stdout());
     }
 
 

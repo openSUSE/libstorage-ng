@@ -567,7 +567,7 @@ namespace storage
     {
 	// log some data about the volume group that might be useful for debugging
 
-	string cmd_line = VGSBIN " --options vg_name,vg_uuid,vg_size,vg_extent_size,"
+	string cmd_line = VGS_BIN " --options vg_name,vg_uuid,vg_size,vg_extent_size,"
 	    "vg_extent_count --units b " + quote(vg_name);
 
 	SystemCmd cmd(cmd_line, SystemCmd::NoThrow);

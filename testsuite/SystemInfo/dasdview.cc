@@ -19,7 +19,7 @@ void
 check(const string& device, const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command(DASDVIEWBIN " --extended " + quote(device), input);
+    Mockup::set_command(DASDVIEW_BIN " --extended " + quote(device), input);
 
     Dasdview dasdview(device);
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -39,6 +39,8 @@ namespace storage
     class Devicegraph;
     class SystemInfo;
     class Device;
+    class Exception;
+    class Text;
 
 
     struct SysBlockEntries
@@ -91,6 +93,14 @@ namespace storage
 	void add_holder(const string& name, Device* b, add_holder_func_t add_holder_func);
 
 	const SysBlockEntries& get_sys_block_entries() const { return sys_block_entries; }
+
+	/**
+	 * Handle an exception by calling the probing callback functions depending on
+	 * the exception type. May throw again.
+	 *
+	 * Also calls ST_CAUGHT().
+	 */
+	void handle(const Exception& exception, const Text& message, uint64_t used_features) const;
 
     private:
 

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -25,6 +25,8 @@
 #define STORAGE_STORAGE_DEFINES_H
 
 
+// paths
+
 #define DEV_DIR "/dev"
 #define DEV_MD_DIR "/dev/md"
 #define DEV_MAPPER_DIR "/dev/mapper"
@@ -36,41 +38,43 @@
 
 #define SYSFS_DIR "/sys"
 
+
+// commands
+
 #define SHBIN "/bin/sh"
 
 #define ECHO_BIN "/usr/bin/echo"
 #define CAT_BIN "/usr/bin/cat"
 
-#define UNAMEBIN "/usr/bin/uname"
-#define GETCONFBIN "/usr/bin/getconf"
+#define UNAME_BIN "/usr/bin/uname"
+#define GETCONF_BIN "/usr/bin/getconf"
 
-#define PARTEDBIN "/usr/sbin/parted"
+#define PARTED_BIN "/usr/sbin/parted"
 
-#define MDADMBIN "/sbin/mdadm"
+#define MDADM_BIN "/sbin/mdadm"
 
 #define PVCREATEBIN "/sbin/pvcreate"
 #define PVREMOVEBIN "/sbin/pvremove"
 #define PVRESIZEBIN "/sbin/pvresize"
-#define PVSBIN "/sbin/pvs"
+#define PVS_BIN "/sbin/pvs"
 
 #define LVCREATEBIN "/sbin/lvcreate"
 #define LVREMOVEBIN "/sbin/lvremove"
 #define LVRESIZEBIN "/sbin/lvresize"
 #define LVCHANGEBIN "/sbin/lvchange"
-#define LVSBIN "/sbin/lvs"
+#define LVS_BIN "/sbin/lvs"
 
 #define VGCREATEBIN "/sbin/vgcreate"
 #define VGREMOVEBIN "/sbin/vgremove"
 #define VGEXTENDBIN "/sbin/vgextend"
 #define VGREDUCEBIN "/sbin/vgreduce"
-#define VGSBIN "/sbin/vgs"
-#define VGSCANBIN "/sbin/vgscan"
+#define VGS_BIN "/sbin/vgs"
 #define VGCHANGEBIN "/sbin/vgchange"
 
-#define CRYPTSETUPBIN "/sbin/cryptsetup"
+#define CRYPTSETUP_BIN "/sbin/cryptsetup"
 #define MULTIPATHBIN "/sbin/multipath"
 #define MULTIPATHDBIN "/sbin/multipathd"
-#define DMSETUPBIN "/sbin/dmsetup"
+#define DMSETUP_BIN "/sbin/dmsetup"
 #define DMRAIDBIN "/sbin/dmraid"
 #define BTRFSBIN "/sbin/btrfs"
 #define WIPEFSBIN "/sbin/wipefs"
@@ -84,19 +88,18 @@
 
 #define DD_BIN "/bin/dd"
 
-#define BLKIDBIN "/sbin/blkid"
-#define LSSCSIBIN "/usr/bin/lsscsi"
+#define BLKID_BIN "/sbin/blkid"
+#define LSSCSI_BIN "/usr/bin/lsscsi"
 
 #define LSBIN "/bin/ls"
 #define DFBIN "/usr/bin/df"
-#define TESTBIN "/usr/bin/test"
+#define TEST_BIN "/usr/bin/test"
 #define STATBIN "/usr/bin/stat"
 
-#define LSATTRBIN "/usr/bin/lsattr"
+#define LSATTR_BIN "/usr/bin/lsattr"
 #define CHATTRBIN "/usr/bin/chattr"
 
-#define DASDFMTBIN "/sbin/dasdfmt"
-#define DASDVIEWBIN "/sbin/dasdview"
+#define DASDVIEW_BIN "/sbin/dasdview"
 
 #define UDEVADM_BIN "/usr/bin/udevadm"
 #define UDEVADM_BIN_SETTLE UDEVADM_BIN " settle --timeout=20"
@@ -137,6 +140,8 @@
 #define DOT_BIN "/usr/bin/dot"
 #define DISPLAY_BIN "/usr/bin/display"
 
+
+//regexes
 
 #define UUID_REGEX "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
 

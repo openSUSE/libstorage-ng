@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2018-2019] SUSE LLC
+ * Copyright (c) [2018-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -81,11 +81,8 @@ namespace storage
 	    }
 	    catch (const Exception& exception)
 	    {
-		ST_CAUGHT(exception);
-
 		// TRANSLATORS: error message
-		error_callback(prober.get_probe_callbacks(), sformat(_("Probing stray block device %s failed"),
-								     name), exception);
+		prober.handle(exception, sformat(_("Probing stray block device %s failed"), name), 0);
 	    }
 	}
     }

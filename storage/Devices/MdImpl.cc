@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -342,11 +342,11 @@ namespace storage
 
 	string filename = tmp_dir.get_fullname() + "/mdadm.conf";
 
-	string cmd_line1 = MDADMBIN " --examine --scan > " + quote(filename);
+	string cmd_line1 = MDADM_BIN " --examine --scan > " + quote(filename);
 
 	SystemCmd cmd1(cmd_line1);
 
-	string cmd_line2 = MDADMBIN " --assemble --scan --config=" + quote(filename);
+	string cmd_line2 = MDADM_BIN " --assemble --scan --config=" + quote(filename);
 
 	SystemCmd cmd2(cmd_line2);
 
@@ -364,7 +364,7 @@ namespace storage
     {
 	y2mil("deactivate_mds");
 
-	string cmd_line = MDADMBIN " --stop --scan";
+	string cmd_line = MDADM_BIN " --stop --scan";
 
 	SystemCmd cmd(cmd_line);
 
@@ -421,11 +421,8 @@ namespace storage
 	    }
 	    catch (const Exception& exception)
 	    {
-		ST_CAUGHT(exception);
-
 		// TRANSLATORS: error message
-		error_callback(prober.get_probe_callbacks(), sformat(_("Probing MD RAID %s failed"),
-								     name), exception);
+		prober.handle(exception, sformat(_("Probing MD RAID %s failed")), UF_MDRAID);
 	    }
 	}
     }
@@ -953,7 +950,7 @@ namespace storage
 	// Note: Changing any parameter to "mdadm --create' requires the
 	// function calculate_region_and_topology() to be checked!
 
-	string cmd_line = MDADMBIN " --create " + quote(get_name()) + " --run --level=" +
+	string cmd_line = MDADM_BIN " --create " + quote(get_name()) + " --run --level=" +
 	    boost::to_lower_copy(toString(md_level), locale::classic()) + " --metadata=1.0"
 	    " --homehost=any";
 
@@ -1036,7 +1033,7 @@ namespace storage
     void
     Md::Impl::do_delete() const
     {
-	string cmd_line = MDADMBIN " --zero-superblock ";
+	string cmd_line = MDADM_BIN " --zero-superblock ";
 
 	for (const BlkDevice* blk_device : get_devices())
 	    cmd_line += " " + quote(blk_device->get_name());
@@ -1164,7 +1161,7 @@ namespace storage
     void
     Md::Impl::do_reduce(const BlkDevice* blk_device) const
     {
-	string cmd_line = MDADMBIN " --remove " + quote(get_name()) + " " + quote(blk_device->get_name());
+	string cmd_line = MDADM_BIN " --remove " + quote(get_name()) + " " + quote(blk_device->get_name());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
@@ -1180,7 +1177,7 @@ namespace storage
     {
 	const MdUser* md_user = blk_device->get_impl().get_single_out_holder_of_type<const MdUser>();
 
-	string cmd_line = MDADMBIN;
+	string cmd_line = MDADM_BIN;
 	cmd_line += !md_user->is_spare() ? " --add" : " --add-spare";
 	cmd_line += " " + quote(get_name()) + " " + quote(blk_device->get_name());
 
@@ -1212,7 +1209,7 @@ namespace storage
     void
     Md::Impl::do_deactivate() const
     {
-	string cmd_line = MDADMBIN " --stop " + quote(get_name());
+	string cmd_line = MDADM_BIN " --stop " + quote(get_name());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
