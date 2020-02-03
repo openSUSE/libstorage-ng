@@ -109,7 +109,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = MKSWAPBIN " -f " + quote(blk_device->get_name());
+	string cmd_line = MKSWAP_BIN " -f " + quote(blk_device->get_name());
 
 	wait_for_devices();
 
@@ -128,7 +128,7 @@ namespace storage
 
 	const BlkDevice* blk_device_rhs = swap_rhs->get_impl().get_blk_device();
 
-	string cmd_line = MKSWAPBIN;
+	string cmd_line = MKSWAP_BIN;
 	if (!get_label().empty())
 	    cmd_line += " -L " + quote(get_label());
 	if (!get_uuid().empty())
@@ -148,7 +148,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = SWAPLABELBIN " -L " + quote(get_label()) + " " + quote(blk_device->get_name());
+	string cmd_line = SWAPLABEL_BIN " -L " + quote(get_label()) + " " + quote(blk_device->get_name());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
@@ -159,7 +159,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = SWAPLABELBIN " -U " + quote(get_uuid()) + " " + quote(blk_device->get_name());
+	string cmd_line = SWAPLABEL_BIN " -U " + quote(get_uuid()) + " " + quote(blk_device->get_name());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
@@ -170,7 +170,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = SWAPONBIN " --fixpgsz " + quote(blk_device->get_name());
+	string cmd_line = SWAPON_BIN " --fixpgsz " + quote(blk_device->get_name());
 
 	wait_for_devices();
 
@@ -186,7 +186,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = SWAPOFFBIN " " + quote(blk_device->get_name());
+	string cmd_line = SWAPOFF_BIN " " + quote(blk_device->get_name());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 

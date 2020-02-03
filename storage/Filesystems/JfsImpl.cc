@@ -63,7 +63,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = MKFSJFSBIN " -q " + get_mkfs_options() + " " +
+	string cmd_line = MKFS_JFS_BIN " -q " + get_mkfs_options() + " " +
 	    quote(blk_device->get_name());
 
 	wait_for_devices();
@@ -79,7 +79,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = TUNEJFSBIN " -L " + quote(get_label()) + " " +
+	string cmd_line = TUNEJFS_BIN " -L " + quote(get_label()) + " " +
 	    quote(blk_device->get_name());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);

@@ -128,11 +128,11 @@ namespace storage
 
 	    try
 	    {
-		SystemCmd cmd1(MULTIPATHBIN, SystemCmd::DoThrow);
+		SystemCmd cmd1(MULTIPATH_BIN, SystemCmd::DoThrow);
 
 		SystemCmd(UDEVADM_BIN_SETTLE);
 
-		SystemCmd cmd2(MULTIPATHDBIN, SystemCmd::DoThrow);
+		SystemCmd cmd2(MULTIPATHD_BIN, SystemCmd::DoThrow);
 
 		SystemCmd(UDEVADM_BIN_SETTLE);
 
@@ -167,11 +167,11 @@ namespace storage
     {
 	y2mil("deactivate_multipaths");
 
-	string cmd_line1 = MULTIPATHDBIN " -k'shutdown'";
+	string cmd_line1 = MULTIPATHD_BIN " -k'shutdown'";
 
 	SystemCmd cmd1(cmd_line1);
 
-	string cmd_line2 = MULTIPATHBIN " -F";
+	string cmd_line2 = MULTIPATH_BIN " -F";
 
 	SystemCmd cmd2(cmd_line2);
 
@@ -342,7 +342,7 @@ namespace storage
     void
     Multipath::Impl::do_deactivate() const
     {
-	string cmd_line = MULTIPATHBIN " -f " + quote(get_name());
+	string cmd_line = MULTIPATH_BIN " -f " + quote(get_name());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }

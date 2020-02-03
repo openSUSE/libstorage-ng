@@ -40,7 +40,7 @@ namespace storage
 
     CmdBtrfsFilesystemShow::CmdBtrfsFilesystemShow()
     {
-	SystemCmd::Options cmd_options(BTRFSBIN " filesystem show");
+	SystemCmd::Options cmd_options(BTRFS_BIN " filesystem show");
 	cmd_options.throw_behaviour = SystemCmd::DoThrow;
 	cmd_options.verify = [](int) { return true; };
 
@@ -162,8 +162,8 @@ namespace storage
 
     CmdBtrfsSubvolumeList::CmdBtrfsSubvolumeList(const key_t& key, const string& mount_point)
     {
-	SystemCmd::Options cmd_options(BTRFSBIN " subvolume list -a -p " + quote(mount_point));
-	cmd_options.mockup_key = BTRFSBIN " subvolume list -a -p (device:" + key + ")";
+	SystemCmd::Options cmd_options(BTRFS_BIN " subvolume list -a -p " + quote(mount_point));
+	cmd_options.mockup_key = BTRFS_BIN " subvolume list -a -p (device:" + key + ")";
 	cmd_options.throw_behaviour = SystemCmd::DoThrow;
 
 	SystemCmd cmd(cmd_options);
@@ -241,8 +241,8 @@ namespace storage
     CmdBtrfsSubvolumeGetDefault::CmdBtrfsSubvolumeGetDefault(const key_t& key, const string& mount_point)
 	: id(BtrfsSubvolume::Impl::unknown_id)
     {
-	SystemCmd::Options cmd_options(BTRFSBIN " subvolume get-default " + quote(mount_point));
-	cmd_options.mockup_key = BTRFSBIN " subvolume get-default (device:" + key + ")";
+	SystemCmd::Options cmd_options(BTRFS_BIN " subvolume get-default " + quote(mount_point));
+	cmd_options.mockup_key = BTRFS_BIN " subvolume get-default (device:" + key + ")";
 	cmd_options.throw_behaviour = SystemCmd::DoThrow;
 
 	SystemCmd cmd(cmd_options);
@@ -283,8 +283,8 @@ namespace storage
     CmdBtrfsFilesystemDf::CmdBtrfsFilesystemDf(const key_t& key, const string& mount_point)
 	: metadata_raid_level(BtrfsRaidLevel::UNKNOWN), data_raid_level(BtrfsRaidLevel::UNKNOWN)
     {
-	SystemCmd::Options cmd_options(BTRFSBIN " filesystem df " + quote(mount_point));
-	cmd_options.mockup_key = BTRFSBIN " filesystem df (device:" + key + ")";
+	SystemCmd::Options cmd_options(BTRFS_BIN " filesystem df " + quote(mount_point));
+	cmd_options.mockup_key = BTRFS_BIN " filesystem df (device:" + key + ")";
 	cmd_options.throw_behaviour = SystemCmd::DoThrow;
 
 	SystemCmd cmd(cmd_options);

@@ -119,7 +119,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = MKFSNTFSBIN " --fast --with-uuid " + get_mkfs_options() + " " +
+	string cmd_line = MKFS_NTFS_BIN " --fast --with-uuid " + get_mkfs_options() + " " +
 	    quote(blk_device->get_name());
 
 	wait_for_devices();
@@ -135,7 +135,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = NTFSLABELBIN " " + quote(blk_device->get_name()) + " " +
+	string cmd_line = NTFSLABEL_BIN " " + quote(blk_device->get_name()) + " " +
 	    quote(get_label());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);

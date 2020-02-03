@@ -36,7 +36,7 @@ namespace storage
     CmdDf::CmdDf(const string& path)
 	: path(path), size(0), used(0)
     {
-	SystemCmd cmd(DFBIN " --block-size=1 --output=size,used,avail,fstype " + quote(path));
+	SystemCmd cmd(DF_BIN " --block-size=1 --output=size,used,avail,fstype " + quote(path));
 	if (cmd.retcode() == 0)
 	    parse(cmd.stdout());
     }

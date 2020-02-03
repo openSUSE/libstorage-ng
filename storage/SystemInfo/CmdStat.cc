@@ -38,7 +38,7 @@ namespace storage
     CmdStat::CmdStat(const string& path)
 	: path(path), mode(0)
     {
-	SystemCmd cmd(STATBIN " --format '%f' " + quote(path));
+	SystemCmd cmd(STAT_BIN " --format '%f' " + quote(path));
 
 	if (cmd.retcode() == 0 && cmd.stdout().size() >= 1)
 	    parse(cmd.stdout());

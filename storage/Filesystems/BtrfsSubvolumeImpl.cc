@@ -465,7 +465,7 @@ namespace storage
 	    rmdir(full_path.c_str());
 	}
 
-	string cmd_line = BTRFSBIN " subvolume create " + quote(full_path);
+	string cmd_line = BTRFS_BIN " subvolume create " + quote(full_path);
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
@@ -598,7 +598,7 @@ namespace storage
 
 	EnsureMounted ensure_mounted(top_level, false);
 
-	string cmd_line = CHATTRBIN " " + string(nocow ? "+" : "-") + "C " +
+	string cmd_line = CHATTR_BIN " " + string(nocow ? "+" : "-") + "C " +
 	    quote(ensure_mounted.get_any_mount_point() + "/" + path);
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
@@ -631,7 +631,7 @@ namespace storage
 
 	EnsureMounted ensure_mounted(top_level, false);
 
-	string cmd_line = BTRFSBIN " subvolume set-default " + to_string(id) + " " +
+	string cmd_line = BTRFS_BIN " subvolume set-default " + to_string(id) + " " +
 	    quote(ensure_mounted.get_any_mount_point());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
@@ -664,7 +664,7 @@ namespace storage
 
 	EnsureMounted ensure_mounted(top_level, false);
 
-	string cmd_line = BTRFSBIN " subvolume delete " +
+	string cmd_line = BTRFS_BIN " subvolume delete " +
 	    quote(ensure_mounted.get_any_mount_point() + "/" + path);
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);

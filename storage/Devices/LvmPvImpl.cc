@@ -331,7 +331,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = PVCREATEBIN " --force " + quote(blk_device->get_name());
+	string cmd_line = PVCREATE_BIN " --force " + quote(blk_device->get_name());
 
 	wait_for_devices({ blk_device });
 
@@ -410,7 +410,7 @@ namespace storage
 
 	const BlkDevice* blk_device_rhs = lvm_pv_rhs->get_impl().get_blk_device();
 
-	string cmd_line = PVRESIZEBIN " " + quote(action->blk_device->get_name());
+	string cmd_line = PVRESIZE_BIN " " + quote(action->blk_device->get_name());
 	if (action->resize_mode == ResizeMode::SHRINK)
 	    cmd_line += " --yes --setphysicalvolumesize " + to_string(blk_device_rhs->get_size()) + "b";
 
@@ -442,7 +442,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = PVREMOVEBIN " " + quote(blk_device->get_name());
+	string cmd_line = PVREMOVE_BIN " " + quote(blk_device->get_name());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }

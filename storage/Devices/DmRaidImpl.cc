@@ -102,7 +102,7 @@ namespace storage
     {
 	y2mil("activate_dm_raids");
 
-	string cmd_line = DMRAIDBIN " --activate yes --no_partitions";
+	string cmd_line = DMRAID_BIN " --activate yes --no_partitions";
 
 	SystemCmd cmd(cmd_line);
 
@@ -118,7 +118,7 @@ namespace storage
     {
 	y2mil("deactivate_dm_raids");
 
-	string cmd_line = DMRAIDBIN " --activate no";
+	string cmd_line = DMRAID_BIN " --activate no";
 
 	SystemCmd cmd(cmd_line);
 

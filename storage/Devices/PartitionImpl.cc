@@ -1094,7 +1094,7 @@ namespace storage
 
 	const Partitionable* partitionable = get_partitionable();
 
-	string cmd_line = EFIBOOTMGRBIN " --verbose --delete --disk " +
+	string cmd_line = EFIBOOTMGR_BIN " --verbose --delete --disk " +
 	    quote(partitionable->get_name()) + " --part " + to_string(get_number());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);

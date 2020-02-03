@@ -107,7 +107,7 @@ namespace storage
 
 	EnsureMounted ensure_mounted(get_filesystem(), false);
 
-	string cmd_line = XFSGROWFSBIN " " + quote(ensure_mounted.get_any_mount_point());
+	string cmd_line = XFSGROWFS_BIN " " + quote(ensure_mounted.get_any_mount_point());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
@@ -118,7 +118,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = XFSADMINBIN " -L " + quote(get_label().empty() ? "--" : get_label()) + " " +
+	string cmd_line = XFSADMIN_BIN " -L " + quote(get_label().empty() ? "--" : get_label()) + " " +
 	    quote(blk_device->get_name());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);

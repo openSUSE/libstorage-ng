@@ -22,7 +22,7 @@ void
 check(const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command(BTRFSBIN " subvolume get-default (device:/dev/system/btrfs)", input);
+    Mockup::set_command(BTRFS_BIN " subvolume get-default (device:/dev/system/btrfs)", input);
 
     CmdBtrfsSubvolumeGetDefault cmd_btrfs_subvolume_get_default(
 	CmdBtrfsSubvolumeGetDefault::key_t("/dev/system/btrfs"), "/btrfs"

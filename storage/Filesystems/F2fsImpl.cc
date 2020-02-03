@@ -63,7 +63,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = MKFSF2FSBIN " " + get_mkfs_options();
+	string cmd_line = MKFS_F2FS_BIN " " + get_mkfs_options();
 
 	if (!get_label().empty())
 	    cmd_line += " -l " + quote(get_label());
