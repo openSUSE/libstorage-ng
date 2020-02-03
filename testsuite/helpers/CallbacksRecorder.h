@@ -11,7 +11,7 @@ namespace storage
     using namespace std;
 
 
-    class ProbeCallbacksRecorder : public ProbeCallbacks
+    class ProbeCallbacksRecorder : public ProbeCallbacksV2
     {
     public:
 
@@ -20,6 +20,9 @@ namespace storage
 	virtual void message(const std::string& message) const override {}
 
 	virtual bool error(const string& message, const std::string& what) const override;
+
+	virtual bool missing_command(const string& message, const string& what,
+				     const string& command, uint64_t used_features) const override;
 
 	vector<string>& messages;
 

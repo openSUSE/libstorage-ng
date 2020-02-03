@@ -1,0 +1,454 @@
+<?xml version="1.0"?>
+<Mockup>
+  <Commands>
+    <Command>
+      <name>/bin/ls -1 --sort=none '/sys/block'</name>
+      <stdout>sr0</stdout>
+      <stdout>sda</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/blkid -c '/dev/null'</name>
+      <stdout>/dev/sda1: UUID="97919fd7-6e7a-4f1c-bcf4-112b06de569a" TYPE="swap" PARTUUID="46e8a22d-01"</stdout>
+      <stdout>/dev/sda2: UUID="03b3f314-8d2f-4617-95a0-626812aba79e" UUID_SUB="268a3209-9833-4ec5-9b17-58f95deb7d1c" TYPE="btrfs" PTTYPE="dos" PARTUUID="46e8a22d-02"</stdout>
+      <stdout>/dev/sr0: UUID="2017-03-14-10-21-10-00" LABEL="openSUSE-Tumbleweed-DVD-x86_6400" TYPE="iso9660" PTUUID="3d094a7b" PTTYPE="dos"</stdout>
+    </Command>
+    <Command>
+      <!-- output faked -->
+      <name>/sbin/btrfs filesystem show</name>
+      <stderr>bash: /sbin/btrfs: No such file or directory</stderr>
+      <exit-code>127</exit-code>
+    </Command>
+    <Command>
+      <name>/usr/bin/udevadm info '/dev/sda'</name>
+      <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda</stdout>
+      <stdout>N: sda</stdout>
+      <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB09d89637-d9690549</stdout>
+      <stdout>S: disk/by-id/scsi-0ATA_VBOX_HARDDISK_VB09d89637-d9690549</stdout>
+      <stdout>S: disk/by-id/scsi-1ATA_VBOX_HARDDISK_VB09d89637-d9690549</stdout>
+      <stdout>S: disk/by-id/scsi-SATA_VBOX_HARDDISK_VB09d89637-d9690549</stdout>
+      <stdout>S: disk/by-path/pci-0000:00:1f.2-ata-1</stdout>
+      <stdout>S: disk/by-path/pci-0000:00:1f.2-scsi-0:0:0:0</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-id/scsi-SATA_VBOX_HARDDISK_VB09d89637-d9690549 /dev/disk/by-path/pci-0000:00:1f.2-ata-1 /dev/disk/by-id/ata-VBOX_HARDDISK_VB09d89637-d9690549 /dev/disk/by-id/scsi-0ATA_VBOX_HARDDISK_VB09d89637-d9690549 /dev/disk/by-id/scsi-1ATA_VBOX_HARDDISK_VB09d89637-d9690549 /dev/disk/by-path/pci-0000:00:1f.2-scsi-0:0:0:0</stdout>
+      <stdout>E: DEVNAME=/dev/sda</stdout>
+      <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda</stdout>
+      <stdout>E: DEVTYPE=disk</stdout>
+      <stdout>E: ID_ATA=1</stdout>
+      <stdout>E: ID_BUS=ata</stdout>
+      <stdout>E: ID_MODEL=VBOX_HARDDISK</stdout>
+      <stdout>E: ID_MODEL_ENC=VBOX\x20HARDDISK\x20\x20\x20</stdout>
+      <stdout>E: ID_PART_TABLE_TYPE=dos</stdout>
+      <stdout>E: ID_PART_TABLE_UUID=46e8a22d</stdout>
+      <stdout>E: ID_PATH=pci-0000:00:1f.2-ata-1</stdout>
+      <stdout>E: ID_PATH_COMPAT=pci-0000:00:1f.2-scsi-0:0:0:0</stdout>
+      <stdout>E: ID_PATH_TAG=pci-0000_00_1f_2-ata-1</stdout>
+      <stdout>E: ID_REVISION=1.0</stdout>
+      <stdout>E: ID_SCSI=1</stdout>
+      <stdout>E: ID_SCSI_COMPAT=SATA_VBOX_HARDDISK_VB09d89637-d9690549</stdout>
+      <stdout>E: ID_SCSI_DI=1</stdout>
+      <stdout>E: ID_SCSI_SN=1</stdout>
+      <stdout>E: ID_SERIAL=VBOX_HARDDISK_VB09d89637-d9690549</stdout>
+      <stdout>E: ID_SERIAL_SHORT=VB09d89637-d9690549</stdout>
+      <stdout>E: ID_TYPE=disk</stdout>
+      <stdout>E: ID_VENDOR=ATA</stdout>
+      <stdout>E: ID_VENDOR_ENC=ATA\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: MAJOR=8</stdout>
+      <stdout>E: MINOR=0</stdout>
+      <stdout>E: SCSI_IDENT_LUN_ATA=VBOX_HARDDISK_VB09d89637-d9690549</stdout>
+      <stdout>E: SCSI_IDENT_LUN_T10=ATA_VBOX_HARDDISK_VB09d89637-d9690549</stdout>
+      <stdout>E: SCSI_IDENT_LUN_VENDOR=VB09d89637-d9690549</stdout>
+      <stdout>E: SCSI_IDENT_SERIAL=VB09d89637-d9690549</stdout>
+      <stdout>E: SCSI_MODEL=VBOX_HARDDISK</stdout>
+      <stdout>E: SCSI_MODEL_ENC=VBOX\x20HARDDISK\x20\x20\x20</stdout>
+      <stdout>E: SCSI_REVISION=1.0</stdout>
+      <stdout>E: SCSI_TPGS=0</stdout>
+      <stdout>E: SCSI_TYPE=disk</stdout>
+      <stdout>E: SCSI_VENDOR=ATA</stdout>
+      <stdout>E: SCSI_VENDOR_ENC=ATA\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: SUBSYSTEM=block</stdout>
+      <stdout>E: TAGS=:systemd:</stdout>
+      <stdout>E: USEC_INITIALIZED=11584980</stdout>
+      <stdout></stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/udevadm info '/dev/sda1'</name>
+      <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda1</stdout>
+      <stdout>N: sda1</stdout>
+      <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB09d89637-d9690549-part1</stdout>
+      <stdout>S: disk/by-id/scsi-0ATA_VBOX_HARDDISK_VB09d89637-d9690549-part1</stdout>
+      <stdout>S: disk/by-id/scsi-1ATA_VBOX_HARDDISK_VB09d89637-d9690549-part1</stdout>
+      <stdout>S: disk/by-id/scsi-SATA_VBOX_HARDDISK_VB09d89637-d9690549-part1</stdout>
+      <stdout>S: disk/by-partuuid/46e8a22d-01</stdout>
+      <stdout>S: disk/by-path/pci-0000:00:1f.2-ata-1-part1</stdout>
+      <stdout>S: disk/by-path/pci-0000:00:1f.2-scsi-0:0:0:0-part1</stdout>
+      <stdout>S: disk/by-uuid/97919fd7-6e7a-4f1c-bcf4-112b06de569a</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-id/scsi-1ATA_VBOX_HARDDISK_VB09d89637-d9690549-part1 /dev/disk/by-path/pci-0000:00:1f.2-ata-1-part1 /dev/disk/by-id/ata-VBOX_HARDDISK_VB09d89637-d9690549-part1 /dev/disk/by-id/scsi-SATA_VBOX_HARDDISK_VB09d89637-d9690549-part1 /dev/disk/by-id/scsi-0ATA_VBOX_HARDDISK_VB09d89637-d9690549-part1 /dev/disk/by-partuuid/46e8a22d-01 /dev/disk/by-path/pci-0000:00:1f.2-scsi-0:0:0:0-part1 /dev/disk/by-uuid/97919fd7-6e7a-4f1c-bcf4-112b06de569a</stdout>
+      <stdout>E: DEVNAME=/dev/sda1</stdout>
+      <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda1</stdout>
+      <stdout>E: DEVTYPE=partition</stdout>
+      <stdout>E: ID_ATA=1</stdout>
+      <stdout>E: ID_BUS=ata</stdout>
+      <stdout>E: ID_FS_TYPE=swap</stdout>
+      <stdout>E: ID_FS_USAGE=other</stdout>
+      <stdout>E: ID_FS_UUID=97919fd7-6e7a-4f1c-bcf4-112b06de569a</stdout>
+      <stdout>E: ID_FS_UUID_ENC=97919fd7-6e7a-4f1c-bcf4-112b06de569a</stdout>
+      <stdout>E: ID_FS_VERSION=1</stdout>
+      <stdout>E: ID_MODEL=VBOX_HARDDISK</stdout>
+      <stdout>E: ID_MODEL_ENC=VBOX\x20HARDDISK\x20\x20\x20</stdout>
+      <stdout>E: ID_PART_ENTRY_DISK=8:0</stdout>
+      <stdout>E: ID_PART_ENTRY_NUMBER=1</stdout>
+      <stdout>E: ID_PART_ENTRY_OFFSET=2048</stdout>
+      <stdout>E: ID_PART_ENTRY_SCHEME=dos</stdout>
+      <stdout>E: ID_PART_ENTRY_SIZE=3049472</stdout>
+      <stdout>E: ID_PART_ENTRY_TYPE=0x82</stdout>
+      <stdout>E: ID_PART_ENTRY_UUID=46e8a22d-01</stdout>
+      <stdout>E: ID_PART_TABLE_TYPE=dos</stdout>
+      <stdout>E: ID_PART_TABLE_UUID=46e8a22d</stdout>
+      <stdout>E: ID_PATH=pci-0000:00:1f.2-ata-1</stdout>
+      <stdout>E: ID_PATH_COMPAT=pci-0000:00:1f.2-scsi-0:0:0:0</stdout>
+      <stdout>E: ID_PATH_TAG=pci-0000_00_1f_2-ata-1</stdout>
+      <stdout>E: ID_REVISION=1.0</stdout>
+      <stdout>E: ID_SCSI=1</stdout>
+      <stdout>E: ID_SCSI_COMPAT=SATA_VBOX_HARDDISK_VB09d89637-d9690549</stdout>
+      <stdout>E: ID_SCSI_DI=1</stdout>
+      <stdout>E: ID_SCSI_SN=1</stdout>
+      <stdout>E: ID_SERIAL=VBOX_HARDDISK_VB09d89637-d9690549</stdout>
+      <stdout>E: ID_SERIAL_SHORT=VB09d89637-d9690549</stdout>
+      <stdout>E: ID_TYPE=disk</stdout>
+      <stdout>E: ID_VENDOR=ATA</stdout>
+      <stdout>E: ID_VENDOR_ENC=ATA\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: MAJOR=8</stdout>
+      <stdout>E: MINOR=1</stdout>
+      <stdout>E: PARTN=1</stdout>
+      <stdout>E: SCSI_IDENT_LUN_ATA=VBOX_HARDDISK_VB09d89637-d9690549</stdout>
+      <stdout>E: SCSI_IDENT_LUN_T10=ATA_VBOX_HARDDISK_VB09d89637-d9690549</stdout>
+      <stdout>E: SCSI_IDENT_LUN_VENDOR=VB09d89637-d9690549</stdout>
+      <stdout>E: SCSI_IDENT_SERIAL=VB09d89637-d9690549</stdout>
+      <stdout>E: SCSI_MODEL=VBOX_HARDDISK</stdout>
+      <stdout>E: SCSI_MODEL_ENC=VBOX\x20HARDDISK\x20\x20\x20</stdout>
+      <stdout>E: SCSI_REVISION=1.0</stdout>
+      <stdout>E: SCSI_TPGS=0</stdout>
+      <stdout>E: SCSI_TYPE=disk</stdout>
+      <stdout>E: SCSI_VENDOR=ATA</stdout>
+      <stdout>E: SCSI_VENDOR_ENC=ATA\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: SUBSYSTEM=block</stdout>
+      <stdout>E: TAGS=:systemd:</stdout>
+      <stdout>E: USEC_INITIALIZED=12546669</stdout>
+      <stdout></stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/udevadm info '/dev/sda2'</name>
+      <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda2</stdout>
+      <stdout>N: sda2</stdout>
+      <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB09d89637-d9690549-part2</stdout>
+      <stdout>S: disk/by-id/scsi-0ATA_VBOX_HARDDISK_VB09d89637-d9690549-part2</stdout>
+      <stdout>S: disk/by-id/scsi-1ATA_VBOX_HARDDISK_VB09d89637-d9690549-part2</stdout>
+      <stdout>S: disk/by-id/scsi-SATA_VBOX_HARDDISK_VB09d89637-d9690549-part2</stdout>
+      <stdout>S: disk/by-partuuid/46e8a22d-02</stdout>
+      <stdout>S: disk/by-path/pci-0000:00:1f.2-ata-1-part2</stdout>
+      <stdout>S: disk/by-path/pci-0000:00:1f.2-scsi-0:0:0:0-part2</stdout>
+      <stdout>S: disk/by-uuid/03b3f314-8d2f-4617-95a0-626812aba79e</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-id/ata-VBOX_HARDDISK_VB09d89637-d9690549-part2 /dev/disk/by-id/scsi-SATA_VBOX_HARDDISK_VB09d89637-d9690549-part2 /dev/disk/by-id/scsi-1ATA_VBOX_HARDDISK_VB09d89637-d9690549-part2 /dev/disk/by-id/scsi-0ATA_VBOX_HARDDISK_VB09d89637-d9690549-part2 /dev/disk/by-uuid/03b3f314-8d2f-4617-95a0-626812aba79e /dev/disk/by-path/pci-0000:00:1f.2-ata-1-part2 /dev/disk/by-partuuid/46e8a22d-02 /dev/disk/by-path/pci-0000:00:1f.2-scsi-0:0:0:0-part2</stdout>
+      <stdout>E: DEVNAME=/dev/sda2</stdout>
+      <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda2</stdout>
+      <stdout>E: DEVTYPE=partition</stdout>
+      <stdout>E: ID_ATA=1</stdout>
+      <stdout>E: ID_BTRFS_READY=1</stdout>
+      <stdout>E: ID_BUS=ata</stdout>
+      <stdout>E: ID_FS_TYPE=btrfs</stdout>
+      <stdout>E: ID_FS_USAGE=filesystem</stdout>
+      <stdout>E: ID_FS_UUID=03b3f314-8d2f-4617-95a0-626812aba79e</stdout>
+      <stdout>E: ID_FS_UUID_ENC=03b3f314-8d2f-4617-95a0-626812aba79e</stdout>
+      <stdout>E: ID_FS_UUID_SUB=268a3209-9833-4ec5-9b17-58f95deb7d1c</stdout>
+      <stdout>E: ID_FS_UUID_SUB_ENC=268a3209-9833-4ec5-9b17-58f95deb7d1c</stdout>
+      <stdout>E: ID_MODEL=VBOX_HARDDISK</stdout>
+      <stdout>E: ID_MODEL_ENC=VBOX\x20HARDDISK\x20\x20\x20</stdout>
+      <stdout>E: ID_PART_ENTRY_DISK=8:0</stdout>
+      <stdout>E: ID_PART_ENTRY_FLAGS=0x80</stdout>
+      <stdout>E: ID_PART_ENTRY_NUMBER=2</stdout>
+      <stdout>E: ID_PART_ENTRY_OFFSET=3051520</stdout>
+      <stdout>E: ID_PART_ENTRY_SCHEME=dos</stdout>
+      <stdout>E: ID_PART_ENTRY_SIZE=30502912</stdout>
+      <stdout>E: ID_PART_ENTRY_TYPE=0x83</stdout>
+      <stdout>E: ID_PART_ENTRY_UUID=46e8a22d-02</stdout>
+      <stdout>E: ID_PART_TABLE_TYPE=dos</stdout>
+      <stdout>E: ID_PART_TABLE_UUID=46e8a22d</stdout>
+      <stdout>E: ID_PATH=pci-0000:00:1f.2-ata-1</stdout>
+      <stdout>E: ID_PATH_COMPAT=pci-0000:00:1f.2-scsi-0:0:0:0</stdout>
+      <stdout>E: ID_PATH_TAG=pci-0000_00_1f_2-ata-1</stdout>
+      <stdout>E: ID_REVISION=1.0</stdout>
+      <stdout>E: ID_SCSI=1</stdout>
+      <stdout>E: ID_SCSI_COMPAT=SATA_VBOX_HARDDISK_VB09d89637-d9690549</stdout>
+      <stdout>E: ID_SCSI_DI=1</stdout>
+      <stdout>E: ID_SCSI_SN=1</stdout>
+      <stdout>E: ID_SERIAL=VBOX_HARDDISK_VB09d89637-d9690549</stdout>
+      <stdout>E: ID_SERIAL_SHORT=VB09d89637-d9690549</stdout>
+      <stdout>E: ID_TYPE=disk</stdout>
+      <stdout>E: ID_VENDOR=ATA</stdout>
+      <stdout>E: ID_VENDOR_ENC=ATA\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: MAJOR=8</stdout>
+      <stdout>E: MINOR=2</stdout>
+      <stdout>E: PARTN=2</stdout>
+      <stdout>E: SCSI_IDENT_LUN_ATA=VBOX_HARDDISK_VB09d89637-d9690549</stdout>
+      <stdout>E: SCSI_IDENT_LUN_T10=ATA_VBOX_HARDDISK_VB09d89637-d9690549</stdout>
+      <stdout>E: SCSI_IDENT_LUN_VENDOR=VB09d89637-d9690549</stdout>
+      <stdout>E: SCSI_IDENT_SERIAL=VB09d89637-d9690549</stdout>
+      <stdout>E: SCSI_MODEL=VBOX_HARDDISK</stdout>
+      <stdout>E: SCSI_MODEL_ENC=VBOX\x20HARDDISK\x20\x20\x20</stdout>
+      <stdout>E: SCSI_REVISION=1.0</stdout>
+      <stdout>E: SCSI_TPGS=0</stdout>
+      <stdout>E: SCSI_TYPE=disk</stdout>
+      <stdout>E: SCSI_VENDOR=ATA</stdout>
+      <stdout>E: SCSI_VENDOR_ENC=ATA\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: SUBSYSTEM=block</stdout>
+      <stdout>E: TAGS=:systemd:</stdout>
+      <stdout>E: USEC_INITIALIZED=11987064</stdout>
+      <stdout></stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/udevadm info '/dev/sr0'</name>
+      <stdout>P: /devices/pci0000:00/0000:00:1f.1/ata4/host3/target3:0:0/3:0:0:0/block/sr0</stdout>
+      <stdout>N: sr0</stdout>
+      <stdout>L: -100</stdout>
+      <stdout>S: cdrom</stdout>
+      <stdout>S: disk/by-id/ata-VBOX_CD-ROM_VB2-01700376</stdout>
+      <stdout>S: disk/by-label/openSUSE-Tumbleweed-DVD-x86_6400</stdout>
+      <stdout>S: disk/by-path/pci-0000:00:1f.1-ata-2</stdout>
+      <stdout>S: disk/by-path/pci-0000:00:1f.1-scsi-3:0:0:0</stdout>
+      <stdout>S: disk/by-uuid/2017-03-14-10-21-10-00</stdout>
+      <stdout>S: dvd</stdout>
+      <stdout>E: DEVLINKS=/dev/dvd /dev/disk/by-path/pci-0000:00:1f.1-scsi-3:0:0:0 /dev/disk/by-label/openSUSE-Tumbleweed-DVD-x86_6400 /dev/disk/by-uuid/2017-03-14-10-21-10-00 /dev/disk/by-path/pci-0000:00:1f.1-ata-2 /dev/cdrom /dev/disk/by-id/ata-VBOX_CD-ROM_VB2-01700376</stdout>
+      <stdout>E: DEVNAME=/dev/sr0</stdout>
+      <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:1f.1/ata4/host3/target3:0:0/3:0:0:0/block/sr0</stdout>
+      <stdout>E: DEVTYPE=disk</stdout>
+      <stdout>E: ID_ATA=1</stdout>
+      <stdout>E: ID_BUS=ata</stdout>
+      <stdout>E: ID_CDROM=1</stdout>
+      <stdout>E: ID_CDROM_CD=1</stdout>
+      <stdout>E: ID_CDROM_DVD=1</stdout>
+      <stdout>E: ID_CDROM_MEDIA=1</stdout>
+      <stdout>E: ID_CDROM_MEDIA_CD=1</stdout>
+      <stdout>E: ID_CDROM_MEDIA_SESSION_COUNT=1</stdout>
+      <stdout>E: ID_CDROM_MEDIA_TRACK_COUNT=1</stdout>
+      <stdout>E: ID_CDROM_MEDIA_TRACK_COUNT_DATA=1</stdout>
+      <stdout>E: ID_CDROM_MRW=1</stdout>
+      <stdout>E: ID_CDROM_MRW_W=1</stdout>
+      <stdout>E: ID_FOR_SEAT=block-pci-0000_00_1f_1-ata-2</stdout>
+      <stdout>E: ID_FS_APPLICATION_ID=openSUSE-Tumbleweed-DVD-x86_64-Build0002-Media</stdout>
+      <stdout>E: ID_FS_BOOT_SYSTEM_ID=EL\x20TORITO\x20SPECIFICATION</stdout>
+      <stdout>E: ID_FS_LABEL=openSUSE-Tumbleweed-DVD-x86_6400</stdout>
+      <stdout>E: ID_FS_LABEL_ENC=openSUSE-Tumbleweed-DVD-x86_6400</stdout>
+      <stdout>E: ID_FS_PUBLISHER_ID=SUSE\x20LINUX\x20GmbH</stdout>
+      <stdout>E: ID_FS_SYSTEM_ID=LINUX</stdout>
+      <stdout>E: ID_FS_TYPE=iso9660</stdout>
+      <stdout>E: ID_FS_USAGE=filesystem</stdout>
+      <stdout>E: ID_FS_UUID=2017-03-14-10-21-10-00</stdout>
+      <stdout>E: ID_FS_UUID_ENC=2017-03-14-10-21-10-00</stdout>
+      <stdout>E: ID_FS_VERSION=Joliet Extension</stdout>
+      <stdout>E: ID_MODEL=VBOX_CD-ROM</stdout>
+      <stdout>E: ID_MODEL_ENC=VBOX\x20CD-ROM\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: ID_PART_TABLE_TYPE=dos</stdout>
+      <stdout>E: ID_PART_TABLE_UUID=3d094a7b</stdout>
+      <stdout>E: ID_PATH=pci-0000:00:1f.1-ata-2</stdout>
+      <stdout>E: ID_PATH_COMPAT=pci-0000:00:1f.1-scsi-3:0:0:0</stdout>
+      <stdout>E: ID_PATH_TAG=pci-0000_00_1f_1-ata-2</stdout>
+      <stdout>E: ID_REVISION=1.0</stdout>
+      <stdout>E: ID_SCSI=1</stdout>
+      <stdout>E: ID_SERIAL=VBOX_CD-ROM_VB2-01700376</stdout>
+      <stdout>E: ID_SERIAL_SHORT=VB2-01700376</stdout>
+      <stdout>E: ID_TYPE=cd</stdout>
+      <stdout>E: ID_VENDOR=VBOX</stdout>
+      <stdout>E: ID_VENDOR_ENC=VBOX\x20\x20\x20\x20</stdout>
+      <stdout>E: MAJOR=11</stdout>
+      <stdout>E: MINOR=0</stdout>
+      <stdout>E: SCSI_MODEL=CD-ROM</stdout>
+      <stdout>E: SCSI_MODEL_ENC=CD-ROM\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: SCSI_REVISION=1.0</stdout>
+      <stdout>E: SCSI_TPGS=0</stdout>
+      <stdout>E: SCSI_TYPE=cd/dvd</stdout>
+      <stdout>E: SCSI_VENDOR=VBOX</stdout>
+      <stdout>E: SCSI_VENDOR_ENC=VBOX\x20\x20\x20\x20</stdout>
+      <stdout>E: SUBSYSTEM=block</stdout>
+      <stdout>E: SYSTEMD_MOUNT_DEVICE_BOUND=1</stdout>
+      <stdout>E: TAGS=:systemd:seat:uaccess:</stdout>
+      <stdout>E: USEC_INITIALIZED=11954802</stdout>
+      <stdout></stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/udevadm settle --timeout=20</name>
+    </Command>
+    <Command>
+      <name>/usr/bin/getconf PAGESIZE</name>
+      <stdout>4096</stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/lsscsi --transport</name>
+      <stdout>[0:0:0:0]    disk    sata:                           /dev/sda </stdout>
+      <stdout>[3:0:0:0]    cd/dvd  ata:                            /dev/sr0 </stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/stat --format '%f' '/dev/sda'</name>
+      <stdout>61b0</stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/stat --format '%f' '/dev/sr0'</name>
+      <stdout>61b0</stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/test -d '/sys/firmware/efi/vars'</name>
+      <exit-code>1</exit-code>
+    </Command>
+    <Command>
+      <name>/usr/bin/uname -m</name>
+      <stdout>x86_64</stdout>
+    </Command>
+    <Command>
+      <name>/usr/sbin/parted --script --machine '/dev/sda' unit s print</name>
+      <stdout>BYT;</stdout>
+      <stdout>/dev/sda:33554432s:scsi:512:512:msdos:ATA VBOX HARDDISK:;</stdout>
+      <stdout>1:2048s:3051519s:3049472s:linux-swap(v1)::type=82;</stdout>
+      <stdout>2:3051520s:33554431s:30502912s:btrfs::boot, type=83;</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/multipath -d -v 2 -ll</name>
+    </Command>
+    <Command>
+      <name>/sbin/dmraid --sets=active -ccc</name>
+      <stdout>no raid disks</stdout>
+      <exit-code>1</exit-code>
+    </Command>
+    <Command>
+      <!-- output faked and incomplete -->
+      <name>/sbin/dmsetup table</name>
+    </Command>
+  </Commands>
+  <Files>
+    <File>
+      <name>/etc/fstab</name>
+      <content>UUID=97919fd7-6e7a-4f1c-bcf4-112b06de569a swap swap defaults 0 0</content>
+      <content>UUID=03b3f314-8d2f-4617-95a0-626812aba79e / btrfs defaults 0 0</content>
+      <content>UUID=03b3f314-8d2f-4617-95a0-626812aba79e /boot/grub2/i386-pc btrfs subvol=@/boot/grub2/i386-pc 0 0</content>
+      <content>UUID=03b3f314-8d2f-4617-95a0-626812aba79e /boot/grub2/x86_64-efi btrfs subvol=@/boot/grub2/x86_64-efi 0 0</content>
+      <content>UUID=03b3f314-8d2f-4617-95a0-626812aba79e /home btrfs subvol=@/home 0 0</content>
+      <content>UUID=03b3f314-8d2f-4617-95a0-626812aba79e /opt btrfs subvol=@/opt 0 0</content>
+      <content>UUID=03b3f314-8d2f-4617-95a0-626812aba79e /srv btrfs subvol=@/srv 0 0</content>
+      <content>UUID=03b3f314-8d2f-4617-95a0-626812aba79e /tmp btrfs subvol=@/tmp 0 0</content>
+      <content>UUID=03b3f314-8d2f-4617-95a0-626812aba79e /usr/local btrfs subvol=@/usr/local 0 0</content>
+      <content>UUID=03b3f314-8d2f-4617-95a0-626812aba79e /var/cache btrfs subvol=@/var/cache 0 0</content>
+      <content>UUID=03b3f314-8d2f-4617-95a0-626812aba79e /var/crash btrfs subvol=@/var/crash 0 0</content>
+      <content>UUID=03b3f314-8d2f-4617-95a0-626812aba79e /var/lib/libvirt/images btrfs subvol=@/var/lib/libvirt/images 0 0</content>
+      <content>UUID=03b3f314-8d2f-4617-95a0-626812aba79e /var/lib/machines btrfs subvol=@/var/lib/machines 0 0</content>
+      <content>UUID=03b3f314-8d2f-4617-95a0-626812aba79e /var/lib/mailman btrfs subvol=@/var/lib/mailman 0 0</content>
+      <content>UUID=03b3f314-8d2f-4617-95a0-626812aba79e /var/lib/mariadb btrfs subvol=@/var/lib/mariadb 0 0</content>
+      <content>UUID=03b3f314-8d2f-4617-95a0-626812aba79e /var/lib/mysql btrfs subvol=@/var/lib/mysql 0 0</content>
+      <content>UUID=03b3f314-8d2f-4617-95a0-626812aba79e /var/lib/named btrfs subvol=@/var/lib/named 0 0</content>
+      <content>UUID=03b3f314-8d2f-4617-95a0-626812aba79e /var/lib/pgsql btrfs subvol=@/var/lib/pgsql 0 0</content>
+      <content>UUID=03b3f314-8d2f-4617-95a0-626812aba79e /var/log btrfs subvol=@/var/log 0 0</content>
+      <content>UUID=03b3f314-8d2f-4617-95a0-626812aba79e /var/opt btrfs subvol=@/var/opt 0 0</content>
+      <content>UUID=03b3f314-8d2f-4617-95a0-626812aba79e /var/spool btrfs subvol=@/var/spool 0 0</content>
+      <content>UUID=03b3f314-8d2f-4617-95a0-626812aba79e /var/tmp btrfs subvol=@/var/tmp 0 0</content>
+      <content>UUID=03b3f314-8d2f-4617-95a0-626812aba79e /.snapshots btrfs subvol=@/.snapshots 0 0</content>
+    </File>
+    <File>
+      <name>/etc/crypttab</name>
+    </File>
+    <File>
+      <name>/proc/mounts</name>
+      <content>sysfs /sys sysfs rw,nosuid,nodev,noexec,relatime 0 0</content>
+      <content>proc /proc proc rw,nosuid,nodev,noexec,relatime 0 0</content>
+      <content>devtmpfs /dev devtmpfs rw,nosuid,size=501928k,nr_inodes=125482,mode=755 0 0</content>
+      <content>securityfs /sys/kernel/security securityfs rw,nosuid,nodev,noexec,relatime 0 0</content>
+      <content>tmpfs /dev/shm tmpfs rw,nosuid,nodev 0 0</content>
+      <content>devpts /dev/pts devpts rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000 0 0</content>
+      <content>tmpfs /run tmpfs rw,nosuid,nodev,mode=755 0 0</content>
+      <content>tmpfs /sys/fs/cgroup tmpfs ro,nosuid,nodev,noexec,mode=755 0 0</content>
+      <content>cgroup /sys/fs/cgroup/systemd cgroup rw,nosuid,nodev,noexec,relatime,xattr,release_agent=/usr/lib/systemd/systemd-cgroups-agent,name=systemd 0 0</content>
+      <content>pstore /sys/fs/pstore pstore rw,nosuid,nodev,noexec,relatime 0 0</content>
+      <content>cgroup /sys/fs/cgroup/perf_event cgroup rw,nosuid,nodev,noexec,relatime,perf_event 0 0</content>
+      <content>cgroup /sys/fs/cgroup/net_cls,net_prio cgroup rw,nosuid,nodev,noexec,relatime,net_cls,net_prio 0 0</content>
+      <content>cgroup /sys/fs/cgroup/cpu,cpuacct cgroup rw,nosuid,nodev,noexec,relatime,cpu,cpuacct 0 0</content>
+      <content>cgroup /sys/fs/cgroup/memory cgroup rw,nosuid,nodev,noexec,relatime,memory 0 0</content>
+      <content>cgroup /sys/fs/cgroup/devices cgroup rw,nosuid,nodev,noexec,relatime,devices 0 0</content>
+      <content>cgroup /sys/fs/cgroup/hugetlb cgroup rw,nosuid,nodev,noexec,relatime,hugetlb 0 0</content>
+      <content>cgroup /sys/fs/cgroup/cpuset cgroup rw,nosuid,nodev,noexec,relatime,cpuset 0 0</content>
+      <content>cgroup /sys/fs/cgroup/pids cgroup rw,nosuid,nodev,noexec,relatime,pids 0 0</content>
+      <content>cgroup /sys/fs/cgroup/blkio cgroup rw,nosuid,nodev,noexec,relatime,blkio 0 0</content>
+      <content>cgroup /sys/fs/cgroup/freezer cgroup rw,nosuid,nodev,noexec,relatime,freezer 0 0</content>
+      <content>/dev/sda2 / btrfs rw,relatime,space_cache,subvolid=259,subvol=/@/.snapshots/1/snapshot 0 0</content>
+      <content>systemd-1 /proc/sys/fs/binfmt_misc autofs rw,relatime,fd=35,pgrp=1,timeout=0,minproto=5,maxproto=5,direct,pipe_ino=12501 0 0</content>
+      <content>debugfs /sys/kernel/debug debugfs rw,relatime 0 0</content>
+      <content>hugetlbfs /dev/hugepages hugetlbfs rw,relatime 0 0</content>
+      <content>mqueue /dev/mqueue mqueue rw,relatime 0 0</content>
+      <content>/dev/sda2 /.snapshots btrfs rw,relatime,space_cache,subvolid=258,subvol=/@/.snapshots 0 0</content>
+      <content>/dev/sda2 /home btrfs rw,relatime,space_cache,subvolid=262,subvol=/@/home 0 0</content>
+      <content>/dev/sda2 /var/cache btrfs rw,relatime,space_cache,subvolid=267,subvol=/@/var/cache 0 0</content>
+      <content>/dev/sda2 /boot/grub2/i386-pc btrfs rw,relatime,space_cache,subvolid=260,subvol=/@/boot/grub2/i386-pc 0 0</content>
+      <content>/dev/sda2 /var/lib/pgsql btrfs rw,relatime,space_cache,subvolid=275,subvol=/@/var/lib/pgsql 0 0</content>
+      <content>/dev/sda2 /var/lib/libvirt/images btrfs rw,relatime,space_cache,subvolid=269,subvol=/@/var/lib/libvirt/images 0 0</content>
+      <content>/dev/sda2 /var/lib/mailman btrfs rw,relatime,space_cache,subvolid=271,subvol=/@/var/lib/mailman 0 0</content>
+      <content>/dev/sda2 /var/lib/mariadb btrfs rw,relatime,space_cache,subvolid=272,subvol=/@/var/lib/mariadb 0 0</content>
+      <content>/dev/sda2 /var/lib/mysql btrfs rw,relatime,space_cache,subvolid=273,subvol=/@/var/lib/mysql 0 0</content>
+      <content>/dev/sda2 /var/lib/named btrfs rw,relatime,space_cache,subvolid=274,subvol=/@/var/lib/named 0 0</content>
+      <content>/dev/sda2 /boot/grub2/x86_64-efi btrfs rw,relatime,space_cache,subvolid=261,subvol=/@/boot/grub2/x86_64-efi 0 0</content>
+      <content>/dev/sda2 /opt btrfs rw,relatime,space_cache,subvolid=263,subvol=/@/opt 0 0</content>
+      <content>/dev/sda2 /var/crash btrfs rw,relatime,space_cache,subvolid=268,subvol=/@/var/crash 0 0</content>
+      <content>/dev/sda2 /var/opt btrfs rw,relatime,space_cache,subvolid=277,subvol=/@/var/opt 0 0</content>
+      <content>/dev/sda2 /var/tmp btrfs rw,relatime,space_cache,subvolid=279,subvol=/@/var/tmp 0 0</content>
+      <content>/dev/sda2 /tmp btrfs rw,relatime,space_cache,subvolid=265,subvol=/@/tmp 0 0</content>
+      <content>/dev/sda2 /var/spool btrfs rw,relatime,space_cache,subvolid=278,subvol=/@/var/spool 0 0</content>
+      <content>/dev/sda2 /var/log btrfs rw,relatime,space_cache,subvolid=276,subvol=/@/var/log 0 0</content>
+      <content>/dev/sda2 /srv btrfs rw,relatime,space_cache,subvolid=264,subvol=/@/srv 0 0</content>
+      <content>/dev/sda2 /usr/local btrfs rw,relatime,space_cache,subvolid=266,subvol=/@/usr/local 0 0</content>
+      <content>/dev/sda2 /var/lib/machines btrfs rw,relatime,space_cache,subvolid=270,subvol=/@/var/lib/machines 0 0</content>
+      <content>tmpfs /run/user/1000 tmpfs rw,nosuid,nodev,relatime,size=101612k,mode=700,uid=1000,gid=100 0 0</content>
+      <content>tracefs /sys/kernel/debug/tracing tracefs rw,relatime 0 0</content>
+      <content>tmpfs /run/user/0 tmpfs rw,nosuid,nodev,relatime,size=101612k,mode=700 0 0</content>
+      <content>fusectl /sys/fs/fuse/connections fusectl rw,relatime 0 0</content>
+      <content>binfmt_misc /proc/sys/fs/binfmt_misc binfmt_misc rw,relatime 0 0</content>
+    </File>
+    <File>
+      <name>/proc/swaps</name>
+      <content>Filename				Type		Size	Used	Priority</content>
+      <content>/dev/sda1                               partition	1524732	37336	-1</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.1/ata4/host3/target3:0:0/3:0:0:0/block/sr0/ext_range</name>
+      <content>1</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/ext_range</name>
+      <content>256</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/queue/logical_block_size</name>
+      <content>512</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/queue/optimal_io_size</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/queue/rotational</name>
+      <content>1</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/queue/zoned</name>
+      <content>none</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/size</name>
+      <content>33554432</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda1/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda2/alignment_offset</name>
+      <content>0</content>
+    </File>
+  </Files>
+</Mockup>

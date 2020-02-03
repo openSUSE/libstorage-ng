@@ -141,9 +141,9 @@ BOOST_AUTO_TEST_CASE(chunk_size_too_small)
     CheckCallbacksRecorder check_callbacks_recorder(check_messages);
     staging->check(&check_callbacks_recorder);
 
-    BOOST_CHECK_EQUAL(check_messages.size(), 1);
-    BOOST_CHECK_EQUAL(check_messages[0], "Chunk size is too small for thin pool logical volume "
-		      "thin-pool in volume group test.");
+    BOOST_REQUIRE_EQUAL(check_messages.size(), 1);
+    BOOST_CHECK_EQUAL(check_messages[0], "error: message = 'Chunk size is too small for thin pool logical volume "
+		      "thin-pool in volume group test.'");
 }
 
 

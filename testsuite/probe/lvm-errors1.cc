@@ -34,9 +34,11 @@ BOOST_AUTO_TEST_CASE(probe)
     const Devicegraph* probed = storage.get_probed();
     probed->check(&check_callbacks_recorder);
 
-    BOOST_CHECK_EQUAL(check_messages.size(), 2);
-    BOOST_CHECK_EQUAL(check_messages[0], "Physical volume lv08LY-exMW-YKNh-GgX7-q0Ja-dW8H-lJ9Ejw is broken.");
-    BOOST_CHECK_EQUAL(check_messages[1], "Physical volume u6c690-dm2j-IC7t-v8Lg-3Ylk-sUXY-BHsVmY is broken.");
+    BOOST_REQUIRE_EQUAL(check_messages.size(), 2);
+    BOOST_CHECK_EQUAL(check_messages[0], "error: message = 'Physical volume lv08LY-exMW-YKNh-GgX7-q0Ja-dW8H-lJ9Ejw "
+		      "is broken.'");
+    BOOST_CHECK_EQUAL(check_messages[1], "error: message = 'Physical volume u6c690-dm2j-IC7t-v8Lg-3Ylk-sUXY-BHsVmY "
+		      "is broken.'");
 
     Devicegraph* staging = storage.get_staging();
     staging->load("lvm-errors1-devicegraph.xml");
