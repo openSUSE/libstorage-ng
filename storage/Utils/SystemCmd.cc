@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -39,7 +39,6 @@ extern char **environ;
 #include "storage/Utils/LoggerImpl.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/Mockup.h"
-#include "storage/Utils/OutputProcessor.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/AppUtil.h"
 
@@ -63,8 +62,7 @@ namespace storage
 
 
     SystemCmd::SystemCmd(const Options& options)
-	: options(options), _combineOutput(false), _execInBackground(false), _cmdRet(0),
-	  _cmdPid(0), _outputProc(nullptr)
+	: options(options), _combineOutput(false), _execInBackground(false), _cmdRet(0), _cmdPid(0)
     {
 	y2mil("constructor SystemCmd(\"" << command() << "\")");
 
@@ -279,10 +277,6 @@ namespace storage
     int
     SystemCmd::doExecute()
     {
-	if ( _outputProc )
-	{
-	    _outputProc->reset();
-	}
 	y2deb("command:" << command());
 
 	Stopwatch stopwatch;
@@ -503,10 +497,6 @@ namespace storage
 		cmdRet_ret = -127;
 		ST_MAYBE_THROW(SystemCmdException(this, "Command failed"), do_throw());
 	    }
-	    if ( _outputProc )
-	    {
-		_outputProc->finish();
-	    }
 	}
 
 	y2deb("Wait:" << waitpidRet << " pid:" << _cmdPid << " stat:" << cmdStatus <<
@@ -589,10 +579,6 @@ namespace storage
 		buffer[count] = 0;
 		extractNewline( buffer, count, newLineSeen_ret, text, lines );
 		count = 0;
-		if ( _outputProc )
-		{
-		    _outputProc->process( buffer, isStderr );
-		}
 	    }
 	    c = EOF;
 	}
@@ -600,10 +586,6 @@ namespace storage
 	{
 	    buffer[count] = 0;
 	    extractNewline( buffer, count, newLineSeen_ret, text, lines );
-	    if ( _outputProc )
-	    {
-		_outputProc->process( buffer, isStderr );
-	    }
 	}
 	if ( text.length() > 0 )
 	{
