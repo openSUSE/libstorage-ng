@@ -55,6 +55,10 @@ Missing:
 
 * Snapshots.
 
+Not planned:
+
+* Cluster support.
+
 
 Plain DM encryption
 -------------------
