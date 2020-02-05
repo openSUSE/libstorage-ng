@@ -36,6 +36,24 @@ namespace storage
 
 
     /**
+     * Calls the begin() and end() functions of the callbacks in the
+     * constructor respectively destructor.
+     */
+    class CallbacksGuard
+    {
+    public:
+
+	CallbacksGuard(const Callbacks* callbacks);
+	~CallbacksGuard();
+
+    private:
+
+	const Callbacks* callbacks;
+
+    };
+
+
+    /**
      * Call the message callback of callbacks.
      */
     void

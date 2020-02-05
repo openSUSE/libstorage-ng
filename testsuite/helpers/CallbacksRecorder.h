@@ -11,11 +11,15 @@ namespace storage
     using namespace std;
 
 
-    class ProbeCallbacksRecorder : public ProbeCallbacksV2
+    class ProbeCallbacksRecorder : public ProbeCallbacksV3
     {
     public:
 
 	ProbeCallbacksRecorder(vector<string>& messages) : messages(messages) { messages.clear(); }
+
+	virtual void begin() const override;
+
+	virtual void end() const override;
 
 	virtual void message(const std::string& message) const override {}
 

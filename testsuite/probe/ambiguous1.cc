@@ -33,9 +33,11 @@ BOOST_AUTO_TEST_CASE(probe)
     Storage storage(environment);
     storage.probe(&probe_callbacks_recorder);
 
-    BOOST_REQUIRE_EQUAL(probe_messages.size(), 1);
-    BOOST_CHECK_EQUAL(probe_messages[0], "error: message = 'Detected a file system next to a partition table on the\n"
+    BOOST_REQUIRE_EQUAL(probe_messages.size(), 3);
+    BOOST_CHECK_EQUAL(probe_messages[0], "begin:");
+    BOOST_CHECK_EQUAL(probe_messages[1], "error: message = 'Detected a file system next to a partition table on the\n"
 		      "device /dev/sda. The file system will be ignored.', what = ''");
+    BOOST_CHECK_EQUAL(probe_messages[2], "end:");
 
     const Devicegraph* probed = storage.get_probed();
     probed->check();
