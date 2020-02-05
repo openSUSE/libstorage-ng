@@ -26,7 +26,6 @@ libutils_la_SOURCES =					\
 	HumanString.h		HumanString.cc		\
 	Lock.cc			Lock.h			\
 	LockImpl.cc 		LockImpl.h		\
-	OutputProcessor.cc	OutputProcessor.h	\
 	Region.cc 		Region.h		\
 	RegionImpl.cc 		RegionImpl.h		\
 	Topology.cc		Topology.h		\

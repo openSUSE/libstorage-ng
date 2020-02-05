@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -40,8 +40,6 @@ namespace storage
 {
     using std::string;
     using std::vector;
-
-    class OutputProcessor;
 
 
     /**
@@ -146,13 +144,6 @@ namespace storage
 	int executeRestricted(unsigned long maxTimeSec, unsigned long maxLineOut,
 			      bool& timeExceeded_ret, bool& linesExceeded_ret);
 
-	/**
-	 * Set an OutputProcessor. This is mostly useful for visual feedback to
-	 * the user (progress bar, busy animation). The OutputProcessor is
-	 * called when an output line is read. See OutputProcessor.h.
-	 */
-	void setOutputProcessor(OutputProcessor* proc) { _outputProc = proc; }
-
     public:
 
 	/**
@@ -226,7 +217,6 @@ namespace storage
 	bool _execInBackground;
 	int _cmdRet;
 	int _cmdPid;
-	OutputProcessor* _outputProc;
 	struct pollfd _pfds[3];
 
 	/**
