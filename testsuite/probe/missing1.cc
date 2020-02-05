@@ -28,8 +28,10 @@ BOOST_AUTO_TEST_CASE(probe)
     Storage storage(environment);
     storage.probe(&probe_callbacks_recorder);
 
-    BOOST_REQUIRE_EQUAL(probe_messages.size(), 1);
-    BOOST_CHECK_EQUAL(probe_messages[0], "missing-command: message = 'Probing file systems failed', "
+    BOOST_REQUIRE_EQUAL(probe_messages.size(), 3);
+    BOOST_CHECK_EQUAL(probe_messages[0], "begin:");
+    BOOST_CHECK_EQUAL(probe_messages[1], "missing-command: message = 'Probing file systems failed', "
 		      "what = 'Command not found: \"/sbin/btrfs filesystem show\"', "
 		      "command = '/sbin/btrfs filesystem show', used_features = 8");
+    BOOST_CHECK_EQUAL(probe_messages[2], "end:");
 }

@@ -8,10 +8,16 @@ from storage import *
 from storageitu import *
 
 
-class MyProbeCallbacks(ProbeCallbacksV2):
+class MyProbeCallbacks(ProbeCallbacksV3):
 
     def __init__(self):
         super(MyProbeCallbacks, self).__init__()
+
+    def begin(self):
+        print("begin callback")
+
+    def end(self):
+        print("end callback")
 
     def message(self, message):
         print("message callback")

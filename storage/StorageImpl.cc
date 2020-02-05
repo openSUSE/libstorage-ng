@@ -37,6 +37,7 @@
 #include "storage/Prober.h"
 #include "storage/EnvironmentImpl.h"
 #include "storage/Utils/Format.h"
+#include "storage/Utils/CallbacksImpl.h"
 
 
 namespace storage
@@ -155,6 +156,8 @@ namespace storage
     Storage::Impl::probe(const ProbeCallbacks* probe_callbacks)
     {
 	y2mil("probe begin");
+
+	CallbacksGuard callbacks_guard(probe_callbacks);
 
 	if (exist_devicegraph("probed"))
 	    remove_devicegraph("probed");

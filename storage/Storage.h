@@ -216,6 +216,25 @@ namespace storage
     };
 
 
+    class ProbeCallbacksV3 : public ProbeCallbacksV2
+    {
+    public:
+
+	virtual ~ProbeCallbacksV3() {}
+
+	/**
+	 * Called at the begin of probing.
+	 */
+	virtual void begin() const {}
+
+	/**
+	 * Called at the end of probing.
+	 */
+	virtual void end() const {}
+
+    };
+
+
     class CheckCallbacks
     {
     public:

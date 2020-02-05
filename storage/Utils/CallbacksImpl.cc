@@ -30,6 +30,25 @@
 namespace storage
 {
 
+    CallbacksGuard::CallbacksGuard(const Callbacks* callbacks)
+	: callbacks(callbacks)
+    {
+	const ProbeCallbacksV3* probe_callbacks_v3 = dynamic_cast<const ProbeCallbacksV3*>(callbacks);
+
+	if (probe_callbacks_v3)
+	    probe_callbacks_v3->begin();
+    }
+
+
+    CallbacksGuard::~CallbacksGuard()
+    {
+	const ProbeCallbacksV3* probe_callbacks_v3 = dynamic_cast<const ProbeCallbacksV3*>(callbacks);
+
+	if (probe_callbacks_v3)
+	    probe_callbacks_v3->end();
+    }
+
+
     void
     message_callback(const Callbacks* callbacks, const Text& message)
     {
