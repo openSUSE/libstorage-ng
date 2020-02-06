@@ -422,7 +422,7 @@ namespace storage
 	    catch (const Exception& exception)
 	    {
 		// TRANSLATORS: error message
-		prober.handle(exception, sformat(_("Probing MD RAID %s failed")), UF_MDRAID);
+		prober.handle(exception, sformat(_("Probing MD RAID %s failed"), name), UF_MDRAID);
 	    }
 	}
     }
