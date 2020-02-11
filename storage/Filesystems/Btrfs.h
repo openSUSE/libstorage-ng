@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) [2017-2019] SUSE LLC
+ * Copyright (c) [2017-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -41,7 +41,7 @@ namespace storage
      */
     enum class BtrfsRaidLevel
     {
-	UNKNOWN, DEFAULT, SINGLE, DUP, RAID0, RAID1, RAID5, RAID6, RAID10
+	UNKNOWN, DEFAULT, SINGLE, DUP, RAID0, RAID1, RAID5, RAID6, RAID10, RAID1C3, RAID1C4
     };
 
 

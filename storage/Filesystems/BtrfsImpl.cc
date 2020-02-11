@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -55,7 +55,8 @@ namespace storage
 
 
     const vector<string> EnumTraits<BtrfsRaidLevel>::names({
-	"UNKNOWN", "DEFAULT", "SINGLE", "DUP", "RAID0", "RAID1", "RAID5", "RAID6", "RAID10"
+	"UNKNOWN", "DEFAULT", "SINGLE", "DUP", "RAID0", "RAID1", "RAID5", "RAID6", "RAID10",
+	"RAID1C3", "RAID1C4"
     });
 
 
@@ -140,11 +141,12 @@ namespace storage
 
 	    case 3:
 		return { BtrfsRaidLevel::SINGLE, BtrfsRaidLevel::RAID0, BtrfsRaidLevel::RAID1,
-			 BtrfsRaidLevel::RAID5 };
+			 BtrfsRaidLevel::RAID1C3, BtrfsRaidLevel::RAID5 };
 
 	    default:
 		return { BtrfsRaidLevel::SINGLE, BtrfsRaidLevel::RAID0, BtrfsRaidLevel::RAID1,
-			 BtrfsRaidLevel::RAID5, BtrfsRaidLevel::RAID6, BtrfsRaidLevel::RAID10 };
+			 BtrfsRaidLevel::RAID1C3, BtrfsRaidLevel::RAID1C4, BtrfsRaidLevel::RAID5,
+			 BtrfsRaidLevel::RAID6, BtrfsRaidLevel::RAID10 };
 	}
     }
 
