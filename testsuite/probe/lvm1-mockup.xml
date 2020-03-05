@@ -19,7 +19,7 @@
       <stdout>/dev/mapper/system-home: UUID="5a32b2fb-ac84-4b2f-b53c-4ff68c4721c7" TYPE="xfs"</stdout>
     </Command>
     <Command>
-      <name>/sbin/lvs --ignoreskippedcluster --reportformat json --units b --nosuffix --all --options lv_name,lv_uuid,vg_name,vg_uuid,lv_role,lv_attr,lv_size,stripes,stripe_size,chunk_size,pool_lv,pool_lv_uuid,data_lv,data_lv_uuid,metadata_lv,metadata_lv_uuid</name>
+      <name>/sbin/lvs --reportformat json --units b --nosuffix --all --options lv_name,lv_uuid,vg_name,vg_uuid,lv_role,lv_attr,lv_size,stripes,stripe_size,chunk_size,pool_lv,pool_lv_uuid,data_lv,data_lv_uuid,metadata_lv,metadata_lv_uuid</name>
       <stdout>  {</stdout>
       <stdout>      "report": [</stdout>
       <stdout>          {</stdout>
@@ -33,7 +33,7 @@
       <stdout>  }</stdout>
     </Command>
     <Command>
-      <name>/sbin/pvs --ignoreskippedcluster --reportformat json --units b --nosuffix --all --options pv_name,pv_uuid,vg_name,vg_uuid,pv_attr,pe_start</name>
+      <name>/sbin/pvs --reportformat json --units b --nosuffix --all --options pv_name,pv_uuid,vg_name,vg_uuid,pv_attr,pe_start</name>
       <!-- output incomplete -->
       <stdout>  {</stdout>
       <stdout>      "report": [</stdout>
@@ -546,7 +546,7 @@
       <name>/sbin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
-      <name>/sbin/vgs --ignoreskippedcluster --reportformat json --units b --nosuffix --options vg_name,vg_uuid,vg_attr,vg_extent_size,vg_extent_count,vg_free_count</name>
+      <name>/sbin/vgs --reportformat json --units b --nosuffix --options vg_name,vg_uuid,vg_attr,vg_extent_size,vg_extent_count,vg_free_count</name>
       <stdout>  {</stdout>
       <stdout>      "report": [</stdout>
       <stdout>          {</stdout>

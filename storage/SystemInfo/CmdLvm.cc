@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -33,7 +33,8 @@
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/JsonFile.h"
 
-#define COMMON_LVM_OPTIONS "--ignoreskippedcluster --reportformat json --units b --nosuffix"
+
+#define COMMON_LVM_OPTIONS "--reportformat json --units b --nosuffix"
 
 
 namespace storage
