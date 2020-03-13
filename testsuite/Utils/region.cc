@@ -355,3 +355,25 @@ BOOST_AUTO_TEST_CASE(test_unused_regions9)
     BOOST_CHECK_EQUAL(unused_regions[1].get_start(), 80);
     BOOST_CHECK_EQUAL(unused_regions[1].get_length(), 20);
 }
+
+
+BOOST_AUTO_TEST_CASE(test_adjust_block_size1)
+{
+    Region r(100, 1000, 10);
+
+    r.adjust_block_size(20);
+
+    BOOST_CHECK_EQUAL(r.get_start(), 50);
+    BOOST_CHECK_EQUAL(r.get_length(), 500);
+    BOOST_CHECK_EQUAL(r.get_block_size(), 20);
+}
+
+
+BOOST_AUTO_TEST_CASE(test_adjust_block_size2)
+{
+    Region r1(100, 1000, 10);
+    Region r2(200, 1100, 10);
+
+    BOOST_CHECK_THROW(r1.adjust_block_size(2000), InvalidBlockSize);
+    BOOST_CHECK_THROW(r2.adjust_block_size(2000), InvalidBlockSize);
+}

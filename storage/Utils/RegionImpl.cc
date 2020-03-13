@@ -107,6 +107,27 @@ namespace storage
     }
 
 
+    void
+    Region::Impl::adjust_block_size(unsigned int block_size)
+    {
+	assert_valid_block_size(block_size);
+
+	if (block_size == Impl::block_size)
+	    return;
+
+	if (start * Impl::block_size % block_size ||
+	    length * Impl::block_size % block_size)
+	{
+	    ST_THROW(InvalidBlockSize(block_size));
+	}
+
+	start = start * Impl::block_size / block_size;
+	length = length * Impl::block_size / block_size;
+
+	Impl::block_size = block_size;
+    }
+
+
     unsigned long long
     Region::Impl::to_bytes(unsigned long long blocks) const
     {
