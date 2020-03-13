@@ -167,6 +167,13 @@ namespace storage
     }
 
 
+    void
+    Region::adjust_block_size(unsigned int block_size)
+    {
+	get_impl().adjust_block_size(block_size);
+    }
+
+
     unsigned long long
     Region::to_bytes(unsigned long long blocks) const
     {
