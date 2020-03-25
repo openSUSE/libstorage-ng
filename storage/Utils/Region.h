@@ -130,13 +130,6 @@ namespace storage
 	unsigned int get_block_size() const;
 	void set_block_size(unsigned int block_size);
 
-	/**
-	 * Adjusts the block size while keeping the region's sizes (in bytes).
-	 *
-	 * @throw Exception
-	 */
-	void adjust_block_size(unsigned int block_size);
-
 	unsigned long long to_bytes(unsigned long long blocks) const;
 	unsigned long long to_blocks(unsigned long long bytes) const;
 
