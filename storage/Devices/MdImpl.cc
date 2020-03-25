@@ -802,6 +802,8 @@ namespace storage
 	// big can lead to severe problems later on, e.g. a partition not
 	// fitting anymore, we make a conservative calculation.
 
+	// For combining disks with different block sizes, see doc/md-raid.md.
+
 	const bool conservative = true;
 
 	// Since our size calculation is not accurate we must not recalculate
@@ -827,9 +829,13 @@ namespace storage
 	unsigned long long sum = 0;
 	unsigned long long smallest = std::numeric_limits<unsigned long long>::max();
 
+	unsigned int block_size = 0;
+
 	for (const BlkDevice* blk_device : devices)
 	{
 	    unsigned long long size = blk_device->get_size();
+
+	    block_size = std::max( block_size, blk_device->get_region().get_block_size() );
 
 	    const MdUser* md_user = blk_device->get_impl().get_single_out_holder_of_type<const MdUser>();
 	    bool spare = md_user->is_spare();
@@ -911,6 +917,9 @@ namespace storage
 	    case MdLevel::UNKNOWN:
 		break;
 	}
+
+	if (block_size && block_size != get_region().get_block_size())
+	    set_region(Region(0, 0, block_size));
 
 	set_size(size);
 	set_topology(Topology(0, optimal_io_size));
