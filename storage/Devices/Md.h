@@ -72,6 +72,11 @@ namespace storage
 	static Md* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	/**
+	 * Add another device to a RAID.
+	 *
+	 * For combining disks with different block sizes,
+	 * see doc/md-raid.md.
+	 *
 	 * @throw WrongNumberOfChildren
 	 */
 	MdUser* add_device(BlkDevice* blk_device);
