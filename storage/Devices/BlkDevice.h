@@ -24,6 +24,7 @@
 #ifndef STORAGE_BLK_DEVICE_H
 #define STORAGE_BLK_DEVICE_H
 
+#include <vector>
 
 #include "storage/Utils/Swig.h"
 #include "storage/Devices/Device.h"
@@ -264,6 +265,11 @@ namespace storage
 	 * The comparison is locale unaware.
 	 */
 	static bool compare_by_dm_table_name(const BlkDevice* lhs, const BlkDevice* rhs);
+
+	/**
+	 * Returns the possible mount-by methods to reference the block device.
+	 */
+	std::vector<MountByType> possible_mount_bys() const;
 
     public:
 

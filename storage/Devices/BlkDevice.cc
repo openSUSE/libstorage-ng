@@ -371,4 +371,11 @@ namespace storage
 	return to_device_of_type<const BlkDevice>(device);
     }
 
+
+    vector<MountByType>
+    BlkDevice::possible_mount_bys() const
+    {
+	return get_impl().possible_mount_bys();
+    }
+
 }
