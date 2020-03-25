@@ -311,7 +311,6 @@
 %catches(storage::Exception) storage::Partitionable::get_default_partition_table_type() const;
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Partitionable::get_partition_table();
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Partitionable::get_partition_table() const;
-%catches(storage::InvalidBlockSize) storage::Region::adjust_block_size(unsigned int block_size);
 %catches(storage::Exception) storage::Region::adjust_length(long long delta);
 %catches(storage::Exception) storage::Region::adjust_start(long long delta);
 %catches(storage::Exception) storage::Region::get_end() const;
