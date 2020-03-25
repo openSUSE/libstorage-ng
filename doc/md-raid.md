@@ -88,3 +88,18 @@ MdMembers can be used as generic Mds.
 
 MdContainers and MdMembers can be added to and removed from /etc/mdadm.conf.
 
+Combining disks with different block sizes
+------------------------------------------
+
+If you combine disks with different block sizes into a RAID, the RAID device
+will have the maximum block size of its disks.
+
+This seems to work (at least most of the time) even if some parts of the
+RAID are not aligned to this block size.
+
+Md::add_device() takes care to update Md::Region to use the correct block
+size. It is, however not possible to combine regions with different block
+sizes (in libstorage-ng) if the start or length of a region are misaligned.
+
+This is, however, not really a problem here as the region start is always 0
+and the RAID size is an approximation anyway - so we might simply round down.

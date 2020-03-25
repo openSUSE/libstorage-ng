@@ -805,6 +805,8 @@ namespace storage
 	// big can lead to severe problems later on, e.g. a partition not
 	// fitting anymore, we make a conservative calculation.
 
+	// For combining disks with different block sizes, see doc/md-raid.md.
+
 	const bool conservative = true;
 
 	// Since our size calculation is not accurate we must not recalculate
