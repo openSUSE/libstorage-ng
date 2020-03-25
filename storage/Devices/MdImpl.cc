@@ -916,13 +916,8 @@ namespace storage
 		break;
 	}
 
-	// adjust block size
 	if (block_size && block_size != get_region().get_block_size())
-	{
-	    Region region(get_region());
-	    region.adjust_block_size(block_size);
-	    set_region(region);
-	}
+	    set_region(Region(0, 0, block_size));
 
 	set_size(size);
 	set_topology(Topology(0, optimal_io_size));
