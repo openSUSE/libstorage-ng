@@ -181,7 +181,7 @@ namespace storage
 
 	    try
 	    {
-		SystemCmd cmd(VGCHANGEBIN " --activate y", SystemCmd::DoThrow);
+		SystemCmd cmd(VGCHANGEBIN " --ignoreskippedcluster --activate y", SystemCmd::DoThrow);
 	    }
 	    catch (const Exception& exception)
 	    {
@@ -215,7 +215,7 @@ namespace storage
     {
 	y2mil("deactivate_lvm_lvs");
 
-	string cmd_line = VGCHANGEBIN " --activate n";
+	string cmd_line = VGCHANGEBIN " --ignoreskippedcluster --activate n";
 
 	SystemCmd cmd(cmd_line);
 
