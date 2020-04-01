@@ -292,6 +292,53 @@ BOOST_AUTO_TEST_CASE(parse_uncommon_ordering)
 }
 
 
+BOOST_AUTO_TEST_CASE(parse_jetson_nano)
+{
+    // GPT of Jetson Nano image with only 15 partition slots.
+
+    vector<string> input = {
+	"BYT;",
+	"/dev/mmcblk1:31116288s:sd/mmc:512:512:gpt:SD SL16G::15;",
+	"1:40s:29360167s:29360128s:ext4:APP:;",
+	"2:29360168s:29360423s:256s::TBC:msftdata;",
+	"3:29360424s:29361319s:896s::RP1:msftdata;",
+	"4:29361320s:29362471s:1152s::EBT:msftdata;",
+	"5:29362472s:29362599s:128s::WB0:msftdata;",
+	"6:29362600s:29362983s:384s::BPF:msftdata;",
+	"7:29362984s:29363751s:768s::BPF-DTB:msftdata;",
+	"8:29363752s:29363879s:128s::FX:msftdata;",
+	"9:29363880s:29364775s:896s::TOS:msftdata;",
+	"10:29364776s:29365671s:896s::DTB:msftdata;",
+	"11:29365672s:29367207s:1536s::LNX:msftdata;",
+	"12:29367208s:29367335s:128s::EKS:msftdata;",
+	"13:29367336s:29367495s:160s::BMP:msftdata;",
+	"14:29367496s:29367751s:256s::RP4:msftdata;",
+	"15:29367752s:29629895s:262144s:fat16:EFI:boot, esp;"
+    };
+
+    vector<string> output = {
+	"device:/dev/mmcblk1 label:GPT region:[0, 31116288, 512 B] primary-slots:15",
+	"number:1 region:[40, 29360128, 512 B] type:primary id:0x83",
+	"number:2 region:[29360168, 256, 512 B] type:primary id:0x102",
+	"number:3 region:[29360424, 896, 512 B] type:primary id:0x102",
+	"number:4 region:[29361320, 1152, 512 B] type:primary id:0x102",
+	"number:5 region:[29362472, 128, 512 B] type:primary id:0x102",
+	"number:6 region:[29362600, 384, 512 B] type:primary id:0x102",
+	"number:7 region:[29362984, 768, 512 B] type:primary id:0x102",
+	"number:8 region:[29363752, 128, 512 B] type:primary id:0x102",
+	"number:9 region:[29363880, 896, 512 B] type:primary id:0x102",
+	"number:10 region:[29364776, 896, 512 B] type:primary id:0x102",
+	"number:11 region:[29365672, 1536, 512 B] type:primary id:0x102",
+	"number:12 region:[29367208, 128, 512 B] type:primary id:0x102",
+	"number:13 region:[29367336, 160, 512 B] type:primary id:0x102",
+	"number:14 region:[29367496, 256, 512 B] type:primary id:0x102",
+	"number:15 region:[29367752, 262144, 512 B] type:primary id:0xEF"
+    };
+
+    check("/dev/mmcblk1", input, output);
+}
+
+
 BOOST_AUTO_TEST_CASE(parse_gpt_backup_broken)
 {
     vector<string> stdout = {
