@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -43,10 +43,15 @@ namespace storage
 
     const char* DeviceTraits<Gpt>::classname = "Gpt";
 
+    const unsigned int Gpt::Impl::default_partition_slots;
+
 
     Gpt::Impl::Impl(const xmlNode* node)
-	: PartitionTable::Impl(node), undersized(false), backup_broken(false), pmbr_boot(false)
+	: PartitionTable::Impl(node), partition_slots(default_partition_slots), undersized(false),
+	  backup_broken(false), pmbr_boot(false)
     {
+	getChildValue(node, "partition-slots", partition_slots);
+
 	getChildValue(node, "undersized", undersized);
 	getChildValue(node, "backup-broken", backup_broken);
 
@@ -71,6 +76,9 @@ namespace storage
 
 	const Parted& parted = prober.get_system_info().getParted(partitionable->get_name());
 
+	if (parted.get_primary_slots() >= 0)
+	    partition_slots = parted.get_primary_slots();
+
 	undersized = parted.is_gpt_undersized();
 	backup_broken = parted.is_gpt_backup_broken();
 
@@ -82,6 +90,8 @@ namespace storage
     Gpt::Impl::save(xmlNode* node) const
     {
 	PartitionTable::Impl::save(node);
+
+	setChildValueIf(node, "partition-slots", partition_slots, partition_slots != default_partition_slots);
 
 	setChildValueIf(node, "undersized", undersized, undersized);
 	setChildValueIf(node, "backup-broken", backup_broken, backup_broken);
@@ -95,12 +105,13 @@ namespace storage
     {
 	Region region = get_partitionable()->get_region();
 
-	// 1 sector for protective MBR (only at beginning), 1 sector for
-	// primary or secondary header and 128 partition entries with 128
-	// bytes per partition entry. In theory these values are
-	// variables. See https://en.wikipedia.org/wiki/GUID_Partition_Table.
+	// 1 sector for protective MBR (only at beginning), 1 sector
+	// for primary or secondary header and partition_slots,
+	// usually 128, partition entries with 128 bytes per partition
+	// entry. In theory these values are variables. See
+	// https://en.wikipedia.org/wiki/GUID_Partition_Table.
 
-	unsigned long long sectors = 1 + 128 * 128 * B / region.get_block_size();
+	unsigned long long sectors = 1 + partition_slots * 128 * B / region.get_block_size();
 
 	return make_pair(1 + sectors, sectors);
     }
@@ -149,8 +160,8 @@ namespace storage
 	if (!PartitionTable::Impl::equal(rhs))
 	    return false;
 
-	return undersized == rhs.undersized && backup_broken == rhs.backup_broken &&
-	    pmbr_boot == rhs.pmbr_boot;
+	return partition_slots == rhs.partition_slots && undersized == rhs.undersized &&
+	    backup_broken == rhs.backup_broken && pmbr_boot == rhs.pmbr_boot;
     }
 
 
@@ -160,6 +171,8 @@ namespace storage
 	const Impl& rhs = dynamic_cast<const Impl&>(rhs_base);
 
 	PartitionTable::Impl::log_diff(log, rhs);
+
+	storage::log_diff(log, "partition-slots", partition_slots, rhs.partition_slots);
 
 	storage::log_diff(log, "undersized", undersized, rhs.undersized);
 	storage::log_diff(log, "backup-broken", backup_broken, rhs.backup_broken);
@@ -172,6 +185,9 @@ namespace storage
     Gpt::Impl::print(std::ostream& out) const
     {
 	PartitionTable::Impl::print(out);
+
+	if (partition_slots != default_partition_slots)
+	    out << " partition-slots:" << partition_slots;
 
 	if (is_undersized())
 	    out << " undersized";
@@ -206,7 +222,7 @@ namespace storage
     unsigned int
     Gpt::Impl::max_primary() const
     {
-	return min(128U, get_partitionable()->get_range() - 1);
+	return min(partition_slots, get_partitionable()->get_range() - 1);
     }
 
 

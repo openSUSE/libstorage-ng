@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -43,8 +43,8 @@ namespace storage
     public:
 
 	Impl()
-	    : PartitionTable::Impl(), undersized(false), backup_broken(false),
-	      pmbr_boot(false) {}
+	    : PartitionTable::Impl(), partition_slots(default_partition_slots), undersized(false),
+	      backup_broken(false), pmbr_boot(false) {}
 
 	Impl(const xmlNode* node);
 
@@ -98,6 +98,17 @@ namespace storage
 	virtual Text do_delete_text(Tense tense) const override;
 
     private:
+
+	/**
+	 * Number of partitions slots if parted does not report anything else and
+	 * for new GPTs.
+	 */
+	static const unsigned int default_partition_slots = 128;
+
+	/**
+	 * Number of partitions slots.
+	 */
+	unsigned int partition_slots;
 
 	/**
 	 * The GPT does not use the complete device.

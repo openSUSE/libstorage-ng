@@ -14,4 +14,4 @@ before_install:
 script:
   # run the travis script
   # mount the ccache as a volume (bind-mount) so the changes are available later outside the container
-  - docker run -it -e TRAVIS=1 -e TRAVIS_JOB_ID="$TRAVIS_JOB_ID" -v $HOME/.ccache:/root/.ccache libstorage-ng-image ./.travis.sh
+  - docker run -it --privileged -e TRAVIS=1 -e TRAVIS_JOB_ID="$TRAVIS_JOB_ID" -v $HOME/.ccache:/root/.ccache libstorage-ng-image ./.travis.sh

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -81,6 +81,12 @@ namespace storage
 	const Region& get_region() const { return region; }
 
 	/**
+	 * Get the number of primary partition slots. If parted did not report the
+	 * value it is -1 (reporting the value is a SUSE specific patch).
+	 */
+	int get_primary_slots() const { return primary_slots; }
+
+	/**
 	 * S/390 arch: zFCP DASDs create implicit partitions if there is none
 	 * on that disk yet. This function returns if this is the case for
 	 * this device.
@@ -123,6 +129,7 @@ namespace storage
 	string device;
 	PtType label;
 	Region region;
+	int primary_slots;
 	bool implicit;
 	bool gpt_undersized;
 	bool gpt_backup_broken;

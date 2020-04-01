@@ -60,7 +60,8 @@ namespace storage
 	    Options(const string& command, ThrowBehaviour throw_behaviour = NoThrow)
 		: command(command), throw_behaviour(throw_behaviour), stdin_text(),
 		  mockup_key(), log_line_limit(1000),
-		  verify([](int exit_code){ return exit_code == 0; }) {}
+		  verify([](int exit_code){ return exit_code == 0; }),
+		  env({ "LC_ALL=C", "LANGUAGE=C" }) {}
 
 	    /**
 	     * The command to be executed.
@@ -93,6 +94,12 @@ namespace storage
 	     * exception is thrown.
 	     */
 	    std::function<bool(int)> verify;
+
+	    /**
+	     * Environment variables to override existing environment variables. Per
+	     * default this includes LC_ALL=C and LANGUAGE=C.
+	     */
+	    vector<string> env;
 
 	};
 

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -41,13 +41,14 @@ namespace storage
 
 
     Parted::Parted(const string& device)
-	: device(device), label(PtType::UNKNOWN), region(), implicit(false),
+	: device(device), label(PtType::UNKNOWN), region(), primary_slots(-1), implicit(false),
 	  gpt_undersized(false), gpt_backup_broken(false), gpt_pmbr_boot(false),
 	  logical_sector_size(0), physical_sector_size(0)
     {
 	SystemCmd::Options options(PARTED_BIN " --script --machine " + quote(device) +
 				   " unit s print", SystemCmd::DoThrow);
 	options.verify = [](int) { return true; };
+	options.env.push_back("PARTED_PRINT_NUMBER_OF_PARTITION_SLOTS=1");
 
 	SystemCmd cmd(options);
 
@@ -83,6 +84,7 @@ namespace storage
     void
     Parted::parse(const vector<string>& stdout, const vector<string>& stderr)
     {
+	primary_slots = -1;
 	implicit = false;
 	gpt_undersized = false;
 	gpt_backup_broken = false;
@@ -133,6 +135,9 @@ namespace storage
 	label = scan_partition_table_type(tmp[5]);
 
 	scan_device_flags(tmp[7]);
+
+	if (tmp.size() >= 9)
+	    tmp[8] >> primary_slots;
     }
 
 
@@ -365,6 +370,9 @@ namespace storage
     {
 	s << "device:" << parted.device << " label:" << toString(parted.label)
 	  << " region:" << parted.region;
+
+	if (parted.primary_slots >= 0)
+	    s << " primary-slots:" << parted.primary_slots;
 
 	if (parted.implicit)
 	    s << " implicit";
