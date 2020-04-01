@@ -165,13 +165,18 @@ BOOST_AUTO_TEST_CASE(non_exec_throw)
 BOOST_AUTO_TEST_CASE(env)
 {
     vector<string> stdout = {
-	"C ++"
+	"C ++ sure"
     };
 
-    setenv("LC_ALL", "en_US", 1);	// will be overridden
+    setenv("LC_ALL", "en_US", 1);	// will be overridden (by default in options.env)
     setenv("FUNNY", "++", 1);		// will not be overridden
+    setenv("AMUSING", "no", 1);		// will be overridden (by addition to options.env)
 
-    SystemCmd cmd("echo $LC_ALL $FUNNY");
+    SystemCmd::Options options("echo $LC_ALL $FUNNY $AMUSING");
+
+    options.env.push_back("AMUSING=sure");
+
+    SystemCmd cmd(options);
 
     BOOST_CHECK(cmd.retcode() == 0);
     BOOST_CHECK_EQUAL(join(cmd.stdout()), join(stdout));

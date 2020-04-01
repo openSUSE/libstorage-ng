@@ -693,17 +693,29 @@ namespace storage
     vector<const char*>
     SystemCmd::make_env() const
     {
+	// Environment variables should be present only once in the environment.
+	// https://pubs.opengroup.org/onlinepubs/009695399/basedefs/xbd_chap08.html
+
 	vector<const char*> env;
 
 	for (char** v = environ; *v != NULL; ++v)
-	{
-	    if (strncmp(*v, "LC_ALL=", strlen("LC_ALL=")) != 0 &&
-		strncmp(*v, "LANGUAGE=", strlen("LANGUAGE=")) != 0)
-		env.push_back(*v);
-	}
+	    env.push_back(*v);
 
-	env.push_back("LC_ALL=C");
-	env.push_back("LANGUAGE=C");
+	for (const string& v : options.env)
+	{
+	    string::size_type pos = v.find("=");
+	    if (pos == string::npos)
+		continue;
+
+	    string key = v.substr(0, pos + 1); // key including '=' sign
+
+	    vector<const char*>::iterator it = find_if(env.begin(), env.end(),
+		[&key](const char* tmp) { return boost::starts_with(tmp, key); });
+	    if (it != env.end())
+		*it = v.c_str();
+	    else
+		env.push_back(v.c_str());
+	}
 
 	env.push_back(nullptr);
 
