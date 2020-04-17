@@ -149,7 +149,7 @@ BOOST_AUTO_TEST_CASE(segfault_throw)
 BOOST_AUTO_TEST_CASE(non_exec_no_throw)
 {
     BOOST_CHECK_NO_THROW({
-	SystemCmd cmd("/etc/fstab", SystemCmd::ThrowBehaviour::NoThrow);
+	SystemCmd cmd("../helpers/segfaulter.cc", SystemCmd::ThrowBehaviour::NoThrow);
 	BOOST_CHECK_EQUAL(cmd.retcode(), 126);
     });
 }
@@ -157,7 +157,7 @@ BOOST_AUTO_TEST_CASE(non_exec_no_throw)
 
 BOOST_AUTO_TEST_CASE(non_exec_throw)
 {
-    BOOST_CHECK_THROW({SystemCmd cmd( "/etc/fstab", SystemCmd::ThrowBehaviour::DoThrow);},
+    BOOST_CHECK_THROW({SystemCmd cmd( "../helpers/segfaulter.cc", SystemCmd::ThrowBehaviour::DoThrow);},
 		      SystemCmdException);
 }
 
