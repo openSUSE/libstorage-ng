@@ -124,8 +124,9 @@ xfs_growfs: XFS_IOC_FSGROWFSDATA xfsctl failed: Input/output error
 
 - Can you reliably know in advance which PVs will be used? Probably not.
 
-- Maybe read block size from system after creating the LVs; but at least
-  before using parted.
+- If you need to know the block size for LVs you'd probably have to read it
+  from the system after creating the LVs. From libstorage-ng's perspective
+  the block size chiefly matters for parted but LVs are not partitioned.
 
 ## BTRFS
 
