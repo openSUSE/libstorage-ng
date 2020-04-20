@@ -215,13 +215,15 @@ namespace storage
 
 	/**
 	 * Clear the devicegraph.
+	 *
+	 * Invalidates all pointers to devices and holders of the devicegraph.
 	 */
 	void clear();
 
 	/**
 	 * Get all Disks.
 	 *
-	 * Convenient functions, equivalent to Disk::get_all(devicegraph).
+	 * Convenience functions, equivalent to Disk::get_all(devicegraph).
 	 *
 	 * @see Disk::get_all()
 	 */
@@ -235,7 +237,7 @@ namespace storage
 	/**
 	 * Get all Mds.
 	 *
-	 * Convenient functions, equivalent to Md::get_all(devicegraph).
+	 * Convenience functions, equivalent to Md::get_all(devicegraph).
 	 *
 	 * @see Md::get_all()
 	 */
@@ -249,7 +251,7 @@ namespace storage
 	/**
 	 * Get all LvmVgs.
 	 *
-	 * Convenient functions, equivalent to LvmVg::get_all(devicegraph).
+	 * Convenience functions, equivalent to LvmVg::get_all(devicegraph).
 	 *
 	 * @see LvmVg::get_all()
 	 */
@@ -263,7 +265,7 @@ namespace storage
 	/**
 	 * Get all Filesystems.
 	 *
-	 * Convenient functions, equivalent to Filesystem::get_all(devicegraph).
+	 * Convenience functions, equivalent to Filesystem::get_all(devicegraph).
 	 *
 	 * @see Filesystem::get_all()
 	 */
@@ -277,7 +279,7 @@ namespace storage
 	/**
 	 * Get all BlkFilesystems.
 	 *
-	 * Convenient functions, equivalent to BlkFilesystem::get_all(devicegraph).
+	 * Convenience functions, equivalent to BlkFilesystem::get_all(devicegraph).
 	 *
 	 * @see BlkFilesystem::get_all()
 	 */
@@ -293,14 +295,26 @@ namespace storage
 	 * function if there is no special function to delete a device,
 	 * e.g. PartitionTable.delete_partition() or LvmVg.delete_lvm_lv().
 	 *
+	 * Invalidates all pointers to the device and its holders.
+	 *
 	 * TODO internally redirect to special delete functions?
 	 *
 	 * @throw DeviceNotFoundBySid
 	 */
 	void remove_device(sid_t sid);
 
+	/**
+	 * Removes the device from the devicegraph.
+	 *
+	 * @see remove_device(sid_t)
+	 */
 	void remove_device(Device* a);
 
+	/**
+	 * Removes the devices from the devicegraph.
+	 *
+	 * @see remove_device(Device*)
+	 */
 	void remove_devices(std::vector<Device*> devices);
 
 	/**
@@ -313,6 +327,11 @@ namespace storage
 	 */
 	const Holder* find_holder(sid_t source_sid, sid_t target_sid) const;
 
+	/**
+	 * Removes the holder from the devicegraph.
+	 *
+	 * Invalidates all pointers to the holder.
+	 */
 	void remove_holder(Holder* holder);
 
 	/**

@@ -44,7 +44,10 @@ namespace storage
 	void set_topology(const Topology& topology); // deprecated since also available in BlkDevice
 
 	/**
-	 * Query the range of device nodes available.
+	 * Query the range of device nodes available. That range is
+	 * the number of block nodes in /dev that the partitionable
+	 * and the partitions of the partitionable can have. So at
+	 * most range - 1 partitions can be created.
 	 */
 	unsigned int get_range() const;
 
@@ -53,6 +56,8 @@ namespace storage
 	 *
 	 * @note The library does not support to change the range in
 	 * the system. The function is only for testsuites.
+	 *
+	 * @see get_range()
 	 */
 	void set_range(unsigned int range);
 

@@ -88,7 +88,10 @@ namespace storage
 
 	/**
 	 * Return the names of the udev by-path links of the blk
-	 * device. The names do not include the directory.
+	 * device. The names do not include the directory. Usually
+	 * there is only one by-path link.
+	 *
+	 * Example return value: [ "pci-0000:00:17.0-ata-1" ]
 	 *
 	 * This may not be the complete list of names known to udev
 	 * since the library filters names that are known to cause
@@ -99,6 +102,9 @@ namespace storage
 	/**
 	 * Return the names of the udev by-id links of the blk
 	 * device. The names do not include the directory.
+	 *
+	 * Example return value: [ "ata-SAMSUNG_SSD_PM871b_2.5_7mm_512GB_S3U3NE0K803507",
+	 * "scsi-0ATA_SAMSUNG_SSD_PM87_S3U3NE0K803507" ]
 	 *
 	 * This may not be the complete list of names known to udev
 	 * since the library filters names that are known to cause

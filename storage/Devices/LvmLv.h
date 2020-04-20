@@ -132,7 +132,12 @@ namespace storage
 	static std::vector<const LvmLv*> get_all(const Devicegraph* devicegraph);
 
 	/**
-	 * Get the logical volume name. This is different from get_name().
+	 * Get the logical volume name. This does not include the name
+	 * of the volume group.  The logical volume name is different
+	 * from block device name returned by get_name().
+	 *
+	 * For the logical volume name "root" the block device name
+	 * maybe be "/dev/system/root".
 	 */
 	const std::string& get_lv_name() const;
 

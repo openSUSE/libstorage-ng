@@ -171,7 +171,7 @@ namespace storage
 	void set_open_options(const std::string& open_options);
 
 	/**
-	 * Get all Encryptions.
+	 * Get all Encryption objects of the devicegraph.
 	 */
 	static std::vector<Encryption*> get_all(Devicegraph* devicegraph);
 
