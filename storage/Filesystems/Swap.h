@@ -40,7 +40,14 @@ namespace storage
 	static Swap* create(Devicegraph* devicegraph);
 	static Swap* load(Devicegraph* devicegraph, const xmlNode* node);
 
+	/**
+	 * Get all Swaps.
+	 */
 	static std::vector<Swap*> get_all(Devicegraph* devicegraph);
+
+	/**
+	 * @copydoc get_all()
+	 */
 	static std::vector<const Swap*> get_all(const Devicegraph* devicegraph);
 
     public:

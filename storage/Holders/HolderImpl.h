@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -106,6 +106,10 @@ namespace storage
 	Devicegraph::Impl::edge_descriptor edge;
 
     };
+
+
+    static_assert(std::is_abstract<Holder>(), "Holder ought to be abstract.");
+    static_assert(std::is_abstract<Holder::Impl>(), "Holder::Impl ought to be abstract.");
 
 
     template <typename Type>

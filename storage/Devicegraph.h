@@ -118,7 +118,14 @@ namespace storage
 
 
     /**
-     * The master container of the libstorage.
+     * The master container of the libstorage-ng.
+     *
+     * The devicegraph contains Devices (node) and Holders (edge). A
+     * device represent a storage object, e.g. a disk, a LVM volume
+     * group, a file systems or a mount point. A holder represent the
+     * connection between two devices, e.g. that a disk is used by a
+     * file system or that a partition is used as a LVM physical
+     * volume.
      *
      * There are two levels of functions to manipulate the device graph. As an
      * example we show how to create a partition table containing one
@@ -165,18 +172,32 @@ namespace storage
 	const Storage* get_storage() const;
 
 	/**
+	 * Load the devicegraph from a file.
+	 *
 	 * @throw Exception
 	 */
 	void load(const std::string& filename);
 
 	/**
+	 * Save the devicegraph to a file.
+	 *
 	 * @throw Exception
 	 */
 	void save(const std::string& filename) const;
 
+	/**
+	 * Query whether the devicegraph is empty.
+	 */
 	bool empty() const;
 
+	/**
+	 * Return the number of devices.
+	 */
 	size_t num_devices() const;
+
+	/**
+	 * Return the number of holders.
+	 */
 	size_t num_holders() const;
 
 	/**
@@ -199,22 +220,81 @@ namespace storage
 	 */
 	bool holder_exists(sid_t source_sid, sid_t target_sid) const;
 
+	/**
+	 * Clear the devicegraph.
+	 *
+	 * Invalidates all pointers to devices and holders of the devicegraph.
+	 */
 	void clear();
 
-	// convenient functions, equivalent to e.g. Disk::get_all(devicegraph)
+	/**
+	 * Get all Disks.
+	 *
+	 * Convenience functions, equivalent to Disk::get_all(devicegraph).
+	 *
+	 * @see Disk::get_all()
+	 */
 	std::vector<Disk*> get_all_disks();
+
+	/**
+	 * @copydoc get_all_disks()
+	 */
 	std::vector<const Disk*> get_all_disks() const;
 
+	/**
+	 * Get all Mds.
+	 *
+	 * Convenience functions, equivalent to Md::get_all(devicegraph).
+	 *
+	 * @see Md::get_all()
+	 */
 	std::vector<Md*> get_all_mds();
+
+	/**
+	 * @copydoc get_all_mds()
+	 */
 	std::vector<const Md*> get_all_mds() const;
 
+	/**
+	 * Get all LvmVgs.
+	 *
+	 * Convenience functions, equivalent to LvmVg::get_all(devicegraph).
+	 *
+	 * @see LvmVg::get_all()
+	 */
 	std::vector<LvmVg*> get_all_lvm_vgs();
+
+	/**
+	 * @copydoc get_all_lvm_vgs()
+	 */
 	std::vector<const LvmVg*> get_all_lvm_vgs() const;
 
+	/**
+	 * Get all Filesystems.
+	 *
+	 * Convenience functions, equivalent to Filesystem::get_all(devicegraph).
+	 *
+	 * @see Filesystem::get_all()
+	 */
 	std::vector<Filesystem*> get_all_filesystems();
+
+	/**
+	 * @copydoc get_all_filesystems()
+	 */
 	std::vector<const Filesystem*> get_all_filesystems() const;
 
+	/**
+	 * Get all BlkFilesystems.
+	 *
+	 * Convenience functions, equivalent to BlkFilesystem::get_all(devicegraph).
+	 *
+	 * @see BlkFilesystem::get_all()
+	 */
 	std::vector<BlkFilesystem*> get_all_blk_filesystems();
+
+	/**
+	 * @copydoc get_all_blk_filesystems()
+	 */
 	std::vector<const BlkFilesystem*> get_all_blk_filesystems() const;
 
 	/**
@@ -222,14 +302,26 @@ namespace storage
 	 * function if there is no special function to delete a device,
 	 * e.g. PartitionTable.delete_partition() or LvmVg.delete_lvm_lv().
 	 *
-	 * @throw DeviceNotFoundBySid
+	 * Invalidates all pointers to the device and its holders.
 	 *
 	 * TODO internally redirect to special delete functions?
+	 *
+	 * @throw DeviceNotFoundBySid
 	 */
 	void remove_device(sid_t sid);
 
+	/**
+	 * Removes the device from the devicegraph.
+	 *
+	 * @see remove_device(sid_t)
+	 */
 	void remove_device(Device* a);
 
+	/**
+	 * Removes the devices from the devicegraph.
+	 *
+	 * @see remove_device(Device*)
+	 */
 	void remove_devices(std::vector<Device*> devices);
 
 	/**
@@ -242,6 +334,11 @@ namespace storage
 	 */
 	const Holder* find_holder(sid_t source_sid, sid_t target_sid) const;
 
+	/**
+	 * Removes the holder from the devicegraph.
+	 *
+	 * Invalidates all pointers to the holder.
+	 */
 	void remove_holder(Holder* holder);
 
 	/**

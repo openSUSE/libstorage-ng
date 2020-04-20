@@ -41,7 +41,14 @@ namespace storage
 	static Ntfs* create(Devicegraph* devicegraph);
 	static Ntfs* load(Devicegraph* devicegraph, const xmlNode* node);
 
+	/**
+	 * Get all Ntfses.
+	 */
 	static std::vector<Ntfs*> get_all(Devicegraph* devicegraph);
+
+	/**
+	 * @copydoc get_all()
+	 */
 	static std::vector<const Ntfs*> get_all(const Devicegraph* devicegraph);
 
     public:

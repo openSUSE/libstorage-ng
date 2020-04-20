@@ -45,17 +45,24 @@ namespace storage
 	bool is_faulty() const;
 	void set_faulty(bool faulty);
 
-	unsigned int get_sort_key() const;
-
 	/**
-	 * When creating a MD RAID the device list passed to the mdadm command
-	 * is sorted according to the sort-key. For use-cases see
-	 * https://fate.suse.com/313521/.
+	 * Return the sort key.
 	 *
-	 * The raid devices and spare devices are sorted
+	 * When creating a MD RAID the device list passed to the mdadm
+	 * command is sorted according to the sort-key. For use-cases
+	 * see https://fate.suse.com/313521/.
+	 *
+	 * The RAID devices and spare devices are sorted
 	 * independently. Sorting of devices with the same sort-key is
 	 * undefined. Any value is allowed but 0 should mean
 	 * unknown/unspecified.
+	 */
+	unsigned int get_sort_key() const;
+
+	/**
+	 * Set the sort key.
+	 *
+	 * @see get_sort_key().
 	 */
 	void set_sort_key(unsigned int sort_key);
 

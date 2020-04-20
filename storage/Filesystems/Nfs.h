@@ -60,7 +60,14 @@ namespace storage
 
 	const std::string& get_path() const;
 
+	/**
+	 * Get all Nfses.
+	 */
 	static std::vector<Nfs*> get_all(Devicegraph* devicegraph);
+
+	/**
+	 * @copydoc get_all()
+	 */
 	static std::vector<const Nfs*> get_all(const Devicegraph* devicegraph);
 
 	/**

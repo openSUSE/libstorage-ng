@@ -46,8 +46,12 @@ namespace storage
     };
 
 
-    // abstract class
-
+    /**
+     * An abstract base class for storage holders. Storage holders are
+     * edges in the devicegraph.
+     *
+     * @see Devicegraph
+     */
     class Holder : private boost::noncopyable
     {
     public:
@@ -57,11 +61,21 @@ namespace storage
 	Device* get_source();
 	const Device* get_source() const;
 
+	/**
+	 * Return the storage id (sid) of the source of the holder.
+	 *
+	 * @see sid_t
+	 */
 	sid_t get_source_sid() const;
 
 	Device* get_target();
 	const Device* get_target() const;
 
+	/**
+	 * Return the storage id (sid) of the target of the holder.
+	 *
+	 * @see sid_t
+	 */
 	sid_t get_target_sid() const;
 
 	bool operator==(const Holder& rhs) const;

@@ -41,9 +41,21 @@ namespace storage
     {
     public:
 
+	/**
+	 * Get all Filesystems.
+	 */
 	static std::vector<Filesystem*> get_all(Devicegraph* devicegraph);
+
+	/**
+	 * @copydoc get_all()
+	 */
 	static std::vector<const Filesystem*> get_all(const Devicegraph* devicegraph);
 
+	/**
+	 * Get the filesystem type.
+	 *
+	 * @see FsType.
+	 */
 	FsType get_type() const;
 
 	bool has_space_info() const;

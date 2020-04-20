@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -263,7 +263,7 @@ namespace storage
 	}
 
 	template<typename Type>
-	const vector<Type*> get_children_of_type() const
+	vector<const Type*> get_children_of_type() const
 	{
 	    static_assert(is_const<Type>::value, "Type must be const");
 
@@ -323,7 +323,7 @@ namespace storage
 	}
 
 	template<typename Type>
-	const vector<Type*> get_parents_of_type() const
+	vector<const Type*> get_parents_of_type() const
 	{
 	    static_assert(is_const<Type>::value, "Type must be const");
 
@@ -408,6 +408,10 @@ namespace storage
 	map<string, string> userdata;
 
     };
+
+
+    static_assert(std::is_abstract<Device>(), "Device ought to be abstract.");
+    static_assert(std::is_abstract<Device::Impl>(), "Device::Impl ought to be abstract.");
 
 
     namespace Action

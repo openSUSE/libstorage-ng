@@ -66,12 +66,17 @@ namespace storage
     typedef unsigned int sid_t;
 
 
-    //! An abstract base class of storage devices,
-    //! and a vertex in the Devicegraph.
-    /// The Device class does not have a device name since some device types do
-    /// not have a intrinsic device name, e.g. btrfs.  Instead most devices are
-    /// derived from BlkDevice which has a device name, udev path and udev ids.
-
+    /**
+     * An abstract base class for storage devices. Storage devices are
+     * nodes in the devicegraph.
+     *
+     * The Device class does not have a device name since some device
+     * types do not have a intrinsic device name, e.g. btrfs. Instead
+     * most devices are derived from BlkDevice which has a device
+     * name, udev path and udev ids.
+     *
+     * @see Devicegraph
+     */
     class Device : private boost::noncopyable
     {
 
@@ -79,6 +84,11 @@ namespace storage
 
 	virtual ~Device();
 
+	/**
+	 * Return the storage id (sid) of the device.
+	 *
+	 * @see sid_t
+	 */
 	sid_t get_sid() const;
 
 	bool operator==(const Device& rhs) const;
@@ -135,7 +145,14 @@ namespace storage
 	bool has_parents() const;
 	size_t num_parents() const;
 
+	/**
+	 * Get all Devices.
+	 */
 	static std::vector<Device*> get_all(Devicegraph* devicegraph);
+
+	/**
+	 * @copydoc get_all()
+	 */
 	static std::vector<const Device*> get_all(const Devicegraph* devicegraph);
 
 	// TODO check if we can somehow return a iterator. getting rid of the

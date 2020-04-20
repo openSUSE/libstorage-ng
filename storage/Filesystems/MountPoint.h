@@ -56,7 +56,14 @@ namespace storage
 
 	static MountPoint* load(Devicegraph* devicegraph, const xmlNode* node);
 
+	/**
+	 * Get all MountPoints.
+	 */
 	static std::vector<MountPoint*> get_all(Devicegraph* devicegraph);
+
+	/**
+	 * @copydoc get_all()
+	 */
 	static std::vector<const MountPoint*> get_all(const Devicegraph* devicegraph);
 
 	const std::string& get_path() const;
@@ -116,7 +123,7 @@ namespace storage
 	/**
 	 * Set the mount options to the default mount options.
 	 *
-	 * @see default_mount_options().
+	 * @see default_mount_options()
 	 */
 	void set_default_mount_options();
 
@@ -144,7 +151,7 @@ namespace storage
 	/**
 	 * Set the freq field.
 	 *
-	 * @see get_freq().
+	 * @see get_freq()
 	 */
 	void set_freq(int freq);
 
@@ -157,7 +164,7 @@ namespace storage
 
 	/**
 	 *
-	 * @see get_passno().
+	 * @see get_passno()
 	 */
 	void set_passno(int passno);
 

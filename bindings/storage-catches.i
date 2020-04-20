@@ -296,6 +296,8 @@
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Nfs::find_by_server_and_path(const Devicegraph *devicegraph, const std::string &server, const std::string &path);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Partition::find_by_name(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Partition::find_by_name(const Devicegraph *devicegraph, const std::string &name);
+%catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Partition::get_partition_table() const;
+%catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Partition::get_partitionable() const;
 %catches(storage::Exception) storage::Partition::get_unused_surrounding_region() const;
 %catches(storage::Exception) storage::Partition::set_boot(bool boot);
 %catches(storage::Exception) storage::Partition::set_id(unsigned int id);

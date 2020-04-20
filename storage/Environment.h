@@ -60,10 +60,23 @@ namespace storage
 
 	Environment& operator=(const Environment& environment) = delete;
 
+	/**
+	 * Return whether the Environment has read-only set.
+	 */
 	bool is_read_only() const;
 
+	/**
+	 * Return the probe mode.
+	 *
+	 * @see ProbeMode
+	 */
 	ProbeMode get_probe_mode() const;
 
+	/**
+	 * return the target mode.
+	 *
+	 * @see TargetMode
+	 */
 	TargetMode get_target_mode() const;
 
 	const std::string& get_devicegraph_filename() const;
