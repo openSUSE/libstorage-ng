@@ -170,7 +170,14 @@ namespace storage
 	 */
 	void set_open_options(const std::string& open_options);
 
+	/**
+	 * Get all Encryptions.
+	 */
 	static std::vector<Encryption*> get_all(Devicegraph* devicegraph);
+
+	/**
+	 * @copydoc get_all()
+	 */
 	static std::vector<const Encryption*> get_all(const Devicegraph* devicegraph);
 
     public:

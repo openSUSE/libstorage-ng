@@ -33,12 +33,53 @@ namespace storage
 
     // TODO use C++11 user-defined literals? Swig has some support for them.
 
+    /**
+     * Abbreviation for byte.
+     *
+     * @see https://en.wikipedia.org/wiki/Byte
+     */
     const unsigned long long B = 1;
+
+    /**
+     * Abbreviation for kibibyte.
+     *
+     * @see https://en.wikipedia.org/wiki/Kibibyte
+     */
     const unsigned long long KiB = 1024 * B;
+
+    /**
+     * Abbreviation for mebibyte.
+     *
+     * @see https://en.wikipedia.org/wiki/Mebibyte
+     */
     const unsigned long long MiB = 1024 * KiB;
+
+    /**
+     * Abbreviation for gibibyte.
+     *
+     * @see https://en.wikipedia.org/wiki/Gibibyte
+     */
     const unsigned long long GiB = 1024 * MiB;
+
+    /**
+     * Abbreviation for tebibyte.
+     *
+     * @see https://en.wikipedia.org/wiki/Tebibyte
+     */
     const unsigned long long TiB = 1024 * GiB;
+
+    /**
+     * Abbreviation for pebibyte.
+     *
+     * @see https://en.wikipedia.org/wiki/Pebibyte
+     */
     const unsigned long long PiB = 1024 * TiB;
+
+    /**
+     * Abbreviation for exbibyte.
+     *
+     * @see https://en.wikipedia.org/wiki/Exbibyte
+     */
     const unsigned long long EiB = 1024 * PiB;
 
 

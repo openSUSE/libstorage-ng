@@ -43,7 +43,14 @@ namespace storage
     {
     public:
 
+	/**
+	 * Get all BlkFilesystems.
+	 */
 	static std::vector<BlkFilesystem*> get_all(Devicegraph* devicegraph);
+
+	/**
+	 * @copydoc get_all()
+	 */
 	static std::vector<const BlkFilesystem*> get_all(const Devicegraph* devicegraph);
 
 	bool supports_label() const;

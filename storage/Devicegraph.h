@@ -165,18 +165,32 @@ namespace storage
 	const Storage* get_storage() const;
 
 	/**
+	 * Load the devicegraph from a file.
+	 *
 	 * @throw Exception
 	 */
 	void load(const std::string& filename);
 
 	/**
+	 * Save the devicegraph to a file.
+	 *
 	 * @throw Exception
 	 */
 	void save(const std::string& filename) const;
 
+	/**
+	 * Query whether the devicegraph is empty.
+	 */
 	bool empty() const;
 
+	/**
+	 * Return the number of devices.
+	 */
 	size_t num_devices() const;
+
+	/**
+	 * Return the number of holders.
+	 */
 	size_t num_holders() const;
 
 	/**
@@ -199,22 +213,79 @@ namespace storage
 	 */
 	bool holder_exists(sid_t source_sid, sid_t target_sid) const;
 
+	/**
+	 * Clear the devicegraph.
+	 */
 	void clear();
 
-	// convenient functions, equivalent to e.g. Disk::get_all(devicegraph)
+	/**
+	 * Get all Disks.
+	 *
+	 * Convenient functions, equivalent to Disk::get_all(devicegraph).
+	 *
+	 * @see Disk::get_all()
+	 */
 	std::vector<Disk*> get_all_disks();
+
+	/**
+	 * @copydoc get_all_disks()
+	 */
 	std::vector<const Disk*> get_all_disks() const;
 
+	/**
+	 * Get all Mds.
+	 *
+	 * Convenient functions, equivalent to Md::get_all(devicegraph).
+	 *
+	 * @see Md::get_all()
+	 */
 	std::vector<Md*> get_all_mds();
+
+	/**
+	 * @copydoc get_all_mds()
+	 */
 	std::vector<const Md*> get_all_mds() const;
 
+	/**
+	 * Get all LvmVgs.
+	 *
+	 * Convenient functions, equivalent to LvmVg::get_all(devicegraph).
+	 *
+	 * @see LvmVg::get_all()
+	 */
 	std::vector<LvmVg*> get_all_lvm_vgs();
+
+	/**
+	 * @copydoc get_all_lvm_vgs()
+	 */
 	std::vector<const LvmVg*> get_all_lvm_vgs() const;
 
+	/**
+	 * Get all Filesystems.
+	 *
+	 * Convenient functions, equivalent to Filesystem::get_all(devicegraph).
+	 *
+	 * @see Filesystem::get_all()
+	 */
 	std::vector<Filesystem*> get_all_filesystems();
+
+	/**
+	 * @copydoc get_all_filesystems()
+	 */
 	std::vector<const Filesystem*> get_all_filesystems() const;
 
+	/**
+	 * Get all BlkFilesystems.
+	 *
+	 * Convenient functions, equivalent to BlkFilesystem::get_all(devicegraph).
+	 *
+	 * @see BlkFilesystem::get_all()
+	 */
 	std::vector<BlkFilesystem*> get_all_blk_filesystems();
+
+	/**
+	 * @copydoc get_all_blk_filesystems()
+	 */
 	std::vector<const BlkFilesystem*> get_all_blk_filesystems() const;
 
 	/**
@@ -222,9 +293,9 @@ namespace storage
 	 * function if there is no special function to delete a device,
 	 * e.g. PartitionTable.delete_partition() or LvmVg.delete_lvm_lv().
 	 *
-	 * @throw DeviceNotFoundBySid
-	 *
 	 * TODO internally redirect to special delete functions?
+	 *
+	 * @throw DeviceNotFoundBySid
 	 */
 	void remove_device(sid_t sid);
 

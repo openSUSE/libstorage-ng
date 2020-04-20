@@ -56,6 +56,11 @@ namespace storage
 	 */
 	static std::vector<const DmRaid*> get_all(const Devicegraph* devicegraph);
 
+	/**
+	 * Return whether the DM RAID is of rotational or
+	 * non-rotational type. See the kernel documentation
+	 * block/queue-sysfs.rst for more information.
+	 */
 	bool is_rotational() const;
 
 	/**

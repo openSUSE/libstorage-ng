@@ -41,14 +41,17 @@ namespace storage
 
     /**
      * Convert the Transport transport to a string.
+     *
+     * @see Transport
      */
     std::string get_transport_name(Transport transport);
 
 
     /**
-     * Zone model as read from /sys. See e.g. https://www.zonedstorage.io/ and
+     * Zone model as read from /sys.
+     *
+     * @see https://www.zonedstorage.io/,
      * https://github.com/torvalds/linux/blob/master/Documentation/ABI/testing/sysfs-block
-     * for further information.
      */
     enum class ZoneModel {
 	NONE, HOST_AWARE, HOST_MANAGED
@@ -57,6 +60,8 @@ namespace storage
 
     /**
      * Convert the ZoneModel zone_model to a string.
+     *
+     * @see ZoneModel
      */
     std::string get_zone_model_name(ZoneModel zone_model);
 
@@ -84,6 +89,11 @@ namespace storage
 	 */
 	static std::vector<const Disk*> get_all(const Devicegraph* devicegraph);
 
+	/**
+	 * Return whether the disk is of rotational or non-rotational
+	 * type. See the kernel documentation block/queue-sysfs.rst
+	 * for more information.
+	 */
 	bool is_rotational() const;
 
 	/**
@@ -93,6 +103,8 @@ namespace storage
 
 	/**
 	 * Get the zone model of the disk.
+	 *
+	 * @see ZoneModel
 	 */
 	ZoneModel get_zone_model() const;
 

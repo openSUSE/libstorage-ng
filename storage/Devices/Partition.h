@@ -62,7 +62,9 @@ namespace storage
 
 
     /**
-     * Convert PartitionType to string.
+     * Convert the PartitionType partition_type to a string.
+     *
+     * @see PartitionType
      */
     std::string get_partition_type_name(PartitionType partition_type);
 
@@ -138,9 +140,11 @@ namespace storage
 
 
     /**
-     * Convert IdNum to string.
+     * Convert the IdNum partition_id to a string.
      *
-     * NOTE: an empty string could be returned (e.g., when the given partition id is unknown).
+     * @note An empty string could be returned (e.g., when the given partition id is unknown).
+     *
+     * @see IdNum
      */
     std::string get_partition_id_name(IdNum partition_id);
 
@@ -159,9 +163,18 @@ namespace storage
 
 	unsigned int get_number() const;
 
+	/**
+	 * Get the partition type.
+	 *
+	 * @see PartitionType
+	 */
 	PartitionType get_type() const;
 
 	/**
+	 * Set the partiton type.
+	 *
+	 * @see PartitionType
+	 *
 	 * @throw Exception
 	 */
 	void set_type(PartitionType type);
@@ -208,7 +221,18 @@ namespace storage
 	 */
 	void set_legacy_boot(bool legacy_boot);
 
+	/**
+	 * Return the partition table the partition belongs to.
+	 *
+	 * @throw WrongNumberOfChildren, DeviceHasWrongType
+	 */
 	const PartitionTable* get_partition_table() const;
+
+	/**
+	 * Return the partitionable the partition belongs to.
+	 *
+	 * @throw WrongNumberOfChildren, DeviceHasWrongType
+	 */
 	const Partitionable* get_partitionable() const;
 
 	/**

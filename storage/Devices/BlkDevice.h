@@ -86,7 +86,24 @@ namespace storage
 	const std::string& get_sysfs_name() const;
 	const std::string& get_sysfs_path() const;
 
+	/**
+	 * Return the names of the udev by-path links of the blk
+	 * device. The names do not include the directory.
+	 *
+	 * This may not be the complete list of names known to udev
+	 * since the library filters names that are known to cause
+	 * problems.
+	 */
 	const std::vector<std::string>& get_udev_paths() const;
+
+	/**
+	 * Return the names of the udev by-id links of the blk
+	 * device. The names do not include the directory.
+	 *
+	 * This may not be the complete list of names known to udev
+	 * since the library filters names that are known to cause
+	 * problems.
+	 */
 	const std::vector<std::string>& get_udev_ids() const;
 
 	/**
@@ -151,15 +168,20 @@ namespace storage
 	 */
 	BlkFilesystem* create_blk_filesystem(FsType fs_type);
 
+	/**
+	 * Return whether the block device has a block filesystem.
+	 */
 	bool has_blk_filesystem() const;
 
 	/**
+	 * Return the block filesystem of the block device.
+	 *
 	 * @throw WrongNumberOfChildren, DeviceHasWrongType
 	 */
 	BlkFilesystem* get_blk_filesystem();
 
 	/**
-	 * @throw WrongNumberOfChildren, DeviceHasWrongType
+	 * @copydoc get_blk_filesystem
 	 */
 	const BlkFilesystem* get_blk_filesystem() const;
 
@@ -168,6 +190,9 @@ namespace storage
 	 */
 	BlkFilesystem* create_filesystem(FsType fs_type) ST_DEPRECATED { return create_blk_filesystem(fs_type); }
 
+	/**
+	 * @copydoc has_blk_filesystem
+	 */
 	bool has_filesystem() const ST_DEPRECATED { return has_blk_filesystem(); }
 
 	/**
@@ -199,6 +224,8 @@ namespace storage
 	 *
 	 * It will also set the mount-by method of the encryption to the
 	 * storage default mount-by method.
+	 *
+	 * @see EncryptionType
 	 */
 	Encryption* create_encryption(const std::string& dm_name, EncryptionType type);
 
@@ -210,15 +237,20 @@ namespace storage
 	 */
 	void remove_encryption();
 
+	/**
+	 * Return whether the block device has an Encryption.
+	 */
 	bool has_encryption() const;
 
 	/**
+	 * Return the Encryption of the block device.
+	 *
 	 * @throw WrongNumberOfChildren, DeviceHasWrongType
 	 */
 	Encryption* get_encryption();
 
 	/**
-	 * @throw WrongNumberOfChildren, DeviceHasWrongType
+	 * @copydoc get_encryption
 	 */
 	const Encryption* get_encryption() const;
 
@@ -228,34 +260,44 @@ namespace storage
 	 */
 	Bcache* create_bcache(const std::string& name);
 
+	/**
+	 * Return whether the block device has a BCache.
+	 */
 	bool has_bcache() const;
 
 	/**
+	 * Return the Bcache of the block device.
+	 *
 	 * @throw WrongNumberOfChildren, DeviceHasWrongType
 	 */
 	Bcache* get_bcache();
 
 	/**
-	 * @throw WrongNumberOfChildren, DeviceHasWrongType
+	 * @copydoc get_bcache()
 	 */
 	const Bcache* get_bcache() const;
 
 	/**
-	 * Creates an BcacheCset on the blk device.
+	 * Creates a BcacheCset on the blk device.
 	 *
 	 * @throw WrongNumberOfChildren
 	 */
 	BcacheCset* create_bcache_cset();
 
+	/**
+	 * Return whether the block device has a BcacheCset.
+	 */
 	bool has_bcache_cset() const;
 
 	/**
+	 * Return the BcacheCset of the block device.
+	 *
 	 * @throw WrongNumberOfChildren, DeviceHasWrongType
 	 */
 	BcacheCset* get_bcache_cset();
 
 	/**
-	 * @throw WrongNumberOfChildren, DeviceHasWrongType
+	 * @copydoc get_bcache_cset()
 	 */
 	const BcacheCset* get_bcache_cset() const;
 

@@ -43,6 +43,12 @@ namespace storage
 	UNKNOWN, LOOP, MSDOS, GPT, DASD, MAC, IMPLICIT
     };
 
+
+    /**
+     * Convert the PtType pt_type to a string.
+     *
+     * @see PtType
+     */
     std::string get_pt_type_name(PtType pt_type);
 
 

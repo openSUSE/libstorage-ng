@@ -132,18 +132,29 @@ namespace storage
 	static std::vector<const LvmLv*> get_all(const Devicegraph* devicegraph);
 
 	/**
-	 * Get logical volume name. This is different from get_name().
+	 * Get the logical volume name. This is different from get_name().
 	 */
 	const std::string& get_lv_name() const;
+
+	/**
+	 * Set the logical volume name.
+	 *
+	 * @see get_lv_name()
+	 */
 	void set_lv_name(const std::string& lv_name);
 
+	/**
+	 * Return the logical volume type.
+	 *
+	 * @see LvType
+	 */
 	LvType get_lv_type() const;
 
 	unsigned int get_stripes() const;
 
 	/**
 	 * Set the number of stripes. The size of the LV must be a multiple of
-	 * the number of stripes and the stripe size. Thin LV cannot be
+	 * the number of stripes and the stripe size. Thin LVs cannot be
 	 * striped.
 	 *
 	 * @throw Exception

@@ -45,7 +45,7 @@ namespace storage
 
 
     /**
-     * MD parity algorithms.
+     * MD parity algorithms for RAID5, RAID6 and RAID10.
      */
     enum class MdParity
     {
@@ -58,12 +58,16 @@ namespace storage
 
     /**
      * Convert the MD RAID level md_level to a string.
+     *
+     * @see MdLevel
      */
     std::string get_md_level_name(MdLevel md_level);
 
 
     /**
      * Convert the MD parity algorithm md_parity to a string.
+     *
+     * @see MdParity
      */
     std::string get_md_parity_name(MdParity md_parity);
 
@@ -126,23 +130,31 @@ namespace storage
 
 	/**
 	 * Get the MD RAID level.
+	 *
+	 * @see MdLevel
 	 */
 	MdLevel get_md_level() const;
 
 	/**
 	 * Set the MD RAID level.
+	 *
+	 * @see MdLevel
 	 */
 	void set_md_level(MdLevel md_level);
 
 	/**
 	 * Get the parity of the MD RAID. Only meaningful for RAID5, RAID6 and
 	 * RAID10.
+	 *
+	 * @see MdParity
 	 */
 	MdParity get_md_parity() const;
 
 	/**
 	 * Set the parity of the MD RAID. Only meaningful for RAID5, RAID6 and
 	 * RAID10 and for MD RAIDs not created on disk yet.
+	 *
+	 * @see MdParity
 	 */
 	void set_md_parity(MdParity md_parity);
 
@@ -158,12 +170,15 @@ namespace storage
 	unsigned long get_chunk_size() const;
 	void set_chunk_size(unsigned long chunk_size);
 
+	/**
+	 * Get the UUID.
+	 */
 	const std::string& get_uuid() const;
 
 	/**
-	 * Set uuid for testing purposes. The real uuid is not modified during
+	 * Set UUID for testing purposes. The real UUID is not modified during
 	 * the commit phase.
-	*/
+	 */
 	void set_uuid(const std::string& uuid);
 
 	/**

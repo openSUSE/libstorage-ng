@@ -47,6 +47,8 @@ namespace storage
 
     /**
      * Convert the btrfs RAID level btrfs_raid_level to a string.
+     *
+     * @see BtrfsRaidLevel
      */
     std::string get_btrfs_raid_level_name(BtrfsRaidLevel btrfs_raid_level);
 

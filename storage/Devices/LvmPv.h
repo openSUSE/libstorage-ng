@@ -40,7 +40,14 @@ namespace storage
 	static LvmPv* create(Devicegraph* devicegraph);
 	static LvmPv* load(Devicegraph* devicegraph, const xmlNode* node);
 
+	/**
+	 * Get all LvmPvs.
+	 */
 	static std::vector<LvmPv*> get_all(Devicegraph* devicegraph);
+
+	/**
+	 * @copydoc get_all()
+	 */
 	static std::vector<const LvmPv*> get_all(const Devicegraph* devicegraph);
 
 	bool has_blk_device() const;

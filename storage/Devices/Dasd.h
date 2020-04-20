@@ -75,12 +75,45 @@ namespace storage
 	std::string get_bus_id() const;
 	void set_bus_id(std::string bus_id);
 
+	/**
+	 * Return whether the DASD is of rotational or non-rotational
+	 * type. See the kernel documentation block/queue-sysfs.rst
+	 * for more information.
+	 */
 	bool is_rotational() const;
 
+	/**
+	 * Get the DASD type.
+	 *
+	 * @see DasdType
+	 */
 	DasdType get_type() const;
+
+	/**
+	 * Set the DASD type.
+	 *
+	 * @note The library does not support to change the type on
+	 * disk. The function is only for testsuites.
+	 *
+	 * @see DasdType
+	 */
 	void set_type(DasdType type);
 
+	/**
+	 * Get the DASD format.
+	 *
+	 * @see DasdFormat
+	 */
 	DasdFormat get_format() const;
+
+	/**
+	 * Set the DASD format.
+	 *
+	 * @note The library does not support to change the format on
+	 * disk. The function is only for testsuites.
+	 *
+	 * @see DasdFormat
+	 */
 	void set_format(DasdFormat format);
 
 	/**

@@ -45,7 +45,16 @@ namespace storage
 	static BcacheCset* create(Devicegraph* devicegraph);
 	static BcacheCset* load(Devicegraph* devicegraph, const xmlNode* node);
 
+	/**
+	 * Return the UUID of the BcacheCset.
+	 */
 	const std::string& get_uuid() const;
+
+	/**
+	 * Set the UUID of the BcacheCset.
+	 *
+	 * The UUID on disk cannot be change. This function is only for testsuites.
+	 */
 	void set_uuid(const std::string& uuid);
 
 	/**

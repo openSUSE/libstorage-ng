@@ -45,6 +45,11 @@ namespace storage
     };
 
 
+    /**
+     * Convert the FsType fs_type to a string.
+     *
+     * @see FsType
+     */
     std::string get_fs_type_name(FsType fs_type);
 
 
@@ -82,6 +87,11 @@ namespace storage
     };
 
 
+    /**
+     * Convert the MountByType mount_by_type to a string.
+     *
+     * @see MountByType
+     */
     std::string get_mount_by_name(MountByType mount_by_type);
 
 
@@ -91,7 +101,14 @@ namespace storage
     {
     public:
 
+	/**
+	 * Get all Mountables.
+	 */
 	static std::vector<Mountable*> get_all(Devicegraph* devicegraph);
+
+	/**
+	 * @copydoc get_all()
+	 */
 	static std::vector<const Mountable*> get_all(const Devicegraph* devicegraph);
 
 	/**
