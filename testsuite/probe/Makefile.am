@@ -10,7 +10,8 @@ LDADD = ../../storage/libstorage-ng.la ../helpers/libhelpers.la			\
 check_PROGRAMS =								\
 	disk.test disk-zoned1.test bitlocker1.test				\
 	multipath1.test multipath+luks1.test md1.test md2.test			\
-	md3.test lvm1.test lvm2.test lvm-errors1.test lvm-unsupported1.test	\
+	md3.test lvm1.test lvm2.test lvm-cache1.test lvm-cache+thin1.test	\
+	lvm-errors1.test lvm-unsupported1.test					\
 	luks+lvm1.test lvm+luks1.test luks1.test luks2.test luks3.test		\
 	multi-mount-point1.test multi-mount-point2.test				\
 	multi-mount-point3.test multi-mount-point4.test				\
@@ -37,6 +38,8 @@ EXTRA_DIST = disk-mockup.xml disk-devicegraph.xml				\
 	xen1-mockup.xml xen1-devicegraph.xml					\
 	lvm1-mockup.xml lvm1-devicegraph.xml					\
 	lvm2-mockup.xml lvm2-devicegraph.xml					\
+	lvm-cache1-mockup.xml lvm-cache1-devicegraph.xml			\
+	lvm-cache+thin1-mockup.xml lvm-cache+thin1-devicegraph.xml		\
 	lvm-errors1-mockup.xml lvm-errors1-devicegraph.xml			\
 	lvm-unsupported1-mockup.xml lvm-unsupported1-devicegraph.xml		\
 	plain-encryption1-mockup.xml plain-encryption1-devicegraph.xml		\
