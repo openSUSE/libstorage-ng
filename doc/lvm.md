@@ -59,3 +59,20 @@ Changing some parameters, e.g. the chunk size of a thin pool, can increase the
 size of the metadata. Check is_overcommitted() to avoid running into trouble
 during commit.
 
+
+LVM Cache
+---------
+
+Only probing of LVM cache is supported. Three setups are tested:
+
+- Cache with cache volume.
+- Cache with cache pool.
+- Unused cache pool.
+
+Only unused cache pools are included in the devicegraph. That is
+analog to the lvs command which also only shows unused cache pools.
+
+A cache being used as a thin-pool is included as a thin pool in the
+devicegraph (again analog to the lvs command).
+
+writecache is untested since setting it up fails.
