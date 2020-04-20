@@ -196,7 +196,12 @@ namespace storage
 
 	if (flags && GraphvizFlags::CLASSNAME)
 	{
-	    ret += string(device->get_impl().get_classname()) + "\\n";
+	    ret += string(device->get_impl().get_classname());
+	    if (is_partition(device))
+		ret += " (" + get_partition_type_name(to_partition(device)->get_type()) + ")";
+	    else if (is_lvm_lv(device))
+		ret += " (" + get_lv_type_name(to_lvm_lv(device)->get_lv_type()) + ")";
+	    ret += "\\n";
 	}
 
 	if (flags && GraphvizFlags::PRETTY_CLASSNAME)
