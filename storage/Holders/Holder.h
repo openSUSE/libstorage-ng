@@ -46,8 +46,12 @@ namespace storage
     };
 
 
-    // abstract class
-
+    /**
+     * An abstract base class for storage holders. Storage holders are
+     * edges in the devicegraph.
+     *
+     * @see Devicegraph
+     */
     class Holder : private boost::noncopyable
     {
     public:
