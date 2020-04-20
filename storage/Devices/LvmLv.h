@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -39,8 +39,66 @@ namespace storage
      */
     enum class LvType
     {
-	UNKNOWN, NORMAL, THIN_POOL, THIN, RAID
+	/**
+	 * A logical volume of unknown type.
+	 *
+	 * Cannot be used as a blk device. Cannot be created by the library.
+	 */
+	UNKNOWN,
+
+	/**
+	 * A linear or striped logical volume.
+	 */
+	NORMAL,
+
+	/**
+	 * A thin-pool logical volume.
+	 *
+	 * Cannot be used as a blk device.
+	 */
+	THIN_POOL,
+
+	/**
+	 * A thin logical volume.
+	 */
+	THIN,
+
+	/**
+	 * A raid logical volume.
+	 *
+	 * Cannot be created by the library.
+	 */
+	RAID,
+
+	/**
+	 * A cache-pool logical volume.
+	 *
+	 * Cannot be used as a blk device. Cannot be created by the library.
+	 */
+	CACHE_POOL,
+
+	/**
+	 * A cache logical volume.
+	 *
+	 * Cannot be created by the library.
+	 */
+	CACHE,
+
+	/**
+	 * A writecache logical volume.
+	 *
+	 * Cannot be created by the library.
+	 */
+	WRITECACHE
     };
+
+
+    /**
+     * Convert LvType to string.
+     *
+     * @see LvType
+     */
+    std::string get_lv_type_name(LvType lv_type);
 
 
     class LvmLvNotFoundByLvName : public DeviceNotFound

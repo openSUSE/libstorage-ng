@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -53,7 +53,7 @@ namespace storage
 
 
     const vector<string> EnumTraits<LvType>::names({
-	"unknown", "normal", "thin-pool", "thin", "raid"
+	"unknown", "normal", "thin-pool", "thin", "raid", "cache-pool", "cache", "writecache"
     });
 
 
@@ -61,7 +61,7 @@ namespace storage
 	: BlkDevice::Impl(make_name(vg_name, lv_name)), lv_name(lv_name), lv_type(lv_type),
 	  uuid(), stripes(lv_type == LvType::THIN ? 0 : 1), stripe_size(0), chunk_size(0)
     {
-	set_active(lv_type != LvType::THIN_POOL);
+	set_active(lv_type != LvType::THIN_POOL && lv_type != LvType::CACHE_POOL);
 
 	set_dm_table_name(make_dm_table_name(vg_name, lv_name));
     }
@@ -120,7 +120,8 @@ namespace storage
     bool
     LvmLv::Impl::is_usable_as_blk_device() const
     {
-	return lv_type == LvType::NORMAL || lv_type == LvType::THIN || lv_type == LvType::RAID;
+	return lv_type == LvType::NORMAL || lv_type == LvType::THIN || lv_type == LvType::RAID ||
+	    lv_type == LvType::CACHE || lv_type == LvType::WRITECACHE;
     }
 
 
@@ -228,13 +229,17 @@ namespace storage
     void
     LvmLv::Impl::probe_lvm_lvs(Prober& prober)
     {
-	vector<CmdLvs::Lv> lvs = prober.get_system_info().getCmdLvs().get_lvs();
+	SystemInfo& system_info = prober.get_system_info();
+
+	vector<CmdLvs::Lv> lvs = system_info.getCmdLvs().get_lvs();
 
 	// ensure thin-pools are probed before thins
 
 	stable_partition(lvs.begin(), lvs.end(), [](const CmdLvs::Lv& lv) {
 	    return lv.lv_type != LvType::THIN;
 	});
+
+	Devicegraph* system = prober.get_system();
 
 	vector<string> unsupported_lvs;
 
@@ -245,33 +250,67 @@ namespace storage
 	    switch (lv.lv_type)
 	    {
 		case LvType::NORMAL:
-		case LvType::THIN_POOL:
 		case LvType::RAID:
+		case LvType::CACHE:
+		case LvType::WRITECACHE:
 		{
-		    LvmVg* lvm_vg = LvmVg::Impl::find_by_uuid(prober.get_system(), lv.vg_uuid);
-		    lvm_lv = lvm_vg->create_lvm_lv(lv.lv_name, lv.lv_type, lv.size);
+		    // A cache is private if uses as a thin-pool.
+
+		    if (lv.role == CmdLvs::Role::PUBLIC)
+		    {
+			LvmVg* lvm_vg = LvmVg::Impl::find_by_uuid(system, lv.vg_uuid);
+			lvm_lv = lvm_vg->create_lvm_lv(lv.lv_name, lv.lv_type, lv.size);
+		    }
+		}
+		break;
+
+		case LvType::THIN_POOL:
+		{
+		    // A thin-pool is always private but needed in the devicegraph anyway.
+
+		    LvmVg* lvm_vg = LvmVg::Impl::find_by_uuid(system, lv.vg_uuid);
+		    lvm_lv = lvm_vg->create_lvm_lv(lv.lv_name, LvType::THIN_POOL, lv.size);
 		}
 		break;
 
 		case LvType::THIN:
 		{
-		    LvmLv* thin_pool = LvmLv::Impl::find_by_uuid(prober.get_system(), lv.pool_uuid);
-		    lvm_lv = thin_pool->create_lvm_lv(lv.lv_name, lv.lv_type, lv.size);
+		    // A thin has the thin-pool as parent.
+
+		    LvmLv* thin_pool = LvmLv::Impl::find_by_uuid(system, lv.pool_uuid);
+		    lvm_lv = thin_pool->create_lvm_lv(lv.lv_name, LvType::THIN, lv.size);
+		}
+		break;
+
+		case LvType::CACHE_POOL:
+		{
+		    // A cache-pool is only included in the devicegraph if unused.
+
+		    if (!contains_if(lvs, [&lv](const CmdLvs::Lv& tmp) { return tmp.pool_uuid == lv.lv_uuid; }))
+		    {
+			LvmVg* lvm_vg = LvmVg::Impl::find_by_uuid(system, lv.vg_uuid);
+			lvm_lv = lvm_vg->create_lvm_lv(lv.lv_name, LvType::CACHE_POOL, lv.size);
+		    }
 		}
 		break;
 
 		case LvType::UNKNOWN:
 		{
-		    // private lvm lvs (e.g. metadata) are ignored,
-		    // for public ones the user is informed
-
-		    y2war("unsupported lvm_lv " << lv.vg_name << " " << lv.lv_name);
-
-		    if (lv.role == CmdLvs::Role::PUBLIC)
-			unsupported_lvs.push_back(DEV_DIR "/" + lv.vg_name + "/" + lv.lv_name);
-
-		    continue;
 		}
+		break;
+	    }
+
+	    if (!lvm_lv)
+	    {
+		// private lvm lvs (e.g. metadata) are ignored, for
+		// public ones the user is informed
+
+		y2war("ignoring lvm_lv " << lv.vg_name << " " << lv.lv_name);
+
+		if (lv.role == CmdLvs::Role::PUBLIC)
+		    unsupported_lvs.push_back(DEV_DIR "/" + lv.vg_name + "/" + lv.lv_name);
+
+		continue;
 	    }
 
 	    ST_CHECK_PTR(lvm_lv);
@@ -309,18 +348,25 @@ namespace storage
 
 	// Use the stripes, stripe_size and chunk_size from the first segment.
 
+	SystemInfo& system_info = prober.get_system_info();
+
 	if (lv_type == LvType::THIN_POOL)
 	{
-	    const CmdLvs::Lv& lv = prober.get_system_info().getCmdLvs().find_by_lv_uuid(uuid);
+	    const CmdLvs::Lv& lv = system_info.getCmdLvs().find_by_lv_uuid(uuid);
 	    chunk_size = lv.segments[0].chunk_size;
 
-	    const CmdLvs::Lv& data_lv = prober.get_system_info().getCmdLvs().find_by_lv_uuid(lv.data_uuid);
+	    const CmdLvs::Lv& data_lv = system_info.getCmdLvs().find_by_lv_uuid(lv.data_uuid);
 	    stripes = data_lv.segments[0].stripes;
 	    stripe_size = data_lv.segments[0].stripe_size;
 	}
+	else if (lv_type == LvType::CACHE_POOL || lv_type == LvType::CACHE)
+	{
+	    const CmdLvs::Lv& lv = system_info.getCmdLvs().find_by_lv_uuid(uuid);
+	    chunk_size = lv.segments[0].chunk_size;
+	}
 	else
 	{
-	    const CmdLvs::Lv& lv = prober.get_system_info().getCmdLvs().find_by_lv_uuid(uuid);
+	    const CmdLvs::Lv& lv = system_info.getCmdLvs().find_by_lv_uuid(uuid);
 	    stripes = lv.segments[0].stripes;
 	    stripe_size = lv.segments[0].stripe_size;
 	}
@@ -330,6 +376,10 @@ namespace storage
     bool
     LvmLv::Impl::supports_stripes() const
     {
+	// AFAIS cache-pool and cache always have stripes = 1. The
+	// lvconvert command used to create them does not accept the
+	// --stripes options. The underlying LVs can have stripes.
+
 	return lv_type == LvType::NORMAL || lv_type == LvType::THIN_POOL;
     }
 
@@ -363,7 +413,8 @@ namespace storage
     bool
     LvmLv::Impl::supports_chunk_size() const
     {
-	return lv_type == LvType::THIN_POOL;
+	return lv_type == LvType::THIN_POOL || lv_type == LvType::CACHE_POOL ||
+	    lv_type == LvType::CACHE;
     }
 
 
@@ -824,6 +875,9 @@ namespace storage
 
 	    case LvType::UNKNOWN:
 	    case LvType::RAID:
+	    case LvType::CACHE_POOL:
+	    case LvType::CACHE:
+	    case LvType::WRITECACHE:
 	    {
 		ST_THROW(UnsupportedException(sformat("creating LvmLv with type %s is unsupported",
 						      toString(lv_type))));

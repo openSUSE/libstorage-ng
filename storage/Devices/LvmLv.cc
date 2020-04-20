@@ -32,6 +32,13 @@ namespace storage
     using namespace std;
 
 
+    string
+    get_lv_type_name(LvType lv_type)
+    {
+	return toString(lv_type);
+    }
+
+
     LvmLvNotFoundByLvName::LvmLvNotFoundByLvName(const string& lv_name)
 	: DeviceNotFound(sformat("LvmLv not found, lv-name:%s", lv_name))
     {

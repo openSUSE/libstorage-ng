@@ -154,8 +154,10 @@ namespace storage
 
     CmdLvs::CmdLvs()
     {
+	// Note: querying segtype is rather new and not available in all testsuite data
+
 	SystemCmd cmd(LVS_BIN " " COMMON_LVM_OPTIONS " --all --options lv_name,lv_uuid,vg_name,"
-		      "vg_uuid,lv_role,lv_attr,lv_size,stripes,stripe_size,chunk_size,pool_lv,"
+		      "vg_uuid,lv_role,lv_attr,lv_size,segtype,stripes,stripe_size,chunk_size,pool_lv,"
 		      "pool_lv_uuid,data_lv,data_lv_uuid,metadata_lv,metadata_lv_uuid", SystemCmd::DoThrow);
 
 	parse(cmd.stdout());
@@ -195,6 +197,8 @@ namespace storage
 
 	string lv_attr;
 	get_child_value(object, "lv_attr", lv_attr);
+	if (lv_attr.size() < 10)
+	    ST_THROW(ParseException("bad lv_attr", lv_attr, "-wi-ao----"));
 
 	lv.active = lv_attr[4] == 'a';
 
@@ -204,6 +208,22 @@ namespace storage
 	    case 't': lv.lv_type = LvType::THIN_POOL; break;
 	    case 'V': lv.lv_type = LvType::THIN; break;
 	    case 'r': lv.lv_type = LvType::RAID; break;
+
+	    case 'C':
+	    {
+		string segtype;
+		get_child_value(object, "segtype", segtype);
+		if (segtype.empty())
+		    ST_THROW(ParseException("bad segtype", segtype, "linear"));
+
+		if (segtype == "cache-pool")
+		    lv.lv_type = LvType::CACHE_POOL;
+		else if (segtype == "cache")
+		    lv.lv_type = LvType::CACHE;
+		else if (segtype == "writecache")
+		    lv.lv_type = LvType::WRITECACHE;
+	    }
+	    break;
 	}
 
 	get_child_value(object, "pool_lv", lv.pool_name);

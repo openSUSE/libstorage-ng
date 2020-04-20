@@ -104,7 +104,6 @@
       <stdout>/dev/mapper/test-normal1: UUID="408211ce-1eb0-47a3-8420-c983a2ee7764" TYPE="ext4"</stdout>
       <stdout>/dev/mapper/test-normal1--snapshot: UUID="408211ce-1eb0-47a3-8420-c983a2ee7764" TYPE="ext4"</stdout>
       <stdout>/dev/mapper/test-normal2: UUID="f36d91f6-7b49-4a3f-8ad6-f0a8e8fdab98" TYPE="ext4"</stdout>
-      <stdout>/dev/mapper/test-cached: UUID="956a48ce-a7b3-4b03-b507-9ac454541b0e" TYPE="ext4"</stdout>
     </Command>
     <Command>
       <name>/sbin/dmraid --sets=active -ccc</name>
@@ -116,17 +115,11 @@
       <name>/sbin/dmsetup table</name>
     </Command>
     <Command>
-      <name>/sbin/lvs --reportformat json --units b --nosuffix --all --options lv_name,lv_uuid,vg_name,vg_uuid,lv_role,lv_attr,lv_size,stripes,stripe_size,chunk_size,pool_lv,pool_lv_uuid,data_lv,data_lv_uuid,metadata_lv,metadata_lv_uuid</name>
+      <name>/sbin/lvs --reportformat json --units b --nosuffix --all --options lv_name,lv_uuid,vg_name,vg_uuid,lv_role,lv_attr,lv_size,segtype,stripes,stripe_size,chunk_size,pool_lv,pool_lv_uuid,data_lv,data_lv_uuid,metadata_lv,metadata_lv_uuid</name>
       <stdout>  {</stdout>
       <stdout>      "report": [</stdout>
       <stdout>          {</stdout>
       <stdout>              "lv": [</stdout>
-      <stdout>                  {"lv_name":"[cache]", "lv_uuid":"m8c1tF-VlqZ-L3uE-rVxD-0iwK-cVud-rZjTG6", "vg_name":"test", "vg_uuid":"UJ1d56-FqLr-CPPu-00BX-b0UL-r7F8-lCKrtk", "lv_role":"private", "lv_attr":"Cwi---C---", "lv_size":"536870912", "stripes":"1", "stripe_size":"0", "chunk_size":"65536", "pool_lv":"", "pool_lv_uuid":"", "data_lv":"[cache_cdata]", "data_lv_uuid":"oHv1rX-3Uxj-WJuY-e30c-wgCN-39fC-e9LxOT", "metadata_lv":"[cache_cmeta]", "metadata_lv_uuid":"fDhatr-YXfY-j7D8-Nw0d-Z3kT-pmud-8e9ZEQ"},</stdout>
-      <stdout>                  {"lv_name":"[cache_cdata]", "lv_uuid":"oHv1rX-3Uxj-WJuY-e30c-wgCN-39fC-e9LxOT", "vg_name":"test", "vg_uuid":"UJ1d56-FqLr-CPPu-00BX-b0UL-r7F8-lCKrtk", "lv_role":"private,cache,pool,data", "lv_attr":"Cwi-ao----", "lv_size":"536870912", "stripes":"1", "stripe_size":"0", "chunk_size":"0", "pool_lv":"", "pool_lv_uuid":"", "data_lv":"", "data_lv_uuid":"", "metadata_lv":"", "metadata_lv_uuid":""},</stdout>
-      <stdout>                  {"lv_name":"[cache_cmeta]", "lv_uuid":"fDhatr-YXfY-j7D8-Nw0d-Z3kT-pmud-8e9ZEQ", "vg_name":"test", "vg_uuid":"UJ1d56-FqLr-CPPu-00BX-b0UL-r7F8-lCKrtk", "lv_role":"private,cache,pool,metadata", "lv_attr":"ewi-ao----", "lv_size":"8388608", "stripes":"1", "stripe_size":"0", "chunk_size":"0", "pool_lv":"", "pool_lv_uuid":"", "data_lv":"", "data_lv_uuid":"", "metadata_lv":"", "metadata_lv_uuid":""},</stdout>
-      <stdout>                  {"lv_name":"cached", "lv_uuid":"resDkt-VxnZ-3Wod-io83-6qur-bRu0-xazTpx", "vg_name":"test", "vg_uuid":"UJ1d56-FqLr-CPPu-00BX-b0UL-r7F8-lCKrtk", "lv_role":"public", "lv_attr":"Cwi-a-C---", "lv_size":"4294967296", "stripes":"1", "stripe_size":"0", "chunk_size":"65536", "pool_lv":"[cache]", "pool_lv_uuid":"m8c1tF-VlqZ-L3uE-rVxD-0iwK-cVud-rZjTG6", "data_lv":"", "data_lv_uuid":"", "metadata_lv":"", "metadata_lv_uuid":""},</stdout>
-      <stdout>                  {"lv_name":"[cached_corig]", "lv_uuid":"nghKf3-VgCj-4pRw-cKi9-6S1e-Wekg-D9LzOd", "vg_name":"test", "vg_uuid":"UJ1d56-FqLr-CPPu-00BX-b0UL-r7F8-lCKrtk", "lv_role":"private,cache,origin,cacheorigin", "lv_attr":"owi-aoC---", "lv_size":"4294967296", "stripes":"1", "stripe_size":"0", "chunk_size":"0", "pool_lv":"", "pool_lv_uuid":"", "data_lv":"", "data_lv_uuid":"", "metadata_lv":"", "metadata_lv_uuid":""},</stdout>
-      <stdout>                  {"lv_name":"[lvol0_pmspare]", "lv_uuid":"jX0Npm-yOpi-d85P-dHIn-VDxp-fSV3-ozZvic", "vg_name":"test", "vg_uuid":"UJ1d56-FqLr-CPPu-00BX-b0UL-r7F8-lCKrtk", "lv_role":"private,pool,spare", "lv_attr":"ewi-------", "lv_size":"8388608", "stripes":"1", "stripe_size":"0", "chunk_size":"0", "pool_lv":"", "pool_lv_uuid":"", "data_lv":"", "data_lv_uuid":"", "metadata_lv":"", "metadata_lv_uuid":""},</stdout>
       <stdout>                  {"lv_name":"normal1", "lv_uuid":"PWvXF3-SGuw-Kf7m-ZPfI-NX24-hnVV-rjpOZZ", "vg_name":"test", "vg_uuid":"UJ1d56-FqLr-CPPu-00BX-b0UL-r7F8-lCKrtk", "lv_role":"public,origin,thickorigin", "lv_attr":"owi-a-s---", "lv_size":"2147483648", "stripes":"1", "stripe_size":"0", "chunk_size":"0", "pool_lv":"", "pool_lv_uuid":"", "data_lv":"", "data_lv_uuid":"", "metadata_lv":"", "metadata_lv_uuid":""},</stdout>
       <stdout>                  {"lv_name":"normal1-snapshot", "lv_uuid":"1vxgZK-NLFa-grW9-gnPb-XAro-OSMm-Qc4CEV", "vg_name":"test", "vg_uuid":"UJ1d56-FqLr-CPPu-00BX-b0UL-r7F8-lCKrtk", "lv_role":"public,snapshot,thicksnapshot", "lv_attr":"swi-a-s---", "lv_size":"1073741824", "stripes":"1", "stripe_size":"0", "chunk_size":"4096", "pool_lv":"", "pool_lv_uuid":"", "data_lv":"", "data_lv_uuid":"", "metadata_lv":"", "metadata_lv_uuid":""},</stdout>
       <stdout>                  {"lv_name":"normal2", "lv_uuid":"G3sDo7-HSxF-gzmu-Z48U-90mP-sPuV-Jctxq3", "vg_name":"test", "vg_uuid":"UJ1d56-FqLr-CPPu-00BX-b0UL-r7F8-lCKrtk", "lv_role":"public", "lv_attr":"-wi-a-----", "lv_size":"2147483648", "stripes":"1", "stripe_size":"0", "chunk_size":"0", "pool_lv":"", "pool_lv_uuid":"", "data_lv":"", "data_lv_uuid":"", "metadata_lv":"", "metadata_lv_uuid":""},</stdout>
@@ -157,7 +150,6 @@
       <stdout>                  {"pv_name":"/dev/loop4", "pv_uuid":"", "vg_name":"", "vg_uuid":"", "pv_attr":"---"},</stdout>
       <stdout>                  {"pv_name":"/dev/sda1", "pv_uuid":"qTM1KY-Q7UQ-tLnz-MFW3-dGv5-imye-ykhkEm", "vg_name":"test", "vg_uuid":"UJ1d56-FqLr-CPPu-00BX-b0UL-r7F8-lCKrtk", "pv_attr":"a--", "pe_start":"1048576"},</stdout>
       <stdout>                  {"pv_name":"/dev/sdb1", "pv_uuid":"i9Gqqm-3I74-pz6N-zPID-NCla-Ps43-HWpirs", "vg_name":"test", "vg_uuid":"UJ1d56-FqLr-CPPu-00BX-b0UL-r7F8-lCKrtk", "pv_attr":"a--", "pe_start":"1048576"},</stdout>
-      <stdout>                  {"pv_name":"/dev/test/cached", "pv_uuid":"", "vg_name":"", "vg_uuid":"", "pv_attr":"---"},</stdout>
       <stdout>                  {"pv_name":"/dev/test/normal1", "pv_uuid":"", "vg_name":"", "vg_uuid":"", "pv_attr":"---"},</stdout>
       <stdout>                  {"pv_name":"/dev/test/normal1-snapshot", "pv_uuid":"", "vg_name":"", "vg_uuid":"", "pv_attr":"---"},</stdout>
       <stdout>                  {"pv_name":"/dev/test/normal2", "pv_uuid":"", "vg_name":"", "vg_uuid":"", "pv_attr":"---"},</stdout>
@@ -345,39 +337,6 @@
       <stdout>E: SUBSYSTEM=block</stdout>
       <stdout>E: TAGS=:systemd:</stdout>
       <stdout>E: USEC_INITIALIZED=4005592</stdout>
-    </Command>
-    <Command>
-      <name>/usr/bin/udevadm info '/dev/mapper/test-cached'</name>
-      <stdout>P: /devices/virtual/block/dm-14</stdout>
-      <stdout>N: dm-14</stdout>
-      <stdout>S: disk/by-id/dm-name-test-cached</stdout>
-      <stdout>S: disk/by-id/dm-uuid-LVM-UJ1d56FqLrCPPu00BXb0ULr7F8lCKrtkresDktVxnZ3Wodio836qurbRu0xazTpx</stdout>
-      <stdout>S: disk/by-uuid/956a48ce-a7b3-4b03-b507-9ac454541b0e</stdout>
-      <stdout>S: mapper/test-cached</stdout>
-      <stdout>S: test/cached</stdout>
-      <stdout>E: DEVLINKS=/dev/test/cached /dev/mapper/test-cached /dev/disk/by-id/dm-name-test-cached /dev/disk/by-id/dm-uuid-LVM-UJ1d56FqLrCPPu00BXb0ULr7F8lCKrtkresDktVxnZ3Wodio836qurbRu0xazTpx /dev/disk/by-uuid/956a48ce-a7b3-4b03-b507-9ac454541b0e</stdout>
-      <stdout>E: DEVNAME=/dev/dm-14</stdout>
-      <stdout>E: DEVPATH=/devices/virtual/block/dm-14</stdout>
-      <stdout>E: DEVTYPE=disk</stdout>
-      <stdout>E: DM_ACTIVATION=1</stdout>
-      <stdout>E: DM_LV_NAME=cached</stdout>
-      <stdout>E: DM_NAME=test-cached</stdout>
-      <stdout>E: DM_SUSPENDED=0</stdout>
-      <stdout>E: DM_UDEV_DISABLE_LIBRARY_FALLBACK_FLAG=1</stdout>
-      <stdout>E: DM_UDEV_PRIMARY_SOURCE_FLAG=1</stdout>
-      <stdout>E: DM_UDEV_RULES_VSN=2</stdout>
-      <stdout>E: DM_UUID=LVM-UJ1d56FqLrCPPu00BXb0ULr7F8lCKrtkresDktVxnZ3Wodio836qurbRu0xazTpx</stdout>
-      <stdout>E: DM_VG_NAME=test</stdout>
-      <stdout>E: ID_FS_TYPE=ext4</stdout>
-      <stdout>E: ID_FS_USAGE=filesystem</stdout>
-      <stdout>E: ID_FS_UUID=956a48ce-a7b3-4b03-b507-9ac454541b0e</stdout>
-      <stdout>E: ID_FS_UUID_ENC=956a48ce-a7b3-4b03-b507-9ac454541b0e</stdout>
-      <stdout>E: ID_FS_VERSION=1.0</stdout>
-      <stdout>E: MAJOR=254</stdout>
-      <stdout>E: MINOR=14</stdout>
-      <stdout>E: SUBSYSTEM=block</stdout>
-      <stdout>E: TAGS=:systemd:</stdout>
-      <stdout>E: USEC_INITIALIZED=828993779</stdout>
     </Command>
     <Command>
       <name>/usr/bin/udevadm info '/dev/mapper/test-normal1'</name>
