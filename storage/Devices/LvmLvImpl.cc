@@ -120,8 +120,22 @@ namespace storage
     bool
     LvmLv::Impl::is_usable_as_blk_device() const
     {
-	return lv_type == LvType::NORMAL || lv_type == LvType::THIN || lv_type == LvType::RAID ||
-	    lv_type == LvType::CACHE || lv_type == LvType::WRITECACHE;
+	switch (lv_type)
+	{
+	    case LvType::NORMAL:
+	    case LvType::THIN:
+	    case LvType::RAID:
+	    case LvType::CACHE:
+	    case LvType::WRITECACHE:
+		return true;
+
+	    case LvType::UNKNOWN:
+	    case LvType::THIN_POOL:
+	    case LvType::CACHE_POOL:
+		return false;
+	}
+
+	return false;
     }
 
 
