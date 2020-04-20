@@ -263,7 +263,7 @@ namespace storage
 	}
 
 	template<typename Type>
-	const vector<Type*> get_children_of_type() const
+	vector<const Type*> get_children_of_type() const
 	{
 	    static_assert(is_const<Type>::value, "Type must be const");
 
@@ -323,7 +323,7 @@ namespace storage
 	}
 
 	template<typename Type>
-	const vector<Type*> get_parents_of_type() const
+	vector<const Type*> get_parents_of_type() const
 	{
 	    static_assert(is_const<Type>::value, "Type must be const");
 
