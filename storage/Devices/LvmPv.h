@@ -50,9 +50,23 @@ namespace storage
 	 */
 	static std::vector<const LvmPv*> get_all(const Devicegraph* devicegraph);
 
+	/**
+	 * Check whether the physical volume has a block
+	 * device. Normally this is the case, but LVM may report block
+	 * devices as missing during probing.
+	 */
 	bool has_blk_device() const;
 
+	/**
+	 * Return the block device this physical volume is using.
+	 *
+	 * @throw Exception
+	 */
 	BlkDevice* get_blk_device();
+
+	/**
+	 * @copydoc get_blk_device()
+	 */
 	const BlkDevice* get_blk_device() const;
 
 	/**
@@ -63,8 +77,21 @@ namespace storage
 	 */
 	unsigned long long get_usable_size() const;
 
+	/**
+	 * Check whether the physical volume is part of a volume group.
+	 */
 	bool has_lvm_vg() const;
+
+	/**
+	 * Return the volume group the physical volume is used in.
+	 *
+	 * @throw Exception
+	 */
 	LvmVg* get_lvm_vg();
+
+	/**
+	 * @copydoc get_lvm_vg()
+	 */
 	const LvmVg* get_lvm_vg() const;
 
     public:

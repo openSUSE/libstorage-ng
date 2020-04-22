@@ -67,15 +67,26 @@ namespace storage
 	 * Get volume group name. This is different from get_name().
 	 */
 	const std::string& get_vg_name() const;
+
+	/**
+	 * Set the volume group name. The library does not support to
+	 * rename volume groups on disk.
+	 *
+	 * @see get_vg_name()
+	 */
 	void set_vg_name(const std::string& vg_name);
 
 	const Region& get_region() const;
 
+	/**
+	 * Returns the size of the volume group.
+	 */
 	unsigned long long get_size() const;
 
 	/**
 	 * Returns the size of the volume group as a localised string.
 	 *
+	 * @see get_size(), byte_to_humanstring()
 	 * @return size as string
 	 */
 	std::string get_size_string() const;
@@ -180,7 +191,14 @@ namespace storage
 	 */
 	static const LvmVg* find_by_vg_name(const Devicegraph* devicegraph, const std::string& vg_name);
 
+	/**
+	 * Get all physical volumes of the volume group.
+	 */
 	std::vector<LvmPv*> get_lvm_pvs();
+
+	/**
+	 * @copydoc get_lvm_pvs()
+	 */
 	std::vector<const LvmPv*> get_lvm_pvs() const;
 
 	/**
@@ -188,7 +206,17 @@ namespace storage
 	 */
 	LvmLv* get_lvm_lv(const std::string& lv_name);
 
+	/**
+	 * Get all logical volumes of the volume group that are direct
+	 * children of the volume group. E.g. thin logical volumes are
+	 * not included here since those are children of the thin
+	 * pool.
+	 */
 	std::vector<LvmLv*> get_lvm_lvs();
+
+	/**
+	 * @copydoc get_lvm_lvs()
+	 */
 	std::vector<const LvmLv*> get_lvm_lvs() const;
 
 	/**
