@@ -57,9 +57,15 @@ namespace storage
 	 */
 	void set_region(const Region& region);
 
+	/**
+	 * Returns the size of the block device.
+	 */
 	unsigned long long get_size() const;
 
 	/**
+	 * Set the size of the block device.
+	 *
+	 * @see get_size()
 	 * @throw Exception
 	 */
 	void set_size(unsigned long long size);
@@ -67,6 +73,7 @@ namespace storage
 	/**
 	 * Returns the size of the block device as a localised string.
 	 *
+	 * @see get_size(), byte_to_humanstring()
 	 * @return size as string
 	 */
 	std::string get_size_string() const;
@@ -114,9 +121,10 @@ namespace storage
 
 	/**
 	 * Checks whether the blk device is in general usable as a blk
-	 * device. This is not the case for some DASDs, see doc/dasd.md,
-	 * extended partitions, LVM thin pools, MD RAID containers, see
-	 * doc/md-raid.md and host-managed zoned disks.
+	 * device. This is not the case for some DASDs, see
+	 * doc/dasd.md, extended partitions, LVM thin and cache pools,
+	 * MD RAID containers, see doc/md-raid.md and host-managed
+	 * zoned disks.
 	 *
 	 * Does not consider if the blk device is already in use.
 	 */
@@ -128,6 +136,11 @@ namespace storage
 	 */
 	const std::string& get_dm_table_name() const;
 
+	/**
+	 * Set the device-mapper table name (dm-table-name for short).
+	 *
+	 * @see get_dm_table_name()
+	 */
 	void set_dm_table_name(const std::string& dm_table_name);
 
 	/**
