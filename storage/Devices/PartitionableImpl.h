@@ -44,7 +44,7 @@ namespace storage
     {
     public:
 
-	void check(const CheckCallbacks* check_callbacks) const override;
+	virtual void check(const CheckCallbacks* check_callbacks) const override;
 
 	unsigned int get_range() const { return range; }
 	void set_range(unsigned int range) { Impl::range = range; }
