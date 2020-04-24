@@ -36,6 +36,9 @@
 #include "storage/Utils/Callbacks.h"
 
 
+/**
+ * The storage namespace.
+ */
 namespace storage
 {
     /**

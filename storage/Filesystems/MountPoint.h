@@ -219,6 +219,9 @@ namespace storage
 	 */
 	const Filesystem* get_filesystem() const;
 
+	/**
+	 * Find all MountPoints with path.
+	 */
 	static std::vector<const MountPoint*> find_by_path(const Devicegraph* devicegraph,
 							   const std::string& path);
 

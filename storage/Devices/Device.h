@@ -36,7 +36,6 @@
 #include "storage/Utils/Swig.h"
 
 
-//! The storage namespace.
 namespace storage
 {
     class Devicegraph;
