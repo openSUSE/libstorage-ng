@@ -30,6 +30,7 @@
 #include <boost/noncopyable.hpp>
 
 #include "storage/Devices/Device.h"
+#include "storage/Utils/Swig.h"
 
 
 namespace storage
@@ -125,7 +126,7 @@ namespace storage
 
 	virtual Holder* clone() const = 0;
 
-	void save(xmlNode* node) const;
+	void save(xmlNode* node) const ST_DEPRECATED;
 
 	friend std::ostream& operator<<(std::ostream& out, const Holder& holder);
 
