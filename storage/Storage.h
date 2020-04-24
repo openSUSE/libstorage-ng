@@ -115,28 +115,6 @@ namespace storage
     };
 
 
-    class LuksInfo;
-
-
-    /**
-     * Specialized callbacks with a more generic parameter for LUKS activation.
-     */
-    class ActivateCallbacksLuks : public ActivateCallbacks
-    {
-    public:
-
-	virtual ~ActivateCallbacksLuks() {}
-
-	/**
-	 * Decide whether the LUKS should be activated.
-	 *
-	 * Parameter "info" contains all known information about the LUKS device.
-	 */
-	virtual std::pair<bool, std::string> luks(const LuksInfo& info, int attempt) const = 0;
-
-    };
-
-
     /**
      * Stores information about a LUKS device.
      */
@@ -164,6 +142,25 @@ namespace storage
     private:
 
 	const std::unique_ptr<Impl> impl;
+    };
+
+
+    /**
+     * Specialized callbacks with a more generic parameter for LUKS activation.
+     */
+    class ActivateCallbacksLuks : public ActivateCallbacks
+    {
+    public:
+
+	virtual ~ActivateCallbacksLuks() {}
+
+	/**
+	 * Decide whether the LUKS should be activated.
+	 *
+	 * Parameter "info" contains all known information about the LUKS device.
+	 */
+	virtual std::pair<bool, std::string> luks(const LuksInfo& info, int attempt) const = 0;
+
     };
 
 
