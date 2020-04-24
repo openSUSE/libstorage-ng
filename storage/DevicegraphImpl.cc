@@ -909,7 +909,7 @@ namespace storage
 	fout.close();
 
 	if (!fout.good())
-	    ST_THROW(Exception(sformat("failed to write '%s'", filename)));
+	    ST_THROW(IOException(sformat("failed to write '%s'", filename)));
     }
 
 }
