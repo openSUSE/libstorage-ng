@@ -73,7 +73,7 @@ namespace storage
 
 	Impl(const xmlNode* node);
 
-	void save(xmlNode* node) const override;
+	virtual void save(xmlNode* node) const override;
 
     private:
 

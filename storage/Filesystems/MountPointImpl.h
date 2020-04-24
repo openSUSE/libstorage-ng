@@ -178,7 +178,7 @@ namespace storage
 
     protected:
 
-	void save(xmlNode* node) const override;
+	virtual void save(xmlNode* node) const override;
 
 	virtual void check(const CheckCallbacks* check_callbacks) const override;
 

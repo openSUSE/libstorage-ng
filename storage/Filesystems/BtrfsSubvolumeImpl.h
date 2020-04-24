@@ -148,7 +148,7 @@ namespace storage
 
     protected:
 
-	void save(xmlNode* node) const override;
+	virtual void save(xmlNode* node) const override;
 
 	void probe_id(const string& mount_point);
 

@@ -33,9 +33,9 @@
 #include <boost/noncopyable.hpp>
 
 #include "storage/Utils/Exception.h"
+#include "storage/Utils/Swig.h"
 
 
-//! The storage namespace.
 namespace storage
 {
     class Devicegraph;
@@ -247,7 +247,7 @@ namespace storage
 
 	virtual Device* clone() const = 0;
 
-	void save(xmlNode* node) const;
+	void save(xmlNode* node) const ST_DEPRECATED;
 
     protected:
 

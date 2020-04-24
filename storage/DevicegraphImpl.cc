@@ -791,7 +791,7 @@ namespace storage
 	{
 	    const Device* device = graph[vertex].get();
 	    xmlNode* device_node = xmlNewChild(devices_node, device->get_impl().get_classname());
-	    device->save(device_node);
+	    device->get_impl().save(device_node);
 	}
 
 	xmlNode* holders_node = xmlNewChild(devicegraph_node, "Holders");
@@ -800,7 +800,7 @@ namespace storage
 	{
 	    const Holder* holder = graph[edge].get();
 	    xmlNode* holder_node = xmlNewChild(holders_node, holder->get_impl().get_classname());
-	    holder->save(holder_node);
+	    holder->get_impl().save(holder_node);
 	}
 
 	if (!xml.save_to_file(filename))
@@ -909,7 +909,7 @@ namespace storage
 	fout.close();
 
 	if (!fout.good())
-	    ST_THROW(Exception(sformat("failed to write '%s'", filename)));
+	    ST_THROW(IOException(sformat("failed to write '%s'", filename)));
     }
 
 }

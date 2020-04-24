@@ -44,7 +44,7 @@ namespace storage
 
 	Text blk_devices_text() const;
 
-	Text text() const override;
+	virtual Text text() const override;
 
 	Text create_with_pvs_text() const;
 	Text create_text() const;

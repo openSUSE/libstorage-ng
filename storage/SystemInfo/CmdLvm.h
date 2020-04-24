@@ -45,7 +45,6 @@ namespace storage
 	virtual ~CmdLvm() {}
 
 	void parse(const vector<string>& lines, const char* tag);
-
 	virtual void parse(json_object* object) = 0;
 
     };
@@ -81,7 +80,7 @@ namespace storage
     private:
 
 	void parse(const vector<string>& lines);
-	void parse(json_object* object) override;
+	virtual void parse(json_object* object) override;
 
 	vector<Pv> pvs;
 
@@ -146,7 +145,7 @@ namespace storage
     private:
 
 	void parse(const vector<string>& lines);
-	void parse(json_object* object) override;
+	virtual void parse(json_object* object) override;
 	Role parse_role(const string& role) const;
 
 	vector<Lv> lvs;
@@ -181,7 +180,7 @@ namespace storage
     private:
 
 	void parse(const vector<string>& lines);
-	void parse(json_object* object) override;
+	virtual void parse(json_object* object) override;
 
 	vector<Vg> vgs;
 

@@ -91,7 +91,7 @@ namespace storage
 
     protected:
 
-	void save(xmlNode* node) const override;
+	virtual void save(xmlNode* node) const override;
 
     private:
 

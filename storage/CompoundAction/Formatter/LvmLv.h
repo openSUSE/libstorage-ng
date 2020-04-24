@@ -41,7 +41,7 @@ namespace storage
 
     private:
 
-	Text text() const override;
+	virtual Text text() const override;
 
 	Text create_encrypted_with_swap_text() const;
 	Text create_with_swap_text() const;
