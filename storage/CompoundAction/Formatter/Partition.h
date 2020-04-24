@@ -41,7 +41,7 @@ namespace storage
 
     private:
 
-	Text text() const override;
+	virtual Text text() const override;
 
 	Text delete_text() const;
 
