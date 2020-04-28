@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -84,6 +84,8 @@ namespace storage
 
 	bool is_active() const { return active; }
 	void set_active(bool active) { Impl::active = active; }
+
+	bool is_read_only() const { return read_only; }
 
 	const Region& get_region() const { return region; }
 	virtual void set_region(const Region& region);
@@ -209,6 +211,8 @@ namespace storage
 	 * This active here means that the device node exists.
 	 */
 	bool active;
+
+	bool read_only;
 
 	/**
 	 * For most devices region.start is zero. Always used to keep track of

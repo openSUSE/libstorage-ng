@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -89,6 +89,12 @@ namespace storage
 	void set_topology(const Topology& topology);
 
 	bool is_active() const;
+
+	/**
+	 * Return whether the block device is read-only. E.g. LVM
+	 * logical volumes can be read-only.
+	 */
+	bool is_read_only() const;
 
 	const std::string& get_sysfs_name() const;
 	const std::string& get_sysfs_path() const;

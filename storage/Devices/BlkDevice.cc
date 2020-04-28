@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -159,6 +159,13 @@ namespace storage
     BlkDevice::is_active() const
     {
 	return get_impl().is_active();
+    }
+
+
+    bool
+    BlkDevice::is_read_only() const
+    {
+	return get_impl().is_read_only();
     }
 
 

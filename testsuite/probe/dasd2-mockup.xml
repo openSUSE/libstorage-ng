@@ -495,6 +495,10 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/css0/0.0.0003/0.0.0150/block/dasdb/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/css0/0.0.0003/0.0.0150/block/dasdb/ext_range</name>
       <content>4</content>
     </File>
@@ -519,7 +523,15 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/css0/0.0.0003/0.0.0150/block/dasdb/dasdb1/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/css0/0.0.0003/0.0.0150/block/dasdb/dasdb2/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/css0/0.0.0003/0.0.0150/block/dasdb/dasdb2/ro</name>
       <content>0</content>
     </File>
     <File>
@@ -527,7 +539,15 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/css0/0.0.0003/0.0.0150/block/dasdb/dasdb3/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/css0/0.0.0004/0.0.0160/block/dasdc/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/css0/0.0.0004/0.0.0160/block/dasdc/ro</name>
       <content>0</content>
     </File>
     <File>
@@ -552,6 +572,10 @@
     </File>
     <File>
       <name>/sys/devices/css0/0.0.0016/0.0.3333/block/dasda/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/css0/0.0.0016/0.0.3333/block/dasda/ro</name>
       <content>0</content>
     </File>
     <File>

@@ -521,6 +521,10 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/vbd-51712/block/xvda/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/vbd-51712/block/xvda/ext_range</name>
       <content>16</content>
     </File>
@@ -549,11 +553,23 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/vbd-51712/block/xvda/xvda1/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/vbd-51712/block/xvda/xvda2/alignment_offset</name>
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/vbd-51712/block/xvda/xvda2/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/vbd-51728/block/xvdb/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/vbd-51728/block/xvdb/ro</name>
       <content>0</content>
     </File>
     <File>
@@ -585,12 +601,24 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/vbd-51728/block/xvdb/xvdb1/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/vbd-51728/block/xvdb/xvdb2/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/vbd-51728/block/xvdb/xvdb2/ro</name>
       <content>0</content>
     </File>
     <File>
       <name>/sys/devices/vbd-51745/block/xvdc1/ext_range</name>
       <content>1</content>
+    </File>
+    <File>
+      <name>/sys/devices/vbd-51745/block/xvdc1/ro</name>
+      <content>0</content>
     </File>
     <File>
       <name>/sys/devices/vbd-51745/block/xvdc1/queue/logical_block_size</name>

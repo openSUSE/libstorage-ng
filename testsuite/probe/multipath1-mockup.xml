@@ -729,6 +729,10 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/css0/0.0.0003/0.0.0150/block/dasdb/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/css0/0.0.0003/0.0.0150/block/dasdb/ext_range</name>
       <content>4</content>
     </File>
@@ -753,7 +757,15 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/css0/0.0.0003/0.0.0150/block/dasdb/dasdb1/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/css0/0.0.0003/0.0.0150/block/dasdb/dasdb2/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/css0/0.0.0003/0.0.0150/block/dasdb/dasdb2/ro</name>
       <content>0</content>
     </File>
     <File>
@@ -761,7 +773,15 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/css0/0.0.0003/0.0.0150/block/dasdb/dasdb3/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/css0/0.0.0008/0.0.fa00/host0/rport-0:0-0/target0:0:0/0:0:0:1085554707/block/sda/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/css0/0.0.0008/0.0.fa00/host0/rport-0:0-0/target0:0:0/0:0:0:1085554707/block/sda/ro</name>
       <content>0</content>
     </File>
     <File>
@@ -793,6 +813,10 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/css0/0.0.0008/0.0.fa00/host0/rport-0:0-0/target0:0:0/0:0:0:1085620243/block/sdb/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/css0/0.0.0008/0.0.fa00/host0/rport-0:0-0/target0:0:0/0:0:0:1085620243/block/sdb/ext_range</name>
       <content>256</content>
     </File>
@@ -818,6 +842,10 @@
     </File>
     <File>
       <name>/sys/devices/css0/0.0.0008/0.0.fa00/host0/rport-0:0-1/target0:0:1/0:0:1:1085554707/block/sdc/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/css0/0.0.0008/0.0.fa00/host0/rport-0:0-1/target0:0:1/0:0:1:1085554707/block/sdc/ro</name>
       <content>0</content>
     </File>
     <File>
@@ -849,6 +877,10 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/css0/0.0.0008/0.0.fa00/host0/rport-0:0-1/target0:0:1/0:0:1:1085620243/block/sdd/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/css0/0.0.0008/0.0.fa00/host0/rport-0:0-1/target0:0:1/0:0:1:1085620243/block/sdd/ext_range</name>
       <content>256</content>
     </File>
@@ -877,6 +909,10 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/virtual/block/dm-0/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/virtual/block/dm-0/queue/logical_block_size</name>
       <content>512</content>
     </File>
@@ -897,7 +933,15 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/virtual/block/dm-1/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/virtual/block/dm-3/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/dm-3/ro</name>
       <content>0</content>
     </File>
     <File>
