@@ -300,6 +300,10 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/css0/0.0.0003/0.0.0150/block/dasda/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/css0/0.0.0003/0.0.0150/block/dasda/ext_range</name>
       <content>4</content>
     </File>
@@ -324,11 +328,23 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/css0/0.0.0003/0.0.0150/block/dasda/dasda1/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/css0/0.0.0003/0.0.0150/block/dasda/dasda2/alignment_offset</name>
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/css0/0.0.0003/0.0.0150/block/dasda/dasda2/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/css0/0.0.0003/0.0.0150/block/dasda/dasda3/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/css0/0.0.0003/0.0.0150/block/dasda/dasda3/ro</name>
       <content>0</content>
     </File>
   </Files>

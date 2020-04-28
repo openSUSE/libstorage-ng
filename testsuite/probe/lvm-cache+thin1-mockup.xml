@@ -688,6 +688,10 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/ext_range</name>
       <content>256</content>
     </File>
@@ -712,11 +716,19 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb1/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/size</name>
       <content>33554432</content>
     </File>
     <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata3/host2/target2:0:0/2:0:0:0/block/sdc/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata3/host2/target2:0:0/2:0:0:0/block/sdc/ro</name>
       <content>0</content>
     </File>
     <File>
@@ -744,8 +756,20 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata3/host2/target2:0:0/2:0:0:0/block/sdc/sdc1/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata3/host2/target2:0:0/2:0:0:0/block/sdc/size</name>
       <content>134217728</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/dm-14/ro</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/dm-16/ro</name>
+      <content>0</content>
     </File>
   </Files>
 </Mockup>

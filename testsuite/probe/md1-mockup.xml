@@ -602,6 +602,10 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/queue/optimal_io_size</name>
       <content>0</content>
     </File>
@@ -615,6 +619,10 @@
     </File>
     <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/ro</name>
       <content>0</content>
     </File>
     <File>
@@ -634,6 +642,10 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata3/host2/target2:0:0/2:0:0:0/block/sdc/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata3/host2/target2:0:0/2:0:0:0/block/sdc/queue/optimal_io_size</name>
       <content>0</content>
     </File>
@@ -650,6 +662,10 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata4/host3/target3:0:0/3:0:0:0/block/sdd/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata4/host3/target3:0:0/3:0:0:0/block/sdd/queue/optimal_io_size</name>
       <content>0</content>
     </File>
@@ -663,6 +679,10 @@
     </File>
     <File>
       <name>/sys/devices/virtual/block/md0/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/md0/ro</name>
       <content>0</content>
     </File>
     <File>

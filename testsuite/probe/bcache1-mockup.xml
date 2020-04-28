@@ -831,6 +831,10 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:07.0/virtio2/block/vda/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:07.0/virtio2/block/vda/ext_range</name>
       <content>256</content>
     </File>
@@ -859,11 +863,23 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:07.0/virtio2/block/vda/vda1/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:07.0/virtio2/block/vda/vda2/alignment_offset</name>
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:07.0/virtio2/block/vda/vda2/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:08.0/virtio3/block/vdb/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:08.0/virtio3/block/vdb/ro</name>
       <content>0</content>
     </File>
     <File>
@@ -895,6 +911,10 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:0b.0/virtio6/block/vdc/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:0b.0/virtio6/block/vdc/ext_range</name>
       <content>256</content>
     </File>
@@ -920,6 +940,10 @@
     </File>
     <File>
       <name>/sys/devices/pci0000:00/0000:00:0c.0/virtio7/block/vdd/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:0c.0/virtio7/block/vdd/ro</name>
       <content>0</content>
     </File>
     <File>
@@ -951,11 +975,23 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:0c.0/virtio7/block/vdd/vdd1/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:0c.0/virtio7/block/vdd/vdd2/alignment_offset</name>
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:0c.0/virtio7/block/vdd/vdd2/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:0c.0/virtio7/block/vdd/vdd3/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:0c.0/virtio7/block/vdd/vdd3/ro</name>
       <content>0</content>
     </File>
     <File>
@@ -964,6 +1000,10 @@
     </File>
     <File>
       <name>/sys/devices/virtual/block/bcache0/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/bcache0/ro</name>
       <content>0</content>
     </File>
     <File>
@@ -991,11 +1031,19 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/virtual/block/bcache0/bcache0p1/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/virtual/block/bcache1/dev</name>
       <content>253:128</content>
     </File>
     <File>
       <name>/sys/devices/virtual/block/bcache1/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/bcache1/ro</name>
       <content>0</content>
     </File>
     <File>
@@ -1027,6 +1075,10 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/virtual/block/bcache2/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/virtual/block/bcache2/bcache/../dev</name>
       <content>252:0</content>
     </File>
@@ -1048,6 +1100,10 @@
     </File>
     <File>
       <name>/sys/devices/virtual/block/bcache2/bcache2p1/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/bcache2/bcache2p1/ro</name>
       <content>0</content>
     </File>
     <File>
@@ -1101,6 +1157,10 @@
     <File>
       <name>/sys/devices/virtual/block/bcache2/bcache/sequential_cutoff</name>
       <content>1k</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/dm-0/ro</name>
+      <content>0</content>
     </File>
   </Files>
 </Mockup>

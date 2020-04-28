@@ -467,6 +467,10 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc/ext_range</name>
       <content>256</content>
     </File>
@@ -491,7 +495,15 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc/sdc1/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc/sdc2/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc/sdc2/ro</name>
       <content>0</content>
     </File>
     <File>
@@ -499,7 +511,15 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc/sdc3/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc/sdc4/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc/sdc4/ro</name>
       <content>0</content>
     </File>
     <File>
@@ -508,6 +528,10 @@
     </File>
     <File>
       <name>/sys/devices/virtual/block/dm-7/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/dm-7/ro</name>
       <content>0</content>
     </File>
     <File>
@@ -524,6 +548,10 @@
     </File>
     <File>
       <name>/sys/devices/virtual/block/dm-8/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/dm-8/ro</name>
       <content>0</content>
     </File>
     <File>

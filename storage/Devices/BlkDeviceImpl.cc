@@ -73,8 +73,8 @@ namespace storage
 
 
     BlkDevice::Impl::Impl(const string& name, const Region& region)
-	: Device::Impl(), name(name), active(true), region(region), topology(), udev_paths(),
-	  udev_ids(), dm_table_name()
+	: Device::Impl(), name(name), active(true), read_only(false), region(region), topology(),
+	  udev_paths(), udev_ids(), dm_table_name()
     {
 	if (!is_valid_name(name))
 	    ST_THROW(Exception("invalid BlkDevice name"));
@@ -82,8 +82,8 @@ namespace storage
 
 
     BlkDevice::Impl::Impl(const xmlNode* node)
-	: Device::Impl(node), name(), active(true), region(0, 0, 512), topology(), udev_paths(),
-	  udev_ids(), dm_table_name()
+	: Device::Impl(node), name(), active(true), read_only(false), region(0, 0, 512), topology(),
+	  udev_paths(), udev_ids(), dm_table_name()
     {
 	if (!getChildValue(node, "name", name))
 	    ST_THROW(Exception("no name"));
@@ -92,6 +92,7 @@ namespace storage
 	getChildValue(node, "sysfs-path", sysfs_path);
 
 	getChildValue(node, "active", active);
+	getChildValue(node, "read-only", read_only);
 
 	getChildValue(node, "region", region);
 
@@ -111,10 +112,15 @@ namespace storage
 
 	if (active)
 	{
-	    const CmdUdevadmInfo& cmdudevadminfo = prober.get_system_info().getCmdUdevadmInfo(name);
+	    SystemInfo& system_info = prober.get_system_info();
+
+	    const CmdUdevadmInfo& cmdudevadminfo = system_info.getCmdUdevadmInfo(name);
 
 	    sysfs_name = cmdudevadminfo.get_name();
 	    sysfs_path = cmdudevadminfo.get_path();
+
+	    const File& ro_file = get_sysfs_file(system_info, "ro");
+	    read_only = ro_file.get<bool>();
 
 	    // region is probed in subclasses
 
@@ -179,6 +185,7 @@ namespace storage
 	setChildValueIf(node, "sysfs-path", sysfs_path, !sysfs_path.empty());
 
 	setChildValueIf(node, "active", active, !active);
+	setChildValueIf(node, "read-only", read_only, read_only);
 
 	setChildValue(node, "region", region);
 
@@ -611,7 +618,8 @@ namespace storage
 
 	return name == rhs.name && sysfs_name == rhs.sysfs_name && sysfs_path == rhs.sysfs_path &&
 	    region == rhs.region && topology == rhs.topology && active == rhs.active &&
-	    udev_paths == rhs.udev_paths && udev_ids == rhs.udev_ids && dm_table_name == rhs.dm_table_name;
+	    read_only == rhs.read_only && udev_paths == rhs.udev_paths && udev_ids == rhs.udev_ids &&
+	    dm_table_name == rhs.dm_table_name;
     }
 
 
@@ -628,6 +636,7 @@ namespace storage
 	storage::log_diff(log, "sysfs-path", sysfs_path, rhs.sysfs_path);
 
 	storage::log_diff(log, "active", active, rhs.active);
+	storage::log_diff(log, "read-only", read_only, rhs.read_only);
 
 	storage::log_diff(log, "region", region, rhs.region);
 
@@ -655,6 +664,9 @@ namespace storage
 
 	if (!active)
 	    out << " active:" << active;
+
+	if (read_only)
+	    out << " read-only:" << read_only;
 
 	out << " region:" << get_region()
 	    << " topology:" << topology;

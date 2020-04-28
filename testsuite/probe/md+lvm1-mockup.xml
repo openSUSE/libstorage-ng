@@ -994,6 +994,10 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc/ext_range</name>
       <content>256</content>
     </File>
@@ -1018,7 +1022,15 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc/sdc1/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc/sdc2/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc/sdc2/ro</name>
       <content>0</content>
     </File>
     <File>
@@ -1027,6 +1039,10 @@
     </File>
     <File>
       <name>/sys/devices/pci0000:00/0000:00:14.0/usb2/2-8/2-8:1.0/host9/target9:0:0/9:0:0:0/block/sdd/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:14.0/usb2/2-8/2-8:1.0/host9/target9:0:0/9:0:0:0/block/sdd/ro</name>
       <content>0</content>
     </File>
     <File>
@@ -1054,7 +1070,15 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:14.0/usb2/2-8/2-8:1.0/host9/target9:0:0/9:0:0:0/block/sdd/sdd1/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:14.0/usb2/2-8/2-8:1.0/host9/target9:0:0/9:0:0:0/block/sdd/sdd2/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:14.0/usb2/2-8/2-8:1.0/host9/target9:0:0/9:0:0:0/block/sdd/sdd2/ro</name>
       <content>0</content>
     </File>
     <File>
@@ -1067,6 +1091,18 @@
     </File>
     <File>
       <name>/sys/devices/virtual/block/md0/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/dm-5/ro</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/dm-6/ro</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/md0/ro</name>
       <content>0</content>
     </File>
     <File>
@@ -1087,6 +1123,10 @@
     </File>
     <File>
       <name>/sys/devices/virtual/block/md127/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/md127/ro</name>
       <content>0</content>
     </File>
     <File>

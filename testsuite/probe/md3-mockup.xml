@@ -1991,6 +1991,10 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/ext_range</name>
       <content>256</content>
     </File>
@@ -2019,7 +2023,15 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda1/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda2/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda2/ro</name>
       <content>0</content>
     </File>
     <File>
@@ -2027,7 +2039,15 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda3/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/ro</name>
       <content>0</content>
     </File>
     <File>
@@ -2059,7 +2079,15 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb1/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb2/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb2/ro</name>
       <content>0</content>
     </File>
     <File>
@@ -2067,7 +2095,15 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb3/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb4/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb4/ro</name>
       <content>0</content>
     </File>
     <File>
@@ -2075,7 +2111,15 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb5/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb6/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb6/ro</name>
       <content>0</content>
     </File>
     <File>
@@ -2083,7 +2127,15 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb7/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb8/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb8/ro</name>
       <content>0</content>
     </File>
     <File>
@@ -2091,7 +2143,15 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb9/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb10/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb10/ro</name>
       <content>0</content>
     </File>
     <File>
@@ -2099,11 +2159,23 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb11/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb12/alignment_offset</name>
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb12/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/virtual/block/md0/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/md0/ro</name>
       <content>0</content>
     </File>
     <File>
@@ -2127,6 +2199,10 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/virtual/block/md1/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/virtual/block/md1/ext_range</name>
       <content>256</content>
     </File>
@@ -2147,7 +2223,15 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/virtual/block/md1/md1p1/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/virtual/block/md126/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/md126/ro</name>
       <content>0</content>
     </File>
     <File>
@@ -2171,7 +2255,15 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/virtual/block/md126/md126p1/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/virtual/block/md127/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/md127/ro</name>
       <content>0</content>
     </File>
     <File>
@@ -2195,6 +2287,10 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/virtual/block/md_test4/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/virtual/block/md_test4/ext_range</name>
       <content>256</content>
     </File>
@@ -2215,6 +2311,10 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/virtual/block/md_test5/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/virtual/block/md_test5/ext_range</name>
       <content>256</content>
     </File>
@@ -2232,6 +2332,10 @@
     </File>
     <File>
       <name>/sys/devices/virtual/block/md_test5/md_test5p1/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/md_test5/md_test5p1/ro</name>
       <content>0</content>
     </File>
   </Files>

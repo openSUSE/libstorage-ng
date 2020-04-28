@@ -1042,6 +1042,10 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:06.0/usb1/1-2/1-2:1.0/host3/target3:0:0/3:0:0:0/block/sdb/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:06.0/usb1/1-2/1-2:1.0/host3/target3:0:0/3:0:0:0/block/sdb/ext_range</name>
       <content>256</content>
     </File>
@@ -1070,7 +1074,15 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:06.0/usb1/1-2/1-2:1.0/host3/target3:0:0/3:0:0:0/block/sdb/sdb1/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:06.0/usb1/1-2/1-2:1.0/host3/target3:0:0/3:0:0:0/block/sdb/sdb2/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:06.0/usb1/1-2/1-2:1.0/host3/target3:0:0/3:0:0:0/block/sdb/sdb2/ro</name>
       <content>0</content>
     </File>
     <File>
@@ -1078,11 +1090,23 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:06.0/usb1/1-2/1-2:1.0/host3/target3:0:0/3:0:0:0/block/sdb/sdb3/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:06.0/usb1/1-2/1-2:1.0/host3/target3:0:0/3:0:0:0/block/sdb/sdb4/alignment_offset</name>
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:06.0/usb1/1-2/1-2:1.0/host3/target3:0:0/3:0:0:0/block/sdb/sdb4/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:0d.0/ata1/host0/target0:0:0/0:0:0:0/block/sda/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:0d.0/ata1/host0/target0:0:0/0:0:0:0/block/sda/ro</name>
       <content>0</content>
     </File>
     <File>
@@ -1114,7 +1138,15 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:0d.0/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda1/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:0d.0/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda2/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:0d.0/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda2/ro</name>
       <content>0</content>
     </File>
     <File>
@@ -1122,7 +1154,15 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:0d.0/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda3/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/virtual/block/bcache0/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/bcache0/ro</name>
       <content>0</content>
     </File>
     <File>
@@ -1166,6 +1206,10 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/virtual/block/bcache1/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/virtual/block/bcache1/bcache/../dev</name>
       <content>254:128</content>
     </File>
@@ -1194,11 +1238,23 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/virtual/block/bcache1/bcache1p1/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/virtual/block/bcache1/bcache1p2/alignment_offset</name>
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/virtual/block/bcache1/bcache1p2/ro</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/virtual/block/bcache2/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/bcache2/ro</name>
       <content>0</content>
     </File>
     <File>
