@@ -22,7 +22,7 @@ BOOST_AUTO_TEST_CASE(probe)
     set_logger(get_stdout_logger());
 
     Environment environment(true, ProbeMode::READ_MOCKUP, TargetMode::DIRECT);
-    environment.set_mockup_filename("plain-encryption1-mockup.xml");
+    environment.set_mockup_filename("lvm-raid1-mockup.xml");
 
     Storage storage(environment);
     storage.probe();
@@ -31,11 +31,11 @@ BOOST_AUTO_TEST_CASE(probe)
     probed->check();
 
     Devicegraph* staging = storage.get_staging();
-    staging->load("plain-encryption1-devicegraph.xml");
+    staging->load("lvm-raid1-devicegraph.xml");
     staging->check();
 
     TsCmpDevicegraph cmp(*probed, *staging);
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
 
-    BOOST_CHECK_BITWISE_EQUAL(probed->used_features(), UF_SWAP | UF_PLAIN_ENCRYPTION);
+    BOOST_CHECK_BITWISE_EQUAL(probed->used_features(), UF_XFS | UF_EXT4 | UF_LVM);
 }
