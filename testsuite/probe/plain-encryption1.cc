@@ -31,7 +31,6 @@ BOOST_AUTO_TEST_CASE(probe)
     probed->check();
 
     Devicegraph* staging = storage.get_staging();
-    // staging->save("plain-encryption1-devicegraph.xml");
     staging->load("plain-encryption1-devicegraph.xml");
     staging->check();
 
