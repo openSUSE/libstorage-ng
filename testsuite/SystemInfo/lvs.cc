@@ -20,8 +20,8 @@ check(const vector<string>& input, const vector<string>& output)
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
     Mockup::set_command(LVS_BIN " --reportformat json --units b --nosuffix --all --options lv_name,"
 			"lv_uuid,vg_name,vg_uuid,lv_role,lv_attr,lv_size,segtype,stripes,stripe_size,"
-			"chunk_size,pool_lv,pool_lv_uuid,data_lv,data_lv_uuid,metadata_lv,"
-			"metadata_lv_uuid", input);
+			"chunk_size,pool_lv,pool_lv_uuid,origin,origin_uuid,data_lv,data_lv_uuid,"
+			"metadata_lv,metadata_lv_uuid", input);
 
     CmdLvs cmd_lvs;
 
@@ -154,7 +154,6 @@ BOOST_AUTO_TEST_CASE(parse5)
     // pool "cache2-pool", "cache3" is detached from the cache pool
     // "cache3-pool".
 
-
     vector<string> input = {
 	"  {",
 	"      \"report\": [",
@@ -181,11 +180,11 @@ BOOST_AUTO_TEST_CASE(parse5)
 
     vector<string> output = {
 	"lv:{ lv-name:[cache1-volume] lv-uuid:su0ZFA-ejBI-M3VL-gQDD-UNcu-W0o8-2aBdtj vg-name:test vg-uuid:55auVT-aQ8G-MPiA-uXy1-dvJa-XNOs-6BWsXC lv-type:unknown role:private active:true size:1073741824 segments:<stripes:1> }",
-	"lv:{ lv-name:[cache1_corig] lv-uuid:ZzFhN5-b2N6-dL4F-H42U-dAP9-laF2-EU1F3p vg-name:test vg-uuid:55auVT-aQ8G-MPiA-uXy1-dvJa-XNOs-6BWsXC lv-type:unknown role:private active:true size:10737418240 segments:<stripes:1> }",
+	"lv:{ lv-name:[cache1_corig] lv-uuid:ZzFhN5-b2N6-dL4F-H42U-dAP9-laF2-EU1F3p vg-name:test vg-uuid:55auVT-aQ8G-MPiA-uXy1-dvJa-XNOs-6BWsXC lv-type:normal role:private active:true size:10737418240 segments:<stripes:1> }",
 	"lv:{ lv-name:[cache2-pool] lv-uuid:DfS7Ct-j41n-oz2e-C8vE-RuSt-blac-NjJwkW vg-name:test vg-uuid:55auVT-aQ8G-MPiA-uXy1-dvJa-XNOs-6BWsXC lv-type:cache-pool role:private active:false size:1073741824 data-name:[cache2-pool_cdata] data-uuid:Rkyj1k-9Ahg-mBQP-n820-bKvE-ZAzU-fwXJ6Q metadata-name:[cache2-pool_cmeta] metadata-uuid:3b8V9E-3Scj-Ox8j-6pss-QZIM-80jx-hDXYEi segments:<stripes:1 chunk-size:65536> }",
 	"lv:{ lv-name:[cache2-pool_cdata] lv-uuid:Rkyj1k-9Ahg-mBQP-n820-bKvE-ZAzU-fwXJ6Q vg-name:test vg-uuid:55auVT-aQ8G-MPiA-uXy1-dvJa-XNOs-6BWsXC lv-type:unknown role:private active:true size:1073741824 segments:<stripes:1> }",
 	"lv:{ lv-name:[cache2-pool_cmeta] lv-uuid:3b8V9E-3Scj-Ox8j-6pss-QZIM-80jx-hDXYEi vg-name:test vg-uuid:55auVT-aQ8G-MPiA-uXy1-dvJa-XNOs-6BWsXC lv-type:unknown role:private active:true size:8388608 segments:<stripes:1> }",
-	"lv:{ lv-name:[cache2_corig] lv-uuid:qhafQi-Nznt-WJCP-bMpl-Hx1x-w8tb-kt0EEa vg-name:test vg-uuid:55auVT-aQ8G-MPiA-uXy1-dvJa-XNOs-6BWsXC lv-type:unknown role:private active:true size:10737418240 segments:<stripes:1> }",
+	"lv:{ lv-name:[cache2_corig] lv-uuid:qhafQi-Nznt-WJCP-bMpl-Hx1x-w8tb-kt0EEa vg-name:test vg-uuid:55auVT-aQ8G-MPiA-uXy1-dvJa-XNOs-6BWsXC lv-type:normal role:private active:true size:10737418240 segments:<stripes:1> }",
 	"lv:{ lv-name:[cache3-pool_cdata] lv-uuid:BnZkZ2-gkl8-7nL8-dsai-meu0-vhht-OYteZH vg-name:test vg-uuid:55auVT-aQ8G-MPiA-uXy1-dvJa-XNOs-6BWsXC lv-type:unknown role:private active:false size:1073741824 segments:<stripes:1> }",
 	"lv:{ lv-name:[cache3-pool_cmeta] lv-uuid:fSwqC3-OCBQ-UYSF-hV5Z-6NRB-TQL0-y3wYzS vg-name:test vg-uuid:55auVT-aQ8G-MPiA-uXy1-dvJa-XNOs-6BWsXC lv-type:unknown role:private active:false size:8388608 segments:<stripes:1> }",
 	"lv:{ lv-name:[lvol0_pmspare] lv-uuid:vLO1sd-Slsj-VY6P-sTzJ-ZEya-0hFZ-uAJTuq vg-name:test vg-uuid:55auVT-aQ8G-MPiA-uXy1-dvJa-XNOs-6BWsXC lv-type:unknown role:private active:false size:8388608 segments:<stripes:1> }",
@@ -193,6 +192,57 @@ BOOST_AUTO_TEST_CASE(parse5)
 	"lv:{ lv-name:cache2 lv-uuid:N123dc-RYSs-YEAG-KcLk-kgki-Dvlx-Iwgj3L vg-name:test vg-uuid:55auVT-aQ8G-MPiA-uXy1-dvJa-XNOs-6BWsXC lv-type:cache role:public active:true size:10737418240 pool-name:[cache2-pool] pool-uuid:DfS7Ct-j41n-oz2e-C8vE-RuSt-blac-NjJwkW segments:<stripes:1 chunk-size:65536> }",
 	"lv:{ lv-name:cache3 lv-uuid:e0Lwjb-3rMk-RwYB-OWYf-YInP-H1UJ-1HpYtJ vg-name:test vg-uuid:55auVT-aQ8G-MPiA-uXy1-dvJa-XNOs-6BWsXC lv-type:normal role:public active:true size:10737418240 segments:<stripes:1> }",
 	"lv:{ lv-name:cache3-pool lv-uuid:vrpci4-gT93-VZZg-Z1DU-YvOr-9E7e-TzXmgO vg-name:test vg-uuid:55auVT-aQ8G-MPiA-uXy1-dvJa-XNOs-6BWsXC lv-type:cache-pool role:private active:false size:1073741824 data-name:[cache3-pool_cdata] data-uuid:BnZkZ2-gkl8-7nL8-dsai-meu0-vhht-OYteZH metadata-name:[cache3-pool_cmeta] metadata-uuid:fSwqC3-OCBQ-UYSF-hV5Z-6NRB-TQL0-y3wYzS segments:<stripes:1 chunk-size:65536> }"
+    };
+
+    check(input, output);
+}
+
+
+BOOST_AUTO_TEST_CASE(parse6)
+{
+    // "linear1" is has two thick snapshots, "thin2" has two thin
+    // snapshots, "linear3" has one thick and one thin snapshot
+
+    vector<string> input = {
+	"  {",
+	"      \"report\": [",
+	"          {",
+	"              \"lv\": [",
+	"                  {\"lv_name\":\"linear1\", \"lv_uuid\":\"Qf2yM9-IOUP-hCob-kHOW-NcI3-KVr4-EULvzO\", \"vg_name\":\"test\", \"vg_uuid\":\"e9UqnS-Afr3-qwoY-GEbf-aS0N-JXiV-tswJd7\", \"lv_role\":\"public,origin,thickorigin,multithickorigin\", \"lv_attr\":\"owi-a-s---\", \"lv_size\":\"1073741824\", \"segtype\":\"linear\", \"stripes\":\"1\", \"stripe_size\":\"0\", \"chunk_size\":\"0\", \"pool_lv\":\"\", \"pool_lv_uuid\":\"\", \"origin\":\"\", \"origin_uuid\":\"\", \"data_lv\":\"\", \"data_lv_uuid\":\"\", \"metadata_lv\":\"\", \"metadata_lv_uuid\":\"\"},",
+	"                  {\"lv_name\":\"linear1-snap1\", \"lv_uuid\":\"4Tj4DY-ivT9-mc5n-lQ6v-DgV6-0N9K-CjuZgH\", \"vg_name\":\"test\", \"vg_uuid\":\"e9UqnS-Afr3-qwoY-GEbf-aS0N-JXiV-tswJd7\", \"lv_role\":\"public,snapshot,thicksnapshot\", \"lv_attr\":\"swi-a-s---\", \"lv_size\":\"134217728\", \"segtype\":\"linear\", \"stripes\":\"1\", \"stripe_size\":\"0\", \"chunk_size\":\"4096\", \"pool_lv\":\"\", \"pool_lv_uuid\":\"\", \"origin\":\"linear1\", \"origin_uuid\":\"Qf2yM9-IOUP-hCob-kHOW-NcI3-KVr4-EULvzO\", \"data_lv\":\"\", \"data_lv_uuid\":\"\", \"metadata_lv\":\"\", \"metadata_lv_uuid\":\"\"},",
+	"                  {\"lv_name\":\"linear1-snap2\", \"lv_uuid\":\"QpDp3Q-4vzu-nsUf-xvEw-TXF9-e49X-ps7Wop\", \"vg_name\":\"test\", \"vg_uuid\":\"e9UqnS-Afr3-qwoY-GEbf-aS0N-JXiV-tswJd7\", \"lv_role\":\"public,snapshot,thicksnapshot\", \"lv_attr\":\"swi-a-s---\", \"lv_size\":\"134217728\", \"segtype\":\"linear\", \"stripes\":\"1\", \"stripe_size\":\"0\", \"chunk_size\":\"4096\", \"pool_lv\":\"\", \"pool_lv_uuid\":\"\", \"origin\":\"linear1\", \"origin_uuid\":\"Qf2yM9-IOUP-hCob-kHOW-NcI3-KVr4-EULvzO\", \"data_lv\":\"\", \"data_lv_uuid\":\"\", \"metadata_lv\":\"\", \"metadata_lv_uuid\":\"\"},",
+	"                  {\"lv_name\":\"linear3\", \"lv_uuid\":\"ATQF1G-J5Bf-D00G-NNnc-eXhH-ImpX-dHdcCs\", \"vg_name\":\"test\", \"vg_uuid\":\"e9UqnS-Afr3-qwoY-GEbf-aS0N-JXiV-tswJd7\", \"lv_role\":\"public,origin,extthinorigin,thickorigin\", \"lv_attr\":\"ori-a-s---\", \"lv_size\":\"1073741824\", \"segtype\":\"linear\", \"stripes\":\"1\", \"stripe_size\":\"0\", \"chunk_size\":\"0\", \"pool_lv\":\"\", \"pool_lv_uuid\":\"\", \"origin\":\"\", \"origin_uuid\":\"\", \"data_lv\":\"\", \"data_lv_uuid\":\"\", \"metadata_lv\":\"\", \"metadata_lv_uuid\":\"\"},",
+	"                  {\"lv_name\":\"linear3-snap1\", \"lv_uuid\":\"aIsi8o-0Mtx-l9xd-1jnr-LxOA-QLAl-1QNSdf\", \"vg_name\":\"test\", \"vg_uuid\":\"e9UqnS-Afr3-qwoY-GEbf-aS0N-JXiV-tswJd7\", \"lv_role\":\"public,snapshot,thicksnapshot\", \"lv_attr\":\"swi-a-s---\", \"lv_size\":\"134217728\", \"segtype\":\"linear\", \"stripes\":\"1\", \"stripe_size\":\"0\", \"chunk_size\":\"4096\", \"pool_lv\":\"\", \"pool_lv_uuid\":\"\", \"origin\":\"linear3\", \"origin_uuid\":\"ATQF1G-J5Bf-D00G-NNnc-eXhH-ImpX-dHdcCs\", \"data_lv\":\"\", \"data_lv_uuid\":\"\", \"metadata_lv\":\"\", \"metadata_lv_uuid\":\"\"},",
+	"                  {\"lv_name\":\"linear3-snap2\", \"lv_uuid\":\"CMRFlu-B5Qf-fSiN-0EmQ-zlgS-M4G1-L8ED0u\", \"vg_name\":\"test\", \"vg_uuid\":\"e9UqnS-Afr3-qwoY-GEbf-aS0N-JXiV-tswJd7\", \"lv_role\":\"public,snapshot,thinsnapshot\", \"lv_attr\":\"Vwi-a-tz--\", \"lv_size\":\"1073741824\", \"segtype\":\"thin\", \"stripes\":\"0\", \"stripe_size\":\"0\", \"chunk_size\":\"0\", \"pool_lv\":\"thin-pool\", \"pool_lv_uuid\":\"1alqOV-31y9-rspR-58hl-6HcK-cBtc-gBcTW5\", \"origin\":\"linear3\", \"origin_uuid\":\"ATQF1G-J5Bf-D00G-NNnc-eXhH-ImpX-dHdcCs\", \"data_lv\":\"\", \"data_lv_uuid\":\"\", \"metadata_lv\":\"\", \"metadata_lv_uuid\":\"\"},",
+	"                  {\"lv_name\":\"lvol0\", \"lv_uuid\":\"sH9o8O-vxn2-AWn3-x11h-UfJE-TzHv-Vp0ETU\", \"vg_name\":\"test\", \"vg_uuid\":\"e9UqnS-Afr3-qwoY-GEbf-aS0N-JXiV-tswJd7\", \"lv_role\":\"public\", \"lv_attr\":\"-wi-------\", \"lv_size\":\"8388608\", \"segtype\":\"linear\", \"stripes\":\"1\", \"stripe_size\":\"0\", \"chunk_size\":\"0\", \"pool_lv\":\"\", \"pool_lv_uuid\":\"\", \"origin\":\"\", \"origin_uuid\":\"\", \"data_lv\":\"\", \"data_lv_uuid\":\"\", \"metadata_lv\":\"\", \"metadata_lv_uuid\":\"\"},",
+	"                  {\"lv_name\":\"[lvol1_pmspare]\", \"lv_uuid\":\"uI5cNP-D6Uk-QytK-6eZA-9bte-n7JP-ZKeSKc\", \"vg_name\":\"test\", \"vg_uuid\":\"e9UqnS-Afr3-qwoY-GEbf-aS0N-JXiV-tswJd7\", \"lv_role\":\"private,pool,spare\", \"lv_attr\":\"ewi-------\", \"lv_size\":\"4194304\", \"segtype\":\"linear\", \"stripes\":\"1\", \"stripe_size\":\"0\", \"chunk_size\":\"0\", \"pool_lv\":\"\", \"pool_lv_uuid\":\"\", \"origin\":\"\", \"origin_uuid\":\"\", \"data_lv\":\"\", \"data_lv_uuid\":\"\", \"metadata_lv\":\"\", \"metadata_lv_uuid\":\"\"},",
+	"                  {\"lv_name\":\"thin-pool\", \"lv_uuid\":\"1alqOV-31y9-rspR-58hl-6HcK-cBtc-gBcTW5\", \"vg_name\":\"test\", \"vg_uuid\":\"e9UqnS-Afr3-qwoY-GEbf-aS0N-JXiV-tswJd7\", \"lv_role\":\"private\", \"lv_attr\":\"twi-aotz--\", \"lv_size\":\"4294967296\", \"segtype\":\"thin-pool\", \"stripes\":\"1\", \"stripe_size\":\"0\", \"chunk_size\":\"65536\", \"pool_lv\":\"\", \"pool_lv_uuid\":\"\", \"origin\":\"\", \"origin_uuid\":\"\", \"data_lv\":\"[thin-pool_tdata]\", \"data_lv_uuid\":\"GgEqYb-YsrV-HviJ-0SNI-eMDH-q37w-tQRpLh\", \"metadata_lv\":\"[thin-pool_tmeta]\", \"metadata_lv_uuid\":\"2GOZZy-rjkB-A0z1-dMrG-oWpv-eJWH-UlhKPw\"},",
+	"                  {\"lv_name\":\"[thin-pool_tdata]\", \"lv_uuid\":\"GgEqYb-YsrV-HviJ-0SNI-eMDH-q37w-tQRpLh\", \"vg_name\":\"test\", \"vg_uuid\":\"e9UqnS-Afr3-qwoY-GEbf-aS0N-JXiV-tswJd7\", \"lv_role\":\"private,thin,pool,data\", \"lv_attr\":\"Twi-ao----\", \"lv_size\":\"4294967296\", \"segtype\":\"linear\", \"stripes\":\"1\", \"stripe_size\":\"0\", \"chunk_size\":\"0\", \"pool_lv\":\"\", \"pool_lv_uuid\":\"\", \"origin\":\"\", \"origin_uuid\":\"\", \"data_lv\":\"\", \"data_lv_uuid\":\"\", \"metadata_lv\":\"\", \"metadata_lv_uuid\":\"\"},",
+	"                  {\"lv_name\":\"[thin-pool_tmeta]\", \"lv_uuid\":\"2GOZZy-rjkB-A0z1-dMrG-oWpv-eJWH-UlhKPw\", \"vg_name\":\"test\", \"vg_uuid\":\"e9UqnS-Afr3-qwoY-GEbf-aS0N-JXiV-tswJd7\", \"lv_role\":\"private,thin,pool,metadata\", \"lv_attr\":\"ewi-ao----\", \"lv_size\":\"4194304\", \"segtype\":\"linear\", \"stripes\":\"1\", \"stripe_size\":\"0\", \"chunk_size\":\"0\", \"pool_lv\":\"\", \"pool_lv_uuid\":\"\", \"origin\":\"\", \"origin_uuid\":\"\", \"data_lv\":\"\", \"data_lv_uuid\":\"\", \"metadata_lv\":\"\", \"metadata_lv_uuid\":\"\"},",
+	"                  {\"lv_name\":\"thin2\", \"lv_uuid\":\"fA6gcX-bmO4-ZeKX-eASS-SrJs-MsE6-33f0Tf\", \"vg_name\":\"test\", \"vg_uuid\":\"e9UqnS-Afr3-qwoY-GEbf-aS0N-JXiV-tswJd7\", \"lv_role\":\"public,origin,thinorigin,multithinorigin\", \"lv_attr\":\"Vwi-a-tz--\", \"lv_size\":\"2147483648\", \"segtype\":\"thin\", \"stripes\":\"0\", \"stripe_size\":\"0\", \"chunk_size\":\"0\", \"pool_lv\":\"thin-pool\", \"pool_lv_uuid\":\"1alqOV-31y9-rspR-58hl-6HcK-cBtc-gBcTW5\", \"origin\":\"\", \"origin_uuid\":\"\", \"data_lv\":\"\", \"data_lv_uuid\":\"\", \"metadata_lv\":\"\", \"metadata_lv_uuid\":\"\"},",
+	"                  {\"lv_name\":\"thin2-snap1\", \"lv_uuid\":\"3oli42-K3HH-dkl8-RNOh-MEpq-2ZKI-3nO1en\", \"vg_name\":\"test\", \"vg_uuid\":\"e9UqnS-Afr3-qwoY-GEbf-aS0N-JXiV-tswJd7\", \"lv_role\":\"public,snapshot,thinsnapshot\", \"lv_attr\":\"Vwi-a-tz-k\", \"lv_size\":\"2147483648\", \"segtype\":\"thin\", \"stripes\":\"0\", \"stripe_size\":\"0\", \"chunk_size\":\"0\", \"pool_lv\":\"thin-pool\", \"pool_lv_uuid\":\"1alqOV-31y9-rspR-58hl-6HcK-cBtc-gBcTW5\", \"origin\":\"thin2\", \"origin_uuid\":\"fA6gcX-bmO4-ZeKX-eASS-SrJs-MsE6-33f0Tf\", \"data_lv\":\"\", \"data_lv_uuid\":\"\", \"metadata_lv\":\"\", \"metadata_lv_uuid\":\"\"},",
+	"                  {\"lv_name\":\"thin2-snap2\", \"lv_uuid\":\"e24hyo-e0py-QNdk-xqdR-n2ZX-NBZb-0MkL5B\", \"vg_name\":\"test\", \"vg_uuid\":\"e9UqnS-Afr3-qwoY-GEbf-aS0N-JXiV-tswJd7\", \"lv_role\":\"public,snapshot,thinsnapshot\", \"lv_attr\":\"Vwi---tz-k\", \"lv_size\":\"2147483648\", \"segtype\":\"thin\", \"stripes\":\"0\", \"stripe_size\":\"0\", \"chunk_size\":\"0\", \"pool_lv\":\"thin-pool\", \"pool_lv_uuid\":\"1alqOV-31y9-rspR-58hl-6HcK-cBtc-gBcTW5\", \"origin\":\"thin2\", \"origin_uuid\":\"fA6gcX-bmO4-ZeKX-eASS-SrJs-MsE6-33f0Tf\", \"data_lv\":\"\", \"data_lv_uuid\":\"\", \"metadata_lv\":\"\", \"metadata_lv_uuid\":\"\"}"
+	"              ]",
+	"          }",
+	"      ]",
+	"  }"
+    };
+
+    vector<string> output = {
+	"lv:{ lv-name:[lvol1_pmspare] lv-uuid:uI5cNP-D6Uk-QytK-6eZA-9bte-n7JP-ZKeSKc vg-name:test vg-uuid:e9UqnS-Afr3-qwoY-GEbf-aS0N-JXiV-tswJd7 lv-type:unknown role:private active:false size:4194304 segments:<stripes:1> }",
+	"lv:{ lv-name:[thin-pool_tdata] lv-uuid:GgEqYb-YsrV-HviJ-0SNI-eMDH-q37w-tQRpLh vg-name:test vg-uuid:e9UqnS-Afr3-qwoY-GEbf-aS0N-JXiV-tswJd7 lv-type:unknown role:private active:true size:4294967296 segments:<stripes:1> }",
+	"lv:{ lv-name:[thin-pool_tmeta] lv-uuid:2GOZZy-rjkB-A0z1-dMrG-oWpv-eJWH-UlhKPw vg-name:test vg-uuid:e9UqnS-Afr3-qwoY-GEbf-aS0N-JXiV-tswJd7 lv-type:unknown role:private active:true size:4194304 segments:<stripes:1> }",
+	"lv:{ lv-name:linear1 lv-uuid:Qf2yM9-IOUP-hCob-kHOW-NcI3-KVr4-EULvzO vg-name:test vg-uuid:e9UqnS-Afr3-qwoY-GEbf-aS0N-JXiV-tswJd7 lv-type:normal role:public active:true size:1073741824 segments:<stripes:1> }",
+	"lv:{ lv-name:linear1-snap1 lv-uuid:4Tj4DY-ivT9-mc5n-lQ6v-DgV6-0N9K-CjuZgH vg-name:test vg-uuid:e9UqnS-Afr3-qwoY-GEbf-aS0N-JXiV-tswJd7 lv-type:snapshot role:public active:true size:134217728 origin-name:linear1 origin-uuid:Qf2yM9-IOUP-hCob-kHOW-NcI3-KVr4-EULvzO segments:<stripes:1 chunk-size:4096> }",
+	"lv:{ lv-name:linear1-snap2 lv-uuid:QpDp3Q-4vzu-nsUf-xvEw-TXF9-e49X-ps7Wop vg-name:test vg-uuid:e9UqnS-Afr3-qwoY-GEbf-aS0N-JXiV-tswJd7 lv-type:snapshot role:public active:true size:134217728 origin-name:linear1 origin-uuid:Qf2yM9-IOUP-hCob-kHOW-NcI3-KVr4-EULvzO segments:<stripes:1 chunk-size:4096> }",
+	"lv:{ lv-name:linear3 lv-uuid:ATQF1G-J5Bf-D00G-NNnc-eXhH-ImpX-dHdcCs vg-name:test vg-uuid:e9UqnS-Afr3-qwoY-GEbf-aS0N-JXiV-tswJd7 lv-type:normal role:public active:true size:1073741824 segments:<stripes:1> }",
+	"lv:{ lv-name:linear3-snap1 lv-uuid:aIsi8o-0Mtx-l9xd-1jnr-LxOA-QLAl-1QNSdf vg-name:test vg-uuid:e9UqnS-Afr3-qwoY-GEbf-aS0N-JXiV-tswJd7 lv-type:snapshot role:public active:true size:134217728 origin-name:linear3 origin-uuid:ATQF1G-J5Bf-D00G-NNnc-eXhH-ImpX-dHdcCs segments:<stripes:1 chunk-size:4096> }",
+	"lv:{ lv-name:linear3-snap2 lv-uuid:CMRFlu-B5Qf-fSiN-0EmQ-zlgS-M4G1-L8ED0u vg-name:test vg-uuid:e9UqnS-Afr3-qwoY-GEbf-aS0N-JXiV-tswJd7 lv-type:thin role:public active:true size:1073741824 pool-name:thin-pool pool-uuid:1alqOV-31y9-rspR-58hl-6HcK-cBtc-gBcTW5 origin-name:linear3 origin-uuid:ATQF1G-J5Bf-D00G-NNnc-eXhH-ImpX-dHdcCs segments:<> }",
+	"lv:{ lv-name:lvol0 lv-uuid:sH9o8O-vxn2-AWn3-x11h-UfJE-TzHv-Vp0ETU vg-name:test vg-uuid:e9UqnS-Afr3-qwoY-GEbf-aS0N-JXiV-tswJd7 lv-type:normal role:public active:false size:8388608 segments:<stripes:1> }",
+	"lv:{ lv-name:thin-pool lv-uuid:1alqOV-31y9-rspR-58hl-6HcK-cBtc-gBcTW5 vg-name:test vg-uuid:e9UqnS-Afr3-qwoY-GEbf-aS0N-JXiV-tswJd7 lv-type:thin-pool role:private active:true size:4294967296 data-name:[thin-pool_tdata] data-uuid:GgEqYb-YsrV-HviJ-0SNI-eMDH-q37w-tQRpLh metadata-name:[thin-pool_tmeta] metadata-uuid:2GOZZy-rjkB-A0z1-dMrG-oWpv-eJWH-UlhKPw segments:<stripes:1 chunk-size:65536> }",
+	"lv:{ lv-name:thin2 lv-uuid:fA6gcX-bmO4-ZeKX-eASS-SrJs-MsE6-33f0Tf vg-name:test vg-uuid:e9UqnS-Afr3-qwoY-GEbf-aS0N-JXiV-tswJd7 lv-type:thin role:public active:true size:2147483648 pool-name:thin-pool pool-uuid:1alqOV-31y9-rspR-58hl-6HcK-cBtc-gBcTW5 segments:<> }",
+	"lv:{ lv-name:thin2-snap1 lv-uuid:3oli42-K3HH-dkl8-RNOh-MEpq-2ZKI-3nO1en vg-name:test vg-uuid:e9UqnS-Afr3-qwoY-GEbf-aS0N-JXiV-tswJd7 lv-type:thin role:public active:true size:2147483648 pool-name:thin-pool pool-uuid:1alqOV-31y9-rspR-58hl-6HcK-cBtc-gBcTW5 origin-name:thin2 origin-uuid:fA6gcX-bmO4-ZeKX-eASS-SrJs-MsE6-33f0Tf segments:<> }",
+	"lv:{ lv-name:thin2-snap2 lv-uuid:e24hyo-e0py-QNdk-xqdR-n2ZX-NBZb-0MkL5B vg-name:test vg-uuid:e9UqnS-Afr3-qwoY-GEbf-aS0N-JXiV-tswJd7 lv-type:thin role:public active:false size:2147483648 pool-name:thin-pool pool-uuid:1alqOV-31y9-rspR-58hl-6HcK-cBtc-gBcTW5 origin-name:thin2 origin-uuid:fA6gcX-bmO4-ZeKX-eASS-SrJs-MsE6-33f0Tf segments:<> }"
     };
 
     check(input, output);

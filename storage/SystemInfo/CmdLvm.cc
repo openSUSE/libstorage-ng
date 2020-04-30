@@ -154,11 +154,13 @@ namespace storage
 
     CmdLvs::CmdLvs()
     {
-	// Note: querying segtype is rather new and not available in all testsuite data
+	// Note: querying segtype, origin and origin_uuid is rather new and not available in all
+	// testsuite data
 
 	SystemCmd cmd(LVS_BIN " " COMMON_LVM_OPTIONS " --all --options lv_name,lv_uuid,vg_name,"
 		      "vg_uuid,lv_role,lv_attr,lv_size,segtype,stripes,stripe_size,chunk_size,pool_lv,"
-		      "pool_lv_uuid,data_lv,data_lv_uuid,metadata_lv,metadata_lv_uuid", SystemCmd::DoThrow);
+		      "pool_lv_uuid,origin,origin_uuid,data_lv,data_lv_uuid,metadata_lv,"
+		      "metadata_lv_uuid", SystemCmd::DoThrow);
 
 	parse(cmd.stdout());
     }
@@ -208,6 +210,8 @@ namespace storage
 	    case 't': lv.lv_type = LvType::THIN_POOL; break;
 	    case 'V': lv.lv_type = LvType::THIN; break;
 	    case 'r': lv.lv_type = LvType::RAID; break;
+	    case 'o': lv.lv_type = LvType::NORMAL; break;
+	    case 's': lv.lv_type = LvType::SNAPSHOT; break;
 
 	    case 'C':
 	    {
@@ -228,6 +232,9 @@ namespace storage
 
 	get_child_value(object, "pool_lv", lv.pool_name);
 	get_child_value(object, "pool_lv_uuid", lv.pool_uuid);
+
+	get_child_value(object, "origin", lv.origin_name);
+	get_child_value(object, "origin_uuid", lv.origin_uuid);
 
 	get_child_value(object, "data_lv", lv.data_name);
 	get_child_value(object, "data_lv_uuid", lv.data_uuid);
@@ -329,6 +336,12 @@ namespace storage
 
 	if (!lv.pool_uuid.empty())
 	    s << " pool-uuid:" << lv.pool_uuid;
+
+	if (!lv.origin_name.empty())
+	    s << " origin-name:" << lv.origin_name;
+
+	if (!lv.origin_uuid.empty())
+	    s << " origin-uuid:" << lv.origin_uuid;
 
 	if (!lv.data_name.empty())
 	    s << " data-name:" << lv.data_name;

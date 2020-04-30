@@ -34,7 +34,7 @@ BOOST_AUTO_TEST_CASE(probe)
     BOOST_REQUIRE_EQUAL(probe_messages.size(), 3);
     BOOST_CHECK_EQUAL(probe_messages[0], "begin:");
     BOOST_CHECK_EQUAL(probe_messages[1], "error: message = 'Detected LVM logical volumes of unsupported types:\n\n"
-		      "/dev/test/normal1\n/dev/test/normal1-snapshot\n\n"
+		      "/dev/test/mirror\n\n"
 		      "These logical volumes are ignored. Operations on the\ncorreponding volume "
 		      "groups may fail.', what = ''");
     BOOST_CHECK_EQUAL(probe_messages[2], "end:");
@@ -49,5 +49,5 @@ BOOST_AUTO_TEST_CASE(probe)
     TsCmpDevicegraph cmp(*probed, *staging);
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
 
-    BOOST_CHECK_BITWISE_EQUAL(probed->used_features(), (uint64_t)(UF_LVM | UF_EXT4));
+    BOOST_CHECK_BITWISE_EQUAL(probed->used_features(), (uint64_t)(UF_LVM));
 }
