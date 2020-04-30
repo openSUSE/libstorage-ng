@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -112,7 +112,8 @@ namespace storage
 	{
 	    Lv() : lv_name(), lv_uuid(), vg_name(), vg_uuid(), lv_type(LvType::UNKNOWN),
 		   role(Role::PRIVATE), active(false), size(0), pool_name(), pool_uuid(),
-		   data_name(), data_uuid(), metadata_name(), metadata_uuid() {}
+		   origin_name(), origin_uuid(), data_name(), data_uuid(), metadata_name(),
+		   metadata_uuid() {}
 
 	    string lv_name;
 	    string lv_uuid;
@@ -124,6 +125,8 @@ namespace storage
 	    unsigned long long size;
 	    string pool_name;
 	    string pool_uuid;
+	    string origin_name;
+	    string origin_uuid;
 	    string data_name;
 	    string data_uuid;
 	    string metadata_name;

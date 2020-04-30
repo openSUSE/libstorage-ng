@@ -89,7 +89,12 @@ namespace storage
 	 *
 	 * Cannot be created by the library.
 	 */
-	WRITECACHE
+	WRITECACHE,
+
+	/**
+	 * A thick snapshot. Thin snapshots have the type THIN.
+	 */
+	SNAPSHOT
     };
 
 
