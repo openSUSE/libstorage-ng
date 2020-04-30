@@ -212,6 +212,7 @@ namespace storage
 	    case 'r': lv.lv_type = LvType::RAID; break;
 	    case 'o': lv.lv_type = LvType::NORMAL; break;
 	    case 's': lv.lv_type = LvType::SNAPSHOT; break;
+	    case 'm': lv.lv_type = LvType::MIRROR; break;
 
 	    case 'C':
 	    {

@@ -34,7 +34,7 @@ BOOST_AUTO_TEST_CASE(probe)
     BOOST_REQUIRE_EQUAL(probe_messages.size(), 3);
     BOOST_CHECK_EQUAL(probe_messages[0], "begin:");
     BOOST_CHECK_EQUAL(probe_messages[1], "error: message = 'Detected LVM logical volumes of unsupported types:\n\n"
-		      "/dev/test/mirror\n\n"
+		      "/dev/test/vdo\n\n"
 		      "These logical volumes are ignored. Operations on the\ncorreponding volume "
 		      "groups may fail.', what = ''");
     BOOST_CHECK_EQUAL(probe_messages[2], "end:");

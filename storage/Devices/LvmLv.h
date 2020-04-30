@@ -93,8 +93,18 @@ namespace storage
 
 	/**
 	 * A thick snapshot. Thin snapshots have the type THIN.
+	 *
+	 * Cannot be created by the library.
 	 */
-	SNAPSHOT
+	SNAPSHOT,
+
+	/**
+	 * A mirror volume. This is different from RAID1 in that it
+	 * has the mirror log on a seperate device.
+	 *
+	 * Cannot be created by the library.
+	 */
+	MIRROR
     };
 
 
