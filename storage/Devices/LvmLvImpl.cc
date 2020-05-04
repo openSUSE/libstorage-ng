@@ -54,7 +54,7 @@ namespace storage
 
     const vector<string> EnumTraits<LvType>::names({
 	"unknown", "normal", "thin-pool", "thin", "raid", "cache-pool", "cache", "writecache",
-	"snapshot"
+	"snapshot", "mirror"
     });
 
 
@@ -129,6 +129,7 @@ namespace storage
 	    case LvType::CACHE:
 	    case LvType::WRITECACHE:
 	    case LvType::SNAPSHOT:
+	    case LvType::MIRROR:
 		return true;
 
 	    case LvType::UNKNOWN:
@@ -270,6 +271,7 @@ namespace storage
 		case LvType::CACHE:
 		case LvType::WRITECACHE:
 		case LvType::SNAPSHOT:
+		case LvType::MIRROR:
 		{
 		    // A cache is private if uses as a thin-pool.
 
@@ -896,6 +898,7 @@ namespace storage
 	    case LvType::CACHE:
 	    case LvType::WRITECACHE:
 	    case LvType::SNAPSHOT:
+	    case LvType::MIRROR:
 	    {
 		ST_THROW(UnsupportedException(sformat("creating LvmLv with type %s is unsupported",
 						      toString(lv_type))));

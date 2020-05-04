@@ -200,7 +200,7 @@ BOOST_AUTO_TEST_CASE(parse5)
 
 BOOST_AUTO_TEST_CASE(parse6)
 {
-    // "linear1" is has two thick snapshots, "thin2" has two thin
+    // "linear1" has two thick snapshots, "thin2" has two thin
     // snapshots, "linear3" has one thick and one thin snapshot
 
     vector<string> input = {
@@ -243,6 +243,34 @@ BOOST_AUTO_TEST_CASE(parse6)
 	"lv:{ lv-name:thin2 lv-uuid:fA6gcX-bmO4-ZeKX-eASS-SrJs-MsE6-33f0Tf vg-name:test vg-uuid:e9UqnS-Afr3-qwoY-GEbf-aS0N-JXiV-tswJd7 lv-type:thin role:public active:true size:2147483648 pool-name:thin-pool pool-uuid:1alqOV-31y9-rspR-58hl-6HcK-cBtc-gBcTW5 segments:<> }",
 	"lv:{ lv-name:thin2-snap1 lv-uuid:3oli42-K3HH-dkl8-RNOh-MEpq-2ZKI-3nO1en vg-name:test vg-uuid:e9UqnS-Afr3-qwoY-GEbf-aS0N-JXiV-tswJd7 lv-type:thin role:public active:true size:2147483648 pool-name:thin-pool pool-uuid:1alqOV-31y9-rspR-58hl-6HcK-cBtc-gBcTW5 origin-name:thin2 origin-uuid:fA6gcX-bmO4-ZeKX-eASS-SrJs-MsE6-33f0Tf segments:<> }",
 	"lv:{ lv-name:thin2-snap2 lv-uuid:e24hyo-e0py-QNdk-xqdR-n2ZX-NBZb-0MkL5B vg-name:test vg-uuid:e9UqnS-Afr3-qwoY-GEbf-aS0N-JXiV-tswJd7 lv-type:thin role:public active:false size:2147483648 pool-name:thin-pool pool-uuid:1alqOV-31y9-rspR-58hl-6HcK-cBtc-gBcTW5 origin-name:thin2 origin-uuid:fA6gcX-bmO4-ZeKX-eASS-SrJs-MsE6-33f0Tf segments:<> }"
+    };
+
+    check(input, output);
+}
+
+
+BOOST_AUTO_TEST_CASE(parse7)
+{
+    vector<string> input = {
+	"  {",
+	"      \"report\": [",
+	"          {",
+	"              \"lv\": [",
+	"                  {\"lv_name\":\"mirror\", \"lv_uuid\":\"DT3sif-b6pw-gLME-dsYR-edOs-z5yg-5fLIzW\", \"vg_name\":\"test\", \"vg_uuid\":\"k8GRHJ-LwHN-xzmX-kocx-bWOA-tuBz-CD6Fo8\", \"lv_role\":\"public\", \"lv_attr\":\"mwi-a-m---\", \"lv_size\":\"5368709120\", \"segtype\":\"mirror\", \"stripes\":\"2\", \"stripe_size\":\"0\", \"chunk_size\":\"0\", \"pool_lv\":\"\", \"pool_lv_uuid\":\"\", \"origin\":\"\", \"origin_uuid\":\"\", \"data_lv\":\"\", \"data_lv_uuid\":\"\", \"metadata_lv\":\"\", \"metadata_lv_uuid\":\"\"},",
+	"                  {\"lv_name\":\"[mirror_mimage_0]\", \"lv_uuid\":\"vnsHgX-rxIQ-ZUZI-rkAe-nOpi-xBXA-sS0DKG\", \"vg_name\":\"test\", \"vg_uuid\":\"k8GRHJ-LwHN-xzmX-kocx-bWOA-tuBz-CD6Fo8\", \"lv_role\":\"private,mirror,image\", \"lv_attr\":\"iwi-aom---\", \"lv_size\":\"5368709120\", \"segtype\":\"linear\", \"stripes\":\"1\", \"stripe_size\":\"0\", \"chunk_size\":\"0\", \"pool_lv\":\"\", \"pool_lv_uuid\":\"\", \"origin\":\"\", \"origin_uuid\":\"\", \"data_lv\":\"\", \"data_lv_uuid\":\"\", \"metadata_lv\":\"\", \"metadata_lv_uuid\":\"\"},",
+	"                  {\"lv_name\":\"[mirror_mimage_1]\", \"lv_uuid\":\"8Jhzus-TSBI-tWPy-xXQu-9D9s-947j-EoAtZR\", \"vg_name\":\"test\", \"vg_uuid\":\"k8GRHJ-LwHN-xzmX-kocx-bWOA-tuBz-CD6Fo8\", \"lv_role\":\"private,mirror,image\", \"lv_attr\":\"iwi-aom---\", \"lv_size\":\"5368709120\", \"segtype\":\"linear\", \"stripes\":\"1\", \"stripe_size\":\"0\", \"chunk_size\":\"0\", \"pool_lv\":\"\", \"pool_lv_uuid\":\"\", \"origin\":\"\", \"origin_uuid\":\"\", \"data_lv\":\"\", \"data_lv_uuid\":\"\", \"metadata_lv\":\"\", \"metadata_lv_uuid\":\"\"},",
+	"                  {\"lv_name\":\"[mirror_mlog]\", \"lv_uuid\":\"2LquQX-Flts-JO5X-wLYS-Q0Q6-m3gB-6WsLD6\", \"vg_name\":\"test\", \"vg_uuid\":\"k8GRHJ-LwHN-xzmX-kocx-bWOA-tuBz-CD6Fo8\", \"lv_role\":\"private,mirror,log\", \"lv_attr\":\"lwi-aom---\", \"lv_size\":\"4194304\", \"segtype\":\"linear\", \"stripes\":\"1\", \"stripe_size\":\"0\", \"chunk_size\":\"0\", \"pool_lv\":\"\", \"pool_lv_uuid\":\"\", \"origin\":\"\", \"origin_uuid\":\"\", \"data_lv\":\"\", \"data_lv_uuid\":\"\", \"metadata_lv\":\"\", \"metadata_lv_uuid\":\"\"}"
+	"              ]",
+	"          }",
+	"      ]",
+	"  }"
+    };
+
+    vector<string> output = {
+	"lv:{ lv-name:[mirror_mimage_0] lv-uuid:vnsHgX-rxIQ-ZUZI-rkAe-nOpi-xBXA-sS0DKG vg-name:test vg-uuid:k8GRHJ-LwHN-xzmX-kocx-bWOA-tuBz-CD6Fo8 lv-type:unknown role:private active:true size:5368709120 segments:<stripes:1> }",
+	"lv:{ lv-name:[mirror_mimage_1] lv-uuid:8Jhzus-TSBI-tWPy-xXQu-9D9s-947j-EoAtZR vg-name:test vg-uuid:k8GRHJ-LwHN-xzmX-kocx-bWOA-tuBz-CD6Fo8 lv-type:unknown role:private active:true size:5368709120 segments:<stripes:1> }",
+	"lv:{ lv-name:[mirror_mlog] lv-uuid:2LquQX-Flts-JO5X-wLYS-Q0Q6-m3gB-6WsLD6 vg-name:test vg-uuid:k8GRHJ-LwHN-xzmX-kocx-bWOA-tuBz-CD6Fo8 lv-type:unknown role:private active:true size:4194304 segments:<stripes:1> }",
+	"lv:{ lv-name:mirror lv-uuid:DT3sif-b6pw-gLME-dsYR-edOs-z5yg-5fLIzW vg-name:test vg-uuid:k8GRHJ-LwHN-xzmX-kocx-bWOA-tuBz-CD6Fo8 lv-type:mirror role:public active:true size:5368709120 segments:<stripes:2> }"
     };
 
     check(input, output);

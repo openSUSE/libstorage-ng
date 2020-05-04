@@ -11,7 +11,7 @@ check_PROGRAMS =								\
 	disk.test disk-zoned1.test bitlocker1.test				\
 	multipath1.test multipath+luks1.test md1.test md2.test			\
 	md3.test lvm1.test lvm2.test lvm-cache1.test lvm-cache+thin1.test	\
-	lvm-raid1.test lvm-snapshot1.test					\
+	lvm-raid1.test lvm-mirror1.test lvm-snapshot1.test			\
 	lvm-errors1.test lvm-unsupported1.test					\
 	luks+lvm1.test lvm+luks1.test luks1.test luks2.test luks3.test		\
 	multi-mount-point1.test multi-mount-point2.test				\
@@ -42,6 +42,7 @@ EXTRA_DIST = disk-mockup.xml disk-devicegraph.xml				\
 	lvm-cache1-mockup.xml lvm-cache1-devicegraph.xml			\
 	lvm-cache+thin1-mockup.xml lvm-cache+thin1-devicegraph.xml		\
 	lvm-raid1-mockup.xml lvm-raid1-devicegraph.xml				\
+	lvm-mirror1-mockup.xml lvm-mirror1-devicegraph.xml			\
 	lvm-snapshot1-mockup.xml lvm-snapshot1-devicegraph.xml			\
 	lvm-errors1-mockup.xml lvm-errors1-devicegraph.xml			\
 	lvm-unsupported1-mockup.xml lvm-unsupported1-devicegraph.xml		\
