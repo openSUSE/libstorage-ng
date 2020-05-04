@@ -32,6 +32,7 @@
 #include "storage/Devices/LvmLvImpl.h"
 #include "storage/Devices/LvmVgImpl.h"
 #include "storage/Holders/Subdevice.h"
+#include "storage/Holders/Snapshot.h"
 #include "storage/Storage.h"
 #include "storage/FreeInfo.h"
 #include "storage/Holders/User.h"
@@ -339,6 +340,20 @@ namespace storage
 	    lvm_lv->get_impl().probe_pass_1a(prober);
 	}
 
+	for (const CmdLvs::Lv& lv : lvs)
+	{
+	    if (lv.origin_uuid.empty())
+		continue;
+
+	    if (lv.lv_type == LvType::SNAPSHOT || lv.lv_type == LvType::THIN)
+	    {
+		LvmLv* a = LvmLv::Impl::find_by_uuid(system, lv.origin_uuid);
+		LvmLv* b = LvmLv::Impl::find_by_uuid(system, lv.lv_uuid);
+
+		Snapshot::create(system, a, b);
+	    }
+	}
+
 	if (!unsupported_lvs.empty())
 	{
 	    sort(unsupported_lvs.begin(), unsupported_lvs.end());
@@ -525,6 +540,68 @@ namespace storage
 	    ST_THROW(Exception("not a thin logical volume"));
 
 	return get_single_parent_of_type<const LvmLv>();
+    }
+
+
+    bool
+    LvmLv::Impl::has_snapshots() const
+    {
+	return !get_out_holders_of_type<const Snapshot>(View::ALL).empty();
+    }
+
+
+    vector<LvmLv*>
+    LvmLv::Impl::get_snapshots()
+    {
+	vector<LvmLv*> ret;
+
+	for (Snapshot* snapshot : get_out_holders_of_type<Snapshot>(View::ALL))
+	    ret.push_back(to_lvm_lv(snapshot->get_target()));
+
+	return ret;
+    }
+
+
+    vector<const LvmLv*>
+    LvmLv::Impl::get_snapshots() const
+    {
+	vector<const LvmLv*> ret;
+
+	for (const Snapshot* snapshot : get_out_holders_of_type<const Snapshot>(View::ALL))
+	    ret.push_back(to_lvm_lv(snapshot->get_target()));
+
+	return ret;
+    }
+
+
+    bool
+    LvmLv::Impl::has_origin() const
+    {
+	return !get_in_holders_of_type<const Snapshot>(View::ALL).empty();
+    }
+
+
+    LvmLv*
+    LvmLv::Impl::get_origin()
+    {
+	vector<Snapshot*> snapshots = get_in_holders_of_type<Snapshot>(View::ALL);
+
+	if (snapshots.empty())
+	    ST_THROW(WrongNumberOfParents(snapshots.empty(), 1));
+
+	return to_lvm_lv(snapshots.front()->get_source());
+    }
+
+
+    const LvmLv*
+    LvmLv::Impl::get_origin() const
+    {
+	vector<const Snapshot*> snapshots = get_in_holders_of_type<const Snapshot>(View::ALL);
+
+	if (snapshots.empty())
+	    ST_THROW(WrongNumberOfParents(snapshots.empty(), 1));
+
+	return to_lvm_lv(snapshots.front()->get_source());
     }
 
 

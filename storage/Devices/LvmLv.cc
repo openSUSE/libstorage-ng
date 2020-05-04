@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -179,6 +179,48 @@ namespace storage
     LvmLv::get_thin_pool() const
     {
 	return get_impl().get_thin_pool();
+    }
+
+
+    bool
+    LvmLv::has_snapshots() const
+    {
+	return get_impl().has_snapshots();
+    }
+
+
+    vector<LvmLv*>
+    LvmLv::get_snapshots()
+    {
+	return get_impl().get_snapshots();
+    }
+
+
+    vector<const LvmLv*>
+    LvmLv::get_snapshots() const
+    {
+	return get_impl().get_snapshots();
+    }
+
+
+    bool
+    LvmLv::has_origin() const
+    {
+	return get_impl().has_origin();
+    }
+
+
+    LvmLv*
+    LvmLv::get_origin()
+    {
+	return get_impl().get_origin();
+    }
+
+
+    const LvmLv*
+    LvmLv::get_origin() const
+    {
+	return get_impl().get_origin();
     }
 
 

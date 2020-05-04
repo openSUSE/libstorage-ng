@@ -64,6 +64,8 @@ namespace storage
 
 	virtual const char* get_classname() const = 0;
 
+	virtual bool is_in_view(View view) const { return true; }
+
 	virtual void save(xmlNode* node) const = 0;
 
 	void set_devicegraph_and_edge(Devicegraph* devicegraph,

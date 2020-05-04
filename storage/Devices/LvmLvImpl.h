@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -74,6 +74,16 @@ namespace storage
 	const LvmVg* get_lvm_vg() const;
 
 	const LvmLv* get_thin_pool() const;
+
+	bool has_snapshots() const;
+
+	vector<LvmLv*> get_snapshots();
+	vector<const LvmLv*> get_snapshots() const;
+
+	bool has_origin() const;
+
+	LvmLv* get_origin();
+	const LvmLv* get_origin() const;
 
 	unsigned long long max_size_for_lvm_lv(LvType lv_type, const vector<sid_t>& ignore_sids = {}) const;
 

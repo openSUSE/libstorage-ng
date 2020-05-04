@@ -196,14 +196,14 @@ namespace storage
 	virtual Text do_reallot_text(const CommitData& commit_data, const Action::Reallot* action) const;
 	virtual void do_reallot(const CommitData& commit_data, const Action::Reallot* action) const;
 
-	bool has_children() const;
-	size_t num_children() const;
+	bool has_children(View view = View::CLASSIC) const;
+	size_t num_children(View view = View::CLASSIC) const;
 
-	bool has_parents() const;
-	size_t num_parents() const;
+	bool has_parents(View view = View::CLASSIC) const;
+	size_t num_parents(View view = View::CLASSIC) const;
 
 	template<typename Type>
-	bool has_single_child_of_type() const
+	bool has_single_child_of_type(View view = View::CLASSIC) const
 	{
 	    static_assert(is_const<Type>::value, "Type must be const");
 
@@ -212,152 +212,172 @@ namespace storage
 
 	    const Devicegraph::Impl& devicegraph_impl = get_devicegraph()->get_impl();
 
-	    const Device* tmp = devicegraph_impl[devicegraph_impl.child(get_vertex())];
+	    const Device* tmp = devicegraph_impl[devicegraph_impl.child(get_vertex(), view)];
 
 	    return is_device_of_type<Type>(tmp);
 	}
 
 	template<typename Type>
-	Type* get_single_child_of_type()
+	Type* get_single_child_of_type(View view = View::CLASSIC)
 	{
 	    static_assert(!is_const<Type>::value, "Type must not be const");
 
 	    Devicegraph::Impl& devicegraph_impl = get_devicegraph()->get_impl();
 
-	    Device* tmp = devicegraph_impl[devicegraph_impl.child(get_vertex())];
+	    Device* tmp = devicegraph_impl[devicegraph_impl.child(get_vertex(), view)];
 
 	    return to_device_of_type<Type>(tmp);
 	}
 
 	template<typename Type>
-	const Type* get_single_child_of_type() const
+	const Type* get_single_child_of_type(View view = View::CLASSIC) const
 	{
 	    static_assert(is_const<Type>::value, "Type must be const");
 
 	    const Devicegraph::Impl& devicegraph_impl = get_devicegraph()->get_impl();
 
-	    const Device* tmp = devicegraph_impl[devicegraph_impl.child(get_vertex())];
+	    const Device* tmp = devicegraph_impl[devicegraph_impl.child(get_vertex(), view)];
 
 	    return to_device_of_type<Type>(tmp);
 	}
 
 
 	template<typename Type>
-	size_t num_children_of_type() const
+	size_t num_children_of_type(View view = View::CLASSIC) const
 	{
 	    static_assert(is_const<Type>::value, "Type must be const");
 
 	    const Devicegraph::Impl& devicegraph_impl = get_devicegraph()->get_impl();
 
-	    return devicegraph_impl.filter_devices_of_type<Type>(devicegraph_impl.children(get_vertex())).size();
+	    return devicegraph_impl.filter_devices_of_type<Type>(devicegraph_impl.children(get_vertex(), view)).size();
 	}
 
 	template<typename Type>
-	vector<Type*> get_children_of_type()
+	vector<Type*> get_children_of_type(View view = View::CLASSIC)
 	{
 	    static_assert(!is_const<Type>::value, "Type must not be const");
 
 	    Devicegraph::Impl& devicegraph_impl = get_devicegraph()->get_impl();
 
-	    return devicegraph_impl.filter_devices_of_type<Type>(devicegraph_impl.children(get_vertex()));
+	    return devicegraph_impl.filter_devices_of_type<Type>(devicegraph_impl.children(get_vertex(), view));
 	}
 
 	template<typename Type>
-	vector<const Type*> get_children_of_type() const
+	vector<const Type*> get_children_of_type(View view = View::CLASSIC) const
 	{
 	    static_assert(is_const<Type>::value, "Type must be const");
 
 	    const Devicegraph::Impl& devicegraph_impl = get_devicegraph()->get_impl();
 
-	    return devicegraph_impl.filter_devices_of_type<Type>(devicegraph_impl.children(get_vertex()));
+	    return devicegraph_impl.filter_devices_of_type<Type>(devicegraph_impl.children(get_vertex(), view));
 	}
 
 
 	template<typename Type>
-	bool has_single_parent_of_type() const
+	bool has_single_parent_of_type(View view = View::CLASSIC) const
 	{
 	    static_assert(is_const<Type>::value, "Type must be const");
 
-	    if (num_parents() != 1)
+	    if (num_parents(view) != 1)
 		return false;
 
 	    const Devicegraph::Impl& devicegraph_impl = get_devicegraph()->get_impl();
 
-	    const Device* tmp = devicegraph_impl[devicegraph_impl.parent(get_vertex())];
+	    const Device* tmp = devicegraph_impl[devicegraph_impl.parent(get_vertex(), view)];
 
 	    return is_device_of_type<Type>(tmp);
 	}
 
 	template<typename Type>
-	Type* get_single_parent_of_type()
+	Type* get_single_parent_of_type(View view = View::CLASSIC)
 	{
 	    static_assert(!is_const<Type>::value, "Type must not be const");
 
 	    Devicegraph::Impl& devicegraph_impl = get_devicegraph()->get_impl();
 
-	    Device* tmp = devicegraph_impl[devicegraph_impl.parent(get_vertex())];
+	    Device* tmp = devicegraph_impl[devicegraph_impl.parent(get_vertex(), view)];
 
 	    return to_device_of_type<Type>(tmp);
 	}
 
 	template<typename Type>
-	const Type* get_single_parent_of_type() const
+	const Type* get_single_parent_of_type(View view = View::CLASSIC) const
 	{
 	    static_assert(is_const<Type>::value, "Type must be const");
 
 	    const Devicegraph::Impl& devicegraph_impl = get_devicegraph()->get_impl();
 
-	    const Device* tmp = devicegraph_impl[devicegraph_impl.parent(get_vertex())];
+	    const Device* tmp = devicegraph_impl[devicegraph_impl.parent(get_vertex(), view)];
 
 	    return to_device_of_type<Type>(tmp);
 	}
 
 	template<typename Type>
-	vector<Type*> get_parents_of_type()
+	vector<Type*> get_parents_of_type(View view = View::CLASSIC)
 	{
 	    static_assert(!is_const<Type>::value, "Type must not be const");
 
 	    Devicegraph::Impl& devicegraph_impl = get_devicegraph()->get_impl();
 
-	    return devicegraph_impl.filter_devices_of_type<Type>(devicegraph_impl.parents(get_vertex()));
+	    return devicegraph_impl.filter_devices_of_type<Type>(devicegraph_impl.parents(get_vertex(), view));
 	}
 
 	template<typename Type>
-	vector<const Type*> get_parents_of_type() const
+	vector<const Type*> get_parents_of_type(View view = View::CLASSIC) const
 	{
 	    static_assert(is_const<Type>::value, "Type must be const");
 
 	    const Devicegraph::Impl& devicegraph_impl = get_devicegraph()->get_impl();
 
-	    return devicegraph_impl.filter_devices_of_type<Type>(devicegraph_impl.parents(get_vertex()));
+	    return devicegraph_impl.filter_devices_of_type<Type>(devicegraph_impl.parents(get_vertex(), view));
 	}
 
 	template<typename Type>
-	vector<Type*> get_in_holders_of_type()
+	vector<Type*> get_in_holders_of_type(View view = View::CLASSIC)
 	{
 	    static_assert(!is_const<Type>::value, "Type must not be const");
 
 	    Devicegraph::Impl& devicegraph_impl = get_devicegraph()->get_impl();
 
-	    return devicegraph_impl.filter_holders_of_type<Type>(devicegraph_impl.in_edges(get_vertex()));
+	    return devicegraph_impl.filter_holders_of_type<Type>(devicegraph_impl.in_edges(get_vertex(), view));
 	}
 
 	template<typename Type>
-	vector<const Type*> get_in_holders_of_type() const
+	vector<const Type*> get_in_holders_of_type(View view = View::CLASSIC) const
 	{
 	    static_assert(is_const<Type>::value, "Type must be const");
 
 	    const Devicegraph::Impl& devicegraph_impl = get_devicegraph()->get_impl();
 
-	    return devicegraph_impl.filter_holders_of_type<Type>(devicegraph_impl.in_edges(get_vertex()));
+	    return devicegraph_impl.filter_holders_of_type<Type>(devicegraph_impl.in_edges(get_vertex(), view));
 	}
 
 	template<typename Type>
-	const Type* get_single_in_holder_of_type() const
+	vector<Type*> get_out_holders_of_type(View view = View::CLASSIC)
+	{
+	    static_assert(!is_const<Type>::value, "Type must not be const");
+
+	    Devicegraph::Impl& devicegraph_impl = get_devicegraph()->get_impl();
+
+	    return devicegraph_impl.filter_holders_of_type<Type>(devicegraph_impl.out_edges(get_vertex(), view));
+	}
+
+	template<typename Type>
+	vector<const Type*> get_out_holders_of_type(View view = View::CLASSIC) const
 	{
 	    static_assert(is_const<Type>::value, "Type must be const");
 
-	    vector<const Type*> tmp = get_in_holders_of_type<Type>();
+	    const Devicegraph::Impl& devicegraph_impl = get_devicegraph()->get_impl();
+
+	    return devicegraph_impl.filter_holders_of_type<Type>(devicegraph_impl.out_edges(get_vertex(), view));
+	}
+
+	template<typename Type>
+	const Type* get_single_in_holder_of_type(View view = View::CLASSIC) const
+	{
+	    static_assert(is_const<Type>::value, "Type must be const");
+
+	    vector<const Type*> tmp = get_in_holders_of_type<Type>(view);
 
 	    if (tmp.size() != 1)
 		ST_THROW(Exception("single in holder of type not found"));
@@ -366,13 +386,13 @@ namespace storage
 	}
 
 	template<typename Type>
-	const Type* get_single_out_holder_of_type() const
+	const Type* get_single_out_holder_of_type(View view = View::CLASSIC) const
 	{
 	    static_assert(is_const<Type>::value, "Type must be const");
 
 	    const Devicegraph::Impl& devicegraph_impl = get_devicegraph()->get_impl();
 
-	    const Holder* tmp = devicegraph_impl[devicegraph_impl.out_edge(get_vertex())];
+	    const Holder* tmp = devicegraph_impl[devicegraph_impl.out_edge(get_vertex(), view)];
 
 	    return to_holder_of_type<Type>(tmp);
 	}
