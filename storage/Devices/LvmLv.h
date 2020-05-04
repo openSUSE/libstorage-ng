@@ -212,6 +212,47 @@ namespace storage
 	const LvmLv* get_thin_pool() const;
 
 	/**
+	 * Check whether the logical volume has snapshots. These can
+	 * be either thick or thin snapshots.
+	 */
+	bool has_snapshots() const;
+
+	/**
+	 * Get snapshots of the logical volume.
+	 *
+	 * @see has_snapshots()
+	 */
+	std::vector<LvmLv*> get_snapshots();
+
+	/**
+	 * @copydoc get_snapshots()
+	 */
+	std::vector<const LvmLv*> get_snapshots() const;
+
+	/**
+	 * Check whether the logical volume has a origin. In other
+	 * words, whether it is a snapshots. It can be either a thick
+	 * or thin snapshot.
+	 *
+	 * @see has_snapshots()
+	 */
+	bool has_origin() const;
+
+	/**
+	 * Get the origin of the logical volume if it has one.
+	 *
+	 * @see has_origin()
+	 *
+	 * @throw Exception
+	 */
+	LvmLv* get_origin();
+
+	/**
+	 * @copydoc get_origin()
+	 */
+	const LvmLv* get_origin() const;
+
+	/**
 	 * Return the max size in bytes for a new logical volume of type
 	 * lv_type. The size may be limited by other parameters, e.g. the
 	 * filesystem on it.

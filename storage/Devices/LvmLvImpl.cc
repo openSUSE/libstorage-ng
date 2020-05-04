@@ -543,6 +543,68 @@ namespace storage
     }
 
 
+    bool
+    LvmLv::Impl::has_snapshots() const
+    {
+	return !get_out_holders_of_type<const Snapshot>(View::ALL).empty();
+    }
+
+
+    vector<LvmLv*>
+    LvmLv::Impl::get_snapshots()
+    {
+	vector<LvmLv*> ret;
+
+	for (Snapshot* snapshot : get_out_holders_of_type<Snapshot>(View::ALL))
+	    ret.push_back(to_lvm_lv(snapshot->get_target()));
+
+	return ret;
+    }
+
+
+    vector<const LvmLv*>
+    LvmLv::Impl::get_snapshots() const
+    {
+	vector<const LvmLv*> ret;
+
+	for (const Snapshot* snapshot : get_out_holders_of_type<const Snapshot>(View::ALL))
+	    ret.push_back(to_lvm_lv(snapshot->get_target()));
+
+	return ret;
+    }
+
+
+    bool
+    LvmLv::Impl::has_origin() const
+    {
+	return !get_in_holders_of_type<const Snapshot>(View::ALL).empty();
+    }
+
+
+    LvmLv*
+    LvmLv::Impl::get_origin()
+    {
+	vector<Snapshot*> snapshots = get_in_holders_of_type<Snapshot>(View::ALL);
+
+	if (snapshots.empty())
+	    ST_THROW(WrongNumberOfParents(snapshots.empty(), 1));
+
+	return to_lvm_lv(snapshots.front()->get_source());
+    }
+
+
+    const LvmLv*
+    LvmLv::Impl::get_origin() const
+    {
+	vector<const Snapshot*> snapshots = get_in_holders_of_type<const Snapshot>(View::ALL);
+
+	if (snapshots.empty())
+	    ST_THROW(WrongNumberOfParents(snapshots.empty(), 1));
+
+	return to_lvm_lv(snapshots.front()->get_source());
+    }
+
+
     unsigned long long
     LvmLv::Impl::max_size_for_lvm_lv(LvType lv_type, const vector<sid_t>& ignore_sids) const
     {
