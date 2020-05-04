@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -28,9 +28,9 @@
 #include <set>
 #include <boost/noncopyable.hpp>
 #include <boost/graph/adjacency_list.hpp>
+#include <boost/graph/filtered_graph.hpp>
 
 #include "storage/Devices/Device.h"
-#include "storage/Devices/BlkDevice.h"
 #include "storage/Holders/Holder.h"
 #include "storage/Devicegraph.h"
 
@@ -43,6 +43,23 @@ namespace storage
     using std::pair;
 
 
+    /**
+     * Enum with possible views on the devicegraph.
+     */
+    enum class View
+    {
+	/**
+	 * All devices and holders are visible.
+	 */
+	ALL,
+
+	/**
+	 * The classical view. Holders of type Snapshot are not visible.
+	 */
+	CLASSIC
+    };
+
+
     class Devicegraph::Impl : private boost::noncopyable
     {
 
@@ -50,7 +67,7 @@ namespace storage
 
 	// Using OutEdgeList=boost::setS disallows parallel edges.  Using
 	// VertexList=boost::listS and OutEdgeList=boost::setS makes both
-	// vertex and edge iterators stable (never invalidated).  See:
+	// vertex and edge iterators stable (never invalidated unless deleted). See:
 	// http://www.boost.org/doc/libs/1_56_0/libs/graph/doc/adjacency_list.html
 
 	// The shared_ptr is required for runtime polymorphism of Device and
@@ -74,6 +91,11 @@ namespace storage
 	typedef graph_t::out_edge_iterator out_edge_iterator;
 
 	typedef graph_t::vertices_size_type vertices_size_type;
+
+	typedef std::function<bool(Devicegraph::Impl::edge_descriptor)> edge_filter_t;
+
+	typedef boost::filtered_graph<graph_t, edge_filter_t> filtered_graph_t;
+
 
 	Impl(Storage* storage) : storage(storage) {}
 
@@ -143,31 +165,32 @@ namespace storage
 
 	void print(std::ostream& out) const;
 
-	void write_graphviz(const string& filename, DevicegraphStyleCallbacks* style_callbacks) const;
+	void write_graphviz(const string& filename, DevicegraphStyleCallbacks* style_callbacks,
+			    View view = View::CLASSIC) const;
 
-	size_t num_children(vertex_descriptor vertex) const;
-	size_t num_parents(vertex_descriptor vertex) const;
+	size_t num_children(vertex_descriptor vertex, View view = View::CLASSIC) const;
+	size_t num_parents(vertex_descriptor vertex, View view = View::CLASSIC) const;
 
-	vertex_descriptor child(vertex_descriptor vertex) const;
-	vertex_descriptor parent(vertex_descriptor vertex) const;
+	vertex_descriptor child(vertex_descriptor vertex, View view = View::CLASSIC) const;
+	vertex_descriptor parent(vertex_descriptor vertex, View view = View::CLASSIC) const;
 
 	// TODO use iterator base functions instead of vector based below
 	// boost::iterator_range<adjacency_iterator> children(vertex_descriptor vertex) const;
 	// boost::iterator_range<inv_adjacency_iterator> parents(vertex_descriptor vertex) const;
 
-	vector<vertex_descriptor> children(vertex_descriptor vertex) const;
-	vector<vertex_descriptor> parents(vertex_descriptor vertex) const;
-	vector<vertex_descriptor> siblings(vertex_descriptor vertex, bool itself) const;
-	vector<vertex_descriptor> descendants(vertex_descriptor vertex, bool itself) const;
-	vector<vertex_descriptor> ancestors(vertex_descriptor vertex, bool itself) const;
-	vector<vertex_descriptor> leaves(vertex_descriptor vertex, bool itself) const;
-	vector<vertex_descriptor> roots(vertex_descriptor vertex, bool itself) const;
+	vector<vertex_descriptor> children(vertex_descriptor vertex, View view = View::CLASSIC) const;
+	vector<vertex_descriptor> parents(vertex_descriptor vertex, View view = View::CLASSIC) const;
+	vector<vertex_descriptor> siblings(vertex_descriptor vertex, bool itself, View view = View::CLASSIC) const;
+	vector<vertex_descriptor> descendants(vertex_descriptor vertex, bool itself, View view = View::CLASSIC) const;
+	vector<vertex_descriptor> ancestors(vertex_descriptor vertex, bool itself, View view = View::CLASSIC) const;
+	vector<vertex_descriptor> leaves(vertex_descriptor vertex, bool itself, View view = View::CLASSIC) const;
+	vector<vertex_descriptor> roots(vertex_descriptor vertex, bool itself, View view = View::CLASSIC) const;
 
-	edge_descriptor in_edge(vertex_descriptor vertex) const;
-	edge_descriptor out_edge(vertex_descriptor vertex) const;
+	edge_descriptor in_edge(vertex_descriptor vertex, View view = View::CLASSIC) const;
+	edge_descriptor out_edge(vertex_descriptor vertex, View view = View::CLASSIC) const;
 
-	vector<edge_descriptor> in_edges(vertex_descriptor vertex) const;
-	vector<edge_descriptor> out_edges(vertex_descriptor vertex) const;
+	vector<edge_descriptor> in_edges(vertex_descriptor vertex, View view = View::CLASSIC) const;
+	vector<edge_descriptor> out_edges(vertex_descriptor vertex, View view = View::CLASSIC) const;
 
 
 	template<typename Type>
@@ -185,7 +208,6 @@ namespace storage
 
 	    return ret;
 	}
-
 
 
 	template <typename Type, typename Pred>
@@ -282,6 +304,8 @@ namespace storage
 	graph_t graph;		// TODO private?
 
     private:
+
+	edge_filter_t make_edge_filter(View view) const;
 
 	Storage* storage;
 

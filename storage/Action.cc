@@ -24,6 +24,7 @@
 #include "storage/Action.h"
 #include "storage/DevicegraphImpl.h"
 #include "storage/Devices/DeviceImpl.h"
+#include "storage/Devices/BlkDevice.h"
 
 
 namespace storage

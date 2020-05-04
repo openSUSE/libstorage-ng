@@ -22,6 +22,7 @@
 
 
 #include "storage/Devices/DeviceImpl.h"
+#include "storage/Devices/BlkDevice.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
 #include "storage/Utils/XmlFile.h"
@@ -209,30 +210,30 @@ namespace storage
 
 
     bool
-    Device::Impl::has_children() const
+    Device::Impl::has_children(View view) const
     {
-	return devicegraph->get_impl().num_children(vertex) > 0;
+	return devicegraph->get_impl().num_children(vertex, view) > 0;
     }
 
 
     size_t
-    Device::Impl::num_children() const
+    Device::Impl::num_children(View view) const
     {
-	return devicegraph->get_impl().num_children(vertex);
+	return devicegraph->get_impl().num_children(vertex, view);
     }
 
 
     bool
-    Device::Impl::has_parents() const
+    Device::Impl::has_parents(View view) const
     {
-	return devicegraph->get_impl().num_parents(vertex) > 0;
+	return devicegraph->get_impl().num_parents(vertex, view) > 0;
     }
 
 
     size_t
-    Device::Impl::num_parents() const
+    Device::Impl::num_parents(View view) const
     {
-	return devicegraph->get_impl().num_parents(vertex);
+	return devicegraph->get_impl().num_parents(vertex, view);
     }
 
 

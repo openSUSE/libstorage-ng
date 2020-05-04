@@ -21,6 +21,7 @@
 
 
 #include "storage/Filesystems/UdfImpl.h"
+#include "storage/Devices/BlkDevice.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/Region.h"

@@ -473,68 +473,72 @@ namespace storage
 
 
     size_t
-    Devicegraph::Impl::num_children(vertex_descriptor vertex) const
+    Devicegraph::Impl::num_children(vertex_descriptor vertex, View view) const
     {
-	return boost::out_degree(vertex, graph);
+	filtered_graph_t filtered_graph(graph, make_edge_filter(view));
+
+	return boost::out_degree(vertex, filtered_graph);
     }
 
 
     size_t
-    Devicegraph::Impl::num_parents(vertex_descriptor vertex) const
+    Devicegraph::Impl::num_parents(vertex_descriptor vertex, View view) const
     {
-	return boost::in_degree(vertex, graph);
+	filtered_graph_t filtered_graph(graph, make_edge_filter(view));
+
+	return boost::in_degree(vertex, filtered_graph);
     }
 
 
     Devicegraph::Impl::vertex_descriptor
-    Devicegraph::Impl::child(vertex_descriptor vertex) const
+    Devicegraph::Impl::child(vertex_descriptor vertex, View view) const
     {
-	if (num_children(vertex) != 1)
-	    ST_THROW(WrongNumberOfChildren(num_children(vertex), 1));
-
-	return *boost::make_iterator_range(boost::adjacent_vertices(vertex, graph)).begin();
+	return target(out_edge(vertex, view));
     }
 
 
     Devicegraph::Impl::vertex_descriptor
-    Devicegraph::Impl::parent(vertex_descriptor vertex) const
+    Devicegraph::Impl::parent(vertex_descriptor vertex, View view) const
     {
-	if (num_parents(vertex) != 1)
-	    ST_THROW(WrongNumberOfParents(num_parents(vertex), 1));
-
-	return *boost::make_iterator_range(boost::inv_adjacent_vertices(vertex, graph)).begin();
+	return source(in_edge(vertex, view));
     }
 
 
     vector<Devicegraph::Impl::vertex_descriptor>
-    Devicegraph::Impl::children(vertex_descriptor vertex) const
-    {
-	boost::iterator_range<adjacency_iterator> range =
-	    boost::make_iterator_range(boost::adjacent_vertices(vertex, graph));
-	return vector<vertex_descriptor>(range.begin(), range.end());
-    }
-
-
-    vector<Devicegraph::Impl::vertex_descriptor>
-    Devicegraph::Impl::parents(vertex_descriptor vertex) const
-    {
-	boost::iterator_range<inv_adjacency_iterator> range =
-	    boost::make_iterator_range(boost::inv_adjacent_vertices(vertex, graph));
-	return vector<vertex_descriptor>(range.begin(), range.end());
-    }
-
-
-    vector<Devicegraph::Impl::vertex_descriptor>
-    Devicegraph::Impl::siblings(vertex_descriptor vertex, bool itself) const
+    Devicegraph::Impl::children(vertex_descriptor vertex, View view) const
     {
 	vector<vertex_descriptor> ret;
 
-	for (vertex_descriptor tmp1 : boost::make_iterator_range(inv_adjacent_vertices(vertex, graph)))
+	for (edge_descriptor edge : out_edges(vertex, view))
+	    ret.push_back(target(edge));
+
+	return ret;
+    }
+
+
+    vector<Devicegraph::Impl::vertex_descriptor>
+    Devicegraph::Impl::parents(vertex_descriptor vertex, View view) const
+    {
+	vector<vertex_descriptor> ret;
+
+	for (edge_descriptor edge : in_edges(vertex, view))
+	    ret.push_back(source(edge));
+
+	return ret;
+    }
+
+
+    vector<Devicegraph::Impl::vertex_descriptor>
+    Devicegraph::Impl::siblings(vertex_descriptor vertex, bool itself, View view) const
+    {
+	vector<vertex_descriptor> ret;
+
+	for (vertex_descriptor parent : parents(vertex, view))
 	{
-	    for (vertex_descriptor tmp2 : boost::make_iterator_range(adjacent_vertices(tmp1, graph)))
+	    for (vertex_descriptor child : children(parent, view))
 	    {
-		if (itself || vertex != tmp2)
-		    ret.push_back(tmp2);
+		if (itself || vertex != child)
+		    ret.push_back(child);
 	    }
 	}
 
@@ -546,15 +550,16 @@ namespace storage
 
 
     vector<Devicegraph::Impl::vertex_descriptor>
-    Devicegraph::Impl::descendants(vertex_descriptor vertex, bool itself) const
+    Devicegraph::Impl::descendants(vertex_descriptor vertex, bool itself, View view) const
     {
+	filtered_graph_t filtered_graph(graph, make_edge_filter(view));
+
+	VertexIndexMapGenerator<filtered_graph_t> vertex_index_map_generator(filtered_graph);
+
 	vector<vertex_descriptor> ret;
-
-	VertexIndexMapGenerator<graph_t> vertex_index_map_generator(graph);
-
 	VertexRecorder<vertex_descriptor> vertex_recorder(false, ret);
 
-	boost::breadth_first_search(graph, vertex, visitor(vertex_recorder).
+	boost::breadth_first_search(filtered_graph, vertex, visitor(vertex_recorder).
 				    vertex_index_map(vertex_index_map_generator.get()));
 
 	if (!itself)
@@ -565,16 +570,16 @@ namespace storage
 
 
     vector<Devicegraph::Impl::vertex_descriptor>
-    Devicegraph::Impl::ancestors(vertex_descriptor vertex, bool itself) const
+    Devicegraph::Impl::ancestors(vertex_descriptor vertex, bool itself, View view) const
     {
-	vector<vertex_descriptor> ret;
+	typedef boost::reverse_graph<filtered_graph_t> reverse_graph_t;
 
-	typedef boost::reverse_graph<graph_t> reverse_graph_t;
-
-	reverse_graph_t reverse_graph(graph);
+	filtered_graph_t filtered_graph(graph, make_edge_filter(view));
+	reverse_graph_t reverse_graph(filtered_graph);
 
 	VertexIndexMapGenerator<reverse_graph_t> vertex_index_map_generator(reverse_graph);
 
+	vector<vertex_descriptor> ret;
 	VertexRecorder<vertex_descriptor> vertex_recorder(false, ret);
 
 	boost::breadth_first_search(reverse_graph, vertex, visitor(vertex_recorder).
@@ -588,15 +593,16 @@ namespace storage
 
 
     vector<Devicegraph::Impl::vertex_descriptor>
-    Devicegraph::Impl::leaves(vertex_descriptor vertex, bool itself) const
+    Devicegraph::Impl::leaves(vertex_descriptor vertex, bool itself, View view) const
     {
+	filtered_graph_t filtered_graph(graph, make_edge_filter(view));
+
+	VertexIndexMapGenerator<filtered_graph_t> vertex_index_map_generator(filtered_graph);
+
 	vector<vertex_descriptor> ret;
-
-	VertexIndexMapGenerator<graph_t> vertex_index_map_generator(graph);
-
 	VertexRecorder<vertex_descriptor> vertex_recorder(true, ret);
 
-	boost::breadth_first_search(graph, vertex, visitor(vertex_recorder).
+	boost::breadth_first_search(filtered_graph, vertex, visitor(vertex_recorder).
 				    vertex_index_map(vertex_index_map_generator.get()));
 
 	if (!itself)
@@ -607,16 +613,16 @@ namespace storage
 
 
     vector<Devicegraph::Impl::vertex_descriptor>
-    Devicegraph::Impl::roots(vertex_descriptor vertex, bool itself) const
+    Devicegraph::Impl::roots(vertex_descriptor vertex, bool itself, View view) const
     {
+	typedef boost::reverse_graph<filtered_graph_t> reverse_graph_t;
+
+	filtered_graph_t filtered_graph(graph, make_edge_filter(view));
+	reverse_graph_t reverse_graph(filtered_graph);
+
+	VertexIndexMapGenerator<reverse_graph_t> vertex_index_map_generator(filtered_graph);
+
 	vector<vertex_descriptor> ret;
-
-	typedef boost::reverse_graph<graph_t> reverse_graph_t;
-
-	reverse_graph_t reverse_graph(graph);
-
-	VertexIndexMapGenerator<reverse_graph_t> vertex_index_map_generator(graph);
-
 	VertexRecorder<vertex_descriptor> vertex_recorder(true, ret);
 
 	boost::breadth_first_search(reverse_graph, vertex, visitor(vertex_recorder).
@@ -630,39 +636,57 @@ namespace storage
 
 
     Devicegraph::Impl::edge_descriptor
-    Devicegraph::Impl::in_edge(vertex_descriptor vertex) const
+    Devicegraph::Impl::in_edge(vertex_descriptor vertex, View view) const
     {
-	if (num_parents(vertex) != 1)
-	    ST_THROW(WrongNumberOfParents(num_parents(vertex), 1));
+	filtered_graph_t filtered_graph(graph, make_edge_filter(view));
 
-	return *boost::make_iterator_range(boost::in_edges(vertex, graph)).begin();
+	boost::iterator_range<filtered_graph_t::in_edge_iterator> range =
+	    boost::make_iterator_range(boost::in_edges(vertex, filtered_graph));
+
+	size_t size = distance(range.begin(), range.end());
+	if (size != 1)
+	    ST_THROW(WrongNumberOfParents(size, 1));
+
+	return range.front();
     }
 
 
     Devicegraph::Impl::edge_descriptor
-    Devicegraph::Impl::out_edge(vertex_descriptor vertex) const
+    Devicegraph::Impl::out_edge(vertex_descriptor vertex, View view) const
     {
-	if (num_children(vertex) != 1)
-	    ST_THROW(WrongNumberOfChildren(num_children(vertex), 1));
+	filtered_graph_t filtered_graph(graph, make_edge_filter(view));
 
-	return *boost::make_iterator_range(boost::out_edges(vertex, graph)).begin();
+	boost::iterator_range<filtered_graph_t::out_edge_iterator> range =
+	    boost::make_iterator_range(boost::out_edges(vertex, filtered_graph));
+
+	size_t size = distance(range.begin(), range.end());
+	if (size != 1)
+	    ST_THROW(WrongNumberOfChildren(size, 1));
+
+	return range.front();
     }
 
 
     vector<Devicegraph::Impl::edge_descriptor>
-    Devicegraph::Impl::in_edges(vertex_descriptor vertex) const
+    Devicegraph::Impl::in_edges(vertex_descriptor vertex, View view) const
     {
-	boost::iterator_range<in_edge_iterator> range =
-	    boost::make_iterator_range(boost::in_edges(vertex, graph));
+	filtered_graph_t filtered_graph(graph, make_edge_filter(view));
+
+	boost::iterator_range<filtered_graph_t::in_edge_iterator> range =
+	    boost::make_iterator_range(boost::in_edges(vertex, filtered_graph));
+
 	return vector<edge_descriptor>(range.begin(), range.end());
     }
 
 
     vector<Devicegraph::Impl::edge_descriptor>
-    Devicegraph::Impl::out_edges(vertex_descriptor vertex) const
+    Devicegraph::Impl::out_edges(vertex_descriptor vertex, View view) const
     {
-	boost::iterator_range<out_edge_iterator> range =
-	    boost::make_iterator_range(boost::out_edges(vertex, graph));
+	filtered_graph_t filtered_graph(graph, make_edge_filter(view));
+
+	boost::iterator_range<filtered_graph_t::out_edge_iterator> range =
+	    boost::make_iterator_range(boost::out_edges(vertex, filtered_graph));
+
 	return vector<edge_descriptor>(range.begin(), range.end());
     }
 
@@ -880,9 +904,11 @@ namespace storage
 
     void
     Devicegraph::Impl::write_graphviz(const string& filename, DevicegraphStyleCallbacks*
-				      style_callbacks) const
+				      style_callbacks, View view) const
     {
 	ST_CHECK_PTR(style_callbacks);
+
+	filtered_graph_t filtered_graph(graph, make_edge_filter(view));
 
 	ofstream fout(filename);
 
@@ -903,13 +929,24 @@ namespace storage
 	    boost::put(vertex_id_property_map, *vi, graph[*vi].get()->get_sid());
 
 	const DevicegraphWriter devicegraph_writer(style_callbacks, *this);
-	boost::write_graphviz(fout, graph, devicegraph_writer, devicegraph_writer, devicegraph_writer,
-			      vertex_id_property_map);
+	boost::write_graphviz(fout, filtered_graph, devicegraph_writer, devicegraph_writer,
+			      devicegraph_writer, vertex_id_property_map);
 
 	fout.close();
 
 	if (!fout.good())
 	    ST_THROW(IOException(sformat("failed to write '%s'", filename)));
+    }
+
+
+    Devicegraph::Impl::edge_filter_t
+    Devicegraph::Impl::make_edge_filter(View view) const
+    {
+	// graph is needed by reference and view by value
+	return [&, view](Devicegraph::Impl::edge_descriptor edge) {
+	    const Holder* holder = graph[edge].get();
+	    return holder->get_impl().is_in_view(view);
+	};
     }
 
 }

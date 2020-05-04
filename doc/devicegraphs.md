@@ -1,4 +1,7 @@
 
+Special Devicegraphs
+--------------------
+
 libstorage-ng uses three special devicegraphs:
 
 
@@ -34,3 +37,21 @@ When discarding the staging devicegraph completely it should be copied from
 the probed devicegraph. Copying it from the system devicegraph would get the
 active settings wrong after commit.
 
+
+
+Views
+-----
+
+Views on a devicegraph allow to filter certain nodes or edges. This is
+used to hide snapshot relations for LVM logical volumes since these
+relations do not follow the usual parent-child relationship. E.g. the
+thin origin of a thin snapshot can be deleted without deleting the
+thin snapshot.
+
+So far the view cannot be specified in the API.
+
+Relation functions, e.g. Device::get_children(), hide snapshot
+relations.
+
+Other functions, e.g. Devicegraph::find_holder(sid_t source_sid, sid_t
+target_sid), will find an internal holder.
