@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -28,6 +28,7 @@
 #include "storage/Holders/MdUser.h"
 #include "storage/Holders/FilesystemUser.h"
 #include "storage/Holders/Subdevice.h"
+#include "storage/Holders/Snapshot.h"
 #include "storage/Devices/DeviceImpl.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Devices/Disk.h"
@@ -179,6 +180,11 @@ namespace storage
 	else if (is_user(holder))
 	{
 	    ret["style"] = "dashed";
+	}
+	else if (is_snapshot(holder))
+	{
+	    ret["style"] = "dashed";
+	    ret["color"] = "green";
 	}
 	else
 	{

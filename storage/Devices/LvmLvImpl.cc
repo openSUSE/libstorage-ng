@@ -32,6 +32,7 @@
 #include "storage/Devices/LvmLvImpl.h"
 #include "storage/Devices/LvmVgImpl.h"
 #include "storage/Holders/Subdevice.h"
+#include "storage/Holders/Snapshot.h"
 #include "storage/Storage.h"
 #include "storage/FreeInfo.h"
 #include "storage/Holders/User.h"
@@ -337,6 +338,20 @@ namespace storage
 	    lvm_lv->get_impl().set_uuid(lv.lv_uuid);
 	    lvm_lv->get_impl().set_active(lv.active && lv.lv_type != LvType::THIN_POOL);
 	    lvm_lv->get_impl().probe_pass_1a(prober);
+	}
+
+	for (const CmdLvs::Lv& lv : lvs)
+	{
+	    if (lv.origin_uuid.empty())
+		continue;
+
+	    if (lv.lv_type == LvType::SNAPSHOT || lv.lv_type == LvType::THIN)
+	    {
+		LvmLv* a = LvmLv::Impl::find_by_uuid(system, lv.origin_uuid);
+		LvmLv* b = LvmLv::Impl::find_by_uuid(system, lv.lv_uuid);
+
+		Snapshot::create(system, a, b);
+	    }
 	}
 
 	if (!unsupported_lvs.empty())

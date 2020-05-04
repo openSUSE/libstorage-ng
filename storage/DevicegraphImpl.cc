@@ -80,6 +80,7 @@
 #include "storage/Holders/FilesystemUser.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Holders/MdSubdevice.h"
+#include "storage/Holders/Snapshot.h"
 #include "storage/Storage.h"
 #include "storage/Utils/Format.h"
 #include "storage/GraphvizImpl.h"
@@ -743,7 +744,8 @@ namespace storage
 	{ "MdUser", &MdUser::load },
 	{ "FilesystemUser", &FilesystemUser::load },
 	{ "Subdevice", &Subdevice::load },
-	{ "MdSubdevice", &MdSubdevice::load }
+	{ "MdSubdevice", &MdSubdevice::load },
+	{ "Snapshot", &Snapshot::load }
     };
 
 

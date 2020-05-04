@@ -16,7 +16,9 @@ libholders_la_SOURCES =					\
 	Subdevice.h		Subdevice.cc		\
 	SubdeviceImpl.h		SubdeviceImpl.cc	\
 	MdSubdevice.h		MdSubdevice.cc		\
-	MdSubdeviceImpl.h	MdSubdeviceImpl.cc
+	MdSubdeviceImpl.h	MdSubdeviceImpl.cc	\
+	Snapshot.h		Snapshot.cc		\
+	SnapshotImpl.h		SnapshotImpl.cc
 
 pkgincludedir = $(includedir)/storage/Holders
 
