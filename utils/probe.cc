@@ -6,7 +6,7 @@
 
 #include "storage/StorageImpl.h"
 #include "storage/Environment.h"
-#include "storage/Devicegraph.h"
+#include "storage/DevicegraphImpl.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/Logger.h"
 #include "storage/Utils/StorageDefines.h"
@@ -81,7 +81,8 @@ doit()
     {
 	const TmpDir& tmp_dir = storage.get_impl().get_tmp_dir();
 
-	probed->write_graphviz(tmp_dir.get_fullname() + "/probe.gv", get_debug_devicegraph_style_callbacks());
+	probed->get_impl().write_graphviz(tmp_dir.get_fullname() + "/probe.gv",
+					  get_debug_devicegraph_style_callbacks(), View::ALL);
 	system(string(DOT_BIN " -Tsvg < " + quote(tmp_dir.get_fullname() + "/probe.gv") + " > " +
 		      quote(tmp_dir.get_fullname() + "/probe.svg")).c_str());
 	unlink(string(tmp_dir.get_fullname() + "/probe.gv").c_str());
