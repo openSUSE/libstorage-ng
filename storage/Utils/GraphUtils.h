@@ -67,7 +67,7 @@ namespace storage
 
     protected:
 
-	bool only_leaves;
+	const bool only_leaves;
 
 	vector<Vertex>& vertices;
 
