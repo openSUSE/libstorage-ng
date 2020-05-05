@@ -1,4 +1,18 @@
 
+Devicegraph
+-----------
+
+In libstorage-ng a devicegraph represents all storage objects,
+e.g. disks, partitions and file systems, and the connections between
+them, e.g. a LVM logical volume is the child of a LVM volume group.
+
+The devicegraph is a directed graph
+(https://en.wikipedia.org/wiki/Directed_graph). In general it cannot
+be assumed that it is also a directed acyclic graph
+(https://en.wikipedia.org/wiki/Directed_acyclic_graph).
+
+
+
 Special Devicegraphs
 --------------------
 
