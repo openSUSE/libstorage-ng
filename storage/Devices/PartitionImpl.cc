@@ -132,7 +132,7 @@ namespace storage
 
 	// Use partition UUID only on GPT. On MS-DOS it is also
 	// available but includes the partition number, so updating it
-	// would be require (even in fstab) when a logical partition
+	// would be required (even in fstab) when a logical partition
 	// gets renumbered. For UUIDs a rather odd behaviour.
 
 	if (!cmd_udevadm_info.get_by_part_uuid_links().empty() && is_gpt(partition_table))
