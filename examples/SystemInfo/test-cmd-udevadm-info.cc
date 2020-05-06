@@ -12,9 +12,9 @@ test_udevadminfo(SystemInfo& system_info, const string& file)
 {
     try
     {
-	const CmdUdevadmInfo& cmdudevadminfo = system_info.getCmdUdevadmInfo(file);
+	const CmdUdevadmInfo& cmd_udevadm_info = system_info.getCmdUdevadmInfo(file);
 	cout << "CmdUdevadmInfo success for '" << file << "'" << endl;
-	cout << cmdudevadminfo << endl;
+	cout << cmd_udevadm_info << endl;
     }
     catch (const exception& e)
     {

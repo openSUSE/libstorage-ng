@@ -22,11 +22,11 @@ check(const string& file, const vector<string>& input, const vector<string>& out
     Mockup::set_command(UDEVADM_BIN_SETTLE, {});
     Mockup::set_command(UDEVADM_BIN " info " + quote(file), input);
 
-    CmdUdevadmInfo cmdudevadminfo(file);
+    CmdUdevadmInfo cmd_udevadm_info(file);
 
     ostringstream parsed;
     parsed.setf(std::ios::boolalpha);
-    parsed << cmdudevadminfo;
+    parsed << cmd_udevadm_info;
 
     string lhs = parsed.str();
     string rhs = boost::join(output, "\n") + "\n";
