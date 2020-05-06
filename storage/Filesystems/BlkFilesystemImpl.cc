@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -929,6 +929,27 @@ namespace storage
 	{
 	    blk_device->get_impl().wipe_device();
 	}
+    }
+
+
+    bool
+    BlkFilesystem::Impl::is_active_at_present(SystemInfo& system_info, const MountPoint* mount_point) const
+    {
+	bool ret = true;
+
+	y2mil("active check begin");
+
+	const BlkDevice* blk_device = get_blk_device();
+
+	vector<string> aliases = EtcFstab::construct_device_aliases(blk_device, get_non_impl());
+
+	vector<const FstabEntry*> mount_entries = find_proc_mounts_entries(system_info, aliases);
+
+	ret = !mount_entries.empty();
+
+	y2mil("active check end");
+
+	return ret;
     }
 
 

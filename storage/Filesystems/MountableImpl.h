@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -144,6 +144,12 @@ namespace storage
 
 	virtual Text do_remove_from_etc_fstab_text(const MountPoint* mount_point, Tense tense) const;
 	virtual void do_remove_from_etc_fstab(CommitData& commit_data, const MountPoint* mount_point) const;
+
+	/**
+	 * Checks if the mount point of the mountable is actions at
+	 * present. Does system lookups via the system_info.
+	 */
+	virtual bool is_active_at_present(SystemInfo& system_info, const MountPoint* mount_point) const = 0;
 
 	virtual void immediate_activate(MountPoint* mount_point, bool force_rw = false) const;
 	virtual void immediate_deactivate(MountPoint* mount_point) const;
