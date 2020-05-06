@@ -207,6 +207,7 @@
       <dm-table-name>36005076305ffc73a00000000000013b4-part1</dm-table-name>
       <type>primary</type>
       <id>131</id>
+      <uuid>e7918226-93ef-42a0-9caf-2351a92299ca</uuid>
     </Partition>
     <Luks>
       <sid>55</sid>

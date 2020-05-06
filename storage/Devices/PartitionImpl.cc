@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -62,14 +62,14 @@ namespace storage
 
     Partition::Impl::Impl(const string& name, const Region& region, PartitionType type)
 	: BlkDevice::Impl(name, region), type(type), id(default_id_for_type(type)), boot(false),
-	  legacy_boot(false)
+	  legacy_boot(false), label(), uuid()
     {
     }
 
 
     Partition::Impl::Impl(const xmlNode* node)
 	: BlkDevice::Impl(node), type(PartitionType::PRIMARY), id(ID_LINUX), boot(false),
-	  legacy_boot(false)
+	  legacy_boot(false), label(), uuid()
     {
 	string tmp;
 
@@ -78,6 +78,9 @@ namespace storage
 	getChildValue(node, "id", id);
 	getChildValue(node, "boot", boot);
 	getChildValue(node, "legacy-boot", legacy_boot);
+
+	getChildValue(node, "label", label);
+	getChildValue(node, "uuid", uuid);
     }
 
 
@@ -108,9 +111,12 @@ namespace storage
     {
 	BlkDevice::Impl::probe_pass_1a(prober);
 
-	const Partitionable* partitionable = get_partitionable();
+	SystemInfo& system_info = prober.get_system_info();
 
-	const Parted& parted = prober.get_system_info().getParted(partitionable->get_name());
+	const PartitionTable* partition_table = get_partition_table();
+	const Partitionable* partitionable = partition_table->get_partitionable();
+
+	const Parted& parted = system_info.getParted(partitionable->get_name());
 	Parted::Entry entry;
 	if (!parted.get_entry(get_number(), entry))
 	    ST_THROW(Exception("partition not found in parted output"));
@@ -118,6 +124,19 @@ namespace storage
 	id = entry.id;
 	boot = entry.boot;
 	legacy_boot = entry.legacy_boot;
+
+	const CmdUdevadmInfo& cmd_udevadm_info = system_info.getCmdUdevadmInfo(get_name());
+
+	if (!cmd_udevadm_info.get_by_part_label_links().empty())
+	    label = cmd_udevadm_info.get_by_part_label_links().front();
+
+	// Use partition UUID only on GPT. On MS-DOS it is also
+	// available but includes the partition number, so updating it
+	// would be require (even in fstab) when a logical partition
+	// gets renumbered. For UUIDs a rather odd behaviour.
+
+	if (!cmd_udevadm_info.get_by_part_uuid_links().empty() && is_gpt(partition_table))
+	    uuid = cmd_udevadm_info.get_by_part_uuid_links().front();
 
 	probe_topology(prober);
     }
@@ -150,6 +169,9 @@ namespace storage
 	setChildValueIf(node, "id", id, id != 0);
 	setChildValueIf(node, "boot", boot, boot);
 	setChildValueIf(node, "legacy-boot", legacy_boot, legacy_boot);
+
+	setChildValueIf(node, "label", label, !label.empty());
+	setChildValueIf(node, "uuid", uuid, !uuid.empty());
     }
 
 
@@ -367,7 +389,7 @@ namespace storage
 	    return false;
 
 	return type == rhs.type && id == rhs.id && boot == rhs.boot &&
-	    legacy_boot == rhs.legacy_boot;
+	    legacy_boot == rhs.legacy_boot && label == rhs.label && uuid == rhs.uuid;
     }
 
 
@@ -382,6 +404,9 @@ namespace storage
 	storage::log_diff_hex(log, "id", id, rhs.id);
 	storage::log_diff(log, "boot", boot, rhs.boot);
 	storage::log_diff(log, "legacy-boot", legacy_boot, rhs.legacy_boot);
+
+	storage::log_diff(log, "label", label, rhs.label);
+	storage::log_diff(log, "uuid", uuid, rhs.uuid);
     }
 
 
@@ -398,6 +423,12 @@ namespace storage
 
 	if (legacy_boot)
 	    out << " legacy-boot:" << legacy_boot;
+
+	if (!label.empty())
+	    out << " label:" << label;
+
+	if (!uuid.empty())
+	    out << " uuid:" << uuid;
     }
 
 

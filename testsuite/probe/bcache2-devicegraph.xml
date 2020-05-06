@@ -100,6 +100,7 @@
       <udev-id>usb-Generic_Flash_Disk_11A43B87-0:0-part1</udev-id>
       <type>primary</type>
       <id>142</id>
+      <uuid>019bea22-484f-4af4-8aef-62608b232f42</uuid>
     </Partition>
     <Partition>
       <sid>50</sid>
@@ -115,6 +116,7 @@
       <udev-id>usb-Generic_Flash_Disk_11A43B87-0:0-part2</udev-id>
       <type>primary</type>
       <id>142</id>
+      <uuid>59d34ca4-7c2f-4409-a73d-7c30d137b2f1</uuid>
     </Partition>
     <Partition>
       <sid>51</sid>
@@ -130,6 +132,7 @@
       <udev-id>usb-Generic_Flash_Disk_11A43B87-0:0-part3</udev-id>
       <type>primary</type>
       <id>142</id>
+      <uuid>0276ecef-7082-4ea0-9e32-43b5fac84994</uuid>
     </Partition>
     <Partition>
       <sid>52</sid>
@@ -145,6 +148,7 @@
       <udev-id>usb-Generic_Flash_Disk_11A43B87-0:0-part4</udev-id>
       <type>primary</type>
       <id>142</id>
+      <uuid>9779968e-f688-4d05-8595-fc97b7f9d943</uuid>
     </Partition>
     <Gpt>
       <sid>53</sid>
@@ -166,6 +170,7 @@
       <udev-id>scsi-SATA_VBOX_HARDDISK_VBe18006b0-58cecc64-part1</udev-id>
       <type>primary</type>
       <id>131</id>
+      <uuid>b3ebf520-c53b-448c-903b-91fe80cfe0cc</uuid>
     </Partition>
     <Partition>
       <sid>55</sid>
@@ -184,6 +189,7 @@
       <udev-id>scsi-SATA_VBOX_HARDDISK_VBe18006b0-58cecc64-part2</udev-id>
       <type>primary</type>
       <id>257</id>
+      <uuid>ff7469c5-d706-4408-b11c-dee3d83c5d67</uuid>
     </Partition>
     <Partition>
       <sid>56</sid>
@@ -202,6 +208,7 @@
       <udev-id>scsi-SATA_VBOX_HARDDISK_VBe18006b0-58cecc64-part3</udev-id>
       <type>primary</type>
       <id>130</id>
+      <uuid>1352e018-27e4-4db5-9226-37af93d07773</uuid>
     </Partition>
     <Gpt>
       <sid>57</sid>
@@ -218,6 +225,7 @@
       </region>
       <type>primary</type>
       <id>131</id>
+      <uuid>495b0fc3-2188-3b40-b056-170d32ebd7f4</uuid>
     </Partition>
     <Partition>
       <sid>59</sid>
@@ -231,6 +239,7 @@
       </region>
       <type>primary</type>
       <id>131</id>
+      <uuid>b6e26781-5021-cb4d-bdd0-de47119068d4</uuid>
     </Partition>
     <Ext4>
       <sid>60</sid>

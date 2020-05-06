@@ -36,6 +36,7 @@
       <udev-id>usb-WD_My_Passport_25E2_57584D31454135463654544A-0:0-part1</udev-id>
       <type>primary</type>
       <id>131</id>
+      <uuid>6ff11cf3-cdda-4ca3-88ca-faff87c3dffe</uuid>
     </Partition>
     <Partition>
       <sid>45</sid>
@@ -52,6 +53,7 @@
       <udev-id>usb-WD_My_Passport_25E2_57584D31454135463654544A-0:0-part2</udev-id>
       <type>primary</type>
       <id>131</id>
+      <uuid>f645b83c-005f-42cd-baf6-2ae82dc9f767</uuid>
     </Partition>
     <Partition>
       <sid>46</sid>
@@ -68,6 +70,7 @@
       <udev-id>usb-WD_My_Passport_25E2_57584D31454135463654544A-0:0-part3</udev-id>
       <type>primary</type>
       <id>131</id>
+      <uuid>56bcdb52-1b46-4485-a4af-d9430c2bf36f</uuid>
     </Partition>
     <Partition>
       <sid>47</sid>
@@ -84,6 +87,7 @@
       <udev-id>usb-WD_My_Passport_25E2_57584D31454135463654544A-0:0-part4</udev-id>
       <type>primary</type>
       <id>131</id>
+      <uuid>a80b2ece-2a66-486c-8c1f-ec89387e3ee3</uuid>
     </Partition>
     <PlainEncryption>
       <sid>48</sid>

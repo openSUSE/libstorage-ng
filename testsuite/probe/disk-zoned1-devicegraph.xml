@@ -68,6 +68,7 @@
       <udev-id>wwn-0x0000000000000000-part1</udev-id>
       <type>primary</type>
       <id>257</id>
+      <uuid>ed46be48-d6e2-4074-9cd9-bb6591d51bb0</uuid>
     </Partition>
     <Partition>
       <sid>46</sid>
@@ -90,6 +91,7 @@
       <type>primary</type>
       <id>131</id>
       <legacy-boot>true</legacy-boot>
+      <uuid>0b9860f1-65b1-41bb-810f-b4a074e91c2a</uuid>
     </Partition>
     <Partition>
       <sid>47</sid>
@@ -111,6 +113,7 @@
       <udev-id>wwn-0x0000000000000000-part3</udev-id>
       <type>primary</type>
       <id>130</id>
+      <uuid>b8385e05-4150-4f6f-9b94-3d5b0593b1f3</uuid>
     </Partition>
     <Ext4>
       <sid>48</sid>

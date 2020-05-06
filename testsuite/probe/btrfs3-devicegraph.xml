@@ -35,6 +35,7 @@
       <udev-id>usb-WD_My_Passport_25E2_57584D31454135463654544A-0:0-part1</udev-id>
       <type>primary</type>
       <id>131</id>
+      <uuid>c1413aab-aba8-471e-819a-06c56cc55a83</uuid>
     </Partition>
     <Btrfs>
       <sid>45</sid>

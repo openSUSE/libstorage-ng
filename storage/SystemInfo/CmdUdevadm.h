@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) 2018 SUSE LLC
+ * Copyright (c) [2018-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -59,8 +59,10 @@ namespace storage
 
 	const vector<string>& get_by_path_links() const { return by_path_links; }
 	const vector<string>& get_by_id_links() const { return by_id_links; }
+	const vector<string>& get_by_part_label_links() const { return by_part_label_links; }
+	const vector<string>& get_by_part_uuid_links() const { return by_part_uuid_links; }
 
-	friend std::ostream& operator<<(std::ostream& s, const CmdUdevadmInfo& cmdudevadminfo);
+	friend std::ostream& operator<<(std::ostream& s, const CmdUdevadmInfo& cmd_udevadm_info);
 
     private:
 
@@ -77,6 +79,8 @@ namespace storage
 
 	vector<string> by_path_links;
 	vector<string> by_id_links;
+	vector<string> by_part_label_links;
+	vector<string> by_part_uuid_links;
 
     };
 

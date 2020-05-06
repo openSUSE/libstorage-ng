@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) 2018 SUSE LLC
+ * Copyright (c) [2018-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -43,7 +43,7 @@ namespace storage
 
     CmdUdevadmInfo::CmdUdevadmInfo(const string& file)
 	: file(file), path(), name(), majorminor(0), device_type(DeviceType::UNKNOWN),
-	  by_path_links(), by_id_links()
+	  by_path_links(), by_id_links(), by_part_label_links(), by_part_uuid_links()
     {
 	// Without emptying the udev queue 'udevadm info' can display old data
 	// or even complain about unknown devices. Even during probing this
@@ -64,6 +64,19 @@ namespace storage
 	unsigned int major = 0;
 	unsigned int minor = 0;
 
+	struct Link
+	{
+	    const char* name;
+	    vector<string>& variable;
+	};
+
+	const Link links[] = {
+	    { "S: disk/by-path/", by_path_links },
+	    { "S: disk/by-id/", by_id_links },
+	    { "S: disk/by-partlabel/", by_part_label_links },
+	    { "S: disk/by-partuuid/", by_part_uuid_links }
+	};
+
 	for (const string& line : stdout)
 	{
 	    if (boost::starts_with(line, "P: "))
@@ -81,11 +94,9 @@ namespace storage
 	    if (boost::starts_with(line, "E: DEVTYPE="))
 		device_type = toValueWithFallback(line.substr(11), DeviceType::UNKNOWN);
 
-	    if (boost::starts_with(line, "S: disk/by-path/"))
-		by_path_links.push_back(line.substr(16));
-
-	    if (boost::starts_with(line, "S: disk/by-id/"))
-		by_id_links.push_back(line.substr(14));
+	    for (Link link : links)
+		if (boost::starts_with(line, link.name))
+		    link.variable.push_back(line.substr(strlen(link.name)));
 	}
 
 	if (path.empty())
@@ -96,26 +107,32 @@ namespace storage
 
 	majorminor = makedev(major, minor);
 
-	sort(by_path_links.begin(), by_path_links.end());
-	sort(by_id_links.begin(), by_id_links.end());
+	for (Link link : links)
+	    sort(link.variable.begin(), link.variable.end());
 
 	y2mil(*this);
     }
 
 
     std::ostream&
-    operator<<(std::ostream& s, const CmdUdevadmInfo& cmdudevadminfo)
+    operator<<(std::ostream& s, const CmdUdevadmInfo& cmd_udevadm_info)
     {
-	s << "file:" << cmdudevadminfo.file << " path:" << cmdudevadminfo.get_path()
-	  << " name:" << cmdudevadminfo.get_name() << " majorminor:"
-	  << cmdudevadminfo.get_major() << ":" << cmdudevadminfo.get_minor()
-	  << " device-type:" << toString(cmdudevadminfo.get_device_type());
+	s << "file:" << cmd_udevadm_info.file << " path:" << cmd_udevadm_info.get_path()
+	  << " name:" << cmd_udevadm_info.get_name() << " majorminor:"
+	  << cmd_udevadm_info.get_major() << ":" << cmd_udevadm_info.get_minor()
+	  << " device-type:" << toString(cmd_udevadm_info.get_device_type());
 
-	if (!cmdudevadminfo.by_path_links.empty())
-	    s << " by-path-links:" << cmdudevadminfo.by_path_links;
+	if (!cmd_udevadm_info.by_path_links.empty())
+	    s << " by-path-links:" << cmd_udevadm_info.by_path_links;
 
-	if (!cmdudevadminfo.by_id_links.empty())
-	    s << " by-id-links:" << cmdudevadminfo.by_id_links;
+	if (!cmd_udevadm_info.by_id_links.empty())
+	    s << " by-id-links:" << cmd_udevadm_info.by_id_links;
+
+	if (!cmd_udevadm_info.by_part_label_links.empty())
+	    s << " by-part-label-links:" << cmd_udevadm_info.by_part_label_links;
+
+	if (!cmd_udevadm_info.by_part_uuid_links.empty())
+	    s << " by-part-uuid-links:" << cmd_udevadm_info.by_part_uuid_links;
 
 	s << '\n';
 

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -215,11 +215,21 @@ namespace storage
 	bool is_legacy_boot() const;
 
 	/**
-	 * Set the legacy boot flag of the partition. Only supported on Gpt.
+	 * Set the legacy boot flag of the partition. Only supported on GPT.
 	 *
 	 * @throw Exception
 	 */
 	void set_legacy_boot(bool legacy_boot);
+
+	/**
+	 * Get the partition label. Can be empty. Only available for partitions on GPT.
+	 */
+	const std::string& get_label() const;
+
+	/**
+	 * Get the partition UUID. Only available for partitions on GPT.
+	 */
+	const std::string& get_uuid() const;
 
 	/**
 	 * Return the partition table the partition belongs to.

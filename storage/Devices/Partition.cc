@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -157,6 +157,20 @@ namespace storage
     Partition::set_legacy_boot(bool boot)
     {
 	get_impl().set_legacy_boot(boot);
+    }
+
+
+    const string&
+    Partition::get_label() const
+    {
+	return get_impl().get_label();
+    }
+
+
+    const string&
+    Partition::get_uuid() const
+    {
+	return get_impl().get_uuid();
     }
 
 

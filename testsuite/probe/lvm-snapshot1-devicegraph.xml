@@ -227,6 +227,7 @@
       <udev-id>scsi-SATA_VBOX_HARDDISK_VB20a8f410-8a3f17dc-part1</udev-id>
       <type>primary</type>
       <id>142</id>
+      <uuid>f9590da6-b0b1-4a9a-a96e-ad4cce9b38ec</uuid>
     </Partition>
     <Ext4>
       <sid>58</sid>

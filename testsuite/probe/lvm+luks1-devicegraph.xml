@@ -100,6 +100,7 @@
       <udev-id>scsi-SATA_VBOX_HARDDISK_VBd96ee5ae-bffc995c-part1</udev-id>
       <type>primary</type>
       <id>257</id>
+      <uuid>08f6f145-9f0e-4eb8-ab29-970d52f5f450</uuid>
     </Partition>
     <Partition>
       <sid>50</sid>
@@ -119,6 +120,7 @@
       <type>primary</type>
       <id>142</id>
       <legacy-boot>true</legacy-boot>
+      <uuid>39bed96f-570d-47a1-aa94-b3d746a15b5e</uuid>
     </Partition>
     <Luks>
       <sid>51</sid>
