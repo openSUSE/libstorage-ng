@@ -11,7 +11,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-09 12:29+0100\n"
 "PO-Revision-Date: 2020-05-06 07:42+0000\n"
-"Last-Translator: Kukuh Syafaat <syafaatkukuh@gmail.com>\n"
+"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: Indonesian <https://l10n.opensuse.org/projects/libstorage/"
 "ng-master/id/>\n"
 "Language: id\n"
@@ -33,7 +33,7 @@ msgstr ""
 #. %1$d is replaced by the number of elements omitted
 #, c-format
 msgid "%1$d more"
-msgstr "%1$d lebih"
+msgstr "%1$d lagi"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the device name (e.g. /dev/sdc1),
@@ -48,7 +48,7 @@ msgstr "%1$s (%2$s)"
 #. %2$s is replaced by the number of elements omitted
 #, c-format
 msgid "%1$s and %2$d more"
-msgstr "%1$s dan %2$d lebih"
+msgstr "%1$s dan %2$d lagi"
 
 #. TRANSLATORS: used to construct list of values
 #. %1$s is replaced by first value
