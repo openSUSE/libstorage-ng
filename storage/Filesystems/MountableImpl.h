@@ -146,7 +146,7 @@ namespace storage
 	virtual void do_remove_from_etc_fstab(CommitData& commit_data, const MountPoint* mount_point) const;
 
 	/**
-	 * Checks if the mount point of the mountable is actions at
+	 * Checks if the mount point of the mountable is active at
 	 * present. Does system lookups via the system_info.
 	 */
 	virtual bool is_active_at_present(SystemInfo& system_info, const MountPoint* mount_point) const = 0;
