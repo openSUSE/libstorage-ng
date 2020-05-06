@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-09 12:29+0100\n"
-"PO-Revision-Date: 2020-05-06 07:42+0000\n"
+"PO-Revision-Date: 2020-05-14 17:08+0000\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: Indonesian <https://l10n.opensuse.org/projects/libstorage/"
 "ng-master/id/>\n"
@@ -281,11 +281,11 @@ msgstr "Partisi boot BIOS"
 
 #. TRANSLATORS: name of object
 msgid "Bcache"
-msgstr "bcache"
+msgstr "Bcache"
 
 #. TRANSLATORS: name of object
 msgid "Bcache Cache Set"
-msgstr "bcache Cache Set"
+msgstr "Bcache Cache Set"
 
 #. TRANSLATORS: name of object
 msgid "BitLocker"
@@ -1559,8 +1559,8 @@ msgstr ""
 "\n"
 "%1$s\n"
 "\n"
-"Volume ligical ini diabaikan. Operasi pada\n"
-"grup volume correponding mungkin gagal."
+"Volume logical ini diabaikan. Operasi pada\n"
+"grup volume terkait mungkin gagal."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
