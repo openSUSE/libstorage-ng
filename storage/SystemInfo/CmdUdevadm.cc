@@ -80,19 +80,19 @@ namespace storage
 	for (const string& line : stdout)
 	{
 	    if (boost::starts_with(line, "P: "))
-		line.substr(2) >> path;
+		path = line.substr(strlen("P: "));
 
 	    if (boost::starts_with(line, "N: "))
-		line.substr(2) >> name;
+		name = line.substr(strlen("N: "));
 
 	    if (boost::starts_with(line, "E: MAJOR="))
-		line.substr(9) >> major;
+		line.substr(strlen("E: MAJOR=")) >> major;
 
 	    if (boost::starts_with(line, "E: MINOR="))
-		line.substr(9) >> minor;
+		line.substr(strlen("E: MINOR=")) >> minor;
 
 	    if (boost::starts_with(line, "E: DEVTYPE="))
-		device_type = toValueWithFallback(line.substr(11), DeviceType::UNKNOWN);
+		device_type = toValueWithFallback(line.substr(strlen("E: DEVTYPE=")), DeviceType::UNKNOWN);
 
 	    for (Link link : links)
 		if (boost::starts_with(line, link.name))
