@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2018] SUSE LLC
+ * Copyright (c) [2017-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -275,6 +275,29 @@ namespace storage
 	SystemCmd cmd(RPCBINDBIN);
 
 	rpcbind_started = true;
+    }
+
+
+    bool
+    Nfs::Impl::is_active_at_present(SystemInfo& system_info, const MountPoint* mount_point) const
+    {
+	bool ret = false;
+
+	y2mil("active check begin");
+
+	vector<const FstabEntry*> mount_entries = system_info.getProcMounts().get_all_nfs();
+	for (const FstabEntry* mount_entry : mount_entries)
+	{
+	    string spec = canonical_path(mount_entry->get_device());
+            pair<string, string> tmp = split_name(spec);
+
+            if (tmp.first == server && tmp.second == path)
+                ret = true;
+	}
+
+	y2mil("active check end");
+
+	return ret;
     }
 
 }

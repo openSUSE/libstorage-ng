@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2018] SUSE LLC
+ * Copyright (c) [2017-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -676,6 +676,28 @@ namespace storage
 	    quote(ensure_mounted.get_any_mount_point() + "/" + path);
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+    }
+
+
+    bool
+    BtrfsSubvolume::Impl::is_active_at_present(SystemInfo& system_info, const MountPoint* mount_point) const
+    {
+	bool ret = true;
+
+	y2mil("active check begin");
+
+	const Btrfs* btrfs = get_btrfs();
+	const BlkDevice* blk_device = btrfs->get_impl().get_blk_device();
+
+	vector<string> aliases = EtcFstab::construct_device_aliases(blk_device, btrfs);
+
+	vector<const FstabEntry*> mount_entries = find_proc_mounts_entries(system_info, aliases);
+
+	ret = !mount_entries.empty();
+
+	y2mil("active check end");
+
+	return ret;
     }
 
 

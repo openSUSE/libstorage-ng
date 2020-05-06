@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -404,7 +404,21 @@ namespace storage
 
 	string cmd_line = UMOUNTBIN " " + quote(real_mount_point);
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	try
+	{
+	    SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	}
+	catch (const Exception& exception)
+	{
+	    ST_CAUGHT(exception);
+
+	    SystemInfo system_info;
+
+	    if (is_active_at_present(system_info, mount_point))
+		ST_RETHROW(exception);
+
+	    y2mil("ignoring umount failure since mount point seems already inactive");
+	}
 
 	if (mount_point->exists_in_system())
 	    redirect_to_system(mount_point)->set_active(false);
