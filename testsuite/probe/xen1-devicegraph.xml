@@ -81,6 +81,7 @@
       </region>
       <type>primary</type>
       <id>131</id>
+      <uuid>52d26b49-cad2-4092-8f0a-0310da915ae5</uuid>
     </Partition>
     <Partition>
       <sid>50</sid>
@@ -94,6 +95,7 @@
       </region>
       <type>primary</type>
       <id>131</id>
+      <uuid>39982024-ea34-42ca-bab1-347932a878ce</uuid>
     </Partition>
     <Xfs>
       <sid>51</sid>

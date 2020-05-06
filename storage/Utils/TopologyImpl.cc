@@ -65,6 +65,10 @@ namespace storage
     void
     setChildValue(xmlNode* node, const char* name, const Topology::Impl& value)
     {
+	if (value.alignment_offset == 0 && value.optimal_io_size == 0 &&
+	    value.minimal_grain == value.default_minimal_grain)
+	    return;
+
 	xmlNode* tmp = xmlNewChild(node, name);
 
 	setChildValueIf(tmp, "alignment-offset", value.alignment_offset, value.alignment_offset != 0);

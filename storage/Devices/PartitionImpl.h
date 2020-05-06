@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -95,6 +95,12 @@ namespace storage
 	bool is_legacy_boot() const { return legacy_boot; }
 	void set_legacy_boot(bool legacy_boot);
 
+	const string& get_label() const { return label; }
+	void set_label(const string& label) { Impl::label = label; }
+
+	const string& get_uuid() const { return uuid; }
+	void set_uuid(const string& uuid) { Impl::uuid = uuid; }
+
 	void update_sysfs_name_and_path();
 	void update_udev_paths_and_ids();
 
@@ -113,7 +119,6 @@ namespace storage
 
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
-
 	virtual void print(std::ostream& out) const override;
 
 	virtual void process_udev_paths(vector<string>& udev_paths) const override;
@@ -151,6 +156,8 @@ namespace storage
 	unsigned int id;
 	bool boot;
 	bool legacy_boot;
+	string label;
+	string uuid;
 
 	unsigned long long parted_sector_adjustment_factor() const;
 

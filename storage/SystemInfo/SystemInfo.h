@@ -117,7 +117,7 @@ namespace storage
 	const CmdPvs& getCmdPvs() { return cmdpvs.get(); }
 	const CmdVgs& getCmdVgs() { return cmdvgs.get(); }
 	const CmdLvs& getCmdLvs() { return cmdlvs.get(); }
-	const CmdUdevadmInfo& getCmdUdevadmInfo(const string& file) { return cmdudevadminfos.get(file); }
+	const CmdUdevadmInfo& getCmdUdevadmInfo(const string& file) { return cmd_udevadm_infos.get(file); }
 	const CmdDf& getCmdDf(const string& mountpoint) { return cmddfs.get(mountpoint); }
 
 	// The device is only used for the cache-key.
@@ -253,7 +253,7 @@ namespace storage
 	LazyObject<CmdVgs> cmdvgs;
 	LazyObject<CmdLvs> cmdlvs;
 
-	LazyObjects<CmdUdevadmInfo> cmdudevadminfos;
+	LazyObjects<CmdUdevadmInfo> cmd_udevadm_infos;
 	LazyObjects<CmdDf> cmddfs;
 
 	LazyObjectsWithKey<CmdLsattr, string, string> cmdlsattr;

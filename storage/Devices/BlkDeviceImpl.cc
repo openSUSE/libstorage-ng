@@ -114,25 +114,25 @@ namespace storage
 	{
 	    SystemInfo& system_info = prober.get_system_info();
 
-	    const CmdUdevadmInfo& cmdudevadminfo = system_info.getCmdUdevadmInfo(name);
+	    const CmdUdevadmInfo& cmd_udevadm_info = system_info.getCmdUdevadmInfo(name);
 
-	    sysfs_name = cmdudevadminfo.get_name();
-	    sysfs_path = cmdudevadminfo.get_path();
+	    sysfs_name = cmd_udevadm_info.get_name();
+	    sysfs_path = cmd_udevadm_info.get_path();
 
 	    const File& ro_file = get_sysfs_file(system_info, "ro");
 	    read_only = ro_file.get<bool>();
 
 	    // region is probed in subclasses
 
-	    if (!cmdudevadminfo.get_by_path_links().empty())
+	    if (!cmd_udevadm_info.get_by_path_links().empty())
 	    {
-		udev_paths = cmdudevadminfo.get_by_path_links();
+		udev_paths = cmd_udevadm_info.get_by_path_links();
 		process_udev_paths(udev_paths);
 	    }
 
-	    if (!cmdudevadminfo.get_by_id_links().empty())
+	    if (!cmd_udevadm_info.get_by_id_links().empty())
 	    {
-		udev_ids = cmdudevadminfo.get_by_id_links();
+		udev_ids = cmd_udevadm_info.get_by_id_links();
 		process_udev_ids(udev_ids);
 	    }
 	}

@@ -158,6 +158,7 @@
       <udev-id>scsi-SATA_VBOX_HARDDISK_VB9bbfb3c5-2b41cf1d-part1</udev-id>
       <type>primary</type>
       <id>142</id>
+      <uuid>7918ca97-b0ce-4a41-b14d-c20787b9ee25</uuid>
     </Partition>
     <Gpt>
       <sid>55</sid>
@@ -180,6 +181,7 @@
       <udev-id>scsi-SATA_VBOX_HARDDISK_VB20a8f410-8a3f17dc-part1</udev-id>
       <type>primary</type>
       <id>142</id>
+      <uuid>f9590da6-b0b1-4a9a-a96e-ad4cce9b38ec</uuid>
     </Partition>
     <Gpt>
       <sid>57</sid>
@@ -202,6 +204,7 @@
       <udev-id>scsi-SATA_VBOX_HARDDISK_VBbc64bd62-3aadd1bd-part1</udev-id>
       <type>primary</type>
       <id>142</id>
+      <uuid>35f8ac95-3514-4531-be80-f5855b063dde</uuid>
     </Partition>
     <Gpt>
       <sid>59</sid>
@@ -224,6 +227,7 @@
       <udev-id>scsi-SATA_VBOX_HARDDISK_VBe1488f70-95221d44-part1</udev-id>
       <type>primary</type>
       <id>142</id>
+      <uuid>3f101065-3c66-4442-ae53-d34387b0d388</uuid>
     </Partition>
     <Ext4>
       <sid>61</sid>

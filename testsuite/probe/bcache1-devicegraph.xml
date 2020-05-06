@@ -159,6 +159,7 @@
       <udev-path>pci-0000:00:0c.0-part1</udev-path>
       <type>primary</type>
       <id>131</id>
+      <uuid>49645cd8-e4fe-4245-8734-fc8c0e2fa9aa</uuid>
     </Partition>
     <Partition>
       <sid>56</sid>
@@ -173,6 +174,7 @@
       <udev-path>pci-0000:00:0c.0-part2</udev-path>
       <type>primary</type>
       <id>131</id>
+      <uuid>c4168674-d2f0-4a45-b47c-ccbdf74a182b</uuid>
     </Partition>
     <Partition>
       <sid>57</sid>
@@ -187,6 +189,7 @@
       <udev-path>pci-0000:00:0c.0-part3</udev-path>
       <type>primary</type>
       <id>131</id>
+      <uuid>03b85105-5241-47f1-9369-80603c76da62</uuid>
     </Partition>
     <Gpt>
       <sid>58</sid>
@@ -205,6 +208,7 @@
       <udev-path>pci-0000:00:07.0-part1</udev-path>
       <type>primary</type>
       <id>257</id>
+      <uuid>859d0fce-3cd9-4069-a6b6-d78431a99e60</uuid>
     </Partition>
     <Partition>
       <sid>60</sid>
@@ -220,6 +224,7 @@
       <type>primary</type>
       <id>131</id>
       <legacy-boot>true</legacy-boot>
+      <uuid>0a89f532-fb02-420b-b9a7-ff5469a3888b</uuid>
     </Partition>
     <Gpt>
       <sid>61</sid>
@@ -236,6 +241,8 @@
       </region>
       <type>primary</type>
       <id>131</id>
+      <label>ext4</label>
+      <uuid>5f994dfa-9503-4c9f-854e-0c19e3f57568</uuid>
     </Partition>
     <Gpt>
       <sid>63</sid>
@@ -252,6 +259,7 @@
       </region>
       <type>primary</type>
       <id>131</id>
+      <uuid>b45acfb7-8e6e-44c6-b0d2-7ffebe7bb8d0</uuid>
     </Partition>
     <Ext2>
       <sid>65</sid>
