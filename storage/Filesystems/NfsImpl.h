@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2019] SUSE LLC
+ * Copyright (c) [2017-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -88,6 +88,8 @@ namespace storage
 	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;
 
 	virtual void do_pre_mount() const override;
+
+	virtual vector<ExtendedFstabEntry> find_proc_mounts_entries_unfiltered(SystemInfo& system_info) const override;
 
     protected:
 
