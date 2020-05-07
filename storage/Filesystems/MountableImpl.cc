@@ -334,13 +334,6 @@ namespace storage
     }
 
 
-    vector<ExtendedFstabEntry>
-    Mountable::Impl::find_proc_mounts_entries_unfiltered(SystemInfo& system_info) const
-    {
-	return {};
-    }
-
-
     Text
     Mountable::Impl::do_mount_text(const MountPoint* mount_point, Tense tense) const
     {
@@ -515,6 +508,21 @@ namespace storage
     }
 
 
+    bool
+    Mountable::Impl::is_active_at_present(SystemInfo& system_info, const MountPoint* mount_point) const
+    {
+	y2mil("active check begin");
+
+	vector<ExtendedFstabEntry> mount_entries = find_proc_mounts_entries(system_info);
+
+	y2mil("active check end");
+
+	y2mil("path:" << mount_point->get_path() << " active:" << !mount_entries.empty());
+
+	return !mount_entries.empty();
+    }
+
+
     void
     Mountable::Impl::immediate_activate(MountPoint* mount_point, bool force_rw) const
     {
@@ -555,7 +563,21 @@ namespace storage
 
 	string cmd_line = UMOUNT_BIN " " + quote(real_mount_point);
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	try
+	{
+	    SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	}
+	catch (const Exception& exception)
+	{
+	    ST_CAUGHT(exception);
+
+	    SystemInfo system_info;
+
+	    if (is_active_at_present(system_info, mount_point))
+		ST_RETHROW(exception);
+
+	    y2mil("ignoring umount failure since mount point seems already inactive");
+	}
 
 	if (mount_point->exists_in_system())
 	    redirect_to_system(mount_point)->set_active(false);
