@@ -192,7 +192,7 @@ namespace storage
 	 *
 	 * Used for probe.
 	 */
-	virtual vector<ExtendedFstabEntry> find_proc_mounts_entries_unfiltered(SystemInfo& system_info) const;
+	virtual vector<ExtendedFstabEntry> find_proc_mounts_entries_unfiltered(SystemInfo& system_info) const = 0;
 
 	/**
 	 * Predicate for filtering. So far only needed for btrfs where
@@ -218,6 +218,12 @@ namespace storage
 
 	virtual Text do_remove_from_etc_fstab_text(const MountPoint* mount_point, Tense tense) const;
 	virtual void do_remove_from_etc_fstab(CommitData& commit_data, const MountPoint* mount_point) const;
+
+	/**
+	 * Checks if the mount point of the mountable is active at
+	 * present. Does system lookups via the system_info.
+	 */
+	virtual bool is_active_at_present(SystemInfo& system_info, const MountPoint* mount_point) const;
 
 	virtual void immediate_activate(MountPoint* mount_point, bool force_rw = false) const;
 	virtual void immediate_deactivate(MountPoint* mount_point) const;
