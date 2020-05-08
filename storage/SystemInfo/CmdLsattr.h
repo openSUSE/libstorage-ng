@@ -45,7 +45,7 @@ namespace storage
 
 	bool is_nocow() const { return nocow; }
 
-	friend std::ostream& operator<<(std::ostream& s, const CmdLsattr& lsattr);
+	friend std::ostream& operator<<(std::ostream& s, const CmdLsattr& cmd_lsattr);
 
 	void parse(const vector<string>& lines);
 

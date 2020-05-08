@@ -100,29 +100,30 @@ namespace storage
 	const CmdDmraid& getCmdDmraid() { return cmddmraid.get(); }
 	const CmdMultipath& getCmdMultipath() { return cmdmultipath.get(); }
 
-	const CmdBtrfsFilesystemShow& getCmdBtrfsFilesystemShow() { return cmdbtrfsfilesystemshow.get(); }
+	const CmdBtrfsFilesystemShow& getCmdBtrfsFilesystemShow() { return cmd_btrfs_filesystem_show.get(); }
 
 	// The device is only used for the cache-key.
 	const CmdBtrfsSubvolumeList& getCmdBtrfsSubvolumeList(const string& device, const string& mountpoint)
-	    { return cmdbtrfssubvolumelists.get(CmdBtrfsSubvolumeList::key_t(device), mountpoint); }
+	    { return cmd_btrfs_subvolume_lists.get(CmdBtrfsSubvolumeList::key_t(device), mountpoint); }
 
 	// The device is only used for the cache-key.
 	const CmdBtrfsSubvolumeGetDefault& getCmdBtrfsSubvolumeGetDefault(const string& device, const string& mountpoint)
-	    { return cmdbtrfssubvolumegetdefaults.get(CmdBtrfsSubvolumeGetDefault::key_t(device), mountpoint); }
+	    { return cmd_btrfs_subvolume_get_defaults.get(CmdBtrfsSubvolumeGetDefault::key_t(device), mountpoint); }
 
 	// The device is only used for the cache-key.
 	const CmdBtrfsFilesystemDf& getCmdBtrfsFilesystemDf(const string& device, const string& mount_point)
 	    { return cmd_btrfs_filesystem_df.get(CmdBtrfsSubvolumeGetDefault::key_t(device), mount_point); }
 
-	const CmdPvs& getCmdPvs() { return cmdpvs.get(); }
-	const CmdVgs& getCmdVgs() { return cmdvgs.get(); }
-	const CmdLvs& getCmdLvs() { return cmdlvs.get(); }
+	const CmdPvs& getCmdPvs() { return cmd_pvs.get(); }
+	const CmdVgs& getCmdVgs() { return cmd_vgs.get(); }
+	const CmdLvs& getCmdLvs() { return cmd_lvs.get(); }
+
 	const CmdUdevadmInfo& getCmdUdevadmInfo(const string& file) { return cmd_udevadm_infos.get(file); }
-	const CmdDf& getCmdDf(const string& mountpoint) { return cmddfs.get(mountpoint); }
+	const CmdDf& getCmdDf(const string& mountpoint) { return cmd_dfs.get(mountpoint); }
 
 	// The device is only used for the cache-key.
 	const CmdLsattr& getCmdLsattr(const string& device, const string& mountpoint, const string& path)
-	    { return cmdlsattr.get(CmdLsattr::key_t(device, path), mountpoint, path); }
+	    { return cmd_lsattr.get(CmdLsattr::key_t(device, path), mountpoint, path); }
 
     private:
 
@@ -244,19 +245,19 @@ namespace storage
 	LazyObject<CmdDmraid> cmddmraid;
 	LazyObject<CmdMultipath> cmdmultipath;
 
-	LazyObject<CmdBtrfsFilesystemShow> cmdbtrfsfilesystemshow;
-	LazyObjectsWithKey<CmdBtrfsSubvolumeList, string> cmdbtrfssubvolumelists;
-	LazyObjectsWithKey<CmdBtrfsSubvolumeGetDefault, string> cmdbtrfssubvolumegetdefaults;
+	LazyObject<CmdBtrfsFilesystemShow> cmd_btrfs_filesystem_show;
+	LazyObjectsWithKey<CmdBtrfsSubvolumeList, string> cmd_btrfs_subvolume_lists;
+	LazyObjectsWithKey<CmdBtrfsSubvolumeGetDefault, string> cmd_btrfs_subvolume_get_defaults;
 	LazyObjectsWithKey<CmdBtrfsFilesystemDf, string> cmd_btrfs_filesystem_df;
 
-	LazyObject<CmdPvs> cmdpvs;
-	LazyObject<CmdVgs> cmdvgs;
-	LazyObject<CmdLvs> cmdlvs;
+	LazyObject<CmdPvs> cmd_pvs;
+	LazyObject<CmdVgs> cmd_vgs;
+	LazyObject<CmdLvs> cmd_lvs;
 
 	LazyObjects<CmdUdevadmInfo> cmd_udevadm_infos;
-	LazyObjects<CmdDf> cmddfs;
+	LazyObjects<CmdDf> cmd_dfs;
 
-	LazyObjectsWithKey<CmdLsattr, string, string> cmdlsattr;
+	LazyObjectsWithKey<CmdLsattr, string, string> cmd_lsattr;
 
     };
 

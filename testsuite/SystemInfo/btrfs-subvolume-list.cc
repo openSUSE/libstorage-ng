@@ -7,7 +7,6 @@
 
 #include <iostream>
 
-#include "storage/Utils/Exception.h"
 #include "storage/SystemInfo/CmdBtrfs.h"
 #include "storage/Utils/Mockup.h"
 #include "storage/Utils/SystemCmd.h"

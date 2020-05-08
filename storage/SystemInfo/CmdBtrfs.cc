@@ -201,7 +201,7 @@ namespace storage
 		ST_THROW(Exception("could not find 'path' in 'btrfs subvolume list' output"));
 	    entry.path = line.substr(pos3 + 6);
 	    if (boost::starts_with(entry.path, "<FS_TREE>/"))
-		entry.path.erase(0, 10);
+		entry.path.erase(0, strlen("<FS_TREE>/"));
 
 	    data.push_back(entry);
 	}

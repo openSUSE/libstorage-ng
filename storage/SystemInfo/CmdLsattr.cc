@@ -70,12 +70,12 @@ namespace storage
 
 
     std::ostream&
-    operator<<(std::ostream& s, const CmdLsattr& lsattr)
+    operator<<(std::ostream& s, const CmdLsattr& cmd_lsattr)
     {
-	s << "mountpoint:" << lsattr.mountpoint << " path:" << lsattr.path;
+	s << "mountpoint:" << cmd_lsattr.mountpoint << " path:" << cmd_lsattr.path;
 
-	if (lsattr.nocow)
-	    s << " nocow:" << lsattr.nocow;
+	if (cmd_lsattr.nocow)
+	    s << " nocow:" << cmd_lsattr.nocow;
 
 	return s;
     }
