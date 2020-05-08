@@ -182,9 +182,13 @@ namespace storage
 	    Entry entry;
 
 	    string::size_type pos1 = line.find("ID ");
+	    if (pos1 == string::npos)
+		ST_THROW(Exception("cound not find id"));
 	    line.substr(pos1 + 3) >> entry.id;
 
 	    string::size_type pos2 = line.find(" parent ");
+	    if (pos2 == string::npos)
+		ST_THROW(Exception("cound not find parent"));
 	    line.substr(pos2 + 8) >> entry.parent_id;
 
 	    // Subvolume can already be deleted, in which case parent is "0"
@@ -193,6 +197,8 @@ namespace storage
 		continue;
 
 	    string::size_type pos3 = line.find(" path ");
+	    if (pos3 == string::npos)
+		ST_THROW(Exception("cound not find path"));
 	    entry.path = line.substr(pos3 + 6);
 	    if (boost::starts_with(entry.path, "<FS_TREE>/"))
 		entry.path.erase(0, 10);
