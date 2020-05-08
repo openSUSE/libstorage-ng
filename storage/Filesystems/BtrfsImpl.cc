@@ -454,14 +454,23 @@ namespace storage
 
 	for (const CmdBtrfsSubvolumeList::Entry& subvolume : cmd_btrfs_subvolume_list)
 	{
-	    const BtrfsSubvolume* child = subvolumes_by_id[subvolume.id];
 	    const BtrfsSubvolume* parent = subvolumes_by_id[subvolume.parent_id];
+	    if (!parent)
+		ST_THROW(Exception("parent subvolume not found by id"));
+
+	    const BtrfsSubvolume* child = subvolumes_by_id[subvolume.id];
+	    if (!child)
+		ST_THROW(Exception("child subvolume not found by id"));
+
 	    Subdevice::create(prober.get_system(), parent, child);
 	}
 
 	for (const CmdBtrfsSubvolumeList::Entry& subvolume : cmd_btrfs_subvolume_list)
 	{
 	    BtrfsSubvolume* btrfs_subvolume = subvolumes_by_id[subvolume.id];
+	    if (!btrfs_subvolume)
+		ST_THROW(Exception("subvolume not found by id"));
+
 	    btrfs_subvolume->get_impl().probe_pass_2a(prober, mount_point);
 	}
 
@@ -470,7 +479,11 @@ namespace storage
 	    const CmdBtrfsSubvolumeGetDefault& cmd_btrfs_subvolume_get_default =
 		system_info.getCmdBtrfsSubvolumeGetDefault(blk_device->get_name(), mount_point);
 
-	    subvolumes_by_id[cmd_btrfs_subvolume_get_default.get_id()]->get_impl().set_default_btrfs_subvolume();
+	    BtrfsSubvolume* btrfs_subvolume = subvolumes_by_id[cmd_btrfs_subvolume_get_default.get_id()];
+	    if (!btrfs_subvolume)
+		ST_THROW(Exception("subvolume not found by id"));
+
+	    btrfs_subvolume->get_impl().set_default_btrfs_subvolume();
 	}
 
 	const CmdBtrfsFilesystemDf& cmd_btrfs_filesystem_df =

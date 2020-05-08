@@ -182,9 +182,13 @@ namespace storage
 	    Entry entry;
 
 	    string::size_type pos1 = line.find("ID ");
+	    if (pos1 == string::npos)
+		ST_THROW(Exception("could not find 'id' in 'btrfs subvolume list' output"));
 	    line.substr(pos1 + 3) >> entry.id;
 
 	    string::size_type pos2 = line.find(" parent ");
+	    if (pos2 == string::npos)
+		ST_THROW(Exception("could not find 'parent' in 'btrfs subvolume list' output"));
 	    line.substr(pos2 + 8) >> entry.parent_id;
 
 	    // Subvolume can already be deleted, in which case parent is "0"
@@ -193,9 +197,11 @@ namespace storage
 		continue;
 
 	    string::size_type pos3 = line.find(" path ");
+	    if (pos3 == string::npos)
+		ST_THROW(Exception("could not find 'path' in 'btrfs subvolume list' output"));
 	    entry.path = line.substr(pos3 + 6);
 	    if (boost::starts_with(entry.path, "<FS_TREE>/"))
-		entry.path.erase(0, 10);
+		entry.path.erase(0, strlen("<FS_TREE>/"));
 
 	    data.push_back(entry);
 	}
