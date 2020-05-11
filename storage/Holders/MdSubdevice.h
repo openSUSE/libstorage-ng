@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -39,7 +39,16 @@ namespace storage
     {
     public:
 
+	/**
+	 * Create a holder of type MdSubdevice. Usually this function is not called
+	 * directly. It is called during probing.
+	 *
+	 * @see Holder::create(Devicegraph*, const Device*, const Device*)
+	 *
+	 * @throw HolderAlreadyExists
+	 */
 	static MdSubdevice* create(Devicegraph* devicegraph, const Device* source, const Device* target);
+
 	static MdSubdevice* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	virtual MdSubdevice* clone() const override;

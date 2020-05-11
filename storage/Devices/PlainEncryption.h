@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 SUSE LLC
+ * Copyright (c) [2019-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -41,7 +41,14 @@ namespace storage
     {
     public:
 
+	/**
+	 * Create a device of type PlainEncryption. Usually this function is not called
+	 * directly. Instead BlkDevice::create_encryption() is called.
+	 *
+	 * @see Device::create(Devicegraph*)
+	 */
 	static PlainEncryption* create(Devicegraph* devicegraph, const std::string& dm_name);
+
 	static PlainEncryption* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	/**
@@ -71,7 +78,7 @@ namespace storage
 
 
     /**
-     * Checks whether device points to a PlainEncryption. 
+     * Checks whether device points to a PlainEncryption.
      *
      * @throw NullPointerException
      */

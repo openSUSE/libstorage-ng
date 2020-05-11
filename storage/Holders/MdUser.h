@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -34,7 +34,16 @@ namespace storage
     {
     public:
 
+	/**
+	 * Create a holder of type MdUser. Usually this function is not called
+	 * directly. Functions like Md::add_device() call it.
+	 *
+	 * @see Holder::create(Devicegraph*, const Device*, const Device*)
+	 *
+	 * @throw HolderAlreadyExists
+	 */
 	static MdUser* create(Devicegraph* devicegraph, const Device* source, const Device* target);
+
 	static MdUser* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	virtual MdUser* clone() const override;

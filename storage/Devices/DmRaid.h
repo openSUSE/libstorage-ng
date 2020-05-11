@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -38,9 +38,23 @@ namespace storage
     {
     public:
 
+	/**
+	 * Create a device of type DmRaid. Usually this function is not called
+	 * directly. It is called during probing.
+	 *
+	 * @see Device::create(Devicegraph*)
+	 */
 	static DmRaid* create(Devicegraph* devicegraph, const std::string& name);
+
+	/**
+	 * @copydoc create(Devicegraph*, const std::string&)
+	 */
 	static DmRaid* create(Devicegraph* devicegraph, const std::string& name,
 			      const Region& region);
+
+	/**
+	 * @copydoc create(Devicegraph*, const std::string&)
+	 */
 	static DmRaid* create(Devicegraph* devicegraph, const std::string& name,
 			      unsigned long long size);
 

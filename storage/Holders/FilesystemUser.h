@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -34,7 +34,17 @@ namespace storage
     {
     public:
 
+	/**
+	 * Create a holder of type FilesystemUser. Usually this function is not called
+	 * directly. Functions like BlkDevice::create_blk_filesystem() or
+	 * Btrfs::add_device() call it.
+	 *
+	 * @see Holder::create(Devicegraph*, const Device*, const Device*)
+	 *
+	 * @throw HolderAlreadyExists
+	 */
 	static FilesystemUser* create(Devicegraph* devicegraph, const Device* source, const Device* target);
+
 	static FilesystemUser* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	virtual FilesystemUser* clone() const override;
@@ -44,6 +54,12 @@ namespace storage
 	 */
 	bool is_journal() const;
 
+	/**
+	 * Set the external journal flag. The library cannot create filesystem with
+	 * external journals.
+	 *
+	 * @see is_journal()
+	 */
 	void set_journal(bool journal);
 
     public:

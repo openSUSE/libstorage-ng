@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
+ * Copyright (c) 2020 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -34,7 +35,17 @@ namespace storage
     {
     public:
 
+	/**
+	 * Create a holder of type Subdevice. Usually this function is not called
+	 * directly. Functions like PartitionTable::create_partition() or
+	 * LvmVg::add_lvm_pv() call it.
+	 *
+	 * @see Holder::create(Devicegraph*, const Device*, const Device*)
+	 *
+	 * @throw HolderAlreadyExists
+	 */
 	static Subdevice* create(Devicegraph* devicegraph, const Device* source, const Device* target);
+
 	static Subdevice* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	virtual Subdevice* clone() const override;

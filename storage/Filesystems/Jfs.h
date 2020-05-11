@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 SUSE LLC
+ * Copyright (c) [2018-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -39,7 +39,14 @@ namespace storage
     {
     public:
 
+	/**
+	 * Create a device of type Jfs. Usually this function is not called
+	 * directly. Instead BlkDevice::create_blk_filesystem() is called.
+	 *
+	 * @see Device::create(Devicegraph*)
+	 */
 	static Jfs* create(Devicegraph* devicegraph);
+
 	static Jfs* load(Devicegraph* devicegraph, const xmlNode* node);
 
     public:

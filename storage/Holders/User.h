@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -35,7 +35,17 @@ namespace storage
     {
     public:
 
+	/**
+	 * Create a holder of type User. Usually this function is not called
+	 * directly. Functions like Partitionable::create_partition_table() or
+	 * LvmVg::add_lvm_pv() call it.
+	 *
+	 * @see Holder::create(Devicegraph*, const Device*, const Device*)
+	 *
+	 * @throw HolderAlreadyExists
+	 */
 	static User* create(Devicegraph* devicegraph, const Device* source, const Device* target);
+
 	static User* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	virtual User* clone() const override;

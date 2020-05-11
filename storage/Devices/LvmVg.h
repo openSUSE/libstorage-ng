@@ -60,7 +60,13 @@ namespace storage
     {
     public:
 
+	/**
+	 * Create a device of type LvmVg.
+	 *
+	 * @see Device::create(Devicegraph*)
+	 */
 	static LvmVg* create(Devicegraph* devicegraph, const std::string& vg_name);
+
 	static LvmVg* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	/**
@@ -156,7 +162,9 @@ namespace storage
 
 	/**
 	 * Create a logical volume with name lv_name and type lv_type in the
-	 * volume group. Supported lv_types are NORMAL and THIN_POOL.
+	 * volume group.
+	 *
+	 * @see LvType
 	 */
 	LvmLv* create_lvm_lv(const std::string& lv_name, LvType lv_type,
 			     unsigned long long size);
@@ -223,6 +231,8 @@ namespace storage
 	 * Compare (less than) two LvmVgs by vg-name.
 	 *
 	 * The comparison is locale unaware.
+	 *
+	 * @see get_vg_name()
 	 */
 	static bool compare_by_vg_name(const LvmVg* lhs, const LvmVg* rhs);
 

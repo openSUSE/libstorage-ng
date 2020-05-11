@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -53,11 +53,23 @@ namespace storage
     {
     public:
 
+	/**
+	 * Create a device of type Nfs.
+	 *
+	 * @see Device::create(Devicegraph*)
+	 */
 	static Nfs* create(Devicegraph* devicegraph, const std::string& server, const std::string& path);
+
 	static Nfs* load(Devicegraph* devicegraph, const xmlNode* node);
 
+	/**
+	 * Get the server of the Nfs.
+	 */
 	const std::string& get_server() const;
 
+	/**
+	 * Get the path of the Nfs.
+	 */
 	const std::string& get_path() const;
 
 	/**

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -63,10 +63,24 @@ namespace storage
     {
     public:
 
+	/**
+	 * Create a device of type Bcache. Usually this function is not called
+	 * directly. Instead BlkDevice::create_bcache() is called.
+	 */
 	static Bcache* create(Devicegraph* devicegraph, const std::string& dm_name);
+
+	/**
+	 * @copydoc create(Devicegraph*, const std::string&)
+	 */
 	static Bcache* create(Devicegraph* devicegraph, const std::string& dm_name, BcacheType type);
+
 	static Bcache* load(Devicegraph* devicegraph, const xmlNode* node);
 
+	/**
+	 * Get the bcache type.
+	 *
+	 * @see BcacheType
+	 */
 	BcacheType get_type() const;
 
 	unsigned int get_number() const;

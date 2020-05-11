@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -31,7 +31,7 @@ namespace storage
 {
 
     /**
-     * An luks encryption layer on a block device
+     * An LUKS encryption layer on a block device.
      *
      * Do not resize the Luks object but the underlying BlkDevice object.
      */
@@ -39,7 +39,14 @@ namespace storage
     {
     public:
 
+	/**
+	 * Create a device of type Luks. Usually this function is not called
+	 * directly. Instead BlkDevice::create_encryption() is called.
+	 *
+	 * @see Device::create(Devicegraph*)
+	 */
 	static Luks* create(Devicegraph* devicegraph, const std::string& dm_name);
+
 	static Luks* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	/**

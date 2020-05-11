@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 SUSE LLC
+ * Copyright (c) [2018-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -49,9 +49,23 @@ namespace storage
     {
     public:
 
+	/**
+	 * Create a device of type StrayBlkDevice. Usually this function is not called
+	 * directly. It is called during probing.
+	 *
+	 * @see Device::create(Devicegraph*)
+	 */
 	static StrayBlkDevice* create(Devicegraph* devicegraph, const std::string& name);
+
+	/**
+	 * @copydoc create(Devicegraph*, const std::string&)
+	 */
 	static StrayBlkDevice* create(Devicegraph* devicegraph, const std::string& name,
 				      const Region& region);
+
+	/**
+	 * @copydoc create(Devicegraph*, const std::string&)
+	 */
 	static StrayBlkDevice* create(Devicegraph* devicegraph, const std::string& name,
 				      unsigned long long size);
 

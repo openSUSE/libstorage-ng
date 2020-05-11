@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016,2018] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -42,7 +42,12 @@ namespace storage
     {
     public:
 
+	/**
+	 * Create a device of type BcacheCset. Usually this function is not called
+	 * directly. Instead BlkDevice::create_bcache_cset() is called.
+	 */
 	static BcacheCset* create(Devicegraph* devicegraph);
+
 	static BcacheCset* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	/**

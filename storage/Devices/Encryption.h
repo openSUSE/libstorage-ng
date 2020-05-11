@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -46,7 +46,14 @@ namespace storage
     {
     public:
 
+	/**
+	 * Create a device of type Encryption. Usually this function is not called
+	 * directly. Instead BlkDevice::create_encryption() is called.
+	 *
+	 * @see Device::create(Devicegraph*)
+	 */
 	static Encryption* create(Devicegraph* devicegraph, const std::string& name);
+
 	static Encryption* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	/**

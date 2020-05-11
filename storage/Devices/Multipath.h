@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -31,14 +31,30 @@ namespace storage
 {
 
 
-    //! A multipath device
+    /**
+     * A multipath device.
+     */
     class Multipath : public Partitionable
     {
     public:
 
+	/**
+	 * Create a device of type Multipath. Usually this function is not called
+	 * directly. It is called during probing.
+	 *
+	 * @see Device::create(Devicegraph*)
+	 */
 	static Multipath* create(Devicegraph* devicegraph, const std::string& name);
+
+	/**
+	 * @copydoc create(Devicegraph*, const std::string&)
+	 */
 	static Multipath* create(Devicegraph* devicegraph, const std::string& name,
 				 const Region& region);
+
+	/**
+	 * @copydoc create(Devicegraph*, const std::string&)
+	 */
 	static Multipath* create(Devicegraph* devicegraph, const std::string& name,
 				 unsigned long long size);
 

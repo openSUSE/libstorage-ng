@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -33,12 +33,21 @@ namespace storage
     /**
      * Class for UDF filesystem. The library cannot create an UDF filesystem
      * on disk.
+     *
+     * @see https://en.wikipedia.org/wiki/Universal_Disk_Format
      */
     class Udf : public BlkFilesystem
     {
     public:
 
+	/**
+	 * Create a device of type Udf. Usually this function is not called
+	 * directly. It is called during probing.
+	 *
+	 * @see Device::create(Devicegraph*)
+	 */
 	static Udf* create(Devicegraph* devicegraph);
+
 	static Udf* load(Devicegraph* devicegraph, const xmlNode* node);
 
     public:

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -66,14 +66,30 @@ namespace storage
     std::string get_zone_model_name(ZoneModel zone_model);
 
 
-    //! A physical disk device
+    /**
+     * A physical disk device.
+     */
     class Disk : public Partitionable
     {
     public:
 
+	/**
+	 * Create a device of type Disk. Usually this function is not called directly. It
+	 * is called during probing.
+	 *
+	 * @see Device::create(Devicegraph*)
+	 */
 	static Disk* create(Devicegraph* devicegraph, const std::string& name);
+
+	/**
+	 * @copydoc create(Devicegraph*, const std::string&)
+	 */
 	static Disk* create(Devicegraph* devicegraph, const std::string& name,
 			    const Region& region);
+
+	/**
+	 * @copydoc create(Devicegraph*, const std::string&)
+	 */
 	static Disk* create(Devicegraph* devicegraph, const std::string& name,
 			    unsigned long long size);
 
