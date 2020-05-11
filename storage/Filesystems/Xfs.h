@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
+ * Copyright (c) 2020 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -38,7 +39,14 @@ namespace storage
     {
     public:
 
+	/**
+	 * Create a device of type Xfs. Usually this function is not called
+	 * directly. Instead BlkDevice::create_blk_filesystem() is called.
+	 *
+	 * @see Device::create(Devicegraph*)
+	 */
 	static Xfs* create(Devicegraph* devicegraph);
+
 	static Xfs* load(Devicegraph* devicegraph, const xmlNode* node);
 
     public:

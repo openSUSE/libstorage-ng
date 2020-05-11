@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
+ * Copyright (c) 2020 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -37,7 +38,14 @@ namespace storage
     {
     public:
 
+	/**
+	 * Create a device of type Swap. Usually this function is not called
+	 * directly. Instead BlkDevice::create_blk_filesystem() is called.
+	 *
+	 * @see Device::create(Devicegraph*)
+	 */
 	static Swap* create(Devicegraph* devicegraph);
+
 	static Swap* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	/**

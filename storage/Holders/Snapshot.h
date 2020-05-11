@@ -43,7 +43,16 @@ namespace storage
     {
     public:
 
+	/**
+	 * Create a holder of type Snapshot. Usually this function is not called
+	 * directly. It is called during probing.
+	 *
+	 * @see Holder::create(Devicegraph*, const Device*, const Device*)
+	 *
+	 * @throw HolderAlreadyExists
+	 */
 	static Snapshot* create(Devicegraph* devicegraph, const Device* source, const Device* target);
+
 	static Snapshot* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	virtual Snapshot* clone() const override;

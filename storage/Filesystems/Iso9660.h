@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -33,12 +33,21 @@ namespace storage
     /**
      * Class for ISO9660 filesystem. The library cannot create an ISO9660
      * filesystem on disk.
+     *
+     * @see https://en.wikipedia.org/wiki/ISO_9660
      */
     class Iso9660 : public BlkFilesystem
     {
     public:
 
+	/**
+	 * Create a device of type Iso9660. Usually this function is not called
+	 * directly. It is called during probing.
+	 *
+	 * @see Device::create(Devicegraph*)
+	 */
 	static Iso9660* create(Devicegraph* devicegraph);
+
 	static Iso9660* load(Devicegraph* devicegraph, const xmlNode* node);
 
     public:

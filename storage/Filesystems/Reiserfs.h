@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -38,7 +38,14 @@ namespace storage
     {
     public:
 
+	/**
+	 * Create a device of type Reiserfs. Usually this function is not called
+	 * directly. Instead BlkDevice::create_blk_filesystem() is called.
+	 *
+	 * @see Device::create(Devicegraph*)
+	 */
 	static Reiserfs* create(Devicegraph* devicegraph);
+
 	static Reiserfs* load(Devicegraph* devicegraph, const xmlNode* node);
 
     public:

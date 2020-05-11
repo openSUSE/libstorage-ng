@@ -38,6 +38,8 @@ namespace storage
 
     /**
      * Btrfs RAID levels (aka profiles) used for metadata and data.
+     *
+     * @see https://btrfs.wiki.kernel.org/index.php/Using_Btrfs_with_Multiple_Devices
      */
     enum class BtrfsRaidLevel
     {
@@ -69,7 +71,14 @@ namespace storage
     {
     public:
 
+	/**
+	 * Create a device of type Btrfs. Usually this function is not called
+	 * directly. Instead BlkDevice::create_blk_filesystem() is called.
+	 *
+	 * @see Device::create(Devicegraph*)
+	 */
 	static Btrfs* create(Devicegraph* devicegraph);
+
 	static Btrfs* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	/**

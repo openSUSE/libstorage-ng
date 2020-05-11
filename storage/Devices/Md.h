@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -83,6 +83,8 @@ namespace storage
 	 * Create a MD in devicegraph with name. Name must either be of the
 	 * form "/dev/md<number>" or "/dev/md/<name>". The first form is
 	 * called numeric. If name is a number it is also called numeric.
+	 *
+	 * @see Device::create(Devicegraph*)
 	 *
 	 * @throw Exception
 	 */
@@ -252,6 +254,8 @@ namespace storage
 
 	/**
 	 * Compare (less than) two Mds by number.
+	 *
+	 * @see get_number()
 	 *
 	 * @throw Exception
 	 */

@@ -5,8 +5,6 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/algorithm/string.hpp>
 
-#include <iostream>
-
 #include "storage/SystemInfo/CmdBtrfs.h"
 #include "storage/Utils/Mockup.h"
 #include "storage/Utils/SystemCmd.h"

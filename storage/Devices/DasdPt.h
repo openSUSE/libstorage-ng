@@ -35,7 +35,14 @@ namespace storage
     {
     public:
 
+	/**
+	 * Create a device of type DasdPt. Usually this function is not called
+	 * directly. Instead Partitionable::create_partition_table() is called.
+	 *
+	 * @see Device::create(Devicegraph*)
+	 */
 	static DasdPt* create(Devicegraph* devicegraph);
+
 	static DasdPt* load(Devicegraph* devicegraph, const xmlNode* node);
 
     public:

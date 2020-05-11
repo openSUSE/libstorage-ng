@@ -2,12 +2,11 @@
 #define BOOST_TEST_DYN_LINK
 #define BOOST_TEST_MODULE libstorage
 
-#include <iostream>
 #include <boost/test/unit_test.hpp>
 
 #include "storage/Environment.h"
 #include "storage/Storage.h"
-#include "storage/DevicegraphImpl.h"
+#include "storage/Devicegraph.h"
 #include "storage/UsedFeatures.h"
 #include "storage/Devices/Partition.h"
 #include "storage/Filesystems/BlkFilesystem.h"

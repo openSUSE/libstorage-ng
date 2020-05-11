@@ -39,7 +39,14 @@ namespace storage
     {
     public:
 
+	/**
+	 * Create a device of type BitLocker. Usually this function is not called
+	 * directly. It is called during probing.
+	 *
+	 * @see Device::create(Devicegraph*)
+	 */
 	static Bitlocker* create(Devicegraph* devicegraph);
+
 	static Bitlocker* load(Devicegraph* devicegraph, const xmlNode* node);
 
     public:

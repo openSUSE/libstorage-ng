@@ -195,6 +195,8 @@ namespace storage
 
 	/**
 	 * Compare (less than) two Devices by sid.
+	 *
+	 * @see get_sid()
 	 */
 	static bool compare_by_sid(const Device* lhs, const Device* rhs);
 
@@ -253,7 +255,11 @@ namespace storage
 
 	Device(Impl* impl);
 
+	/**
+	 * Create a device in the devicegraph.
+	 */
 	void create(Devicegraph* devicegraph);
+
 	void load(Devicegraph* devicegraph);
 
     private:

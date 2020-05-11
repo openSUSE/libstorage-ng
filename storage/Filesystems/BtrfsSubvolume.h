@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -41,31 +41,66 @@ namespace storage
     {
     public:
 
+	/**
+	 * Create a device of type BtrfsSubvolume. Usually this function is not called
+	 * directly. Instead BtrfsSubvolume::create_btrfs_subvolume() is called.
+	 *
+	 * @see Device::create(Devicegraph*)
+	 */
 	static BtrfsSubvolume* create(Devicegraph* devicegraph, const std::string& path);
+
 	static BtrfsSubvolume* load(Devicegraph* devicegraph, const xmlNode* node);
 
+	/**
+	 * Get the id of the btrfs subvolume. For newly created btrfs subvolumes the id is
+	 * -1.
+	 */
 	long get_id() const;
 
 	bool is_top_level() const;
 
+	/**
+	 * Get the path of the btrfs subvolume.
+	 */
 	const std::string& get_path() const;
 
+	/**
+	 * Get the copy-on-write (COW) flag of the btrfs subvolume.
+	 */
 	bool is_nocow() const;
+
+	/**
+	 * Set the copy-on-write (COW) flag of the btrfs subvolume.
+	 *
+	 * @see is_nocow()
+	 */
 	void set_nocow(bool nocow);
 
 	bool is_default_btrfs_subvolume() const;
 	void set_default_btrfs_subvolume();
 
+	/**
+	 * Return the btrfs filesystem of the btrfs subvolume.
+	 */
 	Btrfs* get_btrfs();
+
+	/**
+	 * @copydoc get_btrfs()
+	 */
 	const Btrfs* get_btrfs() const;
 
 	BtrfsSubvolume* get_top_level_btrfs_subvolume();
 	const BtrfsSubvolume* get_top_level_btrfs_subvolume() const;
 
+	/**
+	 * Create a btrfs subvolume for the btrfs subvolume.
+	 */
 	BtrfsSubvolume* create_btrfs_subvolume(const std::string& path);
 
 	/**
 	 * Compare (less than) two BtrfsSubvolumes by id.
+	 *
+	 * @see get_id()
 	 */
 	static bool compare_by_id(const BtrfsSubvolume* lhs, const BtrfsSubvolume* rhs);
 

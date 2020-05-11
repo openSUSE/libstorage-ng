@@ -132,8 +132,15 @@ namespace storage
 
     public:
 
+	/**
+	 * Create a device of type LvmLv. Usually this function is not called
+	 * directly. Instead LvmVg::create_lvm_lv() or LvmLv::create_lvm_lv() are called.
+	 *
+	 * @see Device::create(Devicegraph*)
+	 */
 	static LvmLv* create(Devicegraph* devicegraph, const std::string& vg_name,
 			     const std::string& lv_name, LvType lv_type);
+
 	static LvmLv* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	/**
@@ -264,7 +271,9 @@ namespace storage
 
 	/**
 	 * Create a logical volume with name lv_name and type lv_type in the
-	 * thin pool. Only supported lv_type is THIN.
+	 * thin pool.
+	 *
+	 * @see LvType
 	 *
 	 * @throw Exception
 	 */
@@ -282,6 +291,8 @@ namespace storage
 	 * Compare (less than) two LvmLvs by lv-name.
 	 *
 	 * The comparison is locale unaware.
+	 *
+	 * @see get_lv_name()
 	 */
 	static bool compare_by_lv_name(const LvmLv* lhs, const LvmLv* rhs);
 

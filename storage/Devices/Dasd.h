@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -54,9 +54,23 @@ namespace storage
     {
     public:
 
+	/**
+	 * Create a device of type Dasd. Usually this function is not called directly. It
+	 * is called during probing.
+	 *
+	 * @see Device::create(Devicegraph*)
+	 */
 	static Dasd* create(Devicegraph* devicegraph, const std::string& name);
+
+	/**
+	 * @copydoc create(Devicegraph*, const std::string&)
+	 */
 	static Dasd* create(Devicegraph* devicegraph, const std::string& name,
 			    const Region& region);
+
+	/**
+	 * @copydoc create(Devicegraph*, const std::string&)
+	 */
 	static Dasd* create(Devicegraph* devicegraph, const std::string& name,
 			    unsigned long long size);
 

@@ -37,7 +37,14 @@ namespace storage
     {
     public:
 
+	/**
+	 * Create a device of type LvmPv. Usually this function is not called
+	 * directly. Instead LvmVg::add_lvm_pv() is called.
+	 *
+	 * @see Device::create(Devicegraph*)
+	 */
 	static LvmPv* create(Devicegraph* devicegraph);
+
 	static LvmPv* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	/**

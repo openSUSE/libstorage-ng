@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -35,7 +35,14 @@ namespace storage
     {
     public:
 
+	/**
+	 * Create a device of type Gpt. Usually this function is not called
+	 * directly. Instead Partitionable::create_partition_table() is called.
+	 *
+	 * @see Device::create(Devicegraph*)
+	 */
 	static Gpt* create(Devicegraph* devicegraph);
+
 	static Gpt* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	/**

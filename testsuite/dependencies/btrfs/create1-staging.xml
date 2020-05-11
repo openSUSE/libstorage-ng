@@ -47,7 +47,6 @@
     </BtrfsSubvolume>
     <BtrfsSubvolume>
       <sid>131</sid>
-      <id>-1</id>
       <path>home</path>
       <nocow>true</nocow>
     </BtrfsSubvolume>

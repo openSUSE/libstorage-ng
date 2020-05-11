@@ -149,18 +149,28 @@ namespace storage
     std::string get_partition_id_name(IdNum partition_id);
 
 
-    //! A partition of a Partitionable, e.g. Disk or Md.
+    /**
+     * A partition of a Partitionable, e.g. Disk or Md.
+     */
     class Partition : public BlkDevice
     {
     public:
 
 	/**
-	 * region is sector-based.
+	 * Create a device of type Partition. Region is sector-based. Usually this
+	 * function is not called directly. Instead PartitionTable::create_partition() is
+	 * called.
+	 *
+	 * @see Device::create(Devicegraph*)
 	 */
 	static Partition* create(Devicegraph* devicegraph, const std::string& name,
 				 const Region& region, PartitionType type);
+
 	static Partition* load(Devicegraph* devicegraph, const xmlNode* node);
 
+	/**
+	 * Get the partition number.
+	 */
 	unsigned int get_number() const;
 
 	/**
@@ -267,6 +277,8 @@ namespace storage
 
 	/**
 	 * Compare (less than) two Partitions by number.
+	 *
+	 * @see get_number()
 	 */
 	static bool compare_by_number(const Partition* lhs, const Partition* rhs);
 
