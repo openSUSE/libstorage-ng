@@ -781,6 +781,9 @@ namespace storage
 		    // metadata is already on disk and does not get resized no
 		    // need to handle them here.
 
+		    // TODO The underlying LV can be of type RAID or mirror. In that case
+		    // resizing can need more space.
+
 		    const LvmLv* tmp_lvm_lv = to_lvm_lv(redirect_to_system(get_non_impl()));
 
 		    unsigned long long data_size = (lvm_vg->get_impl().number_of_free_extents() +
