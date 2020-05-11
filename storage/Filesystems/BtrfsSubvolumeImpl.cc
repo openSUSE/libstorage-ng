@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2019] SUSE LLC
+ * Copyright (c) [2017-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -55,9 +55,7 @@ namespace storage
     BtrfsSubvolume::Impl::Impl(const xmlNode* node)
 	: Mountable::Impl(node), id(unknown_id), path(), default_btrfs_subvolume(false), nocow(false)
     {
-	if (!getChildValue(node, "id", id))
-	    ST_THROW(Exception("no id"));
-
+	getChildValue(node, "id", id);
 	getChildValue(node, "path", path);
 
 	getChildValue(node, "default-btrfs-subvolume", default_btrfs_subvolume);
