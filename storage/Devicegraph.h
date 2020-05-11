@@ -334,8 +334,8 @@ namespace storage
 	void remove_devices(std::vector<Device*> devices);
 
 	/**
-	 * Find a holders with source_sid and sid_t target_sid. Fails
-	 * if there is not exactly one holder.
+	 * Find the holder with source_sid and target_sid. Fails if there is not exactly
+	 * one holder.
 	 *
 	 * @throw HolderNotFoundBySids, WrongNumberOfHolders
 	 */
