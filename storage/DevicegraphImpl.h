@@ -245,7 +245,6 @@ namespace storage
 	}
 
 
-
 	template <typename Type>
 	vector<const Type*>
 	filter_devices_of_type(const vector<vertex_descriptor>& vertices) const
