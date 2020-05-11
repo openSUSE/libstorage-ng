@@ -184,12 +184,12 @@ namespace storage
 	    string::size_type pos1 = line.find("ID ");
 	    if (pos1 == string::npos)
 		ST_THROW(Exception("could not find 'id' in 'btrfs subvolume list' output"));
-	    line.substr(pos1 + 3) >> entry.id;
+	    line.substr(pos1 + strlen("ID ")) >> entry.id;
 
 	    string::size_type pos2 = line.find(" parent ");
 	    if (pos2 == string::npos)
 		ST_THROW(Exception("could not find 'parent' in 'btrfs subvolume list' output"));
-	    line.substr(pos2 + 8) >> entry.parent_id;
+	    line.substr(pos2 + strlen(" parent ")) >> entry.parent_id;
 
 	    // Subvolume can already be deleted, in which case parent is "0"
 	    // (and path "DELETED"). That is a temporary state.
@@ -199,19 +199,19 @@ namespace storage
 	    string::size_type pos3 = line.find(" path ");
 	    if (pos3 == string::npos)
 		ST_THROW(Exception("could not find 'path' in 'btrfs subvolume list' output"));
-	    entry.path = line.substr(pos3 + 6);
+	    entry.path = line.substr(pos3 + strlen(" path "));
 	    if (boost::starts_with(entry.path, "<FS_TREE>/"))
 		entry.path.erase(0, strlen("<FS_TREE>/"));
 
 	    string::size_type pos4 = line.find(" uuid ");
 	    if (pos4 == string::npos)
 		ST_THROW(Exception("could not find 'uuid' in 'btrfs subvolume list' output"));
-	    line.substr(pos4 + 6) >> entry.uuid;
+	    line.substr(pos4 + strlen(" uuid ")) >> entry.uuid;
 
 	    string::size_type pos5 = line.find(" parent_uuid ");
 	    if (pos5 == string::npos)
 		ST_THROW(Exception("could not find 'parent_uuid' in 'btrfs subvolume list' output"));
-	    line.substr(pos5 + 13) >> entry.parent_uuid;
+	    line.substr(pos5 + strlen(" parent_uuid ")) >> entry.parent_uuid;
 	    if (entry.parent_uuid == "-")
 		entry.parent_uuid = "";
 
