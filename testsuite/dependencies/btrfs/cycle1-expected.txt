@@ -1,2 +1,3 @@
-1a - Delete subvolume 2b/2a on /dev/sdd1 (27.94 GiB) -> 1b
-1b - Delete subvolume 2b on /dev/sdd1 (27.94 GiB) ->
+1a - Delete subvolume 1a on /dev/sdd1 (27.94 GiB) ->
+2a - Delete subvolume 2b/2a on /dev/sdd1 (27.94 GiB) -> 2b
+2b - Delete subvolume 2b on /dev/sdd1 (27.94 GiB) ->
