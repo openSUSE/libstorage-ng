@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2018-2019] SUSE LLC
+ * Copyright (c) [2018-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -83,6 +83,11 @@ namespace storage
      * (during probing).
      */
     bool support_btrfs_multiple_devices();
+
+    /**
+     * Switch to enable btrfs snapshot relations (during probing).
+     */
+    bool support_btrfs_snapshot_relations();
 
 }
 

@@ -28,8 +28,18 @@
       <stdout>ID 5 (FS_TREE)</stdout>
     </Command>
     <Command>
-      <name>/sbin/btrfs subvolume list -a -p (device:/dev/sdc1)</name>
-      <stdout>ID 269 gen 22 parent 5 top level 5 path \x2f</stdout>
+      <!-- output faked -->
+      <name>/sbin/btrfs subvolume list -a -puq (device:/dev/sdc1)</name>
+      <stdout>ID 269 gen 22 parent 5 top level 5 parent_uuid - uuid 891bfe67-410b-904e-a0b0-0d6a7ada05d8 path \x2f</stdout>
+    </Command>
+    <Command>
+      <!-- output faked -->
+      <name>/sbin/btrfs subvolume show (device:/dev/sdc1)</name>
+      <stdout>/</stdout>
+      <stdout>	Name: 			&lt;FS_TREE&gt;</stdout>
+      <stdout>	UUID: 			ff08c18e-3fab-472b-9d0b-1e14b4d10253</stdout>
+      <stdout>	Parent UUID: 		-</stdout>
+      <stdout>	Subvolume ID: 		5</stdout>
     </Command>
     <Command>
       <name>/sbin/dmraid --sets=active -ccc</name>

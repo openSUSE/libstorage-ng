@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2018-2019] SUSE LLC
+ * Copyright (c) [2018-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -107,6 +107,14 @@ namespace storage
     {
 	const char* p = getenv("YAST_MULTIPLE_DEVICES_BTRFS");
 	return !p || strcmp(p, "yes") == 0;
+    }
+
+
+    bool
+    support_btrfs_snapshot_relations()
+    {
+	const char* p = getenv("YAST_BTRFS_SNAPSHOT_RELATIONS");
+	return p && strcmp(p, "yes") == 0;
     }
 
 }

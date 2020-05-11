@@ -161,9 +161,9 @@ namespace storage
 
     CmdBtrfsSubvolumeList::CmdBtrfsSubvolumeList(const key_t& key, const string& mount_point)
     {
-	SystemCmd::Options cmd_options(BTRFS_BIN " subvolume list -a -p " + quote(mount_point),
+	SystemCmd::Options cmd_options(BTRFS_BIN " subvolume list -a -puq " + quote(mount_point),
 				       SystemCmd::DoThrow);
-	cmd_options.mockup_key = BTRFS_BIN " subvolume list -a -p (device:" + key + ")";
+	cmd_options.mockup_key = BTRFS_BIN " subvolume list -a -puq (device:" + key + ")";
 
 	SystemCmd cmd(cmd_options);
 	if (cmd.retcode() == 0)
@@ -184,12 +184,12 @@ namespace storage
 	    string::size_type pos1 = line.find("ID ");
 	    if (pos1 == string::npos)
 		ST_THROW(Exception("could not find 'id' in 'btrfs subvolume list' output"));
-	    line.substr(pos1 + 3) >> entry.id;
+	    line.substr(pos1 + strlen("ID ")) >> entry.id;
 
 	    string::size_type pos2 = line.find(" parent ");
 	    if (pos2 == string::npos)
 		ST_THROW(Exception("could not find 'parent' in 'btrfs subvolume list' output"));
-	    line.substr(pos2 + 8) >> entry.parent_id;
+	    line.substr(pos2 + strlen(" parent ")) >> entry.parent_id;
 
 	    // Subvolume can already be deleted, in which case parent is "0"
 	    // (and path "DELETED"). That is a temporary state.
@@ -199,9 +199,21 @@ namespace storage
 	    string::size_type pos3 = line.find(" path ");
 	    if (pos3 == string::npos)
 		ST_THROW(Exception("could not find 'path' in 'btrfs subvolume list' output"));
-	    entry.path = line.substr(pos3 + 6);
+	    entry.path = line.substr(pos3 + strlen(" path "));
 	    if (boost::starts_with(entry.path, "<FS_TREE>/"))
 		entry.path.erase(0, strlen("<FS_TREE>/"));
+
+	    string::size_type pos4 = line.find(" uuid ");
+	    if (pos4 == string::npos)
+		ST_THROW(Exception("could not find 'uuid' in 'btrfs subvolume list' output"));
+	    line.substr(pos4 + strlen(" uuid ")) >> entry.uuid;
+
+	    string::size_type pos5 = line.find(" parent_uuid ");
+	    if (pos5 == string::npos)
+		ST_THROW(Exception("could not find 'parent_uuid' in 'btrfs subvolume list' output"));
+	    line.substr(pos5 + strlen(" parent_uuid ")) >> entry.parent_uuid;
+	    if (entry.parent_uuid == "-")
+		entry.parent_uuid = "";
 
 	    data.push_back(entry);
 	}
@@ -237,7 +249,53 @@ namespace storage
     operator<<(std::ostream& s, const CmdBtrfsSubvolumeList::Entry& entry)
     {
 	s << "id:" << entry.id << " parent-id:" << entry.parent_id
-	  << " path:" << entry.path << '\n';
+	  << " path:" << entry.path << " uuid:" << entry.uuid;
+
+	if (!entry.parent_uuid.empty())
+	    s << " parent-uuid:" << entry.parent_uuid;
+
+	s  << '\n';
+
+	return s;
+    }
+
+
+    CmdBtrfsSubvolumeShow::CmdBtrfsSubvolumeShow(const key_t& key, const string& mount_point)
+       : uuid()
+    {
+	SystemCmd::Options cmd_options(BTRFS_BIN " subvolume show " + quote(mount_point),
+				       SystemCmd::DoThrow);
+	cmd_options.mockup_key = BTRFS_BIN " subvolume show (device:" + key + ")";
+
+	SystemCmd cmd(cmd_options);
+	parse(cmd.stdout());
+    }
+
+
+    void
+    CmdBtrfsSubvolumeShow::parse(const vector<string>& lines)
+    {
+	static const regex uuid_regex("[ \t]*UUID:[ \t]*(" UUID_REGEX ")[ \t]*", regex::extended);
+
+	smatch match;
+
+	for (const string& line : lines)
+	{
+	    if (regex_match(line, match, uuid_regex))
+		uuid = match[1];
+	}
+
+	if (uuid.empty())
+	    ST_THROW(Exception("could not find 'uuid' in 'btrfs subvolume show' output"));
+
+	y2mil(*this);
+    }
+
+
+    std::ostream&
+    operator<<(std::ostream& s, const CmdBtrfsSubvolumeShow& cmd_btrfs_subvolume_show)
+    {
+	s << "uuid:" << cmd_btrfs_subvolume_show.uuid;
 
 	return s;
     }

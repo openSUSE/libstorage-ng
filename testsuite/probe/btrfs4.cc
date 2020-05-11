@@ -17,9 +17,7 @@ using namespace storage;
 
 
 /**
- * Test with an almost standard openSUSE installation (btrfs root
- * (several subvolumes, snapper with several subvolums/snapshots and
- * once a rollback) and btrfs home).
+ * The devicegraph in this test has 1. parallel holders and 2. a cycle.
  */
 BOOST_AUTO_TEST_CASE(probe)
 {
@@ -28,7 +26,7 @@ BOOST_AUTO_TEST_CASE(probe)
     set_logger(get_stdout_logger());
 
     Environment environment(true, ProbeMode::READ_MOCKUP, TargetMode::DIRECT);
-    environment.set_mockup_filename("btrfs1-mockup.xml");
+    environment.set_mockup_filename("btrfs4-mockup.xml");
 
     Storage storage(environment);
     storage.probe();
@@ -37,11 +35,11 @@ BOOST_AUTO_TEST_CASE(probe)
     probed->check();
 
     Devicegraph* staging = storage.get_staging();
-    staging->load("btrfs1-devicegraph.xml");
+    staging->load("btrfs4-devicegraph.xml");
     staging->check();
 
     TsCmpDevicegraph cmp(*probed, *staging);
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
 
-    BOOST_CHECK_BITWISE_EQUAL(probed->used_features(), UF_BTRFS | UF_SWAP);
+    BOOST_CHECK_BITWISE_EQUAL(probed->used_features(), (uint64_t)(UF_BTRFS));
 }

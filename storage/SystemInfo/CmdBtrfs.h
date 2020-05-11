@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2017-2019] SUSE LLC
+ * Copyright (c) [2017-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -119,16 +119,25 @@ namespace storage
 
 	CmdBtrfsSubvolumeList(const key_t& key, const string& mount_point);
 
+	/**
+	 * Entry for every subvolume (unfortunately except the top level).
+	 *
+	 * Caution: parent_id and parent_uuid are something completely
+	 * different - not just different ways to specify the
+	 * "parent".
+	 */
 	struct Entry
 	{
 	    Entry()
 		: id(BtrfsSubvolume::Impl::unknown_id),
 		  parent_id(BtrfsSubvolume::Impl::unknown_id),
-		  path() {}
+		  path(), uuid(), parent_uuid() {}
 
 	    long id;
 	    long parent_id;
 	    string path;
+	    string uuid;
+	    string parent_uuid;
 	};
 
 	typedef vector<Entry>::value_type value_type;
@@ -147,6 +156,32 @@ namespace storage
 	void parse(const vector<string>& lines);
 
 	vector<Entry> data;
+
+    };
+
+
+    /**
+     * Class to probe for btrfs subvolume information: Call "btrfs subvolume
+     * show <mountpoint>".
+     */
+    class CmdBtrfsSubvolumeShow
+    {
+    public:
+
+	typedef string key_t;
+
+	CmdBtrfsSubvolumeShow(const key_t& key, const string& mount_point);
+
+	const string& get_uuid() const { return uuid; }
+
+	friend std::ostream& operator<<(std::ostream& s, const CmdBtrfsSubvolumeShow&
+					cmd_btrfs_subvolume_show);
+
+    private:
+
+	void parse(const vector<string>& lines);
+
+	string uuid;
 
     };
 

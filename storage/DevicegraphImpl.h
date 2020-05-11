@@ -65,8 +65,8 @@ namespace storage
 
     public:
 
-	// Using OutEdgeList=boost::setS disallows parallel edges.  Using
-	// VertexList=boost::listS and OutEdgeList=boost::setS makes both
+	// Using OutEdgeList=boost::listS allows parallel edges.  Using
+	// VertexList=boost::listS and OutEdgeList=boost::listS makes both
 	// vertex and edge iterators stable (never invalidated unless deleted). See:
 	// http://www.boost.org/doc/libs/1_56_0/libs/graph/doc/adjacency_list.html
 
@@ -75,7 +75,7 @@ namespace storage
 	// properties, see:
 	// http://www.boost.org/doc/libs/1_56_0/libs/graph/doc/bundles.html
 
-	typedef boost::adjacency_list<boost::setS, boost::listS, boost::bidirectionalS,
+	typedef boost::adjacency_list<boost::listS, boost::listS, boost::bidirectionalS,
 				      std::shared_ptr<Device>, std::shared_ptr<Holder>> graph_t;
 
 	typedef graph_t::vertex_descriptor vertex_descriptor;
@@ -140,6 +140,7 @@ namespace storage
 
 	vertex_descriptor find_vertex(sid_t sid) const;
 	edge_descriptor find_edge(sid_t source_sid, sid_t target_sid) const;
+	vector<edge_descriptor> find_edges(sid_t source_sid, sid_t target_sid) const;
 
 	vertex_descriptor source(edge_descriptor edge) const { return boost::source(edge, graph); }
 	vertex_descriptor target(edge_descriptor edge) const { return boost::target(edge, graph); }
@@ -242,7 +243,6 @@ namespace storage
 
 	    return ret;
 	}
-
 
 
 	template <typename Type>

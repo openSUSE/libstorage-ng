@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -102,6 +102,13 @@ namespace storage
 
     WrongNumberOfChildren::WrongNumberOfChildren(size_t seen, size_t expected)
 	: Exception(sformat("wrong number of children, seen '%zu', expected '%zu'", seen, expected),
+		    Silencer::is_any_active() ? LogLevel::DEBUG : LogLevel::WARNING)
+    {
+    }
+
+
+    WrongNumberOfHolders::WrongNumberOfHolders(size_t seen, size_t expected)
+	: Exception(sformat("wrong number of holders, seen '%zu', expected '%zu'", seen, expected),
 		    Silencer::is_any_active() ? LogLevel::DEBUG : LogLevel::WARNING)
     {
     }
@@ -329,6 +336,30 @@ namespace storage
     {
 	Impl::edge_descriptor edge = get_impl().find_edge(source_sid, target_sid);
 	return get_impl()[edge];
+    }
+
+
+    vector<Holder*>
+    Devicegraph::find_holders(sid_t source_sid, sid_t target_sid)
+    {
+	vector<Holder*> ret;
+
+	for (Impl::edge_descriptor edge : get_impl().find_edges(source_sid, target_sid))
+	    ret.push_back(get_impl()[edge]);
+
+	return ret;
+    }
+
+
+    vector<const Holder*>
+    Devicegraph::find_holders(sid_t source_sid, sid_t target_sid) const
+    {
+	vector<const Holder*> ret;
+
+	for (Impl::edge_descriptor edge : get_impl().find_edges(source_sid, target_sid))
+	    ret.push_back(get_impl()[edge]);
+
+	return ret;
     }
 
 
