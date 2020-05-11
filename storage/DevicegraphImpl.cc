@@ -387,7 +387,7 @@ namespace storage
 	pair<Devicegraph::Impl::edge_descriptor, bool> tmp =
 	    boost::add_edge(source_vertex, target_vertex, shared_ptr<Holder>(holder), graph);
 
-	// Since parallel edges are allowd tmp.second must always be true.
+	// Since parallel edges are allowed tmp.second must always be true.
 
 	if (!tmp.second)
 	    ST_THROW(LogicException("boost::add_edge behaved unexpectedly"));
