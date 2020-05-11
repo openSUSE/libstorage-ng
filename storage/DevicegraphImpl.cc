@@ -916,9 +916,12 @@ namespace storage
 
 	fout << "// " << generated_string() << "\n\n";
 
-	// Build up a property map with the sid to be used for the vertex
-	// id. Same as VertexIndexMapGenerator but with the sid instead of a
-	// generated index.
+	// Build up a property map with the sid to be used for the
+	// vertex id. Same as VertexIndexMapGenerator but with the sid
+	// instead of a generated index. Why? For once the sid is
+	// needed as id for the ranks. Also other programs can query
+	// the id when the user clicks on a node and thus can lookup
+	// the device easily.
 
 	typedef map<vertex_descriptor, sid_t> vertex_id_map_t;
 
@@ -926,9 +929,8 @@ namespace storage
 
 	boost::associative_property_map<vertex_id_map_t> vertex_id_property_map(vertex_id_map);
 
-	vertex_iterator vi, vi_end;
-	for (boost::tie(vi, vi_end) = boost::vertices(graph); vi != vi_end; ++vi)
-	    boost::put(vertex_id_property_map, *vi, graph[*vi].get()->get_sid());
+	for (vertex_descriptor vertex : vertices())
+	    boost::put(vertex_id_property_map, vertex, graph[vertex].get()->get_sid());
 
 	const DevicegraphWriter devicegraph_writer(style_callbacks, *this);
 	boost::write_graphviz(fout, filtered_graph, devicegraph_writer, devicegraph_writer,
