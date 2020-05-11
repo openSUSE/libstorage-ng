@@ -33,6 +33,7 @@
 %exceptionclass storage::ParseException;
 %exceptionclass storage::UnsupportedException;
 %exceptionclass storage::WrongNumberOfChildren;
+%exceptionclass storage::WrongNumberOfHolders;
 %exceptionclass storage::WrongNumberOfParents;
 
 %catches(storage::ParseException, storage::OverflowException) storage::humanstring_to_byte(const std::string &str, bool classic);
@@ -241,8 +242,8 @@
 %catches(storage::Exception) storage::Devicegraph::check(const CheckCallbacks *check_callbacks=nullptr) const;
 %catches(storage::DeviceNotFoundBySid) storage::Devicegraph::find_device(sid_t sid);
 %catches(storage::DeviceNotFoundBySid) storage::Devicegraph::find_device(sid_t sid) const;
-%catches(storage::HolderNotFoundBySids) storage::Devicegraph::find_holder(sid_t source_sid, sid_t target_sid);
-%catches(storage::HolderNotFoundBySids) storage::Devicegraph::find_holder(sid_t source_sid, sid_t target_sid) const;
+%catches(storage::HolderNotFoundBySids, storage::WrongNumberOfHolders) storage::Devicegraph::find_holder(sid_t source_sid, sid_t target_sid);
+%catches(storage::HolderNotFoundBySids, storage::WrongNumberOfHolders) storage::Devicegraph::find_holder(sid_t source_sid, sid_t target_sid) const;
 %catches(storage::Exception) storage::Devicegraph::load(const std::string &filename);
 %catches(storage::DeviceNotFoundBySid) storage::Devicegraph::remove_device(sid_t sid);
 %catches(storage::Exception) storage::Devicegraph::save(const std::string &filename) const;

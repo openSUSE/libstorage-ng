@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2017-2019] SUSE LLC
+ * Copyright (c) [2017-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -134,7 +134,14 @@ namespace storage
 
 	Holder(Impl* impl);
 
+	/**
+	 * Create a holder between source and target in the devicegraph. Duplicate holders
+	 * of the same type are not allowed.
+	 *
+	 * @throw HolderAlreadyExists
+	 */
 	void create(Devicegraph* devicegraph, const Device* source, const Device* target);
+
 	void load(Devicegraph* devicegraph, const xmlNode* node);
 
     private:

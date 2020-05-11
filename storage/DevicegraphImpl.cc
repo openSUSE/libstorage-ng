@@ -115,10 +115,13 @@ namespace storage
 
 	for (pair<sid_t, sid_t> sid : lhs_holder_sids)
 	{
-	    edge_descriptor lhs_edge = find_edge(sid.first, sid.second);
-	    edge_descriptor rhs_edge = rhs.find_edge(sid.first, sid.second);
+	    vector<edge_descriptor> lhs_edges = find_edges(sid.first, sid.second);
+	    vector<edge_descriptor> rhs_edges = rhs.find_edges(sid.first, sid.second);
 
-	    if (*graph[lhs_edge].get() != *rhs.graph[rhs_edge].get())
+	    if (!is_permutation(lhs_edges.begin(), lhs_edges.end(), rhs_edges.begin(), rhs_edges.end(),
+				[&](edge_descriptor lhs_edge, edge_descriptor rhs_edge) {
+				    return *graph[lhs_edge].get() == *rhs.graph[rhs_edge].get();
+				}))
 		return false;
 	}
 
@@ -159,16 +162,46 @@ namespace storage
 
 	for (pair<sid_t, sid_t> sid : lhs_holder_sids)
 	{
-	    edge_descriptor lhs_edge = find_edge(sid.first, sid.second);
-	    edge_descriptor rhs_edge = rhs.find_edge(sid.first, sid.second);
+	    vector<edge_descriptor> lhs_edges = find_edges(sid.first, sid.second);
+	    vector<edge_descriptor> rhs_edges = rhs.find_edges(sid.first, sid.second);
 
-	    if (*graph[lhs_edge].get() != *rhs.graph[rhs_edge].get())
-		log << "sid " << sid.first << " " << sid.second << " holder differ\n";
+	    bool show = false;
 
-	    if (graph[lhs_edge]->get_impl().get_classname() != graph[rhs_edge]->get_impl().get_classname())
-		log << "holders with sids " << sid.first << " " << sid.second << " have different types\n";
-	    else
-		graph[lhs_edge]->get_impl().log_diff(log, rhs.graph[rhs_edge]->get_impl());
+	    if (lhs_edges.size() != rhs_edges.size())
+	    {
+		log << "sid " << sid.first << " " << sid.second << " different number of holders\n";
+		show = true;
+	    }
+	    else if (!is_permutation(lhs_edges.begin(), lhs_edges.end(), rhs_edges.begin(), rhs_edges.end(),
+				     [&](edge_descriptor lhs_edge, edge_descriptor rhs_edge) {
+					 return *graph[lhs_edge].get() == *rhs.graph[rhs_edge].get();
+				     }))
+	    {
+		log << "sid " << sid.first << " " << sid.second << " holders are not a permutation\n";
+		show = true;
+	    }
+
+	    if (show)
+	    {
+		// TODO: It might be worth sorting the holders according to type to give better
+		// diffs. But so far having more than one holder is the rare exception.
+
+		size_t n = min(lhs_edges.size(), rhs_edges.size());
+
+		for (size_t i = 0; i < n; ++i)
+		{
+		    const Holder* lhs_holder = graph[lhs_edges[i]].get();
+		    const Holder* rhs_holder = rhs.graph[rhs_edges[i]].get();
+
+		    if (*lhs_holder != *rhs_holder)
+			log << "sid " << sid.first << " " << sid.second << " holder pair " << i << " differ\n";
+
+		    if (lhs_holder->get_impl().get_classname() != rhs_holder->get_impl().get_classname())
+			log << "sid " << sid.first << " " << sid.second << " holder pair " << i << " have different types\n";
+		    else
+			lhs_holder->get_impl().log_diff(log, rhs_holder->get_impl());
+		}
+	    }
 	}
     }
 
@@ -227,14 +260,16 @@ namespace storage
 	}
 
 	{
-	    // look for cycles
+	    // Look for cycles in the classic view. With btrfs snapshots cycles are possible.
 
-	    VertexIndexMapGenerator<graph_t> vertex_index_map_generator(graph);
+	    filtered_graph_t filtered_graph(graph, make_edge_filter(View::CLASSIC));
+
+	    VertexIndexMapGenerator<filtered_graph_t> vertex_index_map_generator(filtered_graph);
 
 	    bool has_cycle = false;
 
 	    CycleDetector cycle_detector(has_cycle);
-	    boost::depth_first_search(graph, visitor(cycle_detector).
+	    boost::depth_first_search(filtered_graph, visitor(cycle_detector).
 				      vertex_index_map(vertex_index_map_generator.get()));
 
 	    if (has_cycle)
@@ -337,12 +372,25 @@ namespace storage
     Devicegraph::Impl::add_edge(vertex_descriptor source_vertex, vertex_descriptor target_vertex,
 				Holder* holder)
     {
+	// Check that no holder of the same type exists.
+
+	sid_t source_sid = graph[source_vertex]->get_sid();
+	sid_t target_sid = graph[target_vertex]->get_sid();
+
+	for (edge_descriptor edge : find_edges(source_sid, target_sid))
+	{
+	    if (typeid(*graph[edge].get()) == typeid(*holder))
+		ST_THROW(HolderAlreadyExists(graph[source_vertex]->get_sid(),
+					     graph[target_vertex]->get_sid()));
+	}
+
 	pair<Devicegraph::Impl::edge_descriptor, bool> tmp =
 	    boost::add_edge(source_vertex, target_vertex, shared_ptr<Holder>(holder), graph);
 
+	// Since parallel edges are allowd tmp.second must always be true.
+
 	if (!tmp.second)
-	    ST_THROW(HolderAlreadyExists(graph[source_vertex]->get_sid(),
-					 graph[target_vertex]->get_sid()));
+	    ST_THROW(LogicException("boost::add_edge behaved unexpectedly"));
 
 	// TODO should also set devicegraph and edge in holder but the
 	// devicegraph is not available here
@@ -414,14 +462,31 @@ namespace storage
     Devicegraph::Impl::edge_descriptor
     Devicegraph::Impl::find_edge(sid_t source_sid, sid_t target_sid) const
     {
+	vector<Devicegraph::Impl::edge_descriptor> edges = find_edges(source_sid, target_sid);
+
+	if (edges.empty())
+	    ST_THROW(HolderNotFoundBySids(source_sid, target_sid));
+
+	if (edges.size() != 1)
+	    ST_THROW(WrongNumberOfHolders(edges.size(), 1));
+
+	return edges.front();
+    }
+
+
+    vector<Devicegraph::Impl::edge_descriptor>
+    Devicegraph::Impl::find_edges(sid_t source_sid, sid_t target_sid) const
+    {
+	vector<Devicegraph::Impl::edge_descriptor> ret;
+
 	for (edge_descriptor edge : edges())
 	{
 	    if (graph[source(edge)]->get_sid() == source_sid &&
 		graph[target(edge)]->get_sid() == target_sid)
-		return edge;
+		ret.push_back(edge);
 	}
 
-	ST_THROW(HolderNotFoundBySids(source_sid, target_sid));
+	return ret;
     }
 
 

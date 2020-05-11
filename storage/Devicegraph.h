@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -30,6 +30,7 @@
 
 #include "storage/Devices/Device.h"
 #include "storage/Graphviz.h"
+#include "storage/Utils/Swig.h"
 
 
 namespace storage
@@ -77,7 +78,7 @@ namespace storage
     };
 
 
-    class HolderNotFound : public Exception
+    class ST_DEPRECATED HolderNotFound: public Exception
     {
     public:
 
@@ -85,7 +86,7 @@ namespace storage
     };
 
 
-    class HolderNotFoundBySids : public HolderNotFound
+    class ST_DEPRECATED HolderNotFoundBySids : public HolderNotFound
     {
     public:
 
@@ -114,6 +115,14 @@ namespace storage
     public:
 
 	WrongNumberOfChildren(size_t seen, size_t expected);
+    };
+
+
+    class WrongNumberOfHolders : public Exception
+    {
+    public:
+
+	WrongNumberOfHolders(size_t seen, size_t expected);
     };
 
 
@@ -216,7 +225,7 @@ namespace storage
 	bool device_exists(sid_t sid) const;
 
 	/**
-	 * Check whether the holder with source sid and target sid exists.
+	 * Check whether a holder with source_sid and target_sid exists.
 	 */
 	bool holder_exists(sid_t source_sid, sid_t target_sid) const;
 
@@ -325,14 +334,27 @@ namespace storage
 	void remove_devices(std::vector<Device*> devices);
 
 	/**
-	 * @throw HolderNotFoundBySids
+	 * Find a holders with source_sid and sid_t target_sid. Fails
+	 * if there is not exactly one holder.
+	 *
+	 * @throw HolderNotFoundBySids, WrongNumberOfHolders
 	 */
 	Holder* find_holder(sid_t source_sid, sid_t target_sid);
 
 	/**
-	 * @throw HolderNotFoundBySids
+	 * @copydoc find_holder(sid_t, sid_t)
 	 */
 	const Holder* find_holder(sid_t source_sid, sid_t target_sid) const;
+
+	/**
+	 * Find all holders with source_sid and sid_t target_sid.
+	 */
+	std::vector<Holder*> find_holders(sid_t source_sid, sid_t target_sid);
+
+	/**
+	 * @copydoc find_holders(sid_t, sid_t)
+	 */
+	std::vector<const Holder*> find_holders(sid_t source_sid, sid_t target_sid) const;
 
 	/**
 	 * Removes the holder from the devicegraph.
