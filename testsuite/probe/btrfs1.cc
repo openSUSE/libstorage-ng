@@ -16,8 +16,15 @@ using namespace std;
 using namespace storage;
 
 
+/**
+ * Test with an almost standard openSUSE installation (btrfs root
+ * (several subvolumes, snapper with several subvolums/snapshots and
+ * once a rollback) and btrfs home).
+ */
 BOOST_AUTO_TEST_CASE(probe)
 {
+    setenv("YAST_BTRFS_SNAPSHOT_RELATIONS", "yes", 1);
+
     set_logger(get_stdout_logger());
 
     Environment environment(true, ProbeMode::READ_MOCKUP, TargetMode::DIRECT);

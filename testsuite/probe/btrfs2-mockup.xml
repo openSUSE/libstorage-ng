@@ -39,9 +39,19 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/btrfs subvolume list -a -p (device:/dev/sdb1)</name>
-      <stdout>ID 258 gen 12 parent 5 top level 5 path sub1</stdout>
-      <stdout>ID 259 gen 13 parent 5 top level 5 path sub2</stdout>
+      <!-- output faked -->
+      <name>/sbin/btrfs subvolume list -a -puq (device:/dev/sdb1)</name>
+      <stdout>ID 258 gen 12 parent 5 top level 5 parent_uuid - uuid 891bfe67-410b-904e-a0b0-0d6a6ada05d8 path sub1</stdout>
+      <stdout>ID 259 gen 13 parent 5 top level 5 parent_uuid - uuid 4e688778-11db-434f-bc92-d64ac334c119 path sub2</stdout>
+    </Command>
+    <Command>
+      <!-- output faked -->
+      <name>/sbin/btrfs subvolume show (device:/dev/sdb1)</name>
+      <stdout>/</stdout>
+      <stdout>	Name: 			&lt;FS_TREE&gt;</stdout>
+      <stdout>	UUID: 			ff08c18e-3fab-472b-9d0b-1e14b4d10243</stdout>
+      <stdout>	Parent UUID: 		-</stdout>
+      <stdout>	Subvolume ID: 		5</stdout>
     </Command>
     <Command>
       <name>/sbin/btrfs subvolume get-default (device:/dev/sdb1)</name>
