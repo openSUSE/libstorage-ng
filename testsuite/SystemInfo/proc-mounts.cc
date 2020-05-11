@@ -10,7 +10,6 @@
 
 #include "storage/SystemInfo/ProcMounts.h"
 #include "storage/Utils/Mockup.h"
-#include <iostream>
 
 using namespace std;
 using namespace storage;

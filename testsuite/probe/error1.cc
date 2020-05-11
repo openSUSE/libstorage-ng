@@ -2,7 +2,6 @@
 #define BOOST_TEST_DYN_LINK
 #define BOOST_TEST_MODULE libstorage
 
-#include <iostream>
 #include <boost/test/unit_test.hpp>
 
 #include "storage/Environment.h"
