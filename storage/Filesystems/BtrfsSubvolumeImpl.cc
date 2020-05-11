@@ -78,7 +78,7 @@ namespace storage
     {
 	Mountable::Impl::save(node);
 
-	setChildValue(node, "id", id);
+	setChildValueIf(node, "id", id, id != unknown_id);
 	setChildValue(node, "path", path);
 
 	setChildValueIf(node, "default-btrfs-subvolume", default_btrfs_subvolume, default_btrfs_subvolume);
