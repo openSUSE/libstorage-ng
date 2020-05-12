@@ -447,9 +447,22 @@ namespace storage
 	// separately. All hope rests on the JSON output to be better
 	// suited (maybe even include the COW flag).
 
-	const CmdBtrfsSubvolumeShow& cmd_btrfs_subvolume_show =
-	    system_info.getCmdBtrfsSubvolumeShow(blk_device->get_name(), mount_point);
-	subvolumes_by_uuid[cmd_btrfs_subvolume_show.get_uuid()] = top_level;
+	try
+	{
+	    const CmdBtrfsSubvolumeShow& cmd_btrfs_subvolume_show =
+		system_info.getCmdBtrfsSubvolumeShow(blk_device->get_name(), mount_point);
+	    subvolumes_by_uuid[cmd_btrfs_subvolume_show.get_uuid()] = top_level;
+	}
+	catch (const Exception& e)
+	{
+	    // apparently sometimes the output does not include a UUID
+	    // TODO know why and when, fix it
+
+	    ST_CAUGHT(e);
+
+	    if (support_btrfs_snapshot_relations())
+		ST_RETHROW(e);
+	}
 
 	const CmdBtrfsSubvolumeList& cmd_btrfs_subvolume_list =
 	    system_info.getCmdBtrfsSubvolumeList(blk_device->get_name(), mount_point);
@@ -505,16 +518,18 @@ namespace storage
 	    if (subvolume.parent_uuid.empty())
 		continue;
 
-	    const BtrfsSubvolume* parent = subvolumes_by_uuid[subvolume.parent_uuid];
-	    if (!parent)
-		ST_THROW(Exception("parent subvolume not found by uuid"));
-
-	    const BtrfsSubvolume* child = subvolumes_by_uuid[subvolume.uuid];
-	    if (!parent)
-		ST_THROW(Exception("child subvolume not found by uuid"));
-
 	    if (support_btrfs_snapshot_relations())
+	    {
+		const BtrfsSubvolume* parent = subvolumes_by_uuid[subvolume.parent_uuid];
+		if (!parent)
+		    ST_THROW(Exception("parent subvolume not found by uuid"));
+
+		const BtrfsSubvolume* child = subvolumes_by_uuid[subvolume.uuid];
+		if (!parent)
+		    ST_THROW(Exception("child subvolume not found by uuid"));
+
 		Snapshot::create(prober.get_system(), parent, child);
+	    }
 	}
 
 	const CmdBtrfsFilesystemDf& cmd_btrfs_filesystem_df =
