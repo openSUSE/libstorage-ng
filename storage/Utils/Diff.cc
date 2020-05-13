@@ -22,7 +22,6 @@
 
 #include <algorithm>
 #include <iostream>
-#include <stdexcept>
 
 #include "storage/Utils/Diff.h"
 

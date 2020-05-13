@@ -25,7 +25,6 @@
 #define STORAGE_DEVICEGRAPH_H
 
 
-#include <stdexcept>
 #include <boost/noncopyable.hpp>
 
 #include "storage/Devices/Device.h"

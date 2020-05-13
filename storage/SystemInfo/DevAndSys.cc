@@ -21,7 +21,6 @@
  */
 
 
-#include <stdexcept>
 #include <boost/algorithm/string.hpp>
 
 #include "storage/Utils/LoggerImpl.h"
