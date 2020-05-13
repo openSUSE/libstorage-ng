@@ -62,7 +62,7 @@ relations do not follow the usual parent-child relationship. E.g. the
 thin origin of a thin snapshot can be deleted without deleting the
 thin snapshot.
 
-So far the view cannot be specified in the API.
+So far the view can only be specified in some functions of the API.
 
 Relation functions, e.g. Device::get_children(), hide snapshot
 relations.

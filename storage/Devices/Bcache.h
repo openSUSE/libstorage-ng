@@ -83,6 +83,9 @@ namespace storage
 	 */
 	BcacheType get_type() const;
 
+	/**
+	 * Get the number of the bcache.
+	 */
 	unsigned int get_number() const;
 
 	/**
@@ -204,6 +207,8 @@ namespace storage
 
 	/**
 	 * Compare (less than) two bcaches by number.
+	 *
+	 * @see get_number()
 	 */
 	static bool compare_by_number(const Bcache* lhs, const Bcache* rhs);
 

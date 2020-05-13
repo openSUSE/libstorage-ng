@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -34,6 +34,7 @@
 
 #include "storage/Utils/Exception.h"
 #include "storage/Utils/Swig.h"
+#include "storage/View.h"
 
 
 namespace storage
@@ -159,17 +160,43 @@ namespace storage
 	// ptr would also allow to use references instead of pointer in the
 	// interface.
 
+	// all function without a view are obsolete (to be replaced by functions with
+	// default view)
+
 	std::vector<Device*> get_children();
 	std::vector<const Device*> get_children() const;
 
+	/**
+	 * Get all children of the device.
+	 */
+	std::vector<Device*> get_children(View view);
+
+	/**
+	 * @copydoc get_children(View)
+	 */
+	std::vector<const Device*> get_children(View view) const;
+
 	std::vector<Device*> get_parents();
 	std::vector<const Device*> get_parents() const;
+
+	/**
+	 * Get all parents of the device.
+	 */
+	std::vector<Device*> get_parents(View view);
+
+	/**
+	 * @copydoc get_parents(View)
+	 */
+	std::vector<const Device*> get_parents(View view) const;
 
 	std::vector<Device*> get_siblings(bool itself);
 	std::vector<const Device*> get_siblings(bool itself) const;
 
 	std::vector<Device*> get_descendants(bool itself);
 	std::vector<const Device*> get_descendants(bool itself) const;
+
+	std::vector<Device*> get_descendants(bool itself, View view);
+	std::vector<const Device*> get_descendants(bool itself, View view) const;
 
 	std::vector<Device*> get_ancestors(bool itself);
 	std::vector<const Device*> get_ancestors(bool itself) const;
@@ -187,6 +214,12 @@ namespace storage
 	std::vector<const Holder*> get_out_holders() const;
 
 	void remove_descendants();
+
+	/**
+	 * Remove all descendants of the device. The view should likely always be
+	 * View::REMOVE.
+	 */
+	void remove_descendants(View view);
 
 	const std::map<std::string, std::string>& get_userdata() const;
 	void set_userdata(const std::map<std::string, std::string>& userdata);
@@ -212,6 +245,8 @@ namespace storage
 	 * may change in future versions.
 	 *
 	 * The comparison is locale unaware.
+	 *
+	 * @see get_name_sort_key()
 	 *
 	 * @throw Exception
 	 */

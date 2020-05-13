@@ -132,7 +132,7 @@ namespace storage
 	virtual Device* get_non_impl() { return devicegraph->get_impl()[vertex]; }
 	virtual const Device* get_non_impl() const { return devicegraph->get_impl()[vertex]; }
 
-	void remove_descendants();
+	void remove_descendants(View view = View::CLASSIC);
 
 	const map<string, string>& get_userdata() const { return userdata; }
 	void set_userdata(const map<string, string>& userdata) { Impl::userdata = userdata; }

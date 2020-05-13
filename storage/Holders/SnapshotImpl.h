@@ -49,7 +49,7 @@ namespace storage
 
 	virtual const char* get_classname() const override { return HolderTraits<Snapshot>::classname; }
 
-	virtual bool is_in_view(View view) const override { return view == View::ALL; }
+	virtual bool is_in_view(View view) const override;
 
 	virtual bool equal(const Holder::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Holder::Impl& rhs_base) const override;

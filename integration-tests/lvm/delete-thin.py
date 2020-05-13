@@ -23,7 +23,7 @@ thin_pool = test.get_lvm_lv("thin-pool")
 
 thin1 = thin_pool.get_lvm_lv("thin1")
 
-thin1.remove_descendants()
+thin1.remove_descendants(View_REMOVE)
 staging.remove_device(thin1)
 
 print(staging)

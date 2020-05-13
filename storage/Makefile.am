@@ -28,6 +28,7 @@ libstorage_ng_la_SOURCES =						\
 	SimpleEtcCrypttab.h		SimpleEtcCrypttab.cc		\
 	FreeInfo.h			FreeInfo.cc			\
 	UsedFeatures.h							\
+	View.h								\
 	Version.h							\
 	CompoundAction.h		CompoundAction.cc		\
 	CompoundActionImpl.h		CompoundActionImpl.cc		\
@@ -59,6 +60,7 @@ pkginclude_HEADERS =		\
 	SimpleEtcCrypttab.h	\
 	FreeInfo.h		\
 	UsedFeatures.h		\
+	View.h			\
 	CompoundAction.h	\
 	CommitOptions.h
 

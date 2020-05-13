@@ -1,0 +1,11 @@
+1a - Delete logical volume linear1-snap1 (1.00 GiB) on volume group test -> 1c
+1b - Delete logical volume linear1-snap2 (1.00 GiB) on volume group test -> 1c
+1c - Delete logical volume linear1 (5.00 GiB) on volume group test ->
+
+2a - Delete thin logical volume thin2-snap1 (5.00 GiB) on volume group test ->
+2b - Delete thin logical volume thin2-snap2 (5.00 GiB) on volume group test ->
+2c - Delete thin logical volume thin2 (5.00 GiB) on volume group test ->
+
+3a - Delete logical volume linear3-snap1 (1.00 GiB) on volume group test -> 3c
+3b - Delete thin logical volume linear3-snap2 (5.00 GiB) on volume group test -> 3c
+3c - Delete logical volume linear3 (5.00 GiB) on volume group test ->
