@@ -86,7 +86,19 @@ namespace storage
 	 */
 	static std::vector<const Dasd*> get_all(const Devicegraph* devicegraph);
 
+	/**
+	 * Get the bus ID of the DASD. E.g. "0.0.0150".
+	 */
 	std::string get_bus_id() const;
+
+	/**
+	 * Set the bus ID of the DASD.
+	 *
+	 * @note The bus ID cannot be changed on disk. The function is only for
+	 * testsuites.
+	 *
+	 * @see get_bus_id()
+	 */
 	void set_bus_id(std::string bus_id);
 
 	/**

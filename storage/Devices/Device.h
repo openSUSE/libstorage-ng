@@ -246,6 +246,8 @@ namespace storage
 	 *
 	 * The comparison is locale unaware.
 	 *
+	 * @see get_name_sort_key()
+	 *
 	 * @throw Exception
 	 */
 	static bool compare_by_name(const Device* lhs, const Device* rhs);

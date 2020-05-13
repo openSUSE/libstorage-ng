@@ -96,6 +96,8 @@ namespace storage
 
 	/**
 	 * Compare (less than) two BcacheCsets by UUID.
+	 *
+	 * @see get_uuid()
 	 */
 	static bool compare_by_uuid(const BcacheCset* lhs, const BcacheCset* rhs);
 
