@@ -19,7 +19,7 @@ staging = storage.get_staging()
 
 test = LvmVg.find_by_vg_name(staging, "test")
 
-test.remove_descendants()
+test.remove_descendants(View_REMOVE)
 
 for pv in test.get_lvm_pvs():
     staging.remove_device(pv)

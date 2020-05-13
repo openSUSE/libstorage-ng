@@ -21,7 +21,7 @@ test = LvmVg.find_by_vg_name(staging, "test")
 
 normal1 = test.get_lvm_lv("normal1")
 
-normal1.remove_descendants()
+normal1.remove_descendants(View_REMOVE)
 staging.remove_device(normal1)
 
 print(staging)
