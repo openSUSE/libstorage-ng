@@ -442,6 +442,13 @@ namespace storage
 
 
     void
+    Devicegraph::write_graphviz(const string& filename, DevicegraphStyleCallbacks* style_callbacks, View view) const
+    {
+	get_impl().write_graphviz(filename, style_callbacks, view);
+    }
+
+
+    void
     Devicegraph::write_graphviz(const string& filename, DevicegraphStyleCallbacks* style_callbacks) const
     {
 	get_impl().write_graphviz(filename, style_callbacks);

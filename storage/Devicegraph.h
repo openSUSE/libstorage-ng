@@ -388,7 +388,12 @@ namespace storage
 	 *
 	 * @throw Exception
 	 */
-	void write_graphviz(const std::string& filename, DevicegraphStyleCallbacks* style_callbacks) const;
+	void write_graphviz(const std::string& filename, DevicegraphStyleCallbacks* style_callbacks, View view) const;
+
+	/**
+	 * @copydoc write_graphviz(const std::string&, DevicegraphStyleCallbacks*, View) const
+	 */
+	void write_graphviz(const std::string& filename, DevicegraphStyleCallbacks* style_callbacks) const ST_DEPRECATED;
 
 	/**
 	 * Writes the devicegraph in graphviz format. The node id is
@@ -399,7 +404,7 @@ namespace storage
 	 * @throw Exception
 	 */
 	void write_graphviz(const std::string& filename, GraphvizFlags flags = GraphvizFlags::NAME,
-			    GraphvizFlags tooltip_flags = GraphvizFlags::NONE) const;
+			    GraphvizFlags tooltip_flags = GraphvizFlags::NONE) const ST_DEPRECATED;
 
 	friend std::ostream& operator<<(std::ostream& out, const Devicegraph& devicegraph);
 

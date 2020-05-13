@@ -238,11 +238,11 @@ namespace storage
 
 
     void
-    Device::Impl::remove_descendants()
+    Device::Impl::remove_descendants(View view)
     {
 	Devicegraph::Impl& devicegraph_impl = devicegraph->get_impl();
 
-	for (Devicegraph::Impl::vertex_descriptor descendant : devicegraph_impl.descendants(vertex, false))
+	for (Devicegraph::Impl::vertex_descriptor descendant : devicegraph_impl.descendants(vertex, false, view))
 	    devicegraph_impl.remove_vertex(descendant);
     }
 

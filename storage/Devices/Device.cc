@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -200,50 +200,68 @@ namespace storage
     vector<Device*>
     Device::get_children()
     {
-	Devicegraph* devicegraph = get_impl().get_devicegraph();
-	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
-
-	return devicegraph->get_impl().filter_devices_of_type<Device>(devicegraph->get_impl().children(vertex));
+	return get_children(View::CLASSIC);
     }
 
 
     vector<const Device*>
     Device::get_children() const
     {
+	return get_children(View::CLASSIC);
+    }
+
+
+    vector<Device*>
+    Device::get_children(View view)
+    {
+	Devicegraph* devicegraph = get_impl().get_devicegraph();
+	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
+
+	return devicegraph->get_impl().filter_devices_of_type<Device>(devicegraph->get_impl().children(vertex, view));
+    }
+
+
+    vector<const Device*>
+    Device::get_children(View view) const
+    {
 	const Devicegraph* devicegraph = get_impl().get_devicegraph();
 	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
-	return devicegraph->get_impl().filter_devices_of_type<Device>(devicegraph->get_impl().children(vertex));
+	return devicegraph->get_impl().filter_devices_of_type<Device>(devicegraph->get_impl().children(vertex, view));
     }
 
 
     vector<Device*>
     Device::get_parents()
     {
-	Devicegraph* devicegraph = get_impl().get_devicegraph();
-	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
-
-	return devicegraph->get_impl().filter_devices_of_type<Device>(devicegraph->get_impl().parents(vertex));
+	return get_parents(View::CLASSIC);
     }
 
 
     vector<const Device*>
     Device::get_parents() const
     {
-	const Devicegraph* devicegraph = get_impl().get_devicegraph();
+	return get_parents(View::CLASSIC);
+    }
+
+
+    vector<Device*>
+    Device::get_parents(View view)
+    {
+	Devicegraph* devicegraph = get_impl().get_devicegraph();
 	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
-	return devicegraph->get_impl().filter_devices_of_type<Device>(devicegraph->get_impl().parents(vertex));
+	return devicegraph->get_impl().filter_devices_of_type<Device>(devicegraph->get_impl().parents(vertex, view));
     }
 
 
     vector<const Device*>
-    Device::get_siblings(bool itself) const
+    Device::get_parents(View view) const
     {
 	const Devicegraph* devicegraph = get_impl().get_devicegraph();
 	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
-	return devicegraph->get_impl().filter_devices_of_type<Device>(devicegraph->get_impl().siblings(vertex, itself));
+	return devicegraph->get_impl().filter_devices_of_type<Device>(devicegraph->get_impl().parents(vertex, view));
     }
 
 
@@ -258,22 +276,46 @@ namespace storage
 
 
     vector<const Device*>
-    Device::get_descendants(bool itself) const
+    Device::get_siblings(bool itself) const
     {
 	const Devicegraph* devicegraph = get_impl().get_devicegraph();
 	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
-	return devicegraph->get_impl().filter_devices_of_type<Device>(devicegraph->get_impl().descendants(vertex, itself));
+	return devicegraph->get_impl().filter_devices_of_type<Device>(devicegraph->get_impl().siblings(vertex, itself));
     }
 
 
     vector<Device*>
     Device::get_descendants(bool itself)
     {
+	return get_descendants(itself, View::CLASSIC);
+    }
+
+
+    vector<const Device*>
+    Device::get_descendants(bool itself) const
+    {
+	return get_descendants(itself, View::CLASSIC);
+    }
+
+
+    vector<Device*>
+    Device::get_descendants(bool itself, View view)
+    {
 	Devicegraph* devicegraph = get_impl().get_devicegraph();
 	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
-	return devicegraph->get_impl().filter_devices_of_type<Device>(devicegraph->get_impl().descendants(vertex, itself));
+	return devicegraph->get_impl().filter_devices_of_type<Device>(devicegraph->get_impl().descendants(vertex, itself, view));
+    }
+
+
+    vector<const Device*>
+    Device::get_descendants(bool itself, View view) const
+    {
+	const Devicegraph* devicegraph = get_impl().get_devicegraph();
+	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
+
+	return devicegraph->get_impl().filter_devices_of_type<Device>(devicegraph->get_impl().descendants(vertex, itself, view));
     }
 
 
@@ -297,20 +339,20 @@ namespace storage
     }
 
 
-    vector<const Device*>
-    Device::get_leaves(bool itself) const
+    vector<Device*>
+    Device::get_leaves(bool itself)
     {
-	const Devicegraph* devicegraph = get_impl().get_devicegraph();
+	Devicegraph* devicegraph = get_impl().get_devicegraph();
 	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
 	return devicegraph->get_impl().filter_devices_of_type<Device>(devicegraph->get_impl().leaves(vertex, itself));
     }
 
 
-    vector<Device*>
-    Device::get_leaves(bool itself)
+    vector<const Device*>
+    Device::get_leaves(bool itself) const
     {
-	Devicegraph* devicegraph = get_impl().get_devicegraph();
+	const Devicegraph* devicegraph = get_impl().get_devicegraph();
 	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
 	return devicegraph->get_impl().filter_devices_of_type<Device>(devicegraph->get_impl().leaves(vertex, itself));
@@ -381,6 +423,13 @@ namespace storage
     Device::remove_descendants()
     {
 	get_impl().remove_descendants();
+    }
+
+
+    void
+    Device::remove_descendants(View view)
+    {
+	get_impl().remove_descendants(view);
     }
 
 

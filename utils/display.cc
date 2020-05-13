@@ -7,7 +7,7 @@
 
 #include "storage/StorageImpl.h"
 #include "storage/Environment.h"
-#include "storage/DevicegraphImpl.h"
+#include "storage/Devicegraph.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/Logger.h"
 #include "storage/Utils/AppUtil.h"
@@ -63,7 +63,7 @@ doit_devicegraph(const string& filename)
     string filename_gv = keep_gv ? name + ".gv" : tmp_dir.get_fullname() + "/" + name + ".gv";
     string filename_svg = keep_svg ? name + ".svg" : tmp_dir.get_fullname() + "/" + name + ".svg";
 
-    probed->get_impl().write_graphviz(filename_gv, get_debug_devicegraph_style_callbacks(), View::ALL);
+    probed->write_graphviz(filename_gv, get_debug_devicegraph_style_callbacks(), View::ALL);
 
     helper(filename_gv, filename_svg);
 }
