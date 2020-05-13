@@ -33,6 +33,7 @@
 #include "storage/Devices/Device.h"
 #include "storage/Holders/Holder.h"
 #include "storage/Devicegraph.h"
+#include "storage/View.h"
 
 
 namespace storage
@@ -41,23 +42,6 @@ namespace storage
     using std::vector;
     using std::set;
     using std::pair;
-
-
-    /**
-     * Enum with possible views on the devicegraph.
-     */
-    enum class View
-    {
-	/**
-	 * All devices and holders are visible.
-	 */
-	ALL,
-
-	/**
-	 * The classical view. Holders of type Snapshot are not visible.
-	 */
-	CLASSIC
-    };
 
 
     class Devicegraph::Impl : private boost::noncopyable

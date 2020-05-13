@@ -22,6 +22,7 @@
 
 #include "storage/Holders/SnapshotImpl.h"
 #include "storage/Utils/XmlFile.h"
+#include "storage/Devices/LvmLv.h"
 
 
 namespace storage
@@ -40,6 +41,32 @@ namespace storage
     Snapshot::Impl::save(xmlNode* node) const
     {
 	Holder::Impl::save(node);
+    }
+
+
+    bool
+    Snapshot::Impl::is_in_view(View view) const
+    {
+	switch (view)
+	{
+	    case View::ALL:
+		return true;
+
+	    case View::CLASSIC:
+		return false;
+
+	    case View::REMOVE:
+	    {
+		const Device* device = get_source();
+		if (!is_lvm_lv(device))
+		    return false;
+
+		const LvmLv* lvm_lv = to_lvm_lv(device);
+		return lvm_lv->get_lv_type() != LvType::THIN;
+	    }
+	}
+
+	ST_THROW(LogicException("invalid value for view"));
     }
 
 
