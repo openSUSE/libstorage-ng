@@ -93,42 +93,36 @@ namespace storage
 
 	    sid_t sid = actiongraph[vertex]->sid;
 
-	    Devicegraph::Impl::vertex_descriptor v_in_rhs = actiongraph.get_devicegraph(RHS)->get_impl().find_vertex(sid);
+	    const Device* device = actiongraph.find_device(sid, RHS);
 
-	    // iterate parents
-	    Devicegraph::Impl::inv_adjacency_iterator vi, vi_end;
-	    for (boost::tie(vi, vi_end) = inv_adjacent_vertices(v_in_rhs, actiongraph.get_devicegraph(RHS)->get_impl().graph); vi != vi_end; ++vi)
+	    for (const Device* parent : device->get_parents(View::ALL))
 	    {
-		sid_t parent_sid = actiongraph.get_devicegraph(RHS)->get_impl()[*vi]->get_sid();
+		sid_t parent_sid = parent->get_sid();
 
 		if (!actiongraph.get_devicegraph(LHS)->device_exists(parent_sid))
 		{
-		    // parents must be created beforehand if not existed
+		    // parents must be created before child if not already existing
 
 		    Actiongraph::Impl::vertex_descriptor tmp = actiongraph.actions_with_sid(parent_sid, ONLY_LAST).front();
 		    actiongraph.add_edge(tmp, vertex);
 		}
-		else
+		else if (!get_device(actiongraph)->get_impl().has_dependency_manager())
 		{
-		    // children of parents must be deleted beforehand
+		    // all children must be deleted before parents
 
-		    if (!get_device(actiongraph)->get_impl().has_dependency_manager())
+		    const Device* parent = actiongraph.find_device(parent_sid, LHS);
+
+		    for (const Device* child : parent->get_children(View::REMOVE))
 		    {
-			Devicegraph::Impl::vertex_descriptor q = actiongraph.get_devicegraph(LHS)->get_impl().find_vertex(parent_sid);
+			sid_t child_sid = child->get_sid();
 
-			Devicegraph::Impl::adjacency_iterator vi2, vi2_end;
-			for (boost::tie(vi2, vi2_end) = adjacent_vertices(q, actiongraph.get_devicegraph(LHS)->get_impl().graph); vi2 != vi2_end; ++vi2)
+			vector<Actiongraph::Impl::vertex_descriptor> tmp = actiongraph.actions_with_sid(child_sid, ONLY_LAST);
+			if (!tmp.empty())
 			{
-			    sid_t child_sid = actiongraph.get_devicegraph(LHS)->get_impl()[*vi2]->get_sid();
-
-			    vector<Actiongraph::Impl::vertex_descriptor> tmp = actiongraph.actions_with_sid(child_sid, ONLY_LAST);
-			    if (!tmp.empty())
-			    {
-				// Make sure it's a delete action
-				const Action::Base* tmp_action = actiongraph[tmp.front()];
-				if (is_delete(tmp_action))
-				    actiongraph.add_edge(tmp.front(), vertex);
-			    }
+			    // Make sure it is a delete action
+			    const Action::Base* tmp_action = actiongraph[tmp.front()];
+			    if (is_delete(tmp_action))
+				actiongraph.add_edge(tmp.front(), vertex);
 			}
 		    }
 		}
