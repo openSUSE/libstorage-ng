@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -142,19 +142,17 @@ namespace storage
 	{
 	    Base::add_dependencies(vertex, actiongraph);
 
-	    // all children must be deleted beforehand
+	    // all children must be deleted before parents
 
 	    sid_t sid = actiongraph[vertex]->sid;
 
-	    Devicegraph::Impl::vertex_descriptor v_in_lhs = actiongraph.get_devicegraph(LHS)->get_impl().find_vertex(sid);
+	    const Device* device = actiongraph.find_device(sid, LHS);
 
-	    // iterate children
-	    Devicegraph::Impl::inv_adjacency_iterator vi, vi_end;
-	    for (boost::tie(vi, vi_end) = inv_adjacent_vertices(v_in_lhs, actiongraph.get_devicegraph(LHS)->get_impl().graph); vi != vi_end; ++vi)
+	    for (const Device* parent : device->get_parents(View::REMOVE))
 	    {
-		sid_t child_sid = actiongraph.get_devicegraph(RHS)->get_impl()[*vi]->get_sid();
+		sid_t parent_sid = parent->get_sid();
 
-		for (Actiongraph::Impl::vertex_descriptor tmp : actiongraph.actions_with_sid(child_sid, ONLY_FIRST))
+		for (Actiongraph::Impl::vertex_descriptor tmp : actiongraph.actions_with_sid(parent_sid, ONLY_FIRST))
 		    actiongraph.add_edge(vertex, tmp);
 	    }
 	}
