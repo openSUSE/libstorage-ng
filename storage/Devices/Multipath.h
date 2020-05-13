@@ -70,8 +70,18 @@ namespace storage
 	 */
 	static std::vector<const Multipath*> get_all(const Devicegraph* devicegraph);
 
+	/**
+	 * The vendor as reported by multipath tools. E.g. "IBM".
+	 *
+	 * @see get_model()
+	 */
 	const std::string& get_vendor() const;
 
+	/**
+	 * The model as reported by multipath tools. E.g. "2107900".
+	 *
+	 * @see get_vendor()
+	 */
 	const std::string& get_model() const;
 
 	/**
