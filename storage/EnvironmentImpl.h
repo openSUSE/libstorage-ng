@@ -89,6 +89,11 @@ namespace storage
      */
     bool support_btrfs_snapshot_relations();
 
+    /**
+     * Switch to enable developer mode. What this mode exactly does is surely undefined.
+     */
+    bool developer_mode();
+
 }
 
 #endif
