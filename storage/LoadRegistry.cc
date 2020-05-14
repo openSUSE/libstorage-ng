@@ -23,8 +23,6 @@
 
 #include "storage/LoadRegistry.h"
 
-#include "storage/Devices/Device.h"
-#include "storage/Devices/BlkDevice.h"
 #include "storage/Devices/Disk.h"
 #include "storage/Devices/Dasd.h"
 #include "storage/Devices/Multipath.h"
@@ -65,7 +63,6 @@
 #include "storage/Filesystems/Bitlocker.h"
 #include "storage/Filesystems/Nfs.h"
 #include "storage/Filesystems/MountPoint.h"
-#include "storage/Holders/Holder.h"
 #include "storage/Holders/User.h"
 #include "storage/Holders/MdUser.h"
 #include "storage/Holders/FilesystemUser.h"

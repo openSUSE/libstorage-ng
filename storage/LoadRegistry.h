@@ -36,8 +36,14 @@ namespace storage
 
     typedef std::function<Holder* (Devicegraph* devicegraph, const xmlNode* node)> holder_load_fnc;
 
+    /**
+     * Map with name of all non-abstract device types and corresponding load function.
+     */
     extern const map<string, device_load_fnc> device_load_registry;
 
+    /**
+     * Map with name of all non-abstract holder types and corresponding load function.
+     */
     extern const map<string, holder_load_fnc> holder_load_registry;
 
 }
