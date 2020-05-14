@@ -117,4 +117,12 @@ namespace storage
 	return p && strcmp(p, "yes") == 0;
     }
 
+
+    bool
+    developer_mode()
+    {
+	const char* p = getenv("LIBSTORAGE_DEVELOPER_MODE");
+	return p && strcmp(p, "yes") == 0;
+    }
+
 }

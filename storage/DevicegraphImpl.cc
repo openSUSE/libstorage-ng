@@ -29,61 +29,15 @@
 #include "storage/DevicegraphImpl.h"
 #include "storage/Utils/GraphUtils.h"
 #include "storage/Utils/XmlFile.h"
-#include "storage/Utils/StorageTmpl.h"
-#include "storage/Utils/HumanString.h"
-#include "storage/Utils/StorageDefines.h"
 #include "storage/Devices/DeviceImpl.h"
-#include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Devices/Disk.h"
-#include "storage/Devices/Dasd.h"
-#include "storage/Devices/Multipath.h"
-#include "storage/Devices/DmRaid.h"
-#include "storage/Devices/Md.h"
-#include "storage/Devices/MdContainer.h"
-#include "storage/Devices/MdMember.h"
-#include "storage/Devices/Msdos.h"
-#include "storage/Devices/Gpt.h"
-#include "storage/Devices/DasdPt.h"
-#include "storage/Devices/ImplicitPt.h"
-#include "storage/Devices/Partition.h"
-#include "storage/Devices/StrayBlkDevice.h"
-#include "storage/Devices/PartitionTable.h"
-#include "storage/Devices/LvmPv.h"
-#include "storage/Devices/LvmVg.h"
-#include "storage/Devices/LvmLv.h"
-#include "storage/Devices/Encryption.h"
-#include "storage/Devices/PlainEncryption.h"
-#include "storage/Devices/Luks.h"
-#include "storage/Devices/Bcache.h"
-#include "storage/Devices/BcacheCset.h"
-#include "storage/Filesystems/Ext2.h"
-#include "storage/Filesystems/Ext3.h"
-#include "storage/Filesystems/Ext4.h"
-#include "storage/Filesystems/Ntfs.h"
-#include "storage/Filesystems/Vfat.h"
-#include "storage/Filesystems/Exfat.h"
-#include "storage/Filesystems/Btrfs.h"
-#include "storage/Filesystems/BtrfsSubvolume.h"
-#include "storage/Filesystems/Reiserfs.h"
-#include "storage/Filesystems/Xfs.h"
-#include "storage/Filesystems/Jfs.h"
-#include "storage/Filesystems/F2fs.h"
-#include "storage/Filesystems/Swap.h"
-#include "storage/Filesystems/Iso9660.h"
-#include "storage/Filesystems/Udf.h"
-#include "storage/Filesystems/Bitlocker.h"
 #include "storage/Filesystems/Nfs.h"
 #include "storage/Filesystems/MountPoint.h"
-#include "storage/Holders/HolderImpl.h"
-#include "storage/Holders/User.h"
-#include "storage/Holders/MdUser.h"
-#include "storage/Holders/FilesystemUser.h"
-#include "storage/Holders/Subdevice.h"
-#include "storage/Holders/MdSubdevice.h"
-#include "storage/Holders/Snapshot.h"
+#include "storage/Holders/Holder.h"
 #include "storage/Storage.h"
 #include "storage/Utils/Format.h"
 #include "storage/GraphvizImpl.h"
+#include "storage/LoadRegistry.h"
 
 
 namespace storage
@@ -759,63 +713,6 @@ namespace storage
 
 	return vector<edge_descriptor>(range.begin(), range.end());
     }
-
-
-    typedef std::function<Device* (Devicegraph* devicegraph, const xmlNode* node)> device_load_fnc;
-
-    const map<string, device_load_fnc> device_load_registry = {
-	{ "Disk", &Disk::load },
-	{ "Dasd", &Dasd::load },
-	{ "Multipath", &Multipath::load },
-	{ "DmRaid", &DmRaid::load },
-	{ "Md", &Md::load },
-	{ "MdContainer", &MdContainer::load },
-	{ "MdMember", &MdMember::load },
-	{ "Msdos", &Msdos::load },
-	{ "Gpt", &Gpt::load },
-	{ "DasdPt", &DasdPt::load },
-	{ "ImplicitPt", &ImplicitPt::load },
-	{ "Partition", &Partition::load },
-	{ "StrayBlkDevice", &StrayBlkDevice::load },
-	{ "LvmPv", &LvmPv::load },
-	{ "LvmVg", &LvmVg::load },
-	{ "LvmLv", &LvmLv::load },
-	{ "Encryption", &Encryption::load },
-	{ "PlainEncryption", &PlainEncryption::load },
-	{ "Luks", &Luks::load },
-	{ "Bcache", &Bcache::load },
-	{ "BcacheCset", &BcacheCset::load },
-	{ "Ext2", &Ext2::load },
-	{ "Ext3", &Ext3::load },
-	{ "Ext4", &Ext4::load },
-	{ "Ntfs", &Ntfs::load },
-	{ "Vfat", &Vfat::load },
-	{ "Exfat", &Exfat::load },
-	{ "Btrfs", &Btrfs::load },
-	{ "BtrfsSubvolume", &BtrfsSubvolume::load },
-	{ "Reiserfs", &Reiserfs::load },
-	{ "Xfs", &Xfs::load },
-	{ "Jfs", &Jfs::load },
-	{ "F2fs", &F2fs::load },
-	{ "Swap", &Swap::load },
-	{ "Iso9660", &Iso9660::load },
-	{ "Udf", &Udf::load },
-	{ "Bitlocker", &Bitlocker::load },
-	{ "Nfs", &Nfs::load },
-	{ "MountPoint", &MountPoint::load }
-    };
-
-
-    typedef std::function<Holder* (Devicegraph* devicegraph, const xmlNode* node)> holder_load_fnc;
-
-    const map<string, holder_load_fnc> holder_load_registry = {
-	{ "User", &User::load },
-	{ "MdUser", &MdUser::load },
-	{ "FilesystemUser", &FilesystemUser::load },
-	{ "Subdevice", &Subdevice::load },
-	{ "MdSubdevice", &MdSubdevice::load },
-	{ "Snapshot", &Snapshot::load }
-    };
 
 
     void

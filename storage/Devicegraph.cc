@@ -45,6 +45,7 @@
 #include "storage/Utils/Logger.h"
 #include "storage/Utils/Format.h"
 #include "storage/GraphvizImpl.h"
+#include "storage/EnvironmentImpl.h"
 
 
 namespace storage
@@ -444,6 +445,12 @@ namespace storage
     void
     Devicegraph::write_graphviz(const string& filename, DevicegraphStyleCallbacks* style_callbacks, View view) const
     {
+	if (developer_mode())
+	{
+	    get_impl().write_graphviz(filename, get_debug_devicegraph_style_callbacks(), View::ALL);
+	    return;
+	}
+
 	get_impl().write_graphviz(filename, style_callbacks, view);
     }
 
@@ -451,6 +458,12 @@ namespace storage
     void
     Devicegraph::write_graphviz(const string& filename, DevicegraphStyleCallbacks* style_callbacks) const
     {
+	if (developer_mode())
+	{
+	    get_impl().write_graphviz(filename, get_debug_devicegraph_style_callbacks(), View::ALL);
+	    return;
+	}
+
 	get_impl().write_graphviz(filename, style_callbacks);
     }
 
@@ -459,6 +472,12 @@ namespace storage
     Devicegraph::write_graphviz(const string& filename, GraphvizFlags flags,
 				GraphvizFlags tooltip_flags) const
     {
+	if (developer_mode())
+	{
+	    get_impl().write_graphviz(filename, get_debug_devicegraph_style_callbacks(), View::ALL);
+	    return;
+	}
+
 	AdvancedDevicegraphStyleCallbacks style_callbacks(flags, tooltip_flags);
 
 	get_impl().write_graphviz(filename, &style_callbacks);
