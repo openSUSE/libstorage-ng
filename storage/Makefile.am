@@ -13,6 +13,7 @@ libstorage_ng_la_SOURCES =						\
 	StorageImpl.h			StorageImpl.cc			\
 	Devicegraph.h			Devicegraph.cc			\
 	DevicegraphImpl.h		DevicegraphImpl.cc		\
+	LoadRegistry.h			LoadRegistry.cc			\
 	Action.h			Action.cc			\
 	Actiongraph.h			Actiongraph.cc			\
 	ActiongraphImpl.h		ActiongraphImpl.cc		\
