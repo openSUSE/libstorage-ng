@@ -31,32 +31,17 @@
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/Mockup.h"
 #include "storage/Devices/BlkDeviceImpl.h"
-#include "storage/Devices/PlainEncryptionImpl.h"
-#include "storage/Devices/LuksImpl.h"
+#include "storage/Devices/EncryptionImpl.h"
 #include "storage/Devices/BcacheImpl.h"
 #include "storage/Devices/BcacheCsetImpl.h"
 #include "storage/Devices/LvmPv.h"
 #include "storage/Holders/FilesystemUser.h"
 #include "storage/Filesystems/BlkFilesystemImpl.h"
-#include "storage/Filesystems/Ext2.h"
-#include "storage/Filesystems/Ext3.h"
-#include "storage/Filesystems/Ext4.h"
-#include "storage/Filesystems/Btrfs.h"
-#include "storage/Filesystems/Reiserfs.h"
-#include "storage/Filesystems/Xfs.h"
-#include "storage/Filesystems/Jfs.h"
-#include "storage/Filesystems/F2fs.h"
-#include "storage/Filesystems/Swap.h"
-#include "storage/Filesystems/Ntfs.h"
-#include "storage/Filesystems/Vfat.h"
-#include "storage/Filesystems/Exfat.h"
-#include "storage/Filesystems/Iso9660.h"
-#include "storage/Filesystems/Udf.h"
-#include "storage/Filesystems/Bitlocker.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/FreeInfo.h"
 #include "storage/Prober.h"
 #include "storage/Utils/Format.h"
+#include "storage/Registries.h"
 
 
 namespace storage
@@ -682,27 +667,6 @@ namespace storage
     }
 
 
-    typedef std::function<BlkFilesystem* (Devicegraph* devicegraph)> blk_filesystem_create_fnc;
-
-    const map<FsType, blk_filesystem_create_fnc> blk_filesystem_create_registry = {
-	{ FsType::BTRFS, &Btrfs::create },
-	{ FsType::EXT2, &Ext2::create },
-	{ FsType::EXT3, &Ext3::create },
-	{ FsType::EXT4, &Ext4::create },
-	{ FsType::ISO9660, &Iso9660::create },
-	{ FsType::NTFS, &Ntfs::create },
-	{ FsType::REISERFS, &Reiserfs::create },
-	{ FsType::SWAP, &Swap::create },
-	{ FsType::UDF, &Udf::create },
-	{ FsType::VFAT, &Vfat::create },
-	{ FsType::EXFAT, &Exfat::create },
-	{ FsType::XFS, &Xfs::create },
-	{ FsType::JFS, &Jfs::create },
-	{ FsType::F2FS, &F2fs::create },
-	{ FsType::BITLOCKER, &Bitlocker::create }
-    };
-
-
     BlkFilesystem*
     BlkDevice::Impl::create_blk_filesystem(FsType fs_type)
     {
@@ -752,28 +716,17 @@ namespace storage
     Encryption*
     BlkDevice::Impl::create_encryption(const string& dm_name, EncryptionType type)
     {
-	Devicegraph* devicegraph = get_devicegraph();
-
-	vector<Devicegraph::Impl::edge_descriptor> out_edges =
-	    devicegraph->get_impl().out_edges(get_vertex());
-
-	Encryption* encryption = nullptr;
-
-	switch (type)
+	map<EncryptionType, encryption_create_fnc>::const_iterator it = encryption_create_fnc_registry.find(type);
+	if (it == encryption_create_fnc_registry.end())
 	{
-	    case EncryptionType::PLAIN:
-		encryption = PlainEncryption::create(devicegraph, dm_name);
-		break;
-
-	    case EncryptionType::LUKS1:
-	    case EncryptionType::LUKS2:
-		encryption = Luks::create(devicegraph, dm_name);
-		break;
-
-	    default:
-		ST_THROW(Exception("invalid encryption type"));
+	    ST_THROW(Exception("invalid encryption type"));
 	}
 
+	Devicegraph* devicegraph = get_devicegraph();
+
+	vector<Devicegraph::Impl::edge_descriptor> out_edges = devicegraph->get_impl().out_edges(get_vertex());
+
+	Encryption* encryption = it->second(devicegraph, dm_name);
 	encryption->get_impl().Encryption::Impl::set_type(type);
 
 	Devicegraph::Impl::vertex_descriptor encryption_vertex = encryption->get_impl().get_vertex();

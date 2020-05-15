@@ -21,10 +21,16 @@
  */
 
 
+#ifndef STORAGE_REGISTRIES_H
+#define STORAGE_REGISTRIES_H
+
+
 #include <map>
 #include <functional>
 
 #include "storage/Devicegraph.h"
+#include "storage/Filesystems/Mountable.h"
+#include "storage/Devices/Encryption.h"
 
 
 namespace storage
@@ -46,4 +52,25 @@ namespace storage
      */
     extern const map<string, holder_load_fnc> holder_load_registry;
 
+
+    typedef std::function<BlkFilesystem* (Devicegraph* devicegraph)> blk_filesystem_create_fnc;
+
+    /**
+     * Map with filesystem type of all non-abstract block filesystems and corresponding
+     * create function.
+     */
+    extern const map<FsType, blk_filesystem_create_fnc> blk_filesystem_create_registry;
+
+
+    typedef std::function<Encryption* (Devicegraph* devicegraph, const string& dm_name)> encryption_create_fnc;
+
+    /**
+     * Map with encryption type of all non-abstract encryptions corresponding create
+     * function.
+     */
+    extern const map<EncryptionType, encryption_create_fnc> encryption_create_fnc_registry;
+
 }
+
+
+#endif
