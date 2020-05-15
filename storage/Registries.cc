@@ -21,7 +21,7 @@
  */
 
 
-#include "storage/LoadRegistry.h"
+#include "storage/Registries.h"
 
 #include "storage/Devices/Disk.h"
 #include "storage/Devices/Dasd.h"
@@ -124,6 +124,32 @@ namespace storage
 	{ "Subdevice", &Subdevice::load },
 	{ "MdSubdevice", &MdSubdevice::load },
 	{ "Snapshot", &Snapshot::load }
+    };
+
+
+    const map<FsType, blk_filesystem_create_fnc> blk_filesystem_create_registry = {
+	{ FsType::BTRFS, &Btrfs::create },
+	{ FsType::EXT2, &Ext2::create },
+	{ FsType::EXT3, &Ext3::create },
+	{ FsType::EXT4, &Ext4::create },
+	{ FsType::ISO9660, &Iso9660::create },
+	{ FsType::NTFS, &Ntfs::create },
+	{ FsType::REISERFS, &Reiserfs::create },
+	{ FsType::SWAP, &Swap::create },
+	{ FsType::UDF, &Udf::create },
+	{ FsType::VFAT, &Vfat::create },
+	{ FsType::EXFAT, &Exfat::create },
+	{ FsType::XFS, &Xfs::create },
+	{ FsType::JFS, &Jfs::create },
+	{ FsType::F2FS, &F2fs::create },
+	{ FsType::BITLOCKER, &Bitlocker::create }
+    };
+
+
+    const map<EncryptionType, encryption_create_fnc> encryption_create_fnc_registry = {
+	{ EncryptionType::PLAIN, &PlainEncryption::create },
+	{ EncryptionType::LUKS1, &Luks::create },
+	{ EncryptionType::LUKS2, &Luks::create }
     };
 
 }

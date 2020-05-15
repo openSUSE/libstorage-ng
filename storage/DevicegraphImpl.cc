@@ -37,7 +37,7 @@
 #include "storage/Storage.h"
 #include "storage/Utils/Format.h"
 #include "storage/GraphvizImpl.h"
-#include "storage/LoadRegistry.h"
+#include "storage/Registries.h"
 
 
 namespace storage
