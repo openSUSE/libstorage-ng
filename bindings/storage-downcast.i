@@ -112,6 +112,7 @@
 	 const storage::Device)
 
 %factory(storage::Holder* storage::downcast,
+	 storage::Snapshot,
 	 storage::MdSubdevice,
 	 storage::Subdevice,
 	 storage::FilesystemUser,
@@ -120,6 +121,7 @@
 	 storage::Holder)
 
 %factory(const storage::Holder* storage::downcast,
+	 const storage::Snapshot,
 	 const storage::MdSubdevice,
 	 const storage::Subdevice,
 	 const storage::FilesystemUser,

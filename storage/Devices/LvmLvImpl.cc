@@ -586,7 +586,7 @@ namespace storage
     {
 	vector<Snapshot*> snapshots = get_in_holders_of_type<Snapshot>(View::ALL);
 
-	if (snapshots.empty())
+	if (snapshots.size() != 1)
 	    ST_THROW(WrongNumberOfParents(snapshots.empty(), 1));
 
 	return to_lvm_lv(snapshots.front()->get_source());
@@ -598,7 +598,7 @@ namespace storage
     {
 	vector<const Snapshot*> snapshots = get_in_holders_of_type<const Snapshot>(View::ALL);
 
-	if (snapshots.empty())
+	if (snapshots.size() != 1)
 	    ST_THROW(WrongNumberOfParents(snapshots.empty(), 1));
 
 	return to_lvm_lv(snapshots.front()->get_source());
@@ -754,6 +754,9 @@ namespace storage
 	{
 	    case LvType::NORMAL:
 	    {
+		if (has_snapshots())
+		    return ResizeInfo(false, RB_RESIZE_NOT_SUPPORTED_DUE_TO_SNAPSHOTS);
+
 		ResizeInfo resize_info = BlkDevice::Impl::detect_resize_info(get_non_impl());
 
 		unsigned long long free_extents = lvm_vg->get_impl().number_of_free_extents({ get_sid() });
