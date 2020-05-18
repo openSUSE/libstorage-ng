@@ -76,3 +76,21 @@ A cache being used as a thin-pool is included as a thin pool in the
 devicegraph (again analog to the lvs command).
 
 writecache is untested since setting it up fails.
+
+
+LVM RAID
+--------
+
+Only probing of LVM Raid and mirror is supported.
+
+
+LVM Snapshots
+-------------
+
+Only probing of LVM snapshots is supported.
+
+Some actions are also not supported:
+
+- Resizing thick logical volumes with snapshots is not supported.
+
+- Resizing thick snapshots is not supported.
