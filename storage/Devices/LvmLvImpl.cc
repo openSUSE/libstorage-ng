@@ -586,7 +586,7 @@ namespace storage
     {
 	vector<Snapshot*> snapshots = get_in_holders_of_type<Snapshot>(View::ALL);
 
-	if (snapshots.empty())
+	if (snapshots.size() != 1)
 	    ST_THROW(WrongNumberOfParents(snapshots.empty(), 1));
 
 	return to_lvm_lv(snapshots.front()->get_source());
@@ -598,7 +598,7 @@ namespace storage
     {
 	vector<const Snapshot*> snapshots = get_in_holders_of_type<const Snapshot>(View::ALL);
 
-	if (snapshots.empty())
+	if (snapshots.size() != 1)
 	    ST_THROW(WrongNumberOfParents(snapshots.empty(), 1));
 
 	return to_lvm_lv(snapshots.front()->get_source());
