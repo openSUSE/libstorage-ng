@@ -754,6 +754,9 @@ namespace storage
 	{
 	    case LvType::NORMAL:
 	    {
+		if (has_snapshots())
+		    return ResizeInfo(false, RB_RESIZE_NOT_SUPPORTED_DUE_TO_SNAPSHOTS);
+
 		ResizeInfo resize_info = BlkDevice::Impl::detect_resize_info(get_non_impl());
 
 		unsigned long long free_extents = lvm_vg->get_impl().number_of_free_extents({ get_sid() });

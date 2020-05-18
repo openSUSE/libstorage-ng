@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2010] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -138,14 +138,14 @@ namespace storage
 	RB_ON_IMPLICIT_PARTITION_TABLE = 1 << 11,
 
 	/**
-	 * Shrink of LVM logical volume of this type not supported, e.g. thin pools and raids.
+	 * Shrink of LVM logical volume of this type not supported, e.g. thin pools and RAIDs.
 	 *
 	 * Blocks shrink.
 	 */
 	RB_SHRINK_NOT_SUPPORTED_FOR_LVM_LV_TYPE = 1 << 12,
 
 	/**
-	 * Resize of LVM logical volume of this type not supported, e.g. raids.
+	 * Resize of LVM logical volume of this type not supported, e.g. RAIDs.
 	 *
 	 * Blocks shrink and grow.
 	 */
@@ -182,7 +182,14 @@ namespace storage
 	/**
 	 * The encryption password is required.
 	 */
-	RB_PASSWORD_REQUIRED = 1 << 18
+	RB_PASSWORD_REQUIRED = 1 << 18,
+
+	/**
+	 * Resize of LVM logical volume is not supported since it has snapshots.
+	 *
+	 * Blocks shrink and grow.
+	 */
+	RB_RESIZE_NOT_SUPPORTED_DUE_TO_SNAPSHOTS = 1 << 19,
 
     };
 
