@@ -31,8 +31,8 @@ namespace storage
 {
 
     /**
-     * Relationship between snapshot and snapshot. The snapshot is the source and the
-     * snapshot the target. So far used for LVM and btrfs snapshot.
+     * Relationship between origin and snapshot. The origin is the source and the
+     * snapshot the target. Used for LVM and btrfs snapshot.
      */
     class Snapshot : public Holder
     {
