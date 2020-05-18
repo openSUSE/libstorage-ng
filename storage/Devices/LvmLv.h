@@ -237,8 +237,8 @@ namespace storage
 	std::vector<const LvmLv*> get_snapshots() const;
 
 	/**
-	 * Check whether the logical volume has a origin. In other
-	 * words, whether it is a snapshots. It can be either a thick
+	 * Check whether the logical volume has an origin. In other
+	 * words, whether it is a snapshot. It can be either a thick
 	 * or thin snapshot.
 	 *
 	 * @see has_snapshots()
