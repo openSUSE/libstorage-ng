@@ -28,5 +28,6 @@ pkginclude_HEADERS =		\
 	MdUser.h		\
 	FilesystemUser.h	\
 	Subdevice.h		\
-	MdSubdevice.h
+	MdSubdevice.h		\
+	Snapshot.h
 

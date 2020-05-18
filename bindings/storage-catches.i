@@ -81,6 +81,7 @@
 %catches(storage::NullPointerException) storage::is_partitionable(const Device *device);
 %catches(storage::NullPointerException) storage::is_plain_encryption(const Device *device);
 %catches(storage::NullPointerException) storage::is_reiserfs(const Device *device);
+%catches(storage::NullPointerException) storage::is_snapshot(const Holder *holder);
 %catches(storage::NullPointerException) storage::is_stray_blk_device(const Device *device);
 %catches(storage::NullPointerException) storage::is_subdevice(const Holder *holder);
 %catches(storage::NullPointerException) storage::is_swap(const Device *device);
@@ -179,6 +180,8 @@
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_plain_encryption(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_reiserfs(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_reiserfs(const Device *device);
+%catches(storage::HolderHasWrongType, storage::NullPointerException) storage::to_snapshot(Holder *holder);
+%catches(storage::HolderHasWrongType, storage::NullPointerException) storage::to_snapshot(const Holder *holder);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_stray_blk_device(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_stray_blk_device(const Device *device);
 %catches(storage::HolderHasWrongType, storage::NullPointerException) storage::to_subdevice(Holder *holder);
@@ -247,6 +250,7 @@
 %catches(storage::Exception) storage::Devicegraph::load(const std::string &filename);
 %catches(storage::DeviceNotFoundBySid) storage::Devicegraph::remove_device(sid_t sid);
 %catches(storage::Exception) storage::Devicegraph::save(const std::string &filename) const;
+%catches(storage::Exception) storage::Devicegraph::write_graphviz(const std::string &filename, DevicegraphStyleCallbacks *style_callbacks, View view) const;
 %catches(storage::Exception) storage::Devicegraph::write_graphviz(const std::string &filename, DevicegraphStyleCallbacks *style_callbacks) const;
 %catches(storage::Exception) storage::Devicegraph::write_graphviz(const std::string &filename, GraphvizFlags flags=GraphvizFlags::NAME, GraphvizFlags tooltip_flags=GraphvizFlags::NONE) const;
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Disk::find_by_name(Devicegraph *devicegraph, const std::string &name);
@@ -335,6 +339,7 @@
 %catches(storage::DifferentBlockSizes) storage::Region::operator>(const Region &rhs) const;
 %catches(storage::DifferentBlockSizes) storage::Region::operator>=(const Region &rhs) const;
 %catches(storage::Exception) storage::Region::unused_regions(const std::vector< Region > &used_regions) const;
+%catches(storage::HolderAlreadyExists) storage::Snapshot::create(Devicegraph *devicegraph, const Device *source, const Device *target);
 %catches(storage::LockException, storage::Exception) storage::Storage::Storage(const Environment &environment);
 %catches(storage::Aborted, storage::Exception) storage::Storage::activate(const ActivateCallbacks *activate_callbacks) const;
 %catches(storage::Exception) storage::Storage::calculate_actiongraph();

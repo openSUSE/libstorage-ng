@@ -115,6 +115,7 @@ use_ostream(storage::PartitionSlot);
 #include "storage/Holders/User.h"
 #include "storage/Holders/MdUser.h"
 #include "storage/Holders/FilesystemUser.h"
+#include "storage/Holders/Snapshot.h"
 
 #include "storage/SystemInfo/Arch.h"
 
@@ -206,6 +207,7 @@ use_ostream(storage::PartitionSlot);
 %include "../../storage/Holders/User.h"
 %include "../../storage/Holders/MdUser.h"
 %include "../../storage/Holders/FilesystemUser.h"
+%include "../../storage/Holders/Snapshot.h"
 
 %include "../../storage/SystemInfo/Arch.h"
 
