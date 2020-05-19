@@ -109,6 +109,7 @@
       <lv-name>lv-a</lv-name>
       <lv-type>normal</lv-type>
       <uuid>xuTV4W-WC9U-Wsp0-nk1d-kabn-qUmz-BmiEhg</uuid>
+      <used-extents>2560</used-extents>
       <stripes>1</stripes>
     </LvmLv>
     <LvmLv>
@@ -125,6 +126,7 @@
       <lv-name>lv-b</lv-name>
       <lv-type>normal</lv-type>
       <uuid>QsAn6v-WG3y-HYnZ-dtdB-1JKc-fdwy-n6ys9B</uuid>
+      <used-extents>2560</used-extents>
       <stripes>1</stripes>
     </LvmLv>
     <Gpt>

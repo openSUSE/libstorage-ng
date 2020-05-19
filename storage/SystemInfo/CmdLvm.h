@@ -111,9 +111,9 @@ namespace storage
 	struct Lv
 	{
 	    Lv() : lv_name(), lv_uuid(), vg_name(), vg_uuid(), lv_type(LvType::UNKNOWN),
-		   role(Role::PRIVATE), active(false), size(0), pool_name(), pool_uuid(),
-		   origin_name(), origin_uuid(), data_name(), data_uuid(), metadata_name(),
-		   metadata_uuid() {}
+		   role(Role::PRIVATE), active(false), size(0), origin_size(0), pool_name(),
+		   pool_uuid(), origin_name(), origin_uuid(), data_name(), data_uuid(),
+		   metadata_name(), metadata_uuid() {}
 
 	    string lv_name;
 	    string lv_uuid;
@@ -123,6 +123,7 @@ namespace storage
 	    Role role;
 	    bool active;
 	    unsigned long long size;
+	    unsigned long long origin_size;
 	    string pool_name;
 	    string pool_uuid;
 	    string origin_name;

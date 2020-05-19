@@ -95,6 +95,7 @@
       <lv-name>mirror</lv-name>
       <lv-type>mirror</lv-type>
       <uuid>DT3sif-b6pw-gLME-dsYR-edOs-z5yg-5fLIzW</uuid>
+      <used-extents>1280</used-extents>
       <stripes>2</stripes>
     </LvmLv>
     <Gpt>

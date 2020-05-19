@@ -34,6 +34,7 @@
     <LvmPv>
       <sid>44</sid>
       <uuid>LUccrU-BPDa-B4ys-jt56-7LNc-V9O7-SWSF4Z</uuid>
+      <pe-start>1048576</pe-start>
     </LvmPv>
     <LvmLv>
       <sid>45</sid>
@@ -48,6 +49,7 @@
       <lv-name>home</lv-name>
       <lv-type>normal</lv-type>
       <uuid>H61Rmh-niP9-3zNz-pCvR-bYsl-v5cQ-E3OEdb</uuid>
+      <used-extents>1932</used-extents>
       <stripes>1</stripes>
     </LvmLv>
     <LvmLv>
@@ -63,6 +65,7 @@
       <lv-name>root</lv-name>
       <lv-type>normal</lv-type>
       <uuid>9rx9ho-hNul-eNUW-QP3T-05jJ-62Ir-et0zrR</uuid>
+      <used-extents>1745</used-extents>
       <stripes>1</stripes>
     </LvmLv>
     <LvmLv>
@@ -78,6 +81,7 @@
       <lv-name>swap</lv-name>
       <lv-type>normal</lv-type>
       <uuid>8hTLsN-qOPn-oRvq-0hCY-QukB-nU24-XSoYGD</uuid>
+      <used-extents>418</used-extents>
       <stripes>1</stripes>
     </LvmLv>
     <Gpt>
@@ -132,6 +136,7 @@
         <block-size>512</block-size>
       </region>
       <dm-table-name>cr_home</dm-table-name>
+      <type>luks1</type>
       <cipher>aes-xts-plain64</cipher>
       <key-size>64</key-size>
       <mount-by>uuid</mount-by>

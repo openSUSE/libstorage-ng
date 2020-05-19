@@ -46,7 +46,7 @@
       <stdout>test-cache1: 0 20971520 cache 254:3 254:2 254:4 128 2 metadata2 writethrough mq 0</stdout>
     </Command>
     <Command>
-      <name>/sbin/lvs --reportformat json --units b --nosuffix --all --options lv_name,lv_uuid,vg_name,vg_uuid,lv_role,lv_attr,lv_size,segtype,stripes,stripe_size,chunk_size,pool_lv,pool_lv_uuid,origin,origin_uuid,data_lv,data_lv_uuid,metadata_lv,metadata_lv_uuid</name>
+      <name>/sbin/lvs --reportformat json --units b --nosuffix --all --options lv_name,lv_uuid,vg_name,vg_uuid,lv_role,lv_attr,lv_size,origin_size,segtype,stripes,stripe_size,chunk_size,pool_lv,pool_lv_uuid,origin,origin_uuid,data_lv,data_lv_uuid,metadata_lv,metadata_lv_uuid</name>
       <stdout>  {</stdout>
       <stdout>      "report": [</stdout>
       <stdout>          {</stdout>

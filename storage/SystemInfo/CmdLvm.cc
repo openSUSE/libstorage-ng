@@ -154,13 +154,13 @@ namespace storage
 
     CmdLvs::CmdLvs()
     {
-	// Note: querying segtype, origin and origin_uuid is rather new and not available in all
-	// testsuite data
+	// Note: Querying segtype, origin, origin_uuid and origin_size is rather new and
+	// not available in all testsuite data.
 
 	SystemCmd cmd(LVS_BIN " " COMMON_LVM_OPTIONS " --all --options lv_name,lv_uuid,vg_name,"
-		      "vg_uuid,lv_role,lv_attr,lv_size,segtype,stripes,stripe_size,chunk_size,pool_lv,"
-		      "pool_lv_uuid,origin,origin_uuid,data_lv,data_lv_uuid,metadata_lv,"
-		      "metadata_lv_uuid", SystemCmd::DoThrow);
+		      "vg_uuid,lv_role,lv_attr,lv_size,origin_size,segtype,stripes,stripe_size,"
+		      "chunk_size,pool_lv,pool_lv_uuid,origin,origin_uuid,data_lv,data_lv_uuid,"
+		      "metadata_lv,metadata_lv_uuid", SystemCmd::DoThrow);
 
 	parse(cmd.stdout());
     }
@@ -189,6 +189,7 @@ namespace storage
 	get_child_value(object, "lv_uuid", lv.lv_uuid);
 
 	get_child_value(object, "lv_size", lv.size);
+	get_child_value(object, "origin_size", lv.origin_size);
 
 	get_child_value(object, "vg_name", lv.vg_name);
 	get_child_value(object, "vg_uuid", lv.vg_uuid);
@@ -331,6 +332,9 @@ namespace storage
 	  << lv.vg_name << " vg-uuid:" << lv.vg_uuid << " lv-type:" << toString(lv.lv_type)
 	  << " role:" << (lv.role == CmdLvs::Role::PUBLIC ? "public" : "private")
 	  << " active:" << lv.active << " size:" << lv.size;
+
+	if (lv.origin_size != 0)
+	    s << " origin-size:" << lv.origin_size;
 
 	if (!lv.pool_name.empty())
 	    s << " pool-name:" << lv.pool_name;

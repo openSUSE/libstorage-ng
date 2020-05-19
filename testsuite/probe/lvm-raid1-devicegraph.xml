@@ -118,6 +118,7 @@
       <lv-name>data1</lv-name>
       <lv-type>raid</lv-type>
       <uuid>9gVThJ-TCTh-zPOE-aEqw-WCNq-D1ij-xQxE7X</uuid>
+      <used-extents>1280</used-extents>
       <stripes>2</stripes>
     </LvmLv>
     <LvmLv>
@@ -134,6 +135,7 @@
       <lv-name>data2</lv-name>
       <lv-type>raid</lv-type>
       <uuid>D1XY8j-lH44-ln1r-w08o-X5dj-c9vA-g45Rfd</uuid>
+      <used-extents>1280</used-extents>
       <stripes>3</stripes>
       <stripe-size>65536</stripe-size>
     </LvmLv>
