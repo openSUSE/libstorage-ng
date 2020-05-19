@@ -182,7 +182,9 @@ namespace storage
 	 *
 	 * For thick snapshots this is different from the size/region. The size/region
 	 * gives the size of the block device while the used extents gives the space
-	 * allocated for the differences to the origin.
+	 * allocated for the differences to the origin. Note: The block device size of the
+	 * snapshot may be different from the block device size of the origin (which may
+	 * have been resized since the snapshot was made).
 	 *
 	 * TODO For RAIDs and mirrors the value is incorrect.
 	 */
