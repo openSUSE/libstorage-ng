@@ -49,6 +49,7 @@
       <lv-name>linear1</lv-name>
       <lv-type>normal</lv-type>
       <uuid>Qf2yM9-IOUP-hCob-kHOW-NcI3-KVr4-EULvzO</uuid>
+      <used-extents>256</used-extents>
       <stripes>1</stripes>
     </LvmLv>
     <LvmLv>
@@ -57,7 +58,7 @@
       <sysfs-name>dm-9</sysfs-name>
       <sysfs-path>/devices/virtual/block/dm-9</sysfs-path>
       <region>
-        <length>32</length>
+        <length>256</length>
         <block-size>4194304</block-size>
       </region>
       <topology/>
@@ -65,6 +66,7 @@
       <lv-name>linear1-snap1</lv-name>
       <lv-type>snapshot</lv-type>
       <uuid>4Tj4DY-ivT9-mc5n-lQ6v-DgV6-0N9K-CjuZgH</uuid>
+      <used-extents>32</used-extents>
       <stripes>1</stripes>
     </LvmLv>
     <LvmLv>
@@ -73,7 +75,7 @@
       <sysfs-name>dm-11</sysfs-name>
       <sysfs-path>/devices/virtual/block/dm-11</sysfs-path>
       <region>
-        <length>32</length>
+        <length>256</length>
         <block-size>4194304</block-size>
       </region>
       <topology/>
@@ -81,6 +83,7 @@
       <lv-name>linear1-snap2</lv-name>
       <lv-type>snapshot</lv-type>
       <uuid>QpDp3Q-4vzu-nsUf-xvEw-TXF9-e49X-ps7Wop</uuid>
+      <used-extents>32</used-extents>
       <stripes>1</stripes>
     </LvmLv>
     <LvmLv>
@@ -98,6 +101,7 @@
       <lv-name>linear3</lv-name>
       <lv-type>normal</lv-type>
       <uuid>ATQF1G-J5Bf-D00G-NNnc-eXhH-ImpX-dHdcCs</uuid>
+      <used-extents>256</used-extents>
       <stripes>1</stripes>
     </LvmLv>
     <LvmLv>
@@ -106,7 +110,7 @@
       <sysfs-name>dm-15</sysfs-name>
       <sysfs-path>/devices/virtual/block/dm-15</sysfs-path>
       <region>
-        <length>32</length>
+        <length>256</length>
         <block-size>4194304</block-size>
       </region>
       <topology/>
@@ -114,6 +118,7 @@
       <lv-name>linear3-snap1</lv-name>
       <lv-type>snapshot</lv-type>
       <uuid>aIsi8o-0Mtx-l9xd-1jnr-LxOA-QLAl-1QNSdf</uuid>
+      <used-extents>32</used-extents>
       <stripes>1</stripes>
     </LvmLv>
     <LvmLv>
@@ -129,6 +134,7 @@
       <lv-name>lvol0</lv-name>
       <lv-type>normal</lv-type>
       <uuid>sH9o8O-vxn2-AWn3-x11h-UfJE-TzHv-Vp0ETU</uuid>
+      <used-extents>2</used-extents>
       <stripes>1</stripes>
     </LvmLv>
     <LvmLv>
@@ -144,6 +150,7 @@
       <lv-name>thin-pool</lv-name>
       <lv-type>thin-pool</lv-type>
       <uuid>1alqOV-31y9-rspR-58hl-6HcK-cBtc-gBcTW5</uuid>
+      <used-extents>1024</used-extents>
       <stripes>1</stripes>
       <chunk-size>65536</chunk-size>
     </LvmLv>

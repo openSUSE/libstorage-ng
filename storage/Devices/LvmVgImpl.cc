@@ -190,7 +190,9 @@ namespace storage
 	    if (contains(ignore_sids, lvm_lv->get_sid()))
 		continue;
 
-	    ret += lvm_lv->get_impl().number_of_extents();
+	    // Note: thins are not included in LvmVg::get_lvm_lvs().
+
+	    ret += lvm_lv->get_impl().get_used_extents();
 
 	    // For thin pools that do not exist in probed also add the
 	    // metadata size. For thin pools that do exist in probed the

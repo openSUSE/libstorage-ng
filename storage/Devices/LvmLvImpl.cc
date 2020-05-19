@@ -61,7 +61,8 @@ namespace storage
 
     LvmLv::Impl::Impl(const string& vg_name, const string& lv_name, LvType lv_type)
 	: BlkDevice::Impl(make_name(vg_name, lv_name)), lv_name(lv_name), lv_type(lv_type),
-	  uuid(), stripes(lv_type == LvType::THIN ? 0 : 1), stripe_size(0), chunk_size(0)
+	  uuid(), used_extents(0), stripes(lv_type == LvType::THIN ? 0 : 1), stripe_size(0),
+	  chunk_size(0)
     {
 	set_active(lv_type != LvType::THIN_POOL && lv_type != LvType::CACHE_POOL);
 
@@ -70,8 +71,8 @@ namespace storage
 
 
     LvmLv::Impl::Impl(const xmlNode* node)
-	: BlkDevice::Impl(node), lv_name(), lv_type(LvType::NORMAL), uuid(), stripes(0),
-	  stripe_size(0), chunk_size(0)
+	: BlkDevice::Impl(node), lv_name(), lv_type(LvType::NORMAL), uuid(), used_extents(0),
+	  stripes(0), stripe_size(0), chunk_size(0)
     {
 	string tmp;
 
@@ -85,6 +86,8 @@ namespace storage
 	    lv_type = toValueWithFallback(tmp, LvType::NORMAL);
 
 	getChildValue(node, "uuid", uuid);
+
+	getChildValue(node, "used-extents", used_extents);
 
 	getChildValue(node, "stripes", stripes);
 	getChildValue(node, "stripe-size", stripe_size);
@@ -111,6 +114,8 @@ namespace storage
 	setChildValue(node, "lv-type", toString(lv_type));
 
 	setChildValue(node, "uuid", uuid);
+
+	setChildValueIf(node, "used-extents", used_extents, used_extents != 0);
 
 	setChildValueIf(node, "stripes", stripes, stripes != 0);
 	setChildValueIf(node, "stripe-size", stripe_size, stripe_size != 0);
@@ -160,7 +165,7 @@ namespace storage
 
 	    if (stripes > 1)
 	    {
-		if (!is_multiple_of(number_of_extents(), stripes))
+		if (!is_multiple_of(get_used_extents(), stripes))
 		    check_callbacks->error(sformat("Number of extents not a multiple of stripes "
 						   "of logical volume %s in volume group %s.",
 						   lv_name, lvm_vg->get_vg_name()));
@@ -278,8 +283,13 @@ namespace storage
 
 		    if (lv.role == CmdLvs::Role::PUBLIC)
 		    {
+			// The size of the block device for the logical volume.
+			unsigned long long size = lv.origin_size == 0 ? lv.size : lv.origin_size;
+
 			LvmVg* lvm_vg = LvmVg::Impl::find_by_uuid(system, lv.vg_uuid);
-			lvm_lv = lvm_vg->create_lvm_lv(lv.lv_name, lv.lv_type, lv.size);
+			lvm_lv = lvm_vg->create_lvm_lv(lv.lv_name, lv.lv_type, size);
+
+			lvm_lv->get_impl().set_used_extents(lv.size / lvm_vg->get_extent_size());
 		    }
 		}
 		break;
@@ -404,6 +414,18 @@ namespace storage
 	    stripes = lv.segments[0].stripes;
 	    stripe_size = lv.segments[0].stripe_size;
 	}
+    }
+
+
+    void
+    LvmLv::Impl::set_region(const Region& region)
+    {
+	BlkDevice::Impl::set_region(region);
+
+	if (lv_type != LvType::THIN)
+	    used_extents = region.get_length();
+
+	// resizing thick snapshots is not supported
     }
 
 
@@ -700,7 +722,7 @@ namespace storage
 
 	return lv_name == rhs.lv_name && lv_type == rhs.lv_type && uuid == rhs.uuid &&
 	    stripes == rhs.stripes && stripe_size == rhs.stripe_size &&
-	    chunk_size == rhs.chunk_size;
+	    chunk_size == rhs.chunk_size && used_extents == rhs.used_extents;
     }
 
 
@@ -717,6 +739,8 @@ namespace storage
 
 	storage::log_diff(log, "uuid", uuid, rhs.uuid);
 
+	storage::log_diff(log, "used-extents", used_extents, rhs.used_extents);
+
 	storage::log_diff(log, "stripes", stripes, rhs.stripes);
 	storage::log_diff(log, "stripe-size", stripe_size, rhs.stripe_size);
 
@@ -730,6 +754,9 @@ namespace storage
 	BlkDevice::Impl::print(out);
 
 	out << " lv-name:" << lv_name << " lv-type:" << toString(lv_type) << " uuid:" << uuid;
+
+	if (used_extents != 0)
+	    out << " used-extents:" << used_extents;
 
 	if (stripes != 0)
 	    out << " stripes:" << stripes;
@@ -790,7 +817,7 @@ namespace storage
 		    const LvmLv* tmp_lvm_lv = to_lvm_lv(redirect_to_system(get_non_impl()));
 
 		    unsigned long long data_size = (lvm_vg->get_impl().number_of_free_extents() +
-						    number_of_extents()) * extent_size;
+						    get_used_extents()) * extent_size;
 
 		    ResizeInfo resize_info(true, RB_SHRINK_NOT_SUPPORTED_FOR_LVM_LV_TYPE,
 					   tmp_lvm_lv->get_size(), data_size);

@@ -70,6 +70,7 @@
       <lv-name>cache1</lv-name>
       <lv-type>thin-pool</lv-type>
       <uuid>INB8AJ-fAek-w2my-uewK-Cr2R-BHXm-ZTwe6l</uuid>
+      <used-extents>2560</used-extents>
       <stripes>1</stripes>
       <chunk-size>65536</chunk-size>
     </LvmLv>
@@ -86,6 +87,7 @@
       <lv-name>cache2</lv-name>
       <lv-type>thin-pool</lv-type>
       <uuid>Ql7Qot-kgjc-llZs-lxJ2-Oqsn-1xwd-fbxkZ4</uuid>
+      <used-extents>2560</used-extents>
       <stripes>1</stripes>
       <chunk-size>65536</chunk-size>
     </LvmLv>

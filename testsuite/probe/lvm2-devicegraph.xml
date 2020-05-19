@@ -34,6 +34,7 @@
     <LvmPv>
       <sid>44</sid>
       <uuid>QFKFMR-Lz4J-mm8p-gom1-48id-SQpF-OFVjF7</uuid>
+      <pe-start>1048576</pe-start>
     </LvmPv>
     <LvmLv>
       <sid>45</sid>
@@ -48,6 +49,7 @@
       <lv-type>thin-pool</lv-type>
       <stripes>1</stripes>
       <uuid>XLDPQS-6U7n-zfW8-hiP5-E8xa-TOag-e2xCk1</uuid>
+      <used-extents>3840</used-extents>
       <chunk-size>65536</chunk-size>
     </LvmLv>
     <LvmLv>

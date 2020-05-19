@@ -39,13 +39,15 @@
 #include "storage/Devices/StrayBlkDevice.h"
 #include "storage/Devices/LvmVg.h"
 #include "storage/Devices/LvmPv.h"
-#include "storage/Devices/LvmLv.h"
+#include "storage/Devices/LvmLvImpl.h"
 #include "storage/Devices/Bcache.h"
 #include "storage/Devices/BcacheCset.h"
 #include "storage/Devices/Encryption.h"
 #include "storage/Filesystems/MountPoint.h"
 #include "storage/Utils/StorageDefines.h"
+#include "storage/Utils/HumanString.h"
 #include "storage/ActiongraphImpl.h"
+#include "storage/EnvironmentImpl.h"
 
 
 namespace storage
@@ -244,7 +246,24 @@ namespace storage
 	    if (is_blk_device(device))
 	    {
 		const BlkDevice* blk_device = to_blk_device(device);
-		ret += blk_device->get_size_string() + "\\n";
+		ret += blk_device->get_size_string();
+
+		if (developer_mode() && is_lvm_lv(device))
+		{
+		    // For LvmLVs also show the size based on used-extents if different
+		    // from the size of the block device.
+
+		    const LvmLv* lvm_lv = to_lvm_lv(device);
+
+		    unsigned long long s1 = blk_device->get_size();
+		    unsigned long long s2 = lvm_lv->get_impl().get_used_extents() *
+			lvm_lv->get_lvm_vg()->get_extent_size();
+
+		    if (s1 != s2)
+			ret += " [" + byte_to_humanstring(s2, false, 2, true) + "]";
+		}
+
+		ret += "\\n";
 	    }
 	    else if (is_lvm_vg(device))
 	    {

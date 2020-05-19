@@ -19,9 +19,9 @@ check(const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
     Mockup::set_command(LVS_BIN " --reportformat json --units b --nosuffix --all --options lv_name,"
-			"lv_uuid,vg_name,vg_uuid,lv_role,lv_attr,lv_size,segtype,stripes,stripe_size,"
-			"chunk_size,pool_lv,pool_lv_uuid,origin,origin_uuid,data_lv,data_lv_uuid,"
-			"metadata_lv,metadata_lv_uuid", input);
+			"lv_uuid,vg_name,vg_uuid,lv_role,lv_attr,lv_size,origin_size,segtype,stripes,"
+			"stripe_size,chunk_size,pool_lv,pool_lv_uuid,origin,origin_uuid,data_lv,"
+			"data_lv_uuid,metadata_lv,metadata_lv_uuid", input);
 
     CmdLvs cmd_lvs;
 
@@ -271,6 +271,30 @@ BOOST_AUTO_TEST_CASE(parse7)
 	"lv:{ lv-name:[mirror_mimage_1] lv-uuid:8Jhzus-TSBI-tWPy-xXQu-9D9s-947j-EoAtZR vg-name:test vg-uuid:k8GRHJ-LwHN-xzmX-kocx-bWOA-tuBz-CD6Fo8 lv-type:unknown role:private active:true size:5368709120 segments:<stripes:1> }",
 	"lv:{ lv-name:[mirror_mlog] lv-uuid:2LquQX-Flts-JO5X-wLYS-Q0Q6-m3gB-6WsLD6 vg-name:test vg-uuid:k8GRHJ-LwHN-xzmX-kocx-bWOA-tuBz-CD6Fo8 lv-type:unknown role:private active:true size:4194304 segments:<stripes:1> }",
 	"lv:{ lv-name:mirror lv-uuid:DT3sif-b6pw-gLME-dsYR-edOs-z5yg-5fLIzW vg-name:test vg-uuid:k8GRHJ-LwHN-xzmX-kocx-bWOA-tuBz-CD6Fo8 lv-type:mirror role:public active:true size:5368709120 segments:<stripes:2> }"
+    };
+
+    check(input, output);
+}
+
+
+BOOST_AUTO_TEST_CASE(parse8)
+{
+    vector<string> input = {
+	"  {",
+	"      \"report\": [",
+	"          {",
+	"              \"lv\": [",
+	"                  {\"lv_name\":\"linear1\", \"lv_uuid\":\"9TJX53-bhjT-mtpw-oAxe-DsOG-XBoh-Z71v3h\", \"vg_name\":\"test\", \"vg_uuid\":\"n3gA8C-3cyA-GE9m-fx7K-zExF-cMD7-nF3x7N\", \"lv_role\":\"public,origin,thickorigin,multithickorigin\", \"lv_attr\":\"owi-a-s---\", \"lv_size\":\"10737418240\", \"origin_size\":\"10737418240\", \"segtype\":\"linear\", \"stripes\":\"1\", \"stripe_size\":\"0\", \"chunk_size\":\"0\", \"pool_lv\":\"\", \"pool_lv_uuid\":\"\", \"origin\":\"\", \"origin_uuid\":\"\", \"data_lv\":\"\", \"data_lv_uuid\":\"\", \"metadata_lv\":\"\", \"metadata_lv_uuid\":\"\"},",
+	"                  {\"lv_name\":\"linear1-snap1\", \"lv_uuid\":\"GYl8hq-V0Jl-i2ac-T9A5-kVBt-1JCx-ed4g34\", \"vg_name\":\"test\", \"vg_uuid\":\"n3gA8C-3cyA-GE9m-fx7K-zExF-cMD7-nF3x7N\", \"lv_role\":\"public,snapshot,thicksnapshot\", \"lv_attr\":\"swi-a-s---\", \"lv_size\":\"1073741824\", \"origin_size\":\"10737418240\", \"segtype\":\"linear\", \"stripes\":\"1\", \"stripe_size\":\"0\", \"chunk_size\":\"4096\", \"pool_lv\":\"\", \"pool_lv_uuid\":\"\", \"origin\":\"linear1\", \"origin_uuid\":\"9TJX53-bhjT-mtpw-oAxe-DsOG-XBoh-Z71v3h\", \"data_lv\":\"\", \"data_lv_uuid\":\"\", \"metadata_lv\":\"\", \"metadata_lv_uuid\":\"\"},",
+	"              ]",
+	"          }",
+	"      ]",
+	"  }"
+    };
+
+    vector<string> output = {
+	"lv:{ lv-name:linear1 lv-uuid:9TJX53-bhjT-mtpw-oAxe-DsOG-XBoh-Z71v3h vg-name:test vg-uuid:n3gA8C-3cyA-GE9m-fx7K-zExF-cMD7-nF3x7N lv-type:normal role:public active:true size:10737418240 origin-size:10737418240 segments:<stripes:1> }",
+	"lv:{ lv-name:linear1-snap1 lv-uuid:GYl8hq-V0Jl-i2ac-T9A5-kVBt-1JCx-ed4g34 vg-name:test vg-uuid:n3gA8C-3cyA-GE9m-fx7K-zExF-cMD7-nF3x7N lv-type:snapshot role:public active:true size:1073741824 origin-size:10737418240 origin-name:linear1 origin-uuid:9TJX53-bhjT-mtpw-oAxe-DsOG-XBoh-Z71v3h segments:<stripes:1 chunk-size:4096> }"
     };
 
     check(input, output);

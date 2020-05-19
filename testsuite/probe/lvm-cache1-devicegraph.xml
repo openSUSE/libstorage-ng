@@ -71,6 +71,7 @@
       <lv-name>cache1</lv-name>
       <lv-type>cache</lv-type>
       <uuid>R3wAkS-5BJp-VwEe-DS9r-gBJG-jlgB-MvwUGG</uuid>
+      <used-extents>2560</used-extents>
       <stripes>1</stripes>
       <chunk-size>65536</chunk-size>
     </LvmLv>
@@ -88,6 +89,7 @@
       <lv-name>cache2</lv-name>
       <lv-type>cache</lv-type>
       <uuid>N123dc-RYSs-YEAG-KcLk-kgki-Dvlx-Iwgj3L</uuid>
+      <used-extents>2560</used-extents>
       <stripes>1</stripes>
       <chunk-size>65536</chunk-size>
     </LvmLv>
@@ -105,6 +107,7 @@
       <lv-name>cache3</lv-name>
       <lv-type>normal</lv-type>
       <uuid>e0Lwjb-3rMk-RwYB-OWYf-YInP-H1UJ-1HpYtJ</uuid>
+      <used-extents>2560</used-extents>
       <stripes>1</stripes>
     </LvmLv>
     <LvmLv>
@@ -120,6 +123,7 @@
       <lv-name>cache3-pool</lv-name>
       <lv-type>cache-pool</lv-type>
       <uuid>vrpci4-gT93-VZZg-Z1DU-YvOr-9E7e-TzXmgO</uuid>
+      <used-extents>256</used-extents>
       <stripes>1</stripes>
       <chunk-size>65536</chunk-size>
     </LvmLv>

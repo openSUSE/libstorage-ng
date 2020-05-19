@@ -71,10 +71,12 @@
     <LvmPv>
       <sid>47</sid>
       <uuid>f6ChpE-iVd2-HtzM-UdBO-wqfa-cwfY-QnnVBk</uuid>
+      <pe-start>1048576</pe-start>
     </LvmPv>
     <LvmPv>
       <sid>48</sid>
       <uuid>gRdH2t-ZrTe-myQe-clC8-7Klc-rXZD-iFPA44</uuid>
+      <pe-start>1048576</pe-start>
     </LvmPv>
     <LvmLv>
       <sid>49</sid>
@@ -89,6 +91,7 @@
       <lv-name>bcache2</lv-name>
       <lv-type>normal</lv-type>
       <uuid>4zAUmA-3FL3-de79-DkMh-jpPc-ZmrB-AoqhN0</uuid>
+      <used-extents>13</used-extents>
       <stripes>1</stripes>
     </LvmLv>
     <Bcache>

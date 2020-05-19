@@ -29,10 +29,12 @@
         <length>4095</length>
         <block-size>4194304</block-size>
       </region>
+      <reserved-extents>0</reserved-extents>
     </LvmVg>
     <LvmPv>
       <sid>44</sid>
       <uuid>h6d56s-qYq0-PWtG-Vso0-jWHR-mfH0-rohSdU</uuid>
+      <pe-start>1048576</pe-start>
     </LvmPv>
     <LvmLv>
       <sid>45</sid>
@@ -45,8 +47,10 @@
       </region>
       <dm-table-name>system-home</dm-table-name>
       <lv-name>home</lv-name>
+      <lv-type>normal</lv-type>
       <stripes>1</stripes>
       <uuid>h2EA7Z-e564-bocL-7iFD-Fpj8-1GUh-5eyc3S</uuid>
+      <used-extents>2233</used-extents>
     </LvmLv>
     <LvmLv>
       <sid>46</sid>
@@ -59,8 +63,10 @@
       </region>
       <dm-table-name>system-root</dm-table-name>
       <lv-name>root</lv-name>
+      <lv-type>normal</lv-type>
       <stripes>1</stripes>
       <uuid>Y5Og1S-LvHZ-Ivob-doBF-0xwB-myYU-WzKfq5</uuid>
+      <used-extents>1488</used-extents>
     </LvmLv>
     <LvmLv>
       <sid>47</sid>
@@ -73,8 +79,10 @@
       </region>
       <dm-table-name>system-swap</dm-table-name>
       <lv-name>swap</lv-name>
+      <lv-type>normal</lv-type>
       <stripes>1</stripes>
       <uuid>wGZ7UT-icrj-6iSM-gl0F-jxme-CW48-tOyl8Y</uuid>
+      <used-extents>372</used-extents>
     </LvmLv>
     <Msdos>
       <sid>48</sid>

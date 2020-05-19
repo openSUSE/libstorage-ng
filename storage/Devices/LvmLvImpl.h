@@ -97,7 +97,10 @@ namespace storage
 	const string& get_uuid() const { return uuid; }
 	void set_uuid(const string& uuid) { Impl::uuid = uuid; }
 
-	unsigned long long number_of_extents() const { return get_region().get_length(); }
+	virtual void set_region(const Region& region) override;
+
+	unsigned long long get_used_extents() const { return used_extents; }
+	void set_used_extents(unsigned long long used_extents) { Impl::used_extents = used_extents; }
 
 	bool supports_stripes() const;
 
@@ -170,6 +173,22 @@ namespace storage
 	string lv_name;
 	LvType lv_type;
 	string uuid;
+
+	/**
+	 * Number of extent used in the volume group.
+	 *
+	 * For thins the value is zero since the extents are already used by the thin
+	 * pool.
+	 *
+	 * For thick snapshots this is different from the size/region. The size/region
+	 * gives the size of the block device while the used extents gives the space
+	 * allocated for the differences to the origin. Note: The block device size of the
+	 * snapshot may be different from the block device size of the origin (which may
+	 * have been resized since the snapshot was made).
+	 *
+	 * TODO For RAIDs and mirrors the value is incorrect.
+	 */
+	unsigned long long used_extents;
 
 	unsigned int stripes;
 	unsigned long long stripe_size;
