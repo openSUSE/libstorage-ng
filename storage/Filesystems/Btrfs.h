@@ -83,6 +83,8 @@ namespace storage
 
 	/**
 	 * Get the metadata RAID level.
+	 *
+	 * @see BtrfsRaidLevel
 	 */
 	BtrfsRaidLevel get_metadata_raid_level() const;
 
@@ -90,11 +92,15 @@ namespace storage
 	 * Set the metadata RAID level.
 	 *
 	 * Not supported for btrfs already existing on disk.
+	 *
+	 * @see BtrfsRaidLevel
 	 */
 	void set_metadata_raid_level(BtrfsRaidLevel metadata_raid_level);
 
 	/**
 	 * Get the data RAID level.
+	 *
+	 * @see BtrfsRaidLevel
 	 */
 	BtrfsRaidLevel get_data_raid_level() const;
 
@@ -102,6 +108,8 @@ namespace storage
 	 * Set the data RAID level.
 	 *
 	 * Not supported for btrfs already existing on disk.
+	 *
+	 * @see BtrfsRaidLevel
 	 */
 	void set_data_raid_level(BtrfsRaidLevel data_raid_level);
 
@@ -111,6 +119,8 @@ namespace storage
 	 * mkfs.btrfs warns that they are not recommended are not
 	 * included here. Additionally DEFAULT is allowed when creating
 	 * a btrfs.
+	 *
+	 * @see BtrfsRaidLevel
 	 */
 	std::vector<BtrfsRaidLevel> get_allowed_metadata_raid_levels() const;
 
@@ -120,6 +130,8 @@ namespace storage
 	 * mkfs.btrfs warns that they are not recommended are not
 	 * included here. Additionally DEFAULT is allowed when creating
 	 * a btrfs.
+	 *
+	 * @see BtrfsRaidLevel
 	 */
 	std::vector<BtrfsRaidLevel> get_allowed_data_raid_levels() const;
 
@@ -139,15 +151,41 @@ namespace storage
 	 */
 	void remove_device(BlkDevice* blk_device);
 
+	/**
+	 * Get the top-level subvolume.
+	 */
 	BtrfsSubvolume* get_top_level_btrfs_subvolume();
+
+	/**
+	 * @copydoc get_top_level_btrfs_subvolume()
+	 */
 	const BtrfsSubvolume* get_top_level_btrfs_subvolume() const;
 
+	/**
+	 * Get the default subvolume.
+	 */
 	BtrfsSubvolume* get_default_btrfs_subvolume();
+
+	/**
+	 * @copydoc get_default_btrfs_subvolume()
+	 */
 	const BtrfsSubvolume* get_default_btrfs_subvolume() const;
 
+	/**
+	 * Set the default subvolume.
+	 *
+	 * @see get_default_btrfs_subvolume()
+	 */
 	void set_default_btrfs_subvolume(BtrfsSubvolume* btrfs_subvolume) const;
 
+	/**
+	 * Get all subvolumes of the btrfs.
+	 */
 	std::vector<BtrfsSubvolume*> get_btrfs_subvolumes();
+
+	/**
+	 * @copydoc get_btrfs_subvolumes()
+	 */
 	std::vector<const BtrfsSubvolume*> get_btrfs_subvolumes() const;
 
 	/**

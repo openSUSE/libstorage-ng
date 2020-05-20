@@ -36,6 +36,8 @@ namespace storage
 
     /**
      * Class to represent a btrfs subvolume in the devicegraph.
+     *
+     * @see Btrfs
      */
     class BtrfsSubvolume : public Mountable
     {
@@ -57,6 +59,9 @@ namespace storage
 	 */
 	long get_id() const;
 
+	/**
+	 * Check whether the subvolume is the top-level subvolume.
+	 */
 	bool is_top_level() const;
 
 	/**
@@ -76,7 +81,16 @@ namespace storage
 	 */
 	void set_nocow(bool nocow);
 
+	/**
+	 * Check whether the subvolume is the default subvolume.
+	 */
 	bool is_default_btrfs_subvolume() const;
+
+	/**
+	 * Set the subvolume to be the default subvolume.
+	 *
+	 * @see is_default_btrfs_subvolume()
+	 */
 	void set_default_btrfs_subvolume();
 
 	/**
@@ -89,7 +103,16 @@ namespace storage
 	 */
 	const Btrfs* get_btrfs() const;
 
+	/**
+	 * Return the top-level subvolume.
+	 *
+	 * @see is_top_level()
+	 */
 	BtrfsSubvolume* get_top_level_btrfs_subvolume();
+
+	/**
+	 * @copydoc get_top_level_btrfs_subvolume()
+	 */
 	const BtrfsSubvolume* get_top_level_btrfs_subvolume() const;
 
 	/**

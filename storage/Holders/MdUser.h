@@ -30,6 +30,11 @@
 namespace storage
 {
 
+    /**
+     * Holder from a BlkDevice to an Md.
+     *
+     * @see User, Holder
+     */
     class MdUser : public User
     {
     public:
