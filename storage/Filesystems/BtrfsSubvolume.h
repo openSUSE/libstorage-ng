@@ -93,6 +93,51 @@ namespace storage
 	const BtrfsSubvolume* get_top_level_btrfs_subvolume() const;
 
 	/**
+	 * Check whether the btrfs subvolume has snapshots.
+	 */
+	bool has_snapshots() const;
+
+	/**
+	 * Get snapshots of the btrfs subvolume.
+	 *
+	 * @see has_snapshots()
+	 */
+	std::vector<BtrfsSubvolume*> get_snapshots();
+
+	/**
+	 * @copydoc get_snapshots()
+	 */
+	std::vector<const BtrfsSubvolume*> get_snapshots() const;
+
+	/**
+	 * Check whether the btrfs subvolume has an origin. In other words, whether it is a
+	 * snapshot.
+	 *
+	 * The term "origin" is not used with btrfs but with LVM. Unfortunately btrfs is
+	 * not consistent with the names: With 'btrfs subvolume snapshot' the thing is
+	 * called "source", with 'btrfs subvolume list' the thing is called "parent_uuid"
+	 * (but not "parent_id"). Both "source" and "parent" are already used in
+	 * libstorage-ng.
+	 *
+	 * @see has_snapshots()
+	 */
+	bool has_origin() const;
+
+	/**
+	 * Get the origin of the btrfs subvolume if it has one.
+	 *
+	 * @see has_origin()
+	 *
+	 * @throw Exception
+	 */
+	BtrfsSubvolume* get_origin();
+
+	/**
+	 * @copydoc get_origin()
+	 */
+	const BtrfsSubvolume* get_origin() const;
+
+	/**
 	 * Create a btrfs subvolume for the btrfs subvolume.
 	 */
 	BtrfsSubvolume* create_btrfs_subvolume(const std::string& path);

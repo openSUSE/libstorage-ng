@@ -88,6 +88,16 @@ namespace storage
 	virtual Filesystem* get_filesystem() override;
 	virtual const Filesystem* get_filesystem() const override;
 
+	bool has_snapshots() const;
+
+	vector<BtrfsSubvolume*> get_snapshots();
+	vector<const BtrfsSubvolume*> get_snapshots() const;
+
+	bool has_origin() const;
+
+	BtrfsSubvolume* get_origin();
+	const BtrfsSubvolume* get_origin() const;
+
 	virtual FsType get_default_mount_type() const override { return FsType::BTRFS; }
 
 	virtual Text get_message_name() const override;

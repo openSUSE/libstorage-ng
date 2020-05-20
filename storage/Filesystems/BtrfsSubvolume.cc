@@ -131,6 +131,48 @@ namespace storage
     }
 
 
+    bool
+    BtrfsSubvolume::has_snapshots() const
+    {
+	return get_impl().has_snapshots();
+    }
+
+
+    vector<BtrfsSubvolume*>
+    BtrfsSubvolume::get_snapshots()
+    {
+	return get_impl().get_snapshots();
+    }
+
+
+    vector<const BtrfsSubvolume*>
+    BtrfsSubvolume::get_snapshots() const
+    {
+	return get_impl().get_snapshots();
+    }
+
+
+    bool
+    BtrfsSubvolume::has_origin() const
+    {
+	return get_impl().has_origin();
+    }
+
+
+    BtrfsSubvolume*
+    BtrfsSubvolume::get_origin()
+    {
+	return get_impl().get_origin();
+    }
+
+
+    const BtrfsSubvolume*
+    BtrfsSubvolume::get_origin() const
+    {
+	return get_impl().get_origin();
+    }
+
+
     BtrfsSubvolume*
     BtrfsSubvolume::create_btrfs_subvolume(const string& path)
     {
