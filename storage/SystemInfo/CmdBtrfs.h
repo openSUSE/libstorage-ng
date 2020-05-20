@@ -120,7 +120,7 @@ namespace storage
 	CmdBtrfsSubvolumeList(const key_t& key, const string& mount_point);
 
 	/**
-	 * Entry for every subvolume (unfortunately except the top level).
+	 * Entry for every subvolume (unfortunately except the top-level).
 	 *
 	 * Caution: parent_id and parent_uuid are something completely
 	 * different - not just different ways to specify the
