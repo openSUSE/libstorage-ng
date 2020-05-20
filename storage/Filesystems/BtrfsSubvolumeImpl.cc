@@ -35,6 +35,7 @@
 #include "storage/StorageImpl.h"
 #include "storage/UsedFeatures.h"
 #include "storage/Holders/Subdevice.h"
+#include "storage/Holders/Snapshot.h"
 #include "storage/Prober.h"
 #include "storage/Utils/Format.h"
 
@@ -165,6 +166,68 @@ namespace storage
     BtrfsSubvolume::Impl::get_filesystem() const
     {
 	return get_btrfs();
+    }
+
+
+    bool
+    BtrfsSubvolume::Impl::has_snapshots() const
+    {
+	return !get_out_holders_of_type<const Snapshot>(View::ALL).empty();
+    }
+
+
+    vector<BtrfsSubvolume*>
+    BtrfsSubvolume::Impl::get_snapshots()
+    {
+	vector<BtrfsSubvolume*> ret;
+
+	for (Snapshot* snapshot : get_out_holders_of_type<Snapshot>(View::ALL))
+	    ret.push_back(to_btrfs_subvolume(snapshot->get_target()));
+
+	return ret;
+    }
+
+
+    vector<const BtrfsSubvolume*>
+    BtrfsSubvolume::Impl::get_snapshots() const
+    {
+	vector<const BtrfsSubvolume*> ret;
+
+	for (const Snapshot* snapshot : get_out_holders_of_type<const Snapshot>(View::ALL))
+	    ret.push_back(to_btrfs_subvolume(snapshot->get_target()));
+
+	return ret;
+    }
+
+
+    bool
+    BtrfsSubvolume::Impl::has_origin() const
+    {
+	return !get_in_holders_of_type<const Snapshot>(View::ALL).empty();
+    }
+
+
+    BtrfsSubvolume*
+    BtrfsSubvolume::Impl::get_origin()
+    {
+	vector<Snapshot*> snapshots = get_in_holders_of_type<Snapshot>(View::ALL);
+
+	if (snapshots.size() != 1)
+	    ST_THROW(WrongNumberOfParents(snapshots.size(), 1));
+
+	return to_btrfs_subvolume(snapshots.front()->get_source());
+    }
+
+
+    const BtrfsSubvolume*
+    BtrfsSubvolume::Impl::get_origin() const
+    {
+	vector<const Snapshot*> snapshots = get_in_holders_of_type<const Snapshot>(View::ALL);
+
+	if (snapshots.size() != 1)
+	    ST_THROW(WrongNumberOfParents(snapshots.size(), 1));
+
+	return to_btrfs_subvolume(snapshots.front()->get_source());
     }
 
 

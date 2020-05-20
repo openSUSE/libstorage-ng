@@ -36,6 +36,8 @@ namespace storage
 
     /**
      * Class to represent a btrfs subvolume in the devicegraph.
+     *
+     * @see Btrfs
      */
     class BtrfsSubvolume : public Mountable
     {
@@ -57,6 +59,9 @@ namespace storage
 	 */
 	long get_id() const;
 
+	/**
+	 * Check whether the subvolume is the top-level subvolume.
+	 */
 	bool is_top_level() const;
 
 	/**
@@ -76,7 +81,16 @@ namespace storage
 	 */
 	void set_nocow(bool nocow);
 
+	/**
+	 * Check whether the subvolume is the default subvolume.
+	 */
 	bool is_default_btrfs_subvolume() const;
+
+	/**
+	 * Set the subvolume to be the default subvolume.
+	 *
+	 * @see is_default_btrfs_subvolume()
+	 */
 	void set_default_btrfs_subvolume();
 
 	/**
@@ -89,8 +103,62 @@ namespace storage
 	 */
 	const Btrfs* get_btrfs() const;
 
+	/**
+	 * Return the top-level subvolume.
+	 *
+	 * @see is_top_level()
+	 */
 	BtrfsSubvolume* get_top_level_btrfs_subvolume();
+
+	/**
+	 * @copydoc get_top_level_btrfs_subvolume()
+	 */
 	const BtrfsSubvolume* get_top_level_btrfs_subvolume() const;
+
+	/**
+	 * Check whether the btrfs subvolume has snapshots.
+	 */
+	bool has_snapshots() const;
+
+	/**
+	 * Get snapshots of the btrfs subvolume.
+	 *
+	 * @see has_snapshots()
+	 */
+	std::vector<BtrfsSubvolume*> get_snapshots();
+
+	/**
+	 * @copydoc get_snapshots()
+	 */
+	std::vector<const BtrfsSubvolume*> get_snapshots() const;
+
+	/**
+	 * Check whether the btrfs subvolume has an origin. In other words, whether it is a
+	 * snapshot.
+	 *
+	 * The term "origin" is not used with btrfs but with LVM. Unfortunately btrfs is
+	 * not consistent with the names: With 'btrfs subvolume snapshot' the thing is
+	 * called "source", with 'btrfs subvolume list' the thing is called "parent_uuid"
+	 * (but not "parent_id"). Both "source" and "parent" are already used in
+	 * libstorage-ng.
+	 *
+	 * @see has_snapshots()
+	 */
+	bool has_origin() const;
+
+	/**
+	 * Get the origin of the btrfs subvolume if it has one.
+	 *
+	 * @see has_origin()
+	 *
+	 * @throw Exception
+	 */
+	BtrfsSubvolume* get_origin();
+
+	/**
+	 * @copydoc get_origin()
+	 */
+	const BtrfsSubvolume* get_origin() const;
 
 	/**
 	 * Create a btrfs subvolume for the btrfs subvolume.

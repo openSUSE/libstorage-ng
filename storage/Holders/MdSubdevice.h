@@ -34,6 +34,8 @@ namespace storage
 
     /**
      * Holder from a MdContainer to a MdMember.
+     *
+     * @see Subdevice, Holder
      */
     class MdSubdevice : public Subdevice
     {

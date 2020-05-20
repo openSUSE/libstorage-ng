@@ -61,3 +61,30 @@ BOOST_AUTO_TEST_CASE(parse_good)
 
     check(input, output);
 }
+
+
+BOOST_AUTO_TEST_CASE(parse_not_so_good)
+{
+    vector<string> input = {
+	"/",
+	"        Name:                   <FS_TREE>",
+	"        UUID:                   -",
+	"        Parent UUID:            -",
+	"        Received UUID:          -",
+	"        Creation time:          -",
+	"        Subvolume ID:           5",
+	"        Generation:             72",
+	"        Gen at creation:        0",
+	"        Parent ID:              0",
+	"        Top level ID:           0",
+	"        Flags:                  -",
+	"        Snapshot(s):",
+	"                                1a"
+    };
+
+    vector<string> output = {
+	"uuid:"
+    };
+
+    check(input, output);
+}

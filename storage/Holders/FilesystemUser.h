@@ -30,6 +30,11 @@
 namespace storage
 {
 
+    /**
+     * Holder from BlkDevice to a BlkFilesystem.
+     *
+     * @see User, Holder
+     */
     class FilesystemUser : public User
     {
     public:

@@ -52,10 +52,13 @@ namespace storage
 
 	virtual bool equal(const Holder::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Holder::Impl& rhs_base) const override;
-
 	virtual void print(std::ostream& out) const override;
 
     };
+
+
+    static_assert(!std::is_abstract<User>(), "User ought not to be abstract.");
+    static_assert(!std::is_abstract<User::Impl>(), "User::Impl ought not to be abstract.");
 
 }
 

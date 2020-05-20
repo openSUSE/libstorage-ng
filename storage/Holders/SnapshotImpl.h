@@ -57,6 +57,10 @@ namespace storage
 
     };
 
+
+    static_assert(!std::is_abstract<Snapshot>(), "Snapshot ought not to be abstract.");
+    static_assert(!std::is_abstract<Snapshot::Impl>(), "Snapshot::Impl ought not to be abstract.");
+
 }
 
 #endif

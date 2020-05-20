@@ -275,7 +275,7 @@ namespace storage
     void
     CmdBtrfsSubvolumeShow::parse(const vector<string>& lines)
     {
-	static const regex uuid_regex("[ \t]*UUID:[ \t]*(" UUID_REGEX ")[ \t]*", regex::extended);
+	static const regex uuid_regex("[ \t]*UUID:[ \t]*(" UUID_REGEX "|-)[ \t]*", regex::extended);
 
 	smatch match;
 
@@ -287,6 +287,21 @@ namespace storage
 
 	if (uuid.empty())
 	    ST_THROW(Exception("could not find 'uuid' in 'btrfs subvolume show' output"));
+
+	if (uuid == "-")
+	{
+	    // If the btrfs was created with older kernels (whatever that means) (tested
+	    // with SLES 11 SP3), the top-level subvolume does not have a UUID. Other
+	    // subvolumes do have a UUID. In that case also all subvolumes are listed
+	    // wrongly as snapshots of the top-level subvolume (by 'btrfs subvolume
+	    // show'). The relationship between other subvolumes/snapshots seems to be
+	    // fine.
+
+	    y2mil("could not find 'uuid' in 'btrfs subvolume show' output - happens if "
+		  "btrfs was created with an old kernel");
+
+	    uuid = "";
+	}
 
 	y2mil(*this);
     }

@@ -31,6 +31,12 @@
 namespace storage
 {
 
+    /**
+     * Generic holder from one device to a subdevice, e.g. from a PartitionTable to a
+     * Partition or from a LvmVg to a LvmLv.
+     *
+     * @see Holder
+     */
     class Subdevice : public Holder
     {
     public:

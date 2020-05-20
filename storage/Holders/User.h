@@ -31,6 +31,12 @@
 namespace storage
 {
 
+    /**
+     * Generic holder from one device to another device, e.g. from a Disk to a
+     * PartitionTable or a Partition to a LvmPv.
+     *
+     * @see Holder
+     */
     class User : public Holder
     {
     public:
