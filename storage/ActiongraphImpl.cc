@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -129,6 +129,9 @@ namespace storage
     Actiongraph::Impl::Impl(const Storage& storage, Devicegraph* lhs, Devicegraph* rhs)
 	: storage(storage), lhs(lhs), rhs(rhs)
     {
+	if (lhs->get_storage() != &storage || rhs->get_storage() != &storage)
+	    ST_THROW(Exception("devicegraph belongs to wrong storage object"));
+
 	set_gpt_undersized();
 
 	CheckCallbacksLogger check_callbacks_logger;

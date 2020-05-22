@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -52,22 +52,56 @@ namespace storage
     };
 
 
+    /**
+     * The actiongraph has all actions including the dependencies among them to get from
+     * one devicegraph to another.
+     */
     class Actiongraph : private boost::noncopyable
     {
     public:
 
 	/**
+	 * Calculate the actiongraph to get from the LHS (left-hand side) to the RHS
+	 * (right-hand side) devicegraph.
+	 *
+	 * Throws an exception if unsupported actions are required (e.g. create a disk or
+	 * rename an LVM volume group) or if the resulting graph has cycles.
+	 *
 	 * @throw Exception
 	 */
 	Actiongraph(const Storage& storage, Devicegraph* lhs, Devicegraph* rhs);
 
 	~Actiongraph();
 
+	/**
+	 * Get the storage object for which the actiongraph was constructed.
+	 */
 	const Storage& get_storage() const;
 
+	/**
+	 * Get the left or right devicegraph for which the actiongraph was constructed.
+	 */
 	const Devicegraph* get_devicegraph(Side side) const;
 
+	/**
+	 * Check whether the actiongraph is empty.
+	 */
+	bool empty() const;
+
+	/**
+	 * Return the number of actions in the actiongraph.
+	 */
+	size_t num_actions() const;
+
+	/**
+	 * Print the actiongraph on cout. Not for production code.
+	 */
 	void print_graph() const;
+
+	/**
+	 * Print the order of the actions on cout. Not for production code.
+	 */
+	void print_order() const;
 
 	/**
 	 * Writes the actiongraph in graphviz format. The
@@ -87,12 +121,6 @@ namespace storage
 	 */
 	void write_graphviz(const std::string& filename, GraphvizFlags flags = GraphvizFlags::NAME,
 			    GraphvizFlags tooltip_flags = GraphvizFlags::NONE) const;
-
-	void print_order() const;
-
-	bool empty() const;
-
-	size_t num_actions() const;
 
 	/**
 	 * Sorted according to dependencies among actions.

@@ -176,7 +176,14 @@ namespace storage
 	bool operator==(const Devicegraph& rhs) const;
 	bool operator!=(const Devicegraph& rhs) const;
 
+	/**
+	 * Get the storage object the devicegraph belongs to.
+	 */
 	Storage* get_storage();
+
+	/**
+	 * @copydoc get_storage()
+	 */
 	const Storage* get_storage() const;
 
 	/**

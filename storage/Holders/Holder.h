@@ -59,7 +59,14 @@ namespace storage
 
 	virtual ~Holder();
 
+	/**
+	 * Get the source device of the holder.
+	 */
 	Device* get_source();
+
+	/**
+	 * @copydoc get_source()
+	 */
 	const Device* get_source() const;
 
 	/**
@@ -69,7 +76,14 @@ namespace storage
 	 */
 	sid_t get_source_sid() const;
 
+	/**
+	 * Get the target device of the holder.
+	 */
 	Device* get_target();
+
+	/**
+	 * @copydoc get_target()
+	 */
 	const Device* get_target() const;
 
 	/**
