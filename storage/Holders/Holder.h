@@ -127,6 +127,8 @@ namespace storage
 	 */
 	void set_userdata(const std::map<std::string, std::string>& userdata);
 
+	friend std::ostream& operator<<(std::ostream& out, const Holder& holder);
+
     public:
 
 	class Impl;
@@ -137,8 +139,6 @@ namespace storage
 	virtual Holder* clone() const = 0;
 
 	void save(xmlNode* node) const ST_DEPRECATED;
-
-	friend std::ostream& operator<<(std::ostream& out, const Holder& holder);
 
     protected:
 

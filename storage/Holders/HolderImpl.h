@@ -99,7 +99,6 @@ namespace storage
 
 	virtual bool equal(const Impl& rhs) const = 0;
 	virtual void log_diff(std::ostream& log, const Impl& rhs) const = 0;
-
 	virtual void print(std::ostream& out) const = 0;
 
     protected:

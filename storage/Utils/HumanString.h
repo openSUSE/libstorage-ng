@@ -33,6 +33,7 @@ namespace storage
 
     // TODO use C++11 user-defined literals? Swig has some support for them.
 
+
     /**
      * Abbreviation for byte.
      *
