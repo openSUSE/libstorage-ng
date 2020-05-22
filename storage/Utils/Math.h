@@ -27,6 +27,9 @@
 namespace storage
 {
 
+    /**
+     * Equivalent to std::has_single_bit (C++20).
+     */
     inline bool
     is_power_of_two(unsigned long long i)
     {
@@ -34,6 +37,9 @@ namespace storage
     }
 
 
+    /**
+     * Equivalent to std::bit_ceil (C++20).
+     */
     inline unsigned long long
     next_power_of_two(unsigned long long i)
     {
@@ -64,6 +70,8 @@ namespace storage
 
     /**
      * Count leading zeros. Result is undefined if i is zero.
+     *
+     * Equivalent to std::countl_zero (C++20).
      */
     inline int
     clz(unsigned long long i)
