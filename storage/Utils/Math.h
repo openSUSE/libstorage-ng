@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -41,11 +41,11 @@ namespace storage
     }
 
 
-    inline bool
-    is_multiple_of(unsigned long long i, unsigned long long j)
-    {
-	return i % j == 0;
-    }
+    /**
+     * Check whether i is a multiple of j.
+     */
+    bool
+    is_multiple_of(unsigned long long i, unsigned long long j);
 
 
     /**
