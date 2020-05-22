@@ -59,7 +59,14 @@ namespace storage
 
 	virtual ~Holder();
 
+	/**
+	 * Get the source device of the holder.
+	 */
 	Device* get_source();
+
+	/**
+	 * @copydoc get_source()
+	 */
 	const Device* get_source() const;
 
 	/**
@@ -69,7 +76,14 @@ namespace storage
 	 */
 	sid_t get_source_sid() const;
 
+	/**
+	 * Get the target device of the holder.
+	 */
 	Device* get_target();
+
+	/**
+	 * @copydoc get_target()
+	 */
 	const Device* get_target() const;
 
 	/**
@@ -117,6 +131,18 @@ namespace storage
 	 */
 	bool exists_in_system() const;
 
+	/**
+	 * Return the userdata of the holder.
+	 */
+	const std::map<std::string, std::string>& get_userdata() const;
+
+	/**
+	 * Set the userdata of the holder.
+	 */
+	void set_userdata(const std::map<std::string, std::string>& userdata);
+
+	friend std::ostream& operator<<(std::ostream& out, const Holder& holder);
+
     public:
 
 	class Impl;
@@ -127,8 +153,6 @@ namespace storage
 	virtual Holder* clone() const = 0;
 
 	void save(xmlNode* node) const ST_DEPRECATED;
-
-	friend std::ostream& operator<<(std::ostream& out, const Holder& holder);
 
     protected:
 

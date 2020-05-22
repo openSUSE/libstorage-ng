@@ -221,7 +221,14 @@ namespace storage
 	 */
 	void remove_descendants(View view);
 
+	/**
+	 * Return the userdata of the device.
+	 */
 	const std::map<std::string, std::string>& get_userdata() const;
+
+	/**
+	 * Set the userdata of the device.
+	 */
 	void set_userdata(const std::map<std::string, std::string>& userdata);
 
 	friend std::ostream& operator<<(std::ostream& out, const Device& device);

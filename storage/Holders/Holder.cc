@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -193,6 +193,20 @@ namespace storage
     Holder::save(xmlNode* node) const
     {
 	get_impl().save(node);
+    }
+
+
+    const map<string, string>&
+    Holder::get_userdata() const
+    {
+	return get_impl().get_userdata();
+    }
+
+
+    void
+    Holder::set_userdata(const map<string, string>& userdata)
+    {
+	get_impl().set_userdata(userdata);
     }
 
 

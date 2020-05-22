@@ -36,6 +36,9 @@
 namespace storage
 {
 
+    using namespace std;
+
+
     template <typename Type> struct HolderTraits {};
 
 
@@ -91,9 +94,11 @@ namespace storage
 
 	sid_t get_target_sid() const;
 
+	const map<string, string>& get_userdata() const { return userdata; }
+	void set_userdata(const map<string, string>& userdata) { Impl::userdata = userdata; }
+
 	virtual bool equal(const Impl& rhs) const = 0;
 	virtual void log_diff(std::ostream& log, const Impl& rhs) const = 0;
-
 	virtual void print(std::ostream& out) const = 0;
 
     protected:
@@ -106,6 +111,8 @@ namespace storage
 
 	Devicegraph* devicegraph;
 	Devicegraph::Impl::edge_descriptor edge;
+
+	map<string, string> userdata;
 
     };
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -26,6 +26,16 @@
 
 namespace storage
 {
+
+    bool
+    is_multiple_of(unsigned long long i, unsigned long long j)
+    {
+	if (j == 0)
+	    ST_THROW(Exception("divisor is zero"));
+
+	return i % j == 0;
+    }
+
 
     unsigned long long
     round_down(unsigned long long i, unsigned long long m)

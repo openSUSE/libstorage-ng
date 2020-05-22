@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -27,6 +27,9 @@
 namespace storage
 {
 
+    /**
+     * Equivalent to std::has_single_bit (C++20).
+     */
     inline bool
     is_power_of_two(unsigned long long i)
     {
@@ -34,6 +37,9 @@ namespace storage
     }
 
 
+    /**
+     * Equivalent to std::bit_ceil (C++20).
+     */
     inline unsigned long long
     next_power_of_two(unsigned long long i)
     {
@@ -41,11 +47,11 @@ namespace storage
     }
 
 
-    inline bool
-    is_multiple_of(unsigned long long i, unsigned long long j)
-    {
-	return i % j == 0;
-    }
+    /**
+     * Check whether i is a multiple of j.
+     */
+    bool
+    is_multiple_of(unsigned long long i, unsigned long long j);
 
 
     /**
@@ -64,6 +70,8 @@ namespace storage
 
     /**
      * Count leading zeros. Result is undefined if i is zero.
+     *
+     * Equivalent to std::countl_zero (C++20).
      */
     inline int
     clz(unsigned long long i)
