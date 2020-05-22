@@ -50,10 +50,9 @@ Implemented:
 * Extend and reduce volume groups.
 * Resize logical volumes.
 * Thin provisioning.
-
-Missing:
-
-* Snapshots.
+* Snapshots (only probing).
+* RAID and mirror (only probing).
+* Cache (only probing).
 
 Not planned:
 
@@ -132,17 +131,16 @@ Filesystem
 
 Implemented:
 
-* For btrfs, ext2, ext3, ext4, reiserfs, NTFS, VFat, XFS, swap, ISO9660, UDF
-  and NFS the most important operations (probing, creating, deleting,
-  resizing, mounting and unmounting).
+* For btrfs, ext2, ext3, ext4, ReiserFS, NTFS, VFat, ExFat, XFS, JFS,
+  swap, F2FS, ISO9660, UDF and NFS the most important operations
+  (probing, creating, deleting, resizing, mounting and unmounting).
 * Handling of /etc/fstab.
 * Handling different mount-by options.
-* btrfs subvolumes.
+* btrfs subvolumes and btrfs multiple-device support.
 
 Missing:
 
 * tmpfs
-* btrfs multi-device support (WIP).
 * On demand unmounting.
 
 
