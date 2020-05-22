@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -318,7 +318,7 @@ namespace storage
     bool
     Device::Impl::equal(const Impl& rhs) const
     {
-	return sid == rhs.sid;
+	return sid == rhs.sid && userdata == rhs.userdata;
     }
 
 
@@ -326,6 +326,8 @@ namespace storage
     Device::Impl::log_diff(std::ostream& log, const Impl& rhs) const
     {
 	storage::log_diff(log, "sid", sid, rhs.sid);
+
+	storage::log_diff(log, "userdata", userdata, rhs.userdata);
     }
 
 
@@ -334,6 +336,9 @@ namespace storage
     {
 	out << get_classname() << " sid:" << get_sid()
 	    << " displayname:" << get_displayname();
+
+	if (!userdata.empty())
+	    out << " userdata:" << userdata;
     }
 
 

@@ -117,6 +117,16 @@ namespace storage
 	 */
 	bool exists_in_system() const;
 
+	/**
+	 * Return the userdata of the holder.
+	 */
+	const std::map<std::string, std::string>& get_userdata() const;
+
+	/**
+	 * Set the userdata of the holder.
+	 */
+	void set_userdata(const std::map<std::string, std::string>& userdata);
+
     public:
 
 	class Impl;

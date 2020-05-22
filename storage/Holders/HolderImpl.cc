@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -26,19 +26,20 @@
 #include "storage/Storage.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/Format.h"
+#include "storage/Utils/StorageTmpl.h"
 
 
 namespace storage
 {
 
     Holder::Impl::Impl()
-	: devicegraph(nullptr)
+	: devicegraph(nullptr), userdata()
     {
     }
 
 
     Holder::Impl::Impl(const xmlNode* node)
-	: devicegraph(nullptr)
+	: devicegraph(nullptr), userdata()
     {
     }
 
@@ -210,7 +211,7 @@ namespace storage
     {
 	// TODO handle source and target sid here?
 
-	return true;
+	return userdata == rhs.userdata;
     }
 
 
@@ -218,6 +219,8 @@ namespace storage
     Holder::Impl::log_diff(std::ostream& log, const Impl& rhs) const
     {
 	// TODO handle source and target sid here?
+
+	storage::log_diff(log, "userdata", userdata, rhs.userdata);
     }
 
 
@@ -226,6 +229,9 @@ namespace storage
     {
 	out << get_classname() << " source-sid:" << get_source_sid()
 	    << " target-sid:" << get_target_sid();
+
+	if (!userdata.empty())
+	    out << " userdata:" << userdata;
     }
 
 }
