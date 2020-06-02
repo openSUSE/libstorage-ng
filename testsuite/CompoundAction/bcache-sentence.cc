@@ -46,7 +46,7 @@ namespace storage
 	    void init_disks()
 	    {
 		Environment environment(true, ProbeMode::NONE, TargetMode::IMAGE);
-		storage = shared_ptr<Storage>(new Storage(environment));
+		storage = make_unique<Storage>(environment);
 		staging = storage->get_staging();
 
 		disk0 = Disk::create( staging, "/dev/sda", Region( 0,   2*TiB / BLOCK_SIZE, BLOCK_SIZE ) );

@@ -25,11 +25,12 @@ namespace storage
     {
 	struct CompoundActionFixture
 	{
+
 	    void
 	    initialize_staging_with_two_partitions()
 	    {
 		Environment environment(true, ProbeMode::NONE, TargetMode::IMAGE);
-		storage = shared_ptr<Storage>(new Storage(environment));
+		storage = make_unique<Storage>(environment);
 		staging = storage->get_staging();
 
 		auto sda = Disk::create(staging, "/dev/sda");
@@ -39,14 +40,13 @@ namespace storage
 	    }
 
 
-
 	    void
 	    initialize_with_devicegraph(string devicegraph_file)
 	    {
 		Environment environment(true, ProbeMode::READ_DEVICEGRAPH, TargetMode::DIRECT);
 		environment.set_devicegraph_filename(devicegraph_file);
 
-		storage = shared_ptr<Storage>(new Storage(environment));
+		storage = make_unique<Storage>(environment);
 		storage->probe();
 
 		auto probed = storage->get_probed();
@@ -55,6 +55,7 @@ namespace storage
 		staging = storage->get_staging();
 	    }
 
+
 	    void
 	    delete_partition(const string partition_name)
 	    {
@@ -62,6 +63,7 @@ namespace storage
 		auto partition_table = const_cast<PartitionTable*>(partition->get_partition_table());
 		partition_table->delete_partition(partition);
 	    }
+
 
 	    static const CompoundAction*
 	    find_compound_action_by_target(const Actiongraph* actiongraph, const Device* device)
@@ -84,7 +86,7 @@ namespace storage
             }
 
 
-	    shared_ptr<Storage> storage;
+	    unique_ptr<Storage> storage;
 	    Devicegraph* staging;
 	    Partition* sda1;
 	    Partition* sda2;

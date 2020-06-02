@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -121,7 +121,26 @@ namespace storage
 
 	const TmpDir& get_tmp_dir() const { return tmp_dir; }
 
+	/**
+	 * Get the next sid.
+	 */
+	static sid_t get_next_sid() { return global_sid++; }
+
+	/**
+	 * Raises the global sid to avoid potential conflicts with sid.
+	 */
+	static void raise_global_sid(sid_t sid) { global_sid = max(global_sid, sid + 1); }
+
+	/**
+	 * Resets the global sid. Only for testsuites.
+	 */
+	static void reset_global_sid() { global_sid = initial_global_sid; }
+
     private:
+
+	static const sid_t initial_global_sid = 42;	// just a random number ;)
+
+	static sid_t global_sid;
 
 	void probe_helper(const ProbeCallbacks* probe_callbacks, Devicegraph* system);
 

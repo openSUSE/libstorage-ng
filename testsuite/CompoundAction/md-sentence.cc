@@ -37,7 +37,7 @@ namespace storage
 	    void create_disks()
 	    {
 		Environment environment( true, ProbeMode::NONE, TargetMode::IMAGE );
-		storage = shared_ptr<Storage>( new Storage( environment ) );
+		storage = make_unique<Storage>(environment);
 		staging = storage->get_staging();
 
                 for ( int i=0; i < 5; ++i )

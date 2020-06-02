@@ -24,7 +24,7 @@ namespace storage
 	    initialize_probed_with_three_strays()
 	    {
 		Environment environment( true, ProbeMode::NONE, TargetMode::IMAGE );
-		storage = shared_ptr<Storage>( new Storage( environment ) );
+		storage = make_unique<Storage>(environment);
 		staging = storage->get_staging();
 
                 // StrayBlkDevice regions always start at 0

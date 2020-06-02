@@ -28,7 +28,7 @@
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/FreeInfo.h"
-#include "storage/Storage.h"
+#include "storage/StorageImpl.h"
 #include "storage/Utils/Format.h"
 
 
@@ -41,11 +41,8 @@ namespace storage
     const char* DeviceTraits<Device>::classname = "Device";
 
 
-    sid_t Device::Impl::global_sid = 42;	// just a random number ;)
-
-
     Device::Impl::Impl()
-	: sid(global_sid++), devicegraph(nullptr), vertex(), userdata()
+	: sid(Storage::Impl::get_next_sid()), devicegraph(nullptr), vertex(), userdata()
     {
     }
 
