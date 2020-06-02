@@ -148,7 +148,7 @@ BOOST_AUTO_TEST_CASE(test_luks)
 
 	Partition* sda1 = gpt->create_partition("/dev/sda1", Region(1 * 2048, 100 * 2048, 512), PartitionType::PRIMARY);
 
-	Encryption* encryption = sda1->create_encryption("cr-test1");
+	Encryption* encryption = sda1->create_encryption("cr-test1", EncryptionType::LUKS1);
 
 	BOOST_CHECK_EQUAL(encryption->get_mount_by(), MountByType::UUID);
     }
@@ -158,7 +158,7 @@ BOOST_AUTO_TEST_CASE(test_luks)
 
 	Partition* sda2 = gpt->create_partition("/dev/sda2", Region(1 * 2048, 100 * 2048, 512), PartitionType::PRIMARY);
 
-	Encryption* encryption = sda2->create_encryption("cr-test2");
+	Encryption* encryption = sda2->create_encryption("cr-test2", EncryptionType::LUKS1);
 
 	BOOST_CHECK_EQUAL(encryption->get_mount_by(), MountByType::DEVICE);
     }

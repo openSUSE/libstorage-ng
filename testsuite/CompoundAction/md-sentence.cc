@@ -109,7 +109,7 @@ BOOST_AUTO_TEST_CASE( test_create_encrypt_format_mount )
 {
     Md * raid = create_raid( "/dev/md0", MdLevel::RAID1 );
 
-    Encryption * encryption = raid->create_encryption( "cr_raid0" );
+    Encryption* encryption = raid->create_encryption("cr_raid0", EncryptionType::LUKS1);
     BlkFilesystem * fs = encryption->create_blk_filesystem( FsType::XFS );
     fs->create_mount_point( "/secret" );
 
@@ -136,7 +136,7 @@ BOOST_AUTO_TEST_CASE( test_create_encrypt_format_no_mount )
 {
     Md * raid = create_raid( "/dev/md0", MdLevel::RAID1 );
 
-    Encryption * encryption = raid->create_encryption( "cr_raid0" );
+    Encryption* encryption = raid->create_encryption("cr_raid0", EncryptionType::LUKS1);
     encryption->create_blk_filesystem( FsType::XFS );
 
     const Actiongraph	 * actiongraph     = storage->calculate_actiongraph();
@@ -208,7 +208,7 @@ BOOST_AUTO_TEST_CASE( test_encrypt_format_mount )
     Md * raid = create_raid( "/dev/md0", MdLevel::RAID5 );
     copy_staging_to_probed();
 
-    Encryption * encryption = raid->create_encryption( "cr_raid0" );
+    Encryption* encryption = raid->create_encryption("cr_raid0", EncryptionType::LUKS1);
     BlkFilesystem * fs = encryption->create_blk_filesystem( FsType::XFS );
 
     fs->create_mount_point( "/data" );
@@ -258,7 +258,7 @@ BOOST_AUTO_TEST_CASE( test_create_encrypted_swap )
 {
     Md * raid = create_raid( "/dev/md1", MdLevel::RAID1 );
 
-    Encryption * encryption = raid->create_encryption( "cr_raid1" );
+    Encryption* encryption = raid->create_encryption("cr_raid1", EncryptionType::LUKS1);
     BlkFilesystem * fs = encryption->create_blk_filesystem( FsType::SWAP );
     fs->create_mount_point( "swap" );
 

@@ -39,7 +39,7 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_creating_with_encryption)
 {
     initialize_staging_with_two_partitions();
 
-    auto encryption = sda2->create_encryption("cr_sda2");
+    Encryption* encryption = sda2->create_encryption("cr_sda2", EncryptionType::LUKS1);
 
     auto ext4 = to_ext4(encryption->create_blk_filesystem(FsType::EXT4));
     ext4->create_mount_point("/test");
@@ -75,7 +75,7 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_creating_with_encryption_as_pv)
 {
     initialize_staging_with_two_partitions();
 
-    auto encryption = sda2->create_encryption("cr_sda2");
+    Encryption* encryption = sda2->create_encryption("cr_sda2", EncryptionType::LUKS1);
 
     auto lvm_vg = LvmVg::create(staging, "vg-name");
     lvm_vg->add_lvm_pv(encryption);

@@ -48,7 +48,7 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_creating_with_encryption)
     auto vg = LvmVg::create(staging, "vg-name");
     vg->add_lvm_pv(sda2);
     auto lv = vg->create_lvm_lv("lv-name", LvType::NORMAL, 10 * GiB);
-    auto encryption = lv->create_encryption("cr_sda2");
+    Encryption* encryption = lv->create_encryption("cr_sda2", EncryptionType::LUKS1);
     auto ext4 = to_ext4(encryption->create_blk_filesystem(FsType::EXT4));
     ext4->create_mount_point("/test");
 

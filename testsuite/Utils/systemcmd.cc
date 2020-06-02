@@ -38,7 +38,7 @@ public:
 };
 
 
-BOOST_GLOBAL_FIXTURE(Fixture);
+BOOST_TEST_GLOBAL_FIXTURE(Fixture);
 
 
 BOOST_AUTO_TEST_CASE(hello_stdout)

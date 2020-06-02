@@ -109,7 +109,7 @@ BOOST_AUTO_TEST_CASE(record1)
 
     DevicegraphStyleCallbacksRecorder devicegraph_style_callbacks_recorder;
 
-    staging->write_graphviz("record-devicegraph.gv", &devicegraph_style_callbacks_recorder);
+    staging->write_graphviz("record-devicegraph.gv", &devicegraph_style_callbacks_recorder, View::ALL);
 
     BOOST_CHECK_EQUAL(devicegraph_style_callbacks_recorder.cnt_graph, 1);
 

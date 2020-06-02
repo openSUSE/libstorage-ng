@@ -98,7 +98,7 @@ BOOST_AUTO_TEST_CASE(test_gpt)
 
     Partition* sda2 = gpt->create_partition("/dev/sda2", Region(30 * spg, 10 * spg, 512), PartitionType::PRIMARY);
 
-    Encryption* encryption = sda2->create_encryption("cr-test1");
+    Encryption* encryption = sda2->create_encryption("cr-test1", EncryptionType::LUKS1);
     encryption->create_blk_filesystem(FsType::EXT4);
 
     Partition* sda3 = gpt->create_partition("/dev/sda3", Region(50 * spg, 10 * spg, 512), PartitionType::PRIMARY);
