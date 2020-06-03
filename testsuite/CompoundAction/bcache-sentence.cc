@@ -46,7 +46,7 @@ namespace storage
 	    void init_disks()
 	    {
 		Environment environment(true, ProbeMode::NONE, TargetMode::IMAGE);
-		storage = shared_ptr<Storage>(new Storage(environment));
+		storage = make_unique<Storage>(environment);
 		staging = storage->get_staging();
 
 		disk0 = Disk::create( staging, "/dev/sda", Region( 0,   2*TiB / BLOCK_SIZE, BLOCK_SIZE ) );
@@ -110,7 +110,7 @@ BOOST_AUTO_TEST_CASE( test_create )
     BlkFilesystem * ext4 = bcache0->create_blk_filesystem( FsType::EXT4 );
     ext4->create_mount_point( "/data" );
 
-    Encryption * encryption = bcache1->create_encryption( "cr_bcache1" );
+    Encryption* encryption = bcache1->create_encryption("cr_bcache1", EncryptionType::LUKS1);
     BlkFilesystem * xfs = encryption->create_blk_filesystem( FsType::XFS );
     xfs->create_mount_point( "/home" );
 
@@ -171,7 +171,7 @@ BOOST_AUTO_TEST_CASE( test_format )
     BlkFilesystem * ext4 = bcache0->create_blk_filesystem( FsType::EXT4 );
     ext4->create_mount_point( "/data" );
 
-    Encryption * encryption = bcache1->create_encryption( "cr_bcache1" );
+    Encryption* encryption = bcache1->create_encryption("cr_bcache1", EncryptionType::LUKS1);
     BlkFilesystem * xfs = encryption->create_blk_filesystem( FsType::XFS );
     xfs->create_mount_point( "/home" );
 
@@ -211,7 +211,7 @@ BOOST_AUTO_TEST_CASE( test_mount )
 
     BlkFilesystem * ext4 = bcache0->create_blk_filesystem( FsType::EXT4 );
 
-    Encryption * encryption = bcache1->create_encryption( "cr_bcache1" );
+    Encryption* encryption = bcache1->create_encryption("cr_bcache1", EncryptionType::LUKS1);
     BlkFilesystem * xfs = encryption->create_blk_filesystem( FsType::XFS );
     
     copy_staging_to_probed();

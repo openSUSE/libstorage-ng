@@ -24,7 +24,7 @@ namespace storage
 	    initialize_probed_with_three_strays()
 	    {
 		Environment environment( true, ProbeMode::NONE, TargetMode::IMAGE );
-		storage = shared_ptr<Storage>( new Storage( environment ) );
+		storage = make_unique<Storage>(environment);
 		staging = storage->get_staging();
 
                 // StrayBlkDevice regions always start at 0
@@ -127,7 +127,7 @@ BOOST_AUTO_TEST_CASE( test_encrypted_swap )
     initialize_probed_with_three_strays();
 
     StrayBlkDevice * stray      = StrayBlkDevice::find_by_name( staging, "/dev/vda3" );
-    Encryption     * encryption = stray3->create_encryption("cr_vda3");
+    Encryption     * encryption = stray3->create_encryption("cr_vda3", EncryptionType::LUKS1);
     BlkFilesystem  * swap       = encryption->create_blk_filesystem( FsType::SWAP );
     swap->create_mount_point( "swap" );
     const Actiongraph    * actiongraph     = storage->calculate_actiongraph();
@@ -161,7 +161,7 @@ BOOST_AUTO_TEST_CASE( test_encrypted_pv )
 {
     initialize_probed_with_three_strays();
 
-    Encryption * encryption = stray3->create_encryption( "cr_vda3" );
+    Encryption* encryption = stray3->create_encryption("cr_vda3", EncryptionType::LUKS1);
     LvmVg * lvm_vg = LvmVg::create( staging, "test-vg" );
     lvm_vg->add_lvm_pv( encryption );
 

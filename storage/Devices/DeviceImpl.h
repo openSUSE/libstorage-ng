@@ -396,11 +396,6 @@ namespace storage
 	    return to_holder_of_type<Type>(tmp);
 	}
 
-	/**
-	 * Raises the global sid to avoid potential conflicts with sid.
-	 */
-	static void raise_global_sid(sid_t sid) { global_sid = max(global_sid, sid + 1); }
-
     protected:
 
 	Impl();
@@ -416,8 +411,6 @@ namespace storage
 	 * leading to the actiongraph.
 	 */
 	void add_reallot_actions(Actiongraph::Impl& actiongraph, const Device* lhs) const;
-
-	static sid_t global_sid;
 
 	sid_t sid;
 

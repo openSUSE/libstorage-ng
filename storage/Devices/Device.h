@@ -299,6 +299,8 @@ namespace storage
 
 	/**
 	 * Create a device in the devicegraph.
+	 *
+	 * The created device is owned by the devicegraph.
 	 */
 	void create(Devicegraph* devicegraph);
 

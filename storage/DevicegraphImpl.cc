@@ -34,7 +34,7 @@
 #include "storage/Filesystems/Nfs.h"
 #include "storage/Filesystems/MountPoint.h"
 #include "storage/Holders/Holder.h"
-#include "storage/Storage.h"
+#include "storage/StorageImpl.h"
 #include "storage/Utils/Format.h"
 #include "storage/GraphvizImpl.h"
 #include "storage/Registries.h"
@@ -745,7 +745,7 @@ namespace storage
 		    ST_THROW(Exception(sformat("unknown device class name %s", classname)));
 
 		const Device* device = it->second(devicegraph, device_node);
-		Device::Impl::raise_global_sid(device->get_sid());
+		Storage::Impl::raise_global_sid(device->get_sid());
 	    }
 	}
 

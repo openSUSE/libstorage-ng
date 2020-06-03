@@ -5,6 +5,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include "storage/Devices/Disk.h"
+#include "storage/Devices/Encryption.h"
 #include "storage/Devicegraph.h"
 #include "storage/Storage.h"
 #include "storage/Environment.h"
@@ -33,6 +34,7 @@ BOOST_AUTO_TEST_CASE(test_check1)
     }
 }
 
+
 BOOST_AUTO_TEST_CASE(test_check2)
 {
     set_logger(get_stdout_logger());
@@ -52,6 +54,7 @@ BOOST_AUTO_TEST_CASE(test_check2)
     }
 }
 
+
 BOOST_AUTO_TEST_CASE(test_check3)
 {
     set_logger(get_stdout_logger());
@@ -63,7 +66,7 @@ BOOST_AUTO_TEST_CASE(test_check3)
     Devicegraph* staging = storage.get_staging();
     Disk* sda = Disk::create(staging, "/dev/sda", Region(0, 1048576, 512));
 
-    sda->create_encryption("cr-test");
+    sda->create_encryption("cr-test", EncryptionType::LUKS1);
 
     {
 	// Our API should not create an invalid luks

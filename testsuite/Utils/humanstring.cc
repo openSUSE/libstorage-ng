@@ -34,7 +34,7 @@ public:
 };
 
 
-BOOST_GLOBAL_FIXTURE(Fixture);
+BOOST_TEST_GLOBAL_FIXTURE(Fixture);
 
 
 string

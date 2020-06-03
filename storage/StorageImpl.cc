@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -42,6 +42,9 @@
 
 namespace storage
 {
+
+    sid_t Storage::Impl::global_sid = initial_global_sid;
+
 
     Storage::Impl::Impl(Storage& storage, const Environment& environment)
 	: storage(storage), environment(environment), arch(false),

@@ -162,6 +162,8 @@ namespace storage
 	 * Create a holder between source and target in the devicegraph. Duplicate holders
 	 * of the same type are not allowed.
 	 *
+	 * The created holder is owned by the devicegraph.
+	 *
 	 * @throw HolderAlreadyExists
 	 */
 	void create(Devicegraph* devicegraph, const Device* source, const Device* target);

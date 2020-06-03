@@ -21,7 +21,7 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_encrypted_not_mounted)
     auto partition = Partition::find_by_name(staging, "/dev/sda1");
     partition->remove_descendants();
 
-    auto encryption = partition->create_encryption("cr_sda2");
+    Encryption* encryption = partition->create_encryption("cr_sda2", EncryptionType::LUKS1);
     encryption->create_blk_filesystem(FsType::EXT4);
 
     const auto actiongraph = storage->calculate_actiongraph();

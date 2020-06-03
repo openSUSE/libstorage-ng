@@ -46,7 +46,7 @@ BOOST_AUTO_TEST_CASE(test_create1)
 	BOOST_CHECK(is_filesystem_user(holder));
     }
 
-    Encryption* encryption = sdb->create_encryption("cr-test");
+    Encryption* encryption = sdb->create_encryption("cr-test", EncryptionType::LUKS1);
     encryption->set_password("12345678");
 
     storage.check();
@@ -78,7 +78,7 @@ BOOST_AUTO_TEST_CASE(test_create2)
 
     Disk* sdb = Disk::create(staging, "/dev/sdb", Region(0, 1048576, 512));
 
-    Encryption* encryption = sdb->create_encryption("cr-test");
+    Encryption* encryption = sdb->create_encryption("cr-test", EncryptionType::LUKS1);
     encryption->set_password("12345678");
 
     Filesystem* xfs = encryption->create_blk_filesystem(FsType::XFS);
