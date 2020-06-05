@@ -33,7 +33,7 @@ namespace storage
 
 
     LuksInfo::LuksInfo()
-	: impl(new Impl(*this))
+	: impl(make_unique<Impl>())
     {
     }
 
