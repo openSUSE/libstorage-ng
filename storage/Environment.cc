@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
+ * Copyright (c) 2020 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -26,6 +27,9 @@
 namespace storage
 {
 
+    using namespace std;
+
+
     Environment::Environment(bool read_only)
 	: Environment(read_only, ProbeMode::STANDARD, TargetMode::DIRECT)
     {
@@ -33,13 +37,13 @@ namespace storage
 
 
     Environment::Environment(bool read_only, ProbeMode probe_mode, TargetMode target_mode)
-	: impl(new Impl(read_only, probe_mode, target_mode))
+	: impl(make_unique<Impl>(read_only, probe_mode, target_mode))
     {
     }
 
 
     Environment::Environment(const Environment& environment)
-	: impl(new Impl(environment.get_impl()))
+	: impl(make_unique<Impl>(environment.get_impl()))
     {
     }
 

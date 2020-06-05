@@ -145,6 +145,7 @@ namespace storage
     private:
 
 	const std::unique_ptr<Impl> impl;
+
     };
 
 

@@ -45,21 +45,11 @@ namespace storage
     {
     public:
 
-	Impl(LuksInfo& info) : info(info), device_name(""), uuid(""), label("") {}
+	Impl() : device_name(), uuid(), label() {}
 
-	~Impl() {}
-
-    private:
-
-	LuksInfo& info;
-
-    public:
-
-	std::string device_name;
-
-	std::string uuid;
-
-	std::string label;
+	string device_name;
+	string uuid;
+	string label;
 
     };
 

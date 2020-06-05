@@ -28,19 +28,19 @@ namespace storage
 
 
     Topology::Topology()
-	: impl(new Impl())
+	: impl(make_unique<Impl>())
     {
     }
 
 
     Topology::Topology(long alignment_offset, unsigned long optimal_io_size)
-	: impl(new Impl(alignment_offset, optimal_io_size))
+	: impl(make_unique<Impl>(alignment_offset, optimal_io_size))
     {
     }
 
 
     Topology::Topology(const Topology& topology)
-	: impl(new Impl(topology.get_impl()))
+	: impl(make_unique<Impl>(topology.get_impl()))
     {
     }
 

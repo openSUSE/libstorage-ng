@@ -32,6 +32,9 @@
 namespace storage
 {
 
+    using namespace std;
+
+
     /**
      * Helper class to keep cross devicegraph data. 
      *
@@ -47,7 +50,7 @@ namespace storage
     public:
 
 	CDgD()
-	    : ptr(new boost::optional<Type>)
+	    : ptr(make_shared<boost::optional<Type>>())
 	{
 	}
 

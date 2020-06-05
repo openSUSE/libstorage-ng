@@ -53,19 +53,19 @@ namespace storage
 
 
     Region::Region()
-	: impl(new Impl())
+	: impl(make_unique<Impl>())
     {
     }
 
 
     Region::Region(unsigned long long start, unsigned long long len, unsigned int block_size)
-        : impl(new Impl(start, len, block_size))
+        : impl(make_unique<Impl>(start, len, block_size))
     {
     }
 
 
     Region::Region(const Region& region)
-	: impl(new Impl(region.get_impl()))
+	: impl(make_unique<Impl>(region.get_impl()))
     {
     }
 

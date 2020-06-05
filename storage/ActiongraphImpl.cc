@@ -73,7 +73,7 @@ namespace storage
 	    const Storage& storage = actiongraph.get_storage();
 	    string filename = storage.get_impl().prepend_rootprefix(ETC_FSTAB);
 
-	    etc_fstab.reset(new EtcFstab(filename));
+	    etc_fstab = make_unique<EtcFstab>(filename);
 	}
 
 	return *etc_fstab.get();
@@ -88,7 +88,7 @@ namespace storage
 	    const Storage& storage = actiongraph.get_storage();
 	    string filename = storage.get_impl().prepend_rootprefix(ETC_CRYPTTAB);
 
-	    etc_crypttab.reset(new EtcCrypttab(filename));
+	    etc_crypttab = make_unique<EtcCrypttab>(filename);
 	}
 
 	return *etc_crypttab.get();
@@ -103,7 +103,7 @@ namespace storage
 	    const Storage& storage = actiongraph.get_storage();
 	    string filename = storage.get_impl().prepend_rootprefix(ETC_MDADM);
 
-	    etc_mdadm.reset(new EtcMdadm(filename));
+	    etc_mdadm = make_unique<EtcMdadm>(filename);
 	}
 
 	return *etc_mdadm.get();
@@ -659,11 +659,7 @@ namespace storage
     void
     Actiongraph::Impl::generate_compound_actions(const Actiongraph* actiongraph)
     {
-	compound_actions.clear();
-
-	auto compound_actions = CompoundAction::Generator(actiongraph).generate();
-	for (auto action : compound_actions)
-	    Impl::compound_actions.push_back(shared_ptr<CompoundAction>(action));
+	compound_actions = CompoundAction::Generator(actiongraph).generate();
     }
 
 

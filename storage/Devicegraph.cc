@@ -116,7 +116,7 @@ namespace storage
 
 
     Devicegraph::Devicegraph(Storage* storage)
-	: impl(new Impl(storage))
+	: impl(make_unique<Impl>(storage))
     {
 	ST_CHECK_PTR(storage);
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -30,10 +30,12 @@ namespace storage
 {
 
     CompoundAction::Generator::Generator(const Actiongraph* actiongraph)
-    : actiongraph(actiongraph) {}
+	: actiongraph(actiongraph)
+    {
+    }
 
 
-    vector<CompoundAction*>
+    vector<shared_ptr<CompoundAction>>
     CompoundAction::Generator::generate() const
     {
 	vector<CompoundAction*> compound_actions;
@@ -55,7 +57,10 @@ namespace storage
 	    }
 	}
 
-	return compound_actions;
+	vector<shared_ptr<CompoundAction>> ret;
+	for (CompoundAction* action : compound_actions)
+	    ret.push_back(shared_ptr<CompoundAction>(action));
+	return ret;
     }
 
 

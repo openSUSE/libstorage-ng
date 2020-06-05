@@ -424,7 +424,7 @@ namespace storage
     const Actiongraph*
     Storage::Impl::calculate_actiongraph()
     {
-	actiongraph.reset();	// free old actiongraph
+	actiongraph.reset();	// free old actiongraph before generating new to avoid memory peak
 
 	Actiongraph* tmp = new Actiongraph(storage, get_system(), get_staging());
 	tmp->generate_compound_actions();

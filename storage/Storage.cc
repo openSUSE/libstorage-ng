@@ -33,7 +33,7 @@ namespace storage
 
 
     LuksInfo::LuksInfo()
-	: impl(new Impl(*this))
+	: impl(make_unique<Impl>())
     {
     }
 
@@ -43,26 +43,29 @@ namespace storage
     }
 
 
-    const string& LuksInfo::get_device_name() const
+    const string&
+    LuksInfo::get_device_name() const
     {
 	return get_impl().device_name;
     }
 
 
-    const string& LuksInfo::get_uuid() const
+    const string&
+    LuksInfo::get_uuid() const
     {
 	return get_impl().uuid;
     }
 
 
-    const string& LuksInfo::get_label() const
+    const string&
+    LuksInfo::get_label() const
     {
 	return get_impl().label;
     }
 
 
     Storage::Storage(const Environment& environment)
-	: impl(new Impl(*this, environment))
+	: impl(make_unique<Impl>(*this, environment))
     {
     }
 

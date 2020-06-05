@@ -149,7 +149,7 @@ namespace storage
 		{
 		    try
 		    {
-			object.reset(new Object(args...));
+			object = make_shared<Object>(args...);
 		    }
 		    catch (const std::exception& e)
 		    {
