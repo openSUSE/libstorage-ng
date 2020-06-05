@@ -47,11 +47,9 @@ namespace storage
 
 	Impl() : device_name(), uuid(), label() {}
 
-	std::string device_name;
-
-	std::string uuid;
-
-	std::string label;
+	string device_name;
+	string uuid;
+	string label;
 
     };
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -28,10 +28,11 @@
 
 #include "storage/CompoundAction.h"
 
+
 namespace storage
 {
+    using namespace std;
 
-    using std::vector;
 
     class Actiongraph;
     class Device;
@@ -43,13 +44,11 @@ namespace storage
 
 	Generator(const Actiongraph* actiongraph);
 
-	vector<CompoundAction*> generate() const;
+	vector<shared_ptr<CompoundAction>> generate() const;
 
     private:
 
 	static CompoundAction* find_by_target_device(const vector<CompoundAction*>& compound_actions, const Device* device);
-
-    private:
 
 	const Actiongraph* actiongraph;
 

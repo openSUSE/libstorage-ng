@@ -659,11 +659,7 @@ namespace storage
     void
     Actiongraph::Impl::generate_compound_actions(const Actiongraph* actiongraph)
     {
-	compound_actions.clear();
-
-	auto compound_actions = CompoundAction::Generator(actiongraph).generate();
-	for (auto action : compound_actions)
-	    Impl::compound_actions.push_back(shared_ptr<CompoundAction>(action));
+	compound_actions = CompoundAction::Generator(actiongraph).generate();
     }
 
 
