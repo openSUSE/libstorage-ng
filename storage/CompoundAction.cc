@@ -27,7 +27,9 @@ namespace storage
 {
 
     CompoundAction::CompoundAction(const Actiongraph* actiongraph)
-    : impl(new Impl(actiongraph)) {}
+	: impl(make_unique<Impl>(actiongraph))
+    {
+    }
 
 
     CompoundAction::~CompoundAction() {}

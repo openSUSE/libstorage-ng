@@ -26,6 +26,9 @@
 namespace storage
 {
 
+    using namespace std;
+
+
     AlignError::AlignError()
 	: Exception("region cannot be aligned")
     {
@@ -33,13 +36,13 @@ namespace storage
 
 
     Alignment::Alignment(const Topology& topology, AlignType align_type)
-	: impl(new Impl(topology, align_type))
+	: impl(make_unique<Impl>(topology, align_type))
     {
     }
 
 
     Alignment::Alignment(const Alignment& alignment)
-	: impl(new Impl(alignment.get_impl()))
+	: impl(make_unique<Impl>(alignment.get_impl()))
     {
     }
 

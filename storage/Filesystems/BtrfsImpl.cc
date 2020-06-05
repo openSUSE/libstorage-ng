@@ -436,7 +436,7 @@ namespace storage
 	string mount_point = "/tmp/does-not-matter";
 	if (Mockup::get_mode() != Mockup::Mode::PLAYBACK)
 	{
-	    ensure_mounted.reset(new EnsureMounted(top_level));
+	    ensure_mounted = make_unique<EnsureMounted>(top_level);
 	    mount_point = ensure_mounted->get_any_mount_point();
 	}
 
@@ -539,7 +539,7 @@ namespace storage
 	string mount_point = "/tmp/does-not-matter";
 	if (Mockup::get_mode() != Mockup::Mode::PLAYBACK)
 	{
-	    ensure_mounted.reset(new EnsureMounted(top_level));
+	    ensure_mounted = make_unique<EnsureMounted>(top_level);
 	    mount_point = ensure_mounted->get_any_mount_point();
 	}
 

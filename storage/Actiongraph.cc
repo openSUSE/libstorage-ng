@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -30,7 +30,7 @@ namespace storage
 {
 
     Actiongraph::Actiongraph(const Storage& storage, Devicegraph* lhs, Devicegraph* rhs)
-	: impl(new Impl(storage, lhs, rhs))
+	: impl(make_unique<Impl>(storage, lhs, rhs))
     {
     }
 

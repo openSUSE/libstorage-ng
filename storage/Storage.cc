@@ -62,7 +62,7 @@ namespace storage
 
 
     Storage::Storage(const Environment& environment)
-	: impl(new Impl(*this, environment))
+	: impl(make_unique<Impl>(*this, environment))
     {
     }
 
