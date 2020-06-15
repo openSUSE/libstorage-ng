@@ -147,6 +147,7 @@ AC_OUTPUT(
 	integration-tests/lvm/Makefile
 	integration-tests/bcache/Makefile
 	integration-tests/misc/Makefile
+	integration-tests/pools/Makefile
 	bindings/Makefile
 	bindings/python/Makefile
 	bindings/python/examples/Makefile
