@@ -65,6 +65,7 @@ pkginclude_HEADERS =		\
 	BtrfsSubvolume.h	\
 	Reiserfs.h 		\
 	Xfs.h 			\
+	Jfs.h			\
 	Ntfs.h 			\
 	Vfat.h			\
 	Exfat.h			\

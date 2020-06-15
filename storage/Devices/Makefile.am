@@ -63,6 +63,7 @@ pkginclude_HEADERS =		\
 	BlkDevice.h		\
 	Disk.h			\
 	Dasd.h			\
+	DmRaid.h		\
 	Multipath.h		\
 	Md.h			\
 	MdContainer.h		\
