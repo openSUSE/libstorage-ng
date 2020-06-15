@@ -277,6 +277,8 @@ namespace storage
 	const Arch& get_arch() const;
 
 	/**
+	 * Create a devicegraph with name.
+	 *
 	 * @throw Exception
 	 */
 	Devicegraph* create_devicegraph(const std::string& name);
@@ -287,6 +289,8 @@ namespace storage
 	Devicegraph* copy_devicegraph(const std::string& source_name, const std::string& dest_name);
 
 	/**
+	 * Remove a devicegraph by name.
+	 *
 	 * @throw Exception
 	 */
 	void remove_devicegraph(const std::string& name);
@@ -298,7 +302,14 @@ namespace storage
 
 	bool equal_devicegraph(const std::string& lhs, const std::string& rhs) const;
 
+	/**
+	 * Check whether a devicegraph exists by name.
+	 */
 	bool exist_devicegraph(const std::string& name) const;
+
+	/**
+	 * Get the names of all devicegraphs.
+	 */
 	std::vector<std::string> get_devicegraph_names() const;
 
 	/**
@@ -309,9 +320,7 @@ namespace storage
 	Devicegraph* get_devicegraph(const std::string& name);
 
 	/**
-	 * Return a devicegraph by name.
-	 *
-	 * @throw Exception
+	 * @copydoc get_devicegraph()
 	 */
 	const Devicegraph* get_devicegraph(const std::string& name) const;
 

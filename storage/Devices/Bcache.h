@@ -201,7 +201,10 @@ namespace storage
 	static const Bcache* find_by_name(const Devicegraph* devicegraph, const std::string& name);
 
 	/**
-	 * Find a free name for a bcache.
+	 * Find a free name for a bcache, e.g. "/dev/bcache2". A free name might not be
+	 * available.
+	 *
+	 * @throw Exception
 	 */
 	static std::string find_free_name(const Devicegraph* devicegraph);
 

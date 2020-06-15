@@ -205,6 +205,7 @@
 %catches(storage::LogicException, storage::Exception) storage::Bcache::add_bcache_cset(BcacheCset *bcache_cset);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Bcache::find_by_name(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Bcache::find_by_name(const Devicegraph *devicegraph, const std::string &name);
+%catches(storage::Exception) storage::Bcache::find_free_name(const Devicegraph *devicegraph);
 %catches(storage::DeviceNotFound) storage::Bcache::get_backing_device() const;
 %catches(storage::DeviceNotFound) storage::Bcache::get_blk_device() const;
 %catches(storage::LogicException, storage::Exception) storage::Bcache::remove_bcache_cset();
@@ -287,6 +288,7 @@
 %catches(storage::Exception) storage::Md::create(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Md::find_by_name(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Md::find_by_name(const Devicegraph *devicegraph, const std::string &name);
+%catches(storage::Exception) storage::Md::find_free_numeric_name(const Devicegraph *devicegraph);
 %catches(storage::Exception) storage::Md::get_allowed_md_parities() const;
 %catches(storage::Exception) storage::Md::get_number() const;
 %catches(storage::Exception) storage::Md::remove_device(BlkDevice *blk_device);
