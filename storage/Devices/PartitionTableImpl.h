@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -138,6 +138,12 @@ namespace storage
 	Region get_usable_region() const;
 
 	virtual Alignment get_alignment(AlignType align_type) const;
+
+	/**
+	 * Get the accumulated size of all primary and logical partitions. Excludes
+	 * extended partitions and the partition table itself.
+	 */
+	unsigned long long get_used_size() const;
 
 	virtual vector<PartitionSlot> get_unused_partition_slots(AlignPolicy align_policy,
 								 AlignType align_type) const;

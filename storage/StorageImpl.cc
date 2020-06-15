@@ -32,6 +32,7 @@
 #include "storage/Devices/MdImpl.h"
 #include "storage/Devices/LvmLvImpl.h"
 #include "storage/Devices/LuksImpl.h"
+#include "storage/Pool.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Actiongraph.h"
 #include "storage/Prober.h"
@@ -443,6 +444,90 @@ namespace storage
 	actiongraph->get_impl().commit(commit_options, commit_callbacks);
 
 	// TODO somehow update probed
+    }
+
+
+    void
+    Storage::Impl::generate_pools(const Devicegraph* devicegraph)
+    {
+	ST_CHECK_PTR(devicegraph);
+
+	// TODO more types, e.g. dasd, multipath, pmem, nvme?
+	// TODO check partition table?
+	// TODO do not add already existing devices
+
+	for (const Disk* disk : Disk::get_all(devicegraph))
+	{
+	    string name = disk->is_rotational() ? "HDDs" : "SSDs";
+	    name += " (" + byte_to_humanstring(disk->get_region().get_block_size(), false, 2, true) + ")";
+
+	    Pool* pool = exists_pool(name) ? get_pool(name) : create_pool(name);
+	    pool->add_device(disk);
+	}
+    }
+
+
+    Pool*
+    Storage::Impl::create_pool(const std::string& name)
+    {
+	pair<map<string, Pool>::iterator, bool> tmp =
+	    pools.emplace(piecewise_construct, forward_as_tuple(name),
+			  forward_as_tuple());
+	if (!tmp.second)
+	    ST_THROW(Exception(sformat("pool '%s' already exists", name)));
+
+	map<string, Pool>::iterator it = tmp.first;
+
+	return &it->second;
+    }
+
+
+    void
+    Storage::Impl::remove_pool(const string& name)
+    {
+	if (pools.erase(name) == 0)
+	    ST_THROW(Exception(sformat("pool '%s' not found", name)));
+    }
+
+
+    bool
+    Storage::Impl::exists_pool(const string& name) const
+    {
+	return pools.find(name) != pools.end();
+    }
+
+
+    vector<string>
+    Storage::Impl::get_pool_names() const
+    {
+	vector<string> ret;
+
+	for (const map<string, Pool>::value_type& it : pools)
+	    ret.push_back(it.first);
+
+	return ret;
+    }
+
+
+    Pool*
+    Storage::Impl::get_pool(const string& name)
+    {
+	map<string, Pool>::iterator it = pools.find(name);
+	if (it == pools.end())
+	    ST_THROW(Exception(sformat("pool '%s' not found", name)));
+
+	return &it->second;
+    }
+
+
+    const Pool*
+    Storage::Impl::get_pool(const string& name) const
+    {
+	map<string, Pool>::const_iterator it = pools.find(name);
+	if (it == pools.end())
+	    ST_THROW(Exception(sformat("pool '%s' not found", name)));
+
+	return &it->second;
     }
 
 }

@@ -78,6 +78,7 @@ namespace storage
     class Arch;
     class Devicegraph;
     class Actiongraph;
+    class Pool;
 
 
     /**
@@ -456,6 +457,48 @@ namespace storage
 	 * @throw Aborted, Exception
 	 */
 	void commit(const CommitCallbacks* commit_callbacks = nullptr) ST_DEPRECATED;
+
+	/**
+	 * Generate pools, e.g. "HDDs (512 B)" for HDDs with 512 B sector size and "SSDs
+	 * (4 KiB)" for SSDs with 4 KiB sector size.
+	 */
+	void generate_pools(const Devicegraph* devicegraph);
+
+	/**
+	 * Create a pool with name.
+	 *
+	 * @throw Exception
+	 */
+	Pool* create_pool(const std::string& name);
+
+	/**
+	 * Remove a pool by name.
+	 *
+	 * @throw Exception
+	 */
+	void remove_pool(const std::string& name);
+
+	/**
+	 * Check whether a pool exists by name.
+	 */
+	bool exists_pool(const std::string& name) const;
+
+	/**
+	 * Get the names of all pools.
+	 */
+	std::vector<std::string> get_pool_names() const;
+
+	/**
+	 * Return a pool by name.
+	 *
+	 * @throw Exception
+	 */
+	Pool* get_pool(const std::string& name);
+
+	/**
+	 * @copydoc get_pool()
+	 */
+	const Pool* get_pool(const std::string& name) const;
 
     public:
 

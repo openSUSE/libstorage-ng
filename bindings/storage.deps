@@ -10,6 +10,7 @@ DEPENDENCIES =							\
 	${top_srcdir}/storage/SimpleEtcCrypttab.h		\
 	${top_srcdir}/storage/Actiongraph.h			\
 	${top_srcdir}/storage/Devicegraph.h			\
+	${top_srcdir}/storage/Pool.h				\
 	${top_srcdir}/storage/Devices/BlkDevice.h		\
 	${top_srcdir}/storage/Devices/Partitionable.h		\
 	${top_srcdir}/storage/Filesystems/Btrfs.h		\

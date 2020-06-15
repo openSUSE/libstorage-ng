@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -256,6 +256,7 @@ namespace storage
 	get_impl().probe(probe_callbacks);
     }
 
+
     void
     Storage::commit(const CommitCallbacks* commit_callbacks)
     {
@@ -263,10 +264,60 @@ namespace storage
 	commit(commit_options, commit_callbacks);
     }
 
+
     void
     Storage::commit(const CommitOptions& commit_options, const CommitCallbacks* commit_callbacks)
     {
 	get_impl().commit(commit_options, commit_callbacks);
+    }
+
+
+    void
+    Storage::generate_pools(const Devicegraph* devicegraph)
+    {
+	get_impl().generate_pools(devicegraph);
+    }
+
+
+    Pool*
+    Storage::create_pool(const std::string& name)
+    {
+	return get_impl().create_pool(name);
+    }
+
+
+    void
+    Storage::remove_pool(const std::string& name)
+    {
+	get_impl().remove_pool(name);
+    }
+
+
+    bool
+    Storage::exists_pool(const std::string& name) const
+    {
+	return get_impl().exists_pool(name);
+    }
+
+
+    vector<string>
+    Storage::get_pool_names() const
+    {
+	return get_impl().get_pool_names();
+    }
+
+
+    Pool*
+    Storage::get_pool(const string& name)
+    {
+	return get_impl().get_pool(name);
+    }
+
+
+    const Pool*
+    Storage::get_pool(const string& name) const
+    {
+	return get_impl().get_pool(name);
     }
 
 }

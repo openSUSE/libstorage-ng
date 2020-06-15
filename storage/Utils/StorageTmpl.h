@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) 2018 SUSE LLC
+ * Copyright (c) [2018-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -211,8 +211,9 @@ namespace storage
 
 
     /**
-     * Returns input sorted by the default comparison of the return value of
-     * the key function fnc of each value in input.
+     * Returns input sorted by the default comparison of the return value of the key
+     * function fnc of each value in input. The ordering of elements with identical key is
+     * stable.
      */
     template<typename ValueType, typename KeyType>
     vector<ValueType>
@@ -220,10 +221,10 @@ namespace storage
     {
 	typedef typename vector<ValueType>::size_type size_type;
 
-	map<KeyType, size_type> tmp;
+	std::multimap<KeyType, size_type> tmp;
 
 	for (size_type i = 0; i < input.size(); ++i)
-	    tmp[fnc(input[i])] = i;
+	    tmp.emplace(fnc(input[i]), i);
 
 	vector<ValueType> output;
 
