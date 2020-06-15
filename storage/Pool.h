@@ -92,7 +92,7 @@ namespace storage
 	void add_device(const Device* device);
 
 	/**
-	 * Remove a device to the pool. The devicegraph the device belongs to is irrelevant.
+	 * Remove a device from the pool. The devicegraph the device belongs to is irrelevant.
 	 *
 	 * @see add_device(const Device*)
 	 *
@@ -107,13 +107,13 @@ namespace storage
 	std::vector<const Device*> get_devices(const Devicegraph* devicegraph) const;
 
 	/**
-	 * Create number partitions of size in the pool. Devices in the pool not of type
-	 * partitionable or without a partition table are ignored.
+	 * Create a number of partitions of size in the pool. Devices in the pool not of
+	 * type partitionable or without a partition table are ignored.
 	 *
 	 * The sizes of the created partitions may be different from size due to
 	 * alignment. They may even be pairwise different.
 	 *
-	 * The result is notdeterministic.
+	 * The result is nondeterministic.
 	 *
 	 * @throw Exception, PoolOutOfSpace
 	 */
