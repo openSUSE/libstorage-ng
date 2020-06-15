@@ -334,11 +334,8 @@ namespace storage
     void
     Storage::Impl::remove_devicegraph(const string& name)
     {
-	map<string, Devicegraph>::const_iterator it1 = devicegraphs.find(name);
-	if (it1 == devicegraphs.end())
+	if (devicegraphs.erase(name) == 0)
 	    ST_THROW(Exception(sformat("devicegraph '%s' not found", name)));
-
-	devicegraphs.erase(it1);
     }
 
 
