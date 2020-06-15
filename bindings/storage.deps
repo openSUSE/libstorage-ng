@@ -4,75 +4,84 @@ DEPENDENCIES =							\
 	${top_srcdir}/bindings/storage-catches.i		\
 	${top_srcdir}/bindings/storage-downcast.i		\
 	${top_srcdir}/bindings/storage-template.i		\
-	${top_srcdir}/storage/Version.h				\
-	${top_srcdir}/storage/Graphviz.h			\
-	${top_srcdir}/storage/SimpleEtcFstab.h			\
-	${top_srcdir}/storage/SimpleEtcCrypttab.h		\
 	${top_srcdir}/storage/Actiongraph.h			\
+	${top_srcdir}/storage/CommitOptions.h			\
+	${top_srcdir}/storage/CompoundAction.h			\
 	${top_srcdir}/storage/Devicegraph.h			\
+	${top_srcdir}/storage/Environment.h			\
+	${top_srcdir}/storage/FreeInfo.h			\
+	${top_srcdir}/storage/Graphviz.h			\
 	${top_srcdir}/storage/Pool.h				\
+	${top_srcdir}/storage/SimpleEtcCrypttab.h		\
+	${top_srcdir}/storage/SimpleEtcFstab.h			\
+	${top_srcdir}/storage/Storage.h				\
+	${top_srcdir}/storage/UsedFeatures.h			\
+	${top_srcdir}/storage/Version.h				\
+	${top_srcdir}/storage/View.h				\
+	${top_srcdir}/storage/Devices/Bcache.h			\
+	${top_srcdir}/storage/Devices/BcacheCset.h		\
 	${top_srcdir}/storage/Devices/BlkDevice.h		\
-	${top_srcdir}/storage/Devices/Partitionable.h		\
-	${top_srcdir}/storage/Filesystems/Btrfs.h		\
-	${top_srcdir}/storage/Filesystems/BtrfsSubvolume.h	\
-	${top_srcdir}/storage/Filesystems/Reiserfs.h		\
+	${top_srcdir}/storage/Devices/Dasd.h			\
+	${top_srcdir}/storage/Devices/DasdPt.h			\
 	${top_srcdir}/storage/Devices/Device.h			\
 	${top_srcdir}/storage/Devices/Disk.h			\
-	${top_srcdir}/storage/Devices/Dasd.h			\
-	${top_srcdir}/storage/Devices/Multipath.h		\
 	${top_srcdir}/storage/Devices/DmRaid.h			\
+	${top_srcdir}/storage/Devices/Encryption.h		\
+	${top_srcdir}/storage/Devices/Gpt.h			\
+	${top_srcdir}/storage/Devices/ImplicitPt.h		\
+	${top_srcdir}/storage/Devices/Luks.h			\
+	${top_srcdir}/storage/Devices/LvmLv.h			\
+	${top_srcdir}/storage/Devices/LvmPv.h			\
+	${top_srcdir}/storage/Devices/LvmVg.h			\
 	${top_srcdir}/storage/Devices/Md.h			\
 	${top_srcdir}/storage/Devices/MdContainer.h		\
 	${top_srcdir}/storage/Devices/MdMember.h		\
-	${top_srcdir}/storage/Devices/Encryption.h		\
-	${top_srcdir}/storage/Devices/Luks.h			\
-	${top_srcdir}/storage/Devices/Bcache.h			\
-	${top_srcdir}/storage/Devices/BcacheCset.h		\
+	${top_srcdir}/storage/Devices/Msdos.h			\
+	${top_srcdir}/storage/Devices/Multipath.h		\
+	${top_srcdir}/storage/Devices/Partition.h		\
+	${top_srcdir}/storage/Devices/PartitionTable.h		\
+	${top_srcdir}/storage/Devices/Partitionable.h		\
+	${top_srcdir}/storage/Devices/PlainEncryption.h		\
+	${top_srcdir}/storage/Devices/StrayBlkDevice.h		\
+	${top_srcdir}/storage/Filesystems/Bitlocker.h		\
+	${top_srcdir}/storage/Filesystems/BlkFilesystem.h	\
+	${top_srcdir}/storage/Filesystems/Btrfs.h		\
+	${top_srcdir}/storage/Filesystems/BtrfsSubvolume.h	\
+	${top_srcdir}/storage/Filesystems/Exfat.h		\
 	${top_srcdir}/storage/Filesystems/Ext.h			\
 	${top_srcdir}/storage/Filesystems/Ext2.h		\
 	${top_srcdir}/storage/Filesystems/Ext3.h		\
 	${top_srcdir}/storage/Filesystems/Ext4.h		\
-	${top_srcdir}/storage/Filesystems/Ntfs.h		\
-	${top_srcdir}/storage/Filesystems/Vfat.h		\
-	${top_srcdir}/storage/Filesystems/Exfat.h		\
-	${top_srcdir}/storage/Filesystems/Iso9660.h		\
-	${top_srcdir}/storage/Filesystems/Udf.h			\
-	${top_srcdir}/storage/Filesystems/Nfs.h 		\
-	${top_srcdir}/storage/Filesystems/Mountable.h		\
-	${top_srcdir}/storage/Filesystems/Filesystem.h		\
-	${top_srcdir}/storage/Filesystems/BlkFilesystem.h	\
-	${top_srcdir}/storage/Filesystems/MountPoint.h		\
-	${top_srcdir}/storage/Devices/Gpt.h			\
-	${top_srcdir}/storage/Devices/DasdPt.h			\
-	${top_srcdir}/storage/Devices/LvmLv.h			\
-	${top_srcdir}/storage/Devices/LvmVg.h			\
-	${top_srcdir}/storage/Devices/Msdos.h			\
-	${top_srcdir}/storage/Devices/Partition.h		\
-	${top_srcdir}/storage/Devices/PartitionTable.h		\
-	${top_srcdir}/storage/Filesystems/Swap.h		\
-	${top_srcdir}/storage/Filesystems/Xfs.h			\
-	${top_srcdir}/storage/Filesystems/Jfs.h			\
 	${top_srcdir}/storage/Filesystems/F2fs.h		\
-	${top_srcdir}/storage/Environment.h			\
-	${top_srcdir}/storage/Holders/Holder.h			\
-	${top_srcdir}/storage/Holders/Subdevice.h		\
-	${top_srcdir}/storage/Holders/MdSubdevice.h		\
-	${top_srcdir}/storage/Holders/User.h			\
-	${top_srcdir}/storage/Holders/MdUser.h			\
+	${top_srcdir}/storage/Filesystems/Filesystem.h		\
+	${top_srcdir}/storage/Filesystems/Iso9660.h		\
+	${top_srcdir}/storage/Filesystems/Jfs.h			\
+	${top_srcdir}/storage/Filesystems/MountPoint.h		\
+	${top_srcdir}/storage/Filesystems/Mountable.h		\
+	${top_srcdir}/storage/Filesystems/Nfs.h 		\
+	${top_srcdir}/storage/Filesystems/Ntfs.h		\
+	${top_srcdir}/storage/Filesystems/Reiserfs.h		\
+	${top_srcdir}/storage/Filesystems/Swap.h		\
+	${top_srcdir}/storage/Filesystems/Udf.h			\
+	${top_srcdir}/storage/Filesystems/Vfat.h		\
+	${top_srcdir}/storage/Filesystems/Xfs.h			\
 	${top_srcdir}/storage/Holders/FilesystemUser.h		\
-	${top_srcdir}/storage/CommitOptions.h			\
-	${top_srcdir}/storage/Storage.h				\
-	${top_srcdir}/storage/FreeInfo.h			\
-	${top_srcdir}/storage/UsedFeatures.h			\
+	${top_srcdir}/storage/Holders/Holder.h			\
+	${top_srcdir}/storage/Holders/MdSubdevice.h		\
+	${top_srcdir}/storage/Holders/MdUser.h			\
+	${top_srcdir}/storage/Holders/Snapshot.h		\
+	${top_srcdir}/storage/Holders/Subdevice.h		\
+	${top_srcdir}/storage/Holders/User.h			\
 	${top_srcdir}/storage/SystemInfo/Arch.h			\
-	${top_srcdir}/storage/Utils/Swig.h			\
-	${top_srcdir}/storage/Utils/Logger.h			\
-	${top_srcdir}/storage/Utils/HumanString.h		\
-	${top_srcdir}/storage/Utils/Region.h			\
-	${top_srcdir}/storage/Utils/Topology.h			\
 	${top_srcdir}/storage/Utils/Alignment.h			\
-	${top_srcdir}/storage/Utils/Remote.h			\
 	${top_srcdir}/storage/Utils/Callbacks.h			\
+	${top_srcdir}/storage/Utils/Exception.h			\
+	${top_srcdir}/storage/Utils/HumanString.h		\
 	${top_srcdir}/storage/Utils/LightProbe.h		\
-	${top_srcdir}/storage/Utils/Lock.h
+	${top_srcdir}/storage/Utils/Lock.h			\
+	${top_srcdir}/storage/Utils/Logger.h			\
+	${top_srcdir}/storage/Utils/Region.h			\
+	${top_srcdir}/storage/Utils/Remote.h			\
+	${top_srcdir}/storage/Utils/Swig.h			\
+	${top_srcdir}/storage/Utils/Topology.h
 
