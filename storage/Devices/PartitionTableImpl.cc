@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -301,6 +301,23 @@ namespace storage
     PartitionTable::Impl::get_alignment(AlignType align_type) const
     {
 	return Alignment(get_partitionable()->get_topology(), align_type);
+    }
+
+
+    unsigned long long
+    PartitionTable::Impl::get_used_size() const
+    {
+	unsigned long long used_size = 0;
+
+	for (const Partition* partition : get_partitions())
+	{
+	    PartitionType partition_type = partition->get_type();
+
+	    if (partition_type == PartitionType::PRIMARY || partition_type == PartitionType::LOGICAL)
+		used_size += partition->get_size();
+	}
+
+	return used_size;
     }
 
 

@@ -248,7 +248,10 @@ namespace storage
 	static const Md* find_by_name(const Devicegraph* devicegraph, const std::string& name);
 
 	/**
-	 * Find a free numeric name for a MD.
+	 * Find a free numeric name for a MD, e.g. "/dev/md2". A free numeric name might
+	 * not be available.
+	 *
+	 * @throw Exception
 	 */
 	static std::string find_free_numeric_name(const Devicegraph* devicegraph);
 

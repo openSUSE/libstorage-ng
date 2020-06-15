@@ -109,6 +109,19 @@ namespace storage
 
 	void commit(const CommitOptions& commit_options, const CommitCallbacks* commit_callbacks);
 
+	void generate_pools(const Devicegraph* devicegraph);
+
+	Pool* create_pool(const string& name);
+
+	void remove_pool(const string& name);
+
+	bool exists_pool(const string& name) const;
+
+	vector<string> get_pool_names() const;
+
+	Pool* get_pool(const string& name);
+	const Pool* get_pool(const string& name) const;
+
 	const TmpDir& get_tmp_dir() const { return tmp_dir; }
 
 	/**
@@ -143,6 +156,8 @@ namespace storage
 	Lock lock;
 
 	map<string, Devicegraph> devicegraphs;
+
+	map<string, Pool> pools;
 
 	MountByType default_mount_by;
 

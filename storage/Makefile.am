@@ -17,6 +17,8 @@ libstorage_ng_la_SOURCES =						\
 	Action.h			Action.cc			\
 	Actiongraph.h			Actiongraph.cc			\
 	ActiongraphImpl.h		ActiongraphImpl.cc		\
+	Pool.h				Pool.cc				\
+	PoolImpl.h			PoolImpl.cc			\
 	Prober.h			Prober.cc			\
 	FindBy.h							\
 	Redirect.h							\
@@ -56,6 +58,7 @@ pkginclude_HEADERS =		\
 	Version.h		\
 	Devicegraph.h		\
 	Actiongraph.h		\
+	Pool.h			\
 	Graphviz.h		\
 	SimpleEtcFstab.h	\
 	SimpleEtcCrypttab.h	\

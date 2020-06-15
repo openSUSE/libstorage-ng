@@ -137,7 +137,8 @@ namespace storage
 	unsigned int num_logical() const;
 
 	/**
-	 * Get partitions of the partition table.
+	 * Get the partitions of the partition table. This includes primary, extended and
+	 * logical partitions.
 	 */
 	std::vector<Partition*> get_partitions();
 

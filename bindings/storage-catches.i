@@ -31,6 +31,7 @@
 %exceptionclass storage::OutOfMemoryException;
 %exceptionclass storage::OverflowException;
 %exceptionclass storage::ParseException;
+%exceptionclass storage::PoolOutOfSpace;
 %exceptionclass storage::UnsupportedException;
 %exceptionclass storage::WrongNumberOfChildren;
 %exceptionclass storage::WrongNumberOfHolders;
@@ -204,6 +205,7 @@
 %catches(storage::LogicException, storage::Exception) storage::Bcache::add_bcache_cset(BcacheCset *bcache_cset);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Bcache::find_by_name(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Bcache::find_by_name(const Devicegraph *devicegraph, const std::string &name);
+%catches(storage::Exception) storage::Bcache::find_free_name(const Devicegraph *devicegraph);
 %catches(storage::DeviceNotFound) storage::Bcache::get_backing_device() const;
 %catches(storage::DeviceNotFound) storage::Bcache::get_blk_device() const;
 %catches(storage::LogicException, storage::Exception) storage::Bcache::remove_bcache_cset();
@@ -286,6 +288,7 @@
 %catches(storage::Exception) storage::Md::create(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Md::find_by_name(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Md::find_by_name(const Devicegraph *devicegraph, const std::string &name);
+%catches(storage::Exception) storage::Md::find_free_numeric_name(const Devicegraph *devicegraph);
 %catches(storage::Exception) storage::Md::get_allowed_md_parities() const;
 %catches(storage::Exception) storage::Md::get_number() const;
 %catches(storage::Exception) storage::Md::remove_device(BlkDevice *blk_device);
@@ -329,6 +332,9 @@
 %catches(storage::Exception) storage::Partitionable::get_default_partition_table_type() const;
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Partitionable::get_partition_table();
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Partitionable::get_partition_table() const;
+%catches(storage::Exception) storage::Pool::add_device(const Device *device);
+%catches(storage::Exception, storage::PoolOutOfSpace) storage::Pool::create_partitions(Devicegraph *devicegraph, unsigned int number, unsigned long long size) const;
+%catches(storage::Exception) storage::Pool::remove_device(const Device *device);
 %catches(storage::Exception) storage::Region::adjust_length(long long delta);
 %catches(storage::Exception) storage::Region::adjust_start(long long delta);
 %catches(storage::Exception) storage::Region::get_end() const;
@@ -350,9 +356,12 @@
 %catches(storage::Aborted, storage::Exception) storage::Storage::commit(const CommitCallbacks *commit_callbacks=nullptr);
 %catches(storage::Exception) storage::Storage::copy_devicegraph(const std::string &source_name, const std::string &dest_name);
 %catches(storage::Exception) storage::Storage::create_devicegraph(const std::string &name);
+%catches(storage::Exception) storage::Storage::create_pool(const std::string &name);
 %catches(storage::Exception) storage::Storage::deactivate() const;
 %catches(storage::Exception) storage::Storage::get_devicegraph(const std::string &name);
 %catches(storage::Exception) storage::Storage::get_devicegraph(const std::string &name) const;
+%catches(storage::Exception) storage::Storage::get_pool(const std::string &name);
+%catches(storage::Exception) storage::Storage::get_pool(const std::string &name) const;
 %catches(storage::Exception) storage::Storage::get_probed() const;
 %catches(storage::Exception) storage::Storage::get_staging();
 %catches(storage::Exception) storage::Storage::get_staging() const;
@@ -360,6 +369,7 @@
 %catches(storage::Exception) storage::Storage::get_system() const;
 %catches(storage::Aborted, storage::Exception) storage::Storage::probe(const ProbeCallbacks *probe_callbacks=nullptr);
 %catches(storage::Exception) storage::Storage::remove_devicegraph(const std::string &name);
+%catches(storage::Exception) storage::Storage::remove_pool(const std::string &name);
 %catches(storage::Exception) storage::Storage::restore_devicegraph(const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::StrayBlkDevice::find_by_name(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::StrayBlkDevice::find_by_name(const Devicegraph *devicegraph, const std::string &name);
