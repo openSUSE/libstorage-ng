@@ -115,7 +115,7 @@ namespace storage
 	 *
 	 * The result is nondeterministic.
 	 *
-	 * @throw Exception, PoolOutOfSpace
+	 * @throw PoolOutOfSpace, Exception
 	 */
 	std::vector<Partition*> create_partitions(Devicegraph* devicegraph, unsigned int number,
 						  unsigned long long size) const;
