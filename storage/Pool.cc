@@ -67,6 +67,13 @@ namespace storage
     }
 
 
+    unsigned long long
+    Pool::max_partition_size(Devicegraph* devicegraph, unsigned int number) const
+    {
+	return get_impl().max_partition_size(devicegraph, number);
+    }
+
+
     vector<Partition*>
     Pool::create_partitions(Devicegraph* devicegraph, unsigned int number, unsigned long long size) const
     {

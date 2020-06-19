@@ -59,6 +59,8 @@ namespace storage
 	 */
 	vector<Partitionable*> get_partitionable_candidates(Devicegraph* devicegraph) const;
 
+	unsigned long long max_partition_size(Devicegraph* devicegraph, unsigned int number) const;
+
 	vector<Partition*> create_partitions(Devicegraph* devicegraph, unsigned int number,
 					     unsigned long long size) const;
 

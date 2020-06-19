@@ -334,6 +334,7 @@
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Partitionable::get_partition_table() const;
 %catches(storage::Exception) storage::Pool::add_device(const Device *device);
 %catches(storage::PoolOutOfSpace, storage::Exception) storage::Pool::create_partitions(Devicegraph *devicegraph, unsigned int number, unsigned long long size) const;
+%catches(storage::PoolOutOfSpace, storage::Exception) storage::Pool::max_partition_size(Devicegraph *devicegraph, unsigned int number) const;
 %catches(storage::Exception) storage::Pool::remove_device(const Device *device);
 %catches(storage::Exception) storage::Region::adjust_length(long long delta);
 %catches(storage::Exception) storage::Region::adjust_start(long long delta);

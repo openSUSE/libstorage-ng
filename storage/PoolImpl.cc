@@ -118,10 +118,63 @@ namespace storage
     }
 
 
+    unsigned long long
+    Pool::Impl::max_partition_size(Devicegraph* devicegraph, unsigned int number) const
+    {
+	ST_CHECK_PTR(devicegraph);
+
+	if (number == 0)
+	    ST_THROW(Exception("illegal value of zero for number"));
+
+	// For each partitionable find the biggest unused region.
+
+	vector<unsigned long long> candidates;
+
+	for (Partitionable* partitionable : get_partitionable_candidates(devicegraph))
+	{
+	    PartitionTable* partition_table = partitionable->get_partition_table();
+
+	    vector<PartitionSlot> partition_slots = partition_table->get_unused_partition_slots();
+
+	    vector<PartitionSlot>::const_iterator biggest = partition_slots.end();
+
+	    for (vector<PartitionSlot>::const_iterator it = partition_slots.begin();
+		 it != partition_slots.end(); ++it)
+	    {
+		if (!(it->primary_possible || it->logical_possible))
+		    continue;
+
+		if (biggest == partition_slots.end() || it->region > biggest->region)
+		    biggest = it;
+	    }
+
+	    if (biggest == partition_slots.end())
+		continue;
+
+	    const Region& region = biggest->region;
+	    candidates.push_back(region.to_bytes(region.get_length()));
+	}
+
+	if (candidates.size() < number)
+	    ST_THROW(PoolOutOfSpace());
+
+	// Find the smallest candidate among the 'number' biggest candidates.
+
+	vector<unsigned long long>::iterator pos = candidates.begin() + number - 1;
+
+	nth_element(candidates.begin(), pos, candidates.end(), std::greater<unsigned long long>());
+
+	return *pos;
+    }
+
+
     vector<Partition*>
     Pool::Impl::create_partitions(Devicegraph* devicegraph, unsigned int number, unsigned long long size) const
     {
 	ST_CHECK_PTR(devicegraph);
+
+	if (number == 0)
+	    ST_THROW(Exception("illegal value of zero for number"));
 
 	struct Candidate
 	{
@@ -170,12 +223,18 @@ namespace storage
 	if (candidates.size() < number)
 	    ST_THROW(PoolOutOfSpace());
 
+	// TODO exceptions thrown below can result in only some partitions created
+
 	vector<Partition*> partitions;
 
-	for (Candidate candidate : candidates)
+	for (const Candidate candidate : candidates)
 	{
 	    Region region = candidate.region;
+
 	    region.set_length(size / region.get_block_size());
+	    if (region.get_length() == 0)
+		ST_THROW(Exception("requested size smaller than sector size"));
+
 	    region = candidate.partition_table->align(region);
 
 	    Partition* partition = candidate.partition_table->create_partition(candidate.name, region,
