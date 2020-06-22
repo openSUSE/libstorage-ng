@@ -132,6 +132,7 @@ namespace storage
 
 	for (Partitionable* partitionable : get_partitionable_candidates(devicegraph))
 	{
+	    // so far all candidates have a partition table, so no check needed
 	    PartitionTable* partition_table = partitionable->get_partition_table();
 
 	    vector<PartitionSlot> partition_slots = partition_table->get_unused_partition_slots();
@@ -190,6 +191,7 @@ namespace storage
 
 	for (Partitionable* partitionable : get_partitionable_candidates(devicegraph))
 	{
+	    // so far all candidates have a partition table, so no check needed
 	    PartitionTable* partition_table = partitionable->get_partition_table();
 
 	    vector<PartitionSlot> partition_slots = partition_table->get_unused_partition_slots();

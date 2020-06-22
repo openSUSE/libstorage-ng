@@ -109,7 +109,7 @@ namespace storage
 	std::vector<const Device*> get_devices(const Devicegraph* devicegraph) const;
 
 	/**
-	 * Find the maximal partition size the pool can provide for the given number of
+	 * Find the maximum partition size the pool can provide for the given number of
 	 * partitions.
 	 *
 	 * @throw PoolOutOfSpace, Exception
