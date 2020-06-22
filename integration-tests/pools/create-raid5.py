@@ -20,7 +20,11 @@ pool = storage.get_pool("HDDs (512 B)")
 
 staging = storage.get_staging()
 
-devices = pool.create_partitions(staging, 3, 2 * GiB)
+try:
+    devices = pool.create_partitions(staging, 3, 2 * GiB)
+except PoolOutOfSpace as exception:
+    print(exception.what())
+    exit(1)
 
 md = Md.create(staging, Md.find_free_numeric_name(staging))
 md.set_md_level(MdLevel_RAID5)

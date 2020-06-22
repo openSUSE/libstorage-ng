@@ -74,6 +74,8 @@ namespace storage
      * used.
      *
      * All functions concerning pools are experimental.
+     *
+     * TODO alignment considerations
      */
     class Pool : private boost::noncopyable
     {
@@ -107,15 +109,24 @@ namespace storage
 	std::vector<const Device*> get_devices(const Devicegraph* devicegraph) const;
 
 	/**
+	 * Find the maximum partition size the pool can provide for the given number of
+	 * partitions.
+	 *
+	 * @throw PoolOutOfSpace, Exception
+	 */
+	unsigned long long max_partition_size(Devicegraph* devicegraph, unsigned int number) const;
+
+	/**
 	 * Create a number of partitions of size in the pool. Devices in the pool not of
 	 * type partitionable or without a partition table are ignored.
 	 *
 	 * The sizes of the created partitions may be different from size due to
 	 * alignment. They may even be pairwise different.
 	 *
-	 * The result is nondeterministic.
+	 * The result is nondeterministic. E.g. if 3 partitions on 4 identical disks are
+	 * requested, it is nondeterministic on which 3 disks the partitions are created.
 	 *
-	 * @throw Exception, PoolOutOfSpace
+	 * @throw PoolOutOfSpace, Exception
 	 */
 	std::vector<Partition*> create_partitions(Devicegraph* devicegraph, unsigned int number,
 						  unsigned long long size) const;

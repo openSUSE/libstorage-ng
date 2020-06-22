@@ -21,8 +21,12 @@ ssds_pool = storage.get_pool("SSDs (512 B)")
 
 staging = storage.get_staging()
 
-backing_device = hdds_pool.create_partitions(staging, 1, 4 * GiB)[0]
-caching_device = ssds_pool.create_partitions(staging, 1, 1 * GiB)[0]
+try:
+    backing_device = hdds_pool.create_partitions(staging, 1, 4 * GiB)[0]
+    caching_device = ssds_pool.create_partitions(staging, 1, 1 * GiB)[0]
+except PoolOutOfSpace as exception:
+    print(exception.what())
+    exit(1)
 
 bcache = backing_device.create_bcache(Bcache.find_free_name(staging))
 bcache_cset = caching_device.create_bcache_cset()

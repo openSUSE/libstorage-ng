@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import sys
+import sys, os
 import glob
 import xml.dom.minidom as minidom
 import networkx
@@ -29,8 +29,14 @@ def extract_exception_names(node):
     exception_names = []
 
     for node1 in node.getElementsByTagName("parametername"):
+
+        child1 = node1.childNodes[0]
+        if child1.nodeType == child1.TEXT_NODE:
+            exception_names.append("storage::" + child1.data)
+
         for node2 in node1.getElementsByTagName("ref"):
-            exception_names.append("storage::" + node2.childNodes[0].data)
+            child2 = node2.childNodes[0]
+            exception_names.append("storage::" + child2.data)
 
     return exception_names
 
@@ -117,3 +123,37 @@ if not classes or not functions:
     print("no classes or no functions loaded", file=sys.stderr)
     print("please run make in doc directory", file=sys.stderr)
     sys.exit(1)
+
+
+
+def check_exceptions_of_function(function):
+
+    seen_exception_names = []
+
+    for exception_name in function.exception_names:
+
+        if not classes.has_node(exception_name):
+            print("unknown exception for %s%s" % (function.name, function.args_string))
+            sys.exit(1)
+
+        for seen_exception_name in seen_exception_names:
+            if exception_name in networkx.descendants(classes, seen_exception_name):
+                print("wrong order of exceptions for %s%s" % (function.name, function.args_string))
+                sys.exit(1)
+
+        seen_exception_names.append(exception_name)
+
+
+
+for function in functions:
+    check_exceptions_of_function(function)
+
+for classname in classes:
+    for function in classes.nodes[classname].get('functions', []):
+        check_exceptions_of_function(function)
+
+
+if __name__ == '__main__':
+    networkx.drawing.nx_agraph.write_dot(classes, "classes.gv")
+    os.system("/usr/bin/dot -Tsvg < classes.gv > classes.svg")
+    os.system("/usr/bin/display classes.svg")
