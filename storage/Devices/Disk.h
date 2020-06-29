@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -95,6 +95,11 @@ namespace storage
 	 * Get the zone model of the disk.
 	 */
 	ZoneModel get_zone_model() const;
+
+	/**
+	 * Return whether the disk is an NVMe device.
+	 */
+	bool is_nvme() const;
 
 	/**
 	 * Find a Disk by its name. Only the name returned by get_name() is

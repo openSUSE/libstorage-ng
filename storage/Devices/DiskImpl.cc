@@ -127,6 +127,13 @@ namespace storage
     }
 
 
+    bool
+    Disk::Impl::is_nvme() const
+    {
+	return boost::starts_with(get_name(), DEV_DIR "/nvme");
+    }
+
+
     void
     Disk::Impl::probe_disks(Prober& prober)
     {
@@ -179,6 +186,9 @@ namespace storage
 	    case Transport::ISCSI: ret = UF_ISCSI; break;
 	    default: break;
 	}
+
+	if (is_nvme())
+	    ret |= UF_NVME;
 
 	return ret | Partitionable::Impl::used_features();
     }
