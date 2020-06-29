@@ -128,6 +128,13 @@ namespace storage
 
 
     bool
+    Disk::Impl::is_pmem() const
+    {
+	return boost::starts_with(get_name(), DEV_DIR "/pmem");
+    }
+
+
+    bool
     Disk::Impl::is_nvme() const
     {
 	return boost::starts_with(get_name(), DEV_DIR "/nvme");
@@ -186,6 +193,9 @@ namespace storage
 	    case Transport::ISCSI: ret = UF_ISCSI; break;
 	    default: break;
 	}
+
+	if (is_pmem())
+	    ret |= UF_PMEM;
 
 	if (is_nvme())
 	    ret |= UF_NVME;

@@ -81,6 +81,7 @@ namespace storage
 	ZoneModel get_zone_model() const { return zone_model; }
 	void set_zone_model(ZoneModel zone_model) { Impl::zone_model = zone_model; }
 
+	bool is_pmem() const;
 	bool is_nvme() const;
 
 	static void probe_disks(Prober& prober);
