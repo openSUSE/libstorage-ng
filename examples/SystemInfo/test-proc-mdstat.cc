@@ -8,13 +8,13 @@ using namespace storage;
 
 
 void
-test_procmdstat(SystemInfo& system_info)
+test_proc_mdstat(SystemInfo& system_info)
 {
     try
     {
-	const ProcMdstat& procmdstat = system_info.getProcMdstat();
+	const ProcMdstat& proc_mdstat = system_info.getProcMdstat();
 	cout << "ProcMdstat success" << endl;
-	cout << procmdstat << endl;
+	cout << proc_mdstat << endl;
     }
     catch (const exception& e)
     {
@@ -30,5 +30,5 @@ main()
 
     SystemInfo system_info;
 
-    test_procmdstat(system_info);
+    test_proc_mdstat(system_info);
 }
