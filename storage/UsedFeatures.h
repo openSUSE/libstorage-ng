@@ -61,6 +61,7 @@ namespace storage
 	UF_FCOE = 1 << 18,
 	UF_FC = 1 << 19,
 	UF_DASD = 1 << 20,
+	UF_NVME = 1 << 28,
 
 	UF_QUOTA = 1 << 21,
 	UF_SNAPSHOTS = 1 << 22

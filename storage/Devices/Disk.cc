@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -142,6 +142,13 @@ namespace storage
     Disk::get_zone_model() const
     {
 	return get_impl().get_zone_model();
+    }
+
+
+    bool
+    Disk::is_nvme() const
+    {
+	return get_impl().is_nvme();
     }
 
 
