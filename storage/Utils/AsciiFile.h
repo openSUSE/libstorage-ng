@@ -48,7 +48,7 @@ namespace storage
 	/**
 	 * @throw IOException
 	 */
-	void save();
+	void save() const;
 
 	void log_content() const;
 

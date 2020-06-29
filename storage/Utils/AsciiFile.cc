@@ -96,7 +96,7 @@ namespace storage
 
 
     void
-    AsciiFile::save()
+    AsciiFile::save() const
     {
 	if (Mockup::get_mode() == Mockup::Mode::PLAYBACK)
 	{

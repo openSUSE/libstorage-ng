@@ -8,7 +8,7 @@ using namespace storage;
 
 
 void
-test_udevadminfo(SystemInfo& system_info, const string& file)
+test_udevadm_info(SystemInfo& system_info, const string& file)
 {
     try
     {
@@ -30,5 +30,5 @@ main()
 
     SystemInfo system_info;
 
-    test_udevadminfo(system_info, "/dev/sda1");
+    test_udevadm_info(system_info, "/dev/sda1");
 }

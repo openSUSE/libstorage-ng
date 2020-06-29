@@ -8,13 +8,13 @@ using namespace storage;
 
 
 void
-test_cmddmsetupinfo(SystemInfo& system_info)
+test_cmd_dmsetup_info(SystemInfo& system_info)
 {
     try
     {
-	const CmdDmsetupInfo& cmddmsetupinfo = system_info.getCmdDmsetupInfo();
+	const CmdDmsetupInfo& cmd_dmsetup_info = system_info.getCmdDmsetupInfo();
 	cout << "CmdDmsetupInfo success" << endl;
-	cout << cmddmsetupinfo << endl;
+	cout << cmd_dmsetup_info << endl;
     }
     catch (const exception& e)
     {
@@ -30,5 +30,5 @@ main()
 
     SystemInfo system_info;
 
-    test_cmddmsetupinfo(system_info);
+    test_cmd_dmsetup_info(system_info);
 }

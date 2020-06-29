@@ -8,13 +8,13 @@ using namespace storage;
 
 
 void
-test_mdadmexamine(SystemInfo& system_info, const vector<string>& devices)
+test_mdadm_examine(SystemInfo& system_info, const vector<string>& devices)
 {
     try
     {
-	const MdadmExamine& mdadmexamine = system_info.getMdadmExamine(devices);
+	const MdadmExamine& mdadm_examine = system_info.getMdadmExamine(devices);
 	cout << "MdadmExamine success" << endl;
-	cout << mdadmexamine << endl;
+	cout << mdadm_examine << endl;
     }
     catch (const exception& e)
     {
@@ -30,5 +30,5 @@ main()
 
     SystemInfo system_info;
 
-    test_mdadmexamine(system_info, { "/dev/sda", "/dev/sdb" });
+    test_mdadm_examine(system_info, { "/dev/sda", "/dev/sdb" });
 }

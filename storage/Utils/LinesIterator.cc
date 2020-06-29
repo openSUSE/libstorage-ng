@@ -28,7 +28,7 @@ namespace storage
 {
 
     const string&
-    LinesIterator::line()
+    LinesIterator::line() const
     {
 	if (it == lines.end())
 	    ST_THROW(Exception("end of lines"));

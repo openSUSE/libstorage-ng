@@ -8,13 +8,13 @@ using namespace storage;
 
 
 void
-test_mdlinks(SystemInfo& system_info)
+test_md_links(SystemInfo& system_info)
 {
     try
     {
-	const MdLinks& mdlinks = system_info.getMdLinks();
+	const MdLinks& md_links = system_info.getMdLinks();
 	cout << "MdLinks success" << endl;
-	cout << mdlinks << endl;
+	cout << md_links << endl;
     }
     catch (const exception& e)
     {
@@ -30,5 +30,5 @@ main()
 
     SystemInfo system_info;
 
-    test_mdlinks(system_info);
+    test_md_links(system_info);
 }

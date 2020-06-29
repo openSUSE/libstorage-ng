@@ -8,13 +8,13 @@ using namespace storage;
 
 
 void
-test_mdadmdetail(SystemInfo& system_info, const string& device)
+test_mdadm_detail(SystemInfo& system_info, const string& device)
 {
     try
     {
-	const MdadmDetail& mdadmdetail = system_info.getMdadmDetail(device);
+	const MdadmDetail& mdadm_detail = system_info.getMdadmDetail(device);
 	cout << "MdadmDetail success" << endl;
-	cout << mdadmdetail << endl;
+	cout << mdadm_detail << endl;
     }
     catch (const exception& e)
     {
@@ -30,5 +30,5 @@ main()
 
     SystemInfo system_info;
 
-    test_mdadmdetail(system_info, "/dev/md127");
+    test_mdadm_detail(system_info, "/dev/md127");
 }
