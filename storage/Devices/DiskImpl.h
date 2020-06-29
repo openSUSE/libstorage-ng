@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -80,6 +80,8 @@ namespace storage
 
 	ZoneModel get_zone_model() const { return zone_model; }
 	void set_zone_model(ZoneModel zone_model) { Impl::zone_model = zone_model; }
+
+	bool is_nvme() const;
 
 	static void probe_disks(Prober& prober);
 	virtual void probe_pass_1a(Prober& prober) override;

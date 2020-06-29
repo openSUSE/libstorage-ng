@@ -125,6 +125,11 @@ namespace storage
 	ZoneModel get_zone_model() const;
 
 	/**
+	 * Return whether the disk is an NVMe device.
+	 */
+	bool is_nvme() const;
+
+	/**
 	 * Find a Disk by its name. Only the name returned by get_name() is
 	 * considered.
 	 *
