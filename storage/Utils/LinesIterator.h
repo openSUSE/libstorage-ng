@@ -44,7 +44,7 @@ namespace storage
 
 	bool at_end() const { return it == lines.end(); }
 
-	const string& line();
+	const string& line() const;
 
 	const string& pop_line();
 

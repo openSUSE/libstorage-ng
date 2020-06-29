@@ -47,7 +47,7 @@ namespace storage
 	Text(const char* native, const char* translated) : native(native), translated(translated) {}
 	Text(const string& native, const string& translated) : native(native), translated(translated) {}
 
-	bool empty() { return native.empty(); }
+	bool empty() const { return native.empty(); }
 
 	void clear();
 
