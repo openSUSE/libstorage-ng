@@ -146,6 +146,13 @@ namespace storage
 
 
     bool
+    Disk::is_pmem() const
+    {
+	return get_impl().is_pmem();
+    }
+
+
+    bool
     Disk::is_nvme() const
     {
 	return get_impl().is_nvme();

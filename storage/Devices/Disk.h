@@ -125,6 +125,11 @@ namespace storage
 	ZoneModel get_zone_model() const;
 
 	/**
+	 * Return whether the disk is an PMEM device.
+	 */
+	bool is_pmem() const;
+
+	/**
 	 * Return whether the disk is an NVMe device.
 	 */
 	bool is_nvme() const;
