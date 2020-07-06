@@ -53,23 +53,63 @@ namespace storage
 
 	virtual MdUser* clone() const override;
 
+	/**
+	 * Return whether the target device is a spare device.
+	 */
 	bool is_spare() const;
+
+	/**
+	 * Set the target device to be a spare device.
+	 *
+	 * @see is_spare()
+	 *
+	 * @throw Exception
+	 */
 	void set_spare(bool spare);
 
+	/**
+	 * Return whether the target device is a faulty device.
+	 */
 	bool is_faulty() const;
+
+	/**
+	 * Set the target device to be a faulty device.
+	 *
+	 * @see is_faulty()
+	 *
+	 * @throw Exception
+	 */
 	void set_faulty(bool faulty);
+
+	/**
+	 * Return whether the target device is a journal device. Only one device of an MD
+	 * RAID can be a journal device. Only for RAID levels 4, 5 and 6.
+	 */
+	bool is_journal() const;
+
+	/**
+	 * Set the target device to be a journal device.
+	 *
+	 * Changing the value is not supported for RAIDs already created on-disk. Does
+	 * not work with metadata version 1.0.
+	 *
+	 * @see is_journal()
+	 *
+	 * @throw Exception
+	 */
+	void set_journal(bool journal);
 
 	/**
 	 * Return the sort key.
 	 *
-	 * When creating a MD RAID the device list passed to the mdadm
-	 * command is sorted according to the sort-key. For use-cases
-	 * see https://fate.suse.com/313521/.
+	 * When creating a MD RAID the device list passed to the mdadm command is sorted
+	 * according to the sort-key. For use-cases see https://fate.suse.com/313521/.
 	 *
-	 * The RAID devices and spare devices are sorted
-	 * independently. Sorting of devices with the same sort-key is
-	 * undefined. Any value is allowed but 0 should mean
-	 * unknown/unspecified.
+	 * The RAID devices, spare and journal devices are sorted independently. Sorting
+	 * of devices with the same sort-key is undefined. Any value is allowed but 0
+	 * should mean unknown/unspecified.
+	 *
+	 * @see set_sort_key()
 	 */
 	unsigned int get_sort_key() const;
 

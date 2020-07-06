@@ -125,10 +125,12 @@ namespace storage
 	    else
 		d = normalizeDevice(tmp);
 
+	    // TODO can there be several of the flags?
 	    bool is_spare = boost::ends_with(tmp, "(S)");
 	    bool is_faulty = boost::ends_with(tmp, "(F)");
+	    bool is_journal = boost::ends_with(tmp, "(J)");
 
-	    entry.devices.emplace_back(d, is_spare, is_faulty);
+	    entry.devices.emplace_back(d, is_spare, is_faulty, is_journal);
 
 	    line.erase( 0, tmp.length() );
 	    if( (pos=line.find_first_not_of( app_ws ))!=string::npos && pos!=0 )
@@ -328,6 +330,8 @@ namespace storage
 	    s << "(S)";
 	if (device.faulty)
 	    s << "(F)";
+	if (device.journal)
+	    s << "(J)";
 
 	return s;
     }

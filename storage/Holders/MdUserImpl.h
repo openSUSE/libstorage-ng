@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -39,7 +39,7 @@ namespace storage
     public:
 
 	Impl()
-	    : User::Impl(), spare(false), faulty(false), sort_key(0) {}
+	    : User::Impl(), spare(false), faulty(false), journal(false), sort_key(0) {}
 
 	Impl(const xmlNode* node);
 
@@ -60,17 +60,28 @@ namespace storage
 	bool is_faulty() const { return faulty; }
 	void set_faulty(bool faulty);
 
+	bool is_journal() const { return journal; }
+	void set_journal(bool journal);
+
 	unsigned int get_sort_key() const { return sort_key; }
 	void set_sort_key(unsigned int sort_key) { Impl::sort_key = sort_key; }
 
     private:
 
+	// TODO is an enum instead of three booleans more appropriate?
 	bool spare;
 	bool faulty;
+	bool journal;
 
 	unsigned int sort_key;
 
+	void recalculate();
+
     };
+
+
+    static_assert(!std::is_abstract<MdUser>(), "MdUser ought not to be abstract.");
+    static_assert(!std::is_abstract<MdUser::Impl>(), "MdUser::Impl ought not to be abstract.");
 
 }
 

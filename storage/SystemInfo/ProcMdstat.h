@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2017,2019] SUSE LLC
+ * Copyright (c) [2017-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -47,12 +47,13 @@ namespace storage
 
 	struct Device
 	{
-	    Device(const string& name, bool spare, bool faulty)
-		: name(name), spare(spare), faulty(faulty) {}
+	    Device(const string& name, bool spare, bool faulty, bool journal)
+		: name(name), spare(spare), faulty(faulty), journal(journal) {}
 
 	    string name;
 	    bool spare;
 	    bool faulty;
+	    bool journal;
 
 	    bool operator<(const Device& rhs) const { return name < rhs.name; }
 
@@ -126,8 +127,8 @@ namespace storage
 	MdLevel level;
 
 	/**
-	 * Mapping from device name to role (a number or
-	 * spare). Faulty devices are also marked as spare by mdadm here.
+	 * Mapping from device name to role (a number or spare). Faulty and journal
+	 * devices are also marked as spare by mdadm here (that might be a bug).
 	 */
 	map<string, string> roles;
 

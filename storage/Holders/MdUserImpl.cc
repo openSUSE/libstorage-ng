@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -33,10 +33,11 @@ namespace storage
 
 
     MdUser::Impl::Impl(const xmlNode* node)
-	: User::Impl(node), spare(false), faulty(false), sort_key(0)
+	: User::Impl(node), spare(false), faulty(false), journal(false), sort_key(0)
     {
 	getChildValue(node, "spare", spare);
 	getChildValue(node, "faulty", faulty);
+	getChildValue(node, "journal", journal);
 
 	getChildValue(node, "sort-key", sort_key);
     }
@@ -49,6 +50,7 @@ namespace storage
 
 	setChildValueIf(node, "spare", spare, spare);
 	setChildValueIf(node, "faulty", faulty, faulty);
+	setChildValueIf(node, "journal", journal, journal);
 
 	setChildValueIf(node, "sort-key", sort_key, sort_key != 0);
     }
@@ -62,7 +64,7 @@ namespace storage
 	if (!User::Impl::equal(rhs))
 	    return false;
 
-	return spare == rhs.spare && faulty == rhs.faulty && sort_key == rhs.sort_key;
+	return spare == rhs.spare && faulty == rhs.faulty && journal == rhs.journal && sort_key == rhs.sort_key;
     }
 
 
@@ -75,6 +77,7 @@ namespace storage
 
 	storage::log_diff(log, "spare", spare, rhs.spare);
 	storage::log_diff(log, "faulty", faulty, rhs.faulty);
+	storage::log_diff(log, "journal", journal, rhs.journal);
 
 	storage::log_diff(log, "sort-key", sort_key, rhs.sort_key);
     }
@@ -91,6 +94,9 @@ namespace storage
 	if (faulty)
 	    out << " faulty";
 
+	if (journal)
+	    out << " journal";
+
 	if (sort_key != 0)
 	    out << " sort-key:" << sort_key;
     }
@@ -104,8 +110,7 @@ namespace storage
 
 	Impl::spare = spare;
 
-	Md* md = to_md(get_target());
-	md->get_impl().calculate_region_and_topology();
+	recalculate();
     }
 
 
@@ -117,6 +122,25 @@ namespace storage
 
 	Impl::faulty = faulty;
 
+	recalculate();
+    }
+
+
+    void
+    MdUser::Impl::set_journal(bool journal)
+    {
+	if (Impl::journal == journal)
+	    return;
+
+	Impl::journal = journal;
+
+	recalculate();
+    }
+
+
+    void
+    MdUser::Impl::recalculate()
+    {
 	Md* md = to_md(get_target());
 	md->get_impl().calculate_region_and_topology();
     }

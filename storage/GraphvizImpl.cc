@@ -46,7 +46,6 @@
 #include "storage/Filesystems/MountPoint.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/HumanString.h"
-#include "storage/ActiongraphImpl.h"
 #include "storage/EnvironmentImpl.h"
 
 
@@ -166,7 +165,7 @@ namespace storage
 	else if (is_md_user(holder))
 	{
 	    const MdUser* md_user = to_md_user(holder);
-	    if (md_user->is_spare() || md_user->is_faulty())
+	    if (md_user->is_spare() || md_user->is_faulty() || md_user->is_journal())
 		ret["style"] = "dotted";
 	    else
 		ret["style"] = "dashed";

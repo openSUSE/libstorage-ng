@@ -89,7 +89,6 @@ Missing:
 * LUKS2 integrity (experimental in cryptsetup).
 
 
-
 MD RAID
 -------
 
@@ -100,6 +99,10 @@ Implemented:
 * Calculation of RAID size.
 * Handling of /etc/mdadm.conf.
 * IMSM and DDF.
+
+Missing:
+
+* Journal device (untested).
 
 
 DM RAID

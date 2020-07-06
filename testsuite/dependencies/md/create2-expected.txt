@@ -1,0 +1,1 @@
+1 - Create MD RAID5 /dev/md0 (3.94 GiB) from /dev/sdb1 (128.00 MiB), /dev/sdd1 (2.00 GiB), /dev/sde1 (2.00 GiB) and /dev/sdf1 (2.00 GiB) ->
