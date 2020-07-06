@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<Mockup>
+  <Commands>
+    <Command>
+      <name>/usr/bin/udevadm settle --timeout=20</name>
+    </Command>
+    <Command>
+      <name>/sbin/mdadm --create '/dev/md0' --run --level=raid5 --metadata=1.2 --homehost=any --raid-devices=3 '/dev/sdd1' '/dev/sde1' '/dev/sdf1' --write-journal='/dev/sdb1'</name>
+    </Command>
+    <Command>
+      <name>/sbin/mdadm --detail '/dev/md0' --export</name>
+      <stdout>MD_LEVEL=raid5</stdout>
+      <stdout>MD_DEVICES=3</stdout>
+      <stdout>MD_METADATA=1.2</stdout>
+      <stdout>MD_UUID=549de5a7:46144f48:df2706c3:f6ad1f85</stdout>
+      <stdout>MD_NAME=any:0</stdout>
+      <stdout>MD_DEVICE_dev_sdf1_ROLE=0</stdout>
+      <stdout>MD_DEVICE_dev_sdf1_DEV=/dev/sdf1</stdout>
+      <stdout>MD_DEVICE_dev_sde1_ROLE=2</stdout>
+      <stdout>MD_DEVICE_dev_sde1_DEV=/dev/sde1</stdout>
+      <stdout>MD_DEVICE_dev_sdd1_ROLE=1</stdout>
+      <stdout>MD_DEVICE_dev_sdd1_DEV=/dev/sdd1</stdout>
+      <stdout>MD_DEVICE_dev_sdb1_ROLE=spare</stdout>
+      <stdout>MD_DEVICE_dev_sdb1_DEV=/dev/sdb1</stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/cat /proc/mdstat</name>
+    </Command>
+  </Commands>
+</Mockup>
