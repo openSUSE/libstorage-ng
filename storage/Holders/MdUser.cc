@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -97,6 +97,20 @@ namespace storage
     MdUser::set_faulty(bool faulty)
     {
 	get_impl().set_faulty(faulty);
+    }
+
+
+    bool
+    MdUser::is_journal() const
+    {
+	return get_impl().is_journal();
+    }
+
+
+    void
+    MdUser::set_journal(bool journal)
+    {
+	get_impl().set_journal(journal);
     }
 
 

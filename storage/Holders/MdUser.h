@@ -60,6 +60,24 @@ namespace storage
 	void set_faulty(bool faulty);
 
 	/**
+	 * Return whether the target device is a journal device. Only one device of an MD
+	 * RAID can be a journal device. Only for RAID levels 4, 5 and 6.
+	 */
+	bool is_journal() const;
+
+	/**
+	 * Set the target device to be a journal device.
+	 *
+	 * Changing the value is not supported for RAIDs already created on-disk. Does
+	 * not work with metadata version 1.0.
+	 *
+	 * @see is_journal()
+	 *
+	 * @throw Exception
+	 */
+	void set_journal(bool journal);
+
+	/**
 	 * Return the sort key.
 	 *
 	 * When creating a MD RAID the device list passed to the mdadm

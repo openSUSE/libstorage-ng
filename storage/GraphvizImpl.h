@@ -25,8 +25,8 @@
 
 
 #include "storage/Graphviz.h"
-#include "storage/DevicegraphImpl.h"
-#include "storage/ActiongraphImpl.h"
+#include "storage/Devicegraph.h"
+#include "storage/Actiongraph.h"
 
 
 namespace storage

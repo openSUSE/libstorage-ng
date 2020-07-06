@@ -184,13 +184,13 @@ namespace storage
 	void set_uuid(const std::string& uuid);
 
 	/**
-	 * A string like "1.0" for Linux RAID, "imsm" or "ddf" for BIOS RAID
+	 * A string like "1.0" or "1.2" for Linux RAID, "imsm" or "ddf" for BIOS RAID
 	 * containers and empty for BIOS RAID members.
 	 */
 	const std::string& get_metadata() const;
 
 	/**
-	 * Currently create always uses metadata 1.0.
+	 * Currently only creating metadata 1.0 is supported. Although others might work.
 	 */
 	void set_metadata(const std::string& metadata);
 

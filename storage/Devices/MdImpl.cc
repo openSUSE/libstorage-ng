@@ -458,6 +458,7 @@ namespace storage
 		MdUser* md_user = MdUser::create(system, a, b);
 		md_user->set_spare(device.spare);
 		md_user->set_faulty(device.faulty);
+		md_user->set_journal(device.journal);
 	    });
 	}
     }
@@ -793,7 +794,7 @@ namespace storage
 
 	return std::count_if(devices.begin(), devices.end(), [](const BlkDevice* blk_device) {
 	    const MdUser* md_user = blk_device->get_impl().get_single_out_holder_of_type<const MdUser>();
-	    return !md_user->is_spare();
+	    return !md_user->is_spare() && !md_user->is_journal();
 	});
     }
 
@@ -842,6 +843,7 @@ namespace storage
 
 	    const MdUser* md_user = blk_device->get_impl().get_single_out_holder_of_type<const MdUser>();
 	    bool spare = md_user->is_spare();
+	    bool journal = md_user->is_journal();
 
 	    // metadata for version 1.0 is 4 KiB block at end aligned to 4 KiB,
 	    // https://raid.wiki.kernel.org/index.php/RAID_superblock_formats
@@ -859,13 +861,16 @@ namespace storage
 	    if (rest > 0)
 		size -= rest;
 
-	    if (!spare)
+	    if (!spare && !journal)
 	    {
 		number++;
 		sum += size;
 	    }
 
-	    smallest = min(smallest, size);
+	    if (!journal)
+	    {
+		smallest = min(smallest, size);
+	    }
 	}
 
 	unsigned long long size = 0;
@@ -959,13 +964,37 @@ namespace storage
 	// Note: Changing any parameter to "mdadm --create' requires the
 	// function calculate_region_and_topology() to be checked!
 
-	string cmd_line = MDADM_BIN " --create " + quote(get_name()) + " --run --level=" +
-	    boost::to_lower_copy(toString(md_level), locale::classic()) + " --metadata=1.0"
-	    " --homehost=any";
+	// place devices in multimaps to sort them according to the sort-key
 
-	if (md_level == MdLevel::RAID1 || md_level == MdLevel::RAID4 ||
-	    md_level == MdLevel::RAID5 || md_level == MdLevel::RAID6 ||
-	    md_level == MdLevel::RAID10)
+	multimap<unsigned int, string> devices;
+	multimap<unsigned int, string> spares;
+	vector<string> journals;
+
+	for (const BlkDevice* blk_device : get_devices())
+	{
+	    const MdUser* md_user = blk_device->get_impl().get_single_out_holder_of_type<const MdUser>();
+
+	    if (md_user->is_spare())
+		spares.insert(make_pair(md_user->get_sort_key(), blk_device->get_name()));
+	    else if (md_user->is_journal())
+		journals.push_back(blk_device->get_name());
+	    else
+		devices.insert(make_pair(md_user->get_sort_key(), blk_device->get_name()));
+	}
+
+	if (devices.empty())
+	    ST_THROW(Exception("no devices"));
+
+	if (journals.size() > 1)
+	    ST_THROW(Exception("only one journal device allowed"));
+
+	string cmd_line = MDADM_BIN " --create " + quote(get_name()) + " --run --level=" +
+	    boost::to_lower_copy(toString(md_level), locale::classic()) + " --metadata=" +
+	    (metadata.empty() ? "1.0" : metadata) + " --homehost=any";
+
+	if ((md_level == MdLevel::RAID1 || md_level == MdLevel::RAID4 ||
+	     md_level == MdLevel::RAID5 || md_level == MdLevel::RAID6 ||
+	     md_level == MdLevel::RAID10) && journals.empty())
 	    cmd_line += " --bitmap=internal";
 
 	if (chunk_size > 0)
@@ -973,21 +1002,6 @@ namespace storage
 
 	if (md_parity != MdParity::DEFAULT)
 	    cmd_line += " --parity=" + toString(md_parity);
-
-	// place devices in multimaps to sort them according to the sort-key
-
-	multimap<unsigned int, string> devices;
-	multimap<unsigned int, string> spares;
-
-	for (const BlkDevice* blk_device : get_devices())
-	{
-	    const MdUser* md_user = blk_device->get_impl().get_single_out_holder_of_type<const MdUser>();
-
-	    if (!md_user->is_spare())
-		devices.insert(make_pair(md_user->get_sort_key(), blk_device->get_name()));
-	    else
-		spares.insert(make_pair(md_user->get_sort_key(), blk_device->get_name()));
-	}
 
 	cmd_line += " --raid-devices=" + to_string(devices.size());
 
@@ -999,6 +1013,9 @@ namespace storage
 
 	for (const pair<unsigned int, string>& value : spares)
 	    cmd_line += " " + quote(value.second);
+
+	if (!journals.empty())
+	    cmd_line += " --write-journal=" + quote(journals.front());
 
 	wait_for_devices(std::add_const<const Md::Impl&>::type(*this).get_devices());
 	// wait_for_devices(std::as_const(*this).get_devices()); // C++17

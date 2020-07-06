@@ -298,6 +298,9 @@
 %catches(storage::Exception) storage::MdMember::get_md_container() const;
 %catches(storage::HolderAlreadyExists) storage::MdSubdevice::create(Devicegraph *devicegraph, const Device *source, const Device *target);
 %catches(storage::HolderAlreadyExists) storage::MdUser::create(Devicegraph *devicegraph, const Device *source, const Device *target);
+%catches(storage::Exception) storage::MdUser::set_faulty(bool faulty);
+%catches(storage::Exception) storage::MdUser::set_journal(bool journal);
+%catches(storage::Exception) storage::MdUser::set_spare(bool spare);
 %catches(storage::InvalidMountPointPath) storage::MountPoint::create(Devicegraph *devicegraph, const std::string &path);
 %catches(storage::Exception) storage::MountPoint::get_filesystem();
 %catches(storage::Exception) storage::MountPoint::get_filesystem() const;
