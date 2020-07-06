@@ -53,10 +53,32 @@ namespace storage
 
 	virtual MdUser* clone() const override;
 
+	/**
+	 * Return whether the target device is a spare device.
+	 */
 	bool is_spare() const;
+
+	/**
+	 * Set the target device to be a spare device.
+	 *
+	 * @see is_spare()
+	 *
+	 * @throw Exception
+	 */
 	void set_spare(bool spare);
 
+	/**
+	 * Return whether the target device is a faulty device.
+	 */
 	bool is_faulty() const;
+
+	/**
+	 * Set the target device to be a faulty device.
+	 *
+	 * @see is_faulty()
+	 *
+	 * @throw Exception
+	 */
 	void set_faulty(bool faulty);
 
 	/**
@@ -80,14 +102,14 @@ namespace storage
 	/**
 	 * Return the sort key.
 	 *
-	 * When creating a MD RAID the device list passed to the mdadm
-	 * command is sorted according to the sort-key. For use-cases
-	 * see https://fate.suse.com/313521/.
+	 * When creating a MD RAID the device list passed to the mdadm command is sorted
+	 * according to the sort-key. For use-cases see https://fate.suse.com/313521/.
 	 *
-	 * The RAID devices and spare devices are sorted
-	 * independently. Sorting of devices with the same sort-key is
-	 * undefined. Any value is allowed but 0 should mean
-	 * unknown/unspecified.
+	 * The RAID devices, spare and journal devices are sorted independently. Sorting
+	 * of devices with the same sort-key is undefined. Any value is allowed but 0
+	 * should mean unknown/unspecified.
+	 *
+	 * @see set_sort_key()
 	 */
 	unsigned int get_sort_key() const;
 
