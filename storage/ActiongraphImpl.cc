@@ -482,7 +482,7 @@ namespace storage
 	if (mounts.size() > 1)
 	{
 	    // TODO correct sort
-	    sort(mounts.begin(), mounts.end(), [this, &mounts](vertex_descriptor l, vertex_descriptor r) {
+	    sort(mounts.begin(), mounts.end(), [this](vertex_descriptor l, vertex_descriptor r) {
 		const Action::Mount* ml = dynamic_cast<const Action::Mount*>(graph[l].get());
 		const Action::Mount* mr = dynamic_cast<const Action::Mount*>(graph[r].get());
 		return ml->get_path(*this) <= mr->get_path(*this);

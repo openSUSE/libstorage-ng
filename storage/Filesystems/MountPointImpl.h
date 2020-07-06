@@ -48,8 +48,10 @@ namespace storage
      * Class to identify an entry in /etc/fstab including the corresponding
      * blk device (via the id of FilesystemUser).
      */
-    struct FstabAnchor
+    class FstabAnchor
     {
+    public:
+
 	FstabAnchor() : name(), id(0) {}
 
 	FstabAnchor(const string& name, unsigned int id)

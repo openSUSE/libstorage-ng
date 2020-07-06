@@ -44,9 +44,6 @@ namespace storage
     }
 
 
-    CompoundAction::Formatter::~Formatter() {}
-
-
     string
     CompoundAction::Formatter::string_representation() const
     {
@@ -66,9 +63,9 @@ namespace storage
 
             if (create_action)
             {
-                const Device * device = create_action->get_device(_compound_action->get_actiongraph()->get_impl());
+                const Device* device = create_action->get_device(_compound_action->get_actiongraph()->get_impl());
 
-                if (device &&  device->get_impl().get_classname() == device_classname)
+                if (device && device->get_impl().get_classname() == device_classname)
                     return true;
             }
         }
@@ -89,9 +86,9 @@ namespace storage
 
             if (delete_action)
             {
-                Device * device = delete_action->get_device(_compound_action->get_actiongraph()->get_impl());
+                const Device* device = delete_action->get_device(_compound_action->get_actiongraph()->get_impl());
 
-                if (device &&  device->get_impl().get_classname() == device_classname)
+                if (device && device->get_impl().get_classname() == device_classname)
                     return true;
             }
         }
