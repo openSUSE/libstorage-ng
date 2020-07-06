@@ -33,7 +33,7 @@
 
 namespace storage
 {
-    
+
     using std::vector;
     using std::string;
 
@@ -48,18 +48,17 @@ namespace storage
     public:
 
 	Impl(const Actiongraph* actiongraph);
-	~Impl();
 
-	const Actiongraph* get_actiongraph() const;
+	const Actiongraph* get_actiongraph() const { return actiongraph; }
 
-	void set_target_device(const Device* device);
-	const Device* get_target_device() const;
+	const Device* get_target_device() const { return target_device; }
+	void set_target_device(const Device* target_device) { Impl::target_device = target_device; }
 
-	void set_commit_actions(vector<const Action::Base*> actions);
-	vector<const Action::Base*> get_commit_actions() const; 
+	vector<const Action::Base*> get_commit_actions() const { return commit_actions; }
+	void set_commit_actions(vector<const Action::Base*> commit_actions) { Impl::commit_actions = commit_actions; }
 
 	void add_commit_action(const Action::Base* action);
-    
+
 	vector<string> get_commit_actions_as_strings() const;
 
 	string sentence() const;
@@ -83,16 +82,15 @@ namespace storage
 	static const CompoundAction* find_by_target_device(const Actiongraph* actiongraph, const Device* device);
 
     private:
-	
+
 	const Actiongraph* actiongraph;
 
 	const Device* target_device;
 
 	vector<const Action::Base*> commit_actions;
-    
+
     };
 
 }
 
 #endif
-

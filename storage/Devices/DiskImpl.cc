@@ -24,8 +24,6 @@
 #include <ctype.h>
 
 #include "storage/Devices/DiskImpl.h"
-#include "storage/Devices/MdImpl.h"
-#include "storage/Devices/BcacheImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
 #include "storage/Storage.h"

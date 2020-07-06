@@ -49,44 +49,13 @@ namespace storage
 {
 
     CompoundAction::Impl::Impl(const Actiongraph* actiongraph)
-    : actiongraph(actiongraph), target_device(nullptr), commit_actions(0)
-    {}
-
-
-    CompoundAction::Impl::~Impl() {}
-
-
-    const Actiongraph*
-    CompoundAction::Impl::get_actiongraph() const
+	: actiongraph(actiongraph), target_device(nullptr), commit_actions()
     {
-	return actiongraph;
     }
 
 
-    void CompoundAction::Impl::set_target_device(const Device* device)
-    {
-	this->target_device = device;
-    }
-
-
-    const Device* CompoundAction::Impl::get_target_device() const
-    {
-	return target_device;
-    }
-
-    void CompoundAction::Impl::set_commit_actions(vector<const Action::Base*> actions)
-    {
-	this->commit_actions = actions;
-    }
-
-
-    vector<const Action::Base*> CompoundAction::Impl::get_commit_actions() const
-    {
-	return commit_actions;
-    }
-
-
-    void CompoundAction::Impl::add_commit_action(const Action::Base* action)
+    void
+    CompoundAction::Impl::add_commit_action(const Action::Base* action)
     {
 	commit_actions.push_back(action);
     }
@@ -256,7 +225,6 @@ namespace storage
 	try
 	{
 	    return action->get_device(actiongraph->get_impl(), RHS);
-
 	}
 	catch(const DeviceNotFound& exception)
 	{
@@ -294,4 +262,3 @@ namespace storage
     }
 
 }
-
