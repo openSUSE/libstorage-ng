@@ -182,7 +182,7 @@ namespace storage
     std::ostream&
     operator<<(std::ostream& s, const CmdMultipath& cmd_multipath)
     {
-	for (const pair<string, CmdMultipath::Entry>& entry : cmd_multipath)
+	for (const pair<const string, CmdMultipath::Entry>& entry : cmd_multipath)
 	    s << "data[" << entry.first << "] -> " << entry.second << '\n';
 
 	return s;

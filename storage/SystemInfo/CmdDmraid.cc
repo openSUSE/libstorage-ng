@@ -145,7 +145,7 @@ namespace storage
     std::ostream&
     operator<<(std::ostream& s, const CmdDmraid& cmd_dmraid)
     {
-	for (const pair<string, CmdDmraid::Entry>& entry : cmd_dmraid)
+	for (const pair<const string, CmdDmraid::Entry>& entry : cmd_dmraid)
 	    s << "data[" << entry.first << "] -> " << entry.second << '\n';
 
 	return s;

@@ -55,7 +55,8 @@ namespace storage
 
 	Formatter(const CompoundAction::Impl* compound_action,
 		  const string & device_classname = string() );
-	virtual ~Formatter();
+
+	virtual ~Formatter() {}
 
 	string string_representation() const;
 

@@ -1008,10 +1008,10 @@ namespace storage
 	if (!spares.empty())
 	    cmd_line += " --spare-devices=" + to_string(spares.size());
 
-	for (const pair<unsigned int, string>& value : devices)
+	for (const pair<const unsigned int, string>& value : devices)
 	    cmd_line += " " + quote(value.second);
 
-	for (const pair<unsigned int, string>& value : spares)
+	for (const pair<const unsigned int, string>& value : spares)
 	    cmd_line += " " + quote(value.second);
 
 	if (!journals.empty())

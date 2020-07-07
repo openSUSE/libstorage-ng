@@ -97,7 +97,7 @@ namespace storage
 	    CmdDmsetupTable::const_iterator it2 = cmd_dmsetup_table.find_using(majorminor);
 
 	    if (it2 != cmd_dmsetup_table.end() && it2->second[0].target != "crypt")
-		it2 == cmd_dmsetup_table.end();
+		it2 = cmd_dmsetup_table.end();
 
 	    const CrypttabEntry* crypttab_entry = etc_crypttab.find_by_any_block_device(system_info,
 											"", "", majorminor);

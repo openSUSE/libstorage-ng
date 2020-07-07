@@ -279,7 +279,7 @@ namespace storage
     std::ostream&
     operator<<(std::ostream& s, const ProcMdstat& proc_mdstat)
     {
-	for (const pair<string, ProcMdstat::Entry>& entry : proc_mdstat.data)
+	for (const pair<const string, ProcMdstat::Entry>& entry : proc_mdstat.data)
 	    s << "data[" << entry.first << "] -> " << entry.second << '\n';
 
 	return s;
@@ -484,7 +484,7 @@ namespace storage
 	s << "devices:" << mdadm_examine.devices << " metadata:" << mdadm_examine.metadata
 	  << " uuid:" << mdadm_examine.uuid << '\n';
 
-	for (const pair<string, MdadmExamine::Entry>& entry : mdadm_examine)
+	for (const pair<const string, MdadmExamine::Entry>& entry : mdadm_examine)
 	    s << "data[" << entry.first << "] -> " << entry.second << '\n';
 
 	return s;

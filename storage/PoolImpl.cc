@@ -229,7 +229,7 @@ namespace storage
 
 	vector<Partition*> partitions;
 
-	for (const Candidate candidate : candidates)
+	for (const Candidate& candidate : candidates)
 	{
 	    Region region = candidate.region;
 
