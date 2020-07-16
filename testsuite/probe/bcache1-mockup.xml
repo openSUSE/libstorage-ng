@@ -851,6 +851,10 @@
       <content>1</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:07.0/virtio2/block/vda/queue/dax</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:07.0/virtio2/block/vda/queue/zoned</name>
       <content>none</content>
     </File>
@@ -899,6 +903,10 @@
       <content>1</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:08.0/virtio3/block/vdb/queue/dax</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:08.0/virtio3/block/vdb/queue/zoned</name>
       <content>none</content>
     </File>
@@ -931,6 +939,10 @@
       <content>1</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:0b.0/virtio6/block/vdc/queue/dax</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:0b.0/virtio6/block/vdc/queue/zoned</name>
       <content>none</content>
     </File>
@@ -961,6 +973,10 @@
     <File>
       <name>/sys/devices/pci0000:00/0000:00:0c.0/virtio7/block/vdd/queue/rotational</name>
       <content>1</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:0c.0/virtio7/block/vdd/queue/dax</name>
+      <content>0</content>
     </File>
     <File>
       <name>/sys/devices/pci0000:00/0000:00:0c.0/virtio7/block/vdd/queue/zoned</name>

@@ -75,6 +75,9 @@ namespace storage
 	bool is_rotational() const { return rotational; }
 	void set_rotational(bool rotational) { Impl::rotational = rotational; }
 
+	bool is_dax() const { return dax; }
+	void set_dax(bool dax) { Impl::dax = dax; }
+
 	Transport get_transport() const { return transport; }
 	void set_transport(Transport transport) { Impl::transport = transport; }
 
@@ -105,6 +108,7 @@ namespace storage
     private:
 
 	bool rotational;
+	bool dax = false;
 
 	Transport transport;
 

@@ -131,6 +131,13 @@ namespace storage
     }
 
 
+    bool
+    Disk::is_dax() const
+    {
+	return get_impl().is_dax();
+    }
+
+
     Transport
     Disk::get_transport() const
     {

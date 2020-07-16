@@ -984,6 +984,10 @@
       <content>256</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/queue/dax</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/queue/logical_block_size</name>
       <content>512</content>
     </File>
@@ -1022,6 +1026,10 @@
     <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata3/host2/target2:0:0/2:0:0:0/block/sdc/ext_range</name>
       <content>256</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata3/host2/target2:0:0/2:0:0:0/block/sdc/queue/dax</name>
+      <content>0</content>
     </File>
     <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata3/host2/target2:0:0/2:0:0:0/block/sdc/queue/logical_block_size</name>
@@ -1064,6 +1072,10 @@
       <content>256</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata4/host3/target3:0:0/3:0:0:0/block/sdd/queue/dax</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata4/host3/target3:0:0/3:0:0:0/block/sdd/queue/logical_block_size</name>
       <content>512</content>
     </File>
@@ -1102,6 +1114,10 @@
     <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata5/host4/target4:0:0/4:0:0:0/block/sde/ext_range</name>
       <content>256</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata5/host4/target4:0:0/4:0:0:0/block/sde/queue/dax</name>
+      <content>0</content>
     </File>
     <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata5/host4/target4:0:0/4:0:0:0/block/sde/queue/logical_block_size</name>

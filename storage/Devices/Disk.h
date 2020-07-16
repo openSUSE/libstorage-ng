@@ -113,6 +113,12 @@ namespace storage
 	bool is_rotational() const;
 
 	/**
+	 * Return whether the disk supports Direct Access (DAX). See the kernel
+	 * documentation block/queue-sysfs.rst for more information.
+	 */
+	bool is_dax() const;
+
+	/**
 	 * Get the transport of the disk.
 	 */
 	Transport get_transport() const;
