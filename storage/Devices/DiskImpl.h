@@ -48,12 +48,10 @@ namespace storage
     public:
 
 	Impl(const string& name)
-	    : Partitionable::Impl(name), rotational(false), transport(Transport::UNKNOWN),
-	      zone_model(ZoneModel::NONE) {}
+	    : Partitionable::Impl(name) {}
 
 	Impl(const string& name, const Region& region)
-	    : Partitionable::Impl(name, region), rotational(false), transport(Transport::UNKNOWN),
-	      zone_model(ZoneModel::NONE) {}
+	    : Partitionable::Impl(name, region) {}
 
 	Impl(const xmlNode* node);
 
@@ -107,12 +105,12 @@ namespace storage
 
     private:
 
-	bool rotational;
+	bool rotational = false;
 	bool dax = false;
 
-	Transport transport;
+	Transport transport = Transport::UNKNOWN;
 
-	ZoneModel zone_model;
+	ZoneModel zone_model = ZoneModel::NONE;
 
     };
 

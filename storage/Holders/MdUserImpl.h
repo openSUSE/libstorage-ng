@@ -38,8 +38,7 @@ namespace storage
     {
     public:
 
-	Impl()
-	    : User::Impl(), spare(false), faulty(false), journal(false), sort_key(0) {}
+	Impl() = default;
 
 	Impl(const xmlNode* node);
 
@@ -69,11 +68,11 @@ namespace storage
     private:
 
 	// TODO is an enum instead of three booleans more appropriate?
-	bool spare;
-	bool faulty;
-	bool journal;
+	bool spare = false;
+	bool faulty = false;
+	bool journal = false;
 
-	unsigned int sort_key;
+	unsigned int sort_key = 0;
 
 	void recalculate();
 

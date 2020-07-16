@@ -38,8 +38,7 @@ namespace storage
     {
     public:
 
-	Impl()
-	    : Holder::Impl() {}
+	Impl() = default;
 
 	Impl(const xmlNode* node);
 

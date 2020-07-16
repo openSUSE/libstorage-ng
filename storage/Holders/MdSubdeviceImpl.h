@@ -38,8 +38,7 @@ namespace storage
     {
     public:
 
-	Impl()
-	    : Subdevice::Impl(), member() {}
+	Impl() = default;
 
 	Impl(const xmlNode* node);
 

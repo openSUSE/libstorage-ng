@@ -157,7 +157,7 @@ namespace storage
     protected:
 
 	Impl()
-	    : Device::Impl(), read_only(false) {}
+	    : Device::Impl() {}
 
 	Impl(const xmlNode* node);
 
@@ -168,7 +168,7 @@ namespace storage
 	/**
 	 * TODO document and use
 	 */
-	bool read_only;
+	bool read_only = false;
 
     };
 

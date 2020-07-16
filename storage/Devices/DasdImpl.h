@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -101,10 +101,10 @@ namespace storage
 
 	string bus_id;
 
-	bool rotational;
+	bool rotational = false;
 
-	DasdType type;
-	DasdFormat format;
+	DasdType type = DasdType::UNKNOWN;
+	DasdFormat format = DasdFormat::NONE;
 
     };
 

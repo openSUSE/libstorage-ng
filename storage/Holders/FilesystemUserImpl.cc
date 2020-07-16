@@ -32,7 +32,7 @@ namespace storage
 
 
     FilesystemUser::Impl::Impl(const xmlNode* node)
-	: User::Impl(node), journal(false), id(0)
+	: User::Impl(node)
     {
 	getChildValue(node, "journal", journal);
 

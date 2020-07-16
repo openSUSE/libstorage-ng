@@ -33,7 +33,7 @@ namespace storage
 
 
     MdUser::Impl::Impl(const xmlNode* node)
-	: User::Impl(node), spare(false), faulty(false), journal(false), sort_key(0)
+	: User::Impl(node)
     {
 	getChildValue(node, "spare", spare);
 	getChildValue(node, "faulty", faulty);

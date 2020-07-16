@@ -54,7 +54,7 @@ namespace storage
 
 
     PartitionTable::Impl::Impl(const xmlNode* node)
-	: Device::Impl(node), read_only(false)
+	: Device::Impl(node)
     {
 	getChildValue(node, "read-only", read_only);
     }

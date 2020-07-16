@@ -43,7 +43,7 @@ namespace storage
     {
     public:
 
-	Text() : native(), translated() {}
+	Text() = default;
 	Text(const char* native, const char* translated) : native(native), translated(translated) {}
 	Text(const string& native, const string& translated) : native(native), translated(translated) {}
 

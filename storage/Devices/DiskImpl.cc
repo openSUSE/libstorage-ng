@@ -62,8 +62,7 @@ namespace storage
 
 
     Disk::Impl::Impl(const xmlNode* node)
-	: Partitionable::Impl(node), rotational(false), transport(Transport::UNKNOWN),
-	  zone_model(ZoneModel::NONE)
+	: Partitionable::Impl(node)
     {
 	string tmp;
 
