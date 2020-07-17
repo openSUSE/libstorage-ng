@@ -1062,6 +1062,10 @@
       <content>1</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:06.0/usb1/1-2/1-2:1.0/host3/target3:0:0/3:0:0:0/block/sdb/queue/dax</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:06.0/usb1/1-2/1-2:1.0/host3/target3:0:0/3:0:0:0/block/sdb/queue/zoned</name>
       <content>none</content>
     </File>
@@ -1124,6 +1128,10 @@
     <File>
       <name>/sys/devices/pci0000:00/0000:00:0d.0/ata1/host0/target0:0:0/0:0:0:0/block/sda/queue/rotational</name>
       <content>1</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:0d.0/ata1/host0/target0:0:0/0:0:0:0/block/sda/queue/dax</name>
+      <content>0</content>
     </File>
     <File>
       <name>/sys/devices/pci0000:00/0000:00:0d.0/ata1/host0/target0:0:0/0:0:0:0/block/sda/queue/zoned</name>

@@ -59,22 +59,19 @@ namespace storage
 
 
     Dasd::Impl::Impl(const string& name)
-	: Partitionable::Impl(name, 4), bus_id(), rotational(false), type(DasdType::UNKNOWN),
-	  format(DasdFormat::NONE)
+	: Partitionable::Impl(name, 4)
     {
     }
 
 
     Dasd::Impl::Impl(const string& name, const Region& region)
-	: Partitionable::Impl(name, region, 4), bus_id(), rotational(false),
-	  type(DasdType::UNKNOWN), format(DasdFormat::NONE)
+	: Partitionable::Impl(name, region, 4)
     {
     }
 
 
     Dasd::Impl::Impl(const xmlNode* node)
-	: Partitionable::Impl(node), bus_id(), rotational(false), type(DasdType::UNKNOWN),
-	  format(DasdFormat::NONE)
+	: Partitionable::Impl(node)
     {
 	string tmp;
 

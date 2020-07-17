@@ -38,8 +38,7 @@ namespace storage
     {
     public:
 
-	Impl()
-	    : User::Impl(), journal(false), id(0) {}
+	Impl() = default;
 
 	Impl(const xmlNode* node);
 
@@ -62,13 +61,13 @@ namespace storage
 
     private:
 
-	bool journal;
+	bool journal = false;
 
 	/**
 	 * An id for the block device as seen from the filesystem. So
 	 * far only used for btrfs where it is the btrfs devid.
 	 */
-	unsigned int id;
+	unsigned int id = 0;
 
     };
 

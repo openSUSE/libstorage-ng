@@ -177,17 +177,17 @@ namespace storage
 	// regex to match name of the form /dev/md_<name>
 	static const regex format2_name_regex;
 
-	MdLevel md_level;
+	MdLevel md_level = MdLevel::UNKNOWN;
 
-	MdParity md_parity;
+	MdParity md_parity = MdParity::DEFAULT;
 
-	unsigned long chunk_size;
+	unsigned long chunk_size = 0;
 
 	string uuid;
 
 	string metadata;
 
-	bool in_etc_mdadm;
+	bool in_etc_mdadm = true;
 
     };
 

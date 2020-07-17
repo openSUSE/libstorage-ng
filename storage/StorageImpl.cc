@@ -303,9 +303,19 @@ namespace storage
     }
 
 
+    void
+    Storage::Impl::verify_devicegraph_name(const string& name) const
+    {
+	if (name.empty())
+	    ST_THROW(Exception(sformat("invalid devicegraph name '%s'", name)));
+    }
+
+
     Devicegraph*
     Storage::Impl::create_devicegraph(const string& name)
     {
+	verify_devicegraph_name(name);
+
 	pair<map<string, Devicegraph>::iterator, bool> tmp =
 	    devicegraphs.emplace(piecewise_construct, forward_as_tuple(name),
 				 forward_as_tuple(&storage));
@@ -464,9 +474,19 @@ namespace storage
     }
 
 
+    void
+    Storage::Impl::verify_pool_name(const string& name) const
+    {
+	if (name.empty())
+	    ST_THROW(Exception(sformat("invalid pool name '%s'", name)));
+    }
+
+
     Pool*
     Storage::Impl::create_pool(const std::string& name)
     {
+	verify_pool_name(name);
+
 	pair<map<string, Pool>::iterator, bool> tmp =
 	    pools.emplace(piecewise_construct, forward_as_tuple(name),
 			  forward_as_tuple());

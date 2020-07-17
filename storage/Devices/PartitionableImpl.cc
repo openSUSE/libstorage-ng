@@ -56,7 +56,7 @@ namespace storage
 
 
     Partitionable::Impl::Impl(const xmlNode* node)
-	: BlkDevice::Impl(node), range(0)
+	: BlkDevice::Impl(node)
     {
 	getChildValue(node, "range", range);
     }

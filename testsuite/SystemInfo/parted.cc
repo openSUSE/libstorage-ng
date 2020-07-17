@@ -244,10 +244,10 @@ BOOST_AUTO_TEST_CASE(parse_gpt_of_windows)
 
     vector<string> output = {
 	"device:/dev/vda label:GPT region:[0, 104857600, 512 B]",
-	"number:1 region:[2048, 921600, 512 B] type:primary id:0x12",
-	"number:2 region:[923648, 202752, 512 B] type:primary id:0xEF",
-	"number:3 region:[1126400, 32768, 512 B] type:primary id:0x103",
-	"number:4 region:[1159168, 103696384, 512 B] type:primary id:0x102"
+	"number:1 region:[2048, 921600, 512 B] type:primary id:0x12 name:Basic data partition",
+	"number:2 region:[923648, 202752, 512 B] type:primary id:0xEF name:EFI system partition",
+	"number:3 region:[1126400, 32768, 512 B] type:primary id:0x103 name:Microsoft reserved partition",
+	"number:4 region:[1159168, 103696384, 512 B] type:primary id:0x102 name:Basic data partition"
     };
 
     check("/dev/vda", input, output);
@@ -318,21 +318,21 @@ BOOST_AUTO_TEST_CASE(parse_jetson_nano)
 
     vector<string> output = {
 	"device:/dev/mmcblk1 label:GPT region:[0, 31116288, 512 B] primary-slots:15",
-	"number:1 region:[40, 29360128, 512 B] type:primary id:0x83",
-	"number:2 region:[29360168, 256, 512 B] type:primary id:0x102",
-	"number:3 region:[29360424, 896, 512 B] type:primary id:0x102",
-	"number:4 region:[29361320, 1152, 512 B] type:primary id:0x102",
-	"number:5 region:[29362472, 128, 512 B] type:primary id:0x102",
-	"number:6 region:[29362600, 384, 512 B] type:primary id:0x102",
-	"number:7 region:[29362984, 768, 512 B] type:primary id:0x102",
-	"number:8 region:[29363752, 128, 512 B] type:primary id:0x102",
-	"number:9 region:[29363880, 896, 512 B] type:primary id:0x102",
-	"number:10 region:[29364776, 896, 512 B] type:primary id:0x102",
-	"number:11 region:[29365672, 1536, 512 B] type:primary id:0x102",
-	"number:12 region:[29367208, 128, 512 B] type:primary id:0x102",
-	"number:13 region:[29367336, 160, 512 B] type:primary id:0x102",
-	"number:14 region:[29367496, 256, 512 B] type:primary id:0x102",
-	"number:15 region:[29367752, 262144, 512 B] type:primary id:0xEF"
+	"number:1 region:[40, 29360128, 512 B] type:primary id:0x83 name:APP",
+	"number:2 region:[29360168, 256, 512 B] type:primary id:0x102 name:TBC",
+	"number:3 region:[29360424, 896, 512 B] type:primary id:0x102 name:RP1",
+	"number:4 region:[29361320, 1152, 512 B] type:primary id:0x102 name:EBT",
+	"number:5 region:[29362472, 128, 512 B] type:primary id:0x102 name:WB0",
+	"number:6 region:[29362600, 384, 512 B] type:primary id:0x102 name:BPF",
+	"number:7 region:[29362984, 768, 512 B] type:primary id:0x102 name:BPF-DTB",
+	"number:8 region:[29363752, 128, 512 B] type:primary id:0x102 name:FX",
+	"number:9 region:[29363880, 896, 512 B] type:primary id:0x102 name:TOS",
+	"number:10 region:[29364776, 896, 512 B] type:primary id:0x102 name:DTB",
+	"number:11 region:[29365672, 1536, 512 B] type:primary id:0x102 name:LNX",
+	"number:12 region:[29367208, 128, 512 B] type:primary id:0x102 name:EKS",
+	"number:13 region:[29367336, 160, 512 B] type:primary id:0x102 name:BMP",
+	"number:14 region:[29367496, 256, 512 B] type:primary id:0x102 name:RP4",
+	"number:15 region:[29367752, 262144, 512 B] type:primary id:0xEF name:EFI"
     };
 
     check("/dev/mmcblk1", input, output);

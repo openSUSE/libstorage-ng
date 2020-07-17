@@ -56,7 +56,7 @@ namespace storage
 	struct Entry
 	{
 	    Entry() : number(0), type(PartitionType::PRIMARY), id(0), boot(false),
-		      legacy_boot(false) {}
+		      legacy_boot(false), name() {}
 
 	    unsigned int number; // Partition number (1..n)
 	    Region region;	// Partition region in sectors
@@ -64,6 +64,7 @@ namespace storage
 	    unsigned int id;	// Numeric partition ID (Linux: 0x83 etc.)
 	    bool boot;		// Boot flag of the partition (only MSDOS)
 	    bool legacy_boot;	// Legacy boot flag of the partition (only GPT)
+	    string name;	// Partition name (only GPT)
 	};
 
 	friend std::ostream& operator<<(std::ostream& s, const Parted& parted);

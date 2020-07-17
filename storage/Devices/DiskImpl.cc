@@ -62,12 +62,12 @@ namespace storage
 
 
     Disk::Impl::Impl(const xmlNode* node)
-	: Partitionable::Impl(node), rotational(false), transport(Transport::UNKNOWN),
-	  zone_model(ZoneModel::NONE)
+	: Partitionable::Impl(node)
     {
 	string tmp;
 
 	getChildValue(node, "rotational", rotational);
+	getChildValue(node, "dax", dax);
 
 	if (getChildValue(node, "transport", tmp))
 	    transport = toValueWithFallback(tmp, Transport::UNKNOWN);
@@ -170,6 +170,9 @@ namespace storage
 	const File& rotational_file = get_sysfs_file(system_info, "queue/rotational");
 	rotational = rotational_file.get<bool>();
 
+	const File& dax_file = get_sysfs_file(system_info, "queue/dax");
+	dax = dax_file.get<bool>();
+
 	Lsscsi::Entry entry;
 	if (system_info.getLsscsi().getEntry(get_name(), entry))
 	    transport = entry.transport;
@@ -215,6 +218,7 @@ namespace storage
 	Partitionable::Impl::save(node);
 
 	setChildValueIf(node, "rotational", rotational, rotational);
+	setChildValueIf(node, "dax", dax, dax);
 
 	setChildValueIf(node, "transport", toString(transport), transport != Transport::UNKNOWN);
 
@@ -254,7 +258,7 @@ namespace storage
 	if (!Partitionable::Impl::equal(rhs))
 	    return false;
 
-	return rotational == rhs.rotational && transport == rhs.transport &&
+	return rotational == rhs.rotational && dax == rhs.dax && transport == rhs.transport &&
 	    zone_model == rhs.zone_model;
     }
 
@@ -267,6 +271,7 @@ namespace storage
 	Partitionable::Impl::log_diff(log, rhs);
 
 	storage::log_diff(log, "rotational", rotational, rhs.rotational);
+	storage::log_diff(log, "dax", dax, rhs.dax);
 
 	storage::log_diff_enum(log, "transport", transport, rhs.transport);
 
@@ -281,6 +286,9 @@ namespace storage
 
 	if (rotational)
 	    out << " rotational";
+
+	if (dax)
+	    out << " dax";
 
 	out << " transport:" << toString(get_transport());
 

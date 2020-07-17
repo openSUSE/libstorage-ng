@@ -541,6 +541,10 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/vbd-51712/block/xvda/queue/dax</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/vbd-51712/block/xvda/queue/zoned</name>
       <content>none</content>
     </File>
@@ -586,6 +590,10 @@
     </File>
     <File>
       <name>/sys/devices/vbd-51728/block/xvdb/queue/rotational</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/vbd-51728/block/xvdb/queue/dax</name>
       <content>0</content>
     </File>
     <File>

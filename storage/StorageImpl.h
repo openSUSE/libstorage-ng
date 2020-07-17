@@ -141,6 +141,9 @@ namespace storage
 
     private:
 
+	void verify_devicegraph_name(const string& name) const;
+	void verify_pool_name(const string& name) const;
+
 	static const sid_t initial_global_sid = 42;	// just a random number ;)
 
 	static sid_t global_sid;

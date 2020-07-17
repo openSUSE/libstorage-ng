@@ -98,7 +98,7 @@ namespace storage
 	string vendor;
 	string model;
 
-	bool rotational;
+	bool rotational = false;
 
     };
 

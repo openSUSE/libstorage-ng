@@ -48,7 +48,7 @@ namespace storage
 
 
     Multipath::Impl::Impl(const string& name)
-	: Partitionable::Impl(name), vendor(), model(), rotational(false)
+	: Partitionable::Impl(name)
     {
 	if (!is_valid_name(name))
 	    ST_THROW(Exception("invalid Multipath name"));
@@ -58,7 +58,7 @@ namespace storage
 
 
     Multipath::Impl::Impl(const string& name, const Region& region)
-	: Partitionable::Impl(name, region), vendor(), model(), rotational(false)
+	: Partitionable::Impl(name, region)
     {
 	if (!is_valid_name(name))
 	    ST_THROW(Exception("invalid Multipath name"));
@@ -68,7 +68,7 @@ namespace storage
 
 
     Multipath::Impl::Impl(const xmlNode* node)
-	: Partitionable::Impl(node), vendor(), model(), rotational(false)
+	: Partitionable::Impl(node)
     {
 	getChildValue(node, "vendor", vendor);
 	getChildValue(node, "model", model);

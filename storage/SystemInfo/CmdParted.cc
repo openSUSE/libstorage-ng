@@ -192,6 +192,8 @@ namespace storage
 
 	entry.region = Region(start_sector, size_sector, region.get_block_size());
 
+	entry.name = tmp[5];
+
 	scan_entry_flags(tmp[6], entry);
 
 	entries.push_back(entry);
@@ -406,6 +408,9 @@ namespace storage
 
 	if (entry.legacy_boot)
 	    s << " legacy-boot";
+
+	if (!entry.name.empty())
+	    s << " name:" << entry.name;
 
 	return s;
     }

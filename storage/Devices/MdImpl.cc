@@ -93,8 +93,7 @@ namespace storage
 
 
     Md::Impl::Impl(const string& name)
-	: Partitionable::Impl(name), md_level(MdLevel::UNKNOWN), md_parity(MdParity::DEFAULT),
-	  chunk_size(0), uuid(), metadata(), in_etc_mdadm(true)
+	: Partitionable::Impl(name)
     {
 	if (!is_valid_name(name))
 	    ST_THROW(Exception("invalid Md name"));
@@ -109,8 +108,7 @@ namespace storage
 
 
     Md::Impl::Impl(const xmlNode* node)
-	: Partitionable::Impl(node), md_level(MdLevel::UNKNOWN), md_parity(MdParity::DEFAULT),
-	  chunk_size(0), uuid(), metadata(), in_etc_mdadm(true)
+	: Partitionable::Impl(node)
     {
 	string tmp;
 
