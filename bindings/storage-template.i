@@ -103,3 +103,9 @@
 %template(VectorSimpleEtcFstabEntry) std::vector<SimpleEtcFstabEntry>;
 %template(VectorSimpleEtcCrypttabEntry) std::vector<SimpleEtcCrypttabEntry>;
 
+%template(VectorConstDevicegraphPtr) std::vector<const Devicegraph*>;
+%template(MapStringConstDevicegraphPtr) std::map<std::string, const Devicegraph*>;
+
+%template(VectorConstPoolPtr) std::vector<const Pool*>;
+%template(MapStringConstPoolPtr) std::map<std::string, const Pool*>;
+

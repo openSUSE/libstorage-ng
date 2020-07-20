@@ -103,6 +103,12 @@ namespace storage
 	void remove_device(const Device* device);
 
 	/**
+	 * Get the number of devices of the pool available in the devicegraph. It is no
+	 * error if devices are not available in the devicegraph.
+	 */
+	size_t size(const Devicegraph* devicegraph) const;
+
+	/**
 	 * Get the devices of the pool available in the devicegraph. It is no error if
 	 * devices are not available in the devicegraph.
 	 */

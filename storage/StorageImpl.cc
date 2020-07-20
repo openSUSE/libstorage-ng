@@ -237,7 +237,7 @@ namespace storage
 	if (name == "probed")
 	    ST_THROW(Exception(sformat("invalid devicegraph name '%s'", name)));
 
-	map<string, Devicegraph>::iterator it = devicegraphs.find(name);
+	devicegraphs_t::iterator it = devicegraphs.find(name);
 	if (it == devicegraphs.end())
 	    ST_THROW(Exception(sformat("devicegraph '%s' not found", name)));
 
@@ -248,7 +248,7 @@ namespace storage
     const Devicegraph*
     Storage::Impl::get_devicegraph(const string& name) const
     {
-	map<string, Devicegraph>::const_iterator it = devicegraphs.find(name);
+	devicegraphs_t::const_iterator it = devicegraphs.find(name);
 	if (it == devicegraphs.end())
 	    ST_THROW(Exception(sformat("devicegraph '%s' not found", name)));
 
@@ -296,8 +296,20 @@ namespace storage
     {
 	vector<string> ret;
 
-	for (const map<string, Devicegraph>::value_type& it : devicegraphs)
-	    ret.push_back(it.first);
+	for (const devicegraphs_t::value_type& tmp : devicegraphs)
+	    ret.push_back(tmp.first);
+
+	return ret;
+    }
+
+
+    map<string, const Devicegraph*>
+    Storage::Impl::get_devicegraphs() const
+    {
+	map<string, const Devicegraph*> ret;
+
+	for (const devicegraphs_t::value_type& tmp : devicegraphs)
+	    ret[tmp.first] = &tmp.second;
 
 	return ret;
     }
@@ -316,13 +328,13 @@ namespace storage
     {
 	verify_devicegraph_name(name);
 
-	pair<map<string, Devicegraph>::iterator, bool> tmp =
+	pair<devicegraphs_t::iterator, bool> tmp =
 	    devicegraphs.emplace(piecewise_construct, forward_as_tuple(name),
 				 forward_as_tuple(&storage));
 	if (!tmp.second)
 	    ST_THROW(Exception(sformat("devicegraph '%s' already exists", name)));
 
-	map<string, Devicegraph>::iterator it = tmp.first;
+	devicegraphs_t::iterator it = tmp.first;
 
 	return &it->second;
     }
@@ -352,11 +364,11 @@ namespace storage
     void
     Storage::Impl::restore_devicegraph(const string& name)
     {
-	map<string, Devicegraph>::iterator it1 = devicegraphs.find(name);
+	devicegraphs_t::iterator it1 = devicegraphs.find(name);
 	if (it1 == devicegraphs.end())
 	    ST_THROW(Exception(sformat("devicegraph '%s' not found", name)));
 
-	map<string, Devicegraph>::iterator it2 = devicegraphs.find("staging");
+	devicegraphs_t::iterator it2 = devicegraphs.find("staging");
 	if (it2 == devicegraphs.end())
 	    ST_THROW(Exception(sformat("devicegraph '%s' not found", name)));
 
@@ -389,7 +401,7 @@ namespace storage
 
 	map<sid_t, set<string>> all_sids_with_types;
 
-	for (const map<string, Devicegraph>::value_type& key_value : devicegraphs)
+	for (const devicegraphs_t::value_type& key_value : devicegraphs)
 	{
 	    const Devicegraph& devicegraph = key_value.second;
 
@@ -459,13 +471,24 @@ namespace storage
     {
 	ST_CHECK_PTR(devicegraph);
 
-	// TODO more types, e.g. dasd, multipath, pmem, nvme?
+	// TODO more types, e.g. dasd, multipath, nvme?
 	// TODO check partition table?
 	// TODO do not add already existing devices
 
 	for (const Disk* disk : Disk::get_all(devicegraph))
 	{
-	    string name = disk->is_rotational() ? "HDDs" : "SSDs";
+	    // Ignore disks with size zero - maybe some card reader.
+	    if (disk->get_size() == 0)
+		continue;
+
+	    string name;
+	    if (disk->is_pmem())
+		name = "PMEMs";
+	    else if (!disk->is_rotational())
+		name = "SSDs";
+	    else
+		name = "HDDs";
+
 	    name += " (" + byte_to_humanstring(disk->get_region().get_block_size(), false, 2, true) + ")";
 
 	    Pool* pool = exists_pool(name) ? get_pool(name) : create_pool(name);
@@ -487,13 +510,13 @@ namespace storage
     {
 	verify_pool_name(name);
 
-	pair<map<string, Pool>::iterator, bool> tmp =
+	pair<pools_t::iterator, bool> tmp =
 	    pools.emplace(piecewise_construct, forward_as_tuple(name),
 			  forward_as_tuple());
 	if (!tmp.second)
 	    ST_THROW(Exception(sformat("pool '%s' already exists", name)));
 
-	map<string, Pool>::iterator it = tmp.first;
+	pools_t::iterator it = tmp.first;
 
 	return &it->second;
     }
@@ -519,8 +542,20 @@ namespace storage
     {
 	vector<string> ret;
 
-	for (const map<string, Pool>::value_type& it : pools)
-	    ret.push_back(it.first);
+	for (const pools_t::value_type& tmp : pools)
+	    ret.push_back(tmp.first);
+
+	return ret;
+    }
+
+
+    map<string, const Pool*>
+    Storage::Impl::get_pools() const
+    {
+	map<string, const Pool*> ret;
+
+	for (const pools_t::value_type& tmp : pools)
+	    ret[tmp.first] = &tmp.second;
 
 	return ret;
     }
@@ -529,7 +564,7 @@ namespace storage
     Pool*
     Storage::Impl::get_pool(const string& name)
     {
-	map<string, Pool>::iterator it = pools.find(name);
+	pools_t::iterator it = pools.find(name);
 	if (it == pools.end())
 	    ST_THROW(Exception(sformat("pool '%s' not found", name)));
 
@@ -540,7 +575,7 @@ namespace storage
     const Pool*
     Storage::Impl::get_pool(const string& name) const
     {
-	map<string, Pool>::const_iterator it = pools.find(name);
+	pools_t::const_iterator it = pools.find(name);
 	if (it == pools.end())
 	    ST_THROW(Exception(sformat("pool '%s' not found", name)));
 

@@ -76,7 +76,9 @@ namespace storage
 	bool equal_devicegraph(const string& lhs, const string& rhs) const;
 
 	bool exist_devicegraph(const string& name) const;
+
 	vector<string> get_devicegraph_names() const;
+	map<string, const Devicegraph*> get_devicegraphs() const;
 
 	Devicegraph* get_devicegraph(const string& name);
 	const Devicegraph* get_devicegraph(const string& name) const;
@@ -118,6 +120,7 @@ namespace storage
 	bool exists_pool(const string& name) const;
 
 	vector<string> get_pool_names() const;
+	map<string, const Pool*> get_pools() const;
 
 	Pool* get_pool(const string& name);
 	const Pool* get_pool(const string& name) const;
@@ -158,9 +161,11 @@ namespace storage
 
 	Lock lock;
 
-	map<string, Devicegraph> devicegraphs;
+	using devicegraphs_t = map<string, Devicegraph>;
+	devicegraphs_t devicegraphs;
 
-	map<string, Pool> pools;
+	using pools_t = map<string, Pool>;
+	pools_t pools;
 
 	MountByType default_mount_by;
 

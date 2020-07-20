@@ -310,7 +310,15 @@ namespace storage
 	/**
 	 * Get the names of all devicegraphs.
 	 */
-	std::vector<std::string> get_devicegraph_names() const;
+	std::vector<std::string> get_devicegraph_names() const ST_DEPRECATED;
+
+	/**
+	 * Get all devicegraphs with their names.
+	 *
+	 * Note: There is no non-const version since that would provide non-const access
+	 * to the probed devicegraph.
+	 */
+	std::map<std::string, const Devicegraph*> get_devicegraphs() const;
 
 	/**
 	 * Return a devicegraph by name.
@@ -495,7 +503,12 @@ namespace storage
 	/**
 	 * Get the names of all pools.
 	 */
-	std::vector<std::string> get_pool_names() const;
+	std::vector<std::string> get_pool_names() const ST_DEPRECATED;
+
+	/**
+	 * Get all pools with their names.
+	 */
+	std::map<std::string, const Pool*> get_pools() const;
 
 	/**
 	 * Return a pool by name.
