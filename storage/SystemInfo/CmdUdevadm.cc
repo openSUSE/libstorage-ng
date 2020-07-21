@@ -94,7 +94,7 @@ namespace storage
 	    if (boost::starts_with(line, "E: DEVTYPE="))
 		device_type = toValueWithFallback(line.substr(strlen("E: DEVTYPE=")), DeviceType::UNKNOWN);
 
-	    for (Link link : links)
+	    for (const Link& link : links)
 		if (boost::starts_with(line, link.name))
 		    link.variable.push_back(line.substr(strlen(link.name)));
 	}
@@ -107,7 +107,7 @@ namespace storage
 
 	majorminor = makedev(major, minor);
 
-	for (Link link : links)
+	for (const Link& link : links)
 	    sort(link.variable.begin(), link.variable.end());
 
 	y2mil(*this);
