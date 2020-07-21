@@ -42,8 +42,7 @@ namespace storage
 
 
     CmdUdevadmInfo::CmdUdevadmInfo(const string& file)
-	: file(file), path(), name(), majorminor(0), device_type(DeviceType::UNKNOWN),
-	  by_path_links(), by_id_links(), by_part_label_links(), by_part_uuid_links()
+	: file(file)
     {
 	// Without emptying the udev queue 'udevadm info' can display old data
 	// or even complain about unknown devices. Even during probing this
