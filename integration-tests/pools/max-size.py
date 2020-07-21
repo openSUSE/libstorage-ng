@@ -17,7 +17,7 @@ storage.generate_pools(probed)
 
 pool = storage.get_pool("HDDs (512 B)")
 
-for n in range(1, len(pool.get_devices(probed)) + 1):
+for n in range(1, pool.size(probed) + 1):
 
     try:
         max_size = pool.max_partition_size(probed, n)

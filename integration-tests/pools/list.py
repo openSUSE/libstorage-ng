@@ -15,9 +15,8 @@ probed = storage.get_probed()
 
 storage.generate_pools(probed)
 
-for name in storage.get_pool_names():
+for name, pool in storage.get_pools().items():
     print(name)
 
-    pool = storage.get_pool(name)
     for device in pool.get_devices(probed):
         print("    " + device.get_displayname())

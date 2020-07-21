@@ -145,6 +145,13 @@ namespace storage
     }
 
 
+    map<string, const Devicegraph*>
+    Storage::get_devicegraphs() const
+    {
+	return get_impl().get_devicegraphs();
+    }
+
+
     Devicegraph*
     Storage::create_devicegraph(const string& name)
     {
@@ -304,6 +311,13 @@ namespace storage
     Storage::get_pool_names() const
     {
 	return get_impl().get_pool_names();
+    }
+
+
+    map<string, const Pool*>
+    Storage::get_pools() const
+    {
+	return get_impl().get_pools();
     }
 
 

@@ -46,6 +46,13 @@ namespace storage
     }
 
 
+    size_t
+    Pool::size(const Devicegraph* devicegraph) const
+    {
+	return get_impl().size(devicegraph);
+    }
+
+
     void
     Pool::add_device(const Device* device)
     {

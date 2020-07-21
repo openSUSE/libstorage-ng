@@ -46,6 +46,8 @@ namespace storage
        	void add_device(const Device* device);
 	void remove_device(const Device* device);
 
+	size_t size(const Devicegraph* devicegraph) const;
+
 	vector<Device*> get_devices(Devicegraph* devicegraph) const;
 	vector<const Device*> get_devices(const Devicegraph* devicegraph) const;
 

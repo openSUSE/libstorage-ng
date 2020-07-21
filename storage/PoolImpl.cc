@@ -57,6 +57,17 @@ namespace storage
     }
 
 
+    size_t
+    Pool::Impl::size(const Devicegraph* devicegraph) const
+    {
+	ST_CHECK_PTR(devicegraph);
+
+	return count_if(devices.begin(), devices.end(), [devicegraph](sid_t sid)
+	    { return devicegraph->device_exists(sid); }
+	);
+    }
+
+
     vector<Device*>
     Pool::Impl::get_devices(Devicegraph* devicegraph) const
     {
