@@ -73,9 +73,9 @@ namespace storage
 	string path;
 	string name;
 
-	dev_t majorminor;
+	dev_t majorminor = 0;
 
-	DeviceType device_type;
+	DeviceType device_type = DeviceType::UNKNOWN;
 
 	vector<string> by_path_links;
 	vector<string> by_id_links;

@@ -42,7 +42,7 @@ namespace storage
     {
     protected:
 
-	virtual ~CmdLvm() {}
+	virtual ~CmdLvm() = default;
 
 	void parse(const vector<string>& lines, const char* tag);
 	virtual void parse(json_object* object) = 0;
@@ -58,16 +58,14 @@ namespace storage
 
 	struct Pv
 	{
-	    Pv() : pv_name(), pv_uuid(), vg_name(), vg_uuid(), pe_start(0), missing(false), duplicate(false) {}
-
 	    string pv_name;
 	    string pv_uuid;
 	    string vg_name;
 	    string vg_uuid;
-	    unsigned long long pe_start;
+	    unsigned long long pe_start = 0;
 
-	    bool missing;
-	    bool duplicate;
+	    bool missing = false;
+	    bool duplicate = false;
 	};
 
 	friend std::ostream& operator<<(std::ostream& s, const CmdPvs& cmd_pvs);
@@ -101,29 +99,22 @@ namespace storage
 
 	struct Segment
 	{
-	    Segment() : stripes(0), stripe_size(0), chunk_size(0) {}
-
-	    unsigned long stripes;
-	    unsigned long long stripe_size;
-	    unsigned long long chunk_size;
+	    unsigned long stripes = 0;
+	    unsigned long long stripe_size = 0;
+	    unsigned long long chunk_size = 0;
 	};
 
 	struct Lv
 	{
-	    Lv() : lv_name(), lv_uuid(), vg_name(), vg_uuid(), lv_type(LvType::UNKNOWN),
-		   role(Role::PRIVATE), active(false), size(0), origin_size(0), pool_name(),
-		   pool_uuid(), origin_name(), origin_uuid(), data_name(), data_uuid(),
-		   metadata_name(), metadata_uuid() {}
-
 	    string lv_name;
 	    string lv_uuid;
 	    string vg_name;
 	    string vg_uuid;
-	    LvType lv_type;
-	    Role role;
-	    bool active;
-	    unsigned long long size;
-	    unsigned long long origin_size;
+	    LvType lv_type = LvType::UNKNOWN;
+	    Role role = Role::PRIVATE;
+	    bool active = false;
+	    unsigned long long size = 0;
+	    unsigned long long origin_size = 0;
 	    string pool_name;
 	    string pool_uuid;
 	    string origin_name;
@@ -165,13 +156,11 @@ namespace storage
 
 	struct Vg
 	{
-	    Vg() : vg_name(), vg_uuid(), extent_size(0), extent_count(0), free_extent_count(0) {}
-
 	    string vg_name;
 	    string vg_uuid;
-	    unsigned long extent_size;
-	    unsigned long extent_count;
-	    unsigned long free_extent_count;
+	    unsigned long extent_size = 0;
+	    unsigned long extent_count = 0;
+	    unsigned long free_extent_count = 0;
 	};
 
 	friend std::ostream& operator<<(std::ostream& s, const CmdVgs& cmd_vgs);

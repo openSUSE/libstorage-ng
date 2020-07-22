@@ -46,9 +46,7 @@ namespace storage
 
 	struct Entry
 	{
-	    Entry() : transport(Transport::UNKNOWN) {}
-
-	    Transport transport;
+	    Transport transport = Transport::UNKNOWN;
 	};
 
 	friend std::ostream& operator<<(std::ostream& s, const Lsscsi& lsscsi);

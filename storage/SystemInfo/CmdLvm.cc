@@ -211,10 +211,10 @@ namespace storage
 	    case 't': lv.lv_type = LvType::THIN_POOL; break;
 	    case 'V': lv.lv_type = LvType::THIN; break;
 	    case 'r': lv.lv_type = LvType::RAID; break;
-	    case 'o': lv.lv_type = LvType::NORMAL; break;
 	    case 's': lv.lv_type = LvType::SNAPSHOT; break;
 	    case 'm': lv.lv_type = LvType::MIRROR; break;
 
+	    case 'o':
 	    case 'C':
 	    {
 		string segtype;
@@ -228,6 +228,12 @@ namespace storage
 		    lv.lv_type = LvType::CACHE;
 		else if (segtype == "writecache")
 		    lv.lv_type = LvType::WRITECACHE;
+		else if (segtype == "mirror")
+		    lv.lv_type = LvType::MIRROR;
+		else if (boost::starts_with(segtype, "raid"))
+		    lv.lv_type = LvType::RAID;
+		else if (segtype == "linear" || segtype == "striped")
+		    lv.lv_type = LvType::NORMAL;
 	    }
 	    break;
 	}
