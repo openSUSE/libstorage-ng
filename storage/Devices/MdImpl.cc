@@ -785,6 +785,50 @@ namespace storage
     }
 
 
+    bool
+    Md::Impl::supports_spare_devices() const
+    {
+	switch (md_level)
+	{
+	    case MdLevel::RAID0:
+		return false;
+
+	    case MdLevel::RAID1:
+	    case MdLevel::RAID4:
+	    case MdLevel::RAID5:
+	    case MdLevel::RAID6:
+	    case MdLevel::RAID10:
+		return true;
+
+	    default:
+		return false;
+	}
+    }
+
+
+    bool
+    Md::Impl::supports_journal_device() const
+    {
+	switch (md_level)
+	{
+	    case MdLevel::RAID0:
+	    case MdLevel::RAID1:
+		return false;
+
+	    case MdLevel::RAID4:
+	    case MdLevel::RAID5:
+	    case MdLevel::RAID6:
+		return true;
+
+	    case MdLevel::RAID10:
+		return false;
+
+	    default:
+		return false;
+	}
+    }
+
+
     unsigned int
     Md::Impl::number_of_devices() const
     {

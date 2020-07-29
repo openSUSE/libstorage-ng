@@ -102,6 +102,8 @@ namespace storage
 	void set_metadata(const string& metadata) { Impl::metadata = metadata; }
 
 	unsigned int minimal_number_of_devices() const;
+	bool supports_spare_devices() const;
+	bool supports_journal_device() const;
 
 	unsigned int number_of_devices() const;
 

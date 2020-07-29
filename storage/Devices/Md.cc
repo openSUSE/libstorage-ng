@@ -234,6 +234,20 @@ namespace storage
 
 
     bool
+    Md::supports_spare_devices() const
+    {
+	return get_impl().supports_spare_devices();
+    }
+
+
+    bool
+    Md::supports_journal_device() const
+    {
+	return get_impl().supports_journal_device();
+    }
+
+
+    bool
     Md::is_in_etc_mdadm() const
     {
 	return get_impl().is_in_etc_mdadm();
