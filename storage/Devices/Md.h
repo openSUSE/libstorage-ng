@@ -195,11 +195,23 @@ namespace storage
 	void set_metadata(const std::string& metadata);
 
 	/**
-	 * Return the minimal number of devices required by the RAID. For
-	 * RAIDs of level CONTAINER it returns 0 (those RAIDs cannot be
-	 * created or modified anyway).
+	 * Return the minimal number of devices required by the RAID (without spare and
+	 * journal devices). For RAIDs of level CONTAINER it returns 0 (those RAIDs cannot
+	 * be created or modified anyway).
 	 */
 	unsigned int minimal_number_of_devices() const;
+
+	/**
+	 * Return whether the RAID supports spare devices. This is the case for RAID1,
+	 * RAID4, RAID5, RAID6 and RAID10.
+	 */
+	bool supports_spare_devices() const;
+
+	/**
+	 * Return whether the RAID supports a journal device. This is the case for RAID4,
+	 * RAID5 and RAID6.
+	 */
+	bool supports_journal_device() const;
 
 	/**
 	 * Query whether the MD RAID is present (probed devicegraph) or will
