@@ -83,6 +83,9 @@ Creating Changes And Package And Submitting To OBS
 Creating the changes file and tar archive are handled by jenkins
 using [linuxrc-devtools](https://github.com/openSUSE/linuxrc-devtools).
 
+Additional files needed for OBS building are placed in the `obs`
+subdirectory.
+
 You can generate a preview of the changes file by running
 
 ```sh
