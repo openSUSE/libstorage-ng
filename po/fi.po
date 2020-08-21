@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: libstorage.fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-09 12:29+0100\n"
-"PO-Revision-Date: 2020-08-21 20:30+0000\n"
+"PO-Revision-Date: 2020-09-09 18:51+0000\n"
 "Last-Translator: Tommi Nieminen <software@legisign.org>\n"
 "Language-Team: Finnish <https://l10n.opensuse.org/projects/libstorage/"
 "ng-master/fi/>\n"
@@ -1197,9 +1197,9 @@ msgstr "Luo multipath-osio %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating encryption layer device on %1$s"
-msgstr "Passivoidaan salaus laitteelta %1$s"
+msgstr "Passivoidaan salaustasoa laitteelta %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1212,9 +1212,9 @@ msgstr "Passivoidaan looginen taltio %1$s (%2$s) taltioryhmästä %3$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by multipath name (e.g. /dev/mapper/36005076305ffc73a00000000000013b4),
 #. %2$s is replaced by size (e.g. 1.00 TiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating multipath %1$s (%2$s)"
-msgstr "Luo multipath-osio %1$s (%2$s)"
+msgstr "Passivoidaan multipathia %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
