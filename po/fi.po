@@ -13,7 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-09 12:29+0100\n"
 "PO-Revision-Date: 2020-08-21 20:30+0000\n"
-"Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
+"Last-Translator: Tommi Nieminen <software@legisign.org>\n"
 "Language-Team: Finnish <https://l10n.opensuse.org/projects/libstorage/"
 "ng-master/fi/>\n"
 "Language: fi\n"
@@ -1009,15 +1009,15 @@ msgstr "Luodaan kiintolevy %1$s (%2$s)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
 #. %2$s is replaced by size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating implicit partition %1$s (%2$s)"
-msgstr "Luodaan looginen osio %1$s (%2$s)"
+msgstr "Luodaan implisittinen osio %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/dasda)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating implicit partition table on %1$s"
-msgstr "Luodaan DASD-osiotaulukko laitteelle %1$s"
+msgstr "Luodaan implisiititnen osiotaulukko laitteelle %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1074,9 +1074,9 @@ msgstr "Luodaan looginen taltio %1$s (%2$s) taltioryhmään %3$s"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Luodaan looginen taltio %1$s (%2$s) taltioryhmään %3$s"
+msgstr "Luodaan ohuen poolin looginen taltio %1$s (%2$s) taltioryhmään %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -1089,7 +1089,7 @@ msgstr "Luodaan taltioryhmä %1$s (%2$s) laitteesta %3$s"
 
 #. TRANSLATORS: name of object
 msgid "DASD"
-msgstr ""
+msgstr "DASD"
 
 #. TRANSLATORS: name of object
 msgid "DASD Partition Table"
@@ -1097,7 +1097,7 @@ msgstr "DASD-osiotaulu"
 
 #. TRANSLATORS: name of object
 msgid "DM RAID"
-msgstr ""
+msgstr "DM RAID"
 
 #. TRANSLATORS: name of partition type
 #, fuzzy
@@ -1153,9 +1153,9 @@ msgstr "Passivoidaan looginen taltio %1$s (%2$s) taltioryhmästä %3$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by multipath name (e.g. /dev/mapper/36005076305ffc73a00000000000013b4),
 #. %2$s is replaced by size (e.g. 1.00 TiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate multipath %1$s (%2$s)"
-msgstr "Luo multipath-osio %1$s (%2$s)"
+msgstr "Passivoi multipath %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1319,15 +1319,15 @@ msgstr "Poista tiedostojärjestelmä btrfs %1$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
 #. %2$s is replaced by size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete implicit partition %1$s (%2$s)"
-msgstr "Poista osio %1$s (%2$s)"
+msgstr "Poista implisiittinen osio %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/dasda)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete implicit partition table on %1$s"
-msgstr "Poista DASD-osiotaulukko laitteelta %1$s"
+msgstr "Poista implisiittinen osiotaulukko laitteelta %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
