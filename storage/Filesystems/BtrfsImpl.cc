@@ -86,8 +86,7 @@ namespace storage
 
     Btrfs::Impl::~Impl()
     {
-        if (snapper_config)
-            delete snapper_config;
+	delete snapper_config;
     }
 
 
