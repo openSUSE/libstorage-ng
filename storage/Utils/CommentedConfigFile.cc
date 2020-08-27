@@ -89,8 +89,7 @@ void CommentedConfigFile::remove( int index )
 {
     Entry * entry = take( index );
 
-    if ( entry )
-        delete entry;
+    delete entry;
 }
 
 
