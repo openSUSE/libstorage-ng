@@ -17,7 +17,7 @@ all: $(MOFILES)
 $(PACKAGE).pot: $(SRCFILES)
 	$(XGETTEXT) --sort-output --add-comments=TRANSLATORS: --no-location \
 	    --keyword=_ --keyword=_:1,2 --foreign-user \
-	    --copyright-holder="SUSE Linux GmbH, Nuernberg" \
+	    --copyright-holder="SUSE LLC" \
 	    --default-domain=$(PACKAGE) --output=$(PACKAGE).pot $(SRCFILES)
 
 %.mo: %.po
