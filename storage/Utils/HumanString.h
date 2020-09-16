@@ -123,7 +123,7 @@ namespace storage
      *
      * @param str size string
      * @param classic use classic locale instead of global C++ locale
-     * @return true on successful conversion
+     * @return bytes
      *
      * The conversion is always case-insensitive. With classic set to
      * false the conversion is also sloppy concerning omission of 'B'.
