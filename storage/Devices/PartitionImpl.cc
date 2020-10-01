@@ -61,15 +61,13 @@ namespace storage
 
 
     Partition::Impl::Impl(const string& name, const Region& region, PartitionType type)
-	: BlkDevice::Impl(name, region), type(type), id(default_id_for_type(type)), boot(false),
-	  legacy_boot(false), label(), uuid()
+	: BlkDevice::Impl(name, region), type(type), id(default_id_for_type(type))
     {
     }
 
 
     Partition::Impl::Impl(const xmlNode* node)
-	: BlkDevice::Impl(node), type(PartitionType::PRIMARY), id(ID_LINUX), boot(false),
-	  legacy_boot(false), label(), uuid()
+	: BlkDevice::Impl(node), type(PartitionType::PRIMARY), id(ID_LINUX)
     {
 	string tmp;
 
@@ -419,10 +417,10 @@ namespace storage
 	    << " id:" << id;
 
 	if (boot)
-	    out << " boot:" << boot;
+	    out << " boot";
 
 	if (legacy_boot)
-	    out << " legacy-boot:" << legacy_boot;
+	    out << " legacy-boot";
 
 	if (!label.empty())
 	    out << " label:" << label;
@@ -503,7 +501,7 @@ namespace storage
 	const PartitionTable* partition_table = get_partition_table();
 
 	if (!partition_table->get_impl().is_partition_legacy_boot_flag_supported())
-	    ST_THROW(Exception(sformat("set_boot not supported on %s",
+	    ST_THROW(Exception(sformat("set_legacy_boot not supported on %s",
 				       toString(partition_table->get_type()))));
 
 	Impl::legacy_boot = legacy_boot;

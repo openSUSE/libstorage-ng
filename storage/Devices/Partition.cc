@@ -154,9 +154,9 @@ namespace storage
 
 
     void
-    Partition::set_legacy_boot(bool boot)
+    Partition::set_legacy_boot(bool legacy_boot)
     {
-	get_impl().set_legacy_boot(boot);
+	get_impl().set_legacy_boot(legacy_boot);
     }
 
 

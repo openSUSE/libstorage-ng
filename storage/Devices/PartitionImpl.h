@@ -154,8 +154,8 @@ namespace storage
 
 	PartitionType type;
 	unsigned int id;
-	bool boot;
-	bool legacy_boot;
+	bool boot = false;
+	bool legacy_boot = false;
 	string label;
 	string uuid;
 
