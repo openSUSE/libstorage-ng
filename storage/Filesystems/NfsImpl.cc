@@ -131,7 +131,7 @@ namespace storage
 		entries[Nfs::Impl::split_name(device)].first.emplace_back(fstab_entry);
 	}
 
-	vector<const FstabEntry*> mount_entries = prober.get_system_info().getProcMounts().get_all_nfs();
+	vector<const FstabEntry*> mount_entries = system_info.getProcMounts().get_all_nfs();
 	for (const FstabEntry* mount_entry : mount_entries)
 	{
 	    string device = mount_entry->get_device();
@@ -156,7 +156,7 @@ namespace storage
 
 		if (nfs->get_mount_point()->is_active())
 		{
-		    const CmdDf& cmd_df = prober.get_system_info().getCmdDf(nfs->get_mount_point()->get_path());
+		    const CmdDf& cmd_df = system_info.getCmdDf(nfs->get_mount_point()->get_path());
 		    nfs->set_space_info(cmd_df.get_space_info());
 		}
 	    }

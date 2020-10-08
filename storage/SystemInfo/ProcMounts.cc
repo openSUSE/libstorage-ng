@@ -42,6 +42,8 @@ namespace storage
 
 	parse_proc_mounts_lines(mounts.get_lines());
 	parse_proc_swaps_lines(swaps.get_lines());
+
+	y2mil(*this);
     }
 
 
@@ -108,8 +110,6 @@ namespace storage
             FstabEntry * entry = new FstabEntry(dev, "swap", FsType::SWAP);
 	    data.insert(make_pair(dev, entry));
 	}
-
-	y2mil(*this);
     }
 
 
