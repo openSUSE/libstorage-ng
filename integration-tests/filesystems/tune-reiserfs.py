@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# requirements: partition /dev/sdb1 with reiserfs
+# requirements: partition /dev/sdc1 with reiserfs
 
 
 from storage import *
@@ -18,9 +18,9 @@ staging = storage.get_staging()
 
 print(staging)
 
-sdb1 = BlkDevice.find_by_name(staging, "/dev/sdb1")
+sdc1 = BlkDevice.find_by_name(staging, "/dev/sdc1")
 
-reiserfs = sdb1.get_blk_filesystem()
+reiserfs = sdc1.get_blk_filesystem()
 
 reiserfs.set_tune_options("-m 20")
 

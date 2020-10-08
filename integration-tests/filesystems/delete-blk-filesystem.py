@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
-# requirements: disk /dev/sdd with msdos partition table and partition
-# /dev/sdd1 and some filesystem on /dev/sdd1
+# requirements: disk /dev/sdc with msdos partition table and partition
+# /dev/sdc1 and some filesystem on /dev/sdc1
 
 
 from storage import *
@@ -19,9 +19,9 @@ staging = storage.get_staging()
 
 print(staging)
 
-sdd1 = Partition.find_by_name(staging, "/dev/sdd1")
+sdc1 = Partition.find_by_name(staging, "/dev/sdc1")
 
-sdd1.remove_descendants()
+sdc1.remove_descendants()
 
 print(staging)
 
