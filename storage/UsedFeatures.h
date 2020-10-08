@@ -25,6 +25,7 @@
 
 
 #include <stdint.h>
+#include <string>
 
 
 namespace storage
@@ -67,6 +68,12 @@ namespace storage
 	UF_QUOTA = 1 << 21,
 	UF_SNAPSHOTS = 1 << 22
     };
+
+
+    /**
+     * Return a string with the names of the used features. Not for production code.
+     */
+    std::string get_used_features_names(uint64_t used_features);
 
 }
 

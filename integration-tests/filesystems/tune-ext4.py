@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# requirements: partition /dev/sdb1 with ext4
+# requirements: partition /dev/sdc1 with ext4
 
 
 from storage import *
@@ -18,9 +18,9 @@ staging = storage.get_staging()
 
 print(staging)
 
-sdb1 = BlkDevice.find_by_name(staging, "/dev/sdb1")
+sdc1 = BlkDevice.find_by_name(staging, "/dev/sdc1")
 
-ext4 = sdb1.get_blk_filesystem()
+ext4 = sdc1.get_blk_filesystem()
 
 ext4.set_tune_options("-c 20")
 

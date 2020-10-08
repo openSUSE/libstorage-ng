@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# requirements: disk /dev/sdb with msdos partition table and partition /dev/sdb1
+# requirements: disk /dev/sdc with msdos partition table and partition /dev/sdc1
 
 
 from storage import *
@@ -18,7 +18,7 @@ staging = storage.get_staging()
 
 print(staging)
 
-partition = Partition.find_by_name(staging, "/dev/sdb1")
+partition = Partition.find_by_name(staging, "/dev/sdc1")
 partition.set_id(ID_LINUX)
 
 btrfs = partition.create_blk_filesystem(FsType_BTRFS)

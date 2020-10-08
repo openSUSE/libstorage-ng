@@ -83,7 +83,8 @@ namespace storage
 	static std::vector<const Nfs*> get_all(const Devicegraph* devicegraph);
 
 	/**
-	 * Find a Nfs by its server and path.
+	 * Find a Nfs by its server and path. If there are several Nfses with the server
+	 * and path it is undefined which is found.
 	 *
 	 * @throw DeviceNotFound, DeviceHasWrongType
 	 */
