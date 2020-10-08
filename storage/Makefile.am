@@ -30,7 +30,7 @@ libstorage_ng_la_SOURCES =						\
 	SimpleEtcFstab.h		SimpleEtcFstab.cc		\
 	SimpleEtcCrypttab.h		SimpleEtcCrypttab.cc		\
 	FreeInfo.h			FreeInfo.cc			\
-	UsedFeatures.h							\
+	UsedFeatures.h			UsedFeatures.cc			\
 	View.h								\
 	Version.h							\
 	CompoundAction.h		CompoundAction.cc		\

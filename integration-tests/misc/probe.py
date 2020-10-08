@@ -62,10 +62,6 @@ probed = storage.get_probed()
 
 print(probed)
 
-used_features = probed.used_features()
-for i in range(64):
-    if used_features & 1 << i:
-        print(i, '', end='')
-print()
+print(get_used_features_names(probed.used_features()))
 
 probed.save("devicegraph.xml")
