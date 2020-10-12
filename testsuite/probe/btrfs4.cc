@@ -41,5 +41,5 @@ BOOST_AUTO_TEST_CASE(probe)
     TsCmpDevicegraph cmp(*probed, *staging);
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
 
-    BOOST_CHECK_BITWISE_EQUAL(probed->used_features(), (uint64_t)(UF_BTRFS));
+    BOOST_CHECK_EQUAL(get_used_features_names(probed->used_features()), "btrfs");
 }

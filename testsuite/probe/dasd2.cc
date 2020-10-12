@@ -36,5 +36,5 @@ BOOST_AUTO_TEST_CASE(probe)
     TsCmpDevicegraph cmp(*probed, *staging);
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
 
-    BOOST_CHECK_BITWISE_EQUAL(probed->used_features(), UF_EXT2 | UF_EXT4 | UF_SWAP | UF_DASD);
+    BOOST_CHECK_EQUAL(get_used_features_names(probed->used_features()), "dasd ext2 ext4 swap");
 }

@@ -37,7 +37,7 @@ namespace storage
     get_used_features_names(uint64_t used_features)
     {
 	static const vector<string> names = { "ext2", "ext3", "ext4", "btrfs", "xfs",
-					      "reiserfs", "swap", "ntrfs", "vfat", "nfs",
+					      "reiserfs", "swap", "ntfs", "vfat", "nfs",
 					      "jfs", "luks", "lvm", "md-raid", "dm-raid",
 					      "multipath", "bcache", "iscsi", "fcoe", "fc",
 					      "dasd", "quota", "snapshot", "f2fs", "exfat",
