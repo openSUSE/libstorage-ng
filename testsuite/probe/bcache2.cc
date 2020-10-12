@@ -37,5 +37,5 @@ BOOST_AUTO_TEST_CASE(probe)
     TsCmpDevicegraph cmp(*probed, *staging);
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
 
-    BOOST_CHECK_BITWISE_EQUAL(probed->used_features(), UF_SWAP | UF_NFS | UF_EXT3 | UF_EXT4 | UF_BCACHE);
+    BOOST_CHECK_EQUAL(get_used_features_names(probed->used_features()), "bcache ext3 ext4 nfs swap");
 }

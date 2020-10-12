@@ -37,5 +37,5 @@ BOOST_AUTO_TEST_CASE(multi_mount_point1)
     TsCmpDevicegraph cmp(*probed, *staging);
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
 
-    BOOST_CHECK_BITWISE_EQUAL(probed->used_features(), UF_EXT4 | UF_SWAP);
+    BOOST_CHECK_EQUAL(get_used_features_names(probed->used_features()), "ext4 swap");
 }

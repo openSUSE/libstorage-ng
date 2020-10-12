@@ -36,5 +36,5 @@ BOOST_AUTO_TEST_CASE(probe)
     TsCmpDevicegraph cmp(*probed, *staging);
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
 
-    BOOST_CHECK_BITWISE_EQUAL(probed->used_features(), UF_MDRAID | UF_LVM | UF_XFS);
+    BOOST_CHECK_EQUAL(get_used_features_names(probed->used_features()), "lvm md-raid xfs");
 }
