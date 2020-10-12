@@ -150,7 +150,6 @@ namespace storage
 
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
-
 	virtual void print(std::ostream& out) const override;
 
 	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;

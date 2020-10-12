@@ -175,7 +175,6 @@ namespace storage
 
 	virtual bool equal(const Device::Impl& rhs) const override = 0;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override = 0;
-
 	virtual void print(std::ostream& out) const override = 0;
 
 	virtual void process_udev_paths(vector<string>& udev_paths) const { udev_paths.clear(); }

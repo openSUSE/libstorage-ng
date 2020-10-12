@@ -70,7 +70,6 @@ namespace storage
 
 	virtual bool equal(const Device::Impl& rhs) const override = 0;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override = 0;
-
 	virtual void print(std::ostream& out) const override = 0;
 
 	virtual ResizeInfo detect_resize_info(const BlkDevice* blk_device = nullptr) const override;
