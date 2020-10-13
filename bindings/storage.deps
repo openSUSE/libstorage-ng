@@ -59,6 +59,7 @@ DEPENDENCIES =							\
 	${top_srcdir}/storage/Filesystems/MountPoint.h		\
 	${top_srcdir}/storage/Filesystems/Mountable.h		\
 	${top_srcdir}/storage/Filesystems/Nfs.h 		\
+	${top_srcdir}/storage/Filesystems/Tmpfs.h 		\
 	${top_srcdir}/storage/Filesystems/Ntfs.h		\
 	${top_srcdir}/storage/Filesystems/Reiserfs.h		\
 	${top_srcdir}/storage/Filesystems/Swap.h		\

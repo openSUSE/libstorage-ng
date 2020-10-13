@@ -87,6 +87,9 @@
 %template(VectorNfsPtr) std::vector<Nfs*>;
 %template(VectorConstNfsPtr) std::vector<const Nfs*>;
 
+%template(VectorTmpfsPtr) std::vector<Tmpfs*>;
+%template(VectorConstTmpfsPtr) std::vector<const Tmpfs*>;
+
 %template(VectorMountPointPtr) std::vector<MountPoint*>;
 %template(VectorConstMountPointPtr) std::vector<const MountPoint*>;
 
