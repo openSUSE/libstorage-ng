@@ -62,6 +62,7 @@
 #include "storage/Filesystems/Udf.h"
 #include "storage/Filesystems/Bitlocker.h"
 #include "storage/Filesystems/Nfs.h"
+#include "storage/Filesystems/Tmpfs.h"
 #include "storage/Filesystems/MountPoint.h"
 #include "storage/Holders/User.h"
 #include "storage/Holders/MdUser.h"
@@ -113,6 +114,7 @@ namespace storage
 	{ "Udf", &Udf::load },
 	{ "Bitlocker", &Bitlocker::load },
 	{ "Nfs", &Nfs::load },
+	{ "Tmpfs", &Tmpfs::load },
 	{ "MountPoint", &MountPoint::load }
     };
 

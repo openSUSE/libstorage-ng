@@ -125,7 +125,7 @@ namespace storage
 	for (int i = 0; i < etc_fstab.get_entry_count(); ++i)
 	{
 	    const FstabEntry* fstab_entry = etc_fstab.get_entry(i);
-	    string device = fstab_entry->get_device();
+	    string device = fstab_entry->get_spec();
 
 	    if (is_valid_name(device))
 		entries[Nfs::Impl::split_name(device)].first.emplace_back(fstab_entry);
@@ -134,7 +134,7 @@ namespace storage
 	vector<const FstabEntry*> mount_entries = system_info.getProcMounts().get_all_nfs();
 	for (const FstabEntry* mount_entry : mount_entries)
 	{
-	    string device = mount_entry->get_device();
+	    string device = mount_entry->get_spec();
 
 	    if (is_valid_name(device))
 		entries[Nfs::Impl::split_name(device)].second.emplace_back(mount_entry);
@@ -294,7 +294,7 @@ namespace storage
 
 	for (const FstabEntry* mount_entry : proc_mounts.get_all_nfs())
 	{
-	    string spec = canonical_path(mount_entry->get_device());
+	    string spec = canonical_path(mount_entry->get_spec());
 	    pair<string, string> tmp = split_name(spec);
 
 	    if (tmp.first == server && tmp.second == path)

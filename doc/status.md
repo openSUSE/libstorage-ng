@@ -135,7 +135,7 @@ Filesystem
 Implemented:
 
 * For btrfs, ext2, ext3, ext4, ReiserFS, NTFS, VFat, ExFat, XFS, JFS,
-  swap, F2FS, ISO9660, UDF and NFS the most important operations
+  swap, F2FS, ISO9660, UDF, NFS and tmpfs the most important operations
   (probing, creating, deleting, resizing, mounting and unmounting).
 * Handling of /etc/fstab.
 * Handling different mount-by options.
@@ -143,7 +143,6 @@ Implemented:
 
 Missing:
 
-* tmpfs
 * On demand unmounting.
 
 

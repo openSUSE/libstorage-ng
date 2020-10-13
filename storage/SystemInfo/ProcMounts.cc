@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -73,19 +73,19 @@ namespace storage
         {
             FstabEntry * entry = dynamic_cast<FstabEntry *>( fstab.take(0) );
 
-            if ( entry )
-            {
-                const string & device = entry->get_device();
+	    if (entry)
+	    {
+		const string& spec = entry->get_spec();
 		FsType fs_type = entry->get_fs_type();
 
-		if (boost::starts_with(device, "/dev/") && device != "/dev/root")
+		if (boost::starts_with(spec, "/dev/") && spec != "/dev/root")
 		{
-		    data.insert( make_pair( device, entry ) );
+		    data.emplace(spec, entry);
 		}
 		else if (fs_type == FsType::NFS || fs_type == FsType::NFS4 ||
 			 fs_type == FsType::TMPFS)
 		{
-		    data.insert( make_pair( device, entry ) );
+		    data.emplace(spec, entry);
 		}
 		else
 		{
@@ -100,15 +100,16 @@ namespace storage
     void
     ProcMounts::parse_proc_swaps_lines(const vector<string>& lines)
     {
-	for (size_t i=1; i < lines.size(); ++i)
+	for (size_t i = 1; i < lines.size(); ++i)
 	{
-	    string dev = EtcFstab::fstab_decode(extractNthWord(0, lines[i]));
-	    string::size_type pos = dev.find(" (deleted)");
-	    if (pos != string::npos)
-		dev.erase(pos);
+	    string spec = EtcFstab::fstab_decode(extractNthWord(0, lines[i]));
 
-            FstabEntry * entry = new FstabEntry(dev, "swap", FsType::SWAP);
-	    data.insert(make_pair(dev, entry));
+	    string::size_type pos = spec.find(" (deleted)");
+	    if (pos != string::npos)
+		spec.erase(pos);
+
+	    FstabEntry* entry = new FstabEntry(spec, "swap", FsType::SWAP);
+	    data.emplace(spec, entry);
 	}
     }
 
@@ -162,6 +163,23 @@ namespace storage
             {
 		ret.push_back(value.second);
             }
+	}
+
+	return ret;
+    }
+
+
+    vector<const FstabEntry*>
+    ProcMounts::get_all_tmpfs() const
+    {
+	vector<const FstabEntry*> ret;
+
+	for (const value_type& value : data)
+	{
+	    if (value.second->get_fs_type() == FsType::TMPFS)
+	    {
+		ret.push_back(value.second);
+	    }
 	}
 
 	return ret;

@@ -86,6 +86,7 @@
 %catches(storage::NullPointerException) storage::is_stray_blk_device(const Device *device);
 %catches(storage::NullPointerException) storage::is_subdevice(const Holder *holder);
 %catches(storage::NullPointerException) storage::is_swap(const Device *device);
+%catches(storage::NullPointerException) storage::is_tmpfs(const Device *device);
 %catches(storage::NullPointerException) storage::is_udf(const Device *device);
 %catches(storage::NullPointerException) storage::is_user(const Holder *holder);
 %catches(storage::NullPointerException) storage::is_vfat(const Device *device);
@@ -189,6 +190,8 @@
 %catches(storage::HolderHasWrongType, storage::NullPointerException) storage::to_subdevice(const Holder *holder);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_swap(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_swap(const Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_tmpfs(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_tmpfs(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_udf(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_udf(const Device *device);
 %catches(storage::HolderHasWrongType, storage::NullPointerException) storage::to_user(Holder *holder);

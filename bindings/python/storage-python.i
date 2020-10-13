@@ -1,5 +1,5 @@
 //
-// Python SWIG interface definition for libstorage
+// Python SWIG interface definition for libstorage-ng
 //
 
 %{

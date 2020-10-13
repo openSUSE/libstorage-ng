@@ -700,6 +700,10 @@ namespace storage
             for (const FstabEntry* fstab_entry : etc_fstab.find_all_by_any_name(system_info,
 										blk_device->get_name()))
             {
+		// For tmpfs, proc the spec can be anything (including a valid block device).
+		if (fstab_entry->get_fs_type() == FsType::TMPFS)
+		    continue;
+
 		const FilesystemUser* filesystem_user =
 		    to_filesystem_user(get_devicegraph()->find_holder(blk_device->get_sid(), get_sid()));
 
@@ -722,6 +726,10 @@ namespace storage
         {
 	    for (const FstabEntry* fstab_entry : proc_mounts.get_by_name(blk_device->get_name(), system_info))
 	    {
+		// See find_etc_fstab_entries_unfiltered().
+		if (fstab_entry->get_fs_type() == FsType::TMPFS)
+		    continue;
+
 		ret.emplace_back(fstab_entry);
 	    }
 	}

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2019] SUSE LLC
+ * Copyright (c) [2017-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -52,21 +52,27 @@ namespace storage
     {
     public:
 
-	FstabAnchor() : name(), id(0) {}
+	FstabAnchor() = default;
 
-	FstabAnchor(const string& name, unsigned int id)
-	    : name(name), id(id) {}
+	FstabAnchor(const string& spec, unsigned int id, const string& mount_point)
+	    : spec(spec), id(id), mount_point(mount_point) {}
 
 	/**
-	 * The name as found in /etc/fstab.
+	 * The spec as found in /etc/fstab.
 	 */
-	string name;
+	string spec;
 
 	/**
 	 * The id of the corresponding blk filesystem. So far only used for btrfs and
 	 * not for mount by UUID or LABEL.
 	 */
-	unsigned int id;
+	unsigned int id = 0;
+
+	/**
+	 * The path of the fstab entry.
+	 */
+	string mount_point;
+
     };
 
 

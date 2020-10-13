@@ -32,6 +32,7 @@
 #include "storage/Devices/DeviceImpl.h"
 #include "storage/Devices/Disk.h"
 #include "storage/Filesystems/Nfs.h"
+#include "storage/Filesystems/Tmpfs.h"
 #include "storage/Filesystems/MountPoint.h"
 #include "storage/Holders/Holder.h"
 #include "storage/StorageImpl.h"
@@ -846,6 +847,8 @@ namespace storage
 		    out << disk->get_sid() << "; ";
 		for (const Nfs* nfs : devicegraph.get_devices_of_type<Nfs>())
 		    out << nfs->get_sid() << "; ";
+		for (const Tmpfs* tmpfs : devicegraph.get_devices_of_type<Tmpfs>())
+		    out << tmpfs->get_sid() << "; ";
 		out << "}\n";
 
 		out << "{ rank=sink; ";

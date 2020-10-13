@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2017-2019] SUSE LLC
+ * Copyright (c) [2017-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -185,21 +185,14 @@ namespace storage
     }
 
 
-
-
     FstabEntry::FstabEntry()
-	: fs_type(FsType::UNKNOWN), dump_pass(0), fsck_pass(0)
+	: fs_type(FsType::UNKNOWN)
     {
     }
 
 
-    FstabEntry::FstabEntry( const string & device,
-			    const string & mount_point,
-			    FsType	   fs_type ):
-	device( device ),
-	fs_type( fs_type ),
-	dump_pass( 0 ),
-	fsck_pass( 0 )
+    FstabEntry::FstabEntry(const string& spec, const string& mount_point, FsType fs_type)
+	: spec(spec), fs_type(fs_type)
     {
         set_mount_point(mount_point);
     }
@@ -207,28 +200,29 @@ namespace storage
 
     FstabEntry::~FstabEntry()
     {
-
     }
+
 
     void FstabEntry::set_mount_point( const string & new_val )
     {
-        _mount_point = MountPoint::normalize_path(new_val);
+        mount_point = MountPoint::normalize_path(new_val);
     }
+
 
     bool FstabEntry::validate()
     {
         bool ok = true;
 
-        if ( device.empty() )
+        if (spec.empty())
         {
             ok = false;
-            y2err( "No device specified for entry " << get_mount_point() );
+            y2err("No spec specified for entry " << get_mount_point());
         }
 
-        if ( get_mount_point().empty() )
+        if (get_mount_point().empty())
         {
             ok = false;
-            y2err( "No mount point specified for entry " << device );
+            y2err("No mount point specified for entry " << spec);
         }
 
         return ok;
@@ -240,7 +234,7 @@ namespace storage
 	set_column_count( FSTAB_COLUMN_COUNT );
 
 	int col = 0;
-	set_column( col++, EtcFstab::fstab_encode( device      ) );
+	set_column( col++, EtcFstab::fstab_encode( spec ) );
 	set_column( col++, EtcFstab::fstab_encode( get_mount_point() ) );
 
         if ( fs_type != FsType::UNKNOWN )
@@ -251,7 +245,7 @@ namespace storage
                 col++; // just leave the old content
             else
             {
-                y2err( "File system type unknown for " << device << " at " << get_mount_point() );
+                y2err( "File system type unknown for " << spec << " at " << get_mount_point() );
                 set_column( col++, "unknown" );
             }
         }
@@ -282,7 +276,7 @@ namespace storage
 	}
 
 	int col = 0;
-	device	    = EtcFstab::fstab_decode( get_column( col++ ) );
+	spec = EtcFstab::fstab_decode( get_column( col++ ) );
 	set_mount_point( EtcFstab::fstab_decode( get_column( col++ ) ) );
 
 	bool ok = toValue( get_column( col++ ), fs_type );
@@ -308,7 +302,7 @@ namespace storage
     MountByType
     FstabEntry::get_mount_by() const
     {
-	return EtcFstab::get_mount_by(device);
+	return EtcFstab::get_mount_by(spec);
     }
 
 
@@ -319,7 +313,7 @@ namespace storage
 	// Set reasonable field widths for /etc/fstab
 
 	int col = 0;
-	set_max_column_width( col++, 45 ); // device; just enough for UUID=...
+	set_max_column_width( col++, 45 ); // spec; just enough for UUID=...
 	set_max_column_width( col++, 25 ); // mount point
 	set_max_column_width( col++, 10 ); // fs type
 	set_max_column_width( col++, 30 ); // mount options
@@ -336,33 +330,18 @@ namespace storage
 
     EtcFstab::~EtcFstab()
     {
-
-    }
-
-
-    FstabEntry * EtcFstab::find_device( const string & device  ) const
-    {
-	for ( int i=0; i < get_entry_count(); ++i )
-	{
-	    FstabEntry * entry = get_entry( i );
-
-	    if ( entry && entry->get_device() == device )
-		return entry;
-	}
-
-	return 0;
     }
 
 
     vector<FstabEntry*>
-    EtcFstab::find_all_devices(const string& device)
+    EtcFstab::find_all_by_spec_and_mount_point(const string& spec, const string& mount_point)
     {
 	vector<FstabEntry*> ret;
 
 	for (int i = 0; i < get_entry_count(); ++i)
 	{
 	    FstabEntry* entry = get_entry(i);
-	    if (device == entry->get_device())
+	    if (spec == entry->get_spec() && mount_point == entry->get_mount_point())
 		ret.push_back(entry);
 	}
 
@@ -379,7 +358,7 @@ namespace storage
 	{
 	    const FstabEntry* entry = get_entry(i);
 
-	    string blk_device = entry->get_device();
+	    string blk_device = entry->get_spec();
 
 	    if (!uuid.empty())
 	    {
@@ -411,7 +390,7 @@ namespace storage
 	{
 	    const FstabEntry* entry = get_entry(i);
 
-	    string blk_device = entry->get_device();
+	    string blk_device = entry->get_spec();
 
 	    if (boost::starts_with(blk_device, DEV_DIR "/"))
 	    {
@@ -452,24 +431,25 @@ namespace storage
     }
 
 
-    MountByType EtcFstab::get_mount_by( const string & device )
+    MountByType
+    EtcFstab::get_mount_by(const string& spec)
     {
-	if ( boost::starts_with( device, "UUID=" ) ||
-	     boost::starts_with( device, DEV_DISK_BY_UUID_DIR "/" ) )
+	if (boost::starts_with(spec, "UUID=") ||
+	    boost::starts_with(spec, DEV_DISK_BY_UUID_DIR "/"))
 	{
 	    return MountByType::UUID;
 	}
 
-	if ( boost::starts_with( device, "LABEL=" ) ||
-	     boost::starts_with( device, DEV_DISK_BY_LABEL_DIR "/" ) )
+	if (boost::starts_with(spec, "LABEL=") ||
+	    boost::starts_with(spec, DEV_DISK_BY_LABEL_DIR "/"))
 	{
 	    return MountByType::LABEL;
 	}
 
-	if ( boost::starts_with( device, DEV_DISK_BY_ID_DIR "/" ) )
+	if (boost::starts_with(spec, DEV_DISK_BY_ID_DIR "/"))
 	    return MountByType::ID;
 
-	if ( boost::starts_with( device, DEV_DISK_BY_PATH_DIR "/" ) )
+	if (boost::starts_with(spec, DEV_DISK_BY_PATH_DIR "/"))
 	    return MountByType::PATH;
 
 	return MountByType::DEVICE;
@@ -669,7 +649,8 @@ namespace storage
 	MountPoint* mount_point = mountable->create_mount_point(get_mount_point());
 
 	if (is_in_etc_fstab())
-	    mount_point->get_impl().set_fstab_anchor(FstabAnchor(fstab_entry->get_device(), id));
+	    mount_point->get_impl().set_fstab_anchor(FstabAnchor(fstab_entry->get_spec(), id,
+								 fstab_entry->get_mount_point()));
 
 	mount_point->set_mount_by(get_mount_by());
 
@@ -715,7 +696,7 @@ namespace storage
 	    }
 	    else
 	    {
-		y2war("mount point for " << extended_fstab_entry.fstab_entry->get_device() <<
+		y2war("mount point for " << extended_fstab_entry.fstab_entry->get_spec() <<
 		      "only found in proc/mounts: " <<
 		      extended_fstab_entry.fstab_entry->get_mount_point());
 

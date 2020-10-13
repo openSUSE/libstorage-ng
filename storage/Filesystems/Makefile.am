@@ -45,6 +45,8 @@ libfilesystems_la_SOURCES =				\
 	SwapImpl.h		SwapImpl.cc		\
 	Nfs.h			Nfs.cc			\
 	NfsImpl.h		NfsImpl.cc		\
+	Tmpfs.h			Tmpfs.cc		\
+	TmpfsImpl.h		TmpfsImpl.cc		\
 	F2fs.h			F2fs.cc			\
 	F2fsImpl.h		F2fsImpl.cc		\
 	Bitlocker.h		Bitlocker.cc		\
@@ -73,6 +75,7 @@ pkginclude_HEADERS =		\
 	Udf.h			\
 	Swap.h			\
 	Nfs.h			\
+	Tmpfs.h			\
 	F2fs.h			\
 	Bitlocker.h
 

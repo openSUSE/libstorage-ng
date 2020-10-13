@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -56,10 +56,16 @@ namespace storage
 	vector<const FstabEntry*> get_by_name(const string& name, SystemInfo& system_info) const;
 
 	/**
-	 * Return all NFS and NFS4 entries. This object keeps ownership of the entries;
-	 * do not delete them.
+	 * Return all NFS and NFS4 entries. This object keeps ownership of the entries; do
+	 * not delete them.
 	 */
 	vector<const FstabEntry*> get_all_nfs() const;
+
+	/**
+	 * Return all tmpfs entries. This object keeps ownership of the entries; do not
+	 * delete them.
+	 */
+	vector<const FstabEntry*> get_all_tmpfs() const;
 
 	friend std::ostream& operator<<(std::ostream& s, const ProcMounts& procmounts);
 

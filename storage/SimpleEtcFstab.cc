@@ -40,7 +40,7 @@ namespace storage
 
 	    SimpleEtcFstabEntry tmp;
 	    
-	    tmp.device = fstab_entry->get_device();
+	    tmp.device = fstab_entry->get_spec();
 	    tmp.mount_point = fstab_entry->get_mount_point();
 	    tmp.fs_type = fstab_entry->get_fs_type();
 	    tmp.mount_options = fstab_entry->get_mount_opts().get_opts();

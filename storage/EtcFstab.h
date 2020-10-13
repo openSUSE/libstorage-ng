@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2017-2019] SUSE LLC
+ * Copyright (c) [2017-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -213,9 +213,7 @@ namespace storage
 	 **/
 	FstabEntry();
 
-	FstabEntry( const string & device,
-		    const string & mount_point,
-		    FsType	   fs_type );
+	FstabEntry(const string & spec, const string& mount_point, FsType fs_type);
 
 	virtual ~FstabEntry();
 
@@ -249,8 +247,8 @@ namespace storage
 
 	// Getters; see man fstab(5)
 
-	const string &	  get_device()	    const { return device;	}
-	const string &	  get_mount_point() const { return _mount_point; }
+	const string &	  get_spec()	    const { return spec;	}
+	const string &	  get_mount_point() const { return mount_point; }
 	FsType		  get_fs_type()	    const { return fs_type;	}
 	const MountOpts & get_mount_opts()  const { return mount_opts;	}
 	int		  get_dump_pass()   const { return dump_pass;	}
@@ -258,7 +256,7 @@ namespace storage
 
 	// Setters
 
-	void set_device	    ( const string &	new_val ) { device	= new_val; }
+	void set_spec	    ( const string &	new_val ) { spec	= new_val; }
 	void set_mount_point( const string &	new_val );
 	void set_fs_type    ( FsType		new_val ) { fs_type	= new_val; }
 	void set_mount_opts ( const MountOpts & new_val ) { mount_opts	= new_val; }
@@ -266,18 +264,18 @@ namespace storage
 	void set_fsck_pass  ( int		new_val ) { fsck_pass	= new_val; }
 
 	/**
-	 * Convenience function calling EtcFstab::get_mount_by(get_device()).
+	 * Convenience function calling EtcFstab::get_mount_by(get_spec()).
 	 */
 	MountByType get_mount_by() const;
 
     private:
 
-	string	  device;	// including UUID= or LABEL=
-	string	  _mount_point;	// always use get/set_mount_point()
+	string	  spec;		// including UUID= or LABEL=
+	string	  mount_point;	// always use set_mount_point()
 	FsType	  fs_type;	// see Filesystems/Filesystem.h
 	MountOpts mount_opts;
-	int	  dump_pass;	// historic
-	int	  fsck_pass;
+	int	  dump_pass = 0;	// historic
+	int	  fsck_pass = 0;
     };
 
 
@@ -294,15 +292,9 @@ namespace storage
 	// using inherited read() and write() unchanged
 
 	/**
-	 * Return the first entry for device name 'device' or 0 if there is no
-	 * matching entry.
-	 **/
-	FstabEntry * find_device( const string & device	 ) const;
-
-	/**
-         * Find all entries for the device name 'device'.
-         */
-        vector<FstabEntry*> find_all_devices(const string& device);
+	 * Find all entries where the 'spec' and 'mount_point' match.
+	 */
+	vector<FstabEntry*> find_all_by_spec_and_mount_point(const string& spec, const string& mount_point);
 
 	/**
 	 * Return all entries where the block device matches the uuid
@@ -376,7 +368,7 @@ namespace storage
 	 *
 	 * Everything else is DEVICE.
 	 **/
-	static MountByType get_mount_by( const string & device );
+	static MountByType get_mount_by(const string& spec);
 
 	/**
 	 * Encode a string that might contain whitespace for use in /etc/fstab:
@@ -476,8 +468,7 @@ namespace storage
 
 
     /**
-     * Joins entries from /etc/fstab and /proc/mounts that have the same mount
-     * path.
+     * Joins entries from /etc/fstab and /proc/mounts that have the same mount point.
      */
     vector<JointEntry>
     join_entries(vector<ExtendedFstabEntry> fstab_entries, vector<ExtendedFstabEntry> mount_entries);

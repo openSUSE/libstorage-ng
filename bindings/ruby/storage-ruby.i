@@ -1,5 +1,5 @@
 //
-// Ruby SWIG interface definition for libstorage
+// Ruby SWIG interface definition for libstorage-ng
 //
 
 %{

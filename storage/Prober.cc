@@ -47,6 +47,7 @@
 #include "storage/Filesystems/BlkFilesystemImpl.h"
 #include "storage/Filesystems/BtrfsImpl.h"
 #include "storage/Filesystems/NfsImpl.h"
+#include "storage/Filesystems/TmpfsImpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/UsedFeatures.h"
 
@@ -482,6 +483,21 @@ namespace storage
 	    // TRANSLATORS: error message
 	    handle(exception, _("Probing NFS failed"), UF_NFS);
 	}
+
+	// TRANSLATORS: progress message
+	message_callback(probe_callbacks, _("Probing tmpfs"));
+
+	try
+	{
+	    Tmpfs::Impl::probe_tmpfses(*this);
+	}
+	catch (const Exception& exception)
+	{
+	    // TRANSLATORS: error message
+	    handle(exception, _("Probing tmpfs failed"), 0);
+	}
+
+	y2mil("used features: " << get_used_features_names(system->used_features()));
 
 	y2mil("prober done");
     }

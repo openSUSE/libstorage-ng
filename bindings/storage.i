@@ -1,5 +1,5 @@
 //
-// Common SWIG interface definition for libstorage
+// Common SWIG interface definition for libstorage-ng
 //
 
 %module(directors="1") storage
@@ -83,6 +83,7 @@ use_ostream(storage::PartitionSlot);
 #include "storage/Filesystems/Udf.h"
 #include "storage/Filesystems/Bitlocker.h"
 #include "storage/Filesystems/Nfs.h"
+#include "storage/Filesystems/Tmpfs.h"
 #include "storage/Filesystems/MountPoint.h"
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Devices/Partition.h"
@@ -176,6 +177,7 @@ use_ostream(storage::PartitionSlot);
 %include "../../storage/Filesystems/Udf.h"
 %include "../../storage/Filesystems/Bitlocker.h"
 %include "../../storage/Filesystems/Nfs.h"
+%include "../../storage/Filesystems/Tmpfs.h"
 %include "../../storage/Filesystems/MountPoint.h"
 %include "../../storage/Devices/BlkDevice.h"
 %include "../../storage/Devices/Partition.h"
