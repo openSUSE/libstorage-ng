@@ -107,7 +107,7 @@ SnapperConfig::post_add_to_etc_fstab( EtcFstab & etc_fstab )
 
     FstabEntry * entry = new FstabEntry();
 
-    entry->set_device( get_device_name() );
+    entry->set_spec(get_device_name());
     entry->set_mount_point( "/" SNAPSHOTS_DIR );
     entry->set_fs_type( FsType::BTRFS );
 

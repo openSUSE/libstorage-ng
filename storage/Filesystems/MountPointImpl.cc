@@ -561,7 +561,7 @@ namespace storage
 
 	for (FstabEntry* entry : mountable->get_impl().find_etc_fstab_entries(etc_fstab, fstab_anchor))
 	{
-	    entry->set_device(get_mount_by_name());
+	    entry->set_spec(get_mount_by_name());
 	    etc_fstab.log_diff();
 	    etc_fstab.write();
 	}

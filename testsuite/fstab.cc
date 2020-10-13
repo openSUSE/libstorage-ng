@@ -44,10 +44,10 @@ BOOST_AUTO_TEST_CASE( parse_and_format )
     //
 
     int i=0;
-    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=swap"       );
-    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=xfs-root"   );
-    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=btrfs-root" );
-    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=space"      );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_spec(), "LABEL=swap"       );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_spec(), "LABEL=xfs-root"   );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_spec(), "LABEL=btrfs-root" );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_spec(), "LABEL=space"      );
 
     i=0;
     BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_point(), "swap"        );
@@ -146,8 +146,8 @@ BOOST_AUTO_TEST_CASE(parse_and_format_without_optional_columns)
     for (int i = 0; i < fstab.get_entry_count(); ++i)
         BOOST_CHECK_EQUAL(output[i], expected_output[i]);
 
-    BOOST_CHECK_EQUAL(fstab.get_entry(0)->get_device(), "/space");
-    BOOST_CHECK_EQUAL(fstab.get_entry(1)->get_device(), "/dev/sda1");
+    BOOST_CHECK_EQUAL(fstab.get_entry(0)->get_spec(), "/space");
+    BOOST_CHECK_EQUAL(fstab.get_entry(1)->get_spec(), "/dev/sda1");
 
     BOOST_CHECK_EQUAL(fstab.get_entry(0)->get_mount_point(), "/tmp/space");
     BOOST_CHECK_EQUAL(fstab.get_entry(1)->get_mount_point(), "/");
@@ -205,7 +205,7 @@ BOOST_AUTO_TEST_CASE( mount_order )
 
     FstabEntry * var_entry = fstab.find_mount_point( "/var" );
     BOOST_CHECK_EQUAL( var_entry != 0, true );
-    BOOST_CHECK_EQUAL( var_entry->get_device(), "LABEL=var" );
+    BOOST_CHECK_EQUAL( var_entry->get_spec(), "LABEL=var" );
 
     int index = fstab.get_index_of( var_entry );
     BOOST_CHECK_EQUAL( index, 1 );
@@ -266,10 +266,10 @@ BOOST_AUTO_TEST_CASE( duplicate_mount_points )
 
     int i=0;
     BOOST_CHECK_EQUAL( fstab.get_entry_count(), 4 );
-    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=root"  );
-    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=data1" );
-    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=data2" );
-    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=swap"  );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_spec(), "LABEL=root"  );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_spec(), "LABEL=data1" );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_spec(), "LABEL=data2" );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_spec(), "LABEL=swap"  );
 
 
     //
@@ -288,10 +288,10 @@ BOOST_AUTO_TEST_CASE( duplicate_mount_points )
 
     i=0;
     BOOST_CHECK_EQUAL( fstab.get_entry_count(), 4 );
-    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=root"  );
-    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=data2" );
-    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=data1" );
-    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=swap"  );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_spec(), "LABEL=root"  );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_spec(), "LABEL=data2" );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_spec(), "LABEL=data1" );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_spec(), "LABEL=swap"  );
 
 
     //
@@ -301,18 +301,18 @@ BOOST_AUTO_TEST_CASE( duplicate_mount_points )
     FstabEntry * entry = new FstabEntry();
     entry->parse( "LABEL=data3  /data  xfs  noauto,user  1  2" );
 
-    BOOST_CHECK_EQUAL( entry->get_device(),      "LABEL=data3" );
+    BOOST_CHECK_EQUAL( entry->get_spec(), "LABEL=data3" );
     BOOST_CHECK_EQUAL( entry->get_mount_point(), "/data"       );
 
     fstab.add( entry );
 
     i=0;
     BOOST_CHECK_EQUAL( fstab.get_entry_count(), 5 );
-    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=root"  );
-    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=data3" );
-    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=data2" );
-    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=data1" );
-    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=swap"  );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_spec(), "LABEL=root"  );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_spec(), "LABEL=data3" );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_spec(), "LABEL=data2" );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_spec(), "LABEL=data1" );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_spec(), "LABEL=swap"  );
 }
 
 
@@ -333,7 +333,7 @@ BOOST_AUTO_TEST_CASE( unknown_fs_type )
     FstabEntry * coolfs = fstab.find_mount_point( "/coolfs" );
 
     BOOST_CHECK_EQUAL( coolfs == 0, false );
-    BOOST_CHECK_EQUAL( coolfs->get_device(),      "LABEL=coolfs" );
+    BOOST_CHECK_EQUAL( coolfs->get_spec(), "LABEL=coolfs" );
     BOOST_CHECK_EQUAL( coolfs->get_mount_point(), "/coolfs"      );
     BOOST_CHECK_EQUAL( coolfs->get_fs_type() == FsType::UNKNOWN, true );
 
@@ -352,17 +352,8 @@ BOOST_AUTO_TEST_CASE( unknown_fs_type )
     string expected = "LABEL=coolfs    /data   coolfs  ro           1  2";
     BOOST_CHECK_EQUAL( output[2], expected );
 
-
     FstabEntry * coolfs2 = new FstabEntry( "UUID=4711", "/data2", FsType::UNKNOWN );
     fstab.add( coolfs2 );
-
-    FstabEntry * entry = fstab.find_device( "UUID=4711" );
-
-    BOOST_CHECK_EQUAL( entry == 0, false );
-    BOOST_CHECK_EQUAL( entry->get_device(),      "UUID=4711" );
-    BOOST_CHECK_EQUAL( entry->get_mount_point(), "/data2"    );
-    BOOST_CHECK_EQUAL( entry->get_fs_type() == FsType::UNKNOWN, true );
-    BOOST_CHECK_EQUAL( entry->get_mount_opts().empty(), true );
 
     output = fstab.format_lines();
     BOOST_CHECK_EQUAL( output.size(), 5 );
@@ -409,7 +400,7 @@ BOOST_AUTO_TEST_CASE( validate_entry )
     BOOST_CHECK_EQUAL( data->validate(), false );
 
     FstabEntry * coolfs = fstab.find_mount_point( "/coolfs" );
-    coolfs->set_device( "" ); // Invalidate coolfs entry
+    coolfs->set_spec(""); // Invalidate coolfs entry
     BOOST_CHECK_EQUAL( coolfs->validate(), false );
 
     output = fstab.format_lines();
@@ -425,7 +416,7 @@ BOOST_AUTO_TEST_CASE( validate_entry )
 
     // Restore both invalidated entries
 
-    coolfs->set_device( "LABEL=coolfs" );
+    coolfs->set_spec("LABEL=coolfs");
     data->set_mount_point( "/data" );
 
     BOOST_CHECK_EQUAL( coolfs->validate(), true );

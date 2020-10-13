@@ -48,6 +48,9 @@ namespace storage
      * devicegraphs.)
      *
      * Different NFS versions are handled entirely via mount options.
+     *
+     * The Nfs object should always have MountPoint as child. So when deleting the
+     * MountPoint also delete the Nfs.
      */
     class Nfs : public Filesystem
     {

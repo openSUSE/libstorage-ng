@@ -285,7 +285,7 @@ namespace storage
     vector<FstabEntry*>
     Mountable::Impl::find_etc_fstab_entries_unfiltered(EtcFstab& etc_fstab, const FstabAnchor& fstab_anchor) const
     {
-	return etc_fstab.find_all_devices(fstab_anchor.name);
+	return etc_fstab.find_all_by_spec_and_mount_point(fstab_anchor.spec, fstab_anchor.mount_point);
     }
 
 
@@ -419,7 +419,7 @@ namespace storage
 	EtcFstab& etc_fstab = commit_data.get_etc_fstab();
 
 	FstabEntry* entry = new FstabEntry();
-	entry->set_device(get_mount_by_name(mount_point));
+	entry->set_spec(get_mount_by_name(mount_point));
 	entry->set_mount_point(mount_point->get_path());
 	entry->set_mount_opts(mount_point->get_impl().get_mount_options());
 	entry->set_fs_type(mount_point->get_mount_type());
@@ -460,7 +460,7 @@ namespace storage
 
 	for (FstabEntry* entry : find_etc_fstab_entries(etc_fstab, fstab_anchor))
 	{
-	    entry->set_device(get_mount_by_name(mount_point));
+	    entry->set_spec(get_mount_by_name(mount_point));
 	    entry->set_mount_point(mount_point->get_path());
 	    entry->set_mount_opts(mount_point->get_impl().get_mount_options());
 	    entry->set_fs_type(mount_point->get_mount_type());
