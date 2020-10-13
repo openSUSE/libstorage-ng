@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-09 12:29+0100\n"
+"POT-Creation-Date: 2020-10-13 12:14+0200\n"
 "PO-Revision-Date: 2002-07-18 14:04+0200\n"
 "Last-Translator: proofreader <i18n@suse.de>\n"
 "Language-Team: English <i18n@suse.de>\n"
@@ -163,10 +163,10 @@ msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by device name (e.g. /dev/md0)
+#. %2$s is replaced by volume group name (e.g. system)
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by volume group name (e.g. system)
+#. %2$s is replaced by device name (e.g. /dev/md0)
 #, c-format
 msgid "Add %1$s to %2$s"
 msgstr ""
@@ -211,10 +211,10 @@ msgstr "Create MD5 sums"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by device name (e.g. /dev/md0)
+#. %2$s is replaced by volume group name (e.g. system)
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by volume group name (e.g. system)
+#. %2$s is replaced by device name (e.g. /dev/md0)
 #, fuzzy, c-format
 msgid "Adding %1$s to %2$s"
 msgstr "Create MD5 sums"
@@ -2335,6 +2335,16 @@ msgstr "Create MD5 sums"
 msgid "Probing stray block devices failed"
 msgstr "Create MD5 sums"
 
+#. TRANSLATORS: progress message
+#, fuzzy
+msgid "Probing tmpfs"
+msgstr "Create MD5 sums"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing tmpfs failed"
+msgstr "Create MD5 sums"
+
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)
 #, c-format
@@ -2362,10 +2372,10 @@ msgstr "Remove packages"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by device name (e.g. /dev/md0)
+#. %2$s is replaced by volume group name (e.g. system)
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by volume group name (e.g. system)
+#. %2$s is replaced by device name (e.g. /dev/md0)
 #, fuzzy, c-format
 msgid "Remove %1$s from %2$s"
 msgstr "Remove packages"
@@ -2410,10 +2420,10 @@ msgstr "Remove packages"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by device name (e.g. /dev/md0)
+#. %2$s is replaced by volume group name (e.g. system)
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by volume group name (e.g. system)
+#. %2$s is replaced by device name (e.g. /dev/md0)
 #, fuzzy, c-format
 msgid "Removing %1$s from %2$s"
 msgstr "Remove packages"
@@ -2933,6 +2943,10 @@ msgstr ""
 
 #. TRANSLATORS: symbol for "kilo bytes" (best keep untranslated)
 msgid "kB"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "tmpfs"
 msgstr ""
 
 #, fuzzy

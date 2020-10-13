@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.ko\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-09 12:29+0100\n"
+"POT-Creation-Date: 2020-10-13 12:14+0200\n"
 "PO-Revision-Date: 2019-04-04 15:03+0000\n"
 "Last-Translator: Hwajin Kim <hwajin.kim@e4net.net>\n"
 "Language-Team: Korean <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -173,10 +173,10 @@ msgstr "%1$s을(를) %2$s(으)로 추가"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by device name (e.g. /dev/md0)
+#. %2$s is replaced by volume group name (e.g. system)
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by volume group name (e.g. system)
+#. %2$s is replaced by device name (e.g. /dev/md0)
 #, c-format
 msgid "Add %1$s to %2$s"
 msgstr "%1$s을(를) %2$s(으)로 추가"
@@ -221,10 +221,10 @@ msgstr "%1$s을(를) %2$s에 추가 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by device name (e.g. /dev/md0)
+#. %2$s is replaced by volume group name (e.g. system)
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by volume group name (e.g. system)
+#. %2$s is replaced by device name (e.g. /dev/md0)
 #, c-format
 msgid "Adding %1$s to %2$s"
 msgstr "%1$s을(를) %2$s에 추가 중"
@@ -2509,6 +2509,16 @@ msgstr "stray 블록 장치 검색 중"
 msgid "Probing stray block devices failed"
 msgstr "stray 블록 장치 검색하지 못함"
 
+#. TRANSLATORS: progress message
+#, fuzzy
+msgid "Probing tmpfs"
+msgstr "DASD 검색 중"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing tmpfs failed"
+msgstr "검색하지 못함"
+
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)
 #, c-format
@@ -2537,10 +2547,10 @@ msgstr "%2$s에서 %1$s을(를) 제거"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by device name (e.g. /dev/md0)
+#. %2$s is replaced by volume group name (e.g. system)
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by volume group name (e.g. system)
+#. %2$s is replaced by device name (e.g. /dev/md0)
 #, c-format
 msgid "Remove %1$s from %2$s"
 msgstr "%2$s에서 %1$s을(를) 제거"
@@ -2585,10 +2595,10 @@ msgstr "%2$s에서 %1$s 제거 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by device name (e.g. /dev/md0)
+#. %2$s is replaced by volume group name (e.g. system)
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by volume group name (e.g. system)
+#. %2$s is replaced by device name (e.g. /dev/md0)
 #, c-format
 msgid "Removing %1$s from %2$s"
 msgstr "%2$s에서 %1$s 제거 중"
@@ -3125,6 +3135,10 @@ msgstr "K"
 #. TRANSLATORS: symbol for "kilo bytes" (best keep untranslated)
 msgid "kB"
 msgstr "kB"
+
+#. TRANSLATORS: name of object
+msgid "tmpfs"
+msgstr ""
 
 # SLE12
 #~ msgid "Create MD %1$s %2$s (%3$s)"
