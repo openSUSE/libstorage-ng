@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-09 12:29+0100\n"
+"POT-Creation-Date: 2020-10-13 12:14+0200\n"
 "PO-Revision-Date: 2004-08-09 10:24+0200\n"
 "Last-Translator: xxx <yyy@example.org>\n"
 "Language-Team: Hebrew <i18n@suse.de>\n"
@@ -194,10 +194,10 @@ msgstr "משנה גודל %1 ל %2 MB"
 #  %2 with the new size in MB.
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by device name (e.g. /dev/md0)
+#. %2$s is replaced by volume group name (e.g. system)
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by volume group name (e.g. system)
+#. %2$s is replaced by device name (e.g. /dev/md0)
 #, fuzzy, c-format
 msgid "Add %1$s to %2$s"
 msgstr "משנה גודל %1 ל %2 MB"
@@ -251,10 +251,10 @@ msgstr "משנה גודל %1 ל %2 MB"
 #  %2 with the new size in MB.
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by device name (e.g. /dev/md0)
+#. %2$s is replaced by volume group name (e.g. system)
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by volume group name (e.g. system)
+#. %2$s is replaced by device name (e.g. /dev/md0)
 #, fuzzy, c-format
 msgid "Adding %1$s to %2$s"
 msgstr "משנה גודל %1 ל %2 MB"
@@ -2694,6 +2694,18 @@ msgstr "צור מחיצה מורחבת %2 (%3)"
 msgid "Probing stray block devices failed"
 msgstr "צור מחיצה מורחבת %2 (%3)"
 
+#  to translators: * Create extended partition 1.2 GB (hda1)
+#. TRANSLATORS: progress message
+#, fuzzy
+msgid "Probing tmpfs"
+msgstr "צור מחיצה מורחבת %2 (%3)"
+
+#  to translators: * Create extended partition 1.2 GB (hda1)
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing tmpfs failed"
+msgstr "צור מחיצה מורחבת %2 (%3)"
+
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)
 #, c-format
@@ -2723,10 +2735,10 @@ msgstr "הסר את ההתקן %1 מהקובץ /etc/fstab"
 #  normal text e.g. "Remove device /dev/hda1 from /etc/fstab"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by device name (e.g. /dev/md0)
+#. %2$s is replaced by volume group name (e.g. system)
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by volume group name (e.g. system)
+#. %2$s is replaced by device name (e.g. /dev/md0)
 #, fuzzy, c-format
 msgid "Remove %1$s from %2$s"
 msgstr "הסר את ההתקן %1 מהקובץ /etc/fstab"
@@ -2775,10 +2787,10 @@ msgstr "הסר את ההתקן %1 מהקובץ /etc/fstab"
 #  normal text e.g. "Remove device /dev/hda1 from /etc/fstab"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by device name (e.g. /dev/md0)
+#. %2$s is replaced by volume group name (e.g. system)
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by volume group name (e.g. system)
+#. %2$s is replaced by device name (e.g. /dev/md0)
 #, fuzzy, c-format
 msgid "Removing %1$s from %2$s"
 msgstr "הסר את ההתקן %1 מהקובץ /etc/fstab"
@@ -3385,6 +3397,10 @@ msgstr "בסדר"
 #, fuzzy
 msgid "kB"
 msgstr "מגה בייט"
+
+#. TRANSLATORS: name of object
+msgid "tmpfs"
+msgstr ""
 
 #  popup heading 
 #, fuzzy

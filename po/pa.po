@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-09 12:29+0100\n"
+"POT-Creation-Date: 2020-10-13 12:14+0200\n"
 "PO-Revision-Date: 2005-02-16 10:21+0100\n"
 "Last-Translator: Kanwaljeet Singh Brar <kanwaljeetbrar@yahoo.co.in>\n"
 "Language-Team: Punjabi <i18n@suse.de>\n"
@@ -166,10 +166,10 @@ msgstr "%1$s ਨੂੰ %2$s ਲਈ ਫੈਲਾਓ"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by device name (e.g. /dev/md0)
+#. %2$s is replaced by volume group name (e.g. system)
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by volume group name (e.g. system)
+#. %2$s is replaced by device name (e.g. /dev/md0)
 #, fuzzy, c-format
 msgid "Add %1$s to %2$s"
 msgstr "%1$s ਨੂੰ %2$s ਲਈ ਫੈਲਾਓ"
@@ -214,10 +214,10 @@ msgstr "%1$s ਨੂੰ %2$s ਲਈ ਫੈਲਾਇਆ ਜਾ ਰਿਹਾ ਹੈ
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by device name (e.g. /dev/md0)
+#. %2$s is replaced by volume group name (e.g. system)
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by volume group name (e.g. system)
+#. %2$s is replaced by device name (e.g. /dev/md0)
 #, fuzzy, c-format
 msgid "Adding %1$s to %2$s"
 msgstr "%1$s ਨੂੰ %2$s ਲਈ ਫੈਲਾਇਆ ਜਾ ਰਿਹਾ ਹੈ"
@@ -2342,6 +2342,16 @@ msgstr "ਪਾਰਟੀਸ਼ਨ %1$s (%2$s) ਬਣਾਓ"
 msgid "Probing stray block devices failed"
 msgstr "ਪਾਰਟੀਸ਼ਨ %1$s (%2$s) ਬਣਾਓ"
 
+#. TRANSLATORS: progress message
+#, fuzzy
+msgid "Probing tmpfs"
+msgstr "ਪਾਰਟੀਸ਼ਨ %1$s (%2$s) ਬਣਾਓ"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing tmpfs failed"
+msgstr "ਪਾਰਟੀਸ਼ਨ %1$s (%2$s) ਬਣਾਓ"
+
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)
 #, c-format
@@ -2369,10 +2379,10 @@ msgstr "%1$s ਨੂੰ %2$s ਤੋਂ ਹਟਾਓ"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by device name (e.g. /dev/md0)
+#. %2$s is replaced by volume group name (e.g. system)
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by volume group name (e.g. system)
+#. %2$s is replaced by device name (e.g. /dev/md0)
 #, c-format
 msgid "Remove %1$s from %2$s"
 msgstr "%1$s ਨੂੰ %2$s ਤੋਂ ਹਟਾਓ"
@@ -2417,10 +2427,10 @@ msgstr "%1$s ਨੂੰ %2$s ਤੋਂ ਹਟਾਓ"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by device name (e.g. /dev/md0)
+#. %2$s is replaced by volume group name (e.g. system)
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by volume group name (e.g. system)
+#. %2$s is replaced by device name (e.g. /dev/md0)
 #, fuzzy, c-format
 msgid "Removing %1$s from %2$s"
 msgstr "%1$s ਨੂੰ %2$s ਤੋਂ ਹਟਾਓ"
@@ -2942,6 +2952,10 @@ msgstr "k"
 #. TRANSLATORS: symbol for "kilo bytes" (best keep untranslated)
 msgid "kB"
 msgstr "kB"
+
+#. TRANSLATORS: name of object
+msgid "tmpfs"
+msgstr ""
 
 #, fuzzy
 #~ msgid "Create MD %1$s %2$s (%3$s)"
