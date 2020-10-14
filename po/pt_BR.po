@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-13 12:14+0200\n"
-"PO-Revision-Date: 2020-01-20 02:53+0000\n"
+"PO-Revision-Date: 2020-10-15 01:49+0000\n"
 "Last-Translator: Rodrigo Macedo <rmsolucoeseminformatic4@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.opensuse.org/projects/"
 "libstorage/ng-master/pt_BR/>\n"
@@ -2389,14 +2389,12 @@ msgid "Probing stray block devices failed"
 msgstr "Falha na sondagem de dispositivos de blocos de dispersão"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing tmpfs"
-msgstr "Investigando DASDs"
+msgstr "Sondando tmpfs"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing tmpfs failed"
-msgstr "Falha ao investigar"
+msgstr "Sondagem tmpfs falhou"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)
@@ -3014,7 +3012,7 @@ msgstr "kB"
 
 #. TRANSLATORS: name of object
 msgid "tmpfs"
-msgstr ""
+msgstr "tmpfs"
 
 #~ msgid "Create MD %1$s %2$s (%3$s)"
 #~ msgstr "Criara MD %1$s %2$s (%3$s)"
