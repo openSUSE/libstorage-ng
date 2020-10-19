@@ -85,10 +85,10 @@ namespace storage
     }
 
 
-    uint64_t
-    BcacheCset::Impl::used_features() const
+    uf_t
+    BcacheCset::Impl::used_features(UsedFeaturesDependencyType used_features_dependency_type) const
     {
-	return UF_BCACHE | Device::Impl::used_features();
+	return UF_BCACHE | Device::Impl::used_features(used_features_dependency_type);
     }
 
 

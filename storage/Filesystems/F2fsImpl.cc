@@ -51,13 +51,6 @@ namespace storage
     }
 
 
-    uint64_t
-    F2fs::Impl::used_features() const
-    {
-	return UF_F2FS | BlkFilesystem::Impl::used_features();
-    }
-
-
     void
     F2fs::Impl::do_create()
     {

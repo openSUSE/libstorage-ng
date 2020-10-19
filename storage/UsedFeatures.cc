@@ -34,7 +34,7 @@ namespace storage
 
 
     string
-    get_used_features_names(uint64_t used_features)
+    get_used_features_names(uf_t used_features)
     {
 	static const vector<string> names = { "ext2", "ext3", "ext4", "btrfs", "xfs",
 					      "reiserfs", "swap", "ntfs", "vfat", "nfs",
@@ -48,7 +48,7 @@ namespace storage
 
 	for (unsigned int i = 0; i < names.size(); ++i)
 	{
-	    if (used_features & ((uint64_t)(1) << i))
+	    if (used_features & ((uf_t)(1) << i))
 		tmp.push_back(names[i]);
 	}
 

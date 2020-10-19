@@ -20,4 +20,12 @@ BOOST_AUTO_TEST_CASE(dependencies)
 
     TsCmpActiongraph cmp("resize2");
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
+
+    BOOST_CHECK_EQUAL(required_features(cmp.get_probed()), "ext4");
+    BOOST_CHECK_EQUAL(suggested_features(cmp.get_probed()), "ext4");
+
+    BOOST_CHECK_EQUAL(required_features(cmp.get_staging()), "ext4");
+    BOOST_CHECK_EQUAL(suggested_features(cmp.get_staging()), "ext4");
+
+    BOOST_CHECK_EQUAL(features(cmp.get_actiongraph()), "ext4");
 }

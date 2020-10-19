@@ -156,10 +156,10 @@ namespace storage
     }
 
 
-    uint64_t
-    PlainEncryption::Impl::used_features() const
+    uf_t
+    PlainEncryption::Impl::used_features(UsedFeaturesDependencyType used_features_dependency_type) const
     {
-	return UF_PLAIN_ENCRYPTION | Encryption::Impl::used_features();
+	return UF_PLAIN_ENCRYPTION | Encryption::Impl::used_features(used_features_dependency_type);
     }
 
 

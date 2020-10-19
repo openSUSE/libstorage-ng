@@ -30,6 +30,7 @@
 #include "storage/Devices/Device.h"
 #include "storage/Graphviz.h"
 #include "storage/Utils/Swig.h"
+#include "storage/UsedFeatures.h"
 
 
 namespace storage
@@ -378,10 +379,12 @@ namespace storage
 	 */
 	void check(const CheckCallbacks* check_callbacks = nullptr) const;
 
+	uint64_t used_features() const ST_DEPRECATED;
+
 	/**
 	 * Calculates a bit-field with the used features of the devicegraph.
 	 */
-	uint64_t used_features() const;
+	uf_t used_features(UsedFeaturesDependencyType used_features_dependency_type) const;
 
 	// TODO move to Impl
 	void copy(Devicegraph& dest) const;

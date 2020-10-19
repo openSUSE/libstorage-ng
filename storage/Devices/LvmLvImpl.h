@@ -147,21 +147,27 @@ namespace storage
 	virtual Text do_create_text(Tense tense) const override;
 	virtual void do_create() override;
 	virtual void do_create_post_verify() const override;
+	virtual uf_t do_create_used_features() const override { return UF_LVM; }
 
 	virtual Text do_rename_text(const Impl& lhs, Tense tense) const;
 	virtual void do_rename(const Impl& lhs) const;
+	virtual uf_t do_rename_used_features() const { return UF_LVM; }
 
 	virtual Text do_resize_text(const CommitData& commit_data, const Action::Resize* action) const override;
 	virtual void do_resize(const CommitData& commit_data, const Action::Resize* action) const override;
+	virtual uf_t do_resize_used_features() const override { return UF_LVM; }
 
 	virtual Text do_delete_text(Tense tense) const override;
 	virtual void do_delete() const override;
+	virtual uf_t do_delete_used_features() const override { return UF_LVM; }
 
 	virtual Text do_activate_text(Tense tense) const override;
 	virtual void do_activate() const override;
+	virtual uf_t do_activate_used_features() const override { return UF_LVM; }
 
 	virtual Text do_deactivate_text(Tense tense) const override;
 	virtual void do_deactivate() const override;
+	virtual uf_t do_deactivate_used_features() const override { return UF_LVM; }
 
     private:
 
@@ -208,6 +214,7 @@ namespace storage
 
 	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
+	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const override;
 
 	};
 

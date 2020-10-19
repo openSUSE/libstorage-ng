@@ -199,13 +199,6 @@ namespace storage
     }
 
 
-    uint64_t
-    Nfs::Impl::used_features() const
-    {
-	return UF_NFS | Filesystem::Impl::used_features();
-    }
-
-
     bool
     Nfs::Impl::equal(const Device::Impl& rhs_base) const
     {

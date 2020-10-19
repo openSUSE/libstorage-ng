@@ -709,15 +709,15 @@ namespace storage
     }
 
 
-    uint64_t
-    Btrfs::Impl::used_features() const
+    uf_t
+    Btrfs::Impl::used_features(UsedFeaturesDependencyType used_features_dependency_type) const
     {
-        uint64_t features = UF_BTRFS | BlkFilesystem::Impl::used_features();
+        uf_t ret = BlkFilesystem::Impl::used_features(used_features_dependency_type);
 
         if (configure_snapper)
-            features |= UF_SNAPSHOTS;
+            ret |= UF_SNAPSHOTS;
 
-        return features;
+        return ret;
     }
 
 

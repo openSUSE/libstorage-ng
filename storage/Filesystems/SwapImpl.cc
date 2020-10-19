@@ -81,13 +81,6 @@ namespace storage
     }
 
 
-    uint64_t
-    Swap::Impl::used_features() const
-    {
-	return UF_SWAP | BlkFilesystem::Impl::used_features();
-    }
-
-
     bool
     Swap::Impl::is_permanent() const
     {

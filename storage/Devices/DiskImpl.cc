@@ -182,10 +182,10 @@ namespace storage
     }
 
 
-    uint64_t
-    Disk::Impl::used_features() const
+    uf_t
+    Disk::Impl::used_features(UsedFeaturesDependencyType used_features_dependency_type) const
     {
-	uint64_t ret = 0;
+	uf_t ret = 0;
 
 	switch (transport)
 	{
@@ -201,7 +201,7 @@ namespace storage
 	if (is_nvme())
 	    ret |= UF_NVME;
 
-	return ret | Partitionable::Impl::used_features();
+	return ret | Partitionable::Impl::used_features(used_features_dependency_type);
     }
 
 

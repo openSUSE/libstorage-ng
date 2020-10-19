@@ -103,16 +103,16 @@ namespace storage
 	const CmdBtrfsFilesystemShow& getCmdBtrfsFilesystemShow() { return cmd_btrfs_filesystem_show.get(); }
 
 	// The device is only used for the cache-key.
-	const CmdBtrfsSubvolumeList& getCmdBtrfsSubvolumeList(const string& device, const string& mountpoint)
-	    { return cmd_btrfs_subvolume_lists.get(CmdBtrfsSubvolumeList::key_t(device), mountpoint); }
+	const CmdBtrfsSubvolumeList& getCmdBtrfsSubvolumeList(const string& device, const string& mount_point)
+	    { return cmd_btrfs_subvolume_lists.get(CmdBtrfsSubvolumeList::key_t(device), mount_point); }
 
 	// The device is only used for the cache-key.
-	const CmdBtrfsSubvolumeShow& getCmdBtrfsSubvolumeShow(const string& device, const string& mountpoint)
-	    { return cmd_btrfs_subvolume_shows.get(CmdBtrfsSubvolumeShow::key_t(device), mountpoint); }
+	const CmdBtrfsSubvolumeShow& getCmdBtrfsSubvolumeShow(const string& device, const string& mount_point)
+	    { return cmd_btrfs_subvolume_shows.get(CmdBtrfsSubvolumeShow::key_t(device), mount_point); }
 
 	// The device is only used for the cache-key.
-	const CmdBtrfsSubvolumeGetDefault& getCmdBtrfsSubvolumeGetDefault(const string& device, const string& mountpoint)
-	    { return cmd_btrfs_subvolume_get_defaults.get(CmdBtrfsSubvolumeGetDefault::key_t(device), mountpoint); }
+	const CmdBtrfsSubvolumeGetDefault& getCmdBtrfsSubvolumeGetDefault(const string& device, const string& mount_point)
+	    { return cmd_btrfs_subvolume_get_defaults.get(CmdBtrfsSubvolumeGetDefault::key_t(device), mount_point); }
 
 	// The device is only used for the cache-key.
 	const CmdBtrfsFilesystemDf& getCmdBtrfsFilesystemDf(const string& device, const string& mount_point)
@@ -123,11 +123,11 @@ namespace storage
 	const CmdLvs& getCmdLvs() { return cmd_lvs.get(); }
 
 	const CmdUdevadmInfo& getCmdUdevadmInfo(const string& file) { return cmd_udevadm_infos.get(file); }
-	const CmdDf& getCmdDf(const string& mountpoint) { return cmd_dfs.get(mountpoint); }
+	const CmdDf& getCmdDf(const string& mount_point) { return cmd_dfs.get(mount_point); }
 
 	// The device is only used for the cache-key.
-	const CmdLsattr& getCmdLsattr(const string& device, const string& mountpoint, const string& path)
-	    { return cmd_lsattr.get(CmdLsattr::key_t(device, path), mountpoint, path); }
+	const CmdLsattr& getCmdLsattr(const string& device, const string& mount_point, const string& path)
+	    { return cmd_lsattr.get(CmdLsattr::key_t(device, path), mount_point, path); }
 
     private:
 

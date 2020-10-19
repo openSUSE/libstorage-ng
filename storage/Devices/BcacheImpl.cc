@@ -328,10 +328,10 @@ namespace storage
     }
 
 
-    uint64_t
-    Bcache::Impl::used_features() const
+    uf_t
+    Bcache::Impl::used_features(UsedFeaturesDependencyType used_features_dependency_type) const
     {
-	return UF_BCACHE | Partitionable::Impl::used_features();
+	return UF_BCACHE | Partitionable::Impl::used_features(used_features_dependency_type);
     }
 
 

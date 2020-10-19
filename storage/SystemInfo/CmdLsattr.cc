@@ -36,10 +36,10 @@ namespace storage
     using namespace std;
 
 
-    CmdLsattr::CmdLsattr(const key_t& key, const string& mountpoint, const string& path)
-	: mountpoint(mountpoint), path(path)
+    CmdLsattr::CmdLsattr(const key_t& key, const string& mount_point, const string& path)
+	: mount_point(mount_point), path(path)
     {
-	SystemCmd::Options cmd_options(LSATTR_BIN " -d " + quote(mountpoint + "/" + path),
+	SystemCmd::Options cmd_options(LSATTR_BIN " -d " + quote(mount_point + "/" + path),
 				       SystemCmd::DoThrow);
 	cmd_options.mockup_key = LSATTR_BIN " -d (device:" + get<0>(key) + " path:" + get<1>(key) + ")";
 
@@ -72,7 +72,7 @@ namespace storage
     std::ostream&
     operator<<(std::ostream& s, const CmdLsattr& cmd_lsattr)
     {
-	s << "mountpoint:" << cmd_lsattr.mountpoint << " path:" << cmd_lsattr.path;
+	s << "mount-point:" << cmd_lsattr.mount_point << " path:" << cmd_lsattr.path;
 
 	if (cmd_lsattr.nocow)
 	    s << " nocow:" << cmd_lsattr.nocow;

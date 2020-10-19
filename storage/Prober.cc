@@ -497,7 +497,7 @@ namespace storage
 	    handle(exception, _("Probing tmpfs failed"), 0);
 	}
 
-	y2mil("used features: " << get_used_features_names(system->used_features()));
+	y2mil("used features (required): " << get_used_features_names(system->used_features(UsedFeaturesDependencyType::REQUIRED)));
 
 	y2mil("prober done");
     }

@@ -87,7 +87,7 @@ namespace storage
 	static void probe_dasds(Prober& prober);
 	virtual void probe_pass_1a(Prober& prober) override;
 
-	virtual uint64_t used_features() const override;
+	virtual uf_t used_features(UsedFeaturesDependencyType used_features_dependency_type) const override;
 
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;

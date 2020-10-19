@@ -37,7 +37,7 @@ class MyCommitCallbacks(CommitCallbacks):
 
 
 def commit(storage, skip_save_graphs = True, skip_print_actiongraph = True,
-           skip_commit = False):
+           skip_print_used_features = True, skip_commit = False):
 
     if not skip_save_graphs:
         probed = storage.get_probed()
@@ -54,6 +54,25 @@ def commit(storage, skip_save_graphs = True, skip_print_actiongraph = True,
     my_commit_callbacks = MyCommitCallbacks()
 
     actiongraph = storage.calculate_actiongraph()
+
+    if not skip_print_used_features:
+
+        probed = storage.get_probed()
+        print("used features (required) of probed devicegraph:",
+              get_used_features_names(probed.used_features(UsedFeaturesDependencyType_REQUIRED)))
+        print("used features (suggested) of probed devicegraph:",
+              get_used_features_names(probed.used_features(UsedFeaturesDependencyType_SUGGESTED)))
+
+        staging = storage.get_staging()
+        print("used features (required) of staging devicegraph:",
+              get_used_features_names(staging.used_features(UsedFeaturesDependencyType_REQUIRED)))
+        print("used features (suggested) of staging devicegraph:",
+              get_used_features_names(staging.used_features(UsedFeaturesDependencyType_SUGGESTED)))
+
+        print("used features of actiongraph:",
+              get_used_features_names(actiongraph.used_features()))
+
+        print()
 
     if not skip_print_actiongraph:
         actiongraph.print_graph()

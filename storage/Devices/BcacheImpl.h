@@ -73,7 +73,7 @@ namespace storage
 
 	virtual void save(xmlNode* node) const override;
 
-	virtual uint64_t used_features() const override;
+	virtual uf_t used_features(UsedFeaturesDependencyType used_features_dependency_type) const override;
 
 	unsigned int get_number() const;
 	void set_number(unsigned int number);
@@ -122,12 +122,15 @@ namespace storage
 
 	virtual Text do_create_text(Tense tense) const override;
 	virtual void do_create() override;
+	virtual uf_t do_create_used_features() const override { return UF_BCACHE; }
 
 	virtual Text do_delete_text(Tense tense) const override;
 	virtual void do_delete() const override;
+	virtual uf_t do_delete_used_features() const override { return UF_BCACHE; }
 
 	virtual Text do_deactivate_text(Tense tense) const override;
 	virtual void do_deactivate() const override;
+	virtual uf_t do_deactivate_used_features() const override { return UF_BCACHE; }
 
 	Text do_attach_bcache_cset_text(Tense tense) const;
 	void do_attach_bcache_cset() const;

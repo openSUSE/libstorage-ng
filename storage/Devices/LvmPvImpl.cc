@@ -233,10 +233,10 @@ namespace storage
     }
 
 
-    uint64_t
-    LvmPv::Impl::used_features() const
+    uf_t
+    LvmPv::Impl::used_features(UsedFeaturesDependencyType used_features_dependency_type) const
     {
-	return UF_LVM | Device::Impl::used_features();
+	return UF_LVM | Device::Impl::used_features(used_features_dependency_type);
     }
 
 

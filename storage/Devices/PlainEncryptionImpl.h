@@ -61,18 +61,22 @@ namespace storage
 
 	virtual void parent_has_new_region(const Device* parent) override;
 
-	virtual uint64_t used_features() const override;
+	virtual uf_t used_features(UsedFeaturesDependencyType used_features_dependency_type) const override;
 
 	virtual PlainEncryption* get_non_impl() override { return to_plain_encryption(Device::Impl::get_non_impl()); }
 	virtual const PlainEncryption* get_non_impl() const override { return to_plain_encryption(Device::Impl::get_non_impl()); }
 
 	virtual void do_create() override;
+	virtual uf_t do_create_used_features() const override { return UF_PLAIN_ENCRYPTION; }
 
 	virtual void do_delete() const override;
+	virtual uf_t do_delete_used_features() const override { return UF_PLAIN_ENCRYPTION; }
 
 	virtual void do_activate() const override;
+	virtual uf_t do_activate_used_features() const override { return UF_PLAIN_ENCRYPTION; }
 
 	virtual void do_deactivate() const override;
+	virtual uf_t do_deactivate_used_features() const override { return UF_PLAIN_ENCRYPTION; }
 
     private:
 

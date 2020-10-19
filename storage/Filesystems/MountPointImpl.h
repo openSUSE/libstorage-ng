@@ -142,6 +142,8 @@ namespace storage
 
 	void set_default_mount_type();
 
+	virtual uf_t used_features(UsedFeaturesDependencyType used_features_dependency_type) const override;
+
 	virtual MountPoint* get_non_impl() override { return to_mount_point(Device::Impl::get_non_impl()); }
 	virtual const MountPoint* get_non_impl() const override { return to_mount_point(Device::Impl::get_non_impl()); }
 
@@ -164,9 +166,11 @@ namespace storage
 
 	virtual Text do_mount_text(Tense tense) const;
 	virtual void do_mount(CommitData& commit_data, const CommitOptions& commit_options);
+	virtual uf_t do_mount_used_features() const;
 
 	virtual Text do_unmount_text(Tense tense) const;
 	virtual void do_unmount(CommitData& commit_data);
+	virtual uf_t do_unmount_used_features() const;
 
 	virtual Text do_add_to_etc_fstab_text(Tense tense) const;
 	virtual void do_add_to_etc_fstab(CommitData& commit_data) const;
@@ -223,10 +227,12 @@ namespace storage
 
 	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
+	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const override;
 
 	    const string& get_path(Actiongraph::Impl& actiongraph) const;
 
 	    const MountPoint* get_mount_point(Actiongraph::Impl& actiongraph) const;
+
 	};
 
 

@@ -107,13 +107,6 @@ namespace storage
     }
 
 
-    uint64_t
-    Ntfs::Impl::used_features() const
-    {
-	return UF_NTFS | BlkFilesystem::Impl::used_features();
-    }
-
-
     void
     Ntfs::Impl::do_create()
     {

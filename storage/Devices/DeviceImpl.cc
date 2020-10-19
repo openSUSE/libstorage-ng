@@ -448,6 +448,14 @@ namespace storage
 	}
 
 
+	uf_t
+	Activate::used_features(const Actiongraph::Impl& actiongraph) const
+	{
+	    const Device* device = get_device(actiongraph, RHS);
+	    return device->get_impl().do_activate_used_features();
+	}
+
+
 	Text
 	Deactivate::text(const CommitData& commit_data) const
 	{
@@ -464,6 +472,14 @@ namespace storage
 	}
 
 
+	uf_t
+	Deactivate::used_features(const Actiongraph::Impl& actiongraph) const
+	{
+	    const Device* device = get_device(actiongraph, LHS);
+	    return device->get_impl().do_deactivate_used_features();
+	}
+
+
 	Text
 	Resize::text(const CommitData& commit_data) const
 	{
@@ -477,6 +493,14 @@ namespace storage
 	{
 	    const Device* device = get_device(commit_data.actiongraph, get_side());
 	    device->get_impl().do_resize(commit_data, this);
+	}
+
+
+	uf_t
+	Resize::used_features(const Actiongraph::Impl& actiongraph) const
+	{
+	    const Device* device = get_device(actiongraph, get_side());
+	    return device->get_impl().do_resize_used_features();
 	}
 
 
@@ -543,6 +567,14 @@ namespace storage
 	{
 	    const Device* device_rhs = get_device(commit_data.actiongraph, RHS);
 	    device_rhs->get_impl().do_reallot(commit_data, this);
+	}
+
+
+	uf_t
+	Reallot::used_features(const Actiongraph::Impl& actiongraph) const
+	{
+	    const Device* device = get_device(actiongraph, RHS);
+	    return device->get_impl().do_reallot_used_features();
 	}
 
 

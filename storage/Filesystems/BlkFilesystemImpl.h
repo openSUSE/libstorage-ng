@@ -137,12 +137,15 @@ namespace storage
 
 	virtual Text do_set_label_text(Tense tense) const;
 	virtual void do_set_label() const;
+	virtual uf_t do_set_label_used_features() const { return used_features_pure(); }
 
 	virtual Text do_set_uuid_text(Tense tense) const;
 	virtual void do_set_uuid() const;
+	virtual uf_t do_set_uuid_used_features() const { return used_features_pure(); }
 
 	virtual Text do_set_tune_options_text(Tense tense) const;
 	virtual void do_set_tune_options() const;
+	virtual uf_t do_set_tune_options_used_features() const { return used_features_pure(); }
 
 	virtual Text do_resize_text(const CommitData& commit_data, const Action::Resize* action) const override;
 
@@ -162,9 +165,9 @@ namespace storage
 
 	virtual void probe_uuid();
 
-	static bool detect_is_windows(const string& mountpoint);
-	static bool detect_is_efi(const string& mountpoint);
-	static unsigned detect_num_homes(const string& mountpoint);
+	static bool detect_is_windows(const string& mount_point);
+	static bool detect_is_efi(const string& mount_point);
+	static unsigned detect_num_homes(const string& mount_point);
 
 	/**
 	 * Checks whether the filesystem is permanent. A non permanent
@@ -210,6 +213,7 @@ namespace storage
 
 	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
+	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const override;
 
 	};
 
@@ -222,6 +226,7 @@ namespace storage
 
 	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
+	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const override;
 
 	};
 
@@ -234,6 +239,7 @@ namespace storage
 
 	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
+	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const override;
 
 	};
 

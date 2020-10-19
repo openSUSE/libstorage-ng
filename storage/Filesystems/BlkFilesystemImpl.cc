@@ -427,7 +427,7 @@ namespace storage
 
 
     bool
-    BlkFilesystem::Impl::detect_is_windows(const string& mountpoint)
+    BlkFilesystem::Impl::detect_is_windows(const string& mount_point)
     {
 	// The file '$Boot' is special. It is a reserved name of NTFS and from
 	// linux not visible with 'ls /mnt' but with 'ls /mnt/$Boot'.
@@ -437,7 +437,7 @@ namespace storage
 
 	for (unsigned int i = 0; i < lengthof(files); ++i)
 	{
-	    string file = mountpoint + "/" + files[i];
+	    string file = mount_point + "/" + files[i];
 	    if (access(file.c_str(), R_OK) == 0)
 	    {
 		y2mil("found windows file " << quote(file));
@@ -450,21 +450,21 @@ namespace storage
 
 
     bool
-    BlkFilesystem::Impl::detect_is_efi(const string& mountpoint)
+    BlkFilesystem::Impl::detect_is_efi(const string& mount_point)
     {
-	return checkDir(mountpoint + "/efi");
+	return checkDir(mount_point + "/efi");
     }
 
 
     unsigned
-    BlkFilesystem::Impl::detect_num_homes(const string& mountpoint)
+    BlkFilesystem::Impl::detect_num_homes(const string& mount_point)
     {
 	const char* files[] = { ".profile", ".bashrc", ".ssh", ".kde", ".kde4", ".gnome",
 				".gnome2" };
 
 	unsigned num_homes = 0;
 
-	const vector<string> dirs = glob(mountpoint + "/*", GLOB_NOSORT | GLOB_ONLYDIR);
+	const vector<string> dirs = glob(mount_point + "/*", GLOB_NOSORT | GLOB_ONLYDIR);
 	for (const string& dir : dirs)
 	{
 	    if (!boost::ends_with(dir, "/root") && checkDir(dir))
@@ -999,6 +999,14 @@ namespace storage
 	}
 
 
+	uf_t
+	SetLabel::used_features(const Actiongraph::Impl& actiongraph) const
+	{
+	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(actiongraph, RHS));
+	    return blk_filesystem->get_impl().do_set_label_used_features();
+	}
+
+
 	Text
 	SetUuid::text(const CommitData& commit_data) const
 	{
@@ -1015,6 +1023,14 @@ namespace storage
 	}
 
 
+	uf_t
+	SetUuid::used_features(const Actiongraph::Impl& actiongraph) const
+	{
+	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(actiongraph, RHS));
+	    return blk_filesystem->get_impl().do_set_uuid_used_features();
+	}
+
+
 	Text
 	SetTuneOptions::text(const CommitData& commit_data) const
 	{
@@ -1028,6 +1044,14 @@ namespace storage
 	{
 	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(commit_data.actiongraph, RHS));
 	    blk_filesystem->get_impl().do_set_tune_options();
+	}
+
+
+	uf_t
+	SetTuneOptions::used_features(const Actiongraph::Impl& actiongraph) const
+	{
+	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(actiongraph, RHS));
+	    return blk_filesystem->get_impl().do_set_tune_options_used_features();
 	}
 
     }

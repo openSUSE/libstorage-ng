@@ -31,7 +31,31 @@
 namespace storage
 {
 
-    enum : uint64_t
+    /**
+     * Enum specifying the dependency type of used features.
+     */
+    enum class UsedFeaturesDependencyType
+    {
+	/**
+	 * Required used features only include the minimal set of used features.
+	 */
+	REQUIRED,
+
+	/**
+	 * Suggested used features include compared to the required used features
+	 * also filesystems that have no mount point.
+	 */
+	SUGGESTED
+    };
+
+
+    /**
+     * Type for used features.
+     */
+    using uf_t = uint64_t;
+
+
+    enum : uint64_t		// TODO use uf_t
     {
 	UF_EXT2 = 1 << 0,
 	UF_EXT3 = 1 << 1,
@@ -73,7 +97,7 @@ namespace storage
     /**
      * Return a string with the names of the used features. Not for production code.
      */
-    std::string get_used_features_names(uint64_t used_features);
+    std::string get_used_features_names(uf_t used_features);
 
 }
 

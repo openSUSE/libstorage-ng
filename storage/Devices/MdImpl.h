@@ -137,14 +137,16 @@ namespace storage
 
 	virtual void process_udev_ids(vector<string>& udev_ids) const override;
 
-	virtual uint64_t used_features() const override;
+	virtual uf_t used_features(UsedFeaturesDependencyType used_features_dependency_type) const override;
 
 	virtual Text do_create_text(Tense tense) const override;
 	virtual void do_create() override;
 	virtual void do_create_post_verify() const override;
+	virtual uf_t do_create_used_features() const override { return UF_MDRAID; }
 
 	virtual Text do_delete_text(Tense tense) const override;
 	virtual void do_delete() const override;
+	virtual uf_t do_delete_used_features() const override { return UF_MDRAID; }
 
 	virtual Text do_add_to_etc_mdadm_text(Tense tense) const;
 	virtual void do_add_to_etc_mdadm(CommitData& commit_data) const;
@@ -154,12 +156,14 @@ namespace storage
 
 	virtual Text do_reallot_text(const CommitData& commit_data, const Action::Reallot* action) const override;
 	virtual void do_reallot(const CommitData& commit_data, const Action::Reallot* action) const override;
+	virtual uf_t do_reallot_used_features() const override { return UF_MDRAID; }
 
 	void do_reduce(const BlkDevice* blk_device) const;
 	void do_extend(const BlkDevice* blk_device) const;
 
 	virtual Text do_deactivate_text(Tense tense) const override;
 	virtual void do_deactivate() const override;
+	virtual uf_t do_deactivate_used_features() const override { return UF_MDRAID; }
 
 	virtual void calculate_region_and_topology();
 

@@ -88,7 +88,7 @@ namespace storage
 
 	void check(const CheckCallbacks* check_callbacks) const;
 
-	uint64_t used_features() const;
+	uf_t used_features(UsedFeaturesDependencyType used_features_dependency_type) const;
 
 	void log_diff(std::ostream& log, const Impl& rhs) const;
 

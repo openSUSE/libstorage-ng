@@ -78,7 +78,7 @@ namespace storage
 
 	virtual ContentInfo detect_content_info_on_disk() const override;
 
-	virtual uint64_t used_features() const override;
+	virtual uf_t used_features_pure() const override { return UF_VFAT; }
 
 	virtual void do_create() override;
 

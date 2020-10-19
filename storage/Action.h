@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -51,8 +51,8 @@ namespace storage
 	    virtual ~Base() {}
 
 	    virtual Text text(const CommitData& commit_data) const = 0;
-
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const = 0;
+	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const { return 0; }
 
 	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
 					  Actiongraph::Impl& actiongraph) const {}
@@ -86,6 +86,7 @@ namespace storage
 
 	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
+	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const override;
 
 	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
 					  Actiongraph::Impl& actiongraph) const override;
@@ -147,6 +148,7 @@ namespace storage
 
 	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
+	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const override;
 
 	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
 					  Actiongraph::Impl& actiongraph) const override;

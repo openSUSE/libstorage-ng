@@ -20,4 +20,12 @@ BOOST_AUTO_TEST_CASE(actions)
 
     TsCmpActiongraph cmp("create1", true);
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
+
+    BOOST_CHECK_EQUAL(required_features(cmp.get_probed()), "");
+    BOOST_CHECK_EQUAL(suggested_features(cmp.get_probed()), "");
+
+    BOOST_CHECK_EQUAL(required_features(cmp.get_staging()), "md-raid");
+    BOOST_CHECK_EQUAL(suggested_features(cmp.get_staging()), "md-raid");
+
+    BOOST_CHECK_EQUAL(features(cmp.get_actiongraph()), "md-raid");
 }

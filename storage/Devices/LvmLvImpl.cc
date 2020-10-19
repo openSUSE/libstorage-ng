@@ -1435,6 +1435,14 @@ namespace storage
 	    return rhs_lvm_lv->get_impl().do_rename(lhs_lvm_lv->get_impl());
 	}
 
+
+	uf_t
+	Rename::used_features(const Actiongraph::Impl& actiongraph) const
+	{
+	    const LvmLv* lvm_lv = to_lvm_lv(get_device(actiongraph, RHS));
+	    return lvm_lv->get_impl().do_rename_used_features();
+	}
+
     }
 
 

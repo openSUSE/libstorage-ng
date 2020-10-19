@@ -293,6 +293,18 @@ namespace storage
     }
 
 
+    uf_t
+    MountPoint::Impl::used_features(UsedFeaturesDependencyType used_features_dependency_type) const
+    {
+	uf_t ret = Device::Impl::used_features(used_features_dependency_type);
+
+	if (active || in_etc_fstab)
+	    ret |= get_mountable()->get_impl().used_features_pure();
+
+	return ret;
+    }
+
+
     vector<MountByType>
     MountPoint::Impl::possible_mount_bys() const
     {
@@ -470,6 +482,13 @@ namespace storage
     }
 
 
+    uf_t
+    MountPoint::Impl::do_mount_used_features() const
+    {
+	return get_mountable()->get_impl().do_mount_used_features();
+    }
+
+
     Text
     MountPoint::Impl::do_unmount_text(Tense tense) const
     {
@@ -481,6 +500,13 @@ namespace storage
     MountPoint::Impl::do_unmount(CommitData& commit_data)
     {
 	get_mountable()->get_impl().do_unmount(commit_data, get_non_impl());
+    }
+
+
+    uf_t
+    MountPoint::Impl::do_unmount_used_features() const
+    {
+	return get_mountable()->get_impl().do_unmount_used_features();
     }
 
 
@@ -617,6 +643,14 @@ namespace storage
 	Mount::get_mount_point(Actiongraph::Impl& actiongraph) const
 	{
 	    return to_mount_point(get_device(actiongraph));
+	}
+
+
+	uf_t
+	Mount::used_features(const Actiongraph::Impl& actiongraph) const
+	{
+	    const MountPoint* mount_point = to_mount_point(get_device(actiongraph));
+	    return mount_point->get_impl().do_mount_used_features();
 	}
 
 
