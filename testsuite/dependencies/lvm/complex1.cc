@@ -21,4 +21,12 @@ BOOST_AUTO_TEST_CASE(dependencies)
     //  - Adding a new LV to the VG
     TsCmpActiongraph cmp("complex1", true);
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
+
+    BOOST_CHECK_EQUAL(required_features(cmp.get_probed()), "lvm");
+    BOOST_CHECK_EQUAL(suggested_features(cmp.get_probed()), "lvm");
+
+    BOOST_CHECK_EQUAL(required_features(cmp.get_staging()), "lvm");
+    BOOST_CHECK_EQUAL(suggested_features(cmp.get_staging()), "lvm");
+
+    BOOST_CHECK_EQUAL(features(cmp.get_actiongraph()), "lvm");
 }

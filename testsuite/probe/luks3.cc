@@ -40,5 +40,6 @@ BOOST_AUTO_TEST_CASE(probe)
     TsCmpDevicegraph cmp(*probed, *staging);
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
 
-    BOOST_CHECK_EQUAL(get_used_features_names(probed->used_features()), "ext4 luks");
+    BOOST_CHECK_EQUAL(required_features(probed), "luks");
+    BOOST_CHECK_EQUAL(suggested_features(probed), "ext4 luks");
 }

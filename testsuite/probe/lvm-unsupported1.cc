@@ -48,5 +48,6 @@ BOOST_AUTO_TEST_CASE(probe)
     TsCmpDevicegraph cmp(*probed, *staging);
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
 
-    BOOST_CHECK_EQUAL(get_used_features_names(probed->used_features()), "lvm");
+    BOOST_CHECK_EQUAL(required_features(probed), "lvm");
+    BOOST_CHECK_EQUAL(suggested_features(probed), "lvm");
 }

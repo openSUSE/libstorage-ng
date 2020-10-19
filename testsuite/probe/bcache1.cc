@@ -36,5 +36,6 @@ BOOST_AUTO_TEST_CASE(probe)
     TsCmpDevicegraph cmp(*probed, *staging);
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
 
-    BOOST_CHECK_EQUAL(get_used_features_names(probed->used_features()), "bcache ext2 ext4 lvm xfs");
+    BOOST_CHECK_EQUAL(required_features(probed), "bcache ext4 lvm xfs");
+    BOOST_CHECK_EQUAL(suggested_features(probed), "bcache ext2 ext4 lvm xfs");
 }

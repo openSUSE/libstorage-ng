@@ -20,4 +20,12 @@ BOOST_AUTO_TEST_CASE(multidevice_btrfs_dependencies)
 
     TsCmpActiongraph cmp("resize6");
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
+
+    BOOST_CHECK_EQUAL(required_features(cmp.get_probed()), "");
+    BOOST_CHECK_EQUAL(suggested_features(cmp.get_probed()), "btrfs");
+
+    BOOST_CHECK_EQUAL(required_features(cmp.get_staging()), "");
+    BOOST_CHECK_EQUAL(suggested_features(cmp.get_staging()), "btrfs");
+
+    BOOST_CHECK_EQUAL(features(cmp.get_actiongraph()), "btrfs");
 }
