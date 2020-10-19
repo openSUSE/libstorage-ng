@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# requirements: partition sdc1 with unmounted blk filesystem
+# requirements: partition /dev/sdc1 with ext4
 
 
 from storage import *
@@ -22,7 +22,7 @@ sdc1 = BlkDevice.find_by_name(staging, "/dev/sdc1")
 
 blk_filesystem = sdc1.get_blk_filesystem()
 
-mount_point = blk_filesystem.create_mount_point("/test")
+blk_filesystem.set_label("TEST")
 
 print(staging)
 

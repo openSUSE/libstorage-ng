@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# requirements: partition sdb1 with mounted blk filesystem
+# requirements: partition sdc1 with mounted blk filesystem
 
 
 from storage import *
@@ -18,9 +18,9 @@ staging = storage.get_staging()
 
 print(staging)
 
-sdb1 = BlkDevice.find_by_name(staging, "/dev/sdb1")
+sdc1 = BlkDevice.find_by_name(staging, "/dev/sdc1")
 
-blk_filesystem = sdb1.get_blk_filesystem()
+blk_filesystem = sdc1.get_blk_filesystem()
 
 for descendant in blk_filesystem.get_descendants(False):
     if is_mount_point(descendant):

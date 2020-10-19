@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# requirements: partition sdc1 with unmounted blk filesystem
+# requirements: partition /dev/sdc1 with swap
 
 
 from storage import *
@@ -22,7 +22,7 @@ sdc1 = BlkDevice.find_by_name(staging, "/dev/sdc1")
 
 blk_filesystem = sdc1.get_blk_filesystem()
 
-mount_point = blk_filesystem.create_mount_point("/test")
+blk_filesystem.set_uuid("7420b069-cd50-464e-b0b2-66c1fdc75bcd")
 
 print(staging)
 

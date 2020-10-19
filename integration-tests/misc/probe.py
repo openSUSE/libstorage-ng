@@ -62,6 +62,7 @@ probed = storage.get_probed()
 
 print(probed)
 
-print(get_used_features_names(probed.used_features()))
+print("used features (required):", get_used_features_names(probed.used_features(UsedFeaturesDependencyType_REQUIRED)))
+print("used features (suggested):", get_used_features_names(probed.used_features(UsedFeaturesDependencyType_SUGGESTED)))
 
 probed.save("devicegraph.xml")
