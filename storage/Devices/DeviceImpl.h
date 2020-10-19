@@ -146,7 +146,7 @@ namespace storage
 
 	virtual void parent_has_new_region(const Device* parent);
 
-	virtual uint64_t used_features() const { return 0; }
+	virtual uf_t used_features(UsedFeaturesDependencyType used_features_dependency_type) const { return 0; }
 
 	virtual bool has_dependency_manager() const { return false; }
 
@@ -179,21 +179,27 @@ namespace storage
 	virtual Text do_create_text(Tense tense) const;
 	virtual void do_create();
 	virtual void do_create_post_verify() const;
+	virtual uf_t do_create_used_features() const { return 0; }
 
 	virtual Text do_delete_text(Tense tense) const;
 	virtual void do_delete() const;
+	virtual uf_t do_delete_used_features() const { return 0; }
 
 	virtual Text do_activate_text(Tense tense) const;
 	virtual void do_activate() const;
+	virtual uf_t do_activate_used_features() const { return 0; }
 
 	virtual Text do_deactivate_text(Tense tense) const;
 	virtual void do_deactivate() const;
+	virtual uf_t do_deactivate_used_features() const { return 0; }
 
 	virtual Text do_resize_text(const CommitData& commit_data, const Action::Resize* action) const;
 	virtual void do_resize(const CommitData& commit_data, const Action::Resize* action) const;
+	virtual uf_t do_resize_used_features() const { return 0; }
 
 	virtual Text do_reallot_text(const CommitData& commit_data, const Action::Reallot* action) const;
 	virtual void do_reallot(const CommitData& commit_data, const Action::Reallot* action) const;
+	virtual uf_t do_reallot_used_features() const { return 0; }
 
 	bool has_children(View view = View::CLASSIC) const;
 	size_t num_children(View view = View::CLASSIC) const;
@@ -437,6 +443,7 @@ namespace storage
 
 	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
+	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const override;
 
 	};
 
@@ -450,6 +457,7 @@ namespace storage
 
 	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
+	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const override;
 
 	};
 
@@ -463,6 +471,7 @@ namespace storage
 
 	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
+	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const override;
 
 	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
 					  Actiongraph::Impl& actiongraph) const override;
@@ -503,6 +512,7 @@ namespace storage
 
 	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
+	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const override;
 
 	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
 					  Actiongraph::Impl& actiongraph) const override;

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2019] SUSE LLC
+ * Copyright (c) [2017-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -122,6 +122,8 @@ namespace storage
 
 	BtrfsSubvolume* create_btrfs_subvolume(const string& path);
 
+	virtual uf_t used_features_pure() const override { return UF_BTRFS; }
+
 	virtual BtrfsSubvolume* get_non_impl() override { return to_btrfs_subvolume(Device::Impl::get_non_impl()); }
 	virtual const BtrfsSubvolume* get_non_impl() const override { return to_btrfs_subvolume(Device::Impl::get_non_impl()); }
 
@@ -146,12 +148,15 @@ namespace storage
 
 	virtual Text do_set_nocow_text(Tense tense) const;
 	virtual void do_set_nocow() const;
+	virtual uf_t do_set_nocow_used_features() const { return used_features_pure(); }
 
 	virtual Text do_set_default_btrfs_subvolume_text(Tense tense) const;
 	virtual void do_set_default_btrfs_subvolume() const;
+	virtual uf_t do_set_default_btrfs_subvolume_used_features() const { return used_features_pure(); }
 
 	virtual Text do_delete_text(Tense tense) const override;
 	virtual void do_delete() const override;
+	virtual uf_t do_delete_used_features() const override { return used_features_pure(); }
 
 	virtual void do_pre_mount() const override;
 
@@ -183,6 +188,7 @@ namespace storage
 
 	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
+	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const override;
 
 	};
 
@@ -195,6 +201,7 @@ namespace storage
 
 	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
+	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const override;
 
 	};
 

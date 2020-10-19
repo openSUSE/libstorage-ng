@@ -65,7 +65,7 @@ namespace storage
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 
-	virtual uint64_t used_features() const override;
+	virtual uf_t used_features_pure() const override { return UF_EXT2; }
 
     };
 

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -125,6 +125,8 @@ namespace storage
 	bool empty() const;
 
 	size_t num_actions() const;
+
+	uf_t used_features() const;
 
 	vertex_descriptor add_vertex(Action::Base* action);
 

@@ -131,7 +131,9 @@ namespace storage
 	virtual ResizeInfo detect_resize_info(const BlkDevice* blk_device = nullptr) const override;
 	virtual ResizeInfo detect_resize_info_on_disk(const BlkDevice* blk_device = nullptr) const override;
 
-	virtual uint64_t used_features() const override;
+	uf_t used_features(UsedFeaturesDependencyType used_features_dependency_type) const override;
+
+	virtual uf_t used_features_pure() const override { return UF_BTRFS; }
 
 	virtual Btrfs* get_non_impl() override { return to_btrfs(Device::Impl::get_non_impl()); }
 	virtual const Btrfs* get_non_impl() const override { return to_btrfs(Device::Impl::get_non_impl()); }

@@ -86,7 +86,7 @@ namespace storage
 
 	virtual ResizeInfo detect_resize_info(const BlkDevice* blk_device = nullptr) const override;
 
-	virtual uint64_t used_features() const override;
+	virtual uf_t used_features(UsedFeaturesDependencyType used_features_dependency_type) const override;
 
 	virtual void parent_has_new_region(const Device* parent) override;
 
@@ -102,12 +102,15 @@ namespace storage
 	virtual Text do_create_text(Tense tense) const override;
 	virtual void do_create() override;
 	virtual void do_create_post_verify() const override;
+	virtual uf_t do_create_used_features() const override { return UF_LVM; }
 
 	virtual Text do_resize_text(const CommitData& commit_data, const Action::Resize* action) const override;
 	virtual void do_resize(const CommitData& commit_data, const Action::Resize* action) const override;
+	virtual uf_t do_resize_used_features() const override { return UF_LVM; }
 
 	virtual Text do_delete_text(Tense tense) const override;
 	virtual void do_delete() const override;
+	virtual uf_t do_delete_used_features() const override { return UF_LVM; }
 
     private:
 

@@ -214,6 +214,21 @@ namespace storage
     }
 
 
+    uf_t
+    Actiongraph::Impl::used_features() const
+    {
+	uf_t ret = 0;
+
+	for (vertex_descriptor vertex : vertices())
+	{
+	    const Action::Base* action = graph[vertex].get();
+	    ret |= action->used_features(*this);
+	}
+
+	return ret;
+    }
+
+
     Actiongraph::Impl::vertex_descriptor
     Actiongraph::Impl::add_vertex(Action::Base* action)
     {
@@ -624,6 +639,8 @@ namespace storage
     Actiongraph::Impl::commit(const CommitOptions& commit_options, const CommitCallbacks* commit_callbacks) const
     {
 	y2mil("commit begin");
+
+	y2mil("used features: " << get_used_features_names(used_features()));
 
 	CommitData commit_data(*this, Tense::PRESENT_CONTINUOUS);
 

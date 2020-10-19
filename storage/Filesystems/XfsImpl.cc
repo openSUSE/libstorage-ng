@@ -76,13 +76,6 @@ namespace storage
     }
 
 
-    uint64_t
-    Xfs::Impl::used_features() const
-    {
-	return UF_XFS | BlkFilesystem::Impl::used_features();
-    }
-
-
     void
     Xfs::Impl::do_create()
     {

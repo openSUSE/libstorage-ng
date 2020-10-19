@@ -3,6 +3,7 @@
 #include <vector>
 #include <set>
 
+#include "storage/Storage.h"
 #include "storage/Devicegraph.h"
 #include "storage/ActiongraphImpl.h"
 
@@ -84,12 +85,17 @@ namespace storage
 	 */
 	TsCmpActiongraph(const string& name, bool commit = false);
 
-	/**
-	 * Compares the actiongraph with the expected actiongraph.
-	 */
-	TsCmpActiongraph(const Actiongraph& actiongraph, const Expected& expected);
+	const Devicegraph* get_probed() const { return probed; }
+	const Devicegraph* get_staging() const { return staging; }
+	const Actiongraph* get_actiongraph() const { return actiongraph; }
 
     private:
+
+	unique_ptr<Storage> storage;
+
+	const Devicegraph* probed;
+	const Devicegraph* staging;
+	const Actiongraph* actiongraph;
 
 	/**
 	 * Main function of class that compares the actiongraph with the
@@ -113,9 +119,14 @@ namespace storage
 	void cmp_texts(const CommitData& commit_data);
 	void cmp_dependencies(const CommitData& commit_data);
 
-	string text(const CommitData& commit_data,
-		    Actiongraph::Impl::vertex_descriptor vertex) const;
+	string text(const CommitData& commit_data, Actiongraph::Impl::vertex_descriptor vertex) const;
 
     };
+
+
+    string required_features(const Devicegraph* devicegraph);
+    string suggested_features(const Devicegraph* devicegraph);
+
+    string features(const Actiongraph* actiongraph);
 
 }

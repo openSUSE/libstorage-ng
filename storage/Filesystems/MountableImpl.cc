@@ -334,6 +334,18 @@ namespace storage
     }
 
 
+    uf_t
+    Mountable::Impl::used_features(UsedFeaturesDependencyType used_features_dependency_type) const
+    {
+	uf_t ret = Device::Impl::used_features(used_features_dependency_type);
+
+	if (used_features_dependency_type == UsedFeaturesDependencyType::SUGGESTED)
+	    ret |= used_features_pure();
+
+	return ret;
+    }
+
+
     Text
     Mountable::Impl::do_mount_text(const MountPoint* mount_point, Tense tense) const
     {

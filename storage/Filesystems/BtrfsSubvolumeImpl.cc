@@ -758,6 +758,14 @@ namespace storage
 	}
 
 
+	uf_t
+	SetNocow::used_features(const Actiongraph::Impl& actiongraph) const
+	{
+	    const BtrfsSubvolume* btrfs_subvolume = to_btrfs_subvolume(get_device(actiongraph, RHS));
+	    return btrfs_subvolume->get_impl().do_set_nocow_used_features();
+	}
+
+
 	Text
 	SetDefaultBtrfsSubvolume::text(const CommitData& commit_data) const
 	{
@@ -771,6 +779,14 @@ namespace storage
 	{
 	    const BtrfsSubvolume* btrfs_subvolume = to_btrfs_subvolume(get_device(commit_data.actiongraph, RHS));
 	    btrfs_subvolume->get_impl().do_set_default_btrfs_subvolume();
+	}
+
+
+	uf_t
+	SetDefaultBtrfsSubvolume::used_features(const Actiongraph::Impl& actiongraph) const
+	{
+	    const BtrfsSubvolume* btrfs_subvolume = to_btrfs_subvolume(get_device(actiongraph, RHS));
+	    return btrfs_subvolume->get_impl().do_set_default_btrfs_subvolume_used_features();
 	}
 
     }

@@ -245,15 +245,15 @@ namespace storage
     }
 
 
-    uint64_t
-    Devicegraph::Impl::used_features() const
+    uf_t
+    Devicegraph::Impl::used_features(UsedFeaturesDependencyType used_features_dependency_type) const
     {
-	uint64_t ret = 0;
+	uf_t ret = 0;
 
 	for (vertex_descriptor vertex : vertices())
 	{
 	    const Device* device = graph[vertex].get();
-	    ret |= device->get_impl().used_features();
+	    ret |= device->get_impl().used_features(used_features_dependency_type);
 	}
 
 	return ret;

@@ -77,7 +77,7 @@ namespace storage
 
 	virtual vector<MountByType> possible_mount_bys() const override;
 
-	virtual uint64_t used_features() const override;
+	virtual uf_t used_features_pure() const override { return UF_NFS; }
 
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;

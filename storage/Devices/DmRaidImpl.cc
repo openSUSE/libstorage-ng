@@ -180,10 +180,10 @@ namespace storage
     }
 
 
-    uint64_t
-    DmRaid::Impl::used_features() const
+    uf_t
+    DmRaid::Impl::used_features(UsedFeaturesDependencyType used_features_dependency_type) const
     {
-	return UF_DMRAID | Partitionable::Impl::used_features();
+	return UF_DMRAID | Partitionable::Impl::used_features(used_features_dependency_type);
     }
 
 

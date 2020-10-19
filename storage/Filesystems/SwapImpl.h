@@ -82,7 +82,7 @@ namespace storage
 
 	virtual SpaceInfo detect_space_info() const override;
 
-	virtual uint64_t used_features() const override;
+	virtual uf_t used_features_pure() const override { return UF_SWAP; }
 
 	virtual void do_create() override;
 

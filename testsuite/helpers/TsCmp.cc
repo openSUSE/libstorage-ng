@@ -198,27 +198,30 @@ namespace storage
 	Environment environment(true, ProbeMode::READ_DEVICEGRAPH, TargetMode::DIRECT);
 	environment.set_devicegraph_filename(name + "-probed.xml");
 
-	Storage storage(environment);
-	storage.probe();
-	storage.get_staging()->load(name + "-staging.xml");
+	storage = make_unique<Storage>(environment);
+	storage->probe();
+	storage->get_staging()->load(name + "-staging.xml");
 
-	Actiongraph actiongraph(storage, storage.get_system(), storage.get_staging());
+	probed = storage->get_probed();
+	staging = storage->get_staging();
+
+	actiongraph = storage->calculate_actiongraph();
 
 	if (access(DOT_BIN, X_OK) == 0)
 	{
-	    storage.get_probed()->write_graphviz(name + "-probed.gv", get_debug_devicegraph_style_callbacks(), View::ALL);
+	    probed->write_graphviz(name + "-probed.gv", get_debug_devicegraph_style_callbacks(), View::ALL);
 	    system((DOT_BIN " -Tsvg < " + name + "-probed.gv > " + name + "-probed.svg").c_str());
 
-	    storage.get_staging()->write_graphviz(name + "-staging.gv", get_debug_devicegraph_style_callbacks(), View::ALL);
+	    staging->write_graphviz(name + "-staging.gv", get_debug_devicegraph_style_callbacks(), View::ALL);
 	    system((DOT_BIN " -Tsvg < " + name + "-staging.gv > " + name + "-staging.svg").c_str());
 
-	    actiongraph.write_graphviz(name + "-action.gv", get_debug_actiongraph_style_callbacks());
+	    actiongraph->write_graphviz(name + "-action.gv", get_debug_actiongraph_style_callbacks());
 	    system((DOT_BIN " -Tsvg < " + name + "-action.gv > " + name + "-action.svg").c_str());
 	}
 
 	TsCmpActiongraph::Expected expected(name + "-expected.txt");
 
-	const CommitData commit_data(actiongraph.get_impl(), Tense::SIMPLE_PRESENT);
+	const CommitData commit_data(actiongraph->get_impl(), Tense::SIMPLE_PRESENT);
 
 	cmp(commit_data, expected);
 
@@ -230,18 +233,9 @@ namespace storage
 
 	CommitOptions commit_options(false);
 
-	storage.calculate_actiongraph();
-	storage.commit(commit_options);
+	storage->commit(commit_options);
 
 	Mockup::occams_razor();
-    }
-
-
-    TsCmpActiongraph::TsCmpActiongraph(const Actiongraph& actiongraph, const Expected& expected)
-    {
-	const CommitData commit_data(actiongraph.get_impl(), Tense::SIMPLE_PRESENT);
-
-	cmp(commit_data, expected);
     }
 
 
@@ -376,5 +370,27 @@ namespace storage
 	    }
 	}
     }
+
+
+    string
+    required_features(const Devicegraph* devicegraph)
+    {
+	return get_used_features_names(devicegraph->used_features(UsedFeaturesDependencyType::REQUIRED));
+    }
+
+
+    string
+    suggested_features(const Devicegraph* devicegraph)
+    {
+	return get_used_features_names(devicegraph->used_features(UsedFeaturesDependencyType::SUGGESTED));
+    }
+
+
+    string
+    features(const Actiongraph* actiongraph)
+    {
+	return get_used_features_names(actiongraph->used_features());
+    }
+
 
 }

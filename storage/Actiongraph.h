@@ -32,6 +32,7 @@
 
 #include "storage/Graphviz.h"
 #include "storage/CompoundAction.h"
+#include "storage/UsedFeatures.h"
 
 
 namespace storage
@@ -92,6 +93,11 @@ namespace storage
 	 * Return the number of actions in the actiongraph.
 	 */
 	size_t num_actions() const;
+
+	/**
+	 * Calculates a bit-field with the used features of the actiongraph.
+	 */
+	uf_t used_features() const;
 
 	/**
 	 * Print the actiongraph on cout. Not for production code.

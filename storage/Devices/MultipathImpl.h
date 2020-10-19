@@ -78,7 +78,7 @@ namespace storage
 	virtual void probe_pass_1a(Prober& prober) override;
 	virtual void probe_pass_1b(Prober& prober) override;
 
-	virtual uint64_t used_features() const override;
+	virtual uf_t used_features(UsedFeaturesDependencyType used_features_dependency_type) const override;
 
 	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
 	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;
@@ -91,6 +91,7 @@ namespace storage
 
 	virtual Text do_deactivate_text(Tense tense) const override;
 	virtual void do_deactivate() const override;
+	virtual uf_t do_deactivate_used_features() const override { return UF_MULTIPATH; }
 
     private:
 

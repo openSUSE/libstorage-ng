@@ -227,10 +227,10 @@ namespace storage
     }
 
 
-    uint64_t
-    Multipath::Impl::used_features() const
+    uf_t
+    Multipath::Impl::used_features(UsedFeaturesDependencyType used_features_dependency_type) const
     {
-	return UF_MULTIPATH | Partitionable::Impl::used_features();
+	return UF_MULTIPATH | Partitionable::Impl::used_features(used_features_dependency_type);
     }
 
 

@@ -68,13 +68,6 @@ namespace storage
     }
 
 
-    uint64_t
-    Vfat::Impl::used_features() const
-    {
-	return UF_VFAT | BlkFilesystem::Impl::used_features();
-    }
-
-
     void
     Vfat::Impl::do_create()
     {

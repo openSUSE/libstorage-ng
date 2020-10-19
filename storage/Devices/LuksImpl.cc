@@ -559,10 +559,10 @@ namespace storage
     }
 
 
-    uint64_t
-    Luks::Impl::used_features() const
+    uf_t
+    Luks::Impl::used_features(UsedFeaturesDependencyType used_features_dependency_type) const
     {
-	return UF_LUKS | Encryption::Impl::used_features();
+	return UF_LUKS | Encryption::Impl::used_features(used_features_dependency_type);
     }
 
 

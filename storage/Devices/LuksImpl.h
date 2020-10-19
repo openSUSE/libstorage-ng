@@ -93,18 +93,22 @@ namespace storage
 
 	virtual ResizeInfo detect_resize_info(const BlkDevice* blk_device = nullptr) const override;
 
-	virtual uint64_t used_features() const override;
+	virtual uf_t used_features(UsedFeaturesDependencyType used_features_dependency_type) const override;
 
 	virtual Luks* get_non_impl() override { return to_luks(Device::Impl::get_non_impl()); }
 	virtual const Luks* get_non_impl() const override { return to_luks(Device::Impl::get_non_impl()); }
 
 	virtual void do_create() override;
+	virtual uf_t do_create_used_features() const override { return UF_LUKS; }
 
 	virtual void do_delete() const override;
+	virtual uf_t do_delete_used_features() const override { return UF_LUKS; }
 
 	virtual void do_activate() const override;
+	virtual uf_t do_activate_used_features() const override { return UF_LUKS; }
 
 	virtual void do_deactivate() const override;
+	virtual uf_t do_deactivate_used_features() const override { return UF_LUKS; }
 
     protected:
 

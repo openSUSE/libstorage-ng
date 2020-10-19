@@ -999,6 +999,14 @@ namespace storage
 	}
 
 
+	uf_t
+	SetLabel::used_features(const Actiongraph::Impl& actiongraph) const
+	{
+	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(actiongraph, RHS));
+	    return blk_filesystem->get_impl().do_set_label_used_features();
+	}
+
+
 	Text
 	SetUuid::text(const CommitData& commit_data) const
 	{
@@ -1015,6 +1023,14 @@ namespace storage
 	}
 
 
+	uf_t
+	SetUuid::used_features(const Actiongraph::Impl& actiongraph) const
+	{
+	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(actiongraph, RHS));
+	    return blk_filesystem->get_impl().do_set_uuid_used_features();
+	}
+
+
 	Text
 	SetTuneOptions::text(const CommitData& commit_data) const
 	{
@@ -1028,6 +1044,14 @@ namespace storage
 	{
 	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(commit_data.actiongraph, RHS));
 	    blk_filesystem->get_impl().do_set_tune_options();
+	}
+
+
+	uf_t
+	SetTuneOptions::used_features(const Actiongraph::Impl& actiongraph) const
+	{
+	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(actiongraph, RHS));
+	    return blk_filesystem->get_impl().do_set_tune_options_used_features();
 	}
 
     }

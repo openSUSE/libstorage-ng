@@ -46,11 +46,4 @@ namespace storage
 	return _("BitLocker").translated;
     }
 
-
-    uint64_t
-    Bitlocker::Impl::used_features() const
-    {
-	return UF_BITLOCKER | BlkFilesystem::Impl::used_features();
-    }
-
 }

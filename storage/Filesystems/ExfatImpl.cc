@@ -64,13 +64,6 @@ namespace storage
     }
 
 
-    uint64_t
-    Exfat::Impl::used_features() const
-    {
-	return UF_EXFAT | BlkFilesystem::Impl::used_features();
-    }
-
-
     void
     Exfat::Impl::do_create()
     {

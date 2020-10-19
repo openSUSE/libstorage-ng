@@ -60,6 +60,8 @@ namespace storage
 
 	static void probe_tmpfses(Prober& prober);
 
+	virtual uf_t used_features_pure() const override { return 0; }
+
 	virtual Text get_message_name() const override;
 
 	virtual string get_mount_name() const override;

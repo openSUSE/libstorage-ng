@@ -49,11 +49,4 @@ namespace storage
 	return _("Ext3").translated;
     }
 
-
-    uint64_t
-    Ext3::Impl::used_features() const
-    {
-	return UF_EXT3 | Ext::Impl::used_features();
-    }
-
 }

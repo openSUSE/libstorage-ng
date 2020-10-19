@@ -52,13 +52,6 @@ namespace storage
     }
 
 
-    uint64_t
-    Reiserfs::Impl::used_features() const
-    {
-	return UF_REISERFS | BlkFilesystem::Impl::used_features();
-    }
-
-
     void
     Reiserfs::Impl::do_create()
     {

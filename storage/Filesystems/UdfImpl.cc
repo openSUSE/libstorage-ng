@@ -69,13 +69,6 @@ namespace storage
     }
 
 
-    uint64_t
-    Udf::Impl::used_features() const
-    {
-	return UF_UDF | BlkFilesystem::Impl::used_features();
-    }
-
-
     void
     Udf::Impl::do_create()
     {

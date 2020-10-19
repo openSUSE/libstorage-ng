@@ -68,6 +68,13 @@ namespace storage
     }
 
 
+    uf_t
+    Actiongraph::used_features() const
+    {
+	return get_impl().used_features();
+    }
+
+
     vector<const Action::Base*>
     Actiongraph::get_commit_actions() const
     {

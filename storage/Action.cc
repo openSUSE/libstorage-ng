@@ -71,6 +71,14 @@ namespace storage
 	}
 
 
+	uf_t
+	Create::used_features(const Actiongraph::Impl& actiongraph) const
+	{
+	    const Device* device = get_device(actiongraph);
+	    return device->get_impl().do_create_used_features();
+	}
+
+
 	Text
 	Delete::text(const CommitData& commit_data) const
 	{
@@ -82,6 +90,14 @@ namespace storage
 	Delete::commit(CommitData& commit_data, const CommitOptions& commit_options) const
 	{
 	    get_device(commit_data.actiongraph)->get_impl().do_delete();
+	}
+
+
+	uf_t
+	Delete::used_features(const Actiongraph::Impl& actiongraph) const
+	{
+	    const Device* device = get_device(actiongraph);
+	    return device->get_impl().do_delete_used_features();
 	}
 
 

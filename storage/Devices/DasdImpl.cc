@@ -228,10 +228,10 @@ namespace storage
     }
 
 
-    uint64_t
-    Dasd::Impl::used_features() const
+    uf_t
+    Dasd::Impl::used_features(UsedFeaturesDependencyType used_features_dependency_type) const
     {
-	return UF_DASD | Partitionable::Impl::used_features();
+	return UF_DASD | Partitionable::Impl::used_features(used_features_dependency_type);
     }
 
 

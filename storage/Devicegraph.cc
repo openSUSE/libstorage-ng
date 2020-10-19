@@ -415,7 +415,14 @@ namespace storage
     uint64_t
     Devicegraph::used_features() const
     {
-	return get_impl().used_features();
+	return get_impl().used_features(UsedFeaturesDependencyType::SUGGESTED);
+    }
+
+
+    uf_t
+    Devicegraph::used_features(UsedFeaturesDependencyType used_features_dependency_type) const
+    {
+	return get_impl().used_features(used_features_dependency_type);
     }
 
 

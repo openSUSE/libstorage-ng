@@ -688,10 +688,10 @@ namespace storage
     }
 
 
-    uint64_t
-    Md::Impl::used_features() const
+    uf_t
+    Md::Impl::used_features(UsedFeaturesDependencyType used_features_dependency_type) const
     {
-	return UF_MDRAID | Partitionable::Impl::used_features();
+	return UF_MDRAID | Partitionable::Impl::used_features(used_features_dependency_type);
     }
 
 

@@ -204,11 +204,21 @@ namespace storage
 
 	virtual void do_pre_mount() const {}
 
+	virtual uf_t used_features(UsedFeaturesDependencyType used_features_dependency_type) const override;
+
+	virtual uf_t used_features_pure() const = 0;
+
+	virtual uf_t do_create_used_features() const override { return used_features_pure(); }
+	virtual uf_t do_resize_used_features() const override { return used_features_pure(); }
+	virtual uf_t do_reallot_used_features() const override { return used_features_pure(); }
+
 	virtual Text do_mount_text(const MountPoint* mount_point, Tense tense) const;
 	virtual void do_mount(CommitData& commit_data, const CommitOptions& commit_options, MountPoint* mount_point) const;
+	virtual uf_t do_mount_used_features() const { return used_features_pure(); }
 
 	virtual Text do_unmount_text(const MountPoint* mount_point, Tense tense) const;
 	virtual void do_unmount(CommitData& commit_data, MountPoint* mount_point) const;
+	virtual uf_t do_unmount_used_features() const { return 0; }
 
 	virtual Text do_add_to_etc_fstab_text(const MountPoint* mount_point, Tense tense) const;
 	virtual void do_add_to_etc_fstab(CommitData& commit_data, const MountPoint* mount_point) const;

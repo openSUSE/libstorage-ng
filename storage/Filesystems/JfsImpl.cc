@@ -51,13 +51,6 @@ namespace storage
     }
 
 
-    uint64_t
-    Jfs::Impl::used_features() const
-    {
-	return UF_JFS | BlkFilesystem::Impl::used_features();
-    }
-
-
     void
     Jfs::Impl::do_create()
     {
