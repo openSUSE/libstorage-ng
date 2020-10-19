@@ -41,7 +41,7 @@ namespace storage
 
 	typedef std::tuple<string, string> key_t;
 
-	CmdLsattr(const key_t& key, const string& mountpoint, const string& path);
+	CmdLsattr(const key_t& key, const string& mount_point, const string& path);
 
 	bool is_nocow() const { return nocow; }
 
@@ -51,7 +51,7 @@ namespace storage
 
     private:
 
-	string mountpoint;
+	string mount_point;
 	string path;
 
 	bool nocow;

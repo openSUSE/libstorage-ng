@@ -232,6 +232,7 @@ namespace storage
 	    const string& get_path(Actiongraph::Impl& actiongraph) const;
 
 	    const MountPoint* get_mount_point(Actiongraph::Impl& actiongraph) const;
+
 	};
 
 

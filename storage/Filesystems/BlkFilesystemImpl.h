@@ -165,9 +165,9 @@ namespace storage
 
 	virtual void probe_uuid();
 
-	static bool detect_is_windows(const string& mountpoint);
-	static bool detect_is_efi(const string& mountpoint);
-	static unsigned detect_num_homes(const string& mountpoint);
+	static bool detect_is_windows(const string& mount_point);
+	static bool detect_is_efi(const string& mount_point);
+	static unsigned detect_num_homes(const string& mount_point);
 
 	/**
 	 * Checks whether the filesystem is permanent. A non permanent

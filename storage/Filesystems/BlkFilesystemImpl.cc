@@ -427,7 +427,7 @@ namespace storage
 
 
     bool
-    BlkFilesystem::Impl::detect_is_windows(const string& mountpoint)
+    BlkFilesystem::Impl::detect_is_windows(const string& mount_point)
     {
 	// The file '$Boot' is special. It is a reserved name of NTFS and from
 	// linux not visible with 'ls /mnt' but with 'ls /mnt/$Boot'.
@@ -437,7 +437,7 @@ namespace storage
 
 	for (unsigned int i = 0; i < lengthof(files); ++i)
 	{
-	    string file = mountpoint + "/" + files[i];
+	    string file = mount_point + "/" + files[i];
 	    if (access(file.c_str(), R_OK) == 0)
 	    {
 		y2mil("found windows file " << quote(file));
@@ -450,21 +450,21 @@ namespace storage
 
 
     bool
-    BlkFilesystem::Impl::detect_is_efi(const string& mountpoint)
+    BlkFilesystem::Impl::detect_is_efi(const string& mount_point)
     {
-	return checkDir(mountpoint + "/efi");
+	return checkDir(mount_point + "/efi");
     }
 
 
     unsigned
-    BlkFilesystem::Impl::detect_num_homes(const string& mountpoint)
+    BlkFilesystem::Impl::detect_num_homes(const string& mount_point)
     {
 	const char* files[] = { ".profile", ".bashrc", ".ssh", ".kde", ".kde4", ".gnome",
 				".gnome2" };
 
 	unsigned num_homes = 0;
 
-	const vector<string> dirs = glob(mountpoint + "/*", GLOB_NOSORT | GLOB_ONLYDIR);
+	const vector<string> dirs = glob(mount_point + "/*", GLOB_NOSORT | GLOB_ONLYDIR);
 	for (const string& dir : dirs)
 	{
 	    if (!boost::ends_with(dir, "/root") && checkDir(dir))

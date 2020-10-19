@@ -46,7 +46,7 @@ BOOST_AUTO_TEST_CASE(parse1)
     };
 
     vector<string> output = {
-	"mountpoint:/btrfs path:/var/lib/mariadb nocow:true"
+	"mount-point:/btrfs path:/var/lib/mariadb nocow:true"
     };
 
     check(input, output);
