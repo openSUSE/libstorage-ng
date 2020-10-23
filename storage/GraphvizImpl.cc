@@ -340,8 +340,7 @@ namespace storage
 
 
     map<string, string>
-    AdvancedActiongraphStyleCallbacks::node(const CommitData& commit_data,
-					    const Action::Base* action)
+    AdvancedActiongraphStyleCallbacks::node(const CommitData& commit_data, const Action::Base* action)
     {
 	map<string, string> ret;
 
