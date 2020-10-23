@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <getopt.h>
+#include <string.h>
 #include <iostream>
 #include <boost/algorithm/string.hpp>
 
@@ -12,6 +13,7 @@
 #include "storage/Utils/Logger.h"
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/StorageDefines.h"
+#include "storage/Utils/Format.h"
 #include "storage/Actiongraph.h"
 
 
@@ -24,6 +26,7 @@ Mode mode = DEVICEGRAPH;
 
 bool keep_gv = false;
 bool keep_svg = false;
+View view = View::ALL;
 
 
 void
@@ -63,7 +66,7 @@ doit_devicegraph(const string& filename)
     string filename_gv = keep_gv ? name + ".gv" : tmp_dir.get_fullname() + "/" + name + ".gv";
     string filename_svg = keep_svg ? name + ".svg" : tmp_dir.get_fullname() + "/" + name + ".svg";
 
-    probed->write_graphviz(filename_gv, get_debug_devicegraph_style_callbacks(), View::ALL);
+    probed->write_graphviz(filename_gv, get_debug_devicegraph_style_callbacks(), view);
 
     helper(filename_gv, filename_svg);
 }
@@ -105,7 +108,7 @@ void usage() __attribute__ ((__noreturn__));
 void
 usage()
 {
-    cerr << "display [--devicegraph] [--keep-gv] [--keep-svg] filename\n"
+    cerr << "display [--devicegraph] [--keep-gv] [--keep-svg] [--view view] filename\n"
 	 << "display --actiongraph [--keep-gv] [--keep-svg] filename filename\n";
 
     exit(EXIT_FAILURE);
@@ -116,10 +119,11 @@ int
 main(int argc, char **argv)
 {
     const struct option options[] = {
-	{ "devicegraph",	no_argument,	0,	1 },
-	{ "actiongraph",	no_argument,	0,	2 },
-	{ "keep-gv",		no_argument,	0,	3 },
-	{ "keep-svg",		no_argument,	0,	4 },
+	{ "devicegraph",	no_argument,		0,	1 },
+	{ "actiongraph",	no_argument,		0,	2 },
+	{ "keep-gv",		no_argument,		0,	3 },
+	{ "keep-svg",		no_argument,		0,	4 },
+	{ "view",		required_argument,	0,	5 },
 	{ 0, 0, 0, 0 }
     };
 
@@ -149,6 +153,20 @@ main(int argc, char **argv)
 
 	    case 4:
 		keep_svg = true;
+		break;
+
+	    case 5:
+		if (strcmp(optarg, "all") == 0)
+		    view = View::ALL;
+		else if (strcmp(optarg, "classic") == 0)
+		    view = View::CLASSIC;
+		else if (strcmp(optarg, "remove") == 0)
+		    view = View::REMOVE;
+		else
+		{
+		    cerr << sformat("Unknown view '%s'.", optarg) << endl;
+		    usage();
+		}
 		break;
 
 	    default:
