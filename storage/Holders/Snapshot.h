@@ -34,6 +34,8 @@ namespace storage
      * Relationship between origin and snapshot. The origin is the source and the
      * snapshot the target. Used for LVM and btrfs snapshot.
      *
+     * Not included in the classic view.
+     *
      * @see Holder
      */
     class Snapshot : public Holder

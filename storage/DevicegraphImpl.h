@@ -76,9 +76,10 @@ namespace storage
 
 	typedef graph_t::vertices_size_type vertices_size_type;
 
+	typedef std::function<bool(Devicegraph::Impl::vertex_descriptor)> vertex_filter_t;
 	typedef std::function<bool(Devicegraph::Impl::edge_descriptor)> edge_filter_t;
 
-	typedef boost::filtered_graph<graph_t, edge_filter_t> filtered_graph_t;
+	typedef boost::filtered_graph<graph_t, edge_filter_t, vertex_filter_t> filtered_graph_t;
 
 
 	Impl(Storage* storage) : storage(storage) {}
@@ -289,6 +290,7 @@ namespace storage
 
     private:
 
+	vertex_filter_t make_vertex_filter(View view) const;
 	edge_filter_t make_edge_filter(View view) const;
 
 	Storage* storage;

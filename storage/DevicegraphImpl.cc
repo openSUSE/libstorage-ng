@@ -217,7 +217,8 @@ namespace storage
 	{
 	    // Look for cycles in the classic view. With btrfs snapshots cycles are possible.
 
-	    filtered_graph_t filtered_graph(graph, make_edge_filter(View::CLASSIC));
+	    filtered_graph_t filtered_graph(graph, make_edge_filter(View::CLASSIC),
+					    make_vertex_filter(View::CLASSIC));
 
 	    VertexIndexMapGenerator<filtered_graph_t> vertex_index_map_generator(filtered_graph);
 
@@ -500,7 +501,7 @@ namespace storage
     size_t
     Devicegraph::Impl::num_children(vertex_descriptor vertex, View view) const
     {
-	filtered_graph_t filtered_graph(graph, make_edge_filter(view));
+	filtered_graph_t filtered_graph(graph, make_edge_filter(view), make_vertex_filter(view));
 
 	return boost::out_degree(vertex, filtered_graph);
     }
@@ -509,7 +510,7 @@ namespace storage
     size_t
     Devicegraph::Impl::num_parents(vertex_descriptor vertex, View view) const
     {
-	filtered_graph_t filtered_graph(graph, make_edge_filter(view));
+	filtered_graph_t filtered_graph(graph, make_edge_filter(view), make_vertex_filter(view));
 
 	return boost::in_degree(vertex, filtered_graph);
     }
@@ -577,7 +578,7 @@ namespace storage
     vector<Devicegraph::Impl::vertex_descriptor>
     Devicegraph::Impl::descendants(vertex_descriptor vertex, bool itself, View view) const
     {
-	filtered_graph_t filtered_graph(graph, make_edge_filter(view));
+	filtered_graph_t filtered_graph(graph, make_edge_filter(view), make_vertex_filter(view));
 
 	VertexIndexMapGenerator<filtered_graph_t> vertex_index_map_generator(filtered_graph);
 
@@ -599,7 +600,7 @@ namespace storage
     {
 	typedef boost::reverse_graph<filtered_graph_t> reverse_graph_t;
 
-	filtered_graph_t filtered_graph(graph, make_edge_filter(view));
+	filtered_graph_t filtered_graph(graph, make_edge_filter(view), make_vertex_filter(view));
 	reverse_graph_t reverse_graph(filtered_graph);
 
 	VertexIndexMapGenerator<reverse_graph_t> vertex_index_map_generator(reverse_graph);
@@ -620,7 +621,7 @@ namespace storage
     vector<Devicegraph::Impl::vertex_descriptor>
     Devicegraph::Impl::leaves(vertex_descriptor vertex, bool itself, View view) const
     {
-	filtered_graph_t filtered_graph(graph, make_edge_filter(view));
+	filtered_graph_t filtered_graph(graph, make_edge_filter(view), make_vertex_filter(view));
 
 	VertexIndexMapGenerator<filtered_graph_t> vertex_index_map_generator(filtered_graph);
 
@@ -642,7 +643,7 @@ namespace storage
     {
 	typedef boost::reverse_graph<filtered_graph_t> reverse_graph_t;
 
-	filtered_graph_t filtered_graph(graph, make_edge_filter(view));
+	filtered_graph_t filtered_graph(graph, make_edge_filter(view), make_vertex_filter(view));
 	reverse_graph_t reverse_graph(filtered_graph);
 
 	VertexIndexMapGenerator<reverse_graph_t> vertex_index_map_generator(filtered_graph);
@@ -663,7 +664,7 @@ namespace storage
     Devicegraph::Impl::edge_descriptor
     Devicegraph::Impl::in_edge(vertex_descriptor vertex, View view) const
     {
-	filtered_graph_t filtered_graph(graph, make_edge_filter(view));
+	filtered_graph_t filtered_graph(graph, make_edge_filter(view), make_vertex_filter(view));
 
 	boost::iterator_range<filtered_graph_t::in_edge_iterator> range =
 	    boost::make_iterator_range(boost::in_edges(vertex, filtered_graph));
@@ -679,7 +680,7 @@ namespace storage
     Devicegraph::Impl::edge_descriptor
     Devicegraph::Impl::out_edge(vertex_descriptor vertex, View view) const
     {
-	filtered_graph_t filtered_graph(graph, make_edge_filter(view));
+	filtered_graph_t filtered_graph(graph, make_edge_filter(view), make_vertex_filter(view));
 
 	boost::iterator_range<filtered_graph_t::out_edge_iterator> range =
 	    boost::make_iterator_range(boost::out_edges(vertex, filtered_graph));
@@ -695,7 +696,7 @@ namespace storage
     vector<Devicegraph::Impl::edge_descriptor>
     Devicegraph::Impl::in_edges(vertex_descriptor vertex, View view) const
     {
-	filtered_graph_t filtered_graph(graph, make_edge_filter(view));
+	filtered_graph_t filtered_graph(graph, make_edge_filter(view), make_vertex_filter(view));
 
 	boost::iterator_range<filtered_graph_t::in_edge_iterator> range =
 	    boost::make_iterator_range(boost::in_edges(vertex, filtered_graph));
@@ -707,7 +708,7 @@ namespace storage
     vector<Devicegraph::Impl::edge_descriptor>
     Devicegraph::Impl::out_edges(vertex_descriptor vertex, View view) const
     {
-	filtered_graph_t filtered_graph(graph, make_edge_filter(view));
+	filtered_graph_t filtered_graph(graph, make_edge_filter(view), make_vertex_filter(view));
 
 	boost::iterator_range<filtered_graph_t::out_edge_iterator> range =
 	    boost::make_iterator_range(boost::out_edges(vertex, filtered_graph));
@@ -879,7 +880,7 @@ namespace storage
     {
 	ST_CHECK_PTR(style_callbacks);
 
-	filtered_graph_t filtered_graph(graph, make_edge_filter(view));
+	filtered_graph_t filtered_graph(graph, make_edge_filter(view), make_vertex_filter(view));
 
 	ofstream fout(filename);
 
@@ -909,6 +910,17 @@ namespace storage
 
 	if (!fout.good())
 	    ST_THROW(IOException(sformat("failed to write '%s'", filename)));
+    }
+
+
+    Devicegraph::Impl::vertex_filter_t
+    Devicegraph::Impl::make_vertex_filter(View view) const
+    {
+	// graph is needed by reference and view by value
+	return [&, view](Devicegraph::Impl::vertex_descriptor vertex) {
+	    const Device* device = graph[vertex].get();
+	    return device->get_impl().is_in_view(view);
+	};
     }
 
 

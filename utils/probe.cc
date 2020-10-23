@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <getopt.h>
+#include <string.h>
 #include <iostream>
 
 #include "storage/StorageImpl.h"
@@ -10,6 +11,7 @@
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/Logger.h"
 #include "storage/Utils/StorageDefines.h"
+#include "storage/Utils/Format.h"
 
 
 using namespace std;
@@ -21,6 +23,7 @@ bool save_devicegraph = false;
 bool save_mockup = false;
 bool load_mockup = false;
 bool ignore_probe_errors = false;
+View view = View::ALL;
 
 
 class MyProbeCallbacks : public ProbeCallbacks
@@ -82,7 +85,7 @@ doit()
 	const TmpDir& tmp_dir = storage.get_impl().get_tmp_dir();
 
 	probed->write_graphviz(tmp_dir.get_fullname() + "/probe.gv",
-			       get_debug_devicegraph_style_callbacks(), View::ALL);
+			       get_debug_devicegraph_style_callbacks(), view);
 	system(string(DOT_BIN " -Tsvg < " + quote(tmp_dir.get_fullname() + "/probe.gv") + " > " +
 		      quote(tmp_dir.get_fullname() + "/probe.svg")).c_str());
 	unlink(string(tmp_dir.get_fullname() + "/probe.gv").c_str());
@@ -98,7 +101,7 @@ void
 usage()
 {
     cerr << "probe [--display-devicegraph] [--save-devicegraph] [--save-mockup] [--load-mockup] "
-	"[--ignore-probe-errors]\n";
+	"[--ignore-probe-errors] [--view view]\n";
     exit(EXIT_FAILURE);
 }
 
@@ -107,11 +110,12 @@ int
 main(int argc, char **argv)
 {
     const struct option options[] = {
-	{ "display-devicegraph",	no_argument,	0,	1 },
-	{ "save-devicegraph",		no_argument,	0,	2 },
-	{ "save-mockup",		no_argument,	0,	3 },
-	{ "load-mockup",		no_argument,	0,	4 },
-	{ "ignore-probe-errors",	no_argument,	0,	5 },
+	{ "display-devicegraph",	no_argument,		0,	1 },
+	{ "save-devicegraph",		no_argument,		0,	2 },
+	{ "save-mockup",		no_argument,		0,	3 },
+	{ "load-mockup",		no_argument,		0,	4 },
+	{ "ignore-probe-errors",	no_argument,		0,	5 },
+	{ "view",			required_argument,	0,	6 },
 	{ 0, 0, 0, 0 }
     };
 
@@ -145,6 +149,20 @@ main(int argc, char **argv)
 
 	    case 5:
 		ignore_probe_errors = true;
+		break;
+
+	    case 6:
+		if (strcmp(optarg, "all") == 0)
+		    view = View::ALL;
+		else if (strcmp(optarg, "classic") == 0)
+		    view = View::CLASSIC;
+		else if (strcmp(optarg, "remove") == 0)
+		    view = View::REMOVE;
+		else
+		{
+		    cerr << sformat("Unknown view '%s'.", optarg) << endl;
+		    usage();
+		}
 		break;
 
 	    default:

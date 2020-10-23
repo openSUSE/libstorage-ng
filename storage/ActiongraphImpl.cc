@@ -140,7 +140,7 @@ namespace storage
 
 	Stopwatch stopwatch;
 
-	get_actions();
+	get_device_actions();
 	remove_duplicates();
 	set_special_actions();
 	add_dependencies();
@@ -270,7 +270,7 @@ namespace storage
     {
 	if (actions.size() > 1)
 	{
-	    Actiongraph::Impl::vertex_descriptor vertex = actions[0];
+	    vertex_descriptor vertex = actions[0];
 	    for (size_t i = 1; i < actions.size(); ++i)
 	    {
 		add_edge(vertex, actions[i]);
@@ -283,7 +283,7 @@ namespace storage
     void
     Actiongraph::Impl::add_chain(const vector<vector<vertex_descriptor>>& vert_vectors)
     {
-	vector<vector<Actiongraph::Impl::vertex_descriptor>> non_empty_vectors;
+	vector<vector<vertex_descriptor>> non_empty_vectors;
 
 	for (const vector<vertex_descriptor>& vector : vert_vectors)
 	    if (!vector.empty())
@@ -355,7 +355,7 @@ namespace storage
 
 
     void
-    Actiongraph::Impl::get_actions()
+    Actiongraph::Impl::get_device_actions()
     {
 	const set<sid_t> lhs_sids = lhs->get_impl().get_device_sids();
 	const set<sid_t> rhs_sids = rhs->get_impl().get_device_sids();
@@ -487,9 +487,11 @@ namespace storage
 
 	for (vertex_descriptor vertex : vertices())
 	{
-	    graph[vertex]->add_dependencies(vertex, *this);
+	    const Action::Base* action = graph[vertex].get();
 
-	    const Action::Mount* mount = dynamic_cast<const Action::Mount*>(graph[vertex].get());
+	    action->add_dependencies(vertex, *this);
+
+	    const Action::Mount* mount = dynamic_cast<const Action::Mount*>(action);
 	    if (mount && mount->get_path(*this) != "swap")
 		mounts.push_back(vertex);
 	}
@@ -609,7 +611,7 @@ namespace storage
     {
 	const CommitData commit_data(*this, Tense::SIMPLE_PRESENT);
 
-	for (const vertex_descriptor& vertex : order)
+	for (const vertex_descriptor vertex : order)
 	{
 	    const Action::Base* action = graph[vertex].get();
 	    cout << action->text(commit_data).native << '\n';
@@ -624,7 +626,7 @@ namespace storage
     {
 	vector<const Action::Base*> commit_actions;
 
-	for (const vertex_descriptor& vertex : order)
+	for (const vertex_descriptor vertex : order)
 	{
 	    const Action::Base* action = graph[vertex].get();
 
@@ -644,7 +646,7 @@ namespace storage
 
 	CommitData commit_data(*this, Tense::PRESENT_CONTINUOUS);
 
-	for (const vertex_descriptor& vertex : order)
+	for (const vertex_descriptor vertex : order)
 	{
 	    const Action::Base* action = graph[vertex].get();
 
@@ -700,10 +702,11 @@ namespace storage
 
 	const CommitData commit_data(*this, Tense::SIMPLE_PRESENT);
 
-	for (vertex_descriptor v : vertices())
+	for (const vertex_descriptor vertex : vertices())
 	{
-	    string text = "[ " + graph[v]->text(commit_data).translated + " ]";
-	    boost::put(my_vertex_name_map, v, text);
+	    const Action::Base* action = graph[vertex].get();
+	    string text = "[ " + action->text(commit_data).native + " ]";
+	    boost::put(my_vertex_name_map, vertex, text);
 	}
 
 	boost::print_graph(graph, my_vertex_name_map);

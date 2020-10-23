@@ -101,6 +101,8 @@ namespace storage
 
 	virtual string get_name_sort_key() const { return ""; }
 
+	virtual bool is_in_view(View view) const { return true; }
+
 	virtual void save(xmlNode* node) const = 0;
 
 	virtual void check(const CheckCallbacks* check_callbacks) const;

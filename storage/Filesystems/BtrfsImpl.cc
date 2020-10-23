@@ -512,7 +512,7 @@ namespace storage
 		    ST_THROW(Exception("parent subvolume not found by uuid"));
 
 		const BtrfsSubvolume* child = subvolumes_by_uuid[subvolume.uuid];
-		if (!parent)
+		if (!child)
 		    ST_THROW(Exception("child subvolume not found by uuid"));
 
 		Snapshot::create(prober.get_system(), parent, child);
