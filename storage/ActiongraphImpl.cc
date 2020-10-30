@@ -35,6 +35,7 @@
 #include "storage/Devices/GptImpl.h"
 #include "storage/Devices/BcacheImpl.h"
 #include "storage/Filesystems/BlkFilesystemImpl.h"
+#include "storage/Filesystems/BtrfsImpl.h"
 #include "storage/Filesystems/MountPointImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Utils/GraphUtils.h"
@@ -49,6 +50,7 @@
 #include "storage/CommitOptions.h"
 #include "storage/Utils/Format.h"
 #include "storage/GraphvizImpl.h"
+#include "storage/Redirect.h"
 
 
 namespace storage
@@ -140,6 +142,7 @@ namespace storage
 
 	Stopwatch stopwatch;
 
+	set_special_flags();
 	get_device_actions();
 	get_holder_actions();
 	remove_duplicates();
@@ -352,6 +355,33 @@ namespace storage
     Actiongraph::Impl::parents(vertex_descriptor vertex) const
     {
 	return boost::make_iterator_range(boost::inv_adjacent_vertices(vertex, graph));
+    }
+
+
+    void
+    Actiongraph::Impl::set_special_flags()
+    {
+	// When a btrfs is deleted on disk, the subvolumes, qgroups and qgroup relations
+	// are also deleted by btrfs. Likewise when btrfs quota is disabled on disk, the
+	// qgroups and qgroup relations are deleted by btrfs. So delete actions are either
+	// marked as sync-only, nop or not generated.
+
+	for (const Btrfs* btrfs : Btrfs::get_all(lhs))
+	{
+	    sid_t sid = btrfs->get_sid();
+
+	    if (!exists_in(btrfs, RHS))
+	    {
+		btrfs_subvolume_delete_is_nop.insert(sid);
+
+		if (btrfs->has_quota())
+		    btrfs_qgroup_delete_is_nop.insert(sid);
+	    }
+	    else if (btrfs->has_quota() && !redirect_to(rhs, btrfs)->has_quota())
+	    {
+		btrfs_qgroup_delete_is_nop.insert(sid);
+	    }
+	}
     }
 
 

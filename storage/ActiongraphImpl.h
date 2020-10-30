@@ -179,6 +179,10 @@ namespace storage
 	void generate_compound_actions(const Actiongraph* actiongraph);
 	vector<const CompoundAction*> get_compound_actions() const;
 
+	// special flags, TODO make private and provide interface
+	set<sid_t> btrfs_subvolume_delete_is_nop;
+	set<sid_t> btrfs_qgroup_delete_is_nop;
+
 	// special actions, TODO make private and provide interface
 	vertex_iterator mount_root_filesystem;
 	map<sid_t, vertex_descriptor> last_action_on_partition_table;
@@ -187,6 +191,7 @@ namespace storage
 
 	void set_gpt_undersized();
 
+	void set_special_flags();
 	void get_device_actions();
 	void get_holder_actions();
 	void remove_duplicates();

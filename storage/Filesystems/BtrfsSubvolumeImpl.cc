@@ -476,7 +476,7 @@ namespace storage
 	bool sync_only = is_top_level();
 
 	// set nop if the btrfs filesystem is also deleted
-	bool nop = !actiongraph.exists_in(get_btrfs(), RHS);
+	bool nop = contains(actiongraph.btrfs_subvolume_delete_is_nop, get_btrfs()->get_sid());
 
 	actions.push_back(new Action::Delete(get_sid(), sync_only, nop));
 

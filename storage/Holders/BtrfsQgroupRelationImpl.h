@@ -55,9 +55,20 @@ namespace storage
 
 	const Btrfs* get_btrfs() const;
 
+	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
+	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;
+
 	virtual bool equal(const Holder::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Holder::Impl& rhs_base) const override;
 	virtual void print(std::ostream& out) const override;
+
+	virtual Text do_create_text(Tense tense) const override;
+	virtual void do_create() override;
+	virtual uf_t do_create_used_features() const override { return UF_BTRFS; }
+
+	virtual Text do_delete_text(Tense tense) const override;
+	virtual void do_delete() const override;
+	virtual uf_t do_delete_used_features() const override { return UF_BTRFS; }
 
     };
 
