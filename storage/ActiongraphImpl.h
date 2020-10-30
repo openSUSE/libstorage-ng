@@ -188,6 +188,7 @@ namespace storage
 	void set_gpt_undersized();
 
 	void get_device_actions();
+	void get_holder_actions();
 	void remove_duplicates();
 	void set_special_actions();
 	void add_dependencies();

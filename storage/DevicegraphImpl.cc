@@ -53,8 +53,8 @@ namespace storage
 	if (lhs_device_sids != rhs_device_sids)
 	    return false;
 
-	const set<pair<sid_t, sid_t>> lhs_holder_sids = get_holder_sids();
-	const set<pair<sid_t, sid_t>> rhs_holder_sids = rhs.get_holder_sids();
+	const set<sid_pair_t> lhs_holder_sids = get_holder_sid_pairs();
+	const set<sid_pair_t> rhs_holder_sids = rhs.get_holder_sid_pairs();
 
 	if (lhs_holder_sids != rhs_holder_sids)
 	    return false;
@@ -68,10 +68,10 @@ namespace storage
 		return false;
 	}
 
-	for (pair<sid_t, sid_t> sid : lhs_holder_sids)
+	for (sid_pair_t sid_pair : lhs_holder_sids)
 	{
-	    vector<edge_descriptor> lhs_edges = find_edges(sid.first, sid.second);
-	    vector<edge_descriptor> rhs_edges = rhs.find_edges(sid.first, sid.second);
+	    vector<edge_descriptor> lhs_edges = find_edges(sid_pair);
+	    vector<edge_descriptor> rhs_edges = rhs.find_edges(sid_pair);
 
 	    if (!is_permutation(lhs_edges.begin(), lhs_edges.end(), rhs_edges.begin(), rhs_edges.end(),
 				[&](edge_descriptor lhs_edge, edge_descriptor rhs_edge) {
@@ -109,22 +109,22 @@ namespace storage
 		graph[lhs_vertex]->get_impl().log_diff(log, rhs.graph[rhs_vertex]->get_impl());
 	}
 
-	const set<pair<sid_t, sid_t>> lhs_holder_sids = get_holder_sids();
-	const set<pair<sid_t, sid_t>> rhs_holder_sids = rhs.get_holder_sids();
+	const set<sid_pair_t> lhs_holder_sids = get_holder_sid_pairs();
+	const set<sid_pair_t> rhs_holder_sids = rhs.get_holder_sid_pairs();
 
 	if (lhs_holder_sids != rhs_holder_sids)
-	    log << "holder sids differ\n";
+	    log << "holder sid pairs differ\n";
 
-	for (pair<sid_t, sid_t> sid : lhs_holder_sids)
+	for (sid_pair_t sid_pair : lhs_holder_sids)
 	{
-	    vector<edge_descriptor> lhs_edges = find_edges(sid.first, sid.second);
-	    vector<edge_descriptor> rhs_edges = rhs.find_edges(sid.first, sid.second);
+	    vector<edge_descriptor> lhs_edges = find_edges(sid_pair);
+	    vector<edge_descriptor> rhs_edges = rhs.find_edges(sid_pair);
 
 	    bool show = false;
 
 	    if (lhs_edges.size() != rhs_edges.size())
 	    {
-		log << "sid " << sid.first << " " << sid.second << " different number of holders\n";
+		log << "sid " << sid_pair.first << " " << sid_pair.second << " different number of holders\n";
 		show = true;
 	    }
 	    else if (!is_permutation(lhs_edges.begin(), lhs_edges.end(), rhs_edges.begin(), rhs_edges.end(),
@@ -132,7 +132,7 @@ namespace storage
 					 return *graph[lhs_edge].get() == *rhs.graph[rhs_edge].get();
 				     }))
 	    {
-		log << "sid " << sid.first << " " << sid.second << " holders are not a permutation\n";
+		log << "sid " << sid_pair.first << " " << sid_pair.second << " holders are not a permutation\n";
 		show = true;
 	    }
 
@@ -149,10 +149,12 @@ namespace storage
 		    const Holder* rhs_holder = rhs.graph[rhs_edges[i]].get();
 
 		    if (*lhs_holder != *rhs_holder)
-			log << "sid " << sid.first << " " << sid.second << " holder pair " << i << " differ\n";
+			log << "sid " << sid_pair.first << " " << sid_pair.second << " holder pair "
+			    << i << " differ\n";
 
 		    if (lhs_holder->get_impl().get_classname() != rhs_holder->get_impl().get_classname())
-			log << "sid " << sid.first << " " << sid.second << " holder pair " << i << " have different types\n";
+			log << "sid " << sid_pair.first << " " << sid_pair.second << " holder pair "
+			    << i << " have different types\n";
 		    else
 			lhs_holder->get_impl().log_diff(log, rhs_holder->get_impl());
 		}
@@ -367,10 +369,10 @@ namespace storage
     }
 
 
-    set<pair<sid_t, sid_t>>
-    Devicegraph::Impl::get_holder_sids() const
+    set<sid_pair_t>
+    Devicegraph::Impl::get_holder_sid_pairs() const
     {
-	set<pair<sid_t, sid_t>> sids;
+	set<sid_pair_t> sids;
 
 	for (edge_descriptor edge : edges())
 	    sids.insert(make_pair(graph[edge]->get_source_sid(), graph[edge]->get_target_sid()));
@@ -447,6 +449,13 @@ namespace storage
 	}
 
 	return ret;
+    }
+
+
+    vector<Devicegraph::Impl::edge_descriptor>
+    Devicegraph::Impl::find_edges(sid_pair_t sid_pair) const
+    {
+	return find_edges(sid_pair.first, sid_pair.second);
     }
 
 

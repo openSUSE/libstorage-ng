@@ -40,26 +40,32 @@ namespace storage
     {
 	vector<CompoundAction*> compound_actions;
 
-	for (auto& commit_action : actiongraph->get_commit_actions())
+	for (const Action::Base* action : actiongraph->get_commit_actions())
 	{
-	    auto target = CompoundAction::Impl::get_target_device(actiongraph, commit_action);
+	    // TODO also handle actions affecting holders
+	    if (!action->affects_device())
+		continue;
+
+	    auto target = CompoundAction::Impl::get_target_device(actiongraph, action);
 
 	    auto compound_action = find_by_target_device(compound_actions, target);
 
 	    if (compound_action)
-		compound_action->get_impl().add_commit_action(commit_action);
+	    {
+		compound_action->get_impl().add_commit_action(action);
+	    }
 	    else
 	    {
 		compound_action = new CompoundAction(actiongraph);
 		compound_action->get_impl().set_target_device(target);
-		compound_action->get_impl().add_commit_action(commit_action);
+		compound_action->get_impl().add_commit_action(action);
 		compound_actions.push_back(compound_action);
 	    }
 	}
 
 	vector<shared_ptr<CompoundAction>> ret;
-	for (CompoundAction* action : compound_actions)
-	    ret.push_back(shared_ptr<CompoundAction>(action));
+	for (CompoundAction* compound_action : compound_actions)
+	    ret.push_back(shared_ptr<CompoundAction>(compound_action));
 	return ret;
     }
 

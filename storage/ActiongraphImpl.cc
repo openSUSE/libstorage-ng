@@ -141,6 +141,7 @@ namespace storage
 	Stopwatch stopwatch;
 
 	get_device_actions();
+	get_holder_actions();
 	remove_duplicates();
 	set_special_actions();
 	add_dependencies();
@@ -401,6 +402,53 @@ namespace storage
     }
 
 
+    void
+    Actiongraph::Impl::get_holder_actions()
+    {
+	const set<sid_pair_t> lhs_sid_pairs = lhs->get_impl().get_holder_sid_pairs();
+	const set<sid_pair_t> rhs_sid_pairs = rhs->get_impl().get_holder_sid_pairs();
+
+	vector<sid_pair_t> created_sid_pairs;
+	set_difference(rhs_sid_pairs.begin(), rhs_sid_pairs.end(), lhs_sid_pairs.begin(), lhs_sid_pairs.end(),
+		       back_inserter(created_sid_pairs));
+
+	vector<sid_pair_t> common_sid_pairs;
+	set_intersection(lhs_sid_pairs.begin(), lhs_sid_pairs.end(), rhs_sid_pairs.begin(), rhs_sid_pairs.end(),
+			 back_inserter(common_sid_pairs));
+
+	vector<sid_pair_t> deleted_sid_pairs;
+	set_difference(lhs_sid_pairs.begin(), lhs_sid_pairs.end(), rhs_sid_pairs.begin(), rhs_sid_pairs.end(),
+		       back_inserter(deleted_sid_pairs));
+
+	for (sid_pair_t sid_pair : created_sid_pairs)
+	{
+	    for (Devicegraph::Impl::edge_descriptor e_rhs : rhs->get_impl().find_edges(sid_pair))
+	    {
+		const Holder* h_rhs = rhs->get_impl()[e_rhs];
+
+		h_rhs->get_impl().add_create_actions(*this);
+	    }
+	}
+
+	/*
+	for (sid_pair_t sid_pair : common_sid_pairs)
+	{
+	    // not needed yet
+	}
+	*/
+
+	for (sid_pair_t sid_pair : deleted_sid_pairs)
+	{
+	    for (Devicegraph::Impl::edge_descriptor e_lhs : lhs->get_impl().find_edges(sid_pair))
+	    {
+		const Holder* h_lhs = lhs->get_impl()[e_lhs];
+
+		h_lhs->get_impl().add_delete_actions(*this);
+	    }
+	}
+    }
+
+
     /**
      * It is required in many cases to deactivate a mount point. This function
      * removes duplicate mount and unmount actions while copying the
@@ -456,11 +504,13 @@ namespace storage
 	{
 	    const Action::Base* action = graph[*it].get();
 
+	    if (action->affects_device())
+		cache_for_actions_with_sid[action->sid].push_back(*it);
+
 	    const Action::Mount* mount = dynamic_cast<const Action::Mount*>(action);
 	    if (mount && mount->get_path(*this) == "/")
 		mount_root_filesystem = it;
 
-	    cache_for_actions_with_sid[action->sid].push_back(*it);
 	}
     }
 

@@ -31,6 +31,7 @@
 #include "storage/Utils/ExceptionImpl.h"
 #include "storage/Holders/Holder.h"
 #include "storage/DevicegraphImpl.h"
+#include "storage/ActiongraphImpl.h"
 
 
 namespace storage
@@ -97,9 +98,40 @@ namespace storage
 	const map<string, string>& get_userdata() const { return userdata; }
 	void set_userdata(const map<string, string>& userdata) { Impl::userdata = userdata; }
 
+	/**
+	 * Add create actions for the Holder.
+	 * @param actiongraph The Actiongraph for which actions are added.
+	 */
+	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const;
+
+	/**
+	 * Detect modifications to the Holder and add actions as needed.
+	 * @param actiongraph The Actiongraph for which actions are added.
+	 * @param lhs Holder on the left hand side of the comparison
+	 * leading to the actiongraph.
+	 */
+	virtual void add_modify_actions(Actiongraph::Impl& actiongraph, const Holder* lhs) const;
+
+	/**
+	 * Add delete actions for the Holder.
+	 * @param actiongraph The Actiongraph for which actions are added.
+	 */
+	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const;
+
+	virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
+				      Actiongraph::Impl& actiongraph) const {}
+
 	virtual bool equal(const Impl& rhs) const = 0;
 	virtual void log_diff(std::ostream& log, const Impl& rhs) const = 0;
 	virtual void print(std::ostream& out) const = 0;
+
+	virtual Text do_create_text(Tense tense) const;
+	virtual void do_create();
+	virtual uf_t do_create_used_features() const { return 0; }
+
+	virtual Text do_delete_text(Tense tense) const;
+	virtual void do_delete() const;
+	virtual uf_t do_delete_used_features() const { return 0; }
 
     protected:
 

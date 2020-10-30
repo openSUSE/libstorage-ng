@@ -471,6 +471,8 @@ namespace storage
 	for (Actiongraph::Impl::vertex_descriptor vertex : actiongraph.vertices())
 	{
 	    const Action::Base* action = actiongraph[vertex];
+	    if (!action->affects_device())
+		continue;
 
 	    const Action::Create* create_action = dynamic_cast<const Action::Create*>(action);
 	    if (create_action)
