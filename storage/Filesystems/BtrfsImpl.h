@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -26,6 +26,7 @@
 
 
 #include "storage/Filesystems/Btrfs.h"
+#include "storage/Filesystems/BtrfsQgroupImpl.h"
 #include "storage/Filesystems/BlkFilesystemImpl.h"
 #include "storage/Utils/SnapperConfig.h"
 #include "storage/Action.h"
@@ -72,6 +73,8 @@ namespace storage
 	vector<BtrfsRaidLevel> get_allowed_metadata_raid_levels() const;
 	vector<BtrfsRaidLevel> get_allowed_data_raid_levels() const;
 
+	bool has_quota() const { return quota; }
+
 	FilesystemUser* add_device(BlkDevice* blk_device);
 	void remove_device(BlkDevice* blk_device);
 
@@ -94,6 +97,14 @@ namespace storage
 
 	BtrfsSubvolume* find_btrfs_subvolume_by_path(const string& path);
 	const BtrfsSubvolume* find_btrfs_subvolume_by_path(const string& path) const;
+
+	BtrfsQgroup* create_btrfs_qgroup(const BtrfsQgroup::id_t& id);
+
+	vector<BtrfsQgroup*> get_btrfs_qgroups();
+	vector<const BtrfsQgroup*> get_btrfs_qgroups() const;
+
+	BtrfsQgroup* find_btrfs_qgroup_by_id(const BtrfsQgroup::id_t& id);
+	const BtrfsQgroup* find_btrfs_qgroup_by_id(const BtrfsQgroup::id_t& id) const;
 
         bool get_configure_snapper() const { return configure_snapper; }
         void set_configure_snapper(bool configure) { Impl::configure_snapper = configure; }
@@ -167,6 +178,8 @@ namespace storage
 
 	BtrfsRaidLevel metadata_raid_level;
 	BtrfsRaidLevel data_raid_level;
+
+	bool quota = false;
 
 	/**
 	 * mutable to allow updating cache from const functions. Otherwise

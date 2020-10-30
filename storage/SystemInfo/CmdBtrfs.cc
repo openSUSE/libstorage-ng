@@ -417,4 +417,115 @@ namespace storage
 	return s;
     }
 
+
+    CmdBtrfsQgroupShow::CmdBtrfsQgroupShow(const key_t& key, const string& mount_point)
+    {
+	// There is no btrfs command line way to just query if quota is enabled. So we
+	// assume it is enabled if 'btrfs qgroup show' does not report an error.
+
+	SystemCmd::Options cmd_options(BTRFS_BIN " qgroup show -rep --raw " + quote(mount_point),
+				       SystemCmd::DoThrow);
+	cmd_options.mockup_key = BTRFS_BIN " qgroup show -repc --raw (device:" + key + ")";
+	cmd_options.verify = [](int exit_code) { return exit_code == 0 || exit_code == 1; };
+
+	SystemCmd cmd(cmd_options);
+	if (cmd.retcode() == 0)
+	{
+	    quota = true;
+	    parse(cmd.stdout());
+	}
+    }
+
+
+    void
+    CmdBtrfsQgroupShow::parse(const vector<string>& lines)
+    {
+	for (const string& line : lines)
+	{
+	    vector<string> columns;
+	    boost::split(columns, line, boost::is_any_of("\t "), boost::token_compress_on);
+
+	    if (columns.size() != 7)
+		ST_THROW(Exception("failed to parse qgroup output"));
+
+	    if (columns[0] == "qgroupid" || columns[0] == "--------")
+		continue;
+
+	    Entry entry;
+
+	    entry.id = BtrfsQgroup::Impl::parse_id(columns[0]);
+
+	    columns[1] >> entry.referenced;
+	    columns[2] >> entry.exclusive;
+
+	    if (columns[3] != "none")
+	    {
+		unsigned long long tmp;
+		columns[3] >> tmp;
+		entry.referenced_limit = tmp;
+	    }
+
+	    if (columns[4] != "none")
+	    {
+		unsigned long long tmp;
+		columns[4] >> tmp;
+		entry.exclusive_limit = tmp;
+	    }
+
+	    if (columns[5] != "---")
+	    {
+		vector<string> tmp;
+		boost::split(tmp, columns[5], boost::is_any_of(","), boost::token_compress_on);
+
+		for (const string& t : tmp)
+		    entry.parents_id.push_back(BtrfsQgroup::Impl::parse_id(t));
+	    }
+
+	    data.push_back(entry);
+	}
+
+	y2mil(*this);
+    }
+
+
+    std::ostream&
+    operator<<(std::ostream& s, const CmdBtrfsQgroupShow& cmd_btrfs_qgroups_show)
+    {
+	for (const CmdBtrfsQgroupShow::Entry& entry : cmd_btrfs_qgroups_show)
+	    s << entry;
+
+	return s;
+    }
+
+
+    std::ostream&
+    operator<<(std::ostream& s, const CmdBtrfsQgroupShow::Entry& entry)
+    {
+	s << "id:" << BtrfsQgroup::Impl::format_id(entry.id);
+
+	s << " referenced:" << entry.referenced << " exclusive:" << entry.exclusive;
+
+	if (entry.referenced_limit)
+	    s << " referenced-limit:" << entry.referenced_limit.value();
+
+	if (entry.exclusive_limit)
+	    s << " exclusive-limit:" << entry.exclusive_limit.value();
+
+	if (!entry.parents_id.empty())
+	{
+	    s << " parents:";
+
+	    for (vector<BtrfsQgroup::id_t>::const_iterator it = entry.parents_id.begin();
+		 it != entry.parents_id.end(); ++it)
+	    {
+		if (it != entry.parents_id.begin())
+		    s << ",";
+
+		s << BtrfsQgroup::Impl::format_id(*it);
+	    }
+	}
+
+	return s << '\n';
+    }
+
 }

@@ -3,6 +3,7 @@
 
 %exceptionclass storage::Aborted;
 %exceptionclass storage::AlignError;
+%exceptionclass storage::BtrfsQgroupNotFoundById;
 %exceptionclass storage::BtrfsSubvolumeNotFoundByPath;
 %exceptionclass storage::DeviceHasWrongType;
 %exceptionclass storage::DeviceNotFound;
@@ -44,6 +45,8 @@
 %catches(storage::NullPointerException) storage::is_blk_device(const Device *device);
 %catches(storage::NullPointerException) storage::is_blk_filesystem(const Device *device);
 %catches(storage::NullPointerException) storage::is_btrfs(const Device *device);
+%catches(storage::NullPointerException) storage::is_btrfs_qgroup(const Device *device);
+%catches(storage::NullPointerException) storage::is_btrfs_qgroup_relation(const Holder *holder);
 %catches(storage::NullPointerException) storage::is_btrfs_subvolume(const Device *device);
 %catches(storage::NullPointerException) storage::is_dasd(const Device *device);
 %catches(storage::NullPointerException) storage::is_dasd_pt(const Device *device);
@@ -106,6 +109,10 @@
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_blk_filesystem(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_btrfs(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_btrfs(const Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_btrfs_qgroup(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_btrfs_qgroup(const Device *device);
+%catches(storage::HolderHasWrongType, storage::NullPointerException) storage::to_btrfs_qgroup_relation(Holder *holder);
+%catches(storage::HolderHasWrongType, storage::NullPointerException) storage::to_btrfs_qgroup_relation(const Holder *holder);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_btrfs_subvolume(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_btrfs_subvolume(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_dasd(Device *device);
@@ -236,9 +243,17 @@
 %catches(storage::Exception) storage::BlkDevice::set_size(unsigned long long size);
 %catches(storage::Exception) storage::BlkFilesystem::detect_content_info() const;
 %catches(storage::WrongNumberOfChildren) storage::Btrfs::add_device(BlkDevice *blk_device);
+%catches(storage::Exception) storage::Btrfs::create_btrfs_qgroup(const BtrfsQgroup::id_t &id);
+%catches(storage::BtrfsQgroupNotFoundById) storage::Btrfs::find_btrfs_qgroup_by_id(const BtrfsQgroup::id_t &id);
+%catches(storage::BtrfsQgroupNotFoundById) storage::Btrfs::find_btrfs_qgroup_by_id(const BtrfsQgroup::id_t &id) const;
 %catches(storage::BtrfsSubvolumeNotFoundByPath) storage::Btrfs::find_btrfs_subvolume_by_path(const std::string &path);
 %catches(storage::BtrfsSubvolumeNotFoundByPath) storage::Btrfs::find_btrfs_subvolume_by_path(const std::string &path) const;
 %catches(storage::Exception) storage::Btrfs::remove_device(BlkDevice *blk_device);
+%catches(storage::Exception) storage::BtrfsQgroup::assign(BtrfsQgroup *btrfs_qgroup);
+%catches(storage::Exception) storage::BtrfsQgroup::get_exclusive_limit() const;
+%catches(storage::Exception) storage::BtrfsQgroup::get_referenced_limit() const;
+%catches(storage::Exception) storage::BtrfsQgroup::unassign(BtrfsQgroup *btrfs_qgroup);
+%catches(storage::HolderAlreadyExists) storage::BtrfsQgroupRelation::create(Devicegraph *devicegraph, const Device *source, const Device *target);
 %catches(storage::Exception) storage::BtrfsSubvolume::get_origin();
 %catches(storage::Exception) storage::BtrfsSubvolume::get_origin() const;
 %catches(storage::DeviceNotFound) storage::CompoundAction::find_by_target_device(Actiongraph *actiongraph, const Device *device);

@@ -42,12 +42,12 @@ def commit(storage, skip_save_graphs = True, skip_print_actiongraph = True,
     if not skip_save_graphs:
         probed = storage.get_probed()
         probed.save("probed.xml")
-        probed.write_graphviz("probed.gv", get_debug_devicegraph_style_callbacks())
+        probed.write_graphviz("probed.gv", get_debug_devicegraph_style_callbacks(), View_ALL)
         system("/usr/bin/dot -Tsvg < probed.gv > probed.svg")
 
         staging = storage.get_staging()
         staging.save("staging.xml")
-        staging.write_graphviz("staging.gv", get_debug_devicegraph_style_callbacks())
+        staging.write_graphviz("staging.gv", get_debug_devicegraph_style_callbacks(), View_ALL)
         system("/usr/bin/dot -Tsvg < staging.gv > staging.svg")
 
     commit_options = CommitOptions(False)
@@ -77,7 +77,14 @@ def commit(storage, skip_save_graphs = True, skip_print_actiongraph = True,
     if not skip_print_actiongraph:
         actiongraph.print_graph()
 
+    print("Detailed:")
     actiongraph.print_order()
+
+    print("Condensed:")
+    actiongraph.generate_compound_actions()
+    for s in actiongraph.get_compound_actions():
+        print(s.sentence())
+    print()
 
     if not skip_save_graphs:
         actiongraph.write_graphviz("action.gv", get_debug_actiongraph_style_callbacks())

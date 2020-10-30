@@ -29,6 +29,7 @@
 #include "storage/Holders/FilesystemUser.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Holders/Snapshot.h"
+#include "storage/Holders/BtrfsQgroupRelation.h"
 #include "storage/Devices/DeviceImpl.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Devices/Disk.h"
@@ -44,6 +45,7 @@
 #include "storage/Devices/BcacheCset.h"
 #include "storage/Devices/Encryption.h"
 #include "storage/Filesystems/MountPoint.h"
+#include "storage/Filesystems/BtrfsQgroup.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/HumanString.h"
 #include "storage/EnvironmentImpl.h"
@@ -139,6 +141,8 @@ namespace storage
 	    set_colors(ret, "#008800", "#99ee99");
 	else if (is_mount_point(device))
 	    set_colors(ret, "#ff0000", "#ffaaaa");
+	else if (is_btrfs_qgroup(device))
+	    set_colors(ret, "#dddd00", "#ffff00");
 	else
 	    ST_THROW(LogicException("unknown Device subclass"));
 
@@ -185,7 +189,12 @@ namespace storage
 	else if (is_snapshot(holder))
 	{
 	    ret["style"] = "dashed";
-	    ret["color"] = "green";
+	    ret["color"] = "#00ff00";
+	}
+	else if (is_btrfs_qgroup_relation(holder))
+	{
+	    ret["style"] = "dashed";
+	    ret["color"] = "#bbbb00";
 	}
 	else
 	{
@@ -377,23 +386,10 @@ namespace storage
 	string ret;
 
 	if (flags && GraphvizFlags::NAME)
-	{
 	    ret += escape(action->text(commit_data).translated) + "\\n";
-	}
 
 	if (flags && GraphvizFlags::SID)
-	{
-	    ret += "sid:" + to_string(action->sid);
-
-	    ret += " [";
-	    if (action->first)
-		ret += "f";
-	    if (action->last)
-		ret += "l";
-	    if (action->only_sync)
-		ret += "s";
-	    ret += "]" "\\n";
-	}
+	    ret += escape(action->details()) + "\\n";
 
 	if (!ret.empty())
 	    ret.erase(ret.size() - 2); // erase trailing "\\n"

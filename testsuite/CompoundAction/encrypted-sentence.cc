@@ -19,7 +19,7 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_encrypted_not_mounted)
     initialize_with_devicegraph("devicegraph.xml");
 
     auto partition = Partition::find_by_name(staging, "/dev/sda1");
-    partition->remove_descendants();
+    partition->remove_descendants(View::REMOVE);
 
     Encryption* encryption = partition->create_encryption("cr_sda2", EncryptionType::LUKS1);
     encryption->create_blk_filesystem(FsType::EXT4);

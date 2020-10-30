@@ -40,16 +40,15 @@ namespace storage
 	ALL,
 
 	/**
-	 * The classical view. Holders of type Snapshot are not visible.
+	 * The classical view. Devices of type BtrfsQgroup and holders of type Snapshot
+	 * and BtrfsQgroupRelation are not visible.
 	 *
 	 * The resulting devicegraph is a directed acyclic graph.
 	 */
 	CLASSIC,
 
 	/**
-	 * A special view for removing devices. Identical to CLASSIC except that holders
-	 * of type Snapshot are visible when the source is a normal LVM logical
-	 * volume.
+	 * A special view for removing devices.
 	 *
 	 * This view is useful when removing descendants. When removing a normal logical
 	 * volume with snapshots the snapshots must also be removed. When removing a thin

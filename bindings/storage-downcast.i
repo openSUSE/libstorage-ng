@@ -31,6 +31,7 @@
 	 storage::Partitionable,
 	 storage::StrayBlkDevice,
 	 storage::BlkDevice,
+	 storage::BtrfsQgroup,
 	 storage::LvmPv,
 	 storage::LvmVg,
 	 storage::MountPoint,
@@ -81,6 +82,7 @@
 	 const storage::Partitionable,
 	 const storage::StrayBlkDevice,
 	 const storage::BlkDevice,
+	 const storage::BtrfsQgroup,
 	 const storage::LvmPv,
 	 const storage::LvmVg,
 	 const storage::MountPoint,
@@ -114,6 +116,7 @@
 	 const storage::Device)
 
 %factory(storage::Holder* storage::downcast,
+	 storage::BtrfsQgroupRelation,
 	 storage::Snapshot,
 	 storage::MdSubdevice,
 	 storage::Subdevice,
@@ -123,6 +126,7 @@
 	 storage::Holder)
 
 %factory(const storage::Holder* storage::downcast,
+	 const storage::BtrfsQgroupRelation,
 	 const storage::Snapshot,
 	 const storage::MdSubdevice,
 	 const storage::Subdevice,

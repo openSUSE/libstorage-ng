@@ -3,6 +3,8 @@
 %template(MapStringString) std::map<std::string, std::string>;
 %template(PairBoolString) std::pair<bool, std::string>;
 
+%template(BtrfsQgroupId) std::pair<unsigned int, unsigned long long>;
+
 %template(VectorCompoundActionPtr) std::vector<CompoundAction*>;
 %template(VectorConstCompoundActionPtr) std::vector<const CompoundAction*>;
 
@@ -77,6 +79,9 @@
 
 %template(VectorBtrfsSubvolumePtr) std::vector<BtrfsSubvolume*>;
 %template(VectorConstBtrfsSubvolumePtr) std::vector<const BtrfsSubvolume*>;
+
+%template(VectorBtrfsQgroupPtr) std::vector<BtrfsQgroup*>;
+%template(VectorConstBtrfsQgroupPtr) std::vector<const BtrfsQgroup*>;
 
 %template(VectorNtfsPtr) std::vector<Ntfs*>;
 %template(VectorConstNtfsPtr) std::vector<const Ntfs*>;

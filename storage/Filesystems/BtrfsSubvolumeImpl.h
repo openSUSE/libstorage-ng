@@ -25,6 +25,7 @@
 
 
 #include "storage/Filesystems/BtrfsSubvolume.h"
+#include "storage/Filesystems/BtrfsQgroup.h"
 #include "storage/Filesystems/MountableImpl.h"
 
 
@@ -48,7 +49,7 @@ namespace storage
 	static const long unknown_id = -1;
 
 	Impl(const string& path)
-	    : Mountable::Impl(), id(unknown_id), path(path), default_btrfs_subvolume(false), nocow(false) {}
+	    : Mountable::Impl(), path(path) {}
 
 	Impl(const xmlNode* node);
 
@@ -168,11 +169,11 @@ namespace storage
 
     private:
 
-	long id;
+	long id = unknown_id;
 	string path;
 
-	bool default_btrfs_subvolume;
-	bool nocow;
+	bool default_btrfs_subvolume = false;
+	bool nocow = false;
 
     };
 

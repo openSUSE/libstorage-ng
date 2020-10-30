@@ -109,7 +109,7 @@ namespace storage
 
     private:
 
-	Devicegraph* devicegraph;
+	Devicegraph* devicegraph = nullptr;
 	Devicegraph::Impl::edge_descriptor edge;
 
 	map<string, string> userdata;

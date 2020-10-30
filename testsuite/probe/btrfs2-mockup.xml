@@ -39,6 +39,11 @@
       <stdout></stdout>
     </Command>
     <Command>
+      <name>/sbin/btrfs qgroup show -repc --raw (device:/dev/sdb1)</name>
+      <stderr>ERROR: can't list qgroups: quotas not enabled</stderr>
+      <exit-code>1</exit-code>
+    </Command>
+    <Command>
       <!-- output faked -->
       <name>/sbin/btrfs subvolume list -a -puq (device:/dev/sdb1)</name>
       <stdout>ID 258 gen 12 parent 5 top level 5 parent_uuid - uuid 891bfe67-410b-904e-a0b0-0d6a6ada05d8 path sub1</stdout>

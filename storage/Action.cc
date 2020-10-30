@@ -54,6 +54,18 @@ namespace storage
 	}
 
 
+	string
+	Base::debug_text(const CommitData& commit_data) const
+	{
+	    string ret = text(commit_data).native;
+
+	    if (nop)
+		ret += " [nop]";
+
+	    return ret;
+	}
+
+
 	Text
 	Create::text(const CommitData& commit_data) const
 	{

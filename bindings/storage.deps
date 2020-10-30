@@ -47,6 +47,7 @@ DEPENDENCIES =							\
 	${top_srcdir}/storage/Filesystems/BlkFilesystem.h	\
 	${top_srcdir}/storage/Filesystems/Btrfs.h		\
 	${top_srcdir}/storage/Filesystems/BtrfsSubvolume.h	\
+	${top_srcdir}/storage/Filesystems/BtrfsQgroup.h		\
 	${top_srcdir}/storage/Filesystems/Exfat.h		\
 	${top_srcdir}/storage/Filesystems/Ext.h			\
 	${top_srcdir}/storage/Filesystems/Ext2.h		\
@@ -73,6 +74,7 @@ DEPENDENCIES =							\
 	${top_srcdir}/storage/Holders/Snapshot.h		\
 	${top_srcdir}/storage/Holders/Subdevice.h		\
 	${top_srcdir}/storage/Holders/User.h			\
+	${top_srcdir}/storage/Holders/BtrfsQgroupRelation.h	\
 	${top_srcdir}/storage/SystemInfo/Arch.h			\
 	${top_srcdir}/storage/Utils/Alignment.h			\
 	${top_srcdir}/storage/Utils/Callbacks.h			\

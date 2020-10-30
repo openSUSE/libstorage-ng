@@ -306,12 +306,7 @@ namespace storage
     {
 	const Action::Base* action = commit_data.actiongraph[vertex];
 
-	string text = action->text(commit_data).native;
-
-	if (action->nop)
-	    text += " [nop]";
-
-	return text;
+	return action->debug_text(commit_data);
     }
 
 

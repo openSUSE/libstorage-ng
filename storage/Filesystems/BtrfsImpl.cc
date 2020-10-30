@@ -24,6 +24,7 @@
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Filesystems/BtrfsImpl.h"
 #include "storage/Filesystems/BtrfsSubvolumeImpl.h"
+#include "storage/Filesystems/BtrfsQgroupImpl.h"
 #include "storage/Filesystems/MountPointImpl.h"
 #include "storage/DevicegraphImpl.h"
 #include "storage/Utils/StorageDefines.h"
@@ -39,6 +40,7 @@
 #include "storage/Holders/Subdevice.h"
 #include "storage/Holders/FilesystemUserImpl.h"
 #include "storage/Holders/Snapshot.h"
+#include "storage/Holders/BtrfsQgroupRelationImpl.h"
 #include "storage/EnvironmentImpl.h"
 #include "storage/Storage.h"
 #include "storage/Utils/Mockup.h"
@@ -81,6 +83,8 @@ namespace storage
 
 	if (getChildValue(node, "data-raid-level", tmp))
 	    data_raid_level = toValueWithFallback(tmp, BtrfsRaidLevel::UNKNOWN);
+
+	getChildValue(node, "quota", quota);
     }
 
 
@@ -97,6 +101,8 @@ namespace storage
 
 	setChildValue(node, "metadata-raid-level", toString(metadata_raid_level));
 	setChildValue(node, "data-raid-level", toString(data_raid_level));
+
+	setChildValueIf(node, "quota", quota, quota);
     }
 
 
@@ -323,6 +329,81 @@ namespace storage
     }
 
 
+    BtrfsQgroup*
+    Btrfs::Impl::create_btrfs_qgroup(const BtrfsQgroup::id_t& id)
+    {
+	if (!has_quota())
+	    ST_THROW(Exception("quota disabled"));
+
+	if (id != BtrfsQgroup::Impl::unknown_id)
+	{
+	    for (const BtrfsQgroup* btrfs_qgroup : get_btrfs_qgroups())
+	    {
+		if (btrfs_qgroup->get_id() == id)
+		    ST_THROW(Exception("qgroup id already exists"));
+	    }
+	}
+
+	Devicegraph* devicegraph = get_devicegraph();
+
+	BtrfsQgroup* btrfs_qgroup = BtrfsQgroup::create(devicegraph, id);
+	BtrfsQgroupRelation::create(devicegraph, get_non_impl(), btrfs_qgroup);
+
+	return btrfs_qgroup;
+    }
+
+
+    vector<BtrfsQgroup*>
+    Btrfs::Impl::get_btrfs_qgroups()
+    {
+	Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
+
+	return devicegraph.filter_devices_of_type<BtrfsQgroup>(
+	    devicegraph.descendants(get_vertex(), false, View::ALL)
+	);
+    }
+
+
+    vector<const BtrfsQgroup*>
+    Btrfs::Impl::get_btrfs_qgroups() const
+    {
+	const Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
+
+	return devicegraph.filter_devices_of_type<const BtrfsQgroup>(
+	    devicegraph.descendants(get_vertex(), false, View::ALL)
+	);
+    }
+
+
+    BtrfsQgroup*
+    Btrfs::Impl::find_btrfs_qgroup_by_id(const BtrfsQgroup::id_t& id)
+    {
+	for (BtrfsQgroup* btrfs_qgroup : get_btrfs_qgroups())
+	{
+	    if (btrfs_qgroup->get_id() == id)
+		return btrfs_qgroup;
+	}
+
+	ST_THROW(BtrfsQgroupNotFoundById(id));
+    }
+
+
+    const BtrfsQgroup*
+    Btrfs::Impl::find_btrfs_qgroup_by_id(const BtrfsQgroup::id_t& id) const
+    {
+	if (!has_quota())
+	    ST_THROW(Exception("quota disabled"));
+
+	for (const BtrfsQgroup* btrfs_qgroup : get_btrfs_qgroups())
+	{
+	    if (btrfs_qgroup->get_id() == id)
+		return btrfs_qgroup;
+	}
+
+	ST_THROW(BtrfsQgroupNotFoundById(id));
+    }
+
+
     bool
     Btrfs::Impl::equal(const Device::Impl& rhs_base) const
     {
@@ -331,7 +412,8 @@ namespace storage
 	if (!BlkFilesystem::Impl::equal(rhs))
 	    return false;
 
-	return metadata_raid_level == rhs.metadata_raid_level && data_raid_level == rhs.data_raid_level;
+	return metadata_raid_level == rhs.metadata_raid_level && data_raid_level == rhs.data_raid_level &&
+	    quota == rhs.quota;
     }
 
 
@@ -344,6 +426,8 @@ namespace storage
 
 	storage::log_diff_enum(log, "metadata-raid-level", metadata_raid_level, rhs.metadata_raid_level);
 	storage::log_diff_enum(log, "data-raid-level", data_raid_level, rhs.data_raid_level);
+
+	storage::log_diff(log, "quota", quota, rhs.quota);
     }
 
 
@@ -354,6 +438,9 @@ namespace storage
 
 	out << " metadata-raid-level:" << toString(metadata_raid_level) << " data-raid-level:"
 	    << toString(data_raid_level);
+
+	if (quota)
+	    out << " quota";
     }
 
 
@@ -524,6 +611,51 @@ namespace storage
 
 	metadata_raid_level = cmd_btrfs_filesystem_df.get_metadata_raid_level();
 	data_raid_level = cmd_btrfs_filesystem_df.get_data_raid_level();
+
+	if (support_btrfs_qgroups())
+	{
+	    const CmdBtrfsQgroupShow& cmd_btrfs_qgroup_show =
+		system_info.getCmdBtrfsQgroupShow(blk_device->get_name(), mount_point);
+
+	    quota = cmd_btrfs_qgroup_show.has_quota();
+
+	    map<BtrfsQgroup::id_t, BtrfsQgroup*> btrfs_qgroups_by_id;
+
+	    for (const CmdBtrfsQgroupShow::Entry& qgroup : cmd_btrfs_qgroup_show)
+	    {
+		BtrfsQgroup* btrfs_qgroup = create_btrfs_qgroup(qgroup.id);
+
+		btrfs_qgroup->get_impl().set_referenced(qgroup.referenced);
+		btrfs_qgroup->get_impl().set_exclusive(qgroup.exclusive);
+		btrfs_qgroup->get_impl().set_referenced_limit(qgroup.referenced_limit);
+		btrfs_qgroup->get_impl().set_exclusive_limit(qgroup.exclusive_limit);
+
+		btrfs_qgroups_by_id[qgroup.id] = btrfs_qgroup;
+
+		if (qgroup.id.first == 0)
+		{
+		    BtrfsSubvolume* parent = subvolumes_by_id[qgroup.id.second];
+		    if (parent)
+			BtrfsQgroupRelation::create(prober.get_system(), parent, btrfs_qgroup);
+		}
+	    }
+
+	    for (const CmdBtrfsQgroupShow::Entry& qgroup : cmd_btrfs_qgroup_show)
+	    {
+		for (const BtrfsQgroup::id_t& parent_id : qgroup.parents_id)
+		{
+		    BtrfsQgroup* child = btrfs_qgroups_by_id[parent_id];
+		    if (!child)
+			ST_THROW(Exception("child qgroup not found by id"));
+
+		    BtrfsQgroup* parent = btrfs_qgroups_by_id[qgroup.id];
+		    if (!parent)
+			ST_THROW(Exception("parent qgroup not found by id"));
+
+		    BtrfsQgroupRelation::create(prober.get_system(), parent, child);
+		}
+	    }
+	}
     }
 
 

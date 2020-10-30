@@ -614,7 +614,7 @@ namespace storage
 	for (const vertex_descriptor vertex : order)
 	{
 	    const Action::Base* action = graph[vertex].get();
-	    cout << action->text(commit_data).native << '\n';
+	    cout << action->debug_text(commit_data) << '\n';
 	}
 
 	cout << '\n';
@@ -705,7 +705,7 @@ namespace storage
 	for (const vertex_descriptor vertex : vertices())
 	{
 	    const Action::Base* action = graph[vertex].get();
-	    string text = "[ " + action->text(commit_data).native + " ]";
+	    string text = "[ " + action->debug_text(commit_data) + " ]";
 	    boost::put(my_vertex_name_map, vertex, text);
 	}
 

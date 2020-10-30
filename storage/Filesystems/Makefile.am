@@ -25,6 +25,8 @@ libfilesystems_la_SOURCES =				\
 	BtrfsImpl.h		BtrfsImpl.cc		\
 	BtrfsSubvolume.h	BtrfsSubvolume.cc	\
 	BtrfsSubvolumeImpl.h	BtrfsSubvolumeImpl.cc	\
+	BtrfsQgroup.h		BtrfsQgroup.cc		\
+	BtrfsQgroupImpl.h	BtrfsQgroupImpl.cc	\
 	Reiserfs.h		Reiserfs.cc		\
 	ReiserfsImpl.h		ReiserfsImpl.cc		\
 	Xfs.h			Xfs.cc			\
@@ -65,6 +67,7 @@ pkginclude_HEADERS =		\
 	Ext4.h			\
 	Btrfs.h 		\
 	BtrfsSubvolume.h	\
+	BtrfsQgroup.h		\
 	Reiserfs.h 		\
 	Xfs.h 			\
 	Jfs.h			\

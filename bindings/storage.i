@@ -72,6 +72,7 @@ use_ostream(storage::PartitionSlot);
 #include "storage/Filesystems/Ntfs.h"
 #include "storage/Filesystems/Vfat.h"
 #include "storage/Filesystems/Exfat.h"
+#include "storage/Filesystems/BtrfsQgroup.h"
 #include "storage/Filesystems/Btrfs.h"
 #include "storage/Filesystems/BtrfsSubvolume.h"
 #include "storage/Filesystems/Reiserfs.h"
@@ -117,6 +118,7 @@ use_ostream(storage::PartitionSlot);
 #include "storage/Holders/MdUser.h"
 #include "storage/Holders/FilesystemUser.h"
 #include "storage/Holders/Snapshot.h"
+#include "storage/Holders/BtrfsQgroupRelation.h"
 
 #include "storage/SystemInfo/Arch.h"
 
@@ -166,6 +168,7 @@ use_ostream(storage::PartitionSlot);
 %include "../../storage/Filesystems/Ntfs.h"
 %include "../../storage/Filesystems/Vfat.h"
 %include "../../storage/Filesystems/Exfat.h"
+%include "../../storage/Filesystems/BtrfsQgroup.h"
 %include "../../storage/Filesystems/Btrfs.h"
 %include "../../storage/Filesystems/BtrfsSubvolume.h"
 %include "../../storage/Filesystems/Reiserfs.h"
@@ -211,6 +214,7 @@ use_ostream(storage::PartitionSlot);
 %include "../../storage/Holders/MdUser.h"
 %include "../../storage/Holders/FilesystemUser.h"
 %include "../../storage/Holders/Snapshot.h"
+%include "../../storage/Holders/BtrfsQgroupRelation.h"
 
 %include "../../storage/SystemInfo/Arch.h"
 

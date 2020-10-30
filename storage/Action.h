@@ -63,16 +63,20 @@ namespace storage
 	     */
 	    string details() const;
 
+	    /**
+	     * Returns the native message plus nop indication. Useful for debugging and testsuites.
+	     */
+	    string debug_text(const CommitData& commit_data) const;
 	    const sid_t sid;
 
 	    bool first;
 	    bool last;
 
 	    // Action is only used as interim synchronization point and will be removed.
-	    bool only_sync;
+	    bool only_sync = false;
 
 	    // Action is only used to inform user but does no operation.
-	    bool nop;
+	    bool nop = false;
 
 	};
 

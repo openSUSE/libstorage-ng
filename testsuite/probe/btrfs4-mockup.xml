@@ -25,6 +25,11 @@
       <stdout></stdout>
     </Command>
     <Command>
+      <name>/sbin/btrfs qgroup show -repc --raw (device:/dev/sdd1)</name>
+      <stderr>ERROR: can't list qgroups: quotas not enabled</stderr>
+      <exit-code>1</exit-code>
+    </Command>
+    <Command>
       <name>/sbin/btrfs subvolume get-default (device:/dev/sdd1)</name>
       <stdout>ID 5 (FS_TREE)</stdout>
     </Command>

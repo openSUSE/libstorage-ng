@@ -150,7 +150,7 @@ namespace storage
 	PartitionType old_type = partition->get_type();
 	unsigned int old_number = partition->get_number();
 
-	partition->remove_descendants();
+	partition->remove_descendants(View::REMOVE);
 
 	get_devicegraph()->remove_device(partition);
 
