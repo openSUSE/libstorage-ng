@@ -102,27 +102,39 @@ namespace storage
     });
 
 
+    static bool
+    read_env_var(const char* name, bool fallback)
+    {
+	const char* p = getenv(name);
+	return p ? strcmp(p, "yes") == 0 : fallback;
+    }
+
+
     bool
     support_btrfs_multiple_devices()
     {
-	const char* p = getenv("YAST_MULTIPLE_DEVICES_BTRFS");
-	return !p || strcmp(p, "yes") == 0;
+	return read_env_var("LIBSTORAGE_MULTIPLE_DEVICES_BTRFS", true);
     }
 
 
     bool
     support_btrfs_snapshot_relations()
     {
-	const char* p = getenv("YAST_BTRFS_SNAPSHOT_RELATIONS");
-	return p && strcmp(p, "yes") == 0;
+	return read_env_var("LIBSTORAGE_BTRFS_SNAPSHOT_RELATIONS", true);
+    }
+
+
+    bool
+    support_btrfs_qgroups()
+    {
+	return read_env_var("LIBSTORAGE_BTRFS_QGROUPS", true);
     }
 
 
     bool
     developer_mode()
     {
-	const char* p = getenv("LIBSTORAGE_DEVELOPER_MODE");
-	return p && strcmp(p, "yes") == 0;
+	return read_env_var("LIBSTORAGE_DEVELOPER_MODE", false);
     }
 
 }

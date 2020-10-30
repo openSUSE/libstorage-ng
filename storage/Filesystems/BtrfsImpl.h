@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -26,6 +26,7 @@
 
 
 #include "storage/Filesystems/Btrfs.h"
+#include "storage/Filesystems/BtrfsQgroupImpl.h"
 #include "storage/Filesystems/BlkFilesystemImpl.h"
 #include "storage/Utils/SnapperConfig.h"
 #include "storage/Action.h"
@@ -36,6 +37,12 @@ namespace storage
 {
 
     using namespace std;
+
+
+    namespace Action
+    {
+	class SetQuota;
+    }
 
 
     template <> struct DeviceTraits<Btrfs> { static const char* classname; };
@@ -72,6 +79,9 @@ namespace storage
 	vector<BtrfsRaidLevel> get_allowed_metadata_raid_levels() const;
 	vector<BtrfsRaidLevel> get_allowed_data_raid_levels() const;
 
+	bool has_quota() const { return quota; }
+	void set_quota(bool quota);
+
 	FilesystemUser* add_device(BlkDevice* blk_device);
 	void remove_device(BlkDevice* blk_device);
 
@@ -94,6 +104,14 @@ namespace storage
 
 	BtrfsSubvolume* find_btrfs_subvolume_by_path(const string& path);
 	const BtrfsSubvolume* find_btrfs_subvolume_by_path(const string& path) const;
+
+	BtrfsQgroup* create_btrfs_qgroup(const BtrfsQgroup::id_t& id);
+
+	vector<BtrfsQgroup*> get_btrfs_qgroups();
+	vector<const BtrfsQgroup*> get_btrfs_qgroups() const;
+
+	BtrfsQgroup* find_btrfs_qgroup_by_id(const BtrfsQgroup::id_t& id);
+	const BtrfsQgroup* find_btrfs_qgroup_by_id(const BtrfsQgroup::id_t& id) const;
 
         bool get_configure_snapper() const { return configure_snapper; }
         void set_configure_snapper(bool configure) { Impl::configure_snapper = configure; }
@@ -124,6 +142,9 @@ namespace storage
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 
+	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
+	virtual void add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs) const override;
+
 	static void probe_btrfses(Prober& prober);
 	virtual void probe_pass_2a(Prober& prober) override;
 	virtual void probe_pass_2b(Prober& prober) override;
@@ -153,6 +174,9 @@ namespace storage
 	virtual Text do_reallot_text(const CommitData& commit_data, const Action::Reallot* action) const override;
 	virtual void do_reallot(const CommitData& commit_data, const Action::Reallot* action) const override;
 
+	virtual Text do_set_quota_text(const CommitData& commit_data, const Action::SetQuota* action) const;
+	virtual void do_set_quota(const CommitData& commit_data, const Action::SetQuota* action) const;
+
 	void parse_mkfs_output(const vector<string>& stdout);
 
 	void do_reduce(const BlkDevice* blk_device) const;
@@ -168,6 +192,8 @@ namespace storage
 	BtrfsRaidLevel metadata_raid_level;
 	BtrfsRaidLevel data_raid_level;
 
+	bool quota = false;
+
 	/**
 	 * mutable to allow updating cache from const functions. Otherwise
 	 * caching would not be possible when working with the probed
@@ -176,6 +202,24 @@ namespace storage
 	mutable CDgD<ResizeInfo> multi_device_resize_info;
 
     };
+
+
+    namespace Action
+    {
+
+	class SetQuota : public Modify
+	{
+	public:
+
+	    SetQuota(sid_t sid) : Modify(sid) {}
+
+	    virtual Text text(const CommitData& commit_data) const override;
+	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
+	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const override { return UF_BTRFS; }
+
+	};
+
+    }
 
 }
 

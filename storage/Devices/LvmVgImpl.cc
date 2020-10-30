@@ -407,7 +407,7 @@ namespace storage
     void
     LvmVg::Impl::delete_lvm_lv(LvmLv* lvm_lv)
     {
-	lvm_lv->remove_descendants();
+	lvm_lv->remove_descendants(View::REMOVE);
 
 	get_devicegraph()->remove_device(lvm_lv);
     }

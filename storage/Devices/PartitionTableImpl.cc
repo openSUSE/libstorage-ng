@@ -150,7 +150,7 @@ namespace storage
 	PartitionType old_type = partition->get_type();
 	unsigned int old_number = partition->get_number();
 
-	partition->remove_descendants();
+	partition->remove_descendants(View::REMOVE);
 
 	get_devicegraph()->remove_device(partition);
 
@@ -471,6 +471,8 @@ namespace storage
 	for (Actiongraph::Impl::vertex_descriptor vertex : actiongraph.vertices())
 	{
 	    const Action::Base* action = actiongraph[vertex];
+	    if (!action->affects_device())
+		continue;
 
 	    const Action::Create* create_action = dynamic_cast<const Action::Create*>(action);
 	    if (create_action)

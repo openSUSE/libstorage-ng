@@ -27,6 +27,7 @@
 
 #include "storage/Devicegraph.h"
 #include "storage/Filesystems/BlkFilesystem.h"
+#include "storage/Filesystems/BtrfsQgroup.h"
 
 
 namespace storage
@@ -60,6 +61,14 @@ namespace storage
     public:
 
 	BtrfsSubvolumeNotFoundByPath(const std::string& path);
+    };
+
+
+    class BtrfsQgroupNotFoundById : public DeviceNotFound
+    {
+    public:
+
+	BtrfsQgroupNotFoundById(const BtrfsQgroup::id_t& id);
     };
 
 
@@ -136,6 +145,16 @@ namespace storage
 	std::vector<BtrfsRaidLevel> get_allowed_data_raid_levels() const;
 
 	/**
+	 * Return whether quota is enabled for the btrfs.
+	 */
+	bool has_quota() const;
+
+	/**
+	 * Enable or disable quota for the btrfs.
+	 */
+	void set_quota(bool quota);
+
+	/**
 	 * Add a block device to the btrfs.
 	 *
 	 * @throw WrongNumberOfChildren
@@ -199,6 +218,46 @@ namespace storage
 	 * @copydoc find_btrfs_subvolume_by_path(const std::string&)
 	 */
 	const BtrfsSubvolume* find_btrfs_subvolume_by_path(const std::string& path) const;
+
+	/**
+	 * Create a new btrfs qgroup on the btrfs. Creating level 0 qgroups is not
+	 * supported. Quota must be enabled.
+	 *
+	 * @throw Exception
+	 */
+	BtrfsQgroup* create_btrfs_qgroup(const BtrfsQgroup::id_t& id);
+
+	/**
+	 * Get all btrfs qgroups of the btrfs.
+	 */
+	std::vector<BtrfsQgroup*> get_btrfs_qgroups();
+
+	/**
+	 * @copydoc get_btrfs_qgroups()
+	 */
+	std::vector<const BtrfsQgroup*> get_btrfs_qgroups() const;
+
+	/**
+	 * Find a btrfs qgroup of the btrfs by its id.
+	 *
+	 * @throw BtrfsQgroupNotFoundById
+	 */
+	BtrfsQgroup* find_btrfs_qgroup_by_id(const BtrfsQgroup::id_t& id);
+
+	/**
+	 * @copydoc find_btrfs_qgroup_by_id(const BtrfsQgroup::id_t&)
+	 */
+	const BtrfsQgroup* find_btrfs_qgroup_by_id(const BtrfsQgroup::id_t& id) const;
+
+	/**
+	 * Get all Btrfses.
+	 */
+	static std::vector<Btrfs*> get_all(Devicegraph* devicegraph);
+
+	/**
+	 * @copydoc get_all()
+	 */
+	static std::vector<const Btrfs*> get_all(const Devicegraph* devicegraph);
 
 	bool get_configure_snapper() const;
 	void set_configure_snapper(bool configure);

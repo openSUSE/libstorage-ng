@@ -44,6 +44,9 @@ namespace storage
     using std::pair;
 
 
+    using sid_pair_t = pair<sid_t, sid_t>;
+
+
     class Devicegraph::Impl : private boost::noncopyable
     {
 
@@ -114,7 +117,7 @@ namespace storage
 	size_t num_holders() const;
 
 	set<sid_t> get_device_sids() const;
-	set<pair<sid_t, sid_t>> get_holder_sids() const;
+	set<sid_pair_t> get_holder_sid_pairs() const;
 
 	vertex_descriptor add_vertex(Device* device);
 	edge_descriptor add_edge(vertex_descriptor source_vertex, vertex_descriptor target_vertex,
@@ -126,6 +129,7 @@ namespace storage
 	vertex_descriptor find_vertex(sid_t sid) const;
 	edge_descriptor find_edge(sid_t source_sid, sid_t target_sid) const;
 	vector<edge_descriptor> find_edges(sid_t source_sid, sid_t target_sid) const;
+	vector<edge_descriptor> find_edges(sid_pair_t sid_pair) const;
 
 	vertex_descriptor source(edge_descriptor edge) const { return boost::source(edge, graph); }
 	vertex_descriptor target(edge_descriptor edge) const { return boost::target(edge, graph); }

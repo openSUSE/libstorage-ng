@@ -36,7 +36,18 @@ namespace storage
 	string
 	Base::details() const
 	{
-	    string ret = "sid:" + to_string(sid);
+	    string ret;
+
+	    switch (affect)
+	    {
+		case Affect::DEVICE:
+		    ret = "sid:" + to_string(sid);
+		    break;
+
+		case Affect::HOLDER:
+		    ret = "source-sid:" + to_string(sid_pair.first) + ", target-sid:" + to_string(sid_pair.second);
+		    break;
+	    }
 
 	    if (first)
 		ret += ", first";
@@ -54,50 +65,182 @@ namespace storage
 	}
 
 
+	string
+	Base::debug_text(const CommitData& commit_data) const
+	{
+	    string ret = text(commit_data).native;
+
+	    if (nop)
+		ret += " [nop]";
+
+	    return ret;
+	}
+
+
 	Text
 	Create::text(const CommitData& commit_data) const
 	{
-	    return get_device(commit_data.actiongraph)->get_impl().do_create_text(commit_data.tense);
+	    switch (affect)
+	    {
+		case Affect::DEVICE:
+		    return get_device(commit_data.actiongraph)->get_impl().do_create_text(commit_data.tense);
+
+		case Affect::HOLDER:
+		    return get_holder(commit_data.actiongraph)->get_impl().do_create_text(commit_data.tense);
+	    }
+
+	    ST_THROW(LogicException("unknown Action::Affect"));
 	}
 
 
 	void
 	Create::commit(CommitData& commit_data, const CommitOptions& commit_options) const
 	{
-	    Device* device = get_device(commit_data.actiongraph);
+	    switch (affect)
+	    {
+		case Affect::DEVICE:
+		{
+		    Device* device = get_device(commit_data.actiongraph);
 
-	    device->get_impl().do_create();
-	    device->get_impl().do_create_post_verify();
+		    device->get_impl().do_create();
+		    device->get_impl().do_create_post_verify();
+		}
+		break;
+
+		case Affect::HOLDER:
+		{
+		    Holder* holder = get_holder(commit_data.actiongraph);
+
+		    holder->get_impl().do_create();
+		}
+		break;
+	    }
 	}
 
 
 	uf_t
 	Create::used_features(const Actiongraph::Impl& actiongraph) const
 	{
-	    const Device* device = get_device(actiongraph);
-	    return device->get_impl().do_create_used_features();
+	    switch (affect)
+	    {
+		case Affect::DEVICE:
+		{
+		    const Device* device = get_device(actiongraph);
+		    return device->get_impl().do_create_used_features();
+		}
+
+		case Affect::HOLDER:
+		{
+		    const Holder* holder = get_holder(actiongraph);
+		    return holder->get_impl().do_create_used_features();
+		}
+	    }
+
+	    ST_THROW(LogicException("unknown Action::Affect"));
+	}
+
+
+	Device*
+	Create::get_device(const Actiongraph::Impl& actiongraph) const
+	{
+	    if (!affects_device())
+		ST_THROW(Exception("requested device for action not affecting device"));
+
+	    return actiongraph.get_devicegraph(RHS)->find_device(sid);
+	}
+
+
+	Holder*
+	Create::get_holder(const Actiongraph::Impl& actiongraph) const
+	{
+	    if (!affects_holder())
+		ST_THROW(Exception("requested holder for action not affecting holder"));
+
+	    return actiongraph.get_devicegraph(RHS)->find_holder(sid_pair.first, sid_pair.second);
+	}
+
+
+	Device*
+	Modify::get_device(const Actiongraph::Impl& actiongraph, Side side) const
+	{
+	    if (!affects_device())
+		ST_THROW(Exception("requested device for action not affecting device"));
+
+	    return actiongraph.get_devicegraph(side)->find_device(sid);
 	}
 
 
 	Text
 	Delete::text(const CommitData& commit_data) const
 	{
-	    return get_device(commit_data.actiongraph)->get_impl().do_delete_text(commit_data.tense);
+	    switch (affect)
+	    {
+		case Affect::DEVICE:
+		    return get_device(commit_data.actiongraph)->get_impl().do_delete_text(commit_data.tense);
+
+		case Affect::HOLDER:
+		    return get_holder(commit_data.actiongraph)->get_impl().do_delete_text(commit_data.tense);
+	    }
+
+	    ST_THROW(LogicException("unknown Action::Affect"));
 	}
 
 
 	void
 	Delete::commit(CommitData& commit_data, const CommitOptions& commit_options) const
 	{
-	    get_device(commit_data.actiongraph)->get_impl().do_delete();
+	    switch (affect)
+	    {
+		case Affect::DEVICE:
+		    get_device(commit_data.actiongraph)->get_impl().do_delete();
+		    break;
+
+		case Affect::HOLDER:
+		    get_holder(commit_data.actiongraph)->get_impl().do_delete();
+		    break;
+	    }
 	}
 
 
 	uf_t
 	Delete::used_features(const Actiongraph::Impl& actiongraph) const
 	{
-	    const Device* device = get_device(actiongraph);
-	    return device->get_impl().do_delete_used_features();
+	    switch (affect)
+	    {
+		case Affect::DEVICE:
+		{
+		    const Device* device = get_device(actiongraph);
+		    return device->get_impl().do_delete_used_features();
+		}
+
+		case Affect::HOLDER:
+		{
+		    const Holder* holder = get_holder(actiongraph);
+		    return holder->get_impl().do_delete_used_features();
+		}
+	    }
+
+	    ST_THROW(LogicException("unknown Action::Affect"));
+	}
+
+
+	Device*
+	Delete::get_device(const Actiongraph::Impl& actiongraph) const
+	{
+	    if (!affects_device())
+		ST_THROW(Exception("requested device for action not affecting device"));
+
+	    return actiongraph.get_devicegraph(LHS)->find_device(sid);
+	}
+
+
+	Holder*
+	Delete::get_holder(const Actiongraph::Impl& actiongraph) const
+	{
+	    if (!affects_holder())
+		ST_THROW(Exception("requested holder for action not affecting holder"));
+
+	    return actiongraph.get_devicegraph(LHS)->find_holder(sid_pair.first, sid_pair.second);
 	}
 
 
@@ -105,8 +248,23 @@ namespace storage
 	Create::add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
 				 Actiongraph::Impl& actiongraph) const
 	{
-	    Base::add_dependencies(vertex, actiongraph);
+	    switch (affect)
+	    {
+		case Affect::DEVICE:
+		    add_device_dependencies(vertex, actiongraph);
+		    break;
 
+		case Affect::HOLDER:
+		    add_holder_dependencies(vertex, actiongraph);
+		    break;
+	    }
+	}
+
+
+	void
+	Create::add_device_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
+					Actiongraph::Impl& actiongraph) const
+	{
 	    sid_t sid = actiongraph[vertex]->sid;
 
 	    const Device* device = actiongraph.find_device(sid, RHS);
@@ -118,9 +276,14 @@ namespace storage
 		if (!actiongraph.get_devicegraph(LHS)->device_exists(parent_sid))
 		{
 		    // parents must be created before child if not already existing
+		    vector<Actiongraph::Impl::vertex_descriptor> tmp = actiongraph.actions_with_sid(parent_sid, ONLY_LAST);
+		    if (tmp.empty())
+		    {
+			// there might be create sync-only actions missing
+			ST_THROW(Exception("no parent create action"));
+		    }
 
-		    Actiongraph::Impl::vertex_descriptor tmp = actiongraph.actions_with_sid(parent_sid, ONLY_LAST).front();
-		    actiongraph.add_edge(tmp, vertex);
+		    actiongraph.add_edge(tmp.front(), vertex);
 		}
 		else if (!get_device(actiongraph)->get_impl().has_dependency_manager())
 		{
@@ -147,11 +310,33 @@ namespace storage
 
 
 	void
-	Delete::add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
-				 Actiongraph::Impl& actiongraph) const
+	Create::add_holder_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
+					Actiongraph::Impl& actiongraph) const
 	{
-	    Base::add_dependencies(vertex, actiongraph);
+	    get_holder(actiongraph)->get_impl().add_dependencies(vertex, actiongraph);
+	}
 
+
+	void
+	Delete::add_dependencies(Actiongraph::Impl::vertex_descriptor vertex, Actiongraph::Impl& actiongraph) const
+	{
+	    switch (affect)
+	    {
+		case Affect::DEVICE:
+		    add_device_dependencies(vertex, actiongraph);
+		    break;
+
+		case Affect::HOLDER:
+		    add_holder_dependencies(vertex, actiongraph);
+		    break;
+	    }
+	}
+
+
+	void
+	Delete::add_device_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
+					Actiongraph::Impl& actiongraph) const
+	{
 	    // all children must be deleted before parents
 
 	    sid_t sid = actiongraph[vertex]->sid;
@@ -165,6 +350,14 @@ namespace storage
 		for (Actiongraph::Impl::vertex_descriptor tmp : actiongraph.actions_with_sid(parent_sid, ONLY_FIRST))
 		    actiongraph.add_edge(vertex, tmp);
 	    }
+	}
+
+
+	void
+	Delete::add_holder_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
+					Actiongraph::Impl& actiongraph) const
+	{
+	    get_holder(actiongraph)->get_impl().add_dependencies(vertex, actiongraph);
 	}
 
 

@@ -53,6 +53,7 @@
 #include "storage/Filesystems/Exfat.h"
 #include "storage/Filesystems/Btrfs.h"
 #include "storage/Filesystems/BtrfsSubvolume.h"
+#include "storage/Filesystems/BtrfsQgroup.h"
 #include "storage/Filesystems/Reiserfs.h"
 #include "storage/Filesystems/Xfs.h"
 #include "storage/Filesystems/Jfs.h"
@@ -70,6 +71,7 @@
 #include "storage/Holders/Subdevice.h"
 #include "storage/Holders/MdSubdevice.h"
 #include "storage/Holders/Snapshot.h"
+#include "storage/Holders/BtrfsQgroupRelation.h"
 
 
 namespace storage
@@ -105,6 +107,7 @@ namespace storage
 	{ "Exfat", &Exfat::load },
 	{ "Btrfs", &Btrfs::load },
 	{ "BtrfsSubvolume", &BtrfsSubvolume::load },
+	{ "BtrfsQgroup", &BtrfsQgroup::load },
 	{ "Reiserfs", &Reiserfs::load },
 	{ "Xfs", &Xfs::load },
 	{ "Jfs", &Jfs::load },
@@ -125,7 +128,8 @@ namespace storage
 	{ "FilesystemUser", &FilesystemUser::load },
 	{ "Subdevice", &Subdevice::load },
 	{ "MdSubdevice", &MdSubdevice::load },
-	{ "Snapshot", &Snapshot::load }
+	{ "Snapshot", &Snapshot::load },
+	{ "BtrfsQgroupRelation", &BtrfsQgroupRelation::load }
     };
 
 

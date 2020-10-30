@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) [2017-2019] SUSE LLC
+ * Copyright (c) [2017-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -24,6 +24,7 @@
 #include "storage/Filesystems/BtrfsImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Filesystems/BtrfsSubvolumeImpl.h"
+#include "storage/Filesystems/BtrfsQgroupImpl.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Utils/Format.h"
 
@@ -43,6 +44,12 @@ namespace storage
 
     BtrfsSubvolumeNotFoundByPath::BtrfsSubvolumeNotFoundByPath(const string& path)
 	: DeviceNotFound(sformat("btrfs subvolume not found, path:%s", path))
+    {
+    }
+
+
+    BtrfsQgroupNotFoundById::BtrfsQgroupNotFoundById(const BtrfsQgroup::id_t& id)
+	: DeviceNotFound(sformat("btrfs qgroup not found, id:%s", BtrfsQgroup::Impl::format_id(id)))
     {
     }
 
@@ -117,6 +124,20 @@ namespace storage
     Btrfs::get_allowed_data_raid_levels() const
     {
 	return get_impl().get_allowed_data_raid_levels();
+    }
+
+
+    bool
+    Btrfs::has_quota() const
+    {
+	return get_impl().has_quota();
+    }
+
+
+    void
+    Btrfs::set_quota(bool quota)
+    {
+	get_impl().set_quota(quota);
     }
 
 
@@ -197,6 +218,41 @@ namespace storage
     }
 
 
+    BtrfsQgroup*
+    Btrfs::create_btrfs_qgroup(const BtrfsQgroup::id_t& id)
+    {
+	return get_impl().create_btrfs_qgroup(id);
+    }
+
+
+    vector<BtrfsQgroup*>
+    Btrfs::get_btrfs_qgroups()
+    {
+	return get_impl().get_btrfs_qgroups();
+    }
+
+
+    vector<const BtrfsQgroup*>
+    Btrfs::get_btrfs_qgroups() const
+    {
+	return get_impl().get_btrfs_qgroups();
+    }
+
+
+    BtrfsQgroup*
+    Btrfs::find_btrfs_qgroup_by_id(const BtrfsQgroup::id_t& id)
+    {
+	return get_impl().find_btrfs_qgroup_by_id(id);
+    }
+
+
+    const BtrfsQgroup*
+    Btrfs::find_btrfs_qgroup_by_id(const BtrfsQgroup::id_t& id) const
+    {
+	return get_impl().find_btrfs_qgroup_by_id(id);
+    }
+
+
     bool
     Btrfs::get_configure_snapper() const
     {
@@ -229,6 +285,20 @@ namespace storage
     Btrfs::get_impl() const
     {
 	return dynamic_cast<const Impl&>(Device::get_impl());
+    }
+
+
+    vector<Btrfs*>
+    Btrfs::get_all(Devicegraph* devicegraph)
+    {
+        return devicegraph->get_impl().get_devices_of_type<Btrfs>();
+    }
+
+
+    vector<const Btrfs*>
+    Btrfs::get_all(const Devicegraph* devicegraph)
+    {
+        return devicegraph->get_impl().get_devices_of_type<const Btrfs>();
     }
 
 

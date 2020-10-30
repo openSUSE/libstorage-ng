@@ -206,6 +206,24 @@ namespace storage
     }
 
 
+    void
+    Holder::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
+    {
+    }
+
+
+    void
+    Holder::Impl::add_modify_actions(Actiongraph::Impl& actiongraph, const Holder* lhs) const
+    {
+    }
+
+
+    void
+    Holder::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
+    {
+    }
+
+
     bool
     Holder::Impl::equal(const Impl& rhs) const
     {
@@ -232,6 +250,34 @@ namespace storage
 
 	if (!userdata.empty())
 	    out << " userdata:" << userdata;
+    }
+
+
+    Text
+    Holder::Impl::do_create_text(Tense tense) const
+    {
+	return UntranslatedText(sformat("error: stub Holder::Impl::do_create_text called for %s", get_classname()));
+    }
+
+
+    void
+    Holder::Impl::do_create()
+    {
+	ST_THROW(LogicException("stub Holder::Impl::do_create called"));
+    }
+
+
+    Text
+    Holder::Impl::do_delete_text(Tense tense) const
+    {
+	return UntranslatedText(sformat("error: stub Holder::Impl::do_delete_text called for %s", get_classname()));
+    }
+
+
+    void
+    Holder::Impl::do_delete() const
+    {
+	ST_THROW(LogicException("stub Holder::Impl::do_delete called"));
     }
 
 }

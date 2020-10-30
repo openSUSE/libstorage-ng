@@ -422,7 +422,7 @@ namespace storage
 
 	sid_t sid;
 
-	Devicegraph* devicegraph;
+	Devicegraph* devicegraph = nullptr;
 	Devicegraph::Impl::vertex_descriptor vertex;
 
 	map<string, string> userdata;

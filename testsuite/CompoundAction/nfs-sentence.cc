@@ -37,7 +37,7 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_deleting)
     initialize_with_devicegraph("devicegraph.xml");
 
     auto nfs = Nfs::get_all(staging)[0];
-    nfs->remove_descendants();
+    nfs->remove_descendants(View::REMOVE);
 
     auto actiongraph = storage->calculate_actiongraph();
 

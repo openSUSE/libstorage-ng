@@ -41,6 +41,16 @@
       <stdout></stdout>
     </Command>
     <Command>
+      <name>/sbin/btrfs qgroup show -repc --raw (device:/dev/sda2)</name>
+      <stderr>ERROR: can't list qgroups: quotas not enabled</stderr>
+      <exit-code>1</exit-code>
+    </Command>
+    <Command>
+      <name>/sbin/btrfs qgroup show -repc --raw (device:/dev/sda3)</name>
+      <stderr>ERROR: can't list qgroups: quotas not enabled</stderr>
+      <exit-code>1</exit-code>
+    </Command>
+    <Command>
       <name>/sbin/btrfs subvolume get-default (device:/dev/sda2)</name>
       <stdout>ID 285 gen 264 top level 266 path @/.snapshots/8/snapshot</stdout>
     </Command>

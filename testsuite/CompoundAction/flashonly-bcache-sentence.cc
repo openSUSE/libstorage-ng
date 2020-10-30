@@ -36,7 +36,7 @@ BOOST_AUTO_TEST_CASE(flashonly_bcache_format_sentence)
 
     Bcache* bcache2 = Bcache::find_by_name(probed, "/dev/bcache2");
 
-    bcache2->remove_descendants();
+    bcache2->remove_descendants(View::REMOVE);
 
     BlkFilesystem* ext4 = bcache2->create_blk_filesystem(FsType::EXT4);
     ext4->create_mount_point("/data");

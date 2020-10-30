@@ -118,6 +118,10 @@ namespace storage
 	const CmdBtrfsFilesystemDf& getCmdBtrfsFilesystemDf(const string& device, const string& mount_point)
 	    { return cmd_btrfs_filesystem_df.get(CmdBtrfsSubvolumeGetDefault::key_t(device), mount_point); }
 
+	// The device is only used for the cache-key.
+	const CmdBtrfsQgroupShow& getCmdBtrfsQgroupShow(const string& device, const string& mount_point)
+	    { return cmd_btrfs_qgroup_show.get(CmdBtrfsQgroupShow::key_t(device), mount_point); }
+
 	const CmdPvs& getCmdPvs() { return cmd_pvs.get(); }
 	const CmdVgs& getCmdVgs() { return cmd_vgs.get(); }
 	const CmdLvs& getCmdLvs() { return cmd_lvs.get(); }
@@ -254,6 +258,7 @@ namespace storage
 	LazyObjectsWithKey<CmdBtrfsSubvolumeShow, string> cmd_btrfs_subvolume_shows;
 	LazyObjectsWithKey<CmdBtrfsSubvolumeGetDefault, string> cmd_btrfs_subvolume_get_defaults;
 	LazyObjectsWithKey<CmdBtrfsFilesystemDf, string> cmd_btrfs_filesystem_df;
+	LazyObjectsWithKey<CmdBtrfsQgroupShow, string> cmd_btrfs_qgroup_show;
 
 	LazyObject<CmdPvs> cmd_pvs;
 	LazyObject<CmdVgs> cmd_vgs;

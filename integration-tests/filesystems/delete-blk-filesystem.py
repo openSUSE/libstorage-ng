@@ -21,7 +21,7 @@ print(staging)
 
 sdc1 = Partition.find_by_name(staging, "/dev/sdc1")
 
-sdc1.remove_descendants()
+sdc1.remove_descendants(View_REMOVE)
 
 print(staging)
 

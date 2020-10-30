@@ -28,7 +28,7 @@
 #include "storage/Utils/ExceptionImpl.h"
 #include "storage/Devices/Device.h"
 #include "storage/ActiongraphImpl.h"
-#include "storage/Devicegraph.h"
+#include "storage/DevicegraphImpl.h"
 #include "storage/CommitOptions.h"
 
 
@@ -41,12 +41,22 @@ namespace storage
     namespace Action
     {
 
+	/**
+	 * An action can either affect a device or a holder. Thus either sid or sid_pair
+	 * is valid.
+	 */
 	class Base
 	{
+
 	public:
 
+	    enum class Affect { DEVICE, HOLDER };
+
 	    Base(sid_t sid, bool only_sync, bool nop = false)
-		: sid(sid), first(false), last(false), only_sync(only_sync), nop(nop) {}
+		: affect(Affect::DEVICE), sid(sid), only_sync(only_sync), nop(nop) {}
+
+	    Base(sid_pair_t sid_pair, bool only_sync, bool nop = false)
+		: affect(Affect::HOLDER), sid_pair(sid_pair), only_sync(only_sync), nop(nop) {}
 
 	    virtual ~Base() {}
 
@@ -58,21 +68,35 @@ namespace storage
 					  Actiongraph::Impl& actiongraph) const {}
 
 	    /**
-	     * Returns a string representing some information, sid and some
+	     * Returns a string representing some information, sid or sid_pair and some
 	     * flags, of the action.
 	     */
 	    string details() const;
 
-	    const sid_t sid;
+	    /**
+	     * Returns the native message plus nop indication. Useful for debugging and testsuites.
+	     */
+	    string debug_text(const CommitData& commit_data) const;
 
-	    bool first;
-	    bool last;
+	    const Affect affect;
+
+	    bool affects_device() const { return affect == Affect::DEVICE; }
+	    bool affects_holder() const { return affect == Affect::HOLDER; }
+
+	    union
+	    {
+		const sid_t sid;
+		const sid_pair_t sid_pair;
+	    };
+
+	    bool first = false;
+	    bool last = false;
 
 	    // Action is only used as interim synchronization point and will be removed.
-	    bool only_sync;
+	    bool only_sync = false;
 
 	    // Action is only used to inform user but does no operation.
-	    bool nop;
+	    bool nop = false;
 
 	};
 
@@ -84,6 +108,9 @@ namespace storage
 	    Create(sid_t sid, bool only_sync = false, bool nop = false)
 		: Base(sid, only_sync, nop) {}
 
+	    Create(sid_pair_t sid_pair, bool only_sync = false, bool nop = false)
+		: Base(sid_pair, only_sync, nop) {}
+
 	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
 	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const override;
@@ -92,10 +119,24 @@ namespace storage
 					  Actiongraph::Impl& actiongraph) const override;
 
 	    /**
-	     * Returns the device of the action on the RHS devicegraph.
+	     * Returns the device of the action on the RHS devicegraph. Only valid for
+	     * actions affecting a device.
 	     */
-	    Device* get_device(const Actiongraph::Impl& actiongraph) const
-		{ return actiongraph.get_devicegraph(RHS)->find_device(sid); }
+	    Device* get_device(const Actiongraph::Impl& actiongraph) const;
+
+	    /**
+	     * Returns the holder of the action on the RHS devicegraph. Only valid for
+	     * actions affecting a holder.
+	     */
+	    Holder* get_holder(const Actiongraph::Impl& actiongraph) const;
+
+	private:
+
+	    void add_device_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
+					 Actiongraph::Impl& actiongraph) const;
+
+	    void add_holder_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
+					 Actiongraph::Impl& actiongraph) const;
 
 	};
 
@@ -107,10 +148,10 @@ namespace storage
 	    Modify(sid_t sid, bool only_sync = false) : Base(sid, only_sync) {}
 
 	    /**
-	     * Returns the device of the action on the LHS or RHS devicegraph. May not exist.
+	     * Returns the device of the action on the LHS or RHS devicegraph. Only valid
+	     * for actions affecting a device. May not exist.
 	     */
-	    Device* get_device(const Actiongraph::Impl& actiongraph, Side side) const
-		{ return actiongraph.get_devicegraph(side)->find_device(sid); }
+	    Device* get_device(const Actiongraph::Impl& actiongraph, Side side) const;
 
 	};
 
@@ -146,6 +187,9 @@ namespace storage
 	    Delete(sid_t sid, bool only_sync = false, bool nop = false)
 		: Base(sid, only_sync, nop) {}
 
+	    Delete(sid_pair_t sid_pair, bool only_sync = false, bool nop = false)
+		: Base(sid_pair, only_sync, nop) {}
+
 	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
 	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const override;
@@ -154,10 +198,24 @@ namespace storage
 					  Actiongraph::Impl& actiongraph) const override;
 
 	    /**
-	     * Returns the device of the action on the LHS devicegraph.
+	     * Returns the device of the action on the LHS devicegraph. Only valid for
+	     * actions affecting a device.
 	     */
-	    Device* get_device(const Actiongraph::Impl& actiongraph) const
-		{ return actiongraph.get_devicegraph(LHS)->find_device(sid); }
+	    Device* get_device(const Actiongraph::Impl& actiongraph) const;
+
+	    /**
+	     * Returns the holder of the action on the LHS devicegraph. Only valid for
+	     * actions affecting a holder.
+	     */
+	    Holder* get_holder(const Actiongraph::Impl& actiongraph) const;
+
+	private:
+
+	    void add_device_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
+					 Actiongraph::Impl& actiongraph) const;
+
+	    void add_holder_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
+					 Actiongraph::Impl& actiongraph) const;
 
 	};
 

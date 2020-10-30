@@ -35,6 +35,7 @@
 #include <map>
 #include <set>
 #include <boost/io/ios_state.hpp>
+#include <boost/optional.hpp>
 
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/Logger.h"
@@ -126,8 +127,10 @@ namespace storage
     {
 	static_assert(!std::is_enum<Type>::value, "is enum");
 
-	if (lhs != rhs)
-	    log << " " << text << ":" << lhs << "-->" << rhs << "\n";
+	if (lhs == rhs)
+	    return;
+
+	log << " " << text << ":" << lhs << "-->" << rhs << "\n";
     }
 
 
@@ -136,11 +139,11 @@ namespace storage
     {
 	static_assert(std::is_integral<Type>::value, "not integral");
 
-	if (lhs != rhs)
-	{
-	    boost::io::ios_all_saver ias(log);
-	    log << " " << text << ":" << std::showbase << std::hex << lhs << "-->" << rhs << "\n";
-	}
+	if (lhs == rhs)
+	    return;
+
+	boost::io::ios_all_saver ias(log);
+	log << " " << text << ":" << std::showbase << std::hex << lhs << "-->" << rhs << "\n";
     }
 
 
@@ -149,21 +152,46 @@ namespace storage
     {
 	static_assert(std::is_enum<Type>::value, "not enum");
 
-	if (lhs != rhs)
-	    log << " " << text << ":" << toString(lhs) << "-->" << toString(rhs) << "\n";
+	if (lhs == rhs)
+	    return;
+
+	log << " " << text << ":" << toString(lhs) << "-->" << toString(rhs) << "\n";
+    }
+
+
+    template <typename Type>
+    void log_diff(std::ostream& log, const char* text, const boost::optional<Type>& lhs,
+		  const boost::optional<Type>& rhs)
+    {
+	if (lhs == rhs)
+	    return;
+
+	log << " " << text << ":";
+
+	if (lhs == boost::none)
+	    log << "none";
+	else
+	    log << lhs.value();
+
+	log << "-->";
+
+	if (rhs == boost::none)
+	    log << "none";
+	else
+	    log << rhs.value();
     }
 
 
     inline
     void log_diff(std::ostream& log, const char* text, bool lhs, bool rhs)
     {
-	if (lhs != rhs)
-	{
-	    if (rhs)
-		log << " -->" << text << "\n";
-	    else
-		log << " " << text << "-->" << "\n";
-	}
+	if (lhs == rhs)
+	    return;
+
+	if (rhs)
+	    log << " -->" << text << "\n";
+	else
+	    log << " " << text << "-->" << "\n";
     }
 
 

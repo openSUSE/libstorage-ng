@@ -23,7 +23,9 @@
 #include "storage/Utils/XmlFile.h"
 #include "storage/Filesystems/BtrfsSubvolumeImpl.h"
 #include "storage/Filesystems/BtrfsImpl.h"
+#include "storage/Filesystems/BtrfsQgroupImpl.h"
 #include "storage/Filesystems/MountPointImpl.h"
+#include "storage/Holders/BtrfsQgroupRelation.h"
 #include "storage/Devicegraph.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
@@ -54,7 +56,7 @@ namespace storage
 
 
     BtrfsSubvolume::Impl::Impl(const xmlNode* node)
-	: Mountable::Impl(node), id(unknown_id), path(), default_btrfs_subvolume(false), nocow(false)
+	: Mountable::Impl(node)
     {
 	getChildValue(node, "id", id);
 	getChildValue(node, "path", path);
@@ -321,12 +323,15 @@ namespace storage
     BtrfsSubvolume*
     BtrfsSubvolume::Impl::create_btrfs_subvolume(const string& path)
     {
-	// TODO checks, e.g. path?
+	for (const BtrfsSubvolume* btrfs_subvolume : get_btrfs()->get_btrfs_subvolumes())
+	{
+	    if (btrfs_subvolume->get_path() == path)
+		ST_THROW(Exception("subvolume path already exists"));
+	}
 
 	Devicegraph* devicegraph = get_devicegraph();
 
-	BtrfsSubvolume* btrfs_subvolume = create(devicegraph, path);
-
+	BtrfsSubvolume* btrfs_subvolume = BtrfsSubvolume::create(devicegraph, path);
 	Subdevice::create(devicegraph, get_non_impl(), btrfs_subvolume);
 
 	return btrfs_subvolume;
@@ -471,7 +476,7 @@ namespace storage
 	bool sync_only = is_top_level();
 
 	// set nop if the btrfs filesystem is also deleted
-	bool nop = !actiongraph.exists_in(get_btrfs(), RHS);
+	bool nop = contains(actiongraph.btrfs_subvolume_delete_is_nop, get_btrfs()->get_sid());
 
 	actions.push_back(new Action::Delete(get_sid(), sync_only, nop));
 

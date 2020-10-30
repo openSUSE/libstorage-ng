@@ -15,7 +15,8 @@ noinst_PROGRAMS = test-blkid test-cmd-btrfs-filesystem-show			\
 	test-parted test-cmd-stat						\
 	test-proc-mdstat test-proc-mounts test-cmd-df 				\
 	test-cmd-btrfs-subvolume-list test-cmd-btrfs-subvolume-get-default	\
-	test-cmd-btrfs-filesystem-df test-cmd-cryptsetup-luks-dump
+	test-cmd-btrfs-filesystem-df test-cmd-btrfs-qgroup-show 		\
+	test-cmd-cryptsetup-luks-dump
 
 AM_DEFAULT_SOURCE_EXT = .cc
 

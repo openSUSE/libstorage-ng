@@ -342,14 +342,14 @@ namespace storage
     Text
     Device::Impl::do_create_text(Tense tense) const
     {
-	return UntranslatedText(sformat("error: stub do_create_text called for %s", get_classname()));
+	return UntranslatedText(sformat("error: stub Device::Impl::do_create_text called for %s", get_classname()));
     }
 
 
     void
     Device::Impl::do_create()
     {
-	ST_THROW(LogicException("stub do_create called"));
+	ST_THROW(LogicException("stub Device::Impl::do_create called"));
     }
 
 
@@ -362,70 +362,70 @@ namespace storage
     Text
     Device::Impl::do_delete_text(Tense tense) const
     {
-	return UntranslatedText(sformat("error: stub do_delete_text called for %s", get_classname()));
+	return UntranslatedText(sformat("error: stub Device::Impl::do_delete_text called for %s", get_classname()));
     }
 
 
     void
     Device::Impl::do_delete() const
     {
-	ST_THROW(LogicException("stub do_delete called"));
+	ST_THROW(LogicException("stub Device::Impl::do_delete called"));
     }
 
 
     Text
     Device::Impl::do_activate_text(Tense tense) const
     {
-	return UntranslatedText(sformat("error: stub do_activate_text called for %s", get_classname()));
+	return UntranslatedText(sformat("error: stub Device::Impl::do_activate_text called for %s", get_classname()));
     }
 
 
     void
     Device::Impl::do_activate() const
     {
-	ST_THROW(LogicException("stub do_activate called"));
+	ST_THROW(LogicException("stub Device::Impl::do_activate called"));
     }
 
 
     Text
     Device::Impl::do_deactivate_text(Tense tense) const
     {
-	return UntranslatedText(sformat("error: stub do_deactivate_text called for %s", get_classname()));
+	return UntranslatedText(sformat("error: stub Device::Impl::do_deactivate_text called for %s", get_classname()));
     }
 
 
     void
     Device::Impl::do_deactivate() const
     {
-	ST_THROW(LogicException("stub do_deactivate called"));
+	ST_THROW(LogicException("stub Device::Impl::do_deactivate called"));
     }
 
 
     Text
     Device::Impl::do_resize_text(const CommitData& commit_data, const Action::Resize* action) const
     {
-	return UntranslatedText(sformat("error: stub do_resize_text called for %s", get_classname()));
+	return UntranslatedText(sformat("error: stub Device::Impl::do_resize_text called for %s", get_classname()));
     }
 
 
     void
     Device::Impl::do_resize(const CommitData& commit_data, const Action::Resize* action) const
     {
-	ST_THROW(LogicException("stub do_resize called"));
+	ST_THROW(LogicException("stub Device::Impl::do_resize called"));
     }
 
 
     Text
     Device::Impl::do_reallot_text(const CommitData& commit_data, const Action::Reallot* action) const
     {
-	return UntranslatedText(sformat("error: stub do_reallot_text called for %s", get_classname()));
+	return UntranslatedText(sformat("error: stub Device::Impl::do_reallot_text called for %s", get_classname()));
     }
 
 
     void
     Device::Impl::do_reallot(const CommitData& commit_data, const Action::Reallot* action) const
     {
-	ST_THROW(LogicException("stub do_reallot called"));
+	ST_THROW(LogicException("stub Device::Impl::do_reallot called"));
     }
 
 
@@ -510,6 +510,9 @@ namespace storage
 	{
 	    Modify::add_dependencies(vertex, actiongraph);
 
+	    if (!actiongraph[vertex]->affects_device())
+		return;
+
 	    // The disabled dependencies are already created in
 	    // Action.cc. TODO Should be more consistent.
 
@@ -524,6 +527,9 @@ namespace storage
 	    for (Actiongraph::Impl::vertex_descriptor tmp : actiongraph.vertices())
 	    {
 		Action::Base* action = actiongraph[tmp];
+
+		if (!action->affects_device())
+		    continue;
 
 		if (is_create(action) && is_child(device_rhs, action->sid))
 		    actiongraph.add_edge(vertex, tmp);

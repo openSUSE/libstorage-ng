@@ -31,6 +31,7 @@
 
 #include "storage/Filesystems/BtrfsSubvolumeImpl.h"
 #include "storage/Filesystems/Btrfs.h"
+#include "storage/Filesystems/BtrfsQgroupImpl.h"
 
 
 namespace storage
@@ -236,6 +237,52 @@ namespace storage
 
 	BtrfsRaidLevel metadata_raid_level;
 	BtrfsRaidLevel data_raid_level;
+
+    };
+
+
+    /**
+     * Class to probe for btrfs qgroups: Call "btrfs qgroup show <mountpoint>".
+     */
+    class CmdBtrfsQgroupShow
+    {
+    public:
+
+	typedef string key_t;
+
+	CmdBtrfsQgroupShow(const key_t& key, const string& mount_point);
+
+	struct Entry
+	{
+	    BtrfsQgroup::id_t id = BtrfsQgroup::Impl::unknown_id;
+
+	    unsigned long long referenced = 0;
+	    unsigned long long exclusive = 0;
+
+	    boost::optional<unsigned long long> referenced_limit;
+	    boost::optional<unsigned long long> exclusive_limit;
+
+	    vector<BtrfsQgroup::id_t> parents_id;
+	};
+
+	typedef vector<Entry>::value_type value_type;
+	typedef vector<Entry>::const_iterator const_iterator;
+
+	bool has_quota() const { return quota; }
+
+	const_iterator begin() const { return data.begin(); }
+	const_iterator end() const { return data.end(); }
+
+	friend std::ostream& operator<<(std::ostream& s, const CmdBtrfsQgroupShow& cmd_btrfs_qgroups_show);
+	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
+
+    private:
+
+	void parse(const vector<string>& lines);
+
+	bool quota = false;
+
+	vector<Entry> data;
 
     };
 

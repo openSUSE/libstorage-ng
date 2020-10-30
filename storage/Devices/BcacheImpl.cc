@@ -524,7 +524,7 @@ namespace storage
 	    const Action::Base* action = actiongraph[vertex];
 
 	    const Action::Create* create_action = dynamic_cast<const Action::Create*>(action);
-	    if (create_action)
+	    if (create_action && create_action->affects_device())
 	    {
 		const Device* device = create_action->get_device(actiongraph);
 		if (is_bcache(device))
@@ -532,7 +532,7 @@ namespace storage
 	    }
 
 	    const Action::Delete* delete_action = dynamic_cast<const Action::Delete*>(action);
-	    if (delete_action)
+	    if (delete_action && delete_action->affects_device())
 	    {
 		const Device* device = delete_action->get_device(actiongraph);
 		if (is_bcache(device))
@@ -877,7 +877,7 @@ namespace storage
 
 	const Action::Create* create = dynamic_cast<const Action::Create*>(action);
 
-	if (!create)
+	if (!create || !create->affects_device())
 	    return false;
 
 	const Devicegraph* devicegraph = actiongraph.get_devicegraph(RHS);

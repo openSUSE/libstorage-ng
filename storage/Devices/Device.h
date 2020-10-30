@@ -213,7 +213,7 @@ namespace storage
 	std::vector<Holder*> get_out_holders();
 	std::vector<const Holder*> get_out_holders() const;
 
-	void remove_descendants();
+	void remove_descendants() ST_DEPRECATED;
 
 	/**
 	 * Remove all descendants of the device. The view should likely always be

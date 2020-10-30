@@ -35,6 +35,7 @@
 #include "storage/Devices/GptImpl.h"
 #include "storage/Devices/BcacheImpl.h"
 #include "storage/Filesystems/BlkFilesystemImpl.h"
+#include "storage/Filesystems/BtrfsImpl.h"
 #include "storage/Filesystems/MountPointImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Utils/GraphUtils.h"
@@ -49,6 +50,7 @@
 #include "storage/CommitOptions.h"
 #include "storage/Utils/Format.h"
 #include "storage/GraphvizImpl.h"
+#include "storage/Redirect.h"
 
 
 namespace storage
@@ -140,7 +142,9 @@ namespace storage
 
 	Stopwatch stopwatch;
 
+	set_special_flags();
 	get_device_actions();
+	get_holder_actions();
 	remove_duplicates();
 	set_special_actions();
 	add_dependencies();
@@ -355,6 +359,33 @@ namespace storage
 
 
     void
+    Actiongraph::Impl::set_special_flags()
+    {
+	// When a btrfs is deleted on disk, the subvolumes, qgroups and qgroup relations
+	// are also deleted by btrfs. Likewise when btrfs quota is disabled on disk, the
+	// qgroups and qgroup relations are deleted by btrfs. So delete actions are either
+	// marked as sync-only, nop or not generated.
+
+	for (const Btrfs* btrfs : Btrfs::get_all(lhs))
+	{
+	    sid_t sid = btrfs->get_sid();
+
+	    if (!exists_in(btrfs, RHS))
+	    {
+		btrfs_subvolume_delete_is_nop.insert(sid);
+
+		if (btrfs->has_quota())
+		    btrfs_qgroup_delete_is_nop.insert(sid);
+	    }
+	    else if (btrfs->has_quota() && !redirect_to(rhs, btrfs)->has_quota())
+	    {
+		btrfs_qgroup_delete_is_nop.insert(sid);
+	    }
+	}
+    }
+
+
+    void
     Actiongraph::Impl::get_device_actions()
     {
 	const set<sid_t> lhs_sids = lhs->get_impl().get_device_sids();
@@ -397,6 +428,53 @@ namespace storage
 	    const Device* d_lhs = lhs->get_impl()[v_lhs];
 
 	    d_lhs->get_impl().add_delete_actions(*this);
+	}
+    }
+
+
+    void
+    Actiongraph::Impl::get_holder_actions()
+    {
+	const set<sid_pair_t> lhs_sid_pairs = lhs->get_impl().get_holder_sid_pairs();
+	const set<sid_pair_t> rhs_sid_pairs = rhs->get_impl().get_holder_sid_pairs();
+
+	vector<sid_pair_t> created_sid_pairs;
+	set_difference(rhs_sid_pairs.begin(), rhs_sid_pairs.end(), lhs_sid_pairs.begin(), lhs_sid_pairs.end(),
+		       back_inserter(created_sid_pairs));
+
+	vector<sid_pair_t> common_sid_pairs;
+	set_intersection(lhs_sid_pairs.begin(), lhs_sid_pairs.end(), rhs_sid_pairs.begin(), rhs_sid_pairs.end(),
+			 back_inserter(common_sid_pairs));
+
+	vector<sid_pair_t> deleted_sid_pairs;
+	set_difference(lhs_sid_pairs.begin(), lhs_sid_pairs.end(), rhs_sid_pairs.begin(), rhs_sid_pairs.end(),
+		       back_inserter(deleted_sid_pairs));
+
+	for (sid_pair_t sid_pair : created_sid_pairs)
+	{
+	    for (Devicegraph::Impl::edge_descriptor e_rhs : rhs->get_impl().find_edges(sid_pair))
+	    {
+		const Holder* h_rhs = rhs->get_impl()[e_rhs];
+
+		h_rhs->get_impl().add_create_actions(*this);
+	    }
+	}
+
+	/*
+	for (sid_pair_t sid_pair : common_sid_pairs)
+	{
+	    // not needed yet
+	}
+	*/
+
+	for (sid_pair_t sid_pair : deleted_sid_pairs)
+	{
+	    for (Devicegraph::Impl::edge_descriptor e_lhs : lhs->get_impl().find_edges(sid_pair))
+	    {
+		const Holder* h_lhs = lhs->get_impl()[e_lhs];
+
+		h_lhs->get_impl().add_delete_actions(*this);
+	    }
 	}
     }
 
@@ -456,11 +534,13 @@ namespace storage
 	{
 	    const Action::Base* action = graph[*it].get();
 
+	    if (action->affects_device())
+		cache_for_actions_with_sid[action->sid].push_back(*it);
+
 	    const Action::Mount* mount = dynamic_cast<const Action::Mount*>(action);
 	    if (mount && mount->get_path(*this) == "/")
 		mount_root_filesystem = it;
 
-	    cache_for_actions_with_sid[action->sid].push_back(*it);
 	}
     }
 
@@ -614,7 +694,7 @@ namespace storage
 	for (const vertex_descriptor vertex : order)
 	{
 	    const Action::Base* action = graph[vertex].get();
-	    cout << action->text(commit_data).native << '\n';
+	    cout << action->debug_text(commit_data) << '\n';
 	}
 
 	cout << '\n';
@@ -705,7 +785,7 @@ namespace storage
 	for (const vertex_descriptor vertex : vertices())
 	{
 	    const Action::Base* action = graph[vertex].get();
-	    string text = "[ " + action->text(commit_data).native + " ]";
+	    string text = "[ " + action->debug_text(commit_data) + " ]";
 	    boost::put(my_vertex_name_map, vertex, text);
 	}
 
