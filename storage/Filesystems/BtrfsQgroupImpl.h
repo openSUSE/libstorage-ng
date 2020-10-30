@@ -36,6 +36,10 @@ namespace storage
 
     class BtrfsSubvolume;
 
+    namespace Action
+    {
+	class SetLimits;
+    }
 
 
     template <> struct DeviceTraits<BtrfsQgroup> { static const char* classname; };
@@ -52,6 +56,7 @@ namespace storage
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
 	virtual void print(std::ostream& out) const override;
 
+	virtual void add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs) const override;
     public:
 
 	Impl(const id_t& id);
@@ -110,6 +115,9 @@ namespace storage
 
 	virtual ResizeInfo detect_resize_info(const BlkDevice* blk_device = nullptr) const override;
 
+	virtual Text do_set_limits_text(const CommitData& commit_data, const Action::SetLimits* action) const;
+	virtual void do_set_limits(CommitData& commit_data, const Action::SetLimits* action);
+
 	static id_t parse_id(const string& str);
 
 	static string format_id(const id_t& id);
@@ -125,6 +133,24 @@ namespace storage
 	boost::optional<unsigned long long> exclusive_limit;
 
     };
+
+
+    namespace Action
+    {
+
+	class SetLimits : public Modify
+	{
+	public:
+
+	    SetLimits(sid_t sid) : Modify(sid) {}
+
+	    virtual Text text(const CommitData& commit_data) const override;
+	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
+	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const override { return UF_BTRFS; }
+
+	};
+
+    }
 
 }
 

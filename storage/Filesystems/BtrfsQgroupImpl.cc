@@ -264,12 +264,90 @@ namespace storage
     }
 
 
+
+    void
+    BtrfsQgroup::Impl::add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs_base) const
+    {
+	Device::Impl::add_modify_actions(actiongraph, lhs_base);
+
+	const Impl& lhs = dynamic_cast<const Impl&>(lhs_base->get_impl());
+
+	if (lhs.referenced_limit != referenced_limit || lhs.exclusive_limit != exclusive_limit)
+	    actiongraph.add_vertex(new Action::SetLimits(get_sid()));
+    }
+
     ResizeInfo
     BtrfsQgroup::Impl::detect_resize_info(const BlkDevice* blk_device) const
     {
 	return ResizeInfo(false, RB_RESIZE_NOT_SUPPORTED_BY_DEVICE);
     }
 
+
+
+    Text
+    BtrfsQgroup::Impl::do_set_limits_text(const CommitData& commit_data, const Action::SetLimits* action) const
+    {
+	// For level 0 qgroups the id is unknown if the corresponding subvolume is not
+	// created on disk yet. So in that case only referencing the subvolume in the
+	// message works. Since creation of level 0 qgroup without a corresponding
+	// subvolume is unsupported always use that message for level 0 qgroups. The
+	// qgroup for the top level subvolume is again special since it does not have a
+	// useful path. Same stuff in BtrfsQgroupRelation.
+
+	if (id.first == 0 && id.second != BtrfsSubvolume::Impl::top_level_id && has_btrfs_subvolume())
+	{
+	    const BtrfsSubvolume* btrfs_subvolume = get_btrfs_subvolume();
+
+	    Text text = tenser(commit_data.tense,
+			       // TRANSLATORS: displayed before action,
+			       // %1$s is replaced by subvolume path (e.g. var/log),
+			       // %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+			       // and /dev/sdb2 (2.00 GiB))
+			       _("Set limits for qgroup of subvolume %1$s on %2$s"),
+			       // TRANSLATORS: displayed during action,
+			       // %1$s is replaced by subvolume path (e.g. var/log),
+			       // %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+			       // and /dev/sdb2 (2.00 GiB))
+			       _("Setting limits for qgroup of subvolume %1$s on %2$s"));
+
+	    return sformat(text, btrfs_subvolume->get_path(), get_btrfs()->get_impl().get_message_name());
+	}
+	else
+	{
+	    Text text = tenser(commit_data.tense,
+			       // TRANSLATORS: displayed before action,
+			       // %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
+			       // %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+			       // and /dev/sdb2 (2.00 GiB))
+			       _("Set limits for qgroup %1$s on %2$s"),
+			       // TRANSLATORS: displayed during action,
+			       // %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
+			       // %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+			       // and /dev/sdb2 (2.00 GiB))
+			       _("Setting limits for qgroup %1$s on %2$s"));
+
+	    return sformat(text, format_id(id), get_btrfs()->get_impl().get_message_name());
+	}
+    }
+
+
+    void
+    BtrfsQgroup::Impl::do_set_limits(CommitData& commit_data, const Action::SetLimits* action)
+    {
+	EnsureMounted ensure_mounted(get_btrfs()->get_top_level_btrfs_subvolume(), false);
+
+	string cmd_line1 = BTRFS_BIN " qgroup limit " + (referenced_limit != boost::none ?
+	    to_string(referenced_limit.value()) : "none") + " " + format_id(id) + " " +
+	    quote(ensure_mounted.get_any_mount_point());
+
+	SystemCmd cmd1(cmd_line1, SystemCmd::DoThrow);
+
+	string cmd_line2 = BTRFS_BIN " qgroup limit -e " + (exclusive_limit != boost::none ?
+	    to_string(exclusive_limit.value()) : "none") + " " + format_id(id) + " " +
+	    quote(ensure_mounted.get_any_mount_point());
+
+	SystemCmd cmd2(cmd_line2, SystemCmd::DoThrow);
+    }
 
     BtrfsQgroup::id_t
     BtrfsQgroup::Impl::parse_id(const string& str)
@@ -298,6 +376,27 @@ namespace storage
     BtrfsQgroup::Impl::format_id(const id_t& id)
     {
 	return to_string(id.first) + "/" + to_string(id.second);
+    }
+
+
+    namespace Action
+    {
+
+	Text
+	SetLimits::text(const CommitData& commit_data) const
+	{
+	    const BtrfsQgroup* btrfs_qgroup = to_btrfs_qgroup(get_device(commit_data.actiongraph, RHS));
+	    return btrfs_qgroup->get_impl().do_set_limits_text(commit_data, this);
+	}
+
+
+	void
+	SetLimits::commit(CommitData& commit_data, const CommitOptions& commit_options) const
+	{
+	    BtrfsQgroup* btrfs_qgroup = to_btrfs_qgroup(get_device(commit_data.actiongraph, RHS));
+	    return btrfs_qgroup->get_impl().do_set_limits(commit_data, this);
+	}
+
     }
 
 }

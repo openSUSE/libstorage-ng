@@ -164,6 +164,16 @@ namespace storage
     }
 
 
+    void
+    Btrfs::Impl::set_quota(bool quota)
+    {
+	if (Impl::quota == quota)
+	    return;
+
+	Impl::quota = quota;
+    }
+
+
     FilesystemUser*
     Btrfs::Impl::add_device(BlkDevice* blk_device)
     {
@@ -441,6 +451,38 @@ namespace storage
 
 	if (quota)
 	    out << " quota";
+    }
+
+
+    void
+    Btrfs::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
+    {
+	vector<Action::Base*> actions;
+
+	actions.push_back(new Action::Create(get_sid()));
+
+	if (!get_label().empty())
+	    actions.push_back(new Action::SetLabel(get_sid()));
+
+	if (quota)
+	    actions.push_back(new Action::SetQuota(get_sid()));
+
+	actiongraph.add_chain(actions);
+    }
+
+
+    void
+    Btrfs::Impl::add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs_base) const
+    {
+	BlkFilesystem::Impl::add_modify_actions(actiongraph, lhs_base);
+
+	const Impl& lhs = dynamic_cast<const Impl&>(lhs_base->get_impl());
+
+	if (quota != lhs.quota)
+	{
+	    Action::Base* action = new Action::SetQuota(get_sid());
+	    actiongraph.add_vertex(action);
+	}
     }
 
 
@@ -1095,6 +1137,48 @@ namespace storage
     }
 
 
+    Text
+    Btrfs::Impl::do_set_quota_text(const CommitData& commit_data, const Action::SetQuota* action) const
+    {
+	Text text;
+
+	if (quota)
+	    text = tenser(commit_data.tense,
+			  // TRANSLATORS: displayed before action,
+			  // %1$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+			  // and /dev/sdb2 (2.00 GiB))
+			  _("Enable quota on %1$s"),
+			  // TRANSLATORS: displayed during action,
+			  // %1$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+			  // and /dev/sdb2 (2.00 GiB))
+			  _("Enabling quota %1$s"));
+	else
+	    text = tenser(commit_data.tense,
+			  // TRANSLATORS: displayed before action,
+			  // %1$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+			  // and /dev/sdb2 (2.00 GiB))
+			  _("Disable quota on %1$s"),
+			  // TRANSLATORS: displayed during action,
+			  // %1$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+			  // and /dev/sdb2 (2.00 GiB))
+			  _("Disabling quota on %1$s"));
+
+	return sformat(text, get_message_name());
+    }
+
+
+    void
+    Btrfs::Impl::do_set_quota(const CommitData& commit_data, const Action::SetQuota* action) const
+    {
+	EnsureMounted ensure_mounted(get_top_level_btrfs_subvolume(), false);
+
+	string cmd_line = BTRFS_BIN " quota " + string(quota ? "enable" : "disable") + " " +
+	    quote(ensure_mounted.get_any_mount_point());
+
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+    }
+
+
     void
     Btrfs::Impl::add_dependencies(Actiongraph::Impl& actiongraph) const
     {
@@ -1103,6 +1187,27 @@ namespace storage
 	// So far only actions that increase the overall size of a
 	// multiple devices btrfs are supported. Thus no actions need
 	// to be ordered here.
+    }
+
+
+    namespace Action
+    {
+
+	Text
+	SetQuota::text(const CommitData& commit_data) const
+	{
+	    const Btrfs* btrfs = to_btrfs(get_device(commit_data.actiongraph, RHS));
+	    return btrfs->get_impl().do_set_quota_text(commit_data, this);
+	}
+
+
+	void
+	SetQuota::commit(CommitData& commit_data, const CommitOptions& commit_options) const
+	{
+	    const Btrfs* btrfs = to_btrfs(get_device(commit_data.actiongraph, RHS));
+	    btrfs->get_impl().do_set_quota(commit_data, this);
+	}
+
     }
 
 }

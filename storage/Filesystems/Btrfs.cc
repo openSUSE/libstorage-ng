@@ -134,6 +134,13 @@ namespace storage
     }
 
 
+    void
+    Btrfs::set_quota(bool quota)
+    {
+	get_impl().set_quota(quota);
+    }
+
+
     FilesystemUser*
     Btrfs::add_device(BlkDevice* blk_device)
     {

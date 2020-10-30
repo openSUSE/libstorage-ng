@@ -150,6 +150,11 @@ namespace storage
 	bool has_quota() const;
 
 	/**
+	 * Enable or disable quota for the btrfs.
+	 */
+	void set_quota(bool quota);
+
+	/**
 	 * Add a block device to the btrfs.
 	 *
 	 * @throw WrongNumberOfChildren
