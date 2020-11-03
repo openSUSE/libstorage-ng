@@ -186,6 +186,7 @@ namespace storage
 	// special actions, TODO make private and provide interface
 	vertex_iterator mount_root_filesystem;
 	map<sid_t, vertex_descriptor> last_action_on_partition_table;
+	map<sid_t, vertex_descriptor> btrfs_enable_quota;
 
     private:
 

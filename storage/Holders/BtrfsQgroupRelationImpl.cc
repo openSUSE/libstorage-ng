@@ -86,8 +86,12 @@ namespace storage
 	// Only btrfs qgroup relations between btrfs qgroups must be created in the
 	// system. Relations from a btrfs or from a subvolume do not exists in the system.
 
+	vector<Action::Base*> actions;
+
 	if (is_btrfs_qgroup(get_source()) && is_btrfs_qgroup(get_target()))
-	    actiongraph.add_vertex(new Action::Create(make_pair(get_source_sid(), get_target_sid())));
+	    actions.push_back(new Action::Create(make_pair(get_source_sid(), get_target_sid())));
+
+	actiongraph.add_chain(actions);
     }
 
 
@@ -99,8 +103,41 @@ namespace storage
 
 	// See above.
 
+	vector<Action::Base*> actions;
+
 	if (is_btrfs_qgroup(get_source()) && is_btrfs_qgroup(get_target()))
-	    actiongraph.add_vertex(new Action::Delete(make_pair(get_source_sid(), get_target_sid())));
+	    actions.push_back(new Action::Delete(make_pair(get_source_sid(), get_target_sid())));
+
+	actiongraph.add_chain(actions);
+    }
+
+
+    void
+    BtrfsQgroupRelation::Impl::add_dependencies(Actiongraph::Impl::vertex_descriptor vertex1,
+						Actiongraph::Impl& actiongraph) const
+    {
+	// qgroup relations must be created after the qgroups have been created. Inverse
+	// order for delete. This is likely so generic that it could be move to Holder.
+
+	const Action::Base* action1 = actiongraph[vertex1];
+
+	if (is_create(action1))
+	{
+	    for (Actiongraph::Impl::vertex_descriptor vertex2 : actiongraph.actions_with_sid(get_source_sid(), ONLY_LAST))
+		actiongraph.add_edge(vertex2, vertex1);
+
+	    for (Actiongraph::Impl::vertex_descriptor vertex2 : actiongraph.actions_with_sid(get_target_sid(), ONLY_LAST))
+		actiongraph.add_edge(vertex2, vertex1);
+	}
+
+	if (is_delete(action1))
+	{
+	    for (Actiongraph::Impl::vertex_descriptor vertex2 : actiongraph.actions_with_sid(get_source_sid(), ONLY_FIRST))
+		actiongraph.add_edge(vertex1, vertex2);
+
+	    for (Actiongraph::Impl::vertex_descriptor vertex2 : actiongraph.actions_with_sid(get_target_sid(), ONLY_FIRST))
+		actiongraph.add_edge(vertex1, vertex2);
+	}
     }
 
 

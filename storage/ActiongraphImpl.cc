@@ -541,6 +541,13 @@ namespace storage
 	    if (mount && mount->get_path(*this) == "/")
 		mount_root_filesystem = it;
 
+	    const Action::SetQuota* set_quota_action = dynamic_cast<const Action::SetQuota*>(action);
+	    if (set_quota_action)
+	    {
+		const Btrfs* btrfs = to_btrfs(set_quota_action->get_device(*this, RHS));
+		if (btrfs->has_quota())
+		    btrfs_enable_quota[btrfs->get_sid()] = *it;
+	    }
 	}
     }
 
