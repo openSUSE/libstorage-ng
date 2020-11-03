@@ -1,0 +1,12 @@
+1 - Unassign qgroup 1/0 from qgroup 2/0 on /dev/sdc1 (6.40 GiB) -> 2a 2b
+
+2a - Remove qgroup 1/0 on /dev/sdc1 (6.40 GiB) -> 3a 3b
+2b - Remove qgroup 2/0 on /dev/sdc1 (6.40 GiB) -> 3a 3b
+
+3a - Create qgroup 1/1 on /dev/sdc1 (6.40 GiB) -> 4a
+3b - Create qgroup 2/1 on /dev/sdc1 (6.40 GiB) -> 4b
+
+4a - Set limits for qgroup 1/1 on /dev/sdc1 (6.40 GiB) -> 3b 5
+4b - Set limits for qgroup 2/1 on /dev/sdc1 (6.40 GiB) -> 5
+
+5 - Assign qgroup 1/1 to qgroup 2/1 on /dev/sdc1 (6.40 GiB) ->

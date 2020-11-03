@@ -1,0 +1,17 @@
+1a - Create btrfs on /dev/sdc1 (6.40 GiB) -> 1b
+1b - Enable quota on /dev/sdc1 (6.40 GiB) -> 2 3a 3b 4a 5a
+
+2 - Set limits for qgroup 0/5 on /dev/sdc1 (6.40 GiB) -> 4a 6
+
+3a - Create subvolume a on /dev/sdc1 (6.40 GiB) -> 3b
+3b - Set limits for qgroup of subvolume a on /dev/sdc1 (6.40 GiB) -> 4a 7
+
+4a - Create qgroup 1/0 on /dev/sdc1 (6.40 GiB) -> 4b
+4b - Set limits for qgroup 1/0 on /dev/sdc1 (6.40 GiB) -> 5a 6 7 8
+
+5a - Create qgroup 2/0 on /dev/sdc1 (6.40 GiB) -> 5b
+5b - Set limits for qgroup 2/0 on /dev/sdc1 (6.40 GiB) -> 8
+
+6 - Assign qgroup 0/5 to qgroup 1/0 on /dev/sdc1 (6.40 GiB) ->
+7 - Assign qgroup of subvolume a to qgroup 1/0 on /dev/sdc1 (6.40 GiB) ->
+8 - Assign qgroup 1/0 to qgroup 2/0 on /dev/sdc1 (6.40 GiB) ->
