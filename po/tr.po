@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-13 12:14+0200\n"
+"POT-Creation-Date: 2020-11-03 12:29+0100\n"
 "PO-Revision-Date: 2001-10-18 10:13+0200\n"
 "Last-Translator: Görkem Çetin <gorkem@gelecek.com.tr>\n"
 "Language-Team: turkish <i18n@suse.de>\n"
@@ -288,6 +288,46 @@ msgstr "%1 aygıtının bağlama noktasını %2 yap"
 msgid "Adding mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
 msgstr ""
 
+# clients/inst_do_resize.ycp:450
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
+#. %2$s is replaced by the btrfs qgroup id (e.g. 2/0),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, fuzzy, c-format
+msgid "Assign qgroup %1$s to qgroup %2$s on %3$s"
+msgstr "%1 bölümünün boyutunu %2 olarak değiştir"
+
+# clients/inst_lvm_lv.ycp:363 clients/lvm_config_ui.ycp:483
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by subvolume path (e.g. var/log),
+#. %2$s is replaced by the btrfs qgroup id (e.g. 1/0),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, fuzzy, c-format
+msgid "Assign qgroup of subvolume %1$s to qgroup %2$s on %3$s"
+msgstr "%1 mantıksal yığınını silmek istiyor musunuz?"
+
+# clients/inst_rootpart.ycp:401
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
+#. %2$s is replaced by the btrfs qgroup id (e.g. 2/0),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, fuzzy, c-format
+msgid "Assigning qgroup %1$s to qgroup %2$s on %3$s"
+msgstr "%1 root bölümü %2 noktasında sisteme bağlanıyor..."
+
+# include/partitioning/lvm_ui_dialogs.ycp:81
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by subvolume path (e.g. var/log),
+#. %2$s is replaced by the btrfs qgroup id (e.g. 1/0),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, fuzzy, c-format
+msgid "Assigning qgroup of subvolume %1$s to qgroup %2$s on %3$s"
+msgstr "Mantıksal yığın oluştur"
+
 # clients/inst_custom_part.ycp:3254
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -329,6 +369,10 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Btrfs"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "Btrfs Qgroup"
 msgstr ""
 
 #. TRANSLATORS: name of object
@@ -962,6 +1006,15 @@ msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
 
 # include/partitioning/lvm_ui_dialogs.ycp:81
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, fuzzy, c-format
+msgid "Create qgroup %1$s on %2$s"
+msgstr "Mantıksal yığın oluştur"
+
+# include/partitioning/lvm_ui_dialogs.ycp:81
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB))
@@ -1171,6 +1224,15 @@ msgstr "Mantıksal yığın oluştur"
 #, fuzzy, c-format
 msgid "Creating primary partition %1$s (%2$s)"
 msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
+
+# include/partitioning/lvm_ui_dialogs.ycp:81
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, fuzzy, c-format
+msgid "Creating qgroup %1$s on %2$s"
+msgstr "Mantıksal yığın oluştur"
 
 # include/partitioning/lvm_ui_dialogs.ycp:81
 #. TRANSLATORS: displayed during action,
@@ -1811,6 +1873,22 @@ msgstr ""
 msgid "Diagnostics Partition"
 msgstr ""
 
+# clients/inst_rootpart.ycp:129
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, fuzzy, c-format
+msgid "Disable quota on %1$s"
+msgstr "%1 sabit disk bölümü kontrol ediliyor"
+
+# clients/inst_rootpart.ycp:129
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, fuzzy, c-format
+msgid "Disabling quota on %1$s"
+msgstr "%1 sabit disk bölümü kontrol ediliyor"
+
 #. TRANSLATORS: name of object
 msgid "Disk"
 msgstr ""
@@ -1835,6 +1913,20 @@ msgstr ""
 #, fuzzy
 msgid "EiB"
 msgstr "GB"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, c-format
+msgid "Enable quota on %1$s"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, c-format
+msgid "Enabling quota %1$s"
+msgstr ""
 
 # include/partitioning/lvm_ui_dialogs.ycp:81
 #. TRANSLATORS:
@@ -2859,6 +2951,14 @@ msgstr "%1 aygıtının bağlama noktasını %2 yap"
 msgid "Remove mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
 msgstr ""
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, fuzzy, c-format
+msgid "Remove qgroup %1$s on %2$s"
+msgstr "%1 aygıtını /etc/fstab içinden kaldır"
+
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/sdc1),
 #. %2$s is replaced by the device size (e.g. 2.00 GiB),
@@ -2906,6 +3006,14 @@ msgstr "%1 aygıtının bağlama noktasını %2 yap"
 #, fuzzy, c-format
 msgid "Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
 msgstr "%1 aygıtının bağlama noktasını %2 yap"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, fuzzy, c-format
+msgid "Removing qgroup %1$s on %2$s"
+msgstr "%1 aygıtını /etc/fstab içinden kaldır"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the old logical volume name (e.g. foo),
@@ -3033,6 +3141,24 @@ msgstr "%1 yığının adını %2 olarak değiştir"
 msgid "Set legacy boot flag of partition %1$s"
 msgstr "%1 sabit disk bölümü kontrol ediliyor"
 
+# clients/inst_do_resize.ycp:450
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, fuzzy, c-format
+msgid "Set limits for qgroup %1$s on %2$s"
+msgstr "%1 bölümünün boyutunu %2 olarak değiştir"
+
+# include/partitioning/lvm_ui_dialogs.ycp:81
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by subvolume path (e.g. var/log),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, fuzzy, c-format
+msgid "Set limits for qgroup of subvolume %1$s on %2$s"
+msgstr "Mantıksal yığın oluştur"
+
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
@@ -3130,6 +3256,24 @@ msgstr "%1 yığının adını %2 olarak değiştir"
 #, fuzzy, c-format
 msgid "Setting legacy boot flag of partition %1$s"
 msgstr "%1 root bölümü %2 noktasında sisteme bağlanıyor..."
+
+# clients/inst_rootpart.ycp:401
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, fuzzy, c-format
+msgid "Setting limits for qgroup %1$s on %2$s"
+msgstr "%1 root bölümü %2 noktasında sisteme bağlanıyor..."
+
+# include/partitioning/lvm_ui_dialogs.ycp:81
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by subvolume path (e.g. var/log),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, fuzzy, c-format
+msgid "Setting limits for qgroup of subvolume %1$s on %2$s"
+msgstr "Mantıksal yığın oluştur"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -3357,6 +3501,46 @@ msgstr "TB"
 #. TRANSLATORS: name of object
 msgid "UDF"
 msgstr ""
+
+# clients/inst_rootpart.ycp:401
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
+#. %2$s is replaced by the btrfs qgroup id (e.g. 2/0),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, fuzzy, c-format
+msgid "Unassign qgroup %1$s from qgroup %2$s on %3$s"
+msgstr "%1 root bölümü %2 noktasında sisteme bağlanıyor..."
+
+# clients/inst_lvm_lv.ycp:363 clients/lvm_config_ui.ycp:483
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by subvolume path (e.g. var/log),
+#. %2$s is replaced by the btrfs qgroup id (e.g. 1/0),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, fuzzy, c-format
+msgid "Unassign qgroup of subvolume %1$s from qgroup %2$s on %3$s"
+msgstr "%1 mantıksal yığınını silmek istiyor musunuz?"
+
+# clients/inst_rootpart.ycp:401
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
+#. %2$s is replaced by the btrfs qgroup id (e.g. 2/0),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, fuzzy, c-format
+msgid "Unassigning qgroup %1$s from qgroup %2$s on %3$s"
+msgstr "%1 root bölümü %2 noktasında sisteme bağlanıyor..."
+
+# clients/inst_lvm_lv.ycp:363 clients/lvm_config_ui.ycp:483
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by subvolume path (e.g. var/log),
+#. %2$s is replaced by the btrfs qgroup id (e.g. 1/0),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, fuzzy, c-format
+msgid "Unassigning qgroup of subvolume %1$s from qgroup %2$s on %3$s"
+msgstr "%1 mantıksal yığınını silmek istiyor musunuz?"
 
 # clients/inst_rootpart.ycp:401
 #. TRANSLATORS: displayed before action,

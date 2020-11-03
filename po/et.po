@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: autoinst.fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-13 12:14+0200\n"
+"POT-Creation-Date: 2020-11-03 12:29+0100\n"
 "PO-Revision-Date: 2019-12-02 16:54+0000\n"
 "Last-Translator: Jaanus Ojangu <jaanus.ojangu@gmail.com>\n"
 "Language-Team: Estonian <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -254,6 +254,42 @@ msgstr ""
 "Lisades seadme %3$s alammahu %2$s haakepunkti %1$s kataloogi /etc/fstab"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
+#. %2$s is replaced by the btrfs qgroup id (e.g. 2/0),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, fuzzy, c-format
+msgid "Assign qgroup %1$s to qgroup %2$s on %3$s"
+msgstr "Vähendage partitsiooni %1$s vahemikus %2$s kuni %3$s"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by subvolume path (e.g. var/log),
+#. %2$s is replaced by the btrfs qgroup id (e.g. 1/0),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, fuzzy, c-format
+msgid "Assign qgroup of subvolume %1$s to qgroup %2$s on %3$s"
+msgstr "Andmeruumirühma %1$s lahtiühendamine %2$s haakepunktist %3$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
+#. %2$s is replaced by the btrfs qgroup id (e.g. 2/0),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, fuzzy, c-format
+msgid "Assigning qgroup %1$s to qgroup %2$s on %3$s"
+msgstr "Partitsiooni %1$s vähendamine suuruselt %2$s kuni %3$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by subvolume path (e.g. var/log),
+#. %2$s is replaced by the btrfs qgroup id (e.g. 1/0),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, fuzzy, c-format
+msgid "Assigning qgroup of subvolume %1$s to qgroup %2$s on %3$s"
+msgstr "Loogilise andmeruumi %1$s (%2$s) loomine"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2.00 GiB)
@@ -293,6 +329,10 @@ msgstr ""
 #. TRANSLATORS: name of object
 msgid "Btrfs"
 msgstr "Btrfs"
+
+#. TRANSLATORS: name of object
+msgid "Btrfs Qgroup"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Btrfs Subvolume"
@@ -840,6 +880,14 @@ msgid "Create primary partition %1$s (%2$s)"
 msgstr "Partitsiooni %1$s (%2$s) loomine"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, fuzzy, c-format
+msgid "Create qgroup %1$s on %2$s"
+msgstr "Saale loogilise andmeruumi %1$s (%2$s) loomine"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB))
@@ -1017,6 +1065,14 @@ msgstr "Loogilise andmeruumi %1$s loomine"
 #, fuzzy, c-format
 msgid "Creating primary partition %1$s (%2$s)"
 msgstr "Partitsiooni %1$s (%2$s) loomine"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, fuzzy, c-format
+msgid "Creating qgroup %1$s on %2$s"
+msgstr "Partitsioonile %1$s tüübi %2$X määramine"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -1576,6 +1632,20 @@ msgstr ""
 msgid "Diagnostics Partition"
 msgstr "Diagnostikapartitsioon"
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, fuzzy, c-format
+msgid "Disable quota on %1$s"
+msgstr "Partitsiooni %1$s kustutamine"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, fuzzy, c-format
+msgid "Disabling quota on %1$s"
+msgstr "Partitsiooni %1$s kustutamine"
+
 #. TRANSLATORS: name of object
 msgid "Disk"
 msgstr "Ketas"
@@ -1597,6 +1667,20 @@ msgstr "EFI süsteemne partitsioon"
 #, fuzzy
 msgid "EiB"
 msgstr "GB"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, c-format
+msgid "Enable quota on %1$s"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, c-format
+msgid "Enabling quota %1$s"
+msgstr ""
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -2438,6 +2522,14 @@ msgid "Remove mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
 msgstr ""
 "Eemalda haakepunkt %1$s alamosalt %2$s asukohas %3$s /etc/fstab kataloogist"
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, fuzzy, c-format
+msgid "Remove qgroup %1$s on %2$s"
+msgstr "%1$s eemaldamine failist %2$s"
+
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/sdc1),
 #. %2$s is replaced by the device size (e.g. 2.00 GiB),
@@ -2485,6 +2577,14 @@ msgstr "Ühenduskoha %1$s kirje eemaldamine failist %2$s"
 #, fuzzy, c-format
 msgid "Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
 msgstr "Ühenduskoha %1$s kirje eemaldamine failist %2$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, fuzzy, c-format
+msgid "Removing qgroup %1$s on %2$s"
+msgstr "%1$s eemaldamine failist %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the old logical volume name (e.g. foo),
@@ -2610,6 +2710,22 @@ msgid "Set legacy boot flag of partition %1$s"
 msgstr "Määrake partitsioonile %1$s 'legacy' alglaadimistunnus"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, fuzzy, c-format
+msgid "Set limits for qgroup %1$s on %2$s"
+msgstr "Määrake tuunimise valik %1$s -le asukohas %2$s"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by subvolume path (e.g. var/log),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, fuzzy, c-format
+msgid "Set limits for qgroup of subvolume %1$s on %2$s"
+msgstr "Määrake subvolume alamosale %1$s asukohas %2$s"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB))
@@ -2700,6 +2816,22 @@ msgstr "%1$s-le nime määramine asukohas %2$s kuni %3$s"
 #, c-format
 msgid "Setting legacy boot flag of partition %1$s"
 msgstr "Partitsioonile %1$s 'legacy' alglaadimistunnuse määramine"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, fuzzy, c-format
+msgid "Setting limits for qgroup %1$s on %2$s"
+msgstr "Tuunimisvaliku määramine %1$s asukohas %2$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by subvolume path (e.g. var/log),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, fuzzy, c-format
+msgid "Setting limits for qgroup of subvolume %1$s on %2$s"
+msgstr "Vaikimisi alampartistiooni määramine alamsüsteemile %1$s asukohas %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -2906,6 +3038,42 @@ msgstr "TiB"
 #. TRANSLATORS: name of object
 msgid "UDF"
 msgstr "UDF"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
+#. %2$s is replaced by the btrfs qgroup id (e.g. 2/0),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, fuzzy, c-format
+msgid "Unassign qgroup %1$s from qgroup %2$s on %3$s"
+msgstr "Partitsiooni %1$s vähendamine suuruselt %2$s kuni %3$s"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by subvolume path (e.g. var/log),
+#. %2$s is replaced by the btrfs qgroup id (e.g. 1/0),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, fuzzy, c-format
+msgid "Unassign qgroup of subvolume %1$s from qgroup %2$s on %3$s"
+msgstr "Andmeruumirühma %1$s lahtiühendamine %2$s haakepunktist %3$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
+#. %2$s is replaced by the btrfs qgroup id (e.g. 2/0),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, fuzzy, c-format
+msgid "Unassigning qgroup %1$s from qgroup %2$s on %3$s"
+msgstr "Partitsiooni %1$s vähendamine suuruselt %2$s kuni %3$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by subvolume path (e.g. var/log),
+#. %2$s is replaced by the btrfs qgroup id (e.g. 1/0),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
+#, fuzzy, c-format
+msgid "Unassigning qgroup of subvolume %1$s from qgroup %2$s on %3$s"
+msgstr "Andmeruumirühma %1$s lahti ühendamine %2$s haakepunktist %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
