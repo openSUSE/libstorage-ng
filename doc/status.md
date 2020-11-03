@@ -139,7 +139,7 @@ Implemented:
   (probing, creating, deleting, resizing, mounting and unmounting).
 * Handling of /etc/fstab.
 * Handling different mount-by options.
-* btrfs subvolumes and btrfs multiple-device support.
+* btrfs subvolumes, btrfs multiple-device, quota and qgroup support.
 
 Missing:
 

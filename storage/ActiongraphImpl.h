@@ -135,7 +135,7 @@ namespace storage
 	/**
 	 * Adds several actions (with their corresponding vertex_descriptors) to
 	 * the graph, linking each other with edges (dependencies) in the given
-	 * order.
+	 * order. Also sets the first and last flag of the actions.
 	 */
 	void add_chain(const vector<Action::Base*>& actions);
 

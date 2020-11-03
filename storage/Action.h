@@ -85,6 +85,10 @@ namespace storage
 
 	    union
 	    {
+		// Having members with non-trivial special member function causes those
+		// functions to be deleted for the union since they would be
+		// ill-defined. But apart from that it seems to be fine (since C++11).
+
 		const sid_t sid;
 		const sid_pair_t sid_pair;
 	    };
