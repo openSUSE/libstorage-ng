@@ -173,6 +173,34 @@ namespace storage
     }
 
 
+    bool
+    BtrfsSubvolume::has_btrfs_qgroup() const
+    {
+	return get_impl().has_btrfs_qgroup();
+    }
+
+
+    BtrfsQgroup*
+    BtrfsSubvolume::get_btrfs_qgroup()
+    {
+	return get_impl().get_btrfs_qgroup();
+    }
+
+
+    const BtrfsQgroup*
+    BtrfsSubvolume::get_btrfs_qgroup() const
+    {
+	return get_impl().get_btrfs_qgroup();
+    }
+
+
+    BtrfsQgroup*
+    BtrfsSubvolume::create_btrfs_qgroup()
+    {
+	return get_impl().create_btrfs_qgroup();
+    }
+
+
     BtrfsSubvolume*
     BtrfsSubvolume::create_btrfs_subvolume(const string& path)
     {

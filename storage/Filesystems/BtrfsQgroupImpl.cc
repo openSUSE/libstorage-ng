@@ -32,6 +32,7 @@
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Holders/BtrfsQgroupRelation.h"
 #include "storage/Storage.h"
+#include "storage/Redirect.h"
 
 
 namespace storage
@@ -264,6 +265,50 @@ namespace storage
     }
 
 
+    void
+    BtrfsQgroup::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
+    {
+	vector<Action::Base*> actions;
+
+	bool sync_only = false;
+
+	if (id.first == 0)
+	{
+	    // There are two conditions in which a level 0 qgroup is generated
+	    // automatically by btrfs:
+	    // 1.) the corresponding subvolume was created
+	    // 2.) the corresponding subvolume exists and quota was switched on
+
+	    if (has_btrfs_subvolume())
+	    {
+		const BtrfsSubvolume* btrfs_subvolume = get_btrfs_subvolume();
+		if (!actiongraph.exists_in(btrfs_subvolume, LHS))
+		{
+		    sync_only = true;
+		}
+		else
+		{
+		    const Btrfs* btrfs = get_btrfs();
+		    if (!actiongraph.exists_in(btrfs, LHS))
+		    {
+			sync_only = true;
+		    }
+		    else if (!to_btrfs(actiongraph.find_device(btrfs->get_sid(), LHS))->has_quota())
+		    {
+			sync_only = true;
+		    }
+		}
+	    }
+	}
+
+	actions.push_back(new Action::Create(get_sid(), sync_only));
+
+	if (referenced_limit != boost::none || exclusive_limit != boost::none)
+	    actions.push_back(new Action::SetLimits(get_sid()));
+
+	actiongraph.add_chain(actions);
+    }
+
 
     void
     BtrfsQgroup::Impl::add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs_base) const
@@ -272,9 +317,50 @@ namespace storage
 
 	const Impl& lhs = dynamic_cast<const Impl&>(lhs_base->get_impl());
 
+	vector<Action::Base*> actions;
+
 	if (lhs.referenced_limit != referenced_limit || lhs.exclusive_limit != exclusive_limit)
-	    actiongraph.add_vertex(new Action::SetLimits(get_sid()));
+	    actions.push_back(new Action::SetLimits(get_sid()));
+
+	actiongraph.add_chain(actions);
     }
+
+
+    void
+    BtrfsQgroup::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
+    {
+	if (contains(actiongraph.btrfs_qgroup_delete_is_nop, get_btrfs()->get_sid()))
+	    return;
+
+	vector<Action::Base*> actions;
+
+	actions.push_back(new Action::Delete(get_sid()));
+
+	actiongraph.add_chain(actions);
+    }
+
+
+    void
+    BtrfsQgroup::Impl::add_dependencies(Actiongraph::Impl& actiongraph) const
+    {
+	Device::Impl::add_dependencies(actiongraph);
+
+	// Create actions of qgroups must happen after enabling quota. If the btrfs
+	// itself is created the standard dependencies take care.
+
+	const Btrfs* btrfs = get_btrfs();
+	if (!actiongraph.exists_in(btrfs, LHS))
+	    return;
+
+	map<sid_t, Actiongraph::Impl::vertex_descriptor>::const_iterator it =
+	    actiongraph.btrfs_enable_quota.find(btrfs->get_sid());
+	if (it == actiongraph.btrfs_enable_quota.end())
+	    return;
+
+	for (Actiongraph::Impl::vertex_descriptor vertex1 : actiongraph.actions_with_sid(get_sid(), ONLY_FIRST))
+	    actiongraph.add_edge(it->second, vertex1);
+    }
+
 
     ResizeInfo
     BtrfsQgroup::Impl::detect_resize_info(const BlkDevice* blk_device) const
@@ -282,6 +368,36 @@ namespace storage
 	return ResizeInfo(false, RB_RESIZE_NOT_SUPPORTED_BY_DEVICE);
     }
 
+
+    Text
+    BtrfsQgroup::Impl::do_create_text(Tense tense) const
+    {
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
+			   // %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+			   // and /dev/sdb2 (2.00 GiB))
+			   _("Create qgroup %1$s on %2$s"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
+			   // %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+			   // and /dev/sdb2 (2.00 GiB))
+			   _("Creating qgroup %1$s on %2$s"));
+
+	return sformat(text, format_id(id), get_btrfs()->get_impl().get_message_name());
+    }
+
+
+    void
+    BtrfsQgroup::Impl::do_create()
+    {
+	EnsureMounted ensure_mounted(get_btrfs()->get_top_level_btrfs_subvolume(), false);
+
+	string cmd_line = BTRFS_BIN " qgroup create " + format_id(id) + " " +
+	    quote(ensure_mounted.get_any_mount_point());
+
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+    }
 
 
     Text
@@ -348,6 +464,38 @@ namespace storage
 
 	SystemCmd cmd2(cmd_line2, SystemCmd::DoThrow);
     }
+
+
+    Text
+    BtrfsQgroup::Impl::do_delete_text(Tense tense) const
+    {
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
+			   // %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+			   // and /dev/sdb2 (2.00 GiB))
+			   _("Remove qgroup %1$s on %2$s"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
+			   // %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+			   // and /dev/sdb2 (2.00 GiB))
+			   _("Removing qgroup %1$s on %2$s"));
+
+	return sformat(text, format_id(id), get_btrfs()->get_impl().get_message_name());
+    }
+
+
+    void
+    BtrfsQgroup::Impl::do_delete() const
+    {
+	EnsureMounted ensure_mounted(get_btrfs()->get_top_level_btrfs_subvolume(), false);
+
+	string cmd_line = BTRFS_BIN " qgroup destroy " + format_id(id) + " " +
+	    quote(ensure_mounted.get_any_mount_point());
+
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+    }
+
 
     BtrfsQgroup::id_t
     BtrfsQgroup::Impl::parse_id(const string& str)

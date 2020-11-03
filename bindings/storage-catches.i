@@ -249,11 +249,16 @@
 %catches(storage::BtrfsSubvolumeNotFoundByPath) storage::Btrfs::find_btrfs_subvolume_by_path(const std::string &path);
 %catches(storage::BtrfsSubvolumeNotFoundByPath) storage::Btrfs::find_btrfs_subvolume_by_path(const std::string &path) const;
 %catches(storage::Exception) storage::Btrfs::remove_device(BlkDevice *blk_device);
+%catches(storage::Exception) storage::Btrfs::set_quota(bool quota);
 %catches(storage::Exception) storage::BtrfsQgroup::assign(BtrfsQgroup *btrfs_qgroup);
 %catches(storage::Exception) storage::BtrfsQgroup::get_exclusive_limit() const;
 %catches(storage::Exception) storage::BtrfsQgroup::get_referenced_limit() const;
 %catches(storage::Exception) storage::BtrfsQgroup::unassign(BtrfsQgroup *btrfs_qgroup);
 %catches(storage::HolderAlreadyExists) storage::BtrfsQgroupRelation::create(Devicegraph *devicegraph, const Device *source, const Device *target);
+%catches(storage::Exception) storage::BtrfsSubvolume::create_btrfs_qgroup();
+%catches(storage::Exception) storage::BtrfsSubvolume::create_btrfs_subvolume(const std::string &path);
+%catches(storage::Exception) storage::BtrfsSubvolume::get_btrfs_qgroup();
+%catches(storage::Exception) storage::BtrfsSubvolume::get_btrfs_qgroup() const;
 %catches(storage::Exception) storage::BtrfsSubvolume::get_origin();
 %catches(storage::Exception) storage::BtrfsSubvolume::get_origin() const;
 %catches(storage::DeviceNotFound) storage::CompoundAction::find_by_target_device(Actiongraph *actiongraph, const Device *device);

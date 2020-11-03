@@ -233,6 +233,55 @@ namespace storage
     }
 
 
+    BtrfsQgroup::id_t
+    BtrfsSubvolume::Impl::get_btrfs_qgroup_id() const
+    {
+	return make_pair(0, id == unknown_id ? 0 : id);
+    }
+
+
+    bool
+    BtrfsSubvolume::Impl::has_btrfs_qgroup() const
+    {
+	return num_children_of_type<const BtrfsQgroup>(View::ALL) > 0;
+    }
+
+
+    BtrfsQgroup*
+    BtrfsSubvolume::Impl::get_btrfs_qgroup()
+    {
+	vector<BtrfsQgroup*> tmp = get_children_of_type<BtrfsQgroup>(View::ALL);
+	if (tmp.size() != 1)
+	    ST_THROW(WrongNumberOfChildren(tmp.size(), 1));
+
+	return tmp.front();
+    }
+
+
+    const BtrfsQgroup*
+    BtrfsSubvolume::Impl::get_btrfs_qgroup() const
+    {
+	vector<const BtrfsQgroup*> tmp = get_children_of_type<const BtrfsQgroup>(View::ALL);
+	if (tmp.size() != 1)
+	    ST_THROW(WrongNumberOfChildren(tmp.size(), 1));
+
+	return tmp.front();
+    }
+
+
+    BtrfsQgroup*
+    BtrfsSubvolume::Impl::create_btrfs_qgroup()
+    {
+	if (!get_btrfs()->has_quota())
+	    ST_THROW(Exception("quota disabled"));
+
+	BtrfsQgroup* btrfs_qgroup = get_btrfs()->create_btrfs_qgroup(get_btrfs_qgroup_id());
+	BtrfsQgroupRelation::create(get_devicegraph(), get_non_impl(), btrfs_qgroup);
+
+	return btrfs_qgroup;
+    }
+
+
     Text
     BtrfsSubvolume::Impl::get_message_name() const
     {
@@ -333,6 +382,9 @@ namespace storage
 
 	BtrfsSubvolume* btrfs_subvolume = BtrfsSubvolume::create(devicegraph, path);
 	Subdevice::create(devicegraph, get_non_impl(), btrfs_subvolume);
+
+	if (get_btrfs()->has_quota())
+	    btrfs_subvolume->create_btrfs_qgroup();
 
 	return btrfs_subvolume;
     }
@@ -536,6 +588,9 @@ namespace storage
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
 	probe_id(ensure_mounted.get_any_mount_point());
+
+	if (has_btrfs_qgroup())
+	    get_btrfs_qgroup()->get_impl().set_id(get_btrfs_qgroup_id());
     }
 
 

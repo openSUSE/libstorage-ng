@@ -9,7 +9,8 @@ LDADD = ../../../storage/libstorage-ng.la ../../helpers/libhelpers.la		\
 
 check_PROGRAMS =								\
 	create1.test create2.test delete1.test delete2.test cycle1.test		\
-	cycle2.test extend1.test replace1.test
+	cycle2.test extend1.test replace1.test qgroup1.test qgroup2.test	\
+	qgroup3.test
 
 AM_DEFAULT_SOURCE_EXT = .cc
 
@@ -23,5 +24,8 @@ EXTRA_DIST =										\
 	cycle1-probed.xml cycle1-staging.xml cycle1-expected.txt			\
 	cycle2-probed.xml cycle2-staging.xml cycle2-expected.txt			\
 	extend1-probed.xml extend1-staging.xml extend1-expected.txt			\
-	replace1-probed.xml replace1-staging.xml replace1-expected.txt
+	replace1-probed.xml replace1-staging.xml replace1-expected.txt			\
+	qgroup1-probed.xml qgroup1-staging.xml qgroup1-expected.txt			\
+	qgroup2-probed.xml qgroup2-staging.xml qgroup2-expected.txt			\
+	qgroup3-probed.xml qgroup3-staging.xml qgroup3-expected.txt
 

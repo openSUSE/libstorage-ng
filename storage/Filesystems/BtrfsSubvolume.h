@@ -32,6 +32,7 @@ namespace storage
 {
 
     class Btrfs;
+    class BtrfsQgroup;
 
 
     /**
@@ -161,7 +162,38 @@ namespace storage
 	const BtrfsSubvolume* get_origin() const;
 
 	/**
+	 * Return whether the subvolume as a corresponding level 0 qgroup.
+	 */
+	bool has_btrfs_qgroup() const;
+
+	/**
+	 * Return the corresponding level 0 qgroup of the subvolume.
+	 *
+	 * @throw Exception
+	 */
+	BtrfsQgroup* get_btrfs_qgroup();
+
+	/**
+	 * @copydoc get_btrfs_qgroup()
+	 */
+	const BtrfsQgroup* get_btrfs_qgroup() const;
+
+	/**
+	 * Create the corresponding level 0 qgroup for the subvolume. Usually the qgroup
+	 * already exists (if quota is enabled) unless it was removed by the user. Quota
+	 * must be enabled.
+	 *
+	 * @throw Exception
+	 */
+	BtrfsQgroup* create_btrfs_qgroup();
+
+	/**
 	 * Create a btrfs subvolume for the btrfs subvolume.
+	 *
+	 * If quota is enabled for the btrfs also the corresponding level 0 qgroup is
+	 * created.
+	 *
+	 * @throw Exception
 	 */
 	BtrfsSubvolume* create_btrfs_subvolume(const std::string& path);
 

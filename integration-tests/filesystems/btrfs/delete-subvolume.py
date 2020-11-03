@@ -23,7 +23,7 @@ btrfs = to_btrfs(blk_device.get_blk_filesystem())
 
 btrfs_subvolume = btrfs.find_btrfs_subvolume_by_path("test")
 
-btrfs_subvolume.remove_descendants()
+btrfs_subvolume.remove_descendants(View_REMOVE)
 staging.remove_device(btrfs_subvolume)
 
 print(staging)

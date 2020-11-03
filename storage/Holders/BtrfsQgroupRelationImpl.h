@@ -58,6 +58,9 @@ namespace storage
 	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
 	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;
 
+	virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
+				      Actiongraph::Impl& actiongraph) const override;
+
 	virtual bool equal(const Holder::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Holder::Impl& rhs_base) const override;
 	virtual void print(std::ostream& out) const override;

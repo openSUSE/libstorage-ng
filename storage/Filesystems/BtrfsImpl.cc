@@ -171,6 +171,70 @@ namespace storage
 	    return;
 
 	Impl::quota = quota;
+
+	Devicegraph* devicegraph = get_devicegraph();
+
+	if (quota)
+	{
+	    bool restore = false;
+
+	    const Devicegraph* probed = get_storage()->get_probed();;
+	    const Btrfs* btrfs_probed = nullptr;
+
+	    if (exists_in_probed())
+	    {
+		btrfs_probed = redirect_to(probed, get_non_impl());
+		restore = btrfs_probed->has_quota();
+	    }
+
+	    if (restore)
+	    {
+		// Copy all qgroups from probed.
+
+		for (const BtrfsQgroup* btrfs_qgroup : btrfs_probed->get_btrfs_qgroups())
+		{
+		    btrfs_qgroup->copy_to_devicegraph(devicegraph);
+		}
+
+		// Copy all qgroup relations from probed unless the corresponding
+		// subvolume was removed meanwhile.
+
+		for (const BtrfsQgroup* btrfs_qgroup : btrfs_probed->get_btrfs_qgroups())
+		{
+		    vector<const BtrfsQgroupRelation*> btrfs_qgroup_relations =
+			btrfs_qgroup->get_impl().get_in_holders_of_type<const BtrfsQgroupRelation>(View::ALL);
+		    for (const BtrfsQgroupRelation* btrfs_qgroup_relation : btrfs_qgroup_relations)
+		    {
+			if (btrfs_qgroup_relation->get_source()->exists_in_staging())
+			    btrfs_qgroup_relation->copy_to_devicegraph(devicegraph);
+		    }
+		}
+
+		// Create implicit qgroups for new subvolumes.
+
+		for (BtrfsSubvolume* subvolume : get_btrfs_subvolumes())
+		{
+		    if (!subvolume->exists_in_probed())
+			subvolume->create_btrfs_qgroup();
+		}
+	    }
+	    else
+	    {
+		// Create implicit qgroups for all subvolumes.
+
+		for (BtrfsSubvolume* subvolume : get_btrfs_subvolumes())
+		{
+		    subvolume->create_btrfs_qgroup();
+		}
+	    }
+	}
+	else
+	{
+	    // When turing off quota remove all qgroups.
+
+	    for (BtrfsQgroup* btrfs_qgroup : get_btrfs_qgroups())
+		devicegraph->remove_device(btrfs_qgroup);
+	}
     }
 
 
