@@ -99,6 +99,18 @@ namespace storage
 	BtrfsSubvolume* get_origin();
 	const BtrfsSubvolume* get_origin() const;
 
+	/**
+	 * Get the id of the corresponding btrfs qgroup. Can be BtrfsQgroup::Impl::unknown_id.
+	 */
+	BtrfsQgroup::id_t get_btrfs_qgroup_id() const;
+
+	bool has_btrfs_qgroup() const;
+
+	BtrfsQgroup* get_btrfs_qgroup();
+	const BtrfsQgroup* get_btrfs_qgroup() const;
+
+	BtrfsQgroup* create_btrfs_qgroup();
+
 	virtual FsType get_default_mount_type() const override { return FsType::BTRFS; }
 
 	virtual Text get_message_name() const override;

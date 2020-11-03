@@ -151,6 +151,17 @@ namespace storage
 
 	/**
 	 * Enable or disable quota for the btrfs.
+	 *
+	 * When enabling quota, qgroups and qgroup relations are created for the
+	 * btrfs. This is done so that no qgroup related actions will be done during
+	 * commit (unless further changes are done). If quota was disabled during probing,
+	 * the qgroups are created like btrfs would do. If quota was enabled during
+	 * probing, the qgroups from probing are restored.
+	 *
+	 * When disabling quota, all qgroups and qgroup relations of the btrfs are
+	 * removed.
+	 *
+	 * @throw Exception
 	 */
 	void set_quota(bool quota);
 
