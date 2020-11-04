@@ -9,10 +9,10 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-03 12:29+0100\n"
-"PO-Revision-Date: 2020-10-13 18:49+0000\n"
+"PO-Revision-Date: 2020-11-04 15:49+0000\n"
 "Last-Translator: David Medina <medipas@gmail.com>\n"
-"Language-Team: Catalan <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/ca/>\n"
+"Language-Team: Catalan <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/ca/>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -262,36 +262,36 @@ msgstr ""
 #. %2$s is replaced by the btrfs qgroup id (e.g. 2/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Assign qgroup %1$s to qgroup %2$s on %3$s"
-msgstr "Encongeix la partició %1$s de %2$s a %3$s"
+msgstr "Assigna el qgrup %1$s al qgrup %2$s a %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Assign qgroup of subvolume %1$s to qgroup %2$s on %3$s"
-msgstr "Desmunta el subvolum %1$s de %2$s a %3$s"
+msgstr "Assigna el qgrup del subvolum %1$s al qgrup %2$s a %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by the btrfs qgroup id (e.g. 2/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Assigning qgroup %1$s to qgroup %2$s on %3$s"
-msgstr "Encongint la partició %1$s de %2$s a %3$s"
+msgstr "Assignant el qgrup %1$s al qgrup %2$s a %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Assigning qgroup of subvolume %1$s to qgroup %2$s on %3$s"
-msgstr "Muntant el subvolum %1$s de %2$s a %3$s"
+msgstr "Assignant el qgrup del subvolum %1$s al qgrup %2$s a %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -335,7 +335,7 @@ msgstr "Btrfs"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs Qgroup"
-msgstr ""
+msgstr "Qgrup de Btrfs"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs Subvolume"
@@ -909,9 +909,9 @@ msgstr "Crea la partició primària %1$s (%2$s)"
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Create qgroup %1$s on %2$s"
-msgstr "Crea el sistema de fitxers %1$s a %2$s"
+msgstr "Crea el qgrup %1$s a %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -1097,9 +1097,9 @@ msgstr "Creant la partició primària %1$s (%2$s)"
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Creating qgroup %1$s on %2$s"
-msgstr "Creant el sistema de fitxers %1$s a %2$s"
+msgstr "Creant el qgrup %1$s a %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -1666,16 +1666,16 @@ msgstr "Partició de diagnòstic"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Disable quota on %1$s"
-msgstr "Suprimeix GPT de %1$s"
+msgstr "Inhabilita la quota a %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Disabling quota on %1$s"
-msgstr "Suprimint GPT de %1$s"
+msgstr "Inhabilitant la quota a %1$s"
 
 #. TRANSLATORS: name of object
 msgid "Disk"
@@ -1702,14 +1702,14 @@ msgstr "EiB"
 #. and /dev/sdb2 (2.00 GiB))
 #, c-format
 msgid "Enable quota on %1$s"
-msgstr ""
+msgstr "Habilita la quota a %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
 #, c-format
 msgid "Enabling quota %1$s"
-msgstr ""
+msgstr "Habilitant la quota a %1$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -2549,9 +2549,9 @@ msgstr ""
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Remove qgroup %1$s on %2$s"
-msgstr "Suprimeix %1$s de %2$s"
+msgstr "Suprimeix el qgrup %1$s de %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/sdc1),
@@ -2606,9 +2606,9 @@ msgstr ""
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Removing qgroup %1$s on %2$s"
-msgstr "Suprimint %1$s de %2$s"
+msgstr "Suprimint el qgrup %1$s de %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the old logical volume name (e.g. foo),
@@ -2735,18 +2735,17 @@ msgstr "Estableix la bandera d'arrencada de llegat de la partició %1$s"
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Set limits for qgroup %1$s on %2$s"
-msgstr ""
-"Estableix les opcions de personalització del sistema de fitxers %1$s de %2$s"
+msgstr "Estableix els límits per al qgrup %1$s a %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Set limits for qgroup of subvolume %1$s on %2$s"
-msgstr "Estableix el subvolum per defecte al subvolum %1$s de %2$s"
+msgstr "Estableix els límits per al qgrup del subvolum %1$s a %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -2844,18 +2843,17 @@ msgstr "Establint la bandera d'arrencada de llegat de la partició %1$s"
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Setting limits for qgroup %1$s on %2$s"
-msgstr ""
-"Establint les opcions de personalització del sistema de fitxers %1$s de %2$s"
+msgstr "Establint els límits per al qgrup %1$s a %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Setting limits for qgroup of subvolume %1$s on %2$s"
-msgstr "Establint el subvolum per defecte al subvolum %1$s de %2$s"
+msgstr "Establint els límits per al qgrup del subvolum %1$s a %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -3062,36 +3060,36 @@ msgstr "UDF"
 #. %2$s is replaced by the btrfs qgroup id (e.g. 2/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Unassign qgroup %1$s from qgroup %2$s on %3$s"
-msgstr "Encongint la partició %1$s de %2$s a %3$s"
+msgstr "No assignis el qgrup %1$s del qgrup %2$s a %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Unassign qgroup of subvolume %1$s from qgroup %2$s on %3$s"
-msgstr "Desmunta el subvolum %1$s de %2$s a %3$s"
+msgstr "No assignis el qgrup del subvolum %1$s del qgrup %2$s a %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by the btrfs qgroup id (e.g. 2/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Unassigning qgroup %1$s from qgroup %2$s on %3$s"
-msgstr "Encongint la partició %1$s de %2$s a %3$s"
+msgstr "No s'assigna el qgrup %1$s del qgrup %2$s a %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Unassigning qgroup of subvolume %1$s from qgroup %2$s on %3$s"
-msgstr "Desmuntant el subvolum %1$s de %2$s a %3$s"
+msgstr "No s'assigna el qgrup del subvolum %1$s del qgrup %2$s a %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
