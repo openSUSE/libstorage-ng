@@ -43,6 +43,7 @@ namespace storage
     class BlkFilesystem;
     class MountPoint;
 
+
     class CompoundAction::Impl
     {
     public:
@@ -85,7 +86,7 @@ namespace storage
 
 	const Actiongraph* actiongraph;
 
-	const Device* target_device;
+	const Device* target_device = nullptr;
 
 	vector<const Action::Base*> commit_actions;
 

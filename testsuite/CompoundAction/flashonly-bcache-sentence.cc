@@ -3,17 +3,13 @@
 #define BOOST_TEST_MODULE libstorage
 
 #include <boost/test/unit_test.hpp>
-#include <iostream>
 
 #include "storage/Devicegraph.h"
 #include "storage/Actiongraph.h"
 #include "storage/Storage.h"
 #include "storage/Environment.h"
-
 #include "storage/CompoundAction.h"
-
 #include "storage/Devices/Bcache.h"
-
 #include "storage/Filesystems/BlkFilesystem.h"
 #include "storage/Filesystems/MountPoint.h"
 
@@ -32,9 +28,9 @@ BOOST_AUTO_TEST_CASE(flashonly_bcache_format_sentence)
     Storage storage(environment);
     storage.probe();
 
-    Devicegraph* probed = storage.get_staging();
+    Devicegraph* staging = storage.get_staging();
 
-    Bcache* bcache2 = Bcache::find_by_name(probed, "/dev/bcache2");
+    Bcache* bcache2 = Bcache::find_by_name(staging, "/dev/bcache2");
 
     bcache2->remove_descendants(View::REMOVE);
 

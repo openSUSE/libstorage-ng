@@ -58,6 +58,13 @@ namespace storage
     }
 
 
+    const Btrfs*
+    BtrfsQgroupRelation::get_btrfs() const
+    {
+	return get_impl().get_btrfs();
+    }
+
+
     BtrfsQgroupRelation::Impl&
     BtrfsQgroupRelation::get_impl()
     {

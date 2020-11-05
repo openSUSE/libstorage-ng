@@ -30,6 +30,9 @@
 namespace storage
 {
 
+    class Btrfs;
+
+
     /**
      * Relation between btrfs quota groups.
      *
@@ -54,6 +57,11 @@ namespace storage
 	static BtrfsQgroupRelation* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	virtual BtrfsQgroupRelation* clone() const override;
+
+	/**
+	 * Get the btrfs the relation belongs to.
+	 */
+	const Btrfs* get_btrfs() const;
 
     public:
 
