@@ -3,17 +3,13 @@
 #define BOOST_TEST_MODULE libstorage
 
 #include <boost/test/unit_test.hpp>
-#include <iostream>
 
 #include "storage/Devicegraph.h"
 #include "storage/Actiongraph.h"
 #include "storage/Storage.h"
 #include "storage/Environment.h"
-
 #include "storage/CompoundAction.h"
-
 #include "storage/Devices/Bcache.h"
-
 #include "storage/Filesystems/BlkFilesystem.h"
 #include "storage/Filesystems/MountPoint.h"
 

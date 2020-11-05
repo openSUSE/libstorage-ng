@@ -57,7 +57,7 @@ namespace storage
 	const Device* get_target_device() const;
 
 	std::string sentence() const;
-	
+
 	bool is_delete() const;
 
 	/**
@@ -81,12 +81,11 @@ namespace storage
 	const Impl& get_impl() const { return *impl; }
 
     private:
-    
+
 	const std::unique_ptr<Impl> impl;
-    
+
     };
 
 }
 
 #endif
-

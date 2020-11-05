@@ -32,9 +32,8 @@ namespace storage
     using std::string;
 
     CompoundAction::Formatter::Formatter(const CompoundAction::Impl* compound_action,
-                                         const string & device_classname)
-    : _compound_action(compound_action)
-    , _device_classname(device_classname)
+                                         const string& device_classname)
+	: _compound_action(compound_action), _device_classname(device_classname)
     {
         _creating   = has_create(_device_classname);
         _deleting   = has_delete(_device_classname);

@@ -55,6 +55,7 @@ namespace storage
 	return get_impl().is_delete();
     }
 
+
     CompoundAction*
     CompoundAction::find_by_target_device(Actiongraph* actiongraph, const Device* device)
     {

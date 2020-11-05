@@ -54,7 +54,7 @@ namespace storage
 	class StrayBlkDevice;
 
 	Formatter(const CompoundAction::Impl* compound_action,
-		  const string & device_classname = string() );
+		  const string& device_classname = string());
 
 	virtual ~Formatter() {}
 
@@ -160,12 +160,14 @@ namespace storage
     protected:
 
 	const CompoundAction::Impl* _compound_action;
-	string  _device_classname;
-	bool	_creating;
-	bool	_deleting;
-	bool	_encrypting;
-	bool	_formatting;
-	bool	_mounting;
+	const string _device_classname;
+
+	bool _creating = false;
+	bool _deleting = false;
+	bool _encrypting = false;
+	bool _formatting = false;
+	bool _mounting = false;
+
     };
 
 }
