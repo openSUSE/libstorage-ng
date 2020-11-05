@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: libstorage.fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2020-11-05 18:49+0000\n"
+"PO-Revision-Date: 2020-11-05 22:49+0000\n"
 "Last-Translator: Tommi Nieminen <software@legisign.org>\n"
 "Language-Team: Finnish <https://l10n.opensuse.org/projects/libstorage/"
 "ng-sle-15-sp1/fi/>\n"
@@ -1491,17 +1491,17 @@ msgstr "Poistetaan taltioryhmä %1$s (%2$s)"
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Detach Bcache cache set on %1$s from Bcache %2$s (%3$s)"
-msgstr "Lisää laitteen %1$s Bcache-välimuistijoukko Bcacheen %2$s (%3$s)"
+msgstr "Irrota bcache-välimuistijoukko %1$s bcachesta %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Detaching Bcache cache set on %1$s from Bcache %2$s (%3$s)"
-msgstr "Lisätään laitteen %1$s Bcache-välimuistijoukko Bcacheen %2$s (%3$s)"
+msgstr "Irrotetaan bcache-välimuistijoukko %1$s bcachesta %2$s (%3$s)"
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by a list of device names joined by newlines (e.g.
@@ -2311,7 +2311,7 @@ msgstr "Poistetaan taltioryhmästä %1$s puuttuvat fyysiset taltiot"
 
 #. TRANSLATORS: name of object
 msgid "Reiserfs"
-msgstr ""
+msgstr "Reiserfs"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -2458,9 +2458,9 @@ msgstr "Aseta osiolle %1$s käynnistyslippu"
 #. %1$s is replaced by cache mode (e.g. writeback),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Set cache mode to %1$s for Bcache %2$s (%3$s)"
-msgstr "Lisää laitteen %1$s Bcache-välimuistijoukko Bcacheen %2$s (%3$s)"
+msgstr "Aseta bcachen %2$s (%3$s) välimuistitilaksi %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -2519,9 +2519,9 @@ msgstr "Aseta GPT:n MBR-suojakäynnistyslippu laitteelle %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Set tune options of %1$s"
-msgstr "Aseta osion %1$s tunnisteeksi %2$s"
+msgstr "Aseta laitteen %1$s hienosäätövalinnat"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -2540,9 +2540,9 @@ msgstr "Asetetaan osiolle %1$s käynnistyslippu"
 #. %1$s is replaced by cache mode (e.g. writeback),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting cache mode to %1$s for Bcache %2$s (%3$s)"
-msgstr "Lisätään laitteen %1$s Bcache-välimuistijoukko Bcacheen %2$s (%3$s)"
+msgstr "Asetetaan bcachen %2$s (%3$s) välimuistitilaksi %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -2601,9 +2601,9 @@ msgstr "Asetetaan GPT:n MBR-suojakäynnistyslippu laitteelle %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting tune options of %1$s"
-msgstr "Asetetaan laitteen %1$s tunnisteeksi %2$s"
+msgstr "Asetetaan laitteen %1$s hienosäätövalintoja"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -2663,11 +2663,12 @@ msgstr ""
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
-"Pienennetään looginen taltio %1$s taltioryhmässä %2$s koosta %3$s kokoon %4$s"
+"Pienennä taltioryhmän %2$s ohuen poolin loogista taltiota %1$s %3$s koosta "
+"%4$s kokoon"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -2682,11 +2683,9 @@ msgstr "Pienennetään %1$s laitteella %2$s koosta %3$s kokoon %4$s"
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrinking encryption layer device on %1$s from %2$s to %3$s"
-msgstr ""
-"Alusta salattu laite %1$s (%2$s) liitoskohdalle %4$s tiedostojärjestelmällä "
-"%3$s"
+msgstr "Pienennetään laitteen %1$s salaustasoa %2$s koosta %3$s kokoon"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2719,23 +2718,25 @@ msgstr "Pienennetään fyysinen taltio laitteella %1$s koosta %2$s kokoon %3$s"
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
-"Pienennetään looginen taltio %1$s taltioryhmässä %2$s koosta %3$s kokoon %4$s"
+"Pienennetään taltioryhmän %2$s ohutta loogista taltiota %1$s %3$s koosta %4$"
+"s kokoon"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to "
 "%4$s"
 msgstr ""
-"Pienennetään looginen taltio %1$s taltioryhmässä %2$s koosta %3$s kokoon %4$s"
+"Pienennetään taltioryhmän %2$s ohuen poolin loogista taltiota %1$s %3$s "
+"koosta %4$s kokoon"
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"
@@ -2771,16 +2772,16 @@ msgstr "Irrota %1$s kohdasta %2$s"
 #. TRANSLATORS:
 #. %1$s is replaced with the nfs name (e.g. 99.99.00.00:path),
 #. %2$s is replaced with the mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Unmount NFS %1$s at %2$s"
-msgstr "Irrota %1$s kohdasta %2$s"
+msgstr "Irrota NFS %1$s liitospisteestä %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
 #. %2$s is replaced with the mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Unmount file system btrfs on %1$s at %2$s"
-msgstr "Irrotetaan %1$s kohdasta %2$s"
+msgstr "Irrotetaan btrfs-tiedostojärjestelmä %1$s liitospisteestä %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. home),
@@ -2821,19 +2822,19 @@ msgstr "Päivitetään laitteen %2$s liitoskohta %1$s tiedostossa /etc/fstab"
 
 #. TRANSLATORS: name of object
 msgid "VFAT"
-msgstr ""
+msgstr "VFAT"
 
 #. TRANSLATORS: name of partition type
 msgid "Windows Data Partition"
-msgstr ""
+msgstr "Windows-dataosio"
 
 #. TRANSLATORS: name of object
 msgid "XFS"
-msgstr ""
+msgstr "XFS"
 
 #. TRANSLATORS: name of a filesystem object in the storage devicegraph
 msgid "exFAT"
-msgstr ""
+msgstr "exFAT"
 
 #. TRANSLATORS: symbol for "kilo" (best keep untranslated)
 msgid "k"
