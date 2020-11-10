@@ -28,10 +28,11 @@
 namespace storage
 {
 
-    CompoundAction::Formatter::Nfs::Nfs(const CompoundAction::Impl* compound_action) :
-	CompoundAction::Formatter(compound_action),
-	nfs(to_nfs(compound_action->get_target_device()))
-    {}
+    CompoundAction::Formatter::Nfs::Nfs(const CompoundAction::Impl* compound_action)
+	: CompoundAction::Formatter(compound_action),
+	  nfs(to_nfs(compound_action->get_target_device()))
+    {
+    }
 
 
     Text

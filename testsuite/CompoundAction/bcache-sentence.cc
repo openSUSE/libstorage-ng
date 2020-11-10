@@ -205,9 +205,9 @@ BOOST_AUTO_TEST_CASE( test_mount )
 
     Encryption* encryption = bcache1->create_encryption("cr_bcache1", EncryptionType::LUKS1);
     BlkFilesystem * xfs = encryption->create_blk_filesystem( FsType::XFS );
-    
+
     copy_staging_to_probed();
-    
+
     ext4->create_mount_point( "/data" );
     xfs->create_mount_point( "/home" );
 

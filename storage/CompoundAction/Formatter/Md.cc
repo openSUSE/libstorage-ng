@@ -31,9 +31,9 @@
 namespace storage
 {
 
-    CompoundAction::Formatter::Md::Md( const CompoundAction::Impl* compound_action ):
-	CompoundAction::Formatter( compound_action, "Md" ),
-	md( to_md( compound_action->get_target_device() ) )
+    CompoundAction::Formatter::Md::Md(const CompoundAction::Impl* compound_action)
+	: CompoundAction::Formatter(compound_action, "Md"),
+	  md(to_md(compound_action->get_target_device()))
     {
     }
 
