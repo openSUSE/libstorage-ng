@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-03 12:29+0100\n"
+"POT-Creation-Date: 2020-11-10 10:33+0100\n"
 "PO-Revision-Date: 2020-09-09 18:51+0000\n"
 "Last-Translator: Alex Minton <alex239@gmail.com>\n"
 "Language-Team: Russian <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -2202,6 +2202,13 @@ msgstr "МиБ"
 #. TRANSLATORS: name of partition type
 msgid "Microsoft Reserved Partition"
 msgstr "Зарезервированный раздел Microsoft"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the names of the devices with sizes (e.g. /dev/sda1
+#. (10.00 GiB) and /dev/sda2 (10.00 GiB))
+#, fuzzy, c-format
+msgid "Modify btrfs qgroups on %1$s"
+msgstr "Удаление %1$s из %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),

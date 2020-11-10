@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST2 (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-03 12:29+0100\n"
+"POT-Creation-Date: 2020-11-10 10:33+0100\n"
 "PO-Revision-Date: 2004-03-31 11:34+0200\n"
 "Last-Translator: opensuse-translations@opensuse.org\n"
 "Language-Team: Serbian <i18n@suse.de>\n"
@@ -2172,6 +2172,13 @@ msgstr "тив"
 #. TRANSLATORS: name of partition type
 msgid "Microsoft Reserved Partition"
 msgstr ""
+
+#. TRANSLATORS:
+#. %1$s is replaced with the names of the devices with sizes (e.g. /dev/sda1
+#. (10.00 GiB) and /dev/sda2 (10.00 GiB))
+#, fuzzy, c-format
+msgid "Modify btrfs qgroups on %1$s"
+msgstr "Izbaci"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
