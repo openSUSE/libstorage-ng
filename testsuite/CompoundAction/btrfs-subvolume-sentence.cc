@@ -17,7 +17,7 @@ BOOST_FIXTURE_TEST_SUITE(btrfs_subvolume_sentence, test::CompoundActionFixture)
 
 BOOST_AUTO_TEST_CASE(test_sentence_on_creating)
 {
-    initialize_staging_with_two_partitions();
+    initialize_staging_with_three_partitions();
 
     auto btrfs = to_btrfs(sda2->create_blk_filesystem(FsType::BTRFS));
     auto top_level_subvolume = btrfs->get_top_level_btrfs_subvolume();
@@ -35,7 +35,7 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_creating)
 
 BOOST_AUTO_TEST_CASE(test_sentence_on_creating_nocow)
 {
-    initialize_staging_with_two_partitions();
+    initialize_staging_with_three_partitions();
 
     auto btrfs = to_btrfs(sda2->create_blk_filesystem(FsType::BTRFS));
     auto top_level_subvolume = btrfs->get_top_level_btrfs_subvolume();

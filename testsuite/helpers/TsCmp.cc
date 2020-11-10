@@ -225,6 +225,10 @@ namespace storage
 
 	cmp(commit_data, expected);
 
+	// smoke test for compound actions
+	for (const CompoundAction* compound_action : actiongraph->get_compound_actions())
+	    compound_action->sentence();
+
 	if (!commit)
 	    return;
 

@@ -34,7 +34,7 @@ BOOST_AUTO_TEST_CASE(test_is_delete)
 
 BOOST_AUTO_TEST_CASE(test_is_not_delete)
 {
-    initialize_staging_with_two_partitions();
+    initialize_staging_with_three_partitions();
 
     auto actiongraph = storage->calculate_actiongraph();
 

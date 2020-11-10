@@ -23,7 +23,7 @@ BOOST_FIXTURE_TEST_SUITE(lvm_lv_sentence, test::CompoundActionFixture)
 
 BOOST_AUTO_TEST_CASE(test_sentence_on_creating)
 {
-    initialize_staging_with_two_partitions();
+    initialize_staging_with_three_partitions();
 
     auto vg = LvmVg::create(staging, "vg-name");
     vg->add_lvm_pv(sda2);
@@ -43,7 +43,7 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_creating)
 
 BOOST_AUTO_TEST_CASE(test_sentence_on_creating_with_encryption)
 {
-    initialize_staging_with_two_partitions();
+    initialize_staging_with_three_partitions();
 
     auto vg = LvmVg::create(staging, "vg-name");
     vg->add_lvm_pv(sda2);
@@ -64,7 +64,7 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_creating_with_encryption)
 
 BOOST_AUTO_TEST_CASE(test_sentence_on_creating_with_swap)
 {
-    initialize_staging_with_two_partitions();
+    initialize_staging_with_three_partitions();
 
     auto vg = LvmVg::create(staging, "vg-name");
     vg->add_lvm_pv(sda2);

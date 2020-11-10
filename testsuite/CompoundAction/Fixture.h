@@ -1,4 +1,3 @@
-
 #ifndef TEST_COMPOUND_ACTION_FIXTURE_H
 #define TEST_COMPOUND_ACTION_FIXTURE_H
 
@@ -19,6 +18,7 @@
 
 using namespace std;
 
+
 namespace storage
 {
     namespace test
@@ -27,16 +27,25 @@ namespace storage
 	{
 
 	    void
-	    initialize_staging_with_two_partitions()
+	    initialize_staging_with_one_disk()
 	    {
 		Environment environment(true, ProbeMode::NONE, TargetMode::IMAGE);
 		storage = make_unique<Storage>(environment);
 		staging = storage->get_staging();
 
-		auto sda = Disk::create(staging, "/dev/sda");
-		auto gpt = to_gpt(sda->create_partition_table(PtType::GPT));
-		sda1 = gpt->create_partition("/dev/sda1", Region(2048, 4 * 2048, 512), PartitionType::PRIMARY);
-		sda2 = gpt->create_partition("/dev/sda2", Region(2048, 500 * 2048, 512), PartitionType::PRIMARY);
+		sda = Disk::create(staging, "/dev/sda");
+		sda_gpt = to_gpt(sda->create_partition_table(PtType::GPT));
+	    }
+
+
+	    void
+	    initialize_staging_with_three_partitions()
+	    {
+		initialize_staging_with_one_disk();
+
+		sda1 = sda_gpt->create_partition("/dev/sda1", Region(  1 * 2048,   4 * 2048, 512), PartitionType::PRIMARY);
+		sda2 = sda_gpt->create_partition("/dev/sda2", Region(  5 * 2048, 500 * 2048, 512), PartitionType::PRIMARY);
+		sda3 = sda_gpt->create_partition("/dev/sda3", Region(505 * 2048, 500 * 2048, 512), PartitionType::PRIMARY);
 	    }
 
 
@@ -87,9 +96,14 @@ namespace storage
 
 
 	    unique_ptr<Storage> storage;
-	    Devicegraph* staging;
-	    Partition* sda1;
-	    Partition* sda2;
+	    Devicegraph* staging = nullptr;
+
+	    Disk* sda = nullptr;
+	    Gpt* sda_gpt = nullptr;
+	    Partition* sda1 = nullptr;
+	    Partition* sda2 = nullptr;
+	    Partition* sda3 = nullptr;
+
 	};
 
     }
