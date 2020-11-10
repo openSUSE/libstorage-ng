@@ -9,10 +9,10 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-10 10:33+0100\n"
-"PO-Revision-Date: 2020-11-04 15:49+0000\n"
+"PO-Revision-Date: 2020-11-10 18:50+0000\n"
 "Last-Translator: David Medina <medipas@gmail.com>\n"
-"Language-Team: Catalan <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/ca/>\n"
+"Language-Team: Catalan <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/ca/>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2182,9 +2182,9 @@ msgstr "Partició reservada de Microsoft"
 #. TRANSLATORS:
 #. %1$s is replaced with the names of the devices with sizes (e.g. /dev/sda1
 #. (10.00 GiB) and /dev/sda2 (10.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Modify btrfs qgroups on %1$s"
-msgstr "Suprimint el qgrup %1$s de %2$s"
+msgstr "Modifica els grups btrfs a %1$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
