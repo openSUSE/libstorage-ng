@@ -73,7 +73,8 @@ namespace storage
 
     private:
 
-	const storage::Md * md;
+	const storage::Md* md = nullptr;
+
     };
 
 }

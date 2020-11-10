@@ -29,15 +29,7 @@ namespace storage
     {
 	struct BCacheFixture: public CompoundActionFixture
 	{
-	    BCacheFixture():
-		disk0(0),
-		disk1(0),
-		ssd0(0),
-		ssd1(0),
-                bcache0(0),
-                bcache1(0),
-                cset0(0),
-                cset1(0)
+	    BCacheFixture()
 	    {
                 init_disks();
             }
@@ -85,15 +77,15 @@ namespace storage
 		    bcache1->add_bcache_cset( cset1 );
             }
 
+	    Disk* disk0 = nullptr;
+	    Disk* disk1 = nullptr;
+	    Disk* ssd0 = nullptr;
+	    Disk* ssd1 = nullptr;
+	    Bcache* bcache0 = nullptr;
+	    Bcache* bcache1 = nullptr;
+	    BcacheCset* cset0 = nullptr;
+	    BcacheCset* cset1 = nullptr;
 
-	    Disk* 	disk0;
-	    Disk* 	disk1;
-	    Disk* 	ssd0;
-	    Disk* 	ssd1;
-	    Bcache* 	bcache0;
-	    Bcache* 	bcache1;
-	    BcacheCset* cset0;
-	    BcacheCset* cset1;
 	};
     }
 }

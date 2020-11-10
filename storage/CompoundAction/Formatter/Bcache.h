@@ -77,7 +77,8 @@ namespace storage
 
     private:
 
-	const storage::Bcache* bcache;
+	const storage::Bcache* bcache = nullptr;
+
     };
 
 }

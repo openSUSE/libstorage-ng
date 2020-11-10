@@ -36,9 +36,9 @@ namespace storage
                 copy_staging_to_probed();
 	    }
 
-	    StrayBlkDevice * stray1;
-	    StrayBlkDevice * stray2;
-	    StrayBlkDevice * stray3;
+	    StrayBlkDevice* stray1 = nullptr;
+	    StrayBlkDevice* stray2 = nullptr;
+	    StrayBlkDevice* stray3 = nullptr;
         };
     }
 }
