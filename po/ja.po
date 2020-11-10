@@ -11,10 +11,10 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-10 10:33+0100\n"
-"PO-Revision-Date: 2020-11-04 00:49+0000\n"
+"PO-Revision-Date: 2020-11-10 13:50+0000\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
-"Language-Team: Japanese <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/ja/>\n"
+"Language-Team: Japanese <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2207,9 +2207,9 @@ msgstr "Microsoft 予約パーティション"
 #. TRANSLATORS:
 #. %1$s is replaced with the names of the devices with sizes (e.g. /dev/sda1
 #. (10.00 GiB) and /dev/sda2 (10.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Modify btrfs qgroups on %1$s"
-msgstr "qgroup %1$s を %2$s から削除しています"
+msgstr "%1$s にある btrfs qgroup の変更"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
