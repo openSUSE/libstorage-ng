@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-03 12:29+0100\n"
+"POT-Creation-Date: 2020-11-10 10:33+0100\n"
 "PO-Revision-Date: 2010-07-09 21:56+0700\n"
 "Last-Translator: Thanomsub Noppaburana <donga.nb@gmail.com>\n"
 "Language-Team: Thai <i18n@suse.de>\n"
@@ -2123,6 +2123,13 @@ msgstr "เมบิไบต์"
 #. TRANSLATORS: name of partition type
 msgid "Microsoft Reserved Partition"
 msgstr ""
+
+#. TRANSLATORS:
+#. %1$s is replaced with the names of the devices with sizes (e.g. /dev/sda1
+#. (10.00 GiB) and /dev/sda2 (10.00 GiB))
+#, fuzzy, c-format
+msgid "Modify btrfs qgroups on %1$s"
+msgstr "ลบ %1$s ออกจาก %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),

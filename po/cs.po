@@ -12,11 +12,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-03 12:29+0100\n"
+"POT-Creation-Date: 2020-11-10 10:33+0100\n"
 "PO-Revision-Date: 2020-11-03 19:49+0000\n"
 "Last-Translator: Aleš Kastner <alkas@volny.cz>\n"
-"Language-Team: Czech <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/cs/>\n"
+"Language-Team: Czech <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2192,6 +2192,13 @@ msgstr "MB"
 #. TRANSLATORS: name of partition type
 msgid "Microsoft Reserved Partition"
 msgstr "Reservovaný oddíl Microsoft"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the names of the devices with sizes (e.g. /dev/sda1
+#. (10.00 GiB) and /dev/sda2 (10.00 GiB))
+#, fuzzy, c-format
+msgid "Modify btrfs qgroups on %1$s"
+msgstr "Odstraňuji qgroup %1$s z %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),

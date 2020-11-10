@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-03 12:29+0100\n"
+"POT-Creation-Date: 2020-11-10 10:33+0100\n"
 "PO-Revision-Date: 2020-02-17 12:54+0000\n"
 "Last-Translator: Grace Yu <grace.yu@excel-gits.com>\n"
 "Language-Team: Chinese (Taiwan) <https://l10n.opensuse.org/projects/"
@@ -2140,6 +2140,13 @@ msgstr "MiB"
 #. TRANSLATORS: name of partition type
 msgid "Microsoft Reserved Partition"
 msgstr "Microsoft 保留的分割區"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the names of the devices with sizes (e.g. /dev/sda1
+#. (10.00 GiB) and /dev/sda2 (10.00 GiB))
+#, fuzzy, c-format
+msgid "Modify btrfs qgroups on %1$s"
+msgstr "正在從 %2$s 移除 %1$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
