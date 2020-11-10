@@ -21,8 +21,9 @@ print(staging)
 partition = Partition.find_by_name(staging, "/dev/sdc1")
 partition.set_id(ID_LINUX)
 
-btrfs = partition.create_blk_filesystem(FsType_BTRFS)
+btrfs = to_btrfs(partition.create_blk_filesystem(FsType_BTRFS))
 btrfs.set_label("TEST")
+btrfs.set_quota(True)
 
 mount_point = btrfs.create_mount_point("/test")
 

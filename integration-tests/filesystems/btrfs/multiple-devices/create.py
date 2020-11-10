@@ -26,6 +26,7 @@ sdd1.set_id(ID_LINUX)
 
 btrfs = to_btrfs(sdc1.create_blk_filesystem(FsType_BTRFS))
 btrfs.add_device(sdd1)
+btrfs.set_quota(True)
 
 btrfs.set_label("TEST")
 btrfs.set_metadata_raid_level(BtrfsRaidLevel_RAID1)
