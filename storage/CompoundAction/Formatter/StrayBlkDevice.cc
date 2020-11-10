@@ -29,11 +29,10 @@
 namespace storage
 {
 
-    CompoundAction::Formatter::StrayBlkDevice::StrayBlkDevice( const CompoundAction::Impl* compound_action ):
-	CompoundAction::Formatter( compound_action, "StrayBlkDevice" ),
-	stray_blk_device( to_stray_blk_device( compound_action->get_target_device( ) ) )
+    CompoundAction::Formatter::StrayBlkDevice::StrayBlkDevice(const CompoundAction::Impl* compound_action)
+	: CompoundAction::Formatter(compound_action, "StrayBlkDevice"),
+	  stray_blk_device(to_stray_blk_device(compound_action->get_target_device()))
     {
-        // NOP
     }
 
 

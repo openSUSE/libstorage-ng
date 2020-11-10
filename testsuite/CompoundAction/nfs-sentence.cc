@@ -17,7 +17,7 @@ BOOST_FIXTURE_TEST_SUITE(nfs_sentence, test::CompoundActionFixture)
 
 BOOST_AUTO_TEST_CASE(test_sentence_on_creating)
 {
-    initialize_staging_with_two_partitions();
+    initialize_staging_with_three_partitions();
 
     auto nfs = Nfs::create(staging, "192.168.0.1", "/dir");
     nfs->create_mount_point("/test");

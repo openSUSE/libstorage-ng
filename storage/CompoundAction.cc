@@ -32,7 +32,9 @@ namespace storage
     }
 
 
-    CompoundAction::~CompoundAction() {}
+    CompoundAction::~CompoundAction()
+    {
+    }
 
 
     const Device*

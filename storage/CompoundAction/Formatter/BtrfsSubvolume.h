@@ -52,7 +52,7 @@ namespace storage
 
     private:
 
-	const storage::BtrfsSubvolume* subvolume;
+	const storage::BtrfsSubvolume* subvolume = nullptr;
 
     };
 

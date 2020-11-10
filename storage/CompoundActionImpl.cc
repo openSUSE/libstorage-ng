@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2019] SUSE LLC
+ * Copyright (c) [2017-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -49,7 +49,7 @@ namespace storage
 {
 
     CompoundAction::Impl::Impl(const Actiongraph* actiongraph)
-	: actiongraph(actiongraph), target_device(nullptr), commit_actions()
+	: actiongraph(actiongraph)
     {
     }
 
@@ -90,8 +90,19 @@ namespace storage
 	    return CompoundAction::Formatter::LvmVg(this).string_representation();
 
 	else if (is_btrfs(target_device))
-	    return CompoundAction::Formatter::Btrfs(this).string_representation();
+	{
+	    switch (type)
+	    {
+		case Type::BTRFS_QUOTA:
+		    return CompoundAction::Formatter::BtrfsQuota(this).string_representation();
 
+		case Type::BTRFS_QGROUPS:
+		    return CompoundAction::Formatter::BtrfsQgroups(this).string_representation();
+
+		default:
+		    return CompoundAction::Formatter::Btrfs(this).string_representation();
+	    }
+	}
 	else if (is_btrfs_subvolume(target_device))
 	    return CompoundAction::Formatter::BtrfsSubvolume(this).string_representation();
 

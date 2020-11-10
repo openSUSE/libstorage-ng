@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2019] SUSE LLC
+ * Copyright (c) [2017-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -61,12 +61,14 @@ namespace storage
 	bool is_delete() const;
 
 	/**
+	 * Deprecated. There can be several CompoundActions per device. Do not use.
+	 *
 	 * @throw DeviceNotFound
 	 */
 	static CompoundAction* find_by_target_device(Actiongraph* actiongraph, const Device* device);
 
 	/**
-	 * @throw DeviceNotFound
+	 * @copydoc find_by_target_device(Actiongraph*, const Device*)
 	 */
 	static const CompoundAction* find_by_target_device(const Actiongraph* actiongraph, const Device* device);
 

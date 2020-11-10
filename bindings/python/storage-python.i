@@ -20,5 +20,12 @@
 
 %enddef
 
-%include "../storage.i"
+%extend std::pair<unsigned int, unsigned long long>
+{
+    bool __eq__(const std::pair<unsigned int, unsigned long long>* other)
+    {
+	return self->first == other->first && self->second == other->second;
+    }
+};
 
+%include "../storage.i"

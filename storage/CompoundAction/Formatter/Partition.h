@@ -71,7 +71,7 @@ namespace storage
 
     private:
 
-	const storage::Partition * partition;
+	const storage::Partition* partition = nullptr;
 
     };
 

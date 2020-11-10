@@ -93,9 +93,9 @@ namespace storage
 
 	unique_ptr<Storage> storage;
 
-	const Devicegraph* probed;
-	const Devicegraph* staging;
-	const Actiongraph* actiongraph;
+	const Devicegraph* probed = nullptr;
+	const Devicegraph* staging = nullptr;
+	const Actiongraph* actiongraph = nullptr;
 
 	/**
 	 * Main function of class that compares the actiongraph with the

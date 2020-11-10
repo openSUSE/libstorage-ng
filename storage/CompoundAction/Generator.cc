@@ -24,6 +24,10 @@
 
 #include "storage/CompoundAction/Generator.h"
 #include "storage/CompoundActionImpl.h"
+#include "storage/Filesystems/BtrfsImpl.h"
+#include "storage/Filesystems/BtrfsQgroupImpl.h"
+#include "storage/Holders/BtrfsQgroupRelationImpl.h"
+#include "storage/Redirect.h"
 
 
 namespace storage
@@ -42,13 +46,9 @@ namespace storage
 
 	for (const Action::Base* action : actiongraph->get_commit_actions())
 	{
-	    // TODO also handle actions affecting holders
-	    if (!action->affects_device())
-		continue;
+	    pair<const Device*, CompoundAction::Impl::Type> meta_device = get_meta_device(action);
 
-	    auto target = CompoundAction::Impl::get_target_device(actiongraph, action);
-
-	    auto compound_action = find_by_target_device(compound_actions, target);
+	    auto compound_action = find_by_target_device(compound_actions, meta_device.first, meta_device.second);
 
 	    if (compound_action)
 	    {
@@ -57,7 +57,8 @@ namespace storage
 	    else
 	    {
 		compound_action = new CompoundAction(actiongraph);
-		compound_action->get_impl().set_target_device(target);
+		compound_action->get_impl().set_target_device(meta_device.first);
+		compound_action->get_impl().set_type(meta_device.second);
 		compound_action->get_impl().add_commit_action(action);
 		compound_actions.push_back(compound_action);
 	    }
@@ -70,17 +71,84 @@ namespace storage
     }
 
 
+    pair<const Device*, CompoundAction::Impl::Type>
+    CompoundAction::Generator::get_meta_device(const Action::Base* action) const
+    {
+	// TODO The code here is not nice, just like
+	// CompoundAction::Impl::get_target_device et.al. is not nice.  Maybe it would be
+	// better if the actions would return the device.
+
+	if (action->affects_device())
+	{
+	    const Action::SetQuota* set_quota_action = dynamic_cast<const Action::SetQuota*>(action);
+	    if (set_quota_action)
+	    {
+		const Btrfs* btrfs = to_btrfs(set_quota_action->get_device(actiongraph->get_impl(), RHS));
+		return make_pair(btrfs, CompoundAction::Impl::Type::BTRFS_QUOTA);
+	    }
+
+	    const Action::Create* create_action = dynamic_cast<const Action::Create*>(action);
+	    if (create_action && is_btrfs_qgroup(create_action->get_device(actiongraph->get_impl())))
+	    {
+		const BtrfsQgroup* tmp = to_btrfs_qgroup(create_action->get_device(actiongraph->get_impl()));
+		const Btrfs* btrfs = tmp->get_btrfs();
+		return make_pair(btrfs, CompoundAction::Impl::Type::BTRFS_QGROUPS);
+	    }
+
+	    const Action::Delete* delete_action = dynamic_cast<const Action::Delete*>(action);
+	    if (delete_action && is_btrfs_qgroup(delete_action->get_device(actiongraph->get_impl())))
+	    {
+		const BtrfsQgroup* tmp = to_btrfs_qgroup(delete_action->get_device(actiongraph->get_impl()));
+		const Btrfs* btrfs = tmp->get_btrfs();
+		// redirect to RHS so that a combination of create and delete are shown as one compound action
+		return make_pair(redirect_to(actiongraph->get_devicegraph(RHS), btrfs), CompoundAction::Impl::Type::BTRFS_QGROUPS);
+	    }
+
+	    const Action::SetLimits* set_limits_action = dynamic_cast<const Action::SetLimits*>(action);
+	    if (set_limits_action)
+	    {
+		const BtrfsQgroup* tmp = to_btrfs_qgroup(set_limits_action->get_device(actiongraph->get_impl(), RHS));
+		const Btrfs* btrfs = tmp->get_btrfs();
+		return make_pair(btrfs, CompoundAction::Impl::Type::BTRFS_QGROUPS);
+	    }
+
+	    return make_pair(CompoundAction::Impl::get_target_device(actiongraph, action), CompoundAction::Impl::Type::NORMAL);
+	}
+
+	if (action->affects_holder())
+	{
+	    const Action::Create* create_action = dynamic_cast<const Action::Create*>(action);
+	    if (create_action && is_btrfs_qgroup_relation(create_action->get_holder(actiongraph->get_impl())))
+	    {
+		const BtrfsQgroupRelation* tmp = to_btrfs_qgroup_relation(create_action->get_holder(actiongraph->get_impl()));
+		const Btrfs* btrfs = tmp->get_btrfs();
+		return make_pair(btrfs, CompoundAction::Impl::Type::BTRFS_QGROUPS);
+	    }
+
+	    const Action::Delete* delete_action = dynamic_cast<const Action::Delete*>(action);
+	    if (delete_action && is_btrfs_qgroup_relation(delete_action->get_holder(actiongraph->get_impl())))
+	    {
+		const BtrfsQgroupRelation* tmp = to_btrfs_qgroup_relation(delete_action->get_holder(actiongraph->get_impl()));
+		const Btrfs* btrfs = tmp->get_btrfs();
+		// redirect to RHS so that a combination of create and delete are shown as one compound action
+		return make_pair(redirect_to(actiongraph->get_devicegraph(RHS), btrfs), CompoundAction::Impl::Type::BTRFS_QGROUPS);
+	    }
+	}
+
+	ST_THROW(Exception("get_meta_device failed"));
+    }
+
+
     CompoundAction*
-    CompoundAction::Generator::find_by_target_device(const vector<CompoundAction*>& compound_actions, const Device* device)
+    CompoundAction::Generator::find_by_target_device(const vector<CompoundAction*>& compound_actions,
+						     const Device* device, CompoundAction::Impl::Type type) const
     {
 	auto begin = compound_actions.begin();
 	auto end = compound_actions.end();
 
-	auto it = find_if(begin, end,
-		[device](CompoundAction* a) -> bool
-		{
-		    return a->get_target_device() == device;
-		});
+	auto it = find_if(begin, end, [device, type](const CompoundAction* a) -> bool {
+	    return a->get_target_device() == device && a->get_impl().get_type() == type;
+	});
 
 	if (it != end)
 	    return *it;

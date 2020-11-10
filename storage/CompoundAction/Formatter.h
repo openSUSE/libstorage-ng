@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -46,6 +46,8 @@ namespace storage
 	class Bcache;
 	class Btrfs;
 	class BtrfsSubvolume;
+	class BtrfsQuota;
+	class BtrfsQgroups;
 	class LvmLv;
 	class LvmVg;
 	class Nfs;
@@ -159,7 +161,7 @@ namespace storage
 
     protected:
 
-	const CompoundAction::Impl* _compound_action;
+	const CompoundAction::Impl* _compound_action = nullptr;
 	const string _device_classname;
 
 	bool _creating = false;

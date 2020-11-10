@@ -60,7 +60,8 @@ namespace storage
 
     private:
 
-	const storage::StrayBlkDevice * stray_blk_device;
+	const storage::StrayBlkDevice* stray_blk_device = nullptr;
+
     };
 
 }

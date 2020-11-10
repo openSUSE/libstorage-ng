@@ -65,7 +65,7 @@ namespace storage
 
     private:
 
-	const storage::LvmLv* lv;
+	const storage::LvmLv* lv = nullptr;
 
     };
 

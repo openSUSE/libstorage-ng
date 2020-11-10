@@ -14,6 +14,7 @@ check_PROGRAMS =				\
 	bcache-sentence.test			\
 	flashonly-bcache-sentence.test		\
 	btrfs-subvolume-sentence.test		\
+	btrfs-quota-sentence.test		\
 	encrypted-sentence.test			\
 	is-delete.test				\
 	lvm-lv-sentence.test			\

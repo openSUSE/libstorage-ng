@@ -32,11 +32,10 @@
 namespace storage
 {
 
-    CompoundAction::Formatter::Bcache::Bcache( const CompoundAction::Impl* compound_action ):
-	CompoundAction::Formatter( compound_action, "Bcache" ),
-	bcache( to_bcache( compound_action->get_target_device() ) )
+    CompoundAction::Formatter::Bcache::Bcache(const CompoundAction::Impl* compound_action)
+	: CompoundAction::Formatter(compound_action, "Bcache"),
+	  bcache(to_bcache(compound_action->get_target_device()))
     {
-        // NOP
     }
 
 
@@ -363,9 +362,12 @@ namespace storage
 
 
     const BlkDevice*
-    CompoundAction::Formatter::Bcache::get_blk_device() const {
-	if(bcache->get_type() == BcacheType::BACKED)
+    CompoundAction::Formatter::Bcache::get_blk_device() const
+    {
+	if (bcache->get_type() == BcacheType::BACKED)
+	{
 	    return bcache->get_backing_device();
+	}
 	else
 	{
 	    vector<const BlkDevice*> caching_devices = bcache->get_bcache_cset()->get_blk_devices();

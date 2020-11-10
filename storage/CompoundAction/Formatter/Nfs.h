@@ -47,7 +47,7 @@ namespace storage
 
     private:
 
-	const storage::Nfs* nfs;
+	const storage::Nfs* nfs = nullptr;
 
     };
 

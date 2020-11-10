@@ -31,14 +31,11 @@
 namespace storage
 {
 
-    using std::vector;
-    using std::string;
-
-
-    CompoundAction::Formatter::LvmVg::LvmVg(const CompoundAction::Impl* compound_action) :
-	CompoundAction::Formatter(compound_action, "LvmVg"),
-	vg(to_lvm_vg(compound_action->get_target_device()))
-    {}
+    CompoundAction::Formatter::LvmVg::LvmVg(const CompoundAction::Impl* compound_action)
+	: CompoundAction::Formatter(compound_action, "LvmVg"),
+	  vg(to_lvm_vg(compound_action->get_target_device()))
+    {
+    }
 
 
     Text

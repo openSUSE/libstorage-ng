@@ -20,7 +20,7 @@ BOOST_FIXTURE_TEST_SUITE(partition_sentence, test::CompoundActionFixture)
 
 BOOST_AUTO_TEST_CASE(test_sentence_on_creating)
 {
-    initialize_staging_with_two_partitions();
+    initialize_staging_with_three_partitions();
 
     auto ext4 = to_ext4(sda2->create_blk_filesystem(FsType::EXT4));
     ext4->create_mount_point("/test");
@@ -37,7 +37,7 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_creating)
 
 BOOST_AUTO_TEST_CASE(test_sentence_on_creating_with_encryption)
 {
-    initialize_staging_with_two_partitions();
+    initialize_staging_with_three_partitions();
 
     Encryption* encryption = sda2->create_encryption("cr_sda2", EncryptionType::LUKS1);
 
@@ -56,7 +56,7 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_creating_with_encryption)
 
 BOOST_AUTO_TEST_CASE(test_sentence_on_creating_as_pv)
 {
-    initialize_staging_with_two_partitions();
+    initialize_staging_with_three_partitions();
 
     auto lvm_vg = LvmVg::create(staging, "vg-name");
     lvm_vg->add_lvm_pv(sda2);
@@ -73,7 +73,7 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_creating_as_pv)
 
 BOOST_AUTO_TEST_CASE(test_sentence_on_creating_with_encryption_as_pv)
 {
-    initialize_staging_with_two_partitions();
+    initialize_staging_with_three_partitions();
 
     Encryption* encryption = sda2->create_encryption("cr_sda2", EncryptionType::LUKS1);
 
@@ -92,7 +92,7 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_creating_with_encryption_as_pv)
 
 BOOST_AUTO_TEST_CASE(test_sentence_on_creating_with_swap)
 {
-    initialize_staging_with_two_partitions();
+    initialize_staging_with_three_partitions();
 
     sda2->create_blk_filesystem(FsType::SWAP);
 
@@ -108,7 +108,7 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_creating_with_swap)
 
 BOOST_AUTO_TEST_CASE(test_sentence_on_creating_as_bios)
 {
-    initialize_staging_with_two_partitions();
+    initialize_staging_with_three_partitions();
 
     sda1->set_id(ID_BIOS_BOOT);
 
