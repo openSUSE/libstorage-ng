@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2019] SUSE LLC
+ * Copyright (c) [2017-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -48,6 +48,8 @@ namespace storage
     {
     public:
 
+	enum class Type { NORMAL, BTRFS_QUOTA, BTRFS_QGROUPS };
+
 	Impl(const Actiongraph* actiongraph);
 
 	const Actiongraph* get_actiongraph() const { return actiongraph; }
@@ -55,24 +57,35 @@ namespace storage
 	const Device* get_target_device() const { return target_device; }
 	void set_target_device(const Device* target_device) { Impl::target_device = target_device; }
 
+	Type get_type() const { return type; }
+	void set_type(Type type) { Impl::type = type; }
+
 	vector<const Action::Base*> get_commit_actions() const { return commit_actions; }
-	void set_commit_actions(vector<const Action::Base*> commit_actions) { Impl::commit_actions = commit_actions; }
 
 	void add_commit_action(const Action::Base* action);
 
+    private:
+
 	vector<string> get_commit_actions_as_strings() const;
+
+    public:
 
 	string sentence() const;
 
 	bool is_delete() const;
 
 	static const Device* get_target_device(const Actiongraph* actiongraph, const Action::Base* action);
+
+    private:
+
 	static const Device* get_target_device(const Device* device);
 	static const Device* get_target_device(const PartitionTable* partition_table);
 	static const Device* get_target_device(const Encryption* encryption);
 	static const Device* get_target_device(const LvmPv* pv);
 	static const Device* get_target_device(const BlkFilesystem* blk_filesystem);
 	static const Device* get_target_device(const MountPoint* mount_point);
+
+    public:
 
 	static const Device* device(const Actiongraph* actiongraph, const Action::Base* action);
 	static const Device* device(const Actiongraph* actiongraph, const Action::Create* action);
@@ -87,6 +100,8 @@ namespace storage
 	const Actiongraph* actiongraph;
 
 	const Device* target_device = nullptr;
+
+	Type type = Type::NORMAL;
 
 	vector<const Action::Base*> commit_actions;
 

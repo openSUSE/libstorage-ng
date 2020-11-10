@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -35,6 +35,11 @@ namespace storage
                                          const string& device_classname)
 	: _compound_action(compound_action), _device_classname(device_classname)
     {
+	if (_compound_action->get_type() != CompoundAction::Impl::Type::NORMAL)
+	    return;
+
+	// following code only works for actions affecting devices not holders
+
         _creating   = has_create(_device_classname);
         _deleting   = has_delete(_device_classname);
         _formatting = has_create<storage::BlkFilesystem>();

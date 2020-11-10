@@ -26,7 +26,7 @@
 
 #include <vector>
 
-#include "storage/CompoundAction.h"
+#include "storage/CompoundActionImpl.h"
 
 
 namespace storage
@@ -48,9 +48,12 @@ namespace storage
 
     private:
 
-	static CompoundAction* find_by_target_device(const vector<CompoundAction*>& compound_actions, const Device* device);
+	pair<const Device*, CompoundAction::Impl::Type> get_meta_device(const Action::Base* action) const;
 
-	const Actiongraph* actiongraph;
+	CompoundAction* find_by_target_device(const vector<CompoundAction*>& compound_actions,
+					      const Device* device, CompoundAction::Impl::Type type) const;
+
+	const Actiongraph* actiongraph = nullptr;
 
     };
 

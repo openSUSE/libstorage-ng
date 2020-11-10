@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2019] SUSE LLC
+ * Copyright (c) [2017-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -50,9 +50,43 @@ namespace storage
 	Text mount_text() const;
 	Text unmount_text() const;
 
+	const storage::Btrfs* btrfs = nullptr;
+
+    };
+
+
+    class CompoundAction::Formatter::BtrfsQuota : public CompoundAction::Formatter
+    {
+
+    public:
+
+	BtrfsQuota(const CompoundAction::Impl* compound_action);
+
     private:
 
-	const storage::Btrfs* btrfs;
+	Text blk_devices_text() const;
+
+	virtual Text text() const override;
+
+	const storage::Btrfs* btrfs = nullptr;
+
+    };
+
+
+    class CompoundAction::Formatter::BtrfsQgroups : public CompoundAction::Formatter
+    {
+
+    public:
+
+	BtrfsQgroups(const CompoundAction::Impl* compound_action);
+
+    private:
+
+	Text blk_devices_text() const;
+
+	virtual Text text() const override;
+
+	const storage::Btrfs* btrfs = nullptr;
 
     };
 

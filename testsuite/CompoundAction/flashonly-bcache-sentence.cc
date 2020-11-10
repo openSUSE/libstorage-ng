@@ -38,11 +38,10 @@ BOOST_AUTO_TEST_CASE(flashonly_bcache_format_sentence)
     ext4->create_mount_point("/data");
 
     const Actiongraph* actiongraph = storage.calculate_actiongraph();
-    const CompoundAction* compound_action = CompoundAction::find_by_target_device(actiongraph, bcache2);
 
-    BOOST_REQUIRE(compound_action);
+    vector<const CompoundAction*> compound_actions = actiongraph->get_compound_actions();
+    BOOST_REQUIRE_EQUAL(compound_actions.size(), 2);
 
-    string expected = "Format bcache /dev/bcache2 on /dev/sdb1 (100.00 MiB) for /data with ext4";
-
-    BOOST_CHECK_EQUAL(compound_action->sentence(), expected);
+    BOOST_CHECK_EQUAL(compound_actions[1]->sentence(),
+		      "Format bcache /dev/bcache2 on /dev/sdb1 (100.00 MiB) for /data with ext4");
 }
