@@ -127,7 +127,7 @@ namespace storage
 
 
     /**
-     * The master container of the libstorage-ng.
+     * The main container of the libstorage-ng.
      *
      * The devicegraph contains Devices (node) and Holders (edge). A
      * device represent a storage object, e.g. a disk, a LVM volume
