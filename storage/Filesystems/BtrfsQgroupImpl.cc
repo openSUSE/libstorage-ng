@@ -64,9 +64,9 @@ namespace storage
 	getChildValue(node, "exclusive", exclusive);
 
 	if (getChildValue(node, "referenced-limit", tmp))
-	    referenced_limit = 1;
+	    tmp >> referenced_limit;
 	if (getChildValue(node, "exclusive-limit", tmp))
-	    exclusive_limit = 1;
+	    tmp >> exclusive_limit;
     }
 
 

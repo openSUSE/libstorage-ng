@@ -97,6 +97,8 @@
       <id>1/0</id>
       <referenced>32768</referenced>
       <exclusive>32768</exclusive>
+      <referenced-limit>16384</referenced-limit>
+      <exclusive-limit>8192</exclusive-limit>
     </BtrfsQgroup>
     <BtrfsQgroup>
       <sid>55</sid>

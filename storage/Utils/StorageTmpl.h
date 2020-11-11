@@ -55,6 +55,15 @@ namespace storage
 
 
     template<class Value>
+    void operator>>(const string& d, boost::optional<Value>& ov)
+    {
+	Value v;
+	d >> v;
+	ov = v;
+    }
+
+
+    template<class Value>
     std::ostream& operator<<(std::ostream& s, const std::list<Value>& l)
     {
 	s << "<";

@@ -32,7 +32,7 @@
       <stdout>0/256           16384        16384         none         none 1/0     </stdout>
       <stdout>0/257           16384        16384         none         none 1/0     </stdout>
       <stdout>0/258               0            0         none         none 1/0     </stdout>
-      <stdout>1/0             32768        32768         none         none 2/0     </stdout>
+      <stdout>1/0             32768        32768        16384         8192 2/0     </stdout>
       <stdout>1/1                 0            0         none         none ---     </stdout>
       <stdout>2/0             32768        32768         none         none ---     </stdout>
     </Command>
