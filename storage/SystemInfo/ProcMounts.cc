@@ -28,6 +28,7 @@
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Filesystems/FilesystemImpl.h"
+#include "storage/Utils/StorageDefines.h"
 
 
 namespace storage
@@ -37,8 +38,8 @@ namespace storage
 
     ProcMounts::ProcMounts()
     {
-	AsciiFile mounts("/proc/mounts");
-	AsciiFile swaps("/proc/swaps");
+	AsciiFile mounts(PROC_DIR "/mounts");
+	AsciiFile swaps(PROC_DIR "/swaps");
 
 	parse_proc_mounts_lines(mounts.get_lines());
 	parse_proc_swaps_lines(swaps.get_lines());

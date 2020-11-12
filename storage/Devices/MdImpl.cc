@@ -1073,7 +1073,7 @@ namespace storage
     {
 	// log some data about the MD RAID that might be useful for debugging
 
-	string cmd_line = CAT_BIN " /proc/mdstat";
+	string cmd_line = CAT_BIN " " PROC_DIR "/mdstat";
 
 	SystemCmd cmd(cmd_line, SystemCmd::NoThrow);
     }

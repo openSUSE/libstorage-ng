@@ -78,7 +78,7 @@ namespace storage
 
 	if (is_ppc())
 	{
-	    AsciiFile cpuinfo("/proc/cpuinfo");
+	    AsciiFile cpuinfo(PROC_DIR "/cpuinfo");
 	    vector<string>::const_iterator it = find_if(cpuinfo.get_lines(), string_starts_with("machine\t"));
 	    if (it != cpuinfo.get_lines().end())
 	    {
