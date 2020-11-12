@@ -37,6 +37,7 @@
 #define DEV_DISK_BY_LABEL_DIR DEV_DIR "/disk/by-label"
 
 #define SYSFS_DIR "/sys"
+#define PROC_DIR "/proc"
 
 
 // commands

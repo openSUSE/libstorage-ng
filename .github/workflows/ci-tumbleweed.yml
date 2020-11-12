@@ -1,11 +1,11 @@
-name: CI
+name: CI Tumbleweed
 
 on: [push, pull_request]
 
 jobs:
   Tests:
     runs-on: ubuntu-latest
-    container: registry.opensuse.org/opensuse/tumbleweed:latest
+    container: opensuse/tumbleweed
 
     steps:
 
