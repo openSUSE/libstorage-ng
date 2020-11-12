@@ -10,10 +10,10 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-10 10:33+0100\n"
-"PO-Revision-Date: 2020-05-14 17:08+0000\n"
-"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
-"Language-Team: Indonesian <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/id/>\n"
+"PO-Revision-Date: 2020-11-12 02:30+0000\n"
+"Last-Translator: Kukuh Syafaat <syafaatkukuh@gmail.com>\n"
+"Language-Team: Indonesian <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/id/>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -105,12 +105,12 @@ msgstr "Mengaktifkan volume logical pool %1$s (%2$s) pada grup volume %3$s"
 #. TRANSLATORS: progress message
 #, c-format
 msgid "Activating LUKS %s"
-msgstr "Mengaktivasi LUKS %s"
+msgstr "Mengaktifkan LUKS %s"
 
 #. TRANSLATORS: error message
 #, c-format
 msgid "Activating LUKS %s failed"
-msgstr "Gagal mengaktivasi LUKS %s"
+msgstr "Gagal mengaktifkan LUKS %s"
 
 #. TRANSLATORS: progress message
 msgid "Activating LVM"
@@ -118,7 +118,7 @@ msgstr "Mengaktivasi LVM"
 
 #. TRANSLATORS: error message
 msgid "Activating LVM failed"
-msgstr "Gagal mengaktivasi LVM"
+msgstr "Gagal mengaktifkan LVM"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -187,7 +187,7 @@ msgstr "Tambah %1$s ke /etc/mdadm.conf"
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Add encryption layer device on %1$s to /etc/crypttab"
-msgstr "Tambahkan perangkat loop terenkripsi pada %1$s ke /etc/crypttab"
+msgstr "Tambah perangkat loop terenkripsi pada %1$s ke /etc/crypttab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the mount point (e.g. /home),
@@ -213,7 +213,7 @@ msgstr "Tambah titik kait %1$s milik subvolume %2$s pada %3$s ke /etc/fstab"
 #. and /dev/sdb2 (2.00 GiB))
 #, c-format
 msgid "Adding %1$s (%2$s) to btrfs on %3$s"
-msgstr "MEnambahkan %1$s (%2$s) ke btrfs pada %3$s"
+msgstr "Menambahkan %1$s (%2$s) ke btrfs pada %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -260,36 +260,36 @@ msgstr ""
 #. %2$s is replaced by the btrfs qgroup id (e.g. 2/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Assign qgroup %1$s to qgroup %2$s on %3$s"
-msgstr "Susutkan partisi %1$s dari %2$s ke %3$s"
+msgstr "Tetapkan qgroup %1$s ke qgroup %2$s pada %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Assign qgroup of subvolume %1$s to qgroup %2$s on %3$s"
-msgstr "Lepas kaitan subvolume %1$s pada %2$s di %3$s"
+msgstr "Tetapkan qgroup dari subvolume %1$s ke qgroup %2$s pada %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by the btrfs qgroup id (e.g. 2/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Assigning qgroup %1$s to qgroup %2$s on %3$s"
-msgstr "Menyusutkan partisi %1$s dari %2$s ke %3$s"
+msgstr "Menetapkan qgroup %1$s ke qgroup %2$s pada %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Assigning qgroup of subvolume %1$s to qgroup %2$s on %3$s"
-msgstr "Mengaitkan subvolume %1$s pada %2$s di %3$s"
+msgstr "Menetapkan qgrup dari subvolume %1$s ke qgroup %2$s pada %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -333,7 +333,7 @@ msgstr "Btrfs"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs Qgroup"
-msgstr ""
+msgstr "Btrfs Qgroup"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs Subvolume"
@@ -809,7 +809,7 @@ msgstr "Buat sistem berkas btfrs pada %1$s dan mengaitkannya di %2$s"
 #. %2$s is replaced by the size (e.g. 20.00 GiB)
 #, c-format
 msgid "Create hard disk %1$s (%2$s)"
-msgstr "Buat hard disk %1$s (%2$s)"
+msgstr "Buat cakram keras %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
@@ -905,9 +905,9 @@ msgstr "Buat partisi primary %1$s (%2$s)"
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Create qgroup %1$s on %2$s"
-msgstr "Buat %1$s pada %2$s"
+msgstr "Buat qgrup %1$s pada %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -1038,7 +1038,7 @@ msgstr "Membuat partisi extended %1$s (%2$s)"
 #. %2$s is replaced by the size (e.g. 20.00 GiB)
 #, c-format
 msgid "Creating hard disk %1$s (%2$s)"
-msgstr "Membuat hard disk %1$s (%2$s)"
+msgstr "Membuat cakram keras %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
@@ -1092,9 +1092,9 @@ msgstr "Membuat partisi primary %1$s (%2$s)"
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Creating qgroup %1$s on %2$s"
-msgstr "Membuat %1$s pada %2$s"
+msgstr "Membuat grup %1$s pada %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -1656,20 +1656,20 @@ msgstr "Partisi Diagnostik"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Disable quota on %1$s"
-msgstr "Hapus GPT pada %1$s"
+msgstr "Nonaktifkan kuota pada %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Disabling quota on %1$s"
-msgstr "Menghapus GPT pada %1$s"
+msgstr "Menonaktifkan kuota pada %1$s"
 
 #. TRANSLATORS: name of object
 msgid "Disk"
-msgstr "Disk"
+msgstr "Diska"
 
 #. TRANSLATORS: symbol for "exa" (best keep untranslated)
 msgid "E"
@@ -1692,14 +1692,14 @@ msgstr "EiB"
 #. and /dev/sdb2 (2.00 GiB))
 #, c-format
 msgid "Enable quota on %1$s"
-msgstr ""
+msgstr "Aktifkan kuota %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
 #, c-format
 msgid "Enabling quota %1$s"
-msgstr ""
+msgstr "Mengaktifkan kuota %1$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -2365,11 +2365,11 @@ msgstr "Gagal memeriksa NFS"
 
 #. TRANSLATORS: progress message
 msgid "Probing additional attributes"
-msgstr "Menjajaki atribut tambahan"
+msgstr "Memeriksa atribut tambahan"
 
 #. TRANSLATORS: error message
 msgid "Probing additional attributes failed"
-msgstr "Menjajaki atribut tambahan gagal"
+msgstr "Memeriksa atribut tambahan gagal"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
@@ -2395,15 +2395,15 @@ msgstr "Gagal memeriksa hubungan perangkat"
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing disk %s failed"
-msgstr "Gagal memeriksa disk %s"
+msgstr "Gagal memeriksa diska %s"
 
 #. TRANSLATORS: progress message
 msgid "Probing disks"
-msgstr "Memeriksa disk"
+msgstr "Memeriksa diska"
 
 #. TRANSLATORS: error message
 msgid "Probing disks failed"
-msgstr "Gagal memeriksa disk"
+msgstr "Gagal memeriksa diska"
 
 #. TRANSLATORS: error message
 msgid "Probing failed"
@@ -2417,7 +2417,7 @@ msgstr "Gagal memeriksa sistem berkas pada %s"
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing file system with UUID %s failed"
-msgstr "Menjajaki sistem berkas dengan UUID %s gagal"
+msgstr "Memeriksa sistem berkas dengan UUID %s gagal"
 
 #. TRANSLATORS: progress message
 msgid "Probing file systems"
@@ -2450,34 +2450,32 @@ msgstr "Gagal memeriksa partisi pada %s"
 
 #. TRANSLATORS: progress message
 msgid "Probing plain encryptions"
-msgstr "Menjajaki enkripsi polos"
+msgstr "Memeriksa enkripsi polos"
 
 #. TRANSLATORS: error message
 msgid "Probing plain encryptions failed"
-msgstr "Menjajaki enkripsi polos gagal"
+msgstr "Memeriksa enkripsi polos gagal"
 
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing stray block device %s failed"
-msgstr "Menjajaki stray block device %s gagal"
+msgstr "Memeriksa stray block device %s gagal"
 
 #. TRANSLATORS: progress message
 msgid "Probing stray block devices"
-msgstr "Menjajaki stray block devices"
+msgstr "Memeriksa stray block devices"
 
 #. TRANSLATORS: error message
 msgid "Probing stray block devices failed"
-msgstr "Menjajaki stray block devices gagal"
+msgstr "Memeriksa stray block devices gagal"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing tmpfs"
-msgstr "Memeriksa DASDs"
+msgstr "Memeriksa tmpfs"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing tmpfs failed"
-msgstr "Gagal memeriksa"
+msgstr "Gagal memeriksa tmpfs"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)
@@ -2547,9 +2545,9 @@ msgstr "Hapus titik kait %1$s milik subvolume %2$s pada %3$s dari /etc/fstab"
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Remove qgroup %1$s on %2$s"
-msgstr "Hapus %1$s dari %2$s"
+msgstr "Hapus qgrup %1$s pada %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/sdc1),
@@ -2604,9 +2602,9 @@ msgstr ""
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Removing qgroup %1$s on %2$s"
-msgstr "Menghapus %1$s dari %2$s"
+msgstr "Menghapus qgrup %1$s pada %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the old logical volume name (e.g. foo),
@@ -2732,17 +2730,17 @@ msgstr "Atur tanda boot legacy dari partisi %1$s"
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Set limits for qgroup %1$s on %2$s"
-msgstr "Atur opsi yang sesuai dari %1$s pada %2$s"
+msgstr "Tetapkan batas untuk qgroup %1$s pada %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Set limits for qgroup of subvolume %1$s on %2$s"
-msgstr "Atur subvolume standar ke subvolume %1$s pada %2$s"
+msgstr "Tetapkan batas untuk qgrup dari subvolume %1$s pada %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -2838,17 +2836,17 @@ msgstr "Mengatur tanda boot legacy dari partisi %1$s"
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Setting limits for qgroup %1$s on %2$s"
-msgstr "Mengatur opsi %1$s yang sesuai pada %2$s"
+msgstr "Mengatur batas untuk qgroup %1$s pada %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Setting limits for qgroup of subvolume %1$s on %2$s"
-msgstr "Mengatur subvolume standar ke subvolume %1$s pada %2$s"
+msgstr "Mengatur batas untuk qgrup dari subvolume %1$s pada %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -3054,36 +3052,37 @@ msgstr "UDF"
 #. %2$s is replaced by the btrfs qgroup id (e.g. 2/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Unassign qgroup %1$s from qgroup %2$s on %3$s"
-msgstr "Menyusutkan partisi %1$s dari %2$s ke %3$s"
+msgstr "Batalkan penetapan qgrup %1$s dari qgroup %2$s pada %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Unassign qgroup of subvolume %1$s from qgroup %2$s on %3$s"
-msgstr "Lepas kaitan subvolume %1$s pada %2$s di %3$s"
+msgstr "Batalkan penetapan qgrupq subvolume %1$s dari qgroup %2$s pada %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by the btrfs qgroup id (e.g. 2/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Unassigning qgroup %1$s from qgroup %2$s on %3$s"
-msgstr "Menyusutkan partisi %1$s dari %2$s ke %3$s"
+msgstr "Membatalkan penetapan qgrup %1$s dari qgroup %2$s pada %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Unassigning qgroup of subvolume %1$s from qgroup %2$s on %3$s"
-msgstr "Melepas kaitan subvolume %1$s pada %2$s di %3$s"
+msgstr ""
+"Membatalkan penetapan qgrup dari subvolume %1$s ke qgroup %2$s pada %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
@@ -3176,7 +3175,7 @@ msgstr "kB"
 
 #. TRANSLATORS: name of object
 msgid "tmpfs"
-msgstr ""
+msgstr "tmpfs"
 
 #~ msgid "Create MD %1$s %2$s (%3$s)"
 #~ msgstr "Buat MD %1$s %2$s (%3$s)"
