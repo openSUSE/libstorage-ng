@@ -28,6 +28,7 @@
 #include "storage/Devices/PartitionImpl.h"
 #include "storage/Devices/MsdosImpl.h"
 #include "storage/Devices/GptImpl.h"
+#include "storage/Devices/Multipath.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Devicegraph.h"
 #include "storage/SystemInfo/SystemInfo.h"
@@ -74,6 +75,15 @@ namespace storage
 	    string name = partitionable->get_impl().partition_name(entry.number);
 
 	    Partition* partition = create_partition(name, entry.region, entry.type);
+
+	    // For multipath the user can disable creation of device nodes for the
+	    // partitions by setting skip_kpartx. See bsc #1175981 for details.
+	    if (is_multipath(get_partitionable()))
+	    {
+		const CmdStat& cmd_stat = prober.get_system_info().getCmdStat(partition->get_name());
+		partition->get_impl().set_active(cmd_stat.is_blk() || cmd_stat.is_lnk());
+	    }
+
 	    partition->get_impl().probe_pass_1a(prober);
 	}
     }

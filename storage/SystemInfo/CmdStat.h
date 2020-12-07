@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 SUSE LLC
+ * Copyright (c) [2018-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -47,6 +47,7 @@ namespace storage
 	bool is_blk() const { return S_ISBLK(mode); }
 	bool is_dir() const { return S_ISDIR(mode); }
 	bool is_reg() const { return S_ISREG(mode); }
+	bool is_lnk() const { return S_ISLNK(mode); }
 
 	friend std::ostream& operator<<(std::ostream& s, const CmdStat& cmd_stat);
 

@@ -61,7 +61,7 @@ namespace storage
 
 	virtual void check(const CheckCallbacks* check_callbacks) const override;
 
-	virtual bool is_usable_as_blk_device() const { return true; }
+	virtual bool is_usable_as_blk_device() const { return active; }
 
 	const string& get_name() const { return name; }
 	void set_name(const string& name);
