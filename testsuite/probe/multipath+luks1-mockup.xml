@@ -678,6 +678,10 @@
       <stdout>61b0</stdout>
     </Command>
     <Command>
+      <name>/usr/bin/stat --format '%f' '/dev/mapper/36005076305ffc73a00000000000013b4-part1'</name>
+      <stdout>a1ff</stdout>
+    </Command>
+    <Command>
       <name>/usr/bin/test -d '/sys/firmware/efi/vars'</name>
       <exit-code>1</exit-code>
     </Command>

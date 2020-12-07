@@ -123,6 +123,9 @@ namespace storage
 	boot = entry.boot;
 	legacy_boot = entry.legacy_boot;
 
+	if (!is_active())
+	    return;
+
 	const CmdUdevadmInfo& cmd_udevadm_info = system_info.getCmdUdevadmInfo(get_name());
 
 	if (!cmd_udevadm_info.get_by_part_label_links().empty())
@@ -176,6 +179,9 @@ namespace storage
     bool
     Partition::Impl::is_usable_as_blk_device() const
     {
+	if (!BlkDevice::Impl::is_usable_as_blk_device())
+	    return false;
+
 	return type == PartitionType::PRIMARY || type == PartitionType::LOGICAL;
     }
 
