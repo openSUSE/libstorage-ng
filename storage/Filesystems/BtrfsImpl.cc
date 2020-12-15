@@ -700,9 +700,11 @@ namespace storage
 
 	    if (support_btrfs_snapshot_relations())
 	    {
+		// The parent UUID is nothing more than a hint (bsc#1179061).
+
 		const BtrfsSubvolume* parent = subvolumes_by_uuid[subvolume.parent_uuid];
 		if (!parent)
-		    ST_THROW(Exception("parent subvolume not found by uuid"));
+		    continue;
 
 		const BtrfsSubvolume* child = subvolumes_by_uuid[subvolume.uuid];
 		if (!child)
