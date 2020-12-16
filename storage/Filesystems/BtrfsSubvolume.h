@@ -134,8 +134,9 @@ namespace storage
 	std::vector<const BtrfsSubvolume*> get_snapshots() const;
 
 	/**
-	 * Check whether the btrfs subvolume has an origin. In other words, whether it is a
-	 * snapshot.
+	 * Check whether the btrfs subvolume has an origin. In other words, whether it is
+	 * a snapshot. Note that here a snapshot stops being considered a snapshot if the
+	 * origin has been removed.
 	 *
 	 * The term "origin" is not used with btrfs but with LVM. Unfortunately btrfs is
 	 * not consistent with the names: With 'btrfs subvolume snapshot' the thing is

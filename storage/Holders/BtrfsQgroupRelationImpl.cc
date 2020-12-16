@@ -64,8 +64,18 @@ namespace storage
 
 	    case View::REMOVE:
 	    {
-		const Device* device = get_source();
-		return is_btrfs(device);
+		// Follow the relation if the btrfs is removed.
+		const Device* source = get_source();
+		if (is_btrfs(source))
+		    return true;
+
+		// Follow the relation if the qgroup was created along with the btrfs
+		// subvolume - in which case the id is 0/0. See bsc #1179590.
+		const BtrfsQgroup* target = to_btrfs_qgroup(get_target());
+		if (target->get_id() == BtrfsQgroup::Impl::unknown_id)
+		    return true;
+
+		return false;
 	    }
 	}
 
