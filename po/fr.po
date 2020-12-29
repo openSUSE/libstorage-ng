@@ -11,10 +11,10 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-10 10:33+0100\n"
-"PO-Revision-Date: 2020-02-19 14:54+0000\n"
-"Last-Translator: Christine Gabriel <christine@stoquart.com>\n"
-"Language-Team: French <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/fr/>\n"
+"PO-Revision-Date: 2020-12-29 16:37+0000\n"
+"Last-Translator: Antoine Belvire <antoine.belvire@opensuse.org>\n"
+"Language-Team: French <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -279,9 +279,9 @@ msgstr ""
 #. %2$s is replaced by the btrfs qgroup id (e.g. 2/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Assign qgroup %1$s to qgroup %2$s on %3$s"
-msgstr "Réduire la partition %1$s de %2$s à %3$s"
+msgstr "Assigner le qgroup %1$s au qgroup %2$s sur %3$s"
 
 # TLABEL partitioning_2002_01_04_0147__92
 #. TRANSLATORS: displayed before action,
@@ -289,9 +289,9 @@ msgstr "Réduire la partition %1$s de %2$s à %3$s"
 #. %2$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Assign qgroup of subvolume %1$s to qgroup %2$s on %3$s"
-msgstr "Démonter le sous-volume %1$s sur %2$s de %3$s"
+msgstr "Assigner le qgroup du sous-volume %1$s au qgroup %2$s sur %3$s"
 
 # TLABEL partitioning_2002_01_04_0147__425
 #. TRANSLATORS: displayed during action,
@@ -299,9 +299,9 @@ msgstr "Démonter le sous-volume %1$s sur %2$s de %3$s"
 #. %2$s is replaced by the btrfs qgroup id (e.g. 2/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Assigning qgroup %1$s to qgroup %2$s on %3$s"
-msgstr "Réduction de la partition %1$s de %2$s à %3$s"
+msgstr "Assignation du qgroup %1$s au qgroup %2$s sur %3$s"
 
 # TLABEL partitioning_2002_01_04_0147__351
 #. TRANSLATORS: displayed during action,
@@ -309,9 +309,9 @@ msgstr "Réduction de la partition %1$s de %2$s à %3$s"
 #. %2$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Assigning qgroup of subvolume %1$s to qgroup %2$s on %3$s"
-msgstr "Montage du sous-volume %1$s de %2$s sur %3$s"
+msgstr "Assignation du qgroup du sous-volume %1$s au qgroup %2$s sur %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -358,7 +358,7 @@ msgstr "Btrfs"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs Qgroup"
-msgstr ""
+msgstr "Qgroup Btrfs"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs Subvolume"
@@ -971,9 +971,9 @@ msgstr "Créer la partition primaire %1$s (%2$s)"
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Create qgroup %1$s on %2$s"
-msgstr "Créer %1$s sur %2$s"
+msgstr "Créer le qgroup %1$s sur %2$s"
 
 # TLABEL partitioning_2002_01_04_0147__351
 #. TRANSLATORS: displayed before action,
@@ -1175,9 +1175,9 @@ msgstr "Création de la partition primaire %1$s (%2$s)"
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Creating qgroup %1$s on %2$s"
-msgstr "Création de %1$s sur %2$s"
+msgstr "Création du qgroup %1$s sur %2$s"
 
 # TLABEL partitioning_2002_01_04_0147__351
 #. TRANSLATORS: displayed during action,
@@ -1812,17 +1812,17 @@ msgstr "Partition de diagnostique"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Disable quota on %1$s"
-msgstr "Supprimer la table de partitions GPT sur %1$s"
+msgstr "Désactiver les quotas sur %1$s"
 
 # TLABEL update_2002_01_04_0147__20
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Disabling quota on %1$s"
-msgstr "Suppression de la table de partitions GPT sur %1$s"
+msgstr "Désactivation des quotas sur %1$s"
 
 # TLABEL packages_2002_01_04_0147__12
 #. TRANSLATORS: name of object
@@ -1851,14 +1851,14 @@ msgstr "Eio"
 #. and /dev/sdb2 (2.00 GiB))
 #, c-format
 msgid "Enable quota on %1$s"
-msgstr ""
+msgstr "Activer les quotas sur %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
 #, c-format
 msgid "Enabling quota %1$s"
-msgstr ""
+msgstr "Activation des quotas sur %1$s"
 
 # TLABEL partitioning_2002_01_04_0147__351
 #. TRANSLATORS:
@@ -2387,9 +2387,9 @@ msgstr "Partition réservée Microsoft"
 #. TRANSLATORS:
 #. %1$s is replaced with the names of the devices with sizes (e.g. /dev/sda1
 #. (10.00 GiB) and /dev/sda2 (10.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Modify btrfs qgroups on %1$s"
-msgstr "Suppression de %1$s de %2$s"
+msgstr "Modifier les qgroups btrfs sur %1$s"
 
 # TLABEL partitioning_2002_01_04_0147__425
 #. TRANSLATORS:
@@ -2790,9 +2790,9 @@ msgstr ""
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Remove qgroup %1$s on %2$s"
-msgstr "Supprimer %1$s de %2$s"
+msgstr "Supprimer le qgroup %1$s de %2$s"
 
 # TLABEL storage_2002_08_07_0216__34
 #. TRANSLATORS: displayed during action,
@@ -2854,9 +2854,9 @@ msgstr ""
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Removing qgroup %1$s on %2$s"
-msgstr "Suppression de %1$s de %2$s"
+msgstr "Suppression du qgroup %1$s de %2$s"
 
 # TLABEL storage_2002_08_07_0216__34
 #. TRANSLATORS:
@@ -2994,18 +2994,18 @@ msgstr "Définir le fanion de démarrage legacy de la partition %1$s"
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Set limits for qgroup %1$s on %2$s"
-msgstr "Définir les options de réglage de %1$s sur %2$s"
+msgstr "Définir des limites pour le qgroup %1$s sur %2$s"
 
 # TLABEL partitioning_2002_01_04_0147__351
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Set limits for qgroup of subvolume %1$s on %2$s"
-msgstr "Définir le sous-volume %1$s sur %2$s comme sous-volume par défaut"
+msgstr "Définir des limites pour le qgroup du sous-volume %1$s sur %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -3114,18 +3114,18 @@ msgstr "Définition du fanion de démarrage legacy de la partition %1$s"
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Setting limits for qgroup %1$s on %2$s"
-msgstr "Définition des options de réglage de %1$s sur %2$s"
+msgstr "Définition des limites pour le qgroup %1$s sur %2$s"
 
 # TLABEL partitioning_2002_01_04_0147__351
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Setting limits for qgroup of subvolume %1$s on %2$s"
-msgstr "Définition du sous-volume %1$s sur %2$s comme sous-volume par défaut"
+msgstr "Définition des limites pour le qgroup du sous-volume %1$s sur %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -3481,7 +3481,7 @@ msgstr "ko"
 
 #. TRANSLATORS: name of object
 msgid "tmpfs"
-msgstr ""
+msgstr "tmpfs"
 
 # TLABEL partitioning_2002_01_04_0147__351
 #~ msgid "Create MD %1$s %2$s (%3$s)"
