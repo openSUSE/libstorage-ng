@@ -5,16 +5,16 @@ msgstr ""
 "Project-Id-Version: libstorage.ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-10 10:33+0100\n"
-"PO-Revision-Date: 2020-09-09 18:51+0000\n"
+"PO-Revision-Date: 2021-01-04 16:37+0000\n"
 "Last-Translator: Alex Minton <alex239@gmail.com>\n"
-"Language-Team: Russian <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/ru/>\n"
+"Language-Team: Russian <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.6.1\n"
 
 msgid ""
@@ -256,36 +256,36 @@ msgstr "Добавление точки монтирования %1$s подто
 #. %2$s is replaced by the btrfs qgroup id (e.g. 2/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Assign qgroup %1$s to qgroup %2$s on %3$s"
-msgstr "Уменьшить раздел %1$s с %2$s до %3$s"
+msgstr "Назначить qgroup %1$s в qgroup %2$s на %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Assign qgroup of subvolume %1$s to qgroup %2$s on %3$s"
-msgstr "Отмонтировать подтом %1$s на %2$s в %3$s"
+msgstr "Назначить qgroup подтома %1$s в qgroup %2$s на %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by the btrfs qgroup id (e.g. 2/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Assigning qgroup %1$s to qgroup %2$s on %3$s"
-msgstr "Уменьшение раздела %1$s с %2$s до %3$s"
+msgstr "Назначение qgroup %1$s в qgroup %2$s на %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Assigning qgroup of subvolume %1$s to qgroup %2$s on %3$s"
-msgstr "Монтирование подтома %1$s на %2$s в %3$s"
+msgstr "Назначение qgroup подтома %1$s в qgroup %2$s на %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -329,7 +329,7 @@ msgstr "Btrfs"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs Qgroup"
-msgstr ""
+msgstr "Qgroup btrfs"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs Subvolume"
@@ -920,9 +920,9 @@ msgstr "Создать основной раздел %1$s (%2$s)"
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Create qgroup %1$s on %2$s"
-msgstr "Создать %1$s на %2$s"
+msgstr "Создать qgroup %1$s на %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -1107,9 +1107,9 @@ msgstr "Создание основного раздела %1$s (%2$s)"
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Creating qgroup %1$s on %2$s"
-msgstr "Создание %1$s на %2$s"
+msgstr "Создание qgroup %1$s на %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -1672,16 +1672,16 @@ msgstr "Диагностический раздел"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Disable quota on %1$s"
-msgstr "Удалить GPT на %1$s"
+msgstr "Отключить квоты на %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Disabling quota on %1$s"
-msgstr "Удаление GPT на %1$s"
+msgstr "Отключение квот на %1$s"
 
 #. TRANSLATORS: name of object
 msgid "Disk"
@@ -1708,14 +1708,14 @@ msgstr "ЭиБ"
 #. and /dev/sdb2 (2.00 GiB))
 #, c-format
 msgid "Enable quota on %1$s"
-msgstr ""
+msgstr "Включить квоты на %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
 #, c-format
 msgid "Enabling quota %1$s"
-msgstr ""
+msgstr "Включение квот на %1$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -2206,9 +2206,9 @@ msgstr "Зарезервированный раздел Microsoft"
 #. TRANSLATORS:
 #. %1$s is replaced with the names of the devices with sizes (e.g. /dev/sda1
 #. (10.00 GiB) and /dev/sda2 (10.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Modify btrfs qgroups on %1$s"
-msgstr "Удаление %1$s из %2$s"
+msgstr "Изменить btrfs qgroup на %1$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -2503,14 +2503,12 @@ msgid "Probing stray block devices failed"
 msgstr "Ошибка проверки блочных устройств"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing tmpfs"
-msgstr "Проверка DASD"
+msgstr "Проверка tmpfs"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing tmpfs failed"
-msgstr "Ошибка проверки"
+msgstr "Ошибка проверки tmpfs"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)
@@ -2580,9 +2578,9 @@ msgstr "Удалить точку монтирования %1$s подтома %
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Remove qgroup %1$s on %2$s"
-msgstr "Удалить %1$s из %2$s"
+msgstr "Удалить qgroup %1$s на %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/sdc1),
@@ -2636,9 +2634,9 @@ msgstr "Удаление точки монтирования %1$s подтома
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Removing qgroup %1$s on %2$s"
-msgstr "Удаление %1$s из %2$s"
+msgstr "Удаление qgroup %1$s на %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the old logical volume name (e.g. foo),
@@ -2762,17 +2760,17 @@ msgstr "Установить устаревший загрузочный фла�
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Set limits for qgroup %1$s on %2$s"
-msgstr "Установить параметры настройки %1$s на %2$s"
+msgstr "Задать лимиты для qgroup %1$s на %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Set limits for qgroup of subvolume %1$s on %2$s"
-msgstr "Сделать подтом %1$s на %2$s подтомом по умолчанию"
+msgstr "Задать лимиты для qgroup подтома %1$s на %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -2868,17 +2866,17 @@ msgstr "Установка устаревшего загрузочного фл�
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Setting limits for qgroup %1$s on %2$s"
-msgstr "Установка параметров настройки %1$s на %2$s"
+msgstr "Задание лимитов для qgroup %1$s на %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Setting limits for qgroup of subvolume %1$s on %2$s"
-msgstr "Установка подтома %1$s на %2$s подтомом по умолчанию"
+msgstr "Задание лимитов для qgroup подтома %1$s на %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -3083,36 +3081,36 @@ msgstr "UDF"
 #. %2$s is replaced by the btrfs qgroup id (e.g. 2/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Unassign qgroup %1$s from qgroup %2$s on %3$s"
-msgstr "Уменьшение раздела %1$s с %2$s до %3$s"
+msgstr "Исключить qgroup %1$s из qgroup %2$s на %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Unassign qgroup of subvolume %1$s from qgroup %2$s on %3$s"
-msgstr "Отмонтировать подтом %1$s на %2$s в %3$s"
+msgstr "Исключить qgroup подтома %1$s из qgroup %2$s на %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by the btrfs qgroup id (e.g. 2/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Unassigning qgroup %1$s from qgroup %2$s on %3$s"
-msgstr "Уменьшение раздела %1$s с %2$s до %3$s"
+msgstr "Исключение qgroup %1$s из qgroup %2$s на %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Unassigning qgroup of subvolume %1$s from qgroup %2$s on %3$s"
-msgstr "Отмонтирование подтома %1$s на %2$s в %3$s"
+msgstr "Исключение qgroup подтома %1$s из qgroup %2$s на %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
@@ -3205,7 +3203,7 @@ msgstr "кБ"
 
 #. TRANSLATORS: name of object
 msgid "tmpfs"
-msgstr ""
+msgstr "tmpfs"
 
 #~ msgid "Create MD %1$s %2$s (%3$s)"
 #~ msgstr "Создать MD %1$s %2$s (%3$s)"
