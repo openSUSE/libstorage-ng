@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: libstorage.fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2020-11-05 22:49+0000\n"
+"PO-Revision-Date: 2021-01-05 16:37+0000\n"
 "Last-Translator: Tommi Nieminen <software@legisign.org>\n"
 "Language-Team: Finnish <https://l10n.opensuse.org/projects/libstorage/"
 "ng-sle-15-sp1/fi/>\n"
@@ -2283,19 +2283,17 @@ msgid "Probing partitions on %s failed"
 msgstr "Laitteen %s osioiden tutkiminen epäonnistui"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing stray block device %s failed"
-msgstr "Luodaan osio %1$s (%2$s)"
+msgstr "Irrallisen lohkolaitteen %s tunnustelu epäonnistui"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing stray block devices"
-msgstr "Luodaan osio %1$s (%2$s)"
+msgstr "Tunnustellaan irrallisia lohkolaitteita"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing stray block devices failed"
-msgstr "Luodaan osio %1$s (%2$s)"
+msgstr "Irrallisten lohkolaitteiden tunnustelu epäonnistui"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)
@@ -2740,11 +2738,11 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"
-msgstr ""
+msgstr "Irrallinen lohkolaite"
 
 #. TRANSLATORS: name of object
 msgid "Swap"
-msgstr ""
+msgstr "Sivutus"
 
 #. TRANSLATORS: symbol for "tera" (best keep untranslated)
 msgid "T"
@@ -2760,7 +2758,7 @@ msgstr "TiB"
 
 #. TRANSLATORS: name of object
 msgid "UDF"
-msgstr ""
+msgstr "UDF"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
