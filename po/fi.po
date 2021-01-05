@@ -12,10 +12,10 @@ msgstr ""
 "Project-Id-Version: libstorage.fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-10 10:33+0100\n"
-"PO-Revision-Date: 2020-11-05 22:49+0000\n"
+"PO-Revision-Date: 2021-01-05 16:37+0000\n"
 "Last-Translator: Tommi Nieminen <software@legisign.org>\n"
-"Language-Team: Finnish <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/fi/>\n"
+"Language-Team: Finnish <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2198,9 +2198,9 @@ msgstr "Varattu Microsoft-osio"
 #. TRANSLATORS:
 #. %1$s is replaced with the names of the devices with sizes (e.g. /dev/sda1
 #. (10.00 GiB) and /dev/sda2 (10.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Modify btrfs qgroups on %1$s"
-msgstr "Poistetaan qgroup %1$s laitteelta %2$s"
+msgstr "Muokkaa btrfs:n qgroupsia laitteella %1$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -2483,19 +2483,17 @@ msgid "Probing plain encryptions failed"
 msgstr "Yksinkertaisten salauksien tutkiminen epäonnistui"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing stray block device %s failed"
-msgstr "Luodaan osio %1$s (%2$s)"
+msgstr "Irrallisen lohkolaitteen %s tunnustelu epäonnistui"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing stray block devices"
-msgstr "Luodaan osio %1$s (%2$s)"
+msgstr "Tunnustellaan irrallisia lohkolaitteita"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing stray block devices failed"
-msgstr "Luodaan osio %1$s (%2$s)"
+msgstr "Irrallisten lohkolaitteiden tunnustelu epäonnistui"
 
 #. TRANSLATORS: progress message
 msgid "Probing tmpfs"
@@ -2983,9 +2981,11 @@ msgstr ""
 #. /dev/sdb2 (1.00 GiB)),
 #. %4$s is replaced by old size (e.g. 2.00 GiB),
 #. %5$s is replaced by new size (e.g. 1.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrinking %1$s of %2$s on %3$s from %4$s to %5$s"
-msgstr "Pienennetään %1$s laitteella %2$s koosta %3$s kokoon %4$s"
+msgstr ""
+"Pienennetään tiedostojärjestelmää %1$s (%2$s) laitteilla %3$s koosta %4$s "
+"kokoon %5$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -3057,11 +3057,11 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"
-msgstr ""
+msgstr "Irrallinen lohkolaite"
 
 #. TRANSLATORS: name of object
 msgid "Swap"
-msgstr ""
+msgstr "Sivutus"
 
 #. TRANSLATORS: symbol for "tera" (best keep untranslated)
 msgid "T"
@@ -3077,43 +3077,43 @@ msgstr "TiB"
 
 #. TRANSLATORS: name of object
 msgid "UDF"
-msgstr ""
+msgstr "UDF"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by the btrfs qgroup id (e.g. 2/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Unassign qgroup %1$s from qgroup %2$s on %3$s"
-msgstr "Pienennetään osio %1$s koosta %2$s kokoon %3$s"
+msgstr "Irrotetaan qgroup %1$s qgroupista %2$s laitteilla %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Unassign qgroup of subvolume %1$s from qgroup %2$s on %3$s"
-msgstr "Irrota laitteen %2$s alitaltio %1$s kohdasta %3$s"
+msgstr "Irrotetaan alitaltion %1$s qgroup qgroupista %2$s laitteilla %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by the btrfs qgroup id (e.g. 2/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Unassigning qgroup %1$s from qgroup %2$s on %3$s"
-msgstr "Pienennetään osio %1$s koosta %2$s kokoon %3$s"
+msgstr "Irrotetaan qgroup %1$s qgroupista %2$s laitteilla %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Unassigning qgroup of subvolume %1$s from qgroup %2$s on %3$s"
-msgstr "Irrotetaan laitteen %2$s alitaltio %1$s kohdasta %3$s"
+msgstr "Irrotetaan alitaltion %1$s qgroup qgroupista %2$s laitteilla %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
@@ -3206,7 +3206,7 @@ msgstr "kt"
 
 #. TRANSLATORS: name of object
 msgid "tmpfs"
-msgstr ""
+msgstr "tmpfs"
 
 #~ msgid "Create MD %1$s %2$s (%3$s)"
 #~ msgstr "Luo MD %1$s -laite %2$s (%3$s)"
