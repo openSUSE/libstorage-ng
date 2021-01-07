@@ -339,7 +339,7 @@
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/test -d '/sys/firmware/efi/vars'</name>
+      <name>/usr/bin/test -d '/sys/firmware/efi/efivars'</name>
     </Command>
     <Command>
       <name>/usr/bin/uname -m</name>
