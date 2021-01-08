@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -499,7 +499,7 @@ namespace storage
 	if (!get_label().empty() && supports_modify_label())
 	    actions.push_back(new Action::SetLabel(get_sid()));
 
-	if (!get_uuid().empty())
+	if (!get_uuid().empty() && supports_modify_uuid())
 	    actions.push_back(new Action::SetUuid(get_sid()));
 
 	if (!tune_options.empty())
