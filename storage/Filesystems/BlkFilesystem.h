@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -53,15 +53,39 @@ namespace storage
 	 */
 	static std::vector<const BlkFilesystem*> get_all(const Devicegraph* devicegraph);
 
+	/**
+	 * Return whether the filesystem supports a label.
+	 */
 	bool supports_label() const;
+
+	/**
+	 * Return the maximal allowed filesystem label length.
+	 */
 	unsigned int max_labelsize() const;
 
+	/**
+	 * Get the filesystem label.
+	 */
 	const std::string& get_label() const;
+
+	/**
+	 * Set the filesystem label.
+	 */
 	void set_label(const std::string& label);
 
+	/**
+	 * Return whether the filesystem supports a UUID.
+	 */
 	bool supports_uuid() const;
 
+	/**
+	 * Get the filesystem UUID. May be empty.
+	 */
 	const std::string& get_uuid() const;
+
+	/**
+	 * Set the filesystem UUID. Only supported for swap.
+	 */
 	void set_uuid(const std::string& uuid);
 
 	/**
@@ -141,9 +165,15 @@ namespace storage
 	 */
 	void set_content_info(const ContentInfo& content_info);
 
+	/**
+	 * Find filesystems by label.
+	 */
 	static std::vector<const BlkFilesystem*> find_by_label(const Devicegraph* devicegraph,
 							       const std::string& label);
 
+	/**
+	 * Find filesystems by UUID.
+	 */
 	static std::vector<const BlkFilesystem*> find_by_uuid(const Devicegraph* devicegraph,
 							      const std::string& uuid);
 
