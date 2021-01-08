@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -72,6 +72,7 @@ namespace storage
 	void set_label(const string& label) { Impl::label = label; }
 
 	virtual bool supports_uuid() const = 0;
+	virtual bool supports_modify_uuid() const { return false; }
 
 	const string& get_uuid() const { return uuid; }
 	void set_uuid(const string& uuid) { Impl::uuid = uuid; }

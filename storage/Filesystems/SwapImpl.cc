@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -109,9 +109,12 @@ namespace storage
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
-	// TODO uuid is included in mkswap output
+	if (get_uuid().empty())
+	{
+	    // TODO uuid is included in mkswap output
 
-	probe_uuid();
+	    probe_uuid();
+	}
     }
 
 
