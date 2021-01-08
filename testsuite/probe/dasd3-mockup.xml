@@ -33,7 +33,7 @@
       <stdout>4096</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/test -d '/sys/firmware/efi/vars'</name>
+      <name>/usr/bin/test -d '/sys/firmware/efi/efivars'</name>
       <exit-code>1</exit-code>
     </Command>
     <Command>
