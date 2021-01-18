@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-10 10:33+0100\n"
+"POT-Creation-Date: 2021-01-18 12:39+0100\n"
 "PO-Revision-Date: 2004-08-09 10:24+0200\n"
 "Last-Translator: xxx <yyy@example.org>\n"
 "Language-Team: Hebrew <i18n@suse.de>\n"
@@ -2536,6 +2536,13 @@ msgid "Mount subvolume %1$s on %2$s at %3$s"
 msgstr "צור %1 מחיצה %2 )%3 עם %4("
 
 #  normal text e.g. "Set mount point of /dev/hda1 to /usr"
+#. TRANSLATORS:
+#. %1$s is replaced with the mount point (e.g. /tmp)
+#, fuzzy, c-format
+msgid "Mount tmpfs at %1$s"
+msgstr "קבע את מחיצת העגינה של %1 ל %2"
+
+#  normal text e.g. "Set mount point of /dev/hda1 to /usr"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB)),
@@ -3515,6 +3522,13 @@ msgstr "קבע את מחיצת העגינה של %1 ל %2"
 #, fuzzy, c-format
 msgid "Unmount subvolume %1$s on %2$s at %3$s"
 msgstr "להסיר את הכרך הלוגי %1 ?"
+
+#  normal text e.g. "Set mount point of /dev/hda1 to /usr"
+#. TRANSLATORS:
+#. %1$s is replaced with the mount point (e.g. /tmp)
+#, fuzzy, c-format
+msgid "Unmount tmpfs at %1$s"
+msgstr "קבע את מחיצת העגינה של %1 ל %2"
 
 #  normal text e.g. "Set mount point of /dev/hda1 to /usr"
 #. TRANSLATORS: displayed during action,

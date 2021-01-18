@@ -10,11 +10,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-10 10:33+0100\n"
+"POT-Creation-Date: 2021-01-18 12:39+0100\n"
 "PO-Revision-Date: 2020-11-10 13:50+0000\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
-"Language-Team: Japanese <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/ja/>\n"
+"Language-Team: Japanese <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2284,6 +2284,12 @@ msgstr "パーティション %1$s (%2$s) の %3$s へのマウント"
 msgid "Mount subvolume %1$s on %2$s at %3$s"
 msgstr "%2$s 内のサブボリューム %1$s に対する %3$s へのマウント"
 
+#. TRANSLATORS:
+#. %1$s is replaced with the mount point (e.g. /tmp)
+#, fuzzy, c-format
+msgid "Mount tmpfs at %1$s"
+msgstr "%1$s に対する %2$s へのマウント"
+
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB)),
@@ -3165,6 +3171,12 @@ msgstr "ファイルシステム btrfs %1$s の %2$s からのマウント解除
 #, c-format
 msgid "Unmount subvolume %1$s on %2$s at %3$s"
 msgstr "%2$s 内のサブボリューム %1$s に対する %3$s からのマウント解除"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the mount point (e.g. /tmp)
+#, fuzzy, c-format
+msgid "Unmount tmpfs at %1$s"
+msgstr "%1$s に対する %2$s からのマウント解除"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)

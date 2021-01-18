@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.ko\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-10 10:33+0100\n"
+"POT-Creation-Date: 2021-01-18 12:39+0100\n"
 "PO-Revision-Date: 2019-04-04 15:03+0000\n"
 "Last-Translator: Hwajin Kim <hwajin.kim@e4net.net>\n"
 "Language-Team: Korean <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -2373,6 +2373,12 @@ msgstr "%1$s(%2$s) 파티션을 %3$s에 마운트"
 msgid "Mount subvolume %1$s on %2$s at %3$s"
 msgstr "%2$s에서 %3$s에 하위 볼륨 %1$s 탑재"
 
+#. TRANSLATORS:
+#. %1$s is replaced with the mount point (e.g. /tmp)
+#, fuzzy, c-format
+msgid "Mount tmpfs at %1$s"
+msgstr "%2$s에 %1$s 탑재"
+
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB)),
@@ -3258,6 +3264,12 @@ msgstr "%1$s의 파일 시스템 btrfs를 %2$s에 마운트 해제"
 #, c-format
 msgid "Unmount subvolume %1$s on %2$s at %3$s"
 msgstr "%2$s에서 %1$s 하위 볼륨을 %3$s(으)로 탑재 해제"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the mount point (e.g. /tmp)
+#, fuzzy, c-format
+msgid "Unmount tmpfs at %1$s"
+msgstr "%1$s을(를) %2$s(으)로 탑재 해제"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)

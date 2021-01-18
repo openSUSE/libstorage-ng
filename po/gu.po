@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-10 10:33+0100\n"
+"POT-Creation-Date: 2021-01-18 12:39+0100\n"
 "PO-Revision-Date: 2005-07-29 15:37+0530\n"
 "Last-Translator: i18n@suse.de\n"
 "Language-Team: Gujarati <i18n@suse.de>\n"
@@ -2203,6 +2203,12 @@ msgstr " પાર્ટીશન %1$s (%2$s) ને %3$s  દ્વારા �
 msgid "Mount subvolume %1$s on %2$s at %3$s"
 msgstr " બૂટ પાર્ટીશન %1$s (%2$s) ને %3$s  દ્વારા બનાવો "
 
+#. TRANSLATORS:
+#. %1$s is replaced with the mount point (e.g. /tmp)
+#, fuzzy, c-format
+msgid "Mount tmpfs at %1$s"
+msgstr " %1$s ને %2$s પર માઉન્ટ કરી રહ્યા છીએ "
+
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB)),
@@ -3074,6 +3080,12 @@ msgstr " %1$s ને %2$s પર માઉન્ટ કરી રહ્યા �
 #, fuzzy, c-format
 msgid "Unmount subvolume %1$s on %2$s at %3$s"
 msgstr "nfs વોલ્યુમ %1$s દૂર થઇ રહ્યું છે"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the mount point (e.g. /tmp)
+#, fuzzy, c-format
+msgid "Unmount tmpfs at %1$s"
+msgstr " %1$s ને %2$s પર માઉન્ટ કરી રહ્યા છીએ "
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-10 10:33+0100\n"
+"POT-Creation-Date: 2021-01-18 12:39+0100\n"
 "PO-Revision-Date: 2020-10-29 08:49+0000\n"
 "Last-Translator: Paolo Za <zapaolo@email.it>\n"
 "Language-Team: Italian <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -2483,6 +2483,12 @@ msgstr "Monta la partizione %1$s (%2$s) in %3$s"
 msgid "Mount subvolume %1$s on %2$s at %3$s"
 msgstr "Monta il sottovolume %1$s su %2$s in %3$s"
 
+#. TRANSLATORS:
+#. %1$s is replaced with the mount point (e.g. /tmp)
+#, fuzzy, c-format
+msgid "Mount tmpfs at %1$s"
+msgstr "Monta %1$s da %2$s"
+
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB)),
@@ -3360,6 +3366,12 @@ msgstr "Smonta il file system btrfs su %1$s da %2$s"
 #, c-format
 msgid "Unmount subvolume %1$s on %2$s at %3$s"
 msgstr "Smonta il sottovolume %1$s su %2$s da %3$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the mount point (e.g. /tmp)
+#, fuzzy, c-format
+msgid "Unmount tmpfs at %1$s"
+msgstr "Smonta %1$s da %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)

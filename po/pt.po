@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-10 10:33+0100\n"
+"POT-Creation-Date: 2021-01-18 12:39+0100\n"
 "PO-Revision-Date: 2011-11-10 23:28+0100\n"
 "Last-Translator: Elisio Catana <ecatana@gmail.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -2200,6 +2200,12 @@ msgstr "Formatar partição %1$s (%2$s) com %3$s"
 msgid "Mount subvolume %1$s on %2$s at %3$s"
 msgstr "Criar partição boot %1$s (%2$s) with %3$s"
 
+#. TRANSLATORS:
+#. %1$s is replaced with the mount point (e.g. /tmp)
+#, fuzzy, c-format
+msgid "Mount tmpfs at %1$s"
+msgstr "A montar %1$s para %2$s"
+
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB)),
@@ -3066,6 +3072,12 @@ msgstr "A montar %1$s para %2$s"
 #, fuzzy, c-format
 msgid "Unmount subvolume %1$s on %2$s at %3$s"
 msgstr "A remover o sub volume %1$s no dispositivo %2$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the mount point (e.g. /tmp)
+#, fuzzy, c-format
+msgid "Unmount tmpfs at %1$s"
+msgstr "A montar %1$s para %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
