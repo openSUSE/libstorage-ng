@@ -11,9 +11,9 @@ libcompformatter_la_SOURCES =				\
 	BtrfsSubvolume.h	BtrfsSubvolume.cc	\
 	Btrfs.h			Btrfs.cc		\
 	Nfs.h			Nfs.cc			\
+	Tmpfs.h			Tmpfs.cc		\
 	Md.h			Md.cc			\
 	StrayBlkDevice.h	StrayBlkDevice.cc	\
 	Bcache.h		Bcache.cc
-
 
 pkgincludedir = $(includedir)/storage/CompoundAction/Formatter

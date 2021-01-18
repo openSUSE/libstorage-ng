@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2020] SUSE LLC
+ * Copyright (c) [2017-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -51,7 +51,8 @@ namespace storage
 	class LvmLv;
 	class LvmVg;
 	class Nfs;
-        class Md;
+	class Tmpfs;
+	class Md;
 	class Partition;
 	class StrayBlkDevice;
 

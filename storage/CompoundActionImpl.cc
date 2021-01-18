@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2020] SUSE LLC
+ * Copyright (c) [2017-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -31,6 +31,7 @@
 #include "storage/CompoundAction/Formatter/LvmVg.h"
 #include "storage/CompoundAction/Formatter/Md.h"
 #include "storage/CompoundAction/Formatter/Nfs.h"
+#include "storage/CompoundAction/Formatter/Tmpfs.h"
 #include "storage/CompoundAction/Formatter/Partition.h"
 #include "storage/CompoundAction/Formatter/StrayBlkDevice.h"
 #include "storage/ActiongraphImpl.h"
@@ -108,6 +109,9 @@ namespace storage
 
 	else if (is_nfs(target_device))
 	    return CompoundAction::Formatter::Nfs(this).string_representation();
+
+	else if (is_tmpfs(target_device))
+	    return CompoundAction::Formatter::Tmpfs(this).string_representation();
 
 	else if (is_bcache(target_device))
 	    return CompoundAction::Formatter::Bcache(this).string_representation();
