@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-10 10:33+0100\n"
+"POT-Creation-Date: 2021-01-18 12:39+0100\n"
 "PO-Revision-Date: 2001-10-18 11:02+0200\n"
 "Last-Translator: Janez Krek <janez.krek@euroteh.si>\n"
 "Language-Team: Slovenian\n"
@@ -2208,6 +2208,12 @@ msgstr "Kreiraj %1 particijo velikosti  %2 (%3 z %4)"
 msgid "Mount subvolume %1$s on %2$s at %3$s"
 msgstr "Kreiraj %1 particijo velikosti  %2 (%3 z %4)"
 
+#. TRANSLATORS:
+#. %1$s is replaced with the mount point (e.g. /tmp)
+#, fuzzy, c-format
+msgid "Mount tmpfs at %1$s"
+msgstr "Priključevanje korenskega razdelka %1 na %2"
+
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB)),
@@ -3079,6 +3085,12 @@ msgstr "Priključevanje korenskega razdelka %1 na %2"
 #, fuzzy, c-format
 msgid "Unmount subvolume %1$s on %2$s at %3$s"
 msgstr "Odstranim logični nosilec %1?"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the mount point (e.g. /tmp)
+#, fuzzy, c-format
+msgid "Unmount tmpfs at %1$s"
+msgstr "Priključevanje korenskega razdelka %1 na %2"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)

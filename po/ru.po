@@ -4,17 +4,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-10 10:33+0100\n"
+"POT-Creation-Date: 2021-01-18 12:39+0100\n"
 "PO-Revision-Date: 2021-01-04 16:37+0000\n"
 "Last-Translator: Alex Minton <alex239@gmail.com>\n"
-"Language-Team: Russian <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/ru/>\n"
+"Language-Team: Russian <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
-"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.6.1\n"
 
 msgid ""
@@ -2281,6 +2281,12 @@ msgstr "Монтировать раздел %1$s (%2$s) в %3$s"
 msgid "Mount subvolume %1$s on %2$s at %3$s"
 msgstr "Монтировать подтом %1$s на %2$s в %3$s"
 
+#. TRANSLATORS:
+#. %1$s is replaced with the mount point (e.g. /tmp)
+#, fuzzy, c-format
+msgid "Mount tmpfs at %1$s"
+msgstr "Монтировать %1$s в %2$s"
+
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB)),
@@ -3143,6 +3149,12 @@ msgstr "Отмонтировать файловую систему btrfs %1$s в
 #, c-format
 msgid "Unmount subvolume %1$s on %2$s at %3$s"
 msgstr "Отмонтировать подтом %1$s на %2$s в %3$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the mount point (e.g. /tmp)
+#, fuzzy, c-format
+msgid "Unmount tmpfs at %1$s"
+msgstr "Отмонтировать %1$s в %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)

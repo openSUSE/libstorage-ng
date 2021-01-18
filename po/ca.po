@@ -8,11 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-10 10:33+0100\n"
+"POT-Creation-Date: 2021-01-18 12:39+0100\n"
 "PO-Revision-Date: 2020-11-10 18:50+0000\n"
 "Last-Translator: David Medina <medipas@gmail.com>\n"
-"Language-Team: Catalan <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/ca/>\n"
+"Language-Team: Catalan <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/ca/>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2258,6 +2258,12 @@ msgstr "Munta la partició %1$s (%2$s) com a %3$s"
 msgid "Mount subvolume %1$s on %2$s at %3$s"
 msgstr "Munta el subvolum %1$s de %2$s a %3$s"
 
+#. TRANSLATORS:
+#. %1$s is replaced with the mount point (e.g. /tmp)
+#, fuzzy, c-format
+msgid "Mount tmpfs at %1$s"
+msgstr "Munta %1$s de %2$s"
+
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB)),
@@ -3129,6 +3135,12 @@ msgstr "Desmunta el sistema de fitxers btrfs %1$s de %2$s"
 #, c-format
 msgid "Unmount subvolume %1$s on %2$s at %3$s"
 msgstr "Desmunta el subvolum %1$s de %2$s a %3$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the mount point (e.g. /tmp)
+#, fuzzy, c-format
+msgid "Unmount tmpfs at %1$s"
+msgstr "Desmunta %1$s de %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)

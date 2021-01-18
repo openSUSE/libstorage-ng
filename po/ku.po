@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: memory.ku.po\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-10 10:33+0100\n"
+"POT-Creation-Date: 2021-01-18 12:39+0100\n"
 "PO-Revision-Date: 2005-09-23 00:15+0200\n"
 "Last-Translator: Kurdish Team <i18n@suse.de>\n"
 "Language-Team: Kurdish Team <i18n@suse.de>\n"
@@ -2201,6 +2201,12 @@ msgstr "Beş-kirina Nû Biafirîne"
 msgid "Mount subvolume %1$s on %2$s at %3$s"
 msgstr ""
 
+#. TRANSLATORS:
+#. %1$s is replaced with the mount point (e.g. /tmp)
+#, fuzzy, c-format
+msgid "Mount tmpfs at %1$s"
+msgstr "%1$s Rake"
+
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB)),
@@ -3069,6 +3075,12 @@ msgstr "%1$s tê rakirin"
 #, c-format
 msgid "Unmount subvolume %1$s on %2$s at %3$s"
 msgstr ""
+
+#. TRANSLATORS:
+#. %1$s is replaced with the mount point (e.g. /tmp)
+#, fuzzy, c-format
+msgid "Unmount tmpfs at %1$s"
+msgstr "%1$s tê rakirin"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)

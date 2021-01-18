@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast memory\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-10 10:33+0100\n"
+"POT-Creation-Date: 2021-01-18 12:39+0100\n"
 "PO-Revision-Date: 2011-02-08 22:07+0100\n"
 "Last-Translator: Jean Cayron <jean.cayron@gmail.com>\n"
 "Language-Team: Walloon <linux-wa@walon.org>\n"
@@ -2199,6 +2199,12 @@ msgstr "Abwesner l' pårticion %1$s (%2$s) avou %3$s"
 msgid "Mount subvolume %1$s on %2$s at %3$s"
 msgstr "Ahiver l' volume boot %1$s (%2$s) avou %3$s"
 
+#. TRANSLATORS:
+#. %1$s is replaced with the mount point (e.g. /tmp)
+#, fuzzy, c-format
+msgid "Mount tmpfs at %1$s"
+msgstr "Dji monte %1$s so %2$s"
+
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB)),
@@ -3065,6 +3071,12 @@ msgstr "Dji monte %1$s so %2$s"
 #, fuzzy, c-format
 msgid "Unmount subvolume %1$s on %2$s at %3$s"
 msgstr "Dji oistêye li volume %1$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the mount point (e.g. /tmp)
+#, fuzzy, c-format
+msgid "Unmount tmpfs at %1$s"
+msgstr "Dji monte %1$s so %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
