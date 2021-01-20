@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2019] SUSE LLC
+ * Copyright (c) [2017-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -47,7 +47,9 @@ namespace storage
 
 	Text delete_text() const;
 
-	Text create_with_no_copy_text() const;
+	Text create_with_nocow_text() const;
+	Text create_with_limits_text() const;
+	Text create_with_nocow_and_limits_text() const;
 	Text create_text() const;
 
     private:

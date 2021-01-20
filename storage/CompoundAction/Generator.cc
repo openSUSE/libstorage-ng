@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2020] SUSE LLC
+ * Copyright (c) [2017-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -25,6 +25,7 @@
 #include "storage/CompoundAction/Generator.h"
 #include "storage/CompoundActionImpl.h"
 #include "storage/Filesystems/BtrfsImpl.h"
+#include "storage/Filesystems/BtrfsSubvolumeImpl.h"
 #include "storage/Filesystems/BtrfsQgroupImpl.h"
 #include "storage/Holders/BtrfsQgroupRelationImpl.h"
 #include "storage/Redirect.h"
@@ -91,8 +92,16 @@ namespace storage
 	    if (create_action && is_btrfs_qgroup(create_action->get_device(actiongraph->get_impl())))
 	    {
 		const BtrfsQgroup* tmp = to_btrfs_qgroup(create_action->get_device(actiongraph->get_impl()));
-		const Btrfs* btrfs = tmp->get_btrfs();
-		return make_pair(btrfs, CompoundAction::Impl::Type::BTRFS_QGROUPS);
+		if (tmp->get_impl().has_btrfs_subvolume())
+		{
+		    const BtrfsSubvolume* btrfs_subvolume = tmp->get_impl().get_btrfs_subvolume();
+		    return make_pair(btrfs_subvolume, CompoundAction::Impl::Type::NORMAL);
+		}
+		else
+		{
+		    const Btrfs* btrfs = tmp->get_btrfs();
+		    return make_pair(btrfs, CompoundAction::Impl::Type::BTRFS_QGROUPS);
+		}
 	    }
 
 	    const Action::Delete* delete_action = dynamic_cast<const Action::Delete*>(action);
@@ -108,8 +117,16 @@ namespace storage
 	    if (set_limits_action)
 	    {
 		const BtrfsQgroup* tmp = to_btrfs_qgroup(set_limits_action->get_device(actiongraph->get_impl(), RHS));
-		const Btrfs* btrfs = tmp->get_btrfs();
-		return make_pair(btrfs, CompoundAction::Impl::Type::BTRFS_QGROUPS);
+		if (tmp->get_impl().has_btrfs_subvolume())
+		{
+		    const BtrfsSubvolume* btrfs_subvolume = tmp->get_impl().get_btrfs_subvolume();
+		    return make_pair(btrfs_subvolume, CompoundAction::Impl::Type::NORMAL);
+		}
+		else
+		{
+		    const Btrfs* btrfs = tmp->get_btrfs();
+		    return make_pair(btrfs, CompoundAction::Impl::Type::BTRFS_QGROUPS);
+		}
 	    }
 
 	    return make_pair(CompoundAction::Impl::get_target_device(actiongraph, action), CompoundAction::Impl::Type::NORMAL);
