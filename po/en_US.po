@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-18 12:39+0100\n"
+"POT-Creation-Date: 2021-01-20 09:42+0100\n"
 "PO-Revision-Date: 2002-07-18 14:04+0200\n"
 "Last-Translator: proofreader <i18n@suse.de>\n"
 "Language-Team: English <i18n@suse.de>\n"
@@ -897,7 +897,25 @@ msgstr "Create MD5 sums"
 #. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
 #. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
 #, fuzzy, c-format
+msgid "Create subvolume %1$s on %2$s with limits for qgroup"
+msgstr "Create MD5 sums"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the subvolume path (e.g. var/log),
+#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
+#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
+#, fuzzy, c-format
 msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"
+msgstr "Create MD5 sums"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the subvolume path (e.g. var/log),
+#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
+#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
+#, fuzzy, c-format
+msgid ""
+"Create subvolume %1$s on %2$s with option 'no copy on write' and limits for "
+"qgroup"
 msgstr "Create MD5 sums"
 
 #. TRANSLATORS: displayed before action,

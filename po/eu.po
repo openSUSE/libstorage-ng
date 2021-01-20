@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-18 12:39+0100\n"
+"POT-Creation-Date: 2021-01-20 09:42+0100\n"
 "PO-Revision-Date: 2003-02-12 10:23+0100\n"
 "Last-Translator: i18n@suse.de\n"
 "Language-Team: Basque <i18n@suse.de>\n"
@@ -895,7 +895,25 @@ msgstr ""
 #. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
 #. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
 #, c-format
+msgid "Create subvolume %1$s on %2$s with limits for qgroup"
+msgstr ""
+
+#. TRANSLATORS:
+#. %1$s is replaced with the subvolume path (e.g. var/log),
+#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
+#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
+#, c-format
 msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"
+msgstr ""
+
+#. TRANSLATORS:
+#. %1$s is replaced with the subvolume path (e.g. var/log),
+#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
+#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
+#, c-format
+msgid ""
+"Create subvolume %1$s on %2$s with option 'no copy on write' and limits for "
+"qgroup"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
