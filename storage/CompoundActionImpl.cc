@@ -20,8 +20,6 @@
  */
 
 
-#include <boost/algorithm/string/join.hpp>
-
 #include "storage/CompoundActionImpl.h"
 #include "storage/CompoundAction/Generator.h"
 #include "storage/CompoundAction/Formatter/Bcache.h"
@@ -62,65 +60,66 @@ namespace storage
     }
 
 
-    vector<string>
-    CompoundAction::Impl::get_commit_actions_as_strings() const
+    vector<Text>
+    CompoundAction::Impl::get_commit_actions_as_texts() const
     {
 	const CommitData commit_data(actiongraph->get_impl(), Tense::SIMPLE_PRESENT);
 
-	vector<string> ret;
+	vector<Text> ret;
+
 	for (const Action::Base* action : commit_actions)
-	    ret.push_back(action->text(commit_data).translated);
+	    ret.push_back(action->text(commit_data));
 
 	return ret;
     }
 
 
-    string
+    Text
     CompoundAction::Impl::sentence() const
     {
 	if (is_partition(target_device))
-	    return CompoundAction::Formatter::Partition(this).string_representation();
+	    return CompoundAction::Formatter::Partition(this).text();
 
 	else if (is_stray_blk_device(target_device))
-	    return CompoundAction::Formatter::StrayBlkDevice(this).string_representation();
+	    return CompoundAction::Formatter::StrayBlkDevice(this).text();
 
 	else if (is_lvm_lv(target_device))
-	    return CompoundAction::Formatter::LvmLv(this).string_representation();
+	    return CompoundAction::Formatter::LvmLv(this).text();
 
 	else if (is_lvm_vg(target_device))
-	    return CompoundAction::Formatter::LvmVg(this).string_representation();
+	    return CompoundAction::Formatter::LvmVg(this).text();
 
 	else if (is_btrfs(target_device))
 	{
 	    switch (type)
 	    {
 		case Type::BTRFS_QUOTA:
-		    return CompoundAction::Formatter::BtrfsQuota(this).string_representation();
+		    return CompoundAction::Formatter::BtrfsQuota(this).text();
 
 		case Type::BTRFS_QGROUPS:
-		    return CompoundAction::Formatter::BtrfsQgroups(this).string_representation();
+		    return CompoundAction::Formatter::BtrfsQgroups(this).text();
 
 		default:
-		    return CompoundAction::Formatter::Btrfs(this).string_representation();
+		    return CompoundAction::Formatter::Btrfs(this).text();
 	    }
 	}
 	else if (is_btrfs_subvolume(target_device))
-	    return CompoundAction::Formatter::BtrfsSubvolume(this).string_representation();
+	    return CompoundAction::Formatter::BtrfsSubvolume(this).text();
 
 	else if (is_nfs(target_device))
-	    return CompoundAction::Formatter::Nfs(this).string_representation();
+	    return CompoundAction::Formatter::Nfs(this).text();
 
 	else if (is_tmpfs(target_device))
-	    return CompoundAction::Formatter::Tmpfs(this).string_representation();
+	    return CompoundAction::Formatter::Tmpfs(this).text();
 
 	else if (is_bcache(target_device))
-	    return CompoundAction::Formatter::Bcache(this).string_representation();
+	    return CompoundAction::Formatter::Bcache(this).text();
 
 	else if (is_md(target_device))
-	    return CompoundAction::Formatter::Md(this).string_representation();
+	    return CompoundAction::Formatter::Md(this).text();
 
 	else
-	    return boost::algorithm::join(get_commit_actions_as_strings(), "\n");
+	    return join(get_commit_actions_as_texts(), JoinMode::NEWLINE, 0);
     }
 
 

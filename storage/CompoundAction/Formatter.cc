@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2020] SUSE LLC
+ * Copyright (c) [2017-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -45,13 +45,6 @@ namespace storage
         _formatting = has_create<storage::BlkFilesystem>();
         _encrypting = has_create<storage::Encryption>();
         _mounting   = has_create<storage::MountPoint>();
-    }
-
-
-    string
-    CompoundAction::Formatter::string_representation() const
-    {
-	return text().translated;
     }
 
 
@@ -134,9 +127,7 @@ namespace storage
     Text
     CompoundAction::Formatter::default_text() const
     {
-	const CommitData commit_data(_compound_action->get_actiongraph()->get_impl(), Tense::SIMPLE_PRESENT);
-	auto first_action = _compound_action->get_commit_actions().front();
-	return first_action->text(commit_data);
+	return join(_compound_action->get_commit_actions_as_texts(), JoinMode::NEWLINE, 0);
     }
 
 }

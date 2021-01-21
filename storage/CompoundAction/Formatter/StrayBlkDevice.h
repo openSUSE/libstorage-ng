@@ -39,9 +39,9 @@ namespace storage
 
 	StrayBlkDevice( const CompoundAction::Impl* compound_action );
 
-    private:
-
 	virtual Text text() const override;
+
+    private:
 
 	Text format_as_swap_text() const;
 	Text format_as_encrypted_swap_text() const;

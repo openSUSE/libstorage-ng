@@ -38,9 +38,9 @@ namespace storage
 
 	Bcache(const CompoundAction::Impl* compound_action);
 
-    private:
-
 	virtual Text text() const override;
+
+    private:
 
 	Text blk_devices_text() const;
 

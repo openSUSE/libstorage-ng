@@ -101,7 +101,7 @@ namespace storage
      * Joins the values either with newlines or commas depending on
      * the join_mode. The number of values included in the result is
      * limited by limit. If values are omitted the result includes a
-     * text like "and 7 more".
+     * text like "and 7 more". A limit of 0 means no limit.
      */
     Text
     join(const vector<Text>& values, JoinMode join_mode, size_t limit);

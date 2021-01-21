@@ -40,11 +40,11 @@ namespace storage
 
 	LvmVg(const CompoundAction::Impl* compound_action);
 
+	virtual Text text() const override;
+
     private:
 
 	Text blk_devices_text() const;
-
-	virtual Text text() const override;
 
 	Text create_with_pvs_text() const;
 	Text create_text() const;

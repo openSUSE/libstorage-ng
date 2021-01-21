@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2020] SUSE LLC
+ * Copyright (c) [2017-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -35,7 +35,6 @@ namespace storage
 {
 
     using std::vector;
-    using std::string;
 
     class PartitionTable;
     class Encryption;
@@ -64,13 +63,9 @@ namespace storage
 
 	void add_commit_action(const Action::Base* action);
 
-    private:
+	vector<Text> get_commit_actions_as_texts() const;
 
-	vector<string> get_commit_actions_as_strings() const;
-
-    public:
-
-	string sentence() const;
+	Text sentence() const;
 
 	bool is_delete() const;
 
