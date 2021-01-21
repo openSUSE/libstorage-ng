@@ -61,10 +61,6 @@ namespace storage
 
 	virtual ~Formatter() {}
 
-	string string_representation() const;
-
-    private:
-
 	virtual Text text() const = 0;
 
     protected:

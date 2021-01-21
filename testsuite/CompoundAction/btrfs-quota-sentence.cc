@@ -192,4 +192,32 @@ BOOST_AUTO_TEST_CASE(test_enable1)
 }
 
 
+BOOST_AUTO_TEST_CASE(test_modify1)
+{
+    initialize_staging_with_three_partitions();
+    Btrfs* btrfs = to_btrfs(sda2->create_blk_filesystem(FsType::BTRFS));
+    btrfs->set_quota(true);
+
+    BtrfsSubvolume* toplevel = btrfs->get_top_level_btrfs_subvolume();
+
+    BtrfsSubvolume* subvolume1 = toplevel->create_btrfs_subvolume("test1");
+
+    copy_staging_to_probed();
+
+    subvolume1->set_nocow(true);
+    BtrfsQgroup* group1 = subvolume1->get_btrfs_qgroup();
+    group1->set_exclusive_limit(1 * GiB);
+
+    const Actiongraph* actiongraph = storage->calculate_actiongraph();
+    vector<const CompoundAction*> compound_actions = actiongraph->get_compound_actions();
+
+    BOOST_REQUIRE_EQUAL(compound_actions.size(), 1);
+
+    // TODO the order here could be different
+
+    BOOST_CHECK_EQUAL(compound_actions[0]->sentence(), "Set limits for qgroup of subvolume test1 on /dev/sda2 (500.00 MiB)" "\n"
+		      "Set option 'no copy on write' for subvolume test1 on /dev/sda2 (500.00 MiB)");
+}
+
+
 BOOST_AUTO_TEST_SUITE_END()

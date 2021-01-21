@@ -39,11 +39,11 @@ namespace storage
 
 	BtrfsSubvolume(const CompoundAction::Impl* compound_action);
 
+	virtual Text text() const override;
+
     private:
 
 	Text blk_devices_text() const;
-
-	virtual Text text() const override;
 
 	Text delete_text() const;
 

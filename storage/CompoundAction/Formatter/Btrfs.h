@@ -38,11 +38,11 @@ namespace storage
 
 	Btrfs(const CompoundAction::Impl* compound_action);
 
+	virtual Text text() const override;
+
     private:
 
 	Text blk_devices_text() const;
-
-	virtual Text text() const override;
 
 	Text delete_text() const;
 	Text create_and_mount_text() const;
@@ -62,11 +62,11 @@ namespace storage
 
 	BtrfsQuota(const CompoundAction::Impl* compound_action);
 
+	virtual Text text() const override;
+
     private:
 
 	Text blk_devices_text() const;
-
-	virtual Text text() const override;
 
 	const storage::Btrfs* btrfs = nullptr;
 
@@ -80,11 +80,11 @@ namespace storage
 
 	BtrfsQgroups(const CompoundAction::Impl* compound_action);
 
+	virtual Text text() const override;
+
     private:
 
 	Text blk_devices_text() const;
-
-	virtual Text text() const override;
 
 	const storage::Btrfs* btrfs = nullptr;
 

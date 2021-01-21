@@ -85,11 +85,11 @@ namespace storage
 	size_t n1 = values.size();
 
 	// number of texts to include in result, limit is at least 2
-	size_t n2 = min(n1, max(limit, (size_t)(2)));
+	size_t n2 = limit == 0 ? n1 : min(n1, max(limit, (size_t)(2)));
 
 	Text ret;
 
-	for (size_t i = 0; i < n2; i++)
+	for (size_t i = 0; i < n2; ++i)
 	{
 	    if (i == 0)
 	    {

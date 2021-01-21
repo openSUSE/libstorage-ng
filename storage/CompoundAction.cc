@@ -47,7 +47,7 @@ namespace storage
     string
     CompoundAction::sentence() const
     {
-	return get_impl().sentence();
+	return get_impl().sentence().translated;
     }
 
 

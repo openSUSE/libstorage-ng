@@ -39,9 +39,9 @@ namespace storage
 
 	LvmLv(const CompoundAction::Impl* compound_action);
 
-    private:
-
 	virtual Text text() const override;
+
+    private:
 
 	Text create_encrypted_with_swap_text() const;
 	Text create_with_swap_text() const;

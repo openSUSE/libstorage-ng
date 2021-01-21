@@ -38,9 +38,9 @@ namespace storage
 
 	Nfs(const CompoundAction::Impl* compound_action);
 
-    private:
-
 	virtual Text text() const override;
+
+    private:
 
 	Text mount_text() const;
 	Text unmount_text() const;
