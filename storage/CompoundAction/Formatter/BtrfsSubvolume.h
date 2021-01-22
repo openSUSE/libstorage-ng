@@ -47,10 +47,9 @@ namespace storage
 
 	Text delete_text() const;
 
-	Text create_with_nocow_text() const;
-	Text create_with_limits_text() const;
-	Text create_with_nocow_and_limits_text() const;
 	Text create_text() const;
+
+	Text edit_text() const;
 
     private:
 

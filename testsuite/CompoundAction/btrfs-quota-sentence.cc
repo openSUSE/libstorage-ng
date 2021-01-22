@@ -108,11 +108,11 @@ BOOST_AUTO_TEST_CASE(test_create3)
     BOOST_CHECK_EQUAL(compound_actions[1]->sentence(),
 		      "Enable quota on /dev/sda2 (500.00 MiB)");
     BOOST_CHECK_EQUAL(compound_actions[2]->sentence(),
-		      "Create subvolume test4 on /dev/sda2 (500.00 MiB) with option 'no copy on write' and limits for qgroup");
+		      "Create subvolume test4 on /dev/sda2 (500.00 MiB)");
     BOOST_CHECK_EQUAL(compound_actions[3]->sentence(),
-		      "Create subvolume test3 on /dev/sda2 (500.00 MiB) with option 'no copy on write'");
+		      "Create subvolume test3 on /dev/sda2 (500.00 MiB)");
     BOOST_CHECK_EQUAL(compound_actions[4]->sentence(),
-		      "Create subvolume test2 on /dev/sda2 (500.00 MiB) with limits for qgroup");
+		      "Create subvolume test2 on /dev/sda2 (500.00 MiB)");
     BOOST_CHECK_EQUAL(compound_actions[5]->sentence(),
 		      "Create subvolume test1 on /dev/sda2 (500.00 MiB)");
     BOOST_CHECK_EQUAL(compound_actions[6]->sentence(),
@@ -160,11 +160,11 @@ BOOST_AUTO_TEST_CASE(test_create4)
     BOOST_CHECK_EQUAL(compound_actions[1]->sentence(),
 		      "Enable quota on /dev/sda2 (500.00 MiB) and /dev/sda3 (500.00 MiB)");
     BOOST_CHECK_EQUAL(compound_actions[2]->sentence(),
-		      "Create subvolume test4 on /dev/sda2 (500.00 MiB) and /dev/sda3 (500.00 MiB) with option 'no copy on write' and limits for qgroup");
+		      "Create subvolume test4 on /dev/sda2 (500.00 MiB) and /dev/sda3 (500.00 MiB)");
     BOOST_CHECK_EQUAL(compound_actions[3]->sentence(),
-		      "Create subvolume test3 on /dev/sda2 (500.00 MiB) and /dev/sda3 (500.00 MiB) with option 'no copy on write'");
+		      "Create subvolume test3 on /dev/sda2 (500.00 MiB) and /dev/sda3 (500.00 MiB)");
     BOOST_CHECK_EQUAL(compound_actions[4]->sentence(),
-		      "Create subvolume test2 on /dev/sda2 (500.00 MiB) and /dev/sda3 (500.00 MiB) with limits for qgroup");
+		      "Create subvolume test2 on /dev/sda2 (500.00 MiB) and /dev/sda3 (500.00 MiB)");
     BOOST_CHECK_EQUAL(compound_actions[5]->sentence(),
 		      "Create subvolume test1 on /dev/sda2 (500.00 MiB) and /dev/sda3 (500.00 MiB)");
     BOOST_CHECK_EQUAL(compound_actions[6]->sentence(),
@@ -213,10 +213,7 @@ BOOST_AUTO_TEST_CASE(test_modify1)
 
     BOOST_REQUIRE_EQUAL(compound_actions.size(), 1);
 
-    // TODO the order here could be different
-
-    BOOST_CHECK_EQUAL(compound_actions[0]->sentence(), "Set limits for qgroup of subvolume test1 on /dev/sda2 (500.00 MiB)" "\n"
-		      "Set option 'no copy on write' for subvolume test1 on /dev/sda2 (500.00 MiB)");
+    BOOST_CHECK_EQUAL(compound_actions[0]->sentence(), "Modify subvolume test1 on /dev/sda2 (500.00 MiB)");
 }
 
 
