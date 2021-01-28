@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.ko\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-20 09:42+0100\n"
+"POT-Creation-Date: 2021-01-28 14:51+0000\n"
 "PO-Revision-Date: 2019-04-04 15:03+0000\n"
 "Last-Translator: Hwajin Kim <hwajin.kim@e4net.net>\n"
 "Language-Team: Korean <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -965,35 +965,6 @@ msgstr "%2$s(%3$s)에서 %1$s을(를) 생성"
 #, c-format
 msgid "Create subvolume %1$s on %2$s"
 msgstr "%2$s에 %1$s 하위 볼륨을 생성"
-
-# SLE12
-#. TRANSLATORS:
-#. %1$s is replaced with the subvolume path (e.g. var/log),
-#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
-#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
-#, fuzzy, c-format
-msgid "Create subvolume %1$s on %2$s with limits for qgroup"
-msgstr "'no copy on write' 옵션으로 %2$s에서 하위 볼륨 %1$s 생성"
-
-# SLE12
-#. TRANSLATORS:
-#. %1$s is replaced with the subvolume path (e.g. var/log),
-#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
-#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
-#, c-format
-msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"
-msgstr "'no copy on write' 옵션으로 %2$s에서 하위 볼륨 %1$s 생성"
-
-# SLE12
-#. TRANSLATORS:
-#. %1$s is replaced with the subvolume path (e.g. var/log),
-#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
-#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
-#, fuzzy, c-format
-msgid ""
-"Create subvolume %1$s on %2$s with option 'no copy on write' and limits for "
-"qgroup"
-msgstr "'no copy on write' 옵션으로 %2$s에서 하위 볼륨 %1$s 생성"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2320,6 +2291,15 @@ msgstr "Microsoft 예약된 파티션"
 msgid "Modify btrfs qgroups on %1$s"
 msgstr "%2$s에서 %1$s 제거 중"
 
+# SLE12
+#. TRANSLATORS:
+#. %1$s is replaced with the subvolume path (e.g. var/log),
+#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
+#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
+#, fuzzy, c-format
+msgid "Modify subvolume %1$s on %2$s"
+msgstr "%2$s에 %1$s 하위 볼륨 생성 중"
+
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
@@ -3354,6 +3334,23 @@ msgstr "kB"
 #. TRANSLATORS: name of object
 msgid "tmpfs"
 msgstr ""
+
+# SLE12
+#, fuzzy, c-format
+#~ msgid "Create subvolume %1$s on %2$s with limits for qgroup"
+#~ msgstr "'no copy on write' 옵션으로 %2$s에서 하위 볼륨 %1$s 생성"
+
+# SLE12
+#, c-format
+#~ msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"
+#~ msgstr "'no copy on write' 옵션으로 %2$s에서 하위 볼륨 %1$s 생성"
+
+# SLE12
+#, fuzzy, c-format
+#~ msgid ""
+#~ "Create subvolume %1$s on %2$s with option 'no copy on write' and limits "
+#~ "for qgroup"
+#~ msgstr "'no copy on write' 옵션으로 %2$s에서 하위 볼륨 %1$s 생성"
 
 # SLE12
 #~ msgid "Create MD %1$s %2$s (%3$s)"

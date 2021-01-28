@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-20 09:42+0100\n"
+"POT-Creation-Date: 2021-01-28 14:51+0000\n"
 "PO-Revision-Date: 2006-07-12 07:32+0200\n"
 "Last-Translator: Phan Vĩnh Thịnh <teppi82@gmail.com>\n"
 "Language-Team: Vietnamese <i18n@suse.de>\n"
@@ -1025,38 +1025,6 @@ msgstr "kiểu nội suy cần dùng"
 #. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
 #, fuzzy, c-format
 msgid "Create subvolume %1$s on %2$s"
-msgstr "kiểu nội suy cần dùng"
-
-# Type: select
-# Description
-#. TRANSLATORS:
-#. %1$s is replaced with the subvolume path (e.g. var/log),
-#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
-#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
-#, fuzzy, c-format
-msgid "Create subvolume %1$s on %2$s with limits for qgroup"
-msgstr "kiểu nội suy cần dùng"
-
-# Type: select
-# Description
-#. TRANSLATORS:
-#. %1$s is replaced with the subvolume path (e.g. var/log),
-#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
-#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
-#, fuzzy, c-format
-msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"
-msgstr "kiểu nội suy cần dùng"
-
-# Type: select
-# Description
-#. TRANSLATORS:
-#. %1$s is replaced with the subvolume path (e.g. var/log),
-#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
-#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
-#, fuzzy, c-format
-msgid ""
-"Create subvolume %1$s on %2$s with option 'no copy on write' and limits for "
-"qgroup"
 msgstr "kiểu nội suy cần dùng"
 
 # Type: select
@@ -2477,6 +2445,16 @@ msgstr "Gỡ bỏ các đường dẫn quá thời"
 # Type: select
 # Description
 #. TRANSLATORS:
+#. %1$s is replaced with the subvolume path (e.g. var/log),
+#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
+#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
+#, fuzzy, c-format
+msgid "Modify subvolume %1$s on %2$s"
+msgstr "kiểu nội suy cần dùng"
+
+# Type: select
+# Description
+#. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2.00 GiB),
@@ -3612,6 +3590,26 @@ msgstr "MB"
 #. TRANSLATORS: name of object
 msgid "tmpfs"
 msgstr ""
+
+# Type: select
+# Description
+#, fuzzy, c-format
+#~ msgid "Create subvolume %1$s on %2$s with limits for qgroup"
+#~ msgstr "kiểu nội suy cần dùng"
+
+# Type: select
+# Description
+#, fuzzy, c-format
+#~ msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"
+#~ msgstr "kiểu nội suy cần dùng"
+
+# Type: select
+# Description
+#, fuzzy, c-format
+#~ msgid ""
+#~ "Create subvolume %1$s on %2$s with option 'no copy on write' and limits "
+#~ "for qgroup"
+#~ msgstr "kiểu nội suy cần dùng"
 
 # Type: select
 # Description

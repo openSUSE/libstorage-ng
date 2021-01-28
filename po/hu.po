@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-20 09:42+0100\n"
+"POT-Creation-Date: 2021-01-28 14:51+0000\n"
 "PO-Revision-Date: 2019-04-04 15:03+0000\n"
 "Last-Translator: Robert Taisz <robert.taisz@emerald.hu>\n"
 "Language-Team: Hungarian <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -1009,38 +1009,6 @@ msgstr "%1$s létrehozás a(z) %2$s eszközön (%3$s)"
 #, c-format
 msgid "Create subvolume %1$s on %2$s"
 msgstr "%1$s alkötet létrehozása a(z) %2$s eszközön"
-
-#. TRANSLATORS:
-#. %1$s is replaced with the subvolume path (e.g. var/log),
-#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
-#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
-#, fuzzy, c-format
-msgid "Create subvolume %1$s on %2$s with limits for qgroup"
-msgstr ""
-"%1$s alkötet létrehozása a(z) %2$s eszközön \"íráskor nincs másolás\" "
-"beállítással"
-
-#. TRANSLATORS:
-#. %1$s is replaced with the subvolume path (e.g. var/log),
-#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
-#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
-#, c-format
-msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"
-msgstr ""
-"%1$s alkötet létrehozása a(z) %2$s eszközön \"íráskor nincs másolás\" "
-"beállítással"
-
-#. TRANSLATORS:
-#. %1$s is replaced with the subvolume path (e.g. var/log),
-#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
-#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
-#, fuzzy, c-format
-msgid ""
-"Create subvolume %1$s on %2$s with option 'no copy on write' and limits for "
-"qgroup"
-msgstr ""
-"%1$s alkötet létrehozása a(z) %2$s eszközön \"íráskor nincs másolás\" "
-"beállítással"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS: displayed before action,
@@ -2420,6 +2388,14 @@ msgid "Modify btrfs qgroups on %1$s"
 msgstr "%1$s eltávolítása a(z) %2$s kötetcsoportból"
 
 #. TRANSLATORS:
+#. %1$s is replaced with the subvolume path (e.g. var/log),
+#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
+#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
+#, fuzzy, c-format
+msgid "Modify subvolume %1$s on %2$s"
+msgstr "%1$s alkötet létrehozása a(z) %2$s eszközön"
+
+#. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2.00 GiB),
@@ -3515,6 +3491,26 @@ msgstr "kB"
 #. TRANSLATORS: name of object
 msgid "tmpfs"
 msgstr ""
+
+#, fuzzy, c-format
+#~ msgid "Create subvolume %1$s on %2$s with limits for qgroup"
+#~ msgstr ""
+#~ "%1$s alkötet létrehozása a(z) %2$s eszközön \"íráskor nincs másolás\" "
+#~ "beállítással"
+
+#, c-format
+#~ msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"
+#~ msgstr ""
+#~ "%1$s alkötet létrehozása a(z) %2$s eszközön \"íráskor nincs másolás\" "
+#~ "beállítással"
+
+#, fuzzy, c-format
+#~ msgid ""
+#~ "Create subvolume %1$s on %2$s with option 'no copy on write' and limits "
+#~ "for qgroup"
+#~ msgstr ""
+#~ "%1$s alkötet létrehozása a(z) %2$s eszközön \"íráskor nincs másolás\" "
+#~ "beállítással"
 
 #~ msgid "Create MD %1$s %2$s (%3$s)"
 #~ msgstr "MD %1$s %2$s (%3$s) létrehozása"
