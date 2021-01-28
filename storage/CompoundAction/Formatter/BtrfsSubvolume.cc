@@ -54,8 +54,11 @@ namespace storage
 	else if (has_create<storage::BtrfsSubvolume>())
 	    return create_text();
 
-	else
+	else if (_compound_action->get_commit_actions().size() > 1)
 	    return edit_text();
+
+	else
+	    return default_text();
     }
 
 
