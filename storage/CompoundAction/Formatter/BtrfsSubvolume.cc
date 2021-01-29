@@ -55,7 +55,7 @@ namespace storage
 	    return create_text();
 
 	else if (_compound_action->get_commit_actions().size() > 1)
-	    return edit_text();
+	    return modify_text();
 
 	else
 	    return default_text();
@@ -88,7 +88,7 @@ namespace storage
     }
 
     Text
-    CompoundAction::Formatter::BtrfsSubvolume::edit_text() const
+    CompoundAction::Formatter::BtrfsSubvolume::modify_text() const
     {
 	// TRANSLATORS:
 	// %1$s is replaced with the subvolume path (e.g. var/log),

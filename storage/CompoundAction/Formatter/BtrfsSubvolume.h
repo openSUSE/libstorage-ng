@@ -49,7 +49,7 @@ namespace storage
 
 	Text create_text() const;
 
-	Text edit_text() const;
+	Text modify_text() const;
 
     private:
 
