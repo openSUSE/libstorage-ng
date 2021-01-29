@@ -22,6 +22,7 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_creating)
     auto btrfs = to_btrfs(sda2->create_blk_filesystem(FsType::BTRFS));
     auto top_level_subvolume = btrfs->get_top_level_btrfs_subvolume();
     auto subvolume = top_level_subvolume->create_btrfs_subvolume("test");
+    subvolume->set_nocow(true);
 
     auto actiongraph = storage->calculate_actiongraph();
 
@@ -33,22 +34,76 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_creating)
 }
 
 
-BOOST_AUTO_TEST_CASE(test_sentence_on_creating_nocow)
+BOOST_AUTO_TEST_CASE(test_sentence_on_editing1)
 {
     initialize_staging_with_three_partitions();
+    Btrfs* btrfs = to_btrfs(sda2->create_blk_filesystem(FsType::BTRFS));
 
-    auto btrfs = to_btrfs(sda2->create_blk_filesystem(FsType::BTRFS));
-    auto top_level_subvolume = btrfs->get_top_level_btrfs_subvolume();
-    auto subvolume = top_level_subvolume->create_btrfs_subvolume("test");
-    subvolume->set_nocow(true);
+    BtrfsSubvolume* toplevel = btrfs->get_top_level_btrfs_subvolume();
 
-    auto actiongraph = storage->calculate_actiongraph();
+    BtrfsSubvolume* subvolume1 = toplevel->create_btrfs_subvolume("test");
 
-    auto compound_action = find_compound_action_by_target(actiongraph, subvolume);
+    copy_staging_to_probed();
 
-    BOOST_REQUIRE(compound_action);
+    subvolume1->set_nocow(true);
 
-    BOOST_CHECK_EQUAL(compound_action->sentence(), "Create subvolume test on /dev/sda2 (500.00 MiB) with option 'no copy on write'");
+    const Actiongraph* actiongraph = storage->calculate_actiongraph();
+    vector<const CompoundAction*> compound_actions = actiongraph->get_compound_actions();
+
+    BOOST_REQUIRE_EQUAL(compound_actions.size(), 1);
+
+    BOOST_CHECK_EQUAL(compound_actions[0]->sentence(),
+	"Set option 'no copy on write' for subvolume test on /dev/sda2 (500.00 MiB)");
+}
+
+
+BOOST_AUTO_TEST_CASE(test_sentence_on_editing2)
+{
+    initialize_staging_with_three_partitions();
+    Btrfs* btrfs = to_btrfs(sda2->create_blk_filesystem(FsType::BTRFS));
+    btrfs->set_quota(true);
+
+    BtrfsSubvolume* toplevel = btrfs->get_top_level_btrfs_subvolume();
+
+    BtrfsSubvolume* subvolume1 = toplevel->create_btrfs_subvolume("test");
+
+    copy_staging_to_probed();
+
+    BtrfsQgroup* group1 = subvolume1->get_btrfs_qgroup();
+    group1->set_exclusive_limit(1 * GiB);
+
+    const Actiongraph* actiongraph = storage->calculate_actiongraph();
+    vector<const CompoundAction*> compound_actions = actiongraph->get_compound_actions();
+
+    BOOST_REQUIRE_EQUAL(compound_actions.size(), 1);
+
+    BOOST_CHECK_EQUAL(compound_actions[0]->sentence(),
+	"Set limits for qgroup of subvolume test on /dev/sda2 (500.00 MiB)");
+}
+
+
+BOOST_AUTO_TEST_CASE(test_sentence_on_editing3)
+{
+    initialize_staging_with_three_partitions();
+    Btrfs* btrfs = to_btrfs(sda2->create_blk_filesystem(FsType::BTRFS));
+    btrfs->set_quota(true);
+
+    BtrfsSubvolume* toplevel = btrfs->get_top_level_btrfs_subvolume();
+
+    BtrfsSubvolume* subvolume1 = toplevel->create_btrfs_subvolume("test");
+
+    copy_staging_to_probed();
+
+    subvolume1->set_nocow(true);
+    BtrfsQgroup* group1 = subvolume1->get_btrfs_qgroup();
+    group1->set_exclusive_limit(1 * GiB);
+
+    const Actiongraph* actiongraph = storage->calculate_actiongraph();
+    vector<const CompoundAction*> compound_actions = actiongraph->get_compound_actions();
+
+    BOOST_REQUIRE_EQUAL(compound_actions.size(), 1);
+
+    BOOST_CHECK_EQUAL(compound_actions[0]->sentence(), "Modify subvolume test on /dev/sda2 (500.00 MiB)");
 }
 
 

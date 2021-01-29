@@ -52,19 +52,10 @@ namespace storage
 	    return delete_text();
 
 	else if (has_create<storage::BtrfsSubvolume>())
-	{
-	    bool has_set_nocow = has_action<Action::SetNocow>();
-	    bool has_set_limits = has_action<Action::SetLimits>();
+	    return create_text();
 
-	    if (has_set_nocow && has_set_limits)
-		return create_with_nocow_and_limits_text();
-	    else if (has_set_nocow)
-		return create_with_nocow_text();
-	    else if (has_set_limits)
-		return create_with_limits_text();
-	    else
-		return create_text();
-	}
+	else if (_compound_action->get_commit_actions().size() > 1)
+	    return modify_text();
 
 	else
 	    return default_text();
@@ -85,45 +76,6 @@ namespace storage
 
 
     Text
-    CompoundAction::Formatter::BtrfsSubvolume::create_with_nocow_text() const
-    {
-	// TRANSLATORS:
-	// %1$s is replaced with the subvolume path (e.g. var/log),
-	// %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
-	//   (10.00 GiB) and /dev/sdb1 (10.00 GiB))
-	Text text = _("Create subvolume %1$s on %2$s with option 'no copy on write'");
-
-	return sformat(text, subvolume->get_path(), blk_devices_text());
-    }
-
-
-    Text
-    CompoundAction::Formatter::BtrfsSubvolume::create_with_limits_text() const
-    {
-	// TRANSLATORS:
-	// %1$s is replaced with the subvolume path (e.g. var/log),
-	// %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
-	//   (10.00 GiB) and /dev/sdb1 (10.00 GiB))
-	Text text = _("Create subvolume %1$s on %2$s with limits for qgroup");
-
-	return sformat(text, subvolume->get_path(), blk_devices_text());
-    }
-
-
-    Text
-    CompoundAction::Formatter::BtrfsSubvolume::create_with_nocow_and_limits_text() const
-    {
-	// TRANSLATORS:
-	// %1$s is replaced with the subvolume path (e.g. var/log),
-	// %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
-	//   (10.00 GiB) and /dev/sdb1 (10.00 GiB))
-	Text text = _("Create subvolume %1$s on %2$s with option 'no copy on write' and limits for qgroup");
-
-	return sformat(text, subvolume->get_path(), blk_devices_text());
-    }
-
-
-    Text
     CompoundAction::Formatter::BtrfsSubvolume::create_text() const
     {
 	// TRANSLATORS:
@@ -131,6 +83,18 @@ namespace storage
 	// %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
 	//   (10.00 GiB) and /dev/sdb1 (10.00 GiB))
 	Text text = _("Create subvolume %1$s on %2$s");
+
+	return sformat(text, subvolume->get_path(), blk_devices_text());
+    }
+
+    Text
+    CompoundAction::Formatter::BtrfsSubvolume::modify_text() const
+    {
+	// TRANSLATORS:
+	// %1$s is replaced with the subvolume path (e.g. var/log),
+	// %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
+	//   (10.00 GiB) and /dev/sdb1 (10.00 GiB))
+	Text text = _("Modify subvolume %1$s on %2$s");
 
 	return sformat(text, subvolume->get_path(), blk_devices_text());
     }

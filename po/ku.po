@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: memory.ku.po\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-20 09:42+0100\n"
+"POT-Creation-Date: 2021-01-28 14:51+0000\n"
 "PO-Revision-Date: 2005-09-23 00:15+0200\n"
 "Last-Translator: Kurdish Team <i18n@suse.de>\n"
 "Language-Team: Kurdish Team <i18n@suse.de>\n"
@@ -889,32 +889,6 @@ msgstr "%1$s Biafirîne"
 #. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
 #, fuzzy, c-format
 msgid "Create subvolume %1$s on %2$s"
-msgstr "%1$s Biafirîne"
-
-#. TRANSLATORS:
-#. %1$s is replaced with the subvolume path (e.g. var/log),
-#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
-#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
-#, fuzzy, c-format
-msgid "Create subvolume %1$s on %2$s with limits for qgroup"
-msgstr "%1$s Biafirîne"
-
-#. TRANSLATORS:
-#. %1$s is replaced with the subvolume path (e.g. var/log),
-#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
-#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
-#, fuzzy, c-format
-msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"
-msgstr "%1$s Biafirîne"
-
-#. TRANSLATORS:
-#. %1$s is replaced with the subvolume path (e.g. var/log),
-#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
-#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
-#, fuzzy, c-format
-msgid ""
-"Create subvolume %1$s on %2$s with option 'no copy on write' and limits for "
-"qgroup"
 msgstr "%1$s Biafirîne"
 
 #. TRANSLATORS: displayed before action,
@@ -2149,6 +2123,14 @@ msgid "Modify btrfs qgroups on %1$s"
 msgstr "%1$s Rake"
 
 #. TRANSLATORS:
+#. %1$s is replaced with the subvolume path (e.g. var/log),
+#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
+#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
+#, fuzzy, c-format
+msgid "Modify subvolume %1$s on %2$s"
+msgstr "%1$s Biafirîne"
+
+#. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2.00 GiB),
@@ -3160,6 +3142,20 @@ msgstr "kB"
 #. TRANSLATORS: name of object
 msgid "tmpfs"
 msgstr ""
+
+#, fuzzy, c-format
+#~ msgid "Create subvolume %1$s on %2$s with limits for qgroup"
+#~ msgstr "%1$s Biafirîne"
+
+#, fuzzy, c-format
+#~ msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"
+#~ msgstr "%1$s Biafirîne"
+
+#, fuzzy, c-format
+#~ msgid ""
+#~ "Create subvolume %1$s on %2$s with option 'no copy on write' and limits "
+#~ "for qgroup"
+#~ msgstr "%1$s Biafirîne"
 
 #, fuzzy
 #~ msgid "Create MD %1$s %2$s (%3$s)"

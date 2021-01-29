@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST2 (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-20 09:42+0100\n"
+"POT-Creation-Date: 2021-01-28 14:51+0000\n"
 "PO-Revision-Date: 2004-03-31 11:34+0200\n"
 "Last-Translator: opensuse-translations@opensuse.org\n"
 "Language-Team: Serbian <i18n@suse.de>\n"
@@ -898,32 +898,6 @@ msgstr "Izbaci"
 #. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
 #, fuzzy, c-format
 msgid "Create subvolume %1$s on %2$s"
-msgstr "Izbaci"
-
-#. TRANSLATORS:
-#. %1$s is replaced with the subvolume path (e.g. var/log),
-#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
-#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
-#, fuzzy, c-format
-msgid "Create subvolume %1$s on %2$s with limits for qgroup"
-msgstr "Izbaci"
-
-#. TRANSLATORS:
-#. %1$s is replaced with the subvolume path (e.g. var/log),
-#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
-#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
-#, fuzzy, c-format
-msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"
-msgstr "Izbaci"
-
-#. TRANSLATORS:
-#. %1$s is replaced with the subvolume path (e.g. var/log),
-#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
-#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
-#, fuzzy, c-format
-msgid ""
-"Create subvolume %1$s on %2$s with option 'no copy on write' and limits for "
-"qgroup"
 msgstr "Izbaci"
 
 #. TRANSLATORS: displayed before action,
@@ -2199,6 +2173,14 @@ msgid "Modify btrfs qgroups on %1$s"
 msgstr "Izbaci"
 
 #. TRANSLATORS:
+#. %1$s is replaced with the subvolume path (e.g. var/log),
+#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
+#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
+#, fuzzy, c-format
+msgid "Modify subvolume %1$s on %2$s"
+msgstr "Izbaci"
+
+#. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2.00 GiB),
@@ -3241,6 +3223,20 @@ msgstr "У реду"
 #. TRANSLATORS: name of object
 msgid "tmpfs"
 msgstr ""
+
+#, fuzzy, c-format
+#~ msgid "Create subvolume %1$s on %2$s with limits for qgroup"
+#~ msgstr "Izbaci"
+
+#, fuzzy, c-format
+#~ msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"
+#~ msgstr "Izbaci"
+
+#, fuzzy, c-format
+#~ msgid ""
+#~ "Create subvolume %1$s on %2$s with option 'no copy on write' and limits "
+#~ "for qgroup"
+#~ msgstr "Izbaci"
 
 #, fuzzy
 #~ msgid "Create MD %1$s %2$s (%3$s)"

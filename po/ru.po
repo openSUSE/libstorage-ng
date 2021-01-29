@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-20 09:42+0100\n"
+"POT-Creation-Date: 2021-01-28 14:51+0000\n"
 "PO-Revision-Date: 2021-01-04 16:37+0000\n"
 "Last-Translator: Alex Minton <alex239@gmail.com>\n"
 "Language-Team: Russian <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -935,32 +935,6 @@ msgstr "Создать qgroup %1$s на %2$s"
 #, c-format
 msgid "Create subvolume %1$s on %2$s"
 msgstr "Создать подтом %1$s на %2$s"
-
-#. TRANSLATORS:
-#. %1$s is replaced with the subvolume path (e.g. var/log),
-#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
-#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
-#, fuzzy, c-format
-msgid "Create subvolume %1$s on %2$s with limits for qgroup"
-msgstr "Создать подтом %1$s на %2$s с параметром «не копировать при записи»"
-
-#. TRANSLATORS:
-#. %1$s is replaced with the subvolume path (e.g. var/log),
-#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
-#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
-#, c-format
-msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"
-msgstr "Создать подтом %1$s на %2$s с параметром «не копировать при записи»"
-
-#. TRANSLATORS:
-#. %1$s is replaced with the subvolume path (e.g. var/log),
-#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
-#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
-#, fuzzy, c-format
-msgid ""
-"Create subvolume %1$s on %2$s with option 'no copy on write' and limits for "
-"qgroup"
-msgstr "Создать подтом %1$s на %2$s с параметром «не копировать при записи»"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2229,6 +2203,14 @@ msgid "Modify btrfs qgroups on %1$s"
 msgstr "Изменить btrfs qgroup на %1$s"
 
 #. TRANSLATORS:
+#. %1$s is replaced with the subvolume path (e.g. var/log),
+#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
+#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
+#, fuzzy, c-format
+msgid "Modify subvolume %1$s on %2$s"
+msgstr "Создание подтома %1$s на %2$s"
+
+#. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2.00 GiB),
@@ -3234,6 +3216,20 @@ msgstr "кБ"
 #. TRANSLATORS: name of object
 msgid "tmpfs"
 msgstr "tmpfs"
+
+#, fuzzy, c-format
+#~ msgid "Create subvolume %1$s on %2$s with limits for qgroup"
+#~ msgstr "Создать подтом %1$s на %2$s с параметром «не копировать при записи»"
+
+#, c-format
+#~ msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"
+#~ msgstr "Создать подтом %1$s на %2$s с параметром «не копировать при записи»"
+
+#, fuzzy, c-format
+#~ msgid ""
+#~ "Create subvolume %1$s on %2$s with option 'no copy on write' and limits "
+#~ "for qgroup"
+#~ msgstr "Создать подтом %1$s на %2$s с параметром «не копировать при записи»"
 
 #~ msgid "Create MD %1$s %2$s (%3$s)"
 #~ msgstr "Создать MD %1$s %2$s (%3$s)"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-20 09:42+0100\n"
+"POT-Creation-Date: 2021-01-28 14:51+0000\n"
 "PO-Revision-Date: 2020-12-29 16:37+0000\n"
 "Last-Translator: Antoine Belvire <antoine.belvire@opensuse.org>\n"
 "Language-Team: French <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -987,38 +987,6 @@ msgstr "Créer le qgroup %1$s sur %2$s"
 #, c-format
 msgid "Create subvolume %1$s on %2$s"
 msgstr "Créer le sous-volume %1$s sur %2$s"
-
-# TLABEL partitioning_2002_01_04_0147__351
-#. TRANSLATORS:
-#. %1$s is replaced with the subvolume path (e.g. var/log),
-#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
-#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
-#, fuzzy, c-format
-msgid "Create subvolume %1$s on %2$s with limits for qgroup"
-msgstr ""
-"Créer le sous-volume %1$s sur %2$s avec l'option Pas de copie pour l'écriture"
-
-# TLABEL partitioning_2002_01_04_0147__351
-#. TRANSLATORS:
-#. %1$s is replaced with the subvolume path (e.g. var/log),
-#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
-#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
-#, c-format
-msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"
-msgstr ""
-"Créer le sous-volume %1$s sur %2$s avec l'option Pas de copie pour l'écriture"
-
-# TLABEL partitioning_2002_01_04_0147__351
-#. TRANSLATORS:
-#. %1$s is replaced with the subvolume path (e.g. var/log),
-#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
-#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
-#, fuzzy, c-format
-msgid ""
-"Create subvolume %1$s on %2$s with option 'no copy on write' and limits for "
-"qgroup"
-msgstr ""
-"Créer le sous-volume %1$s sur %2$s avec l'option Pas de copie pour l'écriture"
 
 # TLABEL partitioning_2002_03_14_2340__121
 #. TRANSLATORS: displayed before action,
@@ -2413,6 +2381,15 @@ msgstr "Partition réservée Microsoft"
 msgid "Modify btrfs qgroups on %1$s"
 msgstr "Modifier les qgroups btrfs sur %1$s"
 
+# TLABEL partitioning_2002_01_04_0147__351
+#. TRANSLATORS:
+#. %1$s is replaced with the subvolume path (e.g. var/log),
+#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
+#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
+#, fuzzy, c-format
+msgid "Modify subvolume %1$s on %2$s"
+msgstr "Création du sous-volume %1$s sur %2$s"
+
 # TLABEL partitioning_2002_01_04_0147__425
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -3518,6 +3495,29 @@ msgstr "ko"
 #. TRANSLATORS: name of object
 msgid "tmpfs"
 msgstr "tmpfs"
+
+# TLABEL partitioning_2002_01_04_0147__351
+#, fuzzy, c-format
+#~ msgid "Create subvolume %1$s on %2$s with limits for qgroup"
+#~ msgstr ""
+#~ "Créer le sous-volume %1$s sur %2$s avec l'option Pas de copie pour "
+#~ "l'écriture"
+
+# TLABEL partitioning_2002_01_04_0147__351
+#, c-format
+#~ msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"
+#~ msgstr ""
+#~ "Créer le sous-volume %1$s sur %2$s avec l'option Pas de copie pour "
+#~ "l'écriture"
+
+# TLABEL partitioning_2002_01_04_0147__351
+#, fuzzy, c-format
+#~ msgid ""
+#~ "Create subvolume %1$s on %2$s with option 'no copy on write' and limits "
+#~ "for qgroup"
+#~ msgstr ""
+#~ "Créer le sous-volume %1$s sur %2$s avec l'option Pas de copie pour "
+#~ "l'écriture"
 
 # TLABEL partitioning_2002_01_04_0147__351
 #~ msgid "Create MD %1$s %2$s (%3$s)"

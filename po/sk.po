@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-20 09:42+0100\n"
+"POT-Creation-Date: 2021-01-28 14:51+0000\n"
 "PO-Revision-Date: 2020-11-10 18:50+0000\n"
 "Last-Translator: Ferdinand Galko <galko.ferdinand@gmail.com>\n"
 "Language-Team: Slovak <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -922,32 +922,6 @@ msgstr "Vytvoriť qgroup %1$s na %2$s"
 #, c-format
 msgid "Create subvolume %1$s on %2$s"
 msgstr "Vytvoriť podzväzok %1$s na %2$s"
-
-#. TRANSLATORS:
-#. %1$s is replaced with the subvolume path (e.g. var/log),
-#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
-#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
-#, fuzzy, c-format
-msgid "Create subvolume %1$s on %2$s with limits for qgroup"
-msgstr "Vytvoriť podzväzok %1$s na %2$s s voľbou 'no copy on write'"
-
-#. TRANSLATORS:
-#. %1$s is replaced with the subvolume path (e.g. var/log),
-#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
-#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
-#, c-format
-msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"
-msgstr "Vytvoriť podzväzok %1$s na %2$s s voľbou 'no copy on write'"
-
-#. TRANSLATORS:
-#. %1$s is replaced with the subvolume path (e.g. var/log),
-#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
-#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
-#, fuzzy, c-format
-msgid ""
-"Create subvolume %1$s on %2$s with option 'no copy on write' and limits for "
-"qgroup"
-msgstr "Vytvoriť podzväzok %1$s na %2$s s voľbou 'no copy on write'"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2202,6 +2176,14 @@ msgid "Modify btrfs qgroups on %1$s"
 msgstr "Upraviť položky qgroup btrfs na %1$s"
 
 #. TRANSLATORS:
+#. %1$s is replaced with the subvolume path (e.g. var/log),
+#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
+#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
+#, fuzzy, c-format
+msgid "Modify subvolume %1$s on %2$s"
+msgstr "Vytvorenie podzväzku %1$s na %2$s"
+
+#. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2.00 GiB),
@@ -3208,6 +3190,20 @@ msgstr "kB"
 #. TRANSLATORS: name of object
 msgid "tmpfs"
 msgstr "tmpfs"
+
+#, fuzzy, c-format
+#~ msgid "Create subvolume %1$s on %2$s with limits for qgroup"
+#~ msgstr "Vytvoriť podzväzok %1$s na %2$s s voľbou 'no copy on write'"
+
+#, c-format
+#~ msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"
+#~ msgstr "Vytvoriť podzväzok %1$s na %2$s s voľbou 'no copy on write'"
+
+#, fuzzy, c-format
+#~ msgid ""
+#~ "Create subvolume %1$s on %2$s with option 'no copy on write' and limits "
+#~ "for qgroup"
+#~ msgstr "Vytvoriť podzväzok %1$s na %2$s s voľbou 'no copy on write'"
 
 #~ msgid "Create MD %1$s %2$s (%3$s)"
 #~ msgstr "Vytvoriť MD %1$s %2$s (%3$s)"
