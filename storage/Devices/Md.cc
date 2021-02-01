@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -293,6 +293,13 @@ namespace storage
     Md::find_free_numeric_name(const Devicegraph* devicegraph)
     {
 	return Md::Impl::find_free_numeric_name(devicegraph);
+    }
+
+
+    unsigned long long
+    Md::calculate_underlying_size(MdLevel md_level, unsigned int number_of_devices, unsigned long long size)
+    {
+	return Md::Impl::calculate_underlying_size(md_level, number_of_devices, size);
     }
 
 

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -101,6 +101,8 @@ namespace storage
 	const string& get_metadata() const { return metadata; }
 	void set_metadata(const string& metadata) { Impl::metadata = metadata; }
 
+	static unsigned int minimal_number_of_devices(MdLevel md_level);
+
 	unsigned int minimal_number_of_devices() const;
 	bool supports_spare_devices() const;
 	bool supports_journal_device() const;
@@ -117,6 +119,9 @@ namespace storage
 	virtual vector<MountByType> possible_mount_bys() const override;
 
 	static string find_free_numeric_name(const Devicegraph* devicegraph);
+
+	static unsigned long long calculate_underlying_size(MdLevel md_level, unsigned int number_of_devices,
+							    unsigned long long size);
 
 	static bool activate_mds(const ActivateCallbacks* activate_callbacks, const TmpDir& tmp_dir);
 
