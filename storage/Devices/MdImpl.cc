@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -160,6 +160,48 @@ namespace storage
 	unsigned int free_number = first_missing_number(mds, 0);
 
 	return DEV_DIR "/md" + to_string(free_number);
+    }
+
+
+    unsigned long long
+    Md::Impl::calculate_underlying_size(MdLevel md_level, unsigned int number_of_devices, unsigned long long size)
+    {
+	if (number_of_devices < minimal_number_of_devices(md_level))
+	    ST_THROW(Exception("too few devices"));
+
+	unsigned long long underlying_size = 0;
+
+	switch (md_level)
+	{
+	    case MdLevel::RAID0:
+		underlying_size = size / number_of_devices;
+		break;
+
+	    case MdLevel::RAID1:
+		underlying_size = size;
+		break;
+
+	    case MdLevel::RAID4:
+	    case MdLevel::RAID5:
+		underlying_size = size / (number_of_devices - 1);
+		break;
+
+	    case MdLevel::RAID6:
+		underlying_size = size / (number_of_devices - 2);
+		break;
+
+	    case MdLevel::RAID10:
+		underlying_size = size * 2 / number_of_devices;
+		break;
+
+	    default:
+		ST_THROW(Exception("illegal raid level"));
+	}
+
+	// see calculate_region_and_topology
+	underlying_size += min(128 * MiB, underlying_size / 64);
+
+	return underlying_size;
     }
 
 
@@ -759,7 +801,7 @@ namespace storage
 
 
     unsigned int
-    Md::Impl::minimal_number_of_devices() const
+    Md::Impl::minimal_number_of_devices(MdLevel md_level)
     {
 	switch (md_level)
 	{
@@ -782,6 +824,13 @@ namespace storage
 	    default:
 		return 0;
 	}
+    }
+
+
+    unsigned int
+    Md::Impl::minimal_number_of_devices() const
+    {
+	return minimal_number_of_devices(md_level);
     }
 
 

@@ -1,6 +1,6 @@
 
-After adding or modifying messages run 'make merge' and commit the pot and po
-files.
+After adding or modifying messages run 'make libstorage-ng.pot' and
+'make merge' and commit the pot and po files.
 
 Translations themself are done in Weblate.
 

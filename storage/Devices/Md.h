@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -266,6 +266,18 @@ namespace storage
 	 * @throw Exception
 	 */
 	static std::string find_free_numeric_name(const Devicegraph* devicegraph);
+
+	/**
+	 * Calculate the required size of the underlying block devices to get an MD of the
+	 * desired size.
+	 *
+	 * Calculation is not accurate. Does not consider details like alignment, chunk
+	 * size, bitmap location or metadata version.
+	 *
+	 * @throw Exception
+	 */
+	static unsigned long long calculate_underlying_size(MdLevel md_level, unsigned int number_of_devices,
+							    unsigned long long size);
 
 	/**
 	 * Compare (less than) two Mds by number.
