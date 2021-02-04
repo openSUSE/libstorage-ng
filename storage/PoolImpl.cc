@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2020 Arvin Schnell
+ * Copyright (c) 2021 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -193,6 +194,7 @@ namespace storage
 	    PartitionTable* partition_table;
 	    string name;
 	    Region region;
+	    PartitionType type;
 	};
 
 	// For each partitionable find the smallest unused region that is still big
@@ -226,7 +228,8 @@ namespace storage
 	    if (best == partition_slots.end())
 		continue;
 
-	    Candidate candidate { partition_table, best->name, best->region };
+	    Candidate candidate { partition_table, best->name, best->region,
+		best->primary_possible ? PartitionType::PRIMARY : PartitionType::LOGICAL };
 	    candidates.push_back(candidate);
 
 	    if (candidates.size() == number)
@@ -251,7 +254,7 @@ namespace storage
 	    region = candidate.partition_table->align(region);
 
 	    Partition* partition = candidate.partition_table->create_partition(candidate.name, region,
-									       PartitionType::PRIMARY);
+									       candidate.type);
 
 	    partitions.push_back(partition);
 	}
