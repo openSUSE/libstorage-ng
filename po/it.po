@@ -14,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-10 10:33+0100\n"
 "PO-Revision-Date: 2021-02-23 21:16+0000\n"
-"Last-Translator: Davide Aiello <davide.aiello@novilingulists.com>\n"
+"Last-Translator: Paolo Za <zapaolo@email.it>\n"
 "Language-Team: Italian <https://l10n.opensuse.org/projects/libstorage/"
 "ng-master/it/>\n"
 "Language: it\n"
@@ -2704,7 +2704,7 @@ msgstr "Rilevamento di dispositivi a blocchi \"senza padrone\""
 
 #. TRANSLATORS: error message
 msgid "Probing stray block devices failed"
-msgstr "Rilevamento di dispositivi a blocchi \"senza padrone\" fallito"
+msgstr "Rilevamento di dispositivi a blocchi \"senza padrone\" non riuscito"
 
 #. TRANSLATORS: progress message
 msgid "Probing tmpfs"
