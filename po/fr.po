@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-10 10:33+0100\n"
-"PO-Revision-Date: 2020-12-29 16:37+0000\n"
-"Last-Translator: Antoine Belvire <antoine.belvire@opensuse.org>\n"
+"PO-Revision-Date: 2021-03-07 14:17+0000\n"
+"Last-Translator: Sophie Leroy <sophie@stoquart.com>\n"
 "Language-Team: French <https://l10n.opensuse.org/projects/libstorage/"
 "ng-master/fr/>\n"
 "Language: fr\n"
@@ -2707,14 +2707,12 @@ msgid "Probing stray block devices failed"
 msgstr "Échec du sondage des périphériques de blocs abandonnés"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing tmpfs"
-msgstr "Sondage des DASD"
+msgstr "Sondage de tmpfs"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing tmpfs failed"
-msgstr "Échec du sondage"
+msgstr "Échec du sondage de tmpfs"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)
@@ -3345,9 +3343,9 @@ msgstr "UDF"
 #. %2$s is replaced by the btrfs qgroup id (e.g. 2/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Unassign qgroup %1$s from qgroup %2$s on %3$s"
-msgstr "Réduction de la partition %1$s de %2$s à %3$s"
+msgstr "Annuler l'assignation de qgroup %1$s de qgroup %2$s sur %3$s"
 
 # TLABEL partitioning_2002_01_04_0147__92
 #. TRANSLATORS: displayed before action,
@@ -3355,9 +3353,10 @@ msgstr "Réduction de la partition %1$s de %2$s à %3$s"
 #. %2$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Unassign qgroup of subvolume %1$s from qgroup %2$s on %3$s"
-msgstr "Démonter le sous-volume %1$s sur %2$s de %3$s"
+msgstr ""
+"Annuler l'assignation de qgroup du sous-volume %1$s de qgroup %2$s sur %3$s"
 
 # TLABEL partitioning_2002_01_04_0147__425
 #. TRANSLATORS: displayed during action,
@@ -3365,9 +3364,9 @@ msgstr "Démonter le sous-volume %1$s sur %2$s de %3$s"
 #. %2$s is replaced by the btrfs qgroup id (e.g. 2/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Unassigning qgroup %1$s from qgroup %2$s on %3$s"
-msgstr "Réduction de la partition %1$s de %2$s à %3$s"
+msgstr "Annuler l'assignation de qgroup %1$s de qgroup %2$s sur %3$s"
 
 # TLABEL partitioning_2002_01_04_0147__92
 #. TRANSLATORS: displayed during action,
@@ -3375,9 +3374,10 @@ msgstr "Réduction de la partition %1$s de %2$s à %3$s"
 #. %2$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Unassigning qgroup of subvolume %1$s from qgroup %2$s on %3$s"
-msgstr "Démontage du sous-volume %1$s sur %2$s de %3$s"
+msgstr ""
+"Annuler l'assignation de qgroup du sous-volume %1$s de qgroup %2$s sur %3$s"
 
 # TLABEL partitioning_2002_01_04_0147__425
 #. TRANSLATORS: displayed before action,
