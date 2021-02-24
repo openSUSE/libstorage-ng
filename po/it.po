@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2019-04-04 15:04+0000\n"
-"Last-Translator: Davide Aiello <davidea@novilinguists.com>\n"
+"PO-Revision-Date: 2021-03-07 01:54+0000\n"
+"Last-Translator: Davide Aiello <davide.aiello@novilingulists.com>\n"
 "Language-Team: Italian <https://l10n.opensuse.org/projects/libstorage/"
 "ng-sle-15-sp1/it/>\n"
 "Language: it\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.3\n"
+"X-Generator: Weblate 3.6.1\n"
 "X-Poedit-Language: Italian\n"
 
 msgid ""
@@ -2504,7 +2504,7 @@ msgstr "Rilevamento di dispositivi a blocchi \"senza padrone\""
 
 #. TRANSLATORS: error message
 msgid "Probing stray block devices failed"
-msgstr "Rilevamento di dispositivi a blocchi \"senza padrone\" fallito"
+msgstr "Rilevamento di dispositivi a blocchi \"senza padrone\" non riuscito"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)
