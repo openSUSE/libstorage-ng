@@ -1,11 +1,11 @@
-name: CI Tumbleweed
+name: CI Leap
 
 on: [push, pull_request]
 
 jobs:
   Tests:
     runs-on: ubuntu-latest
-    container: opensuse/tumbleweed
+    container: opensuse/leap
 
     steps:
 
