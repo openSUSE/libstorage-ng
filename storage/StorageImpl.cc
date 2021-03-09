@@ -474,7 +474,7 @@ namespace storage
     {
 	ST_CHECK_PTR(devicegraph);
 
-	// TODO more types, e.g. dasd, multipath, nvme?
+	// TODO more types, e.g. dasd, multipath?
 	// TODO check partition table?
 	// TODO do not add already existing devices
 
@@ -487,6 +487,8 @@ namespace storage
 	    string name;
 	    if (disk->is_pmem())
 		name = "PMEMs";
+	    else if (disk->is_nvme())
+		name = "NVMes";
 	    else if (!disk->is_rotational())
 		name = "SSDs";
 	    else
