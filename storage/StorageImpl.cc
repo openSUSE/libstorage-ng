@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -372,8 +372,11 @@ namespace storage
 	if (it2 == devicegraphs.end())
 	    ST_THROW(Exception(sformat("devicegraph '%s' not found", name)));
 
-	it1->second.get_impl().swap(it2->second.get_impl());
-	devicegraphs.erase(it1);
+	devicegraphs.erase(it2);
+
+	map<string, Devicegraph>::node_type node = devicegraphs.extract(it1);
+	node.key() = "staging";
+	devicegraphs.insert(std::move(node));
     }
 
 

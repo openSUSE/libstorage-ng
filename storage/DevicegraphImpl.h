@@ -285,8 +285,6 @@ namespace storage
 	}
 
 
-	void swap(Devicegraph::Impl& x);
-
 	Storage* get_storage() { return storage; }
 	const Storage* get_storage() const { return storage; }
 
