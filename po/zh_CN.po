@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-28 14:51+0000\n"
-"PO-Revision-Date: 2020-02-17 02:54+0000\n"
+"PO-Revision-Date: 2021-03-07 15:15+0000\n"
 "Last-Translator: Grace Yu <grace.yu@excel-gits.com>\n"
 "Language-Team: Chinese (China) <https://l10n.opensuse.org/projects/"
 "libstorage/ng-master/zh_CN/>\n"
@@ -259,36 +259,36 @@ msgstr "正在添加 %3$s 上子卷 %2$s 的挂载点 %1$s 到 /etc/fstab"
 #. %2$s is replaced by the btrfs qgroup id (e.g. 2/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Assign qgroup %1$s to qgroup %2$s on %3$s"
-msgstr "将分区 %1$s 从 %2$s 收缩至 %3$s"
+msgstr "将 qgroup %1$s 指派到 %3$s 上的 qgroup %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Assign qgroup of subvolume %1$s to qgroup %2$s on %3$s"
-msgstr "卸载在挂载点 %3$s 上的 %2$s 子卷 %1$s"
+msgstr "将子卷 %1$s 的 qgroup 指派到 %3$s 上的 qgroup %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by the btrfs qgroup id (e.g. 2/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Assigning qgroup %1$s to qgroup %2$s on %3$s"
-msgstr "正在将分区 %1$s 从 %2$s 缩减至 %3$s"
+msgstr "正在将 qgroup %1$s 指派到 %3$s 上的 qgroup %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Assigning qgroup of subvolume %1$s to qgroup %2$s on %3$s"
-msgstr "正在将 %1$s 上的子卷 %2$s 挂载到 %3$s"
+msgstr "正在将子卷 %1$s 的 qgroup 指派到 %3$s 上的 qgroup %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -332,7 +332,7 @@ msgstr "Btrfs"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs Qgroup"
-msgstr ""
+msgstr "Btrfs Qgroup"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs Subvolume"
@@ -882,9 +882,9 @@ msgstr "创建主分区 %1$s(%2$s)"
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Create qgroup %1$s on %2$s"
-msgstr "在 %2$s 上创建 %1$s"
+msgstr "在 %2$s 上创建 qgroup %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -1061,9 +1061,9 @@ msgstr "正在创建主分区 %1$s(%2$s)"
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Creating qgroup %1$s on %2$s"
-msgstr "正在 %2$s 上创建 %1$s"
+msgstr "正于 %2$s 上创建 qgroup %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -1616,16 +1616,16 @@ msgstr "诊断分区"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Disable quota on %1$s"
-msgstr "删除 %1$s 上的 GPT"
+msgstr "对 %1$s 禁用配额"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Disabling quota on %1$s"
-msgstr "正在删除 %1$s 上的 GPT"
+msgstr "正在对 %1$s 禁用配额"
 
 #. TRANSLATORS: name of object
 msgid "Disk"
@@ -1652,14 +1652,14 @@ msgstr "EiB"
 #. and /dev/sdb2 (2.00 GiB))
 #, c-format
 msgid "Enable quota on %1$s"
-msgstr ""
+msgstr "对 %1$s 启用配额"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
 #, c-format
 msgid "Enabling quota %1$s"
-msgstr ""
+msgstr "正在对 %1$s 启用配额"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -2120,9 +2120,9 @@ msgstr "Microsoft 保留分区"
 #. TRANSLATORS:
 #. %1$s is replaced with the names of the devices with sizes (e.g. /dev/sda1
 #. (10.00 GiB) and /dev/sda2 (10.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Modify btrfs qgroups on %1$s"
-msgstr "正在从 %2$s 移除 %1$s"
+msgstr "修改 %1$s 上的 btrfs qgroup"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the subvolume path (e.g. var/log),
@@ -2431,14 +2431,12 @@ msgid "Probing stray block devices failed"
 msgstr "探测离散区块设备失败"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing tmpfs"
-msgstr "正在探测 DASD"
+msgstr "正在探测 tmpfs"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing tmpfs failed"
-msgstr "探测失败"
+msgstr "探测 tmpfs 失败"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)
@@ -2508,9 +2506,9 @@ msgstr "从 /etc/fstab 移除 %3$s 上子卷 %2$s 的挂载点 %1$s"
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Remove qgroup %1$s on %2$s"
-msgstr "将 %1$s 从 %2$s 移除"
+msgstr "移除 %2$s 上的 qgroup %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/sdc1),
@@ -2564,9 +2562,9 @@ msgstr "正在从 /etc/fstab 移除 %3$s 上的子卷 %2$s 挂载点 %1$s"
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Removing qgroup %1$s on %2$s"
-msgstr "正在从 %2$s 移除 %1$s"
+msgstr "正在移除 %2$s 上的 qgroup %1$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the old logical volume name (e.g. foo),
@@ -2689,17 +2687,17 @@ msgstr "设置分区 %1$s 的传统启动标志"
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Set limits for qgroup %1$s on %2$s"
-msgstr "设置 %2$s 上 %1$s 的调整选项"
+msgstr "设置 %2$s 上 qgroup %1$s 的限制"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Set limits for qgroup of subvolume %1$s on %2$s"
-msgstr "设置默认子卷为 %2$s 上的子卷 %1$s"
+msgstr "设置 %2$s 上子卷 %1$s 的 qgroup 限制"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -2795,17 +2793,17 @@ msgstr "正在设置分区 %1$s 的传统启动标志"
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Setting limits for qgroup %1$s on %2$s"
-msgstr "正在设置 %2$s 上 %1$s 的调整选项"
+msgstr "正在设置 %2$s 上 qgroup %1$s 的限制"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Setting limits for qgroup of subvolume %1$s on %2$s"
-msgstr "正在设置默认子卷为 %2$s 上的子卷 %1$s"
+msgstr "正在设置 %2$s 上子卷 %1$s 的 qgroup 限制"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -3004,36 +3002,36 @@ msgstr "UDF"
 #. %2$s is replaced by the btrfs qgroup id (e.g. 2/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Unassign qgroup %1$s from qgroup %2$s on %3$s"
-msgstr "正在将分区 %1$s 从 %2$s 缩减至 %3$s"
+msgstr "为 %3$s 上的 qgroup %2$s 取消指派 qgroup %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Unassign qgroup of subvolume %1$s from qgroup %2$s on %3$s"
-msgstr "卸载在挂载点 %3$s 上的 %2$s 子卷 %1$s"
+msgstr "为 %3$s 上的 qgroup %2$s 取消指派子卷 %1$s 的 qgroup"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by the btrfs qgroup id (e.g. 2/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Unassigning qgroup %1$s from qgroup %2$s on %3$s"
-msgstr "正在将分区 %1$s 从 %2$s 缩减至 %3$s"
+msgstr "正在为 %3$s 上的 qgroup %2$s 取消指派 qgroup %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Unassigning qgroup of subvolume %1$s from qgroup %2$s on %3$s"
-msgstr "正在卸载挂载点 %3$s 上的 %2$s 子卷 %1$s"
+msgstr "正在为 %3$s 上的 qgroup %2$s 取消指派子卷 %1$s 的 qgroup"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
@@ -3132,20 +3130,10 @@ msgstr "kB"
 
 #. TRANSLATORS: name of object
 msgid "tmpfs"
-msgstr ""
-
-#, fuzzy, c-format
-#~ msgid "Create subvolume %1$s on %2$s with limits for qgroup"
-#~ msgstr "使用“写入时不复制”选项在 %2$s 上创建子卷 %1$s"
+msgstr "tmpfs"
 
 #, c-format
 #~ msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"
-#~ msgstr "使用“写入时不复制”选项在 %2$s 上创建子卷 %1$s"
-
-#, fuzzy, c-format
-#~ msgid ""
-#~ "Create subvolume %1$s on %2$s with option 'no copy on write' and limits "
-#~ "for qgroup"
 #~ msgstr "使用“写入时不复制”选项在 %2$s 上创建子卷 %1$s"
 
 #~ msgid "Create MD %1$s %2$s (%3$s)"
@@ -3156,3 +3144,13 @@ msgstr ""
 
 #~ msgid "first root filesystem"
 #~ msgstr "第一个根文件系统"
+
+#, fuzzy, c-format
+#~ msgid "Create subvolume %1$s on %2$s with limits for qgroup"
+#~ msgstr "使用“写入时不复制”选项在 %2$s 上创建子卷 %1$s"
+
+#, fuzzy, c-format
+#~ msgid ""
+#~ "Create subvolume %1$s on %2$s with option 'no copy on write' and limits "
+#~ "for qgroup"
+#~ msgstr "使用“写入时不复制”选项在 %2$s 上创建子卷 %1$s"
