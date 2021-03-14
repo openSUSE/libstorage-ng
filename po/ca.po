@@ -9,10 +9,10 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-28 14:51+0000\n"
-"PO-Revision-Date: 2020-11-10 18:50+0000\n"
+"PO-Revision-Date: 2021-03-14 21:56+0000\n"
 "Last-Translator: David Medina <medipas@gmail.com>\n"
-"Language-Team: Catalan <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/ca/>\n"
+"Language-Team: Catalan <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/ca/>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2182,9 +2182,9 @@ msgstr "Modifica els grups btrfs a %1$s"
 #. %1$s is replaced with the subvolume path (e.g. var/log),
 #. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
 #. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Modify subvolume %1$s on %2$s"
-msgstr "Creant el subvolum %1$s a %2$s"
+msgstr "Modifica el subvolum %1$s a %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -2260,9 +2260,9 @@ msgstr "Munta el subvolum %1$s de %2$s a %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the mount point (e.g. /tmp)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount tmpfs at %1$s"
-msgstr "Munta %1$s de %2$s"
+msgstr "Munta el sistema de fitxers temporal a %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
@@ -3138,9 +3138,9 @@ msgstr "Desmunta el subvolum %1$s de %2$s a %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the mount point (e.g. /tmp)
-#, fuzzy, c-format
+#, c-format
 msgid "Unmount tmpfs at %1$s"
-msgstr "Desmunta %1$s de %2$s"
+msgstr "Desmunta el sistema de fitxers temporal de %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
