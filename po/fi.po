@@ -12,10 +12,10 @@ msgstr ""
 "Project-Id-Version: libstorage.fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-28 14:51+0000\n"
-"PO-Revision-Date: 2021-01-05 16:37+0000\n"
+"PO-Revision-Date: 2021-03-15 12:56+0000\n"
 "Last-Translator: Tommi Nieminen <software@legisign.org>\n"
-"Language-Team: Finnish <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/fi/>\n"
+"Language-Team: Finnish <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2198,9 +2198,9 @@ msgstr "Muokkaa btrfs:n qgroupsia laitteella %1$s"
 #. %1$s is replaced with the subvolume path (e.g. var/log),
 #. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
 #. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Modify subvolume %1$s on %2$s"
-msgstr "Luodaan alitaltio %1$s laitteelle %2$s"
+msgstr "Muokkaa laitteen %2$s alitaltiota %1$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -2276,9 +2276,9 @@ msgstr "Liitä laitteen %2$s alitaltio %1$s kohtaan %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the mount point (e.g. /tmp)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount tmpfs at %1$s"
-msgstr "Liitä %1$s kohtaan %2$s"
+msgstr "Liitä tmpfs kohtaan %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
@@ -3155,9 +3155,9 @@ msgstr "Irrota laitteen %2$s alitaltio %1$s kohdasta %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the mount point (e.g. /tmp)
-#, fuzzy, c-format
+#, c-format
 msgid "Unmount tmpfs at %1$s"
-msgstr "Irrota %1$s kohdasta %2$s"
+msgstr "Irrota tmpfs kohdasta %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
