@@ -122,7 +122,7 @@
 #define NTFSLABEL_BIN "/usr/sbin/ntfslabel"
 #define FATLABEL_BIN "/usr/sbin/fatlabel"
 #define SWAPLABEL_BIN "/sbin/swaplabel"
-#define EXFATLABEL_BIN "/sbin/exfatlabel"
+#define EXFATLABEL_BIN "/usr/sbin/exfatlabel"
 
 #define DUMPE2FS_BIN "/sbin/dumpe2fs"
 
@@ -135,7 +135,7 @@
 #define MKFS_EXT2_BIN "/sbin/mke2fs"
 #define MKFS_BTRFS_BIN "/sbin/mkfs.btrfs"
 #define MKFS_F2FS_BIN "/usr/sbin/mkfs.f2fs"
-#define MKFS_EXFAT_BIN "/sbin/mkfs.exfat"
+#define MKFS_EXFAT_BIN "/usr/sbin/mkfs.exfat"
 #define MKFS_UDF_BIN "/usr/sbin/mkfs.udf"
 
 #define DOT_BIN "/usr/bin/dot"
