@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -63,6 +63,11 @@ namespace storage
 	 * Get the LUKS UUID.
 	 */
 	const std::string& get_uuid() const;
+
+	/**
+	 * Set the LUKS UUID. The UUID is only set when creating a new LUKS on disk.
+	 */
+	void set_uuid(const std::string& uuid);
 
 	/**
 	 * Get the LUKS label.

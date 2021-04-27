@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -54,6 +54,7 @@ namespace storage
 	virtual unsigned int max_labelsize() const override { return 16; }
 
 	virtual bool supports_uuid() const override { return true; }
+	virtual bool supports_modify_uuid() const override { return true; }
 
 	virtual void probe_pass_2b(Prober& prober) override;
 
@@ -73,6 +74,8 @@ namespace storage
 	virtual void do_create() override;
 
 	virtual void do_set_label() const override;
+
+	virtual void do_set_uuid() const override;
 
 	virtual void do_set_tune_options() const override;
 

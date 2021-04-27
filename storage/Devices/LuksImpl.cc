@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -591,6 +591,9 @@ namespace storage
 
 	cmd_line += " --tries 1";
 
+	if (!uuid.empty())
+	    cmd_line += " --uuid " + quote(uuid);
+
 	if (!get_cipher().empty())
 	    cmd_line += " --cipher " + quote(get_cipher());
 
@@ -602,7 +605,10 @@ namespace storage
 
 	add_key_file_option_and_execute(cmd_line);
 
-	probe_uuid();
+	if (uuid.empty())
+	{
+	    probe_uuid();
+	}
     }
 
 

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -992,6 +992,9 @@ namespace storage
 	if (data_raid_level != BtrfsRaidLevel::DEFAULT)
 	    cmd_line += " --data=" + toString(data_raid_level);
 
+	if (!get_uuid().empty())
+	    cmd_line += " --uuid=" + quote(get_uuid());
+
 	if (!get_mkfs_options().empty())
 	    cmd_line += " " + get_mkfs_options();
 
@@ -1005,7 +1008,10 @@ namespace storage
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
-	parse_mkfs_output(cmd.stdout());
+	if (get_uuid().empty())
+	{
+	    parse_mkfs_output(cmd.stdout());
+	}
 
         // This would fit better in do_mount(), but that one is a const method
         // which would not allow to set the snapper_config member variable.

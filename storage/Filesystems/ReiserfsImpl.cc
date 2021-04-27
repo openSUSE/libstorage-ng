@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2020] SUSE LLC
+ * Copyright (c) [2017-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -64,9 +64,12 @@ namespace storage
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
-	// uuid is included in mkfs output
+	if (get_uuid().empty())
+	{
+	    // uuid is included in mkfs output
 
-	probe_uuid();
+	    probe_uuid();
+	}
     }
 
 
@@ -77,7 +80,21 @@ namespace storage
 
 	// TODO handle mounted
 
-	string cmd_line = TUNEREISERFS_BIN " -l " + quote(get_label()) + " " +
+	string cmd_line = TUNEREISERFS_BIN " --label " + quote(get_label()) + " " +
+	    quote(blk_device->get_name());
+
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+    }
+
+
+    void
+    Reiserfs::Impl::do_set_uuid() const
+    {
+	const BlkDevice* blk_device = get_blk_device();
+
+	// TODO handle mounted?
+
+	string cmd_line = TUNEREISERFS_BIN " --uuid " + quote(get_uuid()) + " " +
 	    quote(blk_device->get_name());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
