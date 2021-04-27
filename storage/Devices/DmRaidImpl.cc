@@ -46,7 +46,7 @@ namespace storage
 
 
     DmRaid::Impl::Impl(const string& name)
-	: Partitionable::Impl(name), rotational(false)
+	: Partitionable::Impl(name)
     {
 	if (!is_valid_name(name))
 	    ST_THROW(Exception("invalid DmRaid name"));
@@ -56,7 +56,7 @@ namespace storage
 
 
     DmRaid::Impl::Impl(const string& name, const Region& region)
-	: Partitionable::Impl(name, region), rotational(false)
+	: Partitionable::Impl(name, region)
     {
 	if (!is_valid_name(name))
 	    ST_THROW(Exception("invalid DmRaid name"));
@@ -66,7 +66,7 @@ namespace storage
 
 
     DmRaid::Impl::Impl(const xmlNode* node)
-	: Partitionable::Impl(node), rotational(false)
+	: Partitionable::Impl(node)
     {
 	getChildValue(node, "rotational", rotational);
     }

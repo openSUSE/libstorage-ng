@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -209,9 +209,9 @@ namespace storage
 	 *
 	 * This active here means that the device node exists.
 	 */
-	bool active;
+	bool active = true;
 
-	bool read_only;
+	bool read_only = false;
 
 	/**
 	 * For most devices region.start is zero. Always used to keep track of

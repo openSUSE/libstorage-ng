@@ -159,7 +159,7 @@ namespace storage
 
     private:
 
-	EncryptionType type;
+	EncryptionType type = EncryptionType::LUKS1;
 
 	/**
 	 * The password.
@@ -171,13 +171,13 @@ namespace storage
 	string key_file;
 
 	string cipher;
-	unsigned int key_size;
+	unsigned int key_size = 0;
 
-	MountByType mount_by;
+	MountByType mount_by = MountByType::DEVICE;
 
 	CryptOpts crypt_options;
 
-	bool in_etc_crypttab;
+	bool in_etc_crypttab = true;
 
 	string crypttab_blk_device_name; // block device name as found in /etc/crypttab
 

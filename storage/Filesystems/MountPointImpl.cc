@@ -51,8 +51,7 @@ namespace storage
 
 
     MountPoint::Impl::Impl(const string& path)
-	: Device::Impl(), mount_by(MountByType::DEVICE), mount_type(FsType::UNKNOWN),
-	  freq(0), passno(0), active(true), in_etc_fstab(true)
+	: Device::Impl()
     {
 #if 0
 	if (!valid_path(path))
@@ -63,8 +62,7 @@ namespace storage
 
 
     MountPoint::Impl::Impl(const xmlNode* node)
-	: Device::Impl(node), path(), mount_by(MountByType::DEVICE), mount_type(FsType::UNKNOWN),
-	  freq(0), passno(0), active(true), in_etc_fstab(true)
+	: Device::Impl(node)
     {
 	string tmp;
 

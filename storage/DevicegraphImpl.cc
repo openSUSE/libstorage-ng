@@ -191,7 +191,7 @@ namespace storage
 
 		// check device back reference
 
-		if (&device->get_impl().get_devicegraph()->get_impl() != this)
+		if (&device->get_devicegraph()->get_impl() != this)
 		    ST_THROW(LogicException("wrong graph in back references"));
 
 		if (device->get_impl().get_vertex() != vertex)
@@ -208,7 +208,7 @@ namespace storage
 
 		// check holder back reference
 
-		if (&holder->get_impl().get_devicegraph()->get_impl() != this)
+		if (&holder->get_devicegraph()->get_impl() != this)
 		    ST_THROW(LogicException("wrong graph in back references"));
 
 		if (holder->get_impl().get_edge() != edge)
