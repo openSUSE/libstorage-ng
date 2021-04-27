@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -279,7 +279,14 @@ namespace storage
 	 */
 	std::string get_name_sort_key() const;
 
+	/**
+	 * Return the devicegraph the device belongs to.
+	 */
 	Devicegraph* get_devicegraph();
+
+	/**
+	 * @copydoc get_devicegraph()
+	 */
 	const Devicegraph* get_devicegraph() const;
 
     public:

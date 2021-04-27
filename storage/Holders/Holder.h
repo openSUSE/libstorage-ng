@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2017-2020] SUSE LLC
+ * Copyright (c) [2017-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -142,6 +142,16 @@ namespace storage
 	void set_userdata(const std::map<std::string, std::string>& userdata);
 
 	friend std::ostream& operator<<(std::ostream& out, const Holder& holder);
+
+	/**
+	 * Return the devicegraph the holder belongs to.
+	 */
+	Devicegraph* get_devicegraph();
+
+	/**
+	 * @copydoc get_devicegraph()
+	 */
+	const Devicegraph* get_devicegraph() const;
 
     public:
 

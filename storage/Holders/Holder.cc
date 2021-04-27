@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -174,10 +174,10 @@ namespace storage
 	ST_CHECK_PTR(source);
 	ST_CHECK_PTR(target);
 
-	if (source->get_impl().get_devicegraph() != devicegraph)
+	if (source->get_devicegraph() != devicegraph)
 	    ST_THROW(Exception("wrong graph in source"));
 
-	if (target->get_impl().get_devicegraph() != devicegraph)
+	if (target->get_devicegraph() != devicegraph)
 	    ST_THROW(Exception("wrong graph in target"));
 
 	Devicegraph::Impl::vertex_descriptor source_vertex = source->get_impl().get_vertex();
@@ -215,6 +215,20 @@ namespace storage
     {
 	holder.get_impl().print(out);
 	return out;
+    }
+
+
+    Devicegraph*
+    Holder::get_devicegraph()
+    {
+	return get_impl().get_devicegraph();
+    }
+
+
+    const Devicegraph*
+    Holder::get_devicegraph() const
+    {
+	return get_impl().get_devicegraph();
     }
 
 }
