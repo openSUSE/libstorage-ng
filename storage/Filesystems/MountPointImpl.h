@@ -197,19 +197,19 @@ namespace storage
 
 	string path;
 
-	MountByType mount_by;
+	MountByType mount_by = MountByType::DEVICE;
 
-	FsType mount_type;
+	FsType mount_type = FsType::UNKNOWN;
 
 	MountOpts mount_options;
 
-	int freq;
-	int passno;
+	int freq = 0;
+	int passno = 0;
 
 	// TODO: maybe move to Device since also BlkDevice has the flag
-	bool active;
+	bool active = true;
 
-	bool in_etc_fstab;
+	bool in_etc_fstab = true;
 
 	FstabAnchor fstab_anchor;
 

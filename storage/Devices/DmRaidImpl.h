@@ -87,7 +87,7 @@ namespace storage
 
     private:
 
-	bool rotational;
+	bool rotational = false;
 
     };
 

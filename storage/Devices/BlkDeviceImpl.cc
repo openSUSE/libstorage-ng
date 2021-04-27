@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -58,8 +58,7 @@ namespace storage
 
 
     BlkDevice::Impl::Impl(const string& name, const Region& region)
-	: Device::Impl(), name(name), active(true), read_only(false), region(region), topology(),
-	  udev_paths(), udev_ids(), dm_table_name()
+	: Device::Impl(), name(name), region(region)
     {
 	if (!is_valid_name(name))
 	    ST_THROW(Exception("invalid BlkDevice name"));
@@ -67,8 +66,7 @@ namespace storage
 
 
     BlkDevice::Impl::Impl(const xmlNode* node)
-	: Device::Impl(node), name(), active(true), read_only(false), region(0, 0, 512), topology(),
-	  udev_paths(), udev_ids(), dm_table_name()
+	: Device::Impl(node), name(), region(0, 0, 512)
     {
 	if (!getChildValue(node, "name", name))
 	    ST_THROW(Exception("no name"));

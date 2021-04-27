@@ -50,17 +50,14 @@ namespace storage
 
 
     Encryption::Impl::Impl(const string& dm_table_name)
-	: BlkDevice::Impl(DEV_MAPPER_DIR "/" + dm_table_name), type(EncryptionType::LUKS1), password(),
-	  key_file(), cipher(), key_size(0), mount_by(MountByType::DEVICE), in_etc_crypttab(true),
-	  open_options()
+	: BlkDevice::Impl(DEV_MAPPER_DIR "/" + dm_table_name)
     {
 	set_dm_table_name(dm_table_name);
     }
 
 
     Encryption::Impl::Impl(const xmlNode* node)
-	: BlkDevice::Impl(node), type(EncryptionType::LUKS1), password(), key_file(), cipher(),
-	  key_size(0), mount_by(MountByType::DEVICE), in_etc_crypttab(true), open_options()
+	: BlkDevice::Impl(node)
     {
 	string tmp;
 

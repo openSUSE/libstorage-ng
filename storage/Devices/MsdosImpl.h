@@ -54,7 +54,7 @@ namespace storage
 	static const int num_ebrs = 128;
 
 	Impl()
-	    : PartitionTable::Impl(), minimal_mbr_gap(default_minimal_mbr_gap) {}
+	    : PartitionTable::Impl() {}
 
 	Impl(const xmlNode* node);
 
@@ -117,7 +117,7 @@ namespace storage
 
 	static const unsigned long default_minimal_mbr_gap = 1 * MiB;
 
-	unsigned long minimal_mbr_gap;
+	unsigned long minimal_mbr_gap = default_minimal_mbr_gap;
 
     };
 

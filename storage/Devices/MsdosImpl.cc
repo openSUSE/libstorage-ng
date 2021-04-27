@@ -45,7 +45,7 @@ namespace storage
 
 
     Msdos::Impl::Impl(const xmlNode* node)
-	: PartitionTable::Impl(node), minimal_mbr_gap(default_minimal_mbr_gap)
+	: PartitionTable::Impl(node)
     {
 	getChildValue(node, "minimal-mbr-gap", minimal_mbr_gap);
     }
