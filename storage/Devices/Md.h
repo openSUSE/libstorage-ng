@@ -178,8 +178,7 @@ namespace storage
 	const std::string& get_uuid() const;
 
 	/**
-	 * Set UUID for testing purposes. The real UUID is not modified during
-	 * the commit phase.
+	 * Set the UUID. The UUID is only set when creating a new RAID on disk.
 	 */
 	void set_uuid(const std::string& uuid);
 

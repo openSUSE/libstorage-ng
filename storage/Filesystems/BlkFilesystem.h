@@ -84,7 +84,9 @@ namespace storage
 	const std::string& get_uuid() const;
 
 	/**
-	 * Set the filesystem UUID. Only supported for swap.
+	 * Set the filesystem UUID. Only supported for btrfs, xfs, ext, reiserfs, jfs, udf
+	 * and swap. In general the UUID is only set when creating a new filesystem on
+	 * disk.
 	 */
 	void set_uuid(const std::string& uuid);
 

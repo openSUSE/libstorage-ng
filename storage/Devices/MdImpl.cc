@@ -1094,6 +1094,9 @@ namespace storage
 	if (md_parity != MdParity::DEFAULT)
 	    cmd_line += " --parity=" + toString(md_parity);
 
+	if (!uuid.empty())
+	    cmd_line += " --uuid=" + quote(uuid);
+
 	cmd_line += " --raid-devices=" + to_string(devices.size());
 
 	if (!spares.empty())
@@ -1113,7 +1116,10 @@ namespace storage
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
-	probe_uuid();
+	if (uuid.empty())
+	{
+	    probe_uuid();
+	}
     }
 
 

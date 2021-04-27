@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -93,6 +93,13 @@ namespace storage
     Luks::get_uuid() const
     {
 	return get_impl().get_uuid();
+    }
+
+
+    void
+    Luks::set_uuid(const string& uuid)
+    {
+	get_impl().set_uuid(uuid);
     }
 
 

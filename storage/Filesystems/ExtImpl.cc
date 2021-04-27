@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -142,9 +142,12 @@ namespace storage
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
-	// TODO uuid is included in mkfs output
+	if (get_uuid().empty())
+	{
+	    // TODO uuid is included in mkfs output
 
-	probe_uuid();
+	    probe_uuid();
+	}
     }
 
 
@@ -154,6 +157,17 @@ namespace storage
 	const BlkDevice* blk_device = get_blk_device();
 
 	string cmd_line = TUNE2FS_BIN " -L " + quote(get_label()) + " " + quote(blk_device->get_name());
+
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+    }
+
+
+    void
+    Ext::Impl::do_set_uuid() const
+    {
+	const BlkDevice* blk_device = get_blk_device();
+
+	string cmd_line = TUNE2FS_BIN " -U " + quote(get_uuid()) + " " + quote(blk_device->get_name());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }

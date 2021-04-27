@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -88,7 +88,10 @@ namespace storage
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
-	probe_uuid();
+	if (get_uuid().empty())
+	{
+	    probe_uuid();
+	}
     }
 
 
@@ -113,6 +116,17 @@ namespace storage
 
 	string cmd_line = XFSADMIN_BIN " -L " + quote(get_label().empty() ? "--" : get_label()) + " " +
 	    quote(blk_device->get_name());
+
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+    }
+
+
+    void
+    Xfs::Impl::do_set_uuid() const
+    {
+	const BlkDevice* blk_device = get_blk_device();
+
+	string cmd_line = XFSADMIN_BIN " -U " + quote(get_uuid()) + " " + quote(blk_device->get_name());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }

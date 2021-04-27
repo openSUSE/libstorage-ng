@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -76,6 +76,7 @@ namespace storage
 	virtual string get_mount_by_name(MountByType mount_by_type) const override;
 
 	const string& get_uuid() const { return uuid; }
+	void set_uuid(const string& uuid) { Impl::uuid = uuid; }
 
 	const string& get_label() const { return label; }
 	void set_label(const string& label) { Impl::label = label; }
