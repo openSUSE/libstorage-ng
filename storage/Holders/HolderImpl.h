@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -87,11 +87,13 @@ namespace storage
 
 	Device* get_source();
 	const Device* get_source() const;
+	void set_source(const Device* source);
 
 	sid_t get_source_sid() const;
 
 	Device* get_target();
 	const Device* get_target() const;
+	void set_target(const Device* target);
 
 	sid_t get_target_sid() const;
 

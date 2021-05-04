@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -478,6 +478,25 @@ namespace storage
     }
 
 
+    Devicegraph::Impl::edge_descriptor
+    Devicegraph::Impl::set_target(edge_descriptor old_edge, vertex_descriptor target_vertex)
+    {
+	vertex_descriptor source_vertex = boost::source(old_edge, graph);
+
+	Holder* new_holder = graph[old_edge].get()->clone();
+
+	Devicegraph::Impl::edge_descriptor new_edge = add_edge(source_vertex, target_vertex,
+							       new_holder);
+
+	// set back-reference
+	new_holder->get_impl().set_edge(new_edge);
+
+	remove_edge(old_edge);
+
+	return new_edge;
+    }
+
+
     void
     Devicegraph::Impl::clear()
     {
@@ -720,7 +739,7 @@ namespace storage
 
 
     void
-    Devicegraph::Impl::load(Devicegraph* devicegraph, const string& filename)
+    Devicegraph::Impl::load(Devicegraph* devicegraph, const string& filename, bool keep_sids)
     {
 	if (&devicegraph->get_impl() != this)
 	    ST_THROW(LogicException("wrong impl-ptr"));
@@ -765,6 +784,15 @@ namespace storage
 		    ST_THROW(Exception(sformat("unknown holder class name %s", classname)));
 
 		it->second(devicegraph, holder_node);
+	    }
+	}
+
+	if (!keep_sids)
+	{
+	    for (vertex_descriptor vertex : vertices())
+	    {
+		Device* device = graph[vertex].get();
+		device->get_impl().set_sid(Storage::Impl::get_next_sid());
 	    }
 	}
     }

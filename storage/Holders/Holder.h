@@ -70,6 +70,26 @@ namespace storage
 	const Device* get_source() const;
 
 	/**
+	 * Set the source device of the holder. Experimental.
+	 *
+	 * So far this function does not adjust the devices connected to the holder. E.g.
+	 * setting a disk as source for a partition table does not adjust the device names
+	 * of the partitions. This may change in the future.
+	 *
+	 * @throw Exception
+	 */
+	void set_source(const Device* source);
+
+	/**
+	 * Set the target device of the holder.
+	 *
+	 * @see set_source(const Device*)
+	 *
+	 * @throw Exception
+	 */
+	void set_target(const Device* target);
+
+	/**
 	 * Return the storage id (sid) of the source of the holder.
 	 *
 	 * @see sid_t

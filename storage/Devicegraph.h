@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -190,9 +190,19 @@ namespace storage
 	/**
 	 * Load the devicegraph from a file.
 	 *
+	 * Deprecated in favor of load(const std::string&, bool keep_sids) which will get
+	 * the default of true for keep_sids.
+	 *
 	 * @throw Exception
 	 */
 	void load(const std::string& filename);
+
+	/**
+	 * Load the devicegraph from a file.
+	 *
+	 * @throw Exception
+	 */
+	void load(const std::string& filename, bool keep_sids);
 
 	/**
 	 * Save the devicegraph to a file.

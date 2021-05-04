@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -135,6 +135,7 @@ namespace storage
 	vertex_descriptor target(edge_descriptor edge) const { return boost::target(edge, graph); }
 
 	edge_descriptor set_source(edge_descriptor edge, vertex_descriptor vertex);
+	edge_descriptor set_target(edge_descriptor edge, vertex_descriptor vertex);
 
 	Device* operator[](vertex_descriptor vertex) { return graph[vertex].get(); }
 	const Device* operator[](vertex_descriptor vertex) const { return graph[vertex].get(); }
@@ -150,7 +151,7 @@ namespace storage
 	boost::iterator_range<vertex_iterator> vertices() const;
 	boost::iterator_range<edge_iterator> edges() const;
 
-	void load(Devicegraph* devicegraph, const string& filename);
+	void load(Devicegraph* devicegraph, const string& filename, bool keep_sids);
 	void save(const string& filename) const;
 
 	void print(std::ostream& out) const;

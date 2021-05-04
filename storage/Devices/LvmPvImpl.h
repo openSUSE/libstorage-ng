@@ -45,7 +45,7 @@ namespace storage
 	static const unsigned long long default_pe_start = 1 * MiB;
 
 	Impl()
-	    : Device::Impl(), uuid(), pe_start(default_pe_start) {}
+	    : Device::Impl() {}
 
 	Impl(const xmlNode* node);
 
@@ -121,7 +121,7 @@ namespace storage
 	 * Usually 1 MiB (default_pe_start), for details see implementation of
 	 * calculate_pe_start().
 	 */
-	unsigned long long pe_start;
+	unsigned long long pe_start = default_pe_start;
 
     };
 

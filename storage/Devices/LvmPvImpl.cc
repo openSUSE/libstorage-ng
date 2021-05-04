@@ -50,7 +50,7 @@ namespace storage
 
 
     LvmPv::Impl::Impl(const xmlNode* node)
-	: Device::Impl(node), uuid(), pe_start(default_pe_start)
+	: Device::Impl(node)
     {
 	getChildValue(node, "uuid", uuid);
 
