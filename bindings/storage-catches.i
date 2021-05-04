@@ -275,6 +275,7 @@
 %catches(storage::HolderNotFoundBySids, storage::WrongNumberOfHolders) storage::Devicegraph::find_holder(sid_t source_sid, sid_t target_sid);
 %catches(storage::HolderNotFoundBySids, storage::WrongNumberOfHolders) storage::Devicegraph::find_holder(sid_t source_sid, sid_t target_sid) const;
 %catches(storage::Exception) storage::Devicegraph::load(const std::string &filename);
+%catches(storage::Exception) storage::Devicegraph::load(const std::string &filename, bool keep_sids);
 %catches(storage::DeviceNotFoundBySid) storage::Devicegraph::remove_device(sid_t sid);
 %catches(storage::Exception) storage::Devicegraph::save(const std::string &filename) const;
 %catches(storage::Exception) storage::Devicegraph::write_graphviz(const std::string &filename, DevicegraphStyleCallbacks *style_callbacks, View view) const;
@@ -307,6 +308,7 @@
 %catches(storage::Exception) storage::LvmVg::get_lvm_lv(const std::string &lv_name);
 %catches(storage::InvalidExtentSize, storage::Exception) storage::LvmVg::set_extent_size(unsigned long long extent_size);
 %catches(storage::WrongNumberOfChildren) storage::Md::add_device(BlkDevice *blk_device);
+%catches(storage::Exception) storage::Md::calculate_underlying_size(MdLevel md_level, unsigned int number_of_devices, unsigned long long size);
 %catches(storage::Exception) storage::Md::compare_by_number(const Md *lhs, const Md *rhs);
 %catches(storage::Exception) storage::Md::create(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Md::find_by_name(Devicegraph *devicegraph, const std::string &name);

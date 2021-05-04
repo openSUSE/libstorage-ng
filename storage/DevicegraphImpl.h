@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -150,7 +150,7 @@ namespace storage
 	boost::iterator_range<vertex_iterator> vertices() const;
 	boost::iterator_range<edge_iterator> edges() const;
 
-	void load(Devicegraph* devicegraph, const string& filename);
+	void load(Devicegraph* devicegraph, const string& filename, bool keep_sids);
 	void save(const string& filename) const;
 
 	void print(std::ostream& out) const;

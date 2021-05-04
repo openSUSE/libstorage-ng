@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -720,7 +720,7 @@ namespace storage
 
 
     void
-    Devicegraph::Impl::load(Devicegraph* devicegraph, const string& filename)
+    Devicegraph::Impl::load(Devicegraph* devicegraph, const string& filename, bool keep_sids)
     {
 	if (&devicegraph->get_impl() != this)
 	    ST_THROW(LogicException("wrong impl-ptr"));
@@ -765,6 +765,15 @@ namespace storage
 		    ST_THROW(Exception(sformat("unknown holder class name %s", classname)));
 
 		it->second(devicegraph, holder_node);
+	    }
+	}
+
+	if (!keep_sids)
+	{
+	    for (vertex_descriptor vertex : vertices())
+	    {
+		Device* device = graph[vertex].get();
+		device->get_impl().set_sid(Storage::Impl::get_next_sid());
 	    }
 	}
     }

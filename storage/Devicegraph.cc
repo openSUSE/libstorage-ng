@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -158,7 +158,14 @@ namespace storage
     void
     Devicegraph::load(const string& filename)
     {
-	get_impl().load(this, filename);
+	get_impl().load(this, filename, true);
+    }
+
+
+    void
+    Devicegraph::load(const string& filename, bool keep_sids)
+    {
+	get_impl().load(this, filename, keep_sids);
     }
 
 
