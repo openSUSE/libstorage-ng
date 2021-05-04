@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -22,6 +22,7 @@
 
 
 #include "storage/Holders/HolderImpl.h"
+#include "storage/Devices/DeviceImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Storage.h"
 #include "storage/Utils/XmlFile.h"
@@ -165,6 +166,28 @@ namespace storage
     {
 	Devicegraph::Impl::vertex_descriptor source = devicegraph->get_impl().source(edge);
 	return devicegraph->get_impl()[source];
+    }
+
+
+    void
+    Holder::Impl::set_source(const Device* source)
+    {
+	if (get_devicegraph() != source->get_devicegraph())
+	    ST_THROW(Exception("new source has wrong devicegraph"));
+
+	Devicegraph::Impl::vertex_descriptor vertex = source->get_impl().get_vertex();
+	devicegraph->get_impl().set_source(edge, vertex);
+    }
+
+
+    void
+    Holder::Impl::set_target(const Device* target)
+    {
+	if (get_devicegraph() != target->get_devicegraph())
+	    ST_THROW(Exception("new target has wrong devicegraph"));
+
+	Devicegraph::Impl::vertex_descriptor vertex = target->get_impl().get_vertex();
+	devicegraph->get_impl().set_target(edge, vertex);
     }
 
 

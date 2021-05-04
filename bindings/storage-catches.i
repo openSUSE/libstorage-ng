@@ -288,6 +288,8 @@
 %catches(storage::Exception) storage::Filesystem::detect_space_info() const;
 %catches(storage::HolderAlreadyExists) storage::FilesystemUser::create(Devicegraph *devicegraph, const Device *source, const Device *target);
 %catches(storage::Exception) storage::Holder::copy_to_devicegraph(Devicegraph *devicegraph) const;
+%catches(storage::Exception) storage::Holder::set_source(const Device *source);
+%catches(storage::Exception) storage::Holder::set_target(const Device *target);
 %catches(storage::Exception) storage::ImplicitPt::create_implicit_partition();
 %catches(storage::Exception) storage::LvmLv::create_lvm_lv(const std::string &lv_name, LvType lv_type, unsigned long long size);
 %catches(storage::Exception) storage::LvmLv::get_lvm_lv(const std::string &lv_name);

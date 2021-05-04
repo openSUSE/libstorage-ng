@@ -138,6 +138,20 @@ namespace storage
     }
 
 
+    void
+    Holder::set_source(const Device* source)
+    {
+	get_impl().set_source(source);
+    }
+
+
+    void
+    Holder::set_target(const Device* target)
+    {
+	get_impl().set_target(target);
+    }
+
+
     sid_t
     Holder::get_source_sid() const
     {
