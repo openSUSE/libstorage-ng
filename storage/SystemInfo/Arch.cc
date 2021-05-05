@@ -105,7 +105,7 @@ namespace storage
 	}
 	else
 	{
-	    SystemCmd::Options options(TEST_BIN " -d '/sys/firmware/efi/efivars'", SystemCmd::DoThrow);
+	    SystemCmd::Options options(TEST_BIN " -d '" EFIVARS_DIR "'", SystemCmd::DoThrow);
 	    options.verify = [](int exit_code) { return exit_code == 0 || exit_code == 1; };
 
 	    SystemCmd cmd(options);
