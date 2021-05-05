@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -38,6 +38,8 @@
 
 #define SYSFS_DIR "/sys"
 #define PROC_DIR "/proc"
+
+#define EFIVARS_DIR SYSFS_DIR "/firmware/efi/efivars"
 
 
 // commands
@@ -142,7 +144,7 @@
 #define DISPLAY_BIN "/usr/bin/display"
 
 
-//regexes
+// regexes
 
 #define UUID_REGEX "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
 
