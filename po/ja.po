@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-28 14:51+0000\n"
-"PO-Revision-Date: 2021-03-15 12:56+0000\n"
+"PO-Revision-Date: 2021-05-09 02:57+0000\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
 "Language-Team: Japanese <https://l10n.opensuse.org/projects/libstorage/"
 "ng-master/ja/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.6.1\n"
+"X-Generator: Weblate 4.6.1\n"
 
 msgid ""
 "\n"
@@ -398,9 +398,7 @@ msgstr "パーティション %1$s の legacy boot フラグを消去してい�
 #. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Clearing option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr ""
-"%2$s 内のサブボリューム %1$s  に対して 'no copy on write' オプションを消去し"
-"ています"
+msgstr "%2$s 内のサブボリューム %1$s に対して 'no copy on write' オプションを消去しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
