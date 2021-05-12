@@ -5,24 +5,24 @@ msgstr ""
 "Project-Id-Version: libstorage.ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-28 14:51+0000\n"
-"PO-Revision-Date: 2021-01-04 16:37+0000\n"
+"PO-Revision-Date: 2021-05-12 22:57+0000\n"
 "Last-Translator: Alex Minton <alex239@gmail.com>\n"
-"Language-Team: Russian <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/ru/>\n"
+"Language-Team: Russian <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 3.6.1\n"
+"X-Generator: Weblate 4.6.2\n"
 
 msgid ""
 "\n"
 "are you serious?!"
 msgstr ""
 "\n"
-"Вы уверены?"
+"Вы уверены?!"
 
 #. TRANSLATORS: appended after list of value to indicate that some
 #. values have been omitted
@@ -2206,9 +2206,9 @@ msgstr "Изменить btrfs qgroup на %1$s"
 #. %1$s is replaced with the subvolume path (e.g. var/log),
 #. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
 #. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Modify subvolume %1$s on %2$s"
-msgstr "Создание подтома %1$s на %2$s"
+msgstr "Изменить подтом %1$s на %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -2283,9 +2283,9 @@ msgstr "Монтировать подтом %1$s на %2$s в %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the mount point (e.g. /tmp)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount tmpfs at %1$s"
-msgstr "Монтировать %1$s в %2$s"
+msgstr "Монтировать tmpfs в %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
@@ -3152,9 +3152,9 @@ msgstr "Отмонтировать подтом %1$s на %2$s в %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the mount point (e.g. /tmp)
-#, fuzzy, c-format
+#, c-format
 msgid "Unmount tmpfs at %1$s"
-msgstr "Отмонтировать %1$s в %2$s"
+msgstr "Отмонтировать tmpfs в %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
