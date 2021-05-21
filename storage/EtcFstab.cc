@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2017-2019] SUSE LLC
+ * Copyright (c) [2017-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -52,8 +52,7 @@ namespace storage
     MountOpts::MountOpts(const vector<string> & opts)
 	: opts(opts)
     {
-	while (contains("defaults"))
-	    remove("defaults");
+	remove("defaults");
     }
 
 
@@ -138,10 +137,7 @@ namespace storage
 
     void MountOpts::remove( const string & opt )
     {
-	int index = get_index_of( opt );
-
-	if ( index != -1 )
-	    remove( index );
+	opts.erase(std::remove(opts.begin(), opts.end(), opt), opts.end());
     }
 
 
@@ -178,8 +174,7 @@ namespace storage
 		      boost::is_any_of( "," ),
 		      boost::token_compress_on );
 
-	while ( contains( "defaults" ) )
-	    remove( "defaults" );
+	remove("defaults");
 
         return true;
     }
