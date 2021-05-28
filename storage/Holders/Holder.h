@@ -72,9 +72,10 @@ namespace storage
 	/**
 	 * Set the source device of the holder. Experimental.
 	 *
-	 * So far this function does not adjust the devices connected to the holder. E.g.
-	 * setting a disk as source for a partition table does not adjust the device names
-	 * of the partitions. This may change in the future.
+	 * So far it is undefined whether this function adjusts the devices connected to
+	 * the holder. E.g.  setting a disk as source for a partition table adjusts the
+	 * device names of the partitions but not the topology. This may change in the
+	 * future.
 	 *
 	 * @throw Exception
 	 */

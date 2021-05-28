@@ -515,6 +515,15 @@ namespace storage
 
 
     void
+    Partition::Impl::update_name()
+    {
+	const Partitionable* partitionable = get_partitionable();
+
+	set_name(name_and_number_to_device(partitionable->get_name(), get_number()));
+    }
+
+
+    void
     Partition::Impl::update_sysfs_name_and_path()
     {
 	const Partitionable* partitionable = get_partitionable();

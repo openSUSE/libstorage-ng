@@ -245,6 +245,12 @@ namespace storage
 
 
     void
+    Device::Impl::has_new_parent()
+    {
+    }
+
+
+    void
     Device::Impl::parent_has_new_region(const Device* parent)
     {
     }

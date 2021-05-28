@@ -234,6 +234,20 @@ namespace storage
     }
 
 
+    void
+    PartitionTable::Impl::has_new_parent()
+    {
+	for (Partition* partition : get_partitions())
+	{
+	    partition->get_impl().update_name();
+	    partition->get_impl().update_sysfs_name_and_path();
+	    partition->get_impl().update_udev_paths_and_ids();
+
+	    // TODO topology? at least block size? could cascade to even more devices
+	}
+    }
+
+
     bool
     PartitionTable::Impl::equal(const Device::Impl& rhs_base) const
     {
