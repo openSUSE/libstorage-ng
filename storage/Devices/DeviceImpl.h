@@ -146,6 +146,8 @@ namespace storage
 
 	virtual ResizeInfo detect_resize_info(const BlkDevice* blk_device = nullptr) const = 0;
 
+	virtual void has_new_parent();
+
 	virtual void parent_has_new_region(const Device* parent);
 
 	virtual uf_t used_features(UsedFeaturesDependencyType used_features_dependency_type) const { return 0; }

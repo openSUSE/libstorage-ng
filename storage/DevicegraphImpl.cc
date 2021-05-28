@@ -474,6 +474,9 @@ namespace storage
 
 	remove_edge(old_edge);
 
+	Device* target = graph[target_vertex].get();
+	target->get_impl().has_new_parent();
+
 	return new_edge;
     }
 
@@ -492,6 +495,9 @@ namespace storage
 	new_holder->get_impl().set_edge(new_edge);
 
 	remove_edge(old_edge);
+
+	Device* target = graph[target_vertex].get();
+	target->get_impl().has_new_parent();
 
 	return new_edge;
     }

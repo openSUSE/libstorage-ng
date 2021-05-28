@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -67,6 +67,8 @@ namespace storage
 
 	Partitionable* get_partitionable();
 	const Partitionable* get_partitionable() const;
+
+	virtual void has_new_parent() override;
 
 	virtual bool equal(const Device::Impl& rhs) const override = 0;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override = 0;
