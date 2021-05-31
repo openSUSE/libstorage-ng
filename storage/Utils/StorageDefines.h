@@ -42,6 +42,13 @@
 #define EFIVARS_DIR SYSFS_DIR "/firmware/efi/efivars"
 
 
+// files
+
+#define DEV_NULL_FILE DEV_DIR "/null"
+#define DEV_ZERO_FILE DEV_DIR "/zero"
+#define DEV_URANDOM_FILE DEV_DIR "/urandom"
+
+
 // commands
 
 #define SH_BIN "/bin/sh"
@@ -98,6 +105,8 @@
 #define DF_BIN "/usr/bin/df"
 #define TEST_BIN "/usr/bin/test"
 #define STAT_BIN "/usr/bin/stat"
+
+#define LOSETUP_BIN "/sbin/losetup"
 
 #define LSATTR_BIN "/usr/bin/lsattr"
 #define CHATTR_BIN "/usr/bin/chattr"

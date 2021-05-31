@@ -41,11 +41,21 @@ namespace storage
 	READ_MOCKUP			// fake probe - for testsuite
     };
 
-    //! Is the target a disk, chroot, or image?
+
+    /**
+     * Enum with target modes.
+     */
     enum class TargetMode {
-	DIRECT,			// direct target
-	CHROOT,			// the target is chrooted, e.g. inst-sys
-	IMAGE			// the target is image based
+
+	/** Direct target. */
+	DIRECT,
+
+	/** The target is chrooted, e.g. inst-sys. */
+	CHROOT,
+
+	/** The target is image based. Experimental. */
+	IMAGE
+
     };
 
 

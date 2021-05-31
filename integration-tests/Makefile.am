@@ -3,7 +3,7 @@
 #
 
 SUBDIRS = partition-tables partitions filesystems mount-points md lvm		\
-	plain-encryption luks bcache pools misc
+	plain-encryption luks bcache pools misc image
 
 python_PYTHON = storageitu.py
 

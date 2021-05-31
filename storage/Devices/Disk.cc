@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -163,6 +163,20 @@ namespace storage
     Disk::is_nvme() const
     {
 	return get_impl().is_nvme();
+    }
+
+
+    const string&
+    Disk::get_image_filename() const
+    {
+	return get_impl().get_image_filename();
+    }
+
+
+    void
+    Disk::set_image_filename(const string& image_filename)
+    {
+	get_impl().set_image_filename(image_filename);
     }
 
 

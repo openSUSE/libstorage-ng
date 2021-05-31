@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -85,6 +85,9 @@ namespace storage
 	bool is_pmem() const;
 	bool is_nvme() const;
 
+	const string& get_image_filename() const { return image_filename; }
+	void set_image_filename(const string& image_filename) { Impl::image_filename = image_filename; }
+
 	static void probe_disks(Prober& prober);
 	virtual void probe_pass_1a(Prober& prober) override;
 
@@ -101,6 +104,10 @@ namespace storage
 	virtual void process_udev_ids(vector<string>& udev_ids) const override;
 
 	virtual Text do_create_text(Tense tense) const override;
+	virtual void do_create() override;
+
+	virtual Text do_activate_text(Tense tense) const override;
+	virtual void do_activate() const override;
 
     private:
 
@@ -110,6 +117,8 @@ namespace storage
 	Transport transport = Transport::UNKNOWN;
 
 	ZoneModel zone_model = ZoneModel::NONE;
+
+	string image_filename;
 
     };
 

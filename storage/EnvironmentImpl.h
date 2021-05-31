@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2018-2020] SUSE LLC
+ * Copyright (c) [2018-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -64,9 +64,10 @@ namespace storage
 
     private:
 
-	bool read_only;
-	ProbeMode probe_mode;
-	TargetMode target_mode;
+	const bool read_only;
+	const ProbeMode probe_mode;
+	const TargetMode target_mode;
+
 	string devicegraph_filename;
 	string arch_filename;
 	string mockup_filename;

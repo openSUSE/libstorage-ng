@@ -40,7 +40,7 @@ namespace storage
 
     Blkid::Blkid()
     {
-	SystemCmd cmd(BLKID_BIN " -c '/dev/null'", SystemCmd::DoThrow);
+	SystemCmd cmd(BLKID_BIN " -c '" DEV_NULL_FILE "'", SystemCmd::DoThrow);
 
 	parse(cmd.stdout());
     }
@@ -48,7 +48,7 @@ namespace storage
 
     Blkid::Blkid(const string& device)
     {
-	SystemCmd cmd(BLKID_BIN " -c '/dev/null' " + quote(device), SystemCmd::DoThrow);
+	SystemCmd cmd(BLKID_BIN " -c '" DEV_NULL_FILE "' " + quote(device), SystemCmd::DoThrow);
 
 	parse(cmd.stdout());
     }
