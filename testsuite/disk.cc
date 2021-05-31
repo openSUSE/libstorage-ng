@@ -50,5 +50,5 @@ BOOST_AUTO_TEST_CASE(disk2)
 
     Actiongraph actiongraph(storage, lhs, rhs);
 
-    BOOST_CHECK_EQUAL(actiongraph.get_commit_actions().size(), 1);
+    BOOST_CHECK_EQUAL(actiongraph.get_commit_actions().size(), 2);
 }

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -40,6 +40,7 @@
 #include "storage/UsedFeatures.h"
 #include "storage/Prober.h"
 #include "storage/Utils/Format.h"
+#include "storage/Utils/SystemCmd.h"
 
 
 namespace storage
@@ -234,6 +235,7 @@ namespace storage
 	{
 	    vector<Action::Base*> actions;
 	    actions.push_back(new Action::Create(get_sid()));
+	    actions.push_back(new Action::Activate(get_sid()));
 	    actiongraph.add_chain(actions);
 	}
 	else
@@ -332,17 +334,66 @@ namespace storage
     Text
     Disk::Impl::do_create_text(Tense tense) const
     {
+	// only used for TargetMode::IMAGE
+
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by the device name (e.g. /dev/vda),
+			   // %1$s is replaced by the device name (e.g. /dev/loop0),
 			   // %2$s is replaced by the size (e.g. 20.00 GiB)
 			   _("Create hard disk %1$s (%2$s)"),
 			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by the device name (e.g. /dev/vda),
+			   // %1$s is replaced by the device name (e.g. /dev/loop0),
 			   // %2$s is replaced by the size (e.g. 20.00 GiB)
 			   _("Creating hard disk %1$s (%2$s)"));
 
 	return sformat(text, get_displayname(), get_size_text());
+    }
+
+
+    void
+    Disk::Impl::do_create()
+    {
+	// only used for TargetMode::IMAGE
+
+	if (image_filename.empty())
+	    ST_THROW(Exception("image filename empty"));
+
+	string cmd_line = DD_BIN " if='" DEV_ZERO_FILE "' of=" + quote(image_filename) +
+	    " obs=" + to_string(get_region().get_block_size()) + " seek=" +
+	    to_string(get_region().get_length()) + " count=0 conv=excl";
+
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+    }
+
+
+    Text
+    Disk::Impl::do_activate_text(Tense tense) const
+    {
+	// only used for TargetMode::IMAGE
+
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by the device name (e.g. /dev/loop0),
+			   // %2$s is replaced by the size (e.g. 20.00 GiB)
+			   _("Activate hard disk %1$s (%2$s)"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by the device name (e.g. /dev/loop0),
+			   // %2$s is replaced by the size (e.g. 20.00 GiB)
+			   _("Activating hard disk %1$s (%2$s)"));
+
+	return sformat(text, get_displayname(), get_size_text());
+    }
+
+
+    void
+    Disk::Impl::do_activate() const
+    {
+	// only used for TargetMode::IMAGE
+
+	string cmd_line = LOSETUP_BIN " --sector-size " + to_string(get_region().get_block_size()) + " " +
+	    quote(get_name()) + " " + quote(image_filename);
+
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 }

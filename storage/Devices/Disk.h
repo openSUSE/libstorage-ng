@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -139,6 +139,17 @@ namespace storage
 	 * Return whether the disk is an NVMe device.
 	 */
 	bool is_nvme() const;
+
+	/**
+	 * Get the filename for the underlying image. Only for TargetMode::IMAGE.
+	 */
+	const std::string& get_image_filename() const;
+
+	/**
+	 * Set the filename for the underlying image. The file must not exist already.
+	 * Only for TargetMode::IMAGE.
+	 */
+	void set_image_filename(const std::string& image_filename);
 
 	/**
 	 * Find a Disk by its name. Only the name returned by get_name() is
