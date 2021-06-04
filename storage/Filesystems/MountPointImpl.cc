@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2020] SUSE LLC
+ * Copyright (c) [2017-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -69,6 +69,8 @@ namespace storage
 	if (getChildValue(node, "path", tmp))
 	    set_path(tmp);
 
+	getChildValue(node, "rootprefixed", rootprefixed);
+
 	if (getChildValue(node, "mount-by", tmp))
 	    mount_by = toValueWithFallback(tmp, MountByType::DEVICE);
 
@@ -101,6 +103,7 @@ namespace storage
 	Device::Impl::save(node);
 
 	setChildValue(node, "path", path);
+	setChildValue(node, "rootprefixed", rootprefixed);
 
 	setChildValue(node, "mount-by", toString(mount_by));
 
@@ -168,7 +171,7 @@ namespace storage
 
 	return path == rhs.path && mount_by == rhs.mount_by && mount_type == rhs.mount_type &&
 	    mount_options == rhs.mount_options && freq == rhs.freq && passno == rhs.passno &&
-	    active == rhs.active && in_etc_fstab == rhs.in_etc_fstab;
+	    active == rhs.active && in_etc_fstab == rhs.in_etc_fstab && rootprefixed == rhs.rootprefixed;
     }
 
 
@@ -180,6 +183,7 @@ namespace storage
 	Device::Impl::log_diff(log, rhs);
 
 	storage::log_diff(log, "path", path, rhs.path);
+	storage::log_diff(log, "rootprefixed", rootprefixed, rhs.rootprefixed);
 
 	storage::log_diff_enum(log, "mount-by", mount_by, rhs.mount_by);
 
@@ -201,6 +205,9 @@ namespace storage
 	Device::Impl::print(out);
 
 	out << " path:" << path;
+
+	if (rootprefixed)
+	    out << " rootprefixed";
 
 	out << " mount-by:" << toString(mount_by);
 
@@ -288,6 +295,37 @@ namespace storage
     MountPoint::Impl::set_default_mount_type()
     {
 	set_mount_type(get_mountable()->get_impl().get_default_mount_type());
+    }
+
+
+    string
+    MountPoint::Impl::get_rootprefixed_path() const
+    {
+	if (rootprefixed)
+	    return get_storage()->get_impl().prepend_rootprefix(path);
+	else
+	    return path;
+    }
+
+
+    void
+    MountPoint::Impl::strip_rootprefix()
+    {
+	if (path == "swap")
+	    return;
+
+	const string& rootprefix = get_storage()->get_rootprefix();
+	if (rootprefix.empty() || rootprefix == "/")
+	    return;
+
+	rootprefixed = boost::starts_with(path, rootprefix);
+
+	if (rootprefixed)
+	{
+	    path.erase(0, rootprefix.size());
+	    if (path.empty())
+		path = "/";
+	}
     }
 
 
@@ -665,6 +703,14 @@ namespace storage
 	{
 	    MountPoint* mount_point = to_mount_point(get_device(commit_data.actiongraph));
 	    mount_point->get_impl().do_unmount(commit_data);
+	}
+
+
+	const string&
+	Unmount::get_path(Actiongraph::Impl& actiongraph) const
+	{
+	    const MountPoint* mount_point = to_mount_point(get_device(actiongraph));
+	    return mount_point->get_path();
 	}
 
 

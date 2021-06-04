@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2020] SUSE LLC
+ * Copyright (c) [2017-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -122,6 +122,9 @@ namespace storage
 	bool is_in_etc_fstab() const { return in_etc_fstab; }
 	void set_in_etc_fstab(bool in_etc_fstab) { Impl::in_etc_fstab = in_etc_fstab; }
 
+	bool is_rootprefixed() const { return rootprefixed; }
+	void set_rootprefixed(bool rootprefixed) { Impl::rootprefixed = rootprefixed; }
+
 	bool is_active() const { return active; }
 	void set_active(bool active) { Impl::active = active; }
 
@@ -141,6 +144,10 @@ namespace storage
 	void set_mount_type(FsType mount_type);
 
 	void set_default_mount_type();
+
+	string get_rootprefixed_path() const;
+
+	void strip_rootprefix();
 
 	virtual uf_t used_features(UsedFeaturesDependencyType used_features_dependency_type) const override;
 
@@ -211,6 +218,8 @@ namespace storage
 
 	bool in_etc_fstab = true;
 
+	bool rootprefixed = true;
+
 	FstabAnchor fstab_anchor;
 
     };
@@ -244,6 +253,8 @@ namespace storage
 
 	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
+
+	    const string& get_path(Actiongraph::Impl& actiongraph) const;
 
 	};
 

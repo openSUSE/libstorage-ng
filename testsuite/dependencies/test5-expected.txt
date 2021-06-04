@@ -2,7 +2,7 @@
 1b - Unmount /dev/sda1 (1.46 GiB) at /test1 -> 3a
 
 2a - Remove mount point /test2 of /dev/sda1 (1.46 GiB) from /etc/fstab -> 2b
-2b - Unmount /dev/sda1 (1.46 GiB) at /test2 -> 3a
+2b - Unmount /dev/sda1 (1.46 GiB) at /test2 -> 1b 3a
 
 3a - Delete xfs on /dev/sda1 (1.46 GiB) -> 3b
 3b - Delete primary partition /dev/sda1 (1.46 GiB) ->

@@ -151,6 +151,7 @@ AC_OUTPUT(
 	integration-tests/misc/Makefile
 	integration-tests/pools/Makefile
 	integration-tests/image/Makefile
+	integration-tests/install/Makefile
 	bindings/Makefile
 	bindings/python/Makefile
 	bindings/python/examples/Makefile
