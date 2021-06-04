@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 
-# requirements:
-
 
 from storage import *
 from storageitu import *
@@ -15,12 +13,16 @@ def create_partition(gpt, size):
             continue
 
         region = slot.region
+
+        if region.to_bytes(region.get_length()) < size:
+            continue
+
         region.set_length(int(size / region.get_block_size()))
         region = gpt.align(region)
         partition = gpt.create_partition(slot.name, region, PartitionType_PRIMARY)
         return partition
 
-    raise "no slot for partition found"
+    raise Exception("no suitable partition slot found")
 
 
 set_logger(get_logfile_logger())
