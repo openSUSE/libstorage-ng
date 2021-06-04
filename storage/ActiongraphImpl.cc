@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -556,6 +556,7 @@ namespace storage
     Actiongraph::Impl::add_dependencies()
     {
 	vector<vertex_descriptor> mounts;
+	vector<vertex_descriptor> unmounts;
 
 	// TODO also for Devices only in LHS?
 
@@ -581,6 +582,10 @@ namespace storage
 	    const Action::Mount* mount = dynamic_cast<const Action::Mount*>(action);
 	    if (mount && mount->get_path(*this) != "swap")
 		mounts.push_back(vertex);
+
+	    const Action::Unmount* unmount = dynamic_cast<const Action::Unmount*>(action);
+	    if (unmount && unmount->get_path(*this) != "swap")
+		unmounts.push_back(vertex);
 	}
 
 	if (mounts.size() > 1)
@@ -593,6 +598,18 @@ namespace storage
 	    });
 
 	    add_chain(mounts);
+	}
+
+	if (unmounts.size() > 1)
+	{
+	    // TODO correct sort
+	    sort(unmounts.begin(), unmounts.end(), [this](vertex_descriptor l, vertex_descriptor r) {
+		const Action::Unmount* ml = dynamic_cast<const Action::Unmount*>(graph[l].get());
+		const Action::Unmount* mr = dynamic_cast<const Action::Unmount*>(graph[r].get());
+		return ml->get_path(*this) > mr->get_path(*this);
+	    });
+
+	    add_chain(unmounts);
 	}
 
 	add_special_dasd_pt_dependencies();

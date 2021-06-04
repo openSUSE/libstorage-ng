@@ -706,6 +706,14 @@ namespace storage
 	}
 
 
+	const string&
+	Unmount::get_path(Actiongraph::Impl& actiongraph) const
+	{
+	    const MountPoint* mount_point = to_mount_point(get_device(actiongraph));
+	    return mount_point->get_path();
+	}
+
+
 	Text
 	AddToEtcFstab::text(const CommitData& commit_data) const
 	{

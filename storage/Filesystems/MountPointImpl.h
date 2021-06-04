@@ -254,6 +254,8 @@ namespace storage
 	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
 
+	    const string& get_path(Actiongraph::Impl& actiongraph) const;
+
 	};
 
 
