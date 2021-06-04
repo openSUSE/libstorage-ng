@@ -152,13 +152,15 @@ namespace storage
 	    if (!joint_entries.empty())
 	    {
 		Nfs* nfs = Nfs::create(prober.get_system(), name_parts.first, name_parts.second);
-		joint_entries[0].add_to(nfs);
+		MountPoint* mount_point = joint_entries[0].add_to(nfs);
 
-		if (nfs->get_mount_point()->is_active())
+		if (mount_point->is_active())
 		{
-		    const CmdDf& cmd_df = system_info.getCmdDf(nfs->get_mount_point()->get_path());
+		    const CmdDf& cmd_df = system_info.getCmdDf(mount_point->get_path());
 		    nfs->set_space_info(cmd_df.get_space_info());
 		}
+
+		mount_point->get_impl().strip_rootprefix();
 	    }
 	}
     }

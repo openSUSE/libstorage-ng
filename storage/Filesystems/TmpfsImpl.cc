@@ -94,13 +94,15 @@ namespace storage
 		continue;
 
 	    Tmpfs* tmpfs = Tmpfs::create(prober.get_system());
-	    joint_entry.add_to(tmpfs);
+	    MountPoint* mount_point = joint_entry.add_to(tmpfs);
 
-	    if (tmpfs->get_mount_point()->is_active())
+	    if (mount_point->is_active())
 	    {
-		const CmdDf& cmd_df = prober.get_system_info().getCmdDf(tmpfs->get_mount_point()->get_path());
+		const CmdDf& cmd_df = prober.get_system_info().getCmdDf(mount_point->get_path());
 		tmpfs->set_space_info(cmd_df.get_space_info());
 	    }
+
+	    mount_point->get_impl().strip_rootprefix();
 	}
     }
 

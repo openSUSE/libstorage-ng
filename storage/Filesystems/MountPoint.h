@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2018] SUSE LLC
+ * Copyright (c) [2017-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -188,6 +188,21 @@ namespace storage
 	 * Set whether the mount point will be present in /etc/fstab.
 	 */
 	void set_in_etc_fstab(bool in_etc_fstab);
+
+	/**
+	 * Return whether the path of the mount point will be prefixed with the rootprefix
+	 * during mount operations.
+	 *
+	 * The default value is true (for historic reasons).
+	 */
+	bool is_rootprefixed() const;
+
+	/**
+	 * Sets whether the path is rootprefixed.
+	 *
+	 * @see is_rootprefixed()
+	 */
+	void set_rootprefixed(bool rootprefixed);
 
 	/**
 	 * Checks whether the mount point has a mountable. This is usally true

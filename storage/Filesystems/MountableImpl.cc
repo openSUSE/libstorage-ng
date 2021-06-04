@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -270,7 +270,9 @@ namespace storage
 	    // Select the shortest path to avoid problems during upgrade (bsc#1118865).
 	    const JointEntry* entry = *min_element(filtered_entries.begin(), filtered_entries.end(), compare_by_size);
 
-	    entry->add_to(get_non_impl());
+	    MountPoint* mount_point = entry->add_to(get_non_impl());
+
+	    mount_point->get_impl().strip_rootprefix();
 	}
     }
 
@@ -538,9 +540,8 @@ namespace storage
     void
     Mountable::Impl::immediate_activate(MountPoint* mount_point, bool force_rw) const
     {
-	const Storage* storage = get_devicegraph()->get_storage();
+	string real_mount_point = mount_point->get_impl().get_rootprefixed_path();
 
-	string real_mount_point = storage->get_impl().prepend_rootprefix(mount_point->get_path());
 	if (access(real_mount_point.c_str(), R_OK) != 0)
 	{
 	    createPath(real_mount_point);
@@ -569,9 +570,7 @@ namespace storage
     void
     Mountable::Impl::immediate_deactivate(MountPoint* mount_point) const
     {
-	const Storage* storage = get_devicegraph()->get_storage();
-
-	string real_mount_point = storage->get_impl().prepend_rootprefix(mount_point->get_path());
+	string real_mount_point = mount_point->get_impl().get_rootprefixed_path();
 
 	string cmd_line = UMOUNT_BIN " " + quote(real_mount_point);
 
