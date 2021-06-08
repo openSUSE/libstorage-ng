@@ -1,0 +1,5 @@
+1 - Mount /dev/sdb1 (3.20 GiB) at /a -> 2 3
+2 - Mount /dev/sdb2 (3.20 GiB) at /a/b ->
+3 - Mount /dev/sdb3 (3.20 GiB) at /a/c ->
+4 - Mount /dev/sdb4 (3.20 GiB) at /d -> 5
+5 - Mount /dev/sdb5 (3.20 GiB) at /d/e/f ->

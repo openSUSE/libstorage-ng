@@ -555,9 +555,6 @@ namespace storage
     void
     Actiongraph::Impl::add_dependencies()
     {
-	vector<vertex_descriptor> mounts;
-	vector<vertex_descriptor> unmounts;
-
 	// TODO also for Devices only in LHS?
 
 	const Devicegraph* devicegraph = get_devicegraph(RHS);
@@ -578,41 +575,69 @@ namespace storage
 	    const Action::Base* action = graph[vertex].get();
 
 	    action->add_dependencies(vertex, *this);
+	}
+
+	add_mount_dependencies();
+
+	add_special_dasd_pt_dependencies();
+    }
+
+
+    Actiongraph::Impl::mount_map_t::const_iterator
+    Actiongraph::Impl::find_mount_parent(const mount_map_t& mount_map, mount_map_t::const_iterator child) const
+    {
+	string mount = child->first;
+
+	while (mount != "/")
+	{
+	    string::size_type pos = mount.rfind("/");
+	    if (pos == string::npos)
+		return mount_map.end();
+
+	    mount.erase(pos);
+	    if (mount.empty())
+		mount = "/";
+
+	    mount_map_t::const_iterator i1 = mount_map.find(mount);
+	    if (i1 != mount_map.end())
+		return i1;
+	}
+
+	return mount_map.end();
+    }
+
+
+    void
+    Actiongraph::Impl::add_mount_dependencies()
+    {
+	mount_map_t mounts, unmounts;
+
+	for (vertex_descriptor vertex : vertices())
+	{
+	    const Action::Base* action = graph[vertex].get();
 
 	    const Action::Mount* mount = dynamic_cast<const Action::Mount*>(action);
 	    if (mount && mount->get_path(*this) != "swap")
-		mounts.push_back(vertex);
+		mounts[mount->get_rootprefixed_path(*this)] = vertex;
 
 	    const Action::Unmount* unmount = dynamic_cast<const Action::Unmount*>(action);
 	    if (unmount && unmount->get_path(*this) != "swap")
-		unmounts.push_back(vertex);
+		unmounts[unmount->get_rootprefixed_path(*this)] = vertex;
 	}
 
-	if (mounts.size() > 1)
+	for (mount_map_t::const_iterator i1 = mounts.begin(); i1 != mounts.end(); ++i1)
 	{
-	    // TODO correct sort
-	    sort(mounts.begin(), mounts.end(), [this](vertex_descriptor l, vertex_descriptor r) {
-		const Action::Mount* ml = dynamic_cast<const Action::Mount*>(graph[l].get());
-		const Action::Mount* mr = dynamic_cast<const Action::Mount*>(graph[r].get());
-		return ml->get_path(*this) <= mr->get_path(*this);
-	    });
-
-	    add_chain(mounts);
+	    mount_map_t::const_iterator i2 = find_mount_parent(mounts, i1);
+	    if (i2 != mounts.end())
+		add_edge(i2->second, i1->second);
 	}
 
-	if (unmounts.size() > 1)
+	for (mount_map_t::const_iterator i1 = unmounts.begin(); i1 != unmounts.end(); ++i1)
 	{
-	    // TODO correct sort
-	    sort(unmounts.begin(), unmounts.end(), [this](vertex_descriptor l, vertex_descriptor r) {
-		const Action::Unmount* ml = dynamic_cast<const Action::Unmount*>(graph[l].get());
-		const Action::Unmount* mr = dynamic_cast<const Action::Unmount*>(graph[r].get());
-		return ml->get_path(*this) > mr->get_path(*this);
-	    });
-
-	    add_chain(unmounts);
+	    mount_map_t::const_iterator i2 = find_mount_parent(unmounts, i1);
+	    if (i2 != unmounts.end())
+		add_edge(i1->second, i2->second);
 	}
-
-	add_special_dasd_pt_dependencies();
     }
 
 

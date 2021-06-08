@@ -198,6 +198,7 @@ namespace storage
 	void remove_duplicates();
 	void set_special_actions();
 	void add_dependencies();
+	void add_mount_dependencies();
 	void add_special_dasd_pt_dependencies();
 	void remove_only_syncs();
 	void calculate_order();
@@ -212,6 +213,12 @@ namespace storage
 	Order order;
 
 	graph_t graph;
+
+	// map from path to mount/unmount action
+	using mount_map_t = map<string, vertex_descriptor>;
+
+	mount_map_t::const_iterator find_mount_parent(const mount_map_t& mount_map,
+						      mount_map_t::const_iterator child) const;
 
 	map<sid_t, vector<vertex_descriptor>> cache_for_actions_with_sid;
 

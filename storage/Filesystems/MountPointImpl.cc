@@ -675,6 +675,14 @@ namespace storage
 	}
 
 
+	string
+	Mount::get_rootprefixed_path(Actiongraph::Impl& actiongraph) const
+	{
+	    const MountPoint* mount_point = to_mount_point(get_device(actiongraph));
+	    return mount_point->get_impl().get_rootprefixed_path();
+	}
+
+
 	const MountPoint*
 	Mount::get_mount_point(Actiongraph::Impl& actiongraph) const
 	{
@@ -711,6 +719,14 @@ namespace storage
 	{
 	    const MountPoint* mount_point = to_mount_point(get_device(actiongraph));
 	    return mount_point->get_path();
+	}
+
+
+	string
+	Unmount::get_rootprefixed_path(Actiongraph::Impl& actiongraph) const
+	{
+	    const MountPoint* mount_point = to_mount_point(get_device(actiongraph));
+	    return mount_point->get_impl().get_rootprefixed_path();
 	}
 
 

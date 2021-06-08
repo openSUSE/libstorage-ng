@@ -239,6 +239,7 @@ namespace storage
 	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const override;
 
 	    const string& get_path(Actiongraph::Impl& actiongraph) const;
+	    string get_rootprefixed_path(Actiongraph::Impl& actiongraph) const;
 
 	    const MountPoint* get_mount_point(Actiongraph::Impl& actiongraph) const;
 
@@ -255,6 +256,7 @@ namespace storage
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
 
 	    const string& get_path(Actiongraph::Impl& actiongraph) const;
+	    string get_rootprefixed_path(Actiongraph::Impl& actiongraph) const;
 
 	};
 
