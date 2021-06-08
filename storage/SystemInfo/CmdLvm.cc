@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -34,7 +34,10 @@
 #include "storage/Utils/JsonFile.h"
 
 
-#define COMMON_LVM_OPTIONS "--reportformat json --units b --nosuffix"
+// see bsc #1186780
+#define CONFIG_OVERRIDE "--config 'log { command_names = 0 prefix = \"\" }'"
+
+#define COMMON_LVM_OPTIONS "--reportformat json " CONFIG_OVERRIDE " --units b --nosuffix"
 
 
 namespace storage

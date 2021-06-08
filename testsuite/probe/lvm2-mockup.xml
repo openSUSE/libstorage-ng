@@ -33,7 +33,7 @@
       <name>/sbin/dmsetup table</name>
     </Command>
     <Command>
-      <name>/sbin/lvs --reportformat json --units b --nosuffix --all --options lv_name,lv_uuid,vg_name,vg_uuid,lv_role,lv_attr,lv_size,origin_size,segtype,stripes,stripe_size,chunk_size,pool_lv,pool_lv_uuid,origin,origin_uuid,data_lv,data_lv_uuid,metadata_lv,metadata_lv_uuid</name>
+      <name>/sbin/lvs --reportformat json --config 'log { command_names = 0 prefix = "" }' --units b --nosuffix --all --options lv_name,lv_uuid,vg_name,vg_uuid,lv_role,lv_attr,lv_size,origin_size,segtype,stripes,stripe_size,chunk_size,pool_lv,pool_lv_uuid,origin,origin_uuid,data_lv,data_lv_uuid,metadata_lv,metadata_lv_uuid</name>
       <stdout>  {</stdout>
       <stdout>      "report": [</stdout>
       <stdout>          {</stdout>
@@ -56,7 +56,7 @@
       <exit-code>127</exit-code>
     </Command>
     <Command>
-      <name>/sbin/pvs --reportformat json --units b --nosuffix --all --options pv_name,pv_uuid,vg_name,vg_uuid,pv_attr,pe_start</name>
+      <name>/sbin/pvs --reportformat json --config 'log { command_names = 0 prefix = "" }' --units b --nosuffix --all --options pv_name,pv_uuid,vg_name,vg_uuid,pv_attr,pe_start</name>
       <!-- output incomplete -->
       <stdout>  {</stdout>
       <stdout>      "report": [</stdout>
@@ -547,7 +547,7 @@
       <name>/usr/bin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
-      <name>/sbin/vgs --reportformat json --units b --nosuffix --options vg_name,vg_uuid,vg_attr,vg_extent_size,vg_extent_count,vg_free_count</name>
+      <name>/sbin/vgs --reportformat json --config 'log { command_names = 0 prefix = "" }' --units b --nosuffix --options vg_name,vg_uuid,vg_attr,vg_extent_size,vg_extent_count,vg_free_count</name>
       <stdout>  {</stdout>
       <stdout>      "report": [</stdout>
       <stdout>          {</stdout>
