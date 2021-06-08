@@ -18,10 +18,11 @@ void
 check(const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command(LVS_BIN " --reportformat json --units b --nosuffix --all --options lv_name,"
-			"lv_uuid,vg_name,vg_uuid,lv_role,lv_attr,lv_size,origin_size,segtype,stripes,"
-			"stripe_size,chunk_size,pool_lv,pool_lv_uuid,origin,origin_uuid,data_lv,"
-			"data_lv_uuid,metadata_lv,metadata_lv_uuid", input);
+    Mockup::set_command(LVS_BIN " --reportformat json --config 'log { command_names = 0 prefix = \"\" }' "
+			"--units b --nosuffix --all --options lv_name,lv_uuid,vg_name,vg_uuid,lv_role,"
+			"lv_attr,lv_size,origin_size,segtype,stripes,stripe_size,chunk_size,pool_lv,"
+			"pool_lv_uuid,origin,origin_uuid,data_lv,data_lv_uuid,metadata_lv,"
+			"metadata_lv_uuid", input);
 
     CmdLvs cmd_lvs;
 
