@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 SUSE LLC
+ * Copyright (c) [2020-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -99,12 +99,12 @@ namespace storage
 	unsigned long long get_exclusive() const { return exclusive; }
 	void set_exclusive(unsigned long long exclusive) { Impl::exclusive = exclusive; }
 
-	boost::optional<unsigned long long> get_referenced_limit() const { return referenced_limit; }
-	void set_referenced_limit(const boost::optional<unsigned long long>& referenced_limit)
+	std::optional<unsigned long long> get_referenced_limit() const { return referenced_limit; }
+	void set_referenced_limit(const std::optional<unsigned long long>& referenced_limit)
 	    { Impl::referenced_limit = referenced_limit; }
 
-	boost::optional<unsigned long long> get_exclusive_limit() const { return exclusive_limit; }
-	void set_exclusive_limit(const boost::optional<unsigned long long>& exclusive_limit)
+	std::optional<unsigned long long> get_exclusive_limit() const { return exclusive_limit; }
+	void set_exclusive_limit(const std::optional<unsigned long long>& exclusive_limit)
 	    { Impl::exclusive_limit = exclusive_limit; }
 
 	bool is_assigned(const BtrfsQgroup* btrfs_qgroup) const;
@@ -140,8 +140,8 @@ namespace storage
 	unsigned long long referenced = 0;
 	unsigned long long exclusive = 0;
 
-	boost::optional<unsigned long long> referenced_limit;
-	boost::optional<unsigned long long> exclusive_limit;
+	std::optional<unsigned long long> referenced_limit;
+	std::optional<unsigned long long> exclusive_limit;
 
     };
 

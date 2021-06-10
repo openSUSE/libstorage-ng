@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 SUSE LLC
+ * Copyright (c) [2020-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -173,9 +173,9 @@ namespace storage
 	if (exclusive > 0)
 	    out << " exclusive:" << exclusive;
 
-	if (referenced_limit != boost::none)
+	if (referenced_limit != std::nullopt)
 	    out << " referenced-limit:" << referenced_limit.value();
-	if (exclusive_limit != boost::none)
+	if (exclusive_limit != std::nullopt)
 	    out << " exclusive-limit:" << exclusive_limit.value();
     }
 
@@ -303,7 +303,7 @@ namespace storage
 
 	actions.push_back(new Action::Create(get_sid(), sync_only));
 
-	if (referenced_limit != boost::none || exclusive_limit != boost::none)
+	if (referenced_limit != std::nullopt || exclusive_limit != std::nullopt)
 	    actions.push_back(new Action::SetLimits(get_sid()));
 
 	actiongraph.add_chain(actions);
@@ -452,13 +452,13 @@ namespace storage
     {
 	EnsureMounted ensure_mounted(get_btrfs()->get_top_level_btrfs_subvolume(), false);
 
-	string cmd_line1 = BTRFS_BIN " qgroup limit " + (referenced_limit != boost::none ?
+	string cmd_line1 = BTRFS_BIN " qgroup limit " + (referenced_limit != std::nullopt ?
 	    to_string(referenced_limit.value()) : "none") + " " + format_id(id) + " " +
 	    quote(ensure_mounted.get_any_mount_point());
 
 	SystemCmd cmd1(cmd_line1, SystemCmd::DoThrow);
 
-	string cmd_line2 = BTRFS_BIN " qgroup limit -e " + (exclusive_limit != boost::none ?
+	string cmd_line2 = BTRFS_BIN " qgroup limit -e " + (exclusive_limit != std::nullopt ?
 	    to_string(exclusive_limit.value()) : "none") + " " + format_id(id) + " " +
 	    quote(ensure_mounted.get_any_mount_point());
 

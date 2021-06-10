@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 SUSE LLC
+ * Copyright (c) [2020-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -94,7 +94,7 @@ namespace storage
     bool
     BtrfsQgroup::has_referenced_limit() const
     {
-	return get_impl().get_referenced_limit() != boost::none;
+	return get_impl().get_referenced_limit() != std::nullopt;
     }
 
 
@@ -118,14 +118,14 @@ namespace storage
     void
     BtrfsQgroup::clear_referenced_limit()
     {
-	get_impl().set_referenced_limit(boost::none);
+	get_impl().set_referenced_limit(std::nullopt);
     }
 
 
     bool
     BtrfsQgroup::has_exclusive_limit() const
     {
-	return get_impl().get_exclusive_limit() != boost::none;
+	return get_impl().get_exclusive_limit() != std::nullopt;
     }
 
 
@@ -149,7 +149,7 @@ namespace storage
     void
     BtrfsQgroup::clear_exclusive_limit()
     {
-	get_impl().set_exclusive_limit(boost::none);
+	get_impl().set_exclusive_limit(std::nullopt);
     }
 
 

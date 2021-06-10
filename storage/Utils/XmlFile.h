@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2010-2014] Novell, Inc.
- * Copyright (c) [2019-2020] SUSE LLC
+ * Copyright (c) [2019-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -29,8 +29,8 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <optional>
 #include <boost/noncopyable.hpp>
-#include <boost/optional.hpp>
 
 #include "storage/Utils/AppUtil.h"
 
@@ -145,7 +145,7 @@ namespace storage
 
 
     template<typename Type>
-    void setChildValue(xmlNode* node, const char* name, const boost::optional<Type>& value)
+    void setChildValue(xmlNode* node, const char* name, const std::optional<Type>& value)
     {
 	if (value)
 	    setChildValue(node, name, value.value());

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2017-2020] SUSE LLC
+ * Copyright (c) [2017-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -259,8 +259,8 @@ namespace storage
 	    unsigned long long referenced = 0;
 	    unsigned long long exclusive = 0;
 
-	    boost::optional<unsigned long long> referenced_limit;
-	    boost::optional<unsigned long long> exclusive_limit;
+	    std::optional<unsigned long long> referenced_limit;
+	    std::optional<unsigned long long> exclusive_limit;
 
 	    vector<BtrfsQgroup::id_t> parents_id;
 	};
