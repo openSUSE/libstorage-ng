@@ -39,7 +39,6 @@ namespace storage
     public:
 
 	Impl(bool read_only, ProbeMode probe_mode, TargetMode target_mode);
-	~Impl();
 
 	bool is_read_only() const { return read_only; }
 

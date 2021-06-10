@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2018-2020] SUSE LLC
+ * Copyright (c) [2018-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -34,8 +34,8 @@
 #include <list>
 #include <map>
 #include <set>
+#include <optional>
 #include <boost/io/ios_state.hpp>
-#include <boost/optional.hpp>
 
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/Logger.h"
@@ -55,7 +55,7 @@ namespace storage
 
 
     template<class Value>
-    void operator>>(const string& d, boost::optional<Value>& ov)
+    void operator>>(const string& d, std::optional<Value>& ov)
     {
 	Value v;
 	d >> v;
@@ -169,22 +169,22 @@ namespace storage
 
 
     template <typename Type>
-    void log_diff(std::ostream& log, const char* text, const boost::optional<Type>& lhs,
-		  const boost::optional<Type>& rhs)
+    void log_diff(std::ostream& log, const char* text, const std::optional<Type>& lhs,
+		  const std::optional<Type>& rhs)
     {
 	if (lhs == rhs)
 	    return;
 
 	log << " " << text << ":";
 
-	if (lhs == boost::none)
+	if (lhs == std::nullopt)
 	    log << "none";
 	else
 	    log << lhs.value();
 
 	log << "-->";
 
-	if (rhs == boost::none)
+	if (rhs == std::nullopt)
 	    log << "none";
 	else
 	    log << rhs.value();
@@ -235,15 +235,6 @@ namespace storage
     erase_if(vector<T>& c, Predicate pred)
     {
 	c.erase(remove_if(c.begin(), c.end(), pred), c.end());
-    }
-
-
-    // already C++17 standard, see
-    // http://en.cppreference.com/w/cpp/algorithm/clamp
-    template<class T>
-    const T& clamp(const T& v, const T& lo, const T& hi)
-    {
-	return v < lo ? lo : v > hi ? hi : v;
     }
 
 

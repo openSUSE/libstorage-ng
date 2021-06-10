@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -24,9 +24,8 @@
 #define STORAGE_C_DG_D_H
 
 
-#include <ostream>
 #include <memory>
-#include <boost/optional.hpp>
+#include <optional>
 
 
 namespace storage
@@ -50,31 +49,31 @@ namespace storage
     public:
 
 	CDgD()
-	    : ptr(make_shared<boost::optional<Type>>())
+	    : ptr(make_shared<std::optional<Type>>())
 	{
 	}
 
 	bool has_value() const
 	{
-	    boost::optional<Type>& tmp = *ptr;
+	    std::optional<Type>& tmp = *ptr;
 	    return (bool)(tmp);
 	}
 
 	const Type& get_value() const
 	{
-	    boost::optional<Type>& tmp = *ptr;
+	    std::optional<Type>& tmp = *ptr;
 	    return *tmp;
 	}
 
 	void set_value(const Type& value)
 	{
-	    boost::optional<Type>& tmp = *ptr;
+	    std::optional<Type>& tmp = *ptr;
 	    tmp = value;
 	}
 
     private:
 
-	std::shared_ptr<boost::optional<Type>> ptr;
+	std::shared_ptr<std::optional<Type>> ptr;
 
     };
 

@@ -1111,8 +1111,7 @@ namespace storage
 	if (!journals.empty())
 	    cmd_line += " --write-journal=" + quote(journals.front());
 
-	wait_for_devices(std::add_const<const Md::Impl&>::type(*this).get_devices());
-	// wait_for_devices(std::as_const(*this).get_devices()); // C++17
+	wait_for_devices(std::as_const(*this).get_devices());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 

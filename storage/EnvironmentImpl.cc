@@ -36,11 +36,6 @@ namespace storage
     }
 
 
-    Environment::Impl::~Impl()
-    {
-    }
-
-
     void
     Environment::Impl::set_devicegraph_filename(const string& devicegraph_filename)
     {

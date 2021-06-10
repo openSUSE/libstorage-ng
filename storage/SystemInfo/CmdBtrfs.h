@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2017-2020] SUSE LLC
+ * Copyright (c) [2017-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -63,9 +63,7 @@ namespace storage
 	 */
 	struct Device
 	{
-	    Device() : id(0), name() {}
-
-	    unsigned int id;
+	    unsigned int id = 0;
 	    string name;
 	};
 
@@ -76,8 +74,6 @@ namespace storage
 	 */
 	struct Entry
 	{
-	    Entry() : uuid(), devices() {}
-
 	    string uuid;
 	    vector<Device> devices;
 	};
@@ -129,13 +125,8 @@ namespace storage
 	 */
 	struct Entry
 	{
-	    Entry()
-		: id(BtrfsSubvolume::Impl::unknown_id),
-		  parent_id(BtrfsSubvolume::Impl::unknown_id),
-		  path(), uuid(), parent_uuid() {}
-
-	    long id;
-	    long parent_id;
+	    long id = BtrfsSubvolume::Impl::unknown_id;
+	    long parent_id = BtrfsSubvolume::Impl::unknown_id;
 	    string path;
 	    string uuid;
 	    string parent_uuid;
@@ -259,8 +250,8 @@ namespace storage
 	    unsigned long long referenced = 0;
 	    unsigned long long exclusive = 0;
 
-	    boost::optional<unsigned long long> referenced_limit;
-	    boost::optional<unsigned long long> exclusive_limit;
+	    std::optional<unsigned long long> referenced_limit;
+	    std::optional<unsigned long long> exclusive_limit;
 
 	    vector<BtrfsQgroup::id_t> parents_id;
 	};
