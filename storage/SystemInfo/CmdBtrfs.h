@@ -63,9 +63,7 @@ namespace storage
 	 */
 	struct Device
 	{
-	    Device() : id(0), name() {}
-
-	    unsigned int id;
+	    unsigned int id = 0;
 	    string name;
 	};
 
@@ -76,8 +74,6 @@ namespace storage
 	 */
 	struct Entry
 	{
-	    Entry() : uuid(), devices() {}
-
 	    string uuid;
 	    vector<Device> devices;
 	};
@@ -129,13 +125,8 @@ namespace storage
 	 */
 	struct Entry
 	{
-	    Entry()
-		: id(BtrfsSubvolume::Impl::unknown_id),
-		  parent_id(BtrfsSubvolume::Impl::unknown_id),
-		  path(), uuid(), parent_uuid() {}
-
-	    long id;
-	    long parent_id;
+	    long id = BtrfsSubvolume::Impl::unknown_id;
+	    long parent_id = BtrfsSubvolume::Impl::unknown_id;
 	    string path;
 	    string uuid;
 	    string parent_uuid;

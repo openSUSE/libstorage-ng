@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -56,29 +56,25 @@ namespace storage
 
 	struct Entry
 	{
-	    Entry() : is_fs(false), fs_type(FsType::UNKNOWN), fs_uuid(), fs_label(), fs_journal_uuid(),
-		      fs_sub_uuid(), is_journal(false), journal_uuid(), is_md(false), is_lvm(false),
-		      is_luks(false), luks_uuid(), luks_label(), is_bcache(false), bcache_uuid() {}
-
-	    bool is_fs;
-	    FsType fs_type;
+	    bool is_fs = false;
+	    FsType fs_type = FsType::UNKNOWN;
 	    string fs_uuid;
 	    string fs_label;
 	    string fs_journal_uuid;
 	    string fs_sub_uuid;
 
-	    bool is_journal;
+	    bool is_journal = false;
 	    string journal_uuid;
 
-	    bool is_md;
+	    bool is_md = false;
 
-	    bool is_lvm;
+	    bool is_lvm = false;
 
-	    bool is_luks;
+	    bool is_luks = false;
 	    string luks_uuid;
 	    string luks_label;
 
-	    bool is_bcache;
+	    bool is_bcache = false;
 	    string bcache_uuid;
 	};
 
