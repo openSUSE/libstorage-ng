@@ -58,10 +58,7 @@ namespace storage
 	struct Options
 	{
 	    Options(const string& command, ThrowBehaviour throw_behaviour = NoThrow)
-		: command(command), throw_behaviour(throw_behaviour), stdin_text(),
-		  mockup_key(), log_line_limit(1000),
-		  verify([](int exit_code){ return exit_code == 0; }),
-		  env({ "LC_ALL=C", "LANGUAGE=C" }) {}
+		: command(command), throw_behaviour(throw_behaviour) {}
 
 	    /**
 	     * The command to be executed.
@@ -71,7 +68,7 @@ namespace storage
 	    /**
 	     * Should exceptions be thrown or not?
 	     */
-	    ThrowBehaviour throw_behaviour;
+	    ThrowBehaviour throw_behaviour = NoThrow;
 
 	    /**
 	     * The stdin text to be sent via pipe to the command.
@@ -86,20 +83,20 @@ namespace storage
 	    /**
 	     * Limit for logged lines.
 	     */
-	    unsigned int log_line_limit;
+	    unsigned int log_line_limit = 1000;
 
 	    /**
 	     * If throw_behaviour is DoThrow this function is used
 	     * additionally to verify if the command succeeded and if not an
 	     * exception is thrown.
 	     */
-	    std::function<bool(int)> verify;
+	    std::function<bool(int)> verify = [](int exit_code){ return exit_code == 0; };
 
 	    /**
 	     * Environment variables to override existing environment variables. Per
 	     * default this includes LC_ALL=C and LANGUAGE=C.
 	     */
-	    vector<string> env;
+	    vector<string> env = { "LC_ALL=C", "LANGUAGE=C" };
 
 	};
 
@@ -122,34 +119,12 @@ namespace storage
 	 */
 	virtual ~SystemCmd();
 
-    protected:
+    private:
 
 	/**
 	 * Execute the specified command in the foreground and return its exit code.
 	 **/
 	int execute();
-
-	/**
-	 * Execute the specified command in the background.
-	 * The return value is only meaningful if < 0 (fork() or exec() failed).
-	 */
-	int executeBackground();
-
-	/**
-	 * Execute the specified command in the foreground with some restrictions:
-	 *
-	 * If 'maxTimeSec' is > 0, the command is killed (with SIGKILL) after
-	 * 'maxTimeSec' seconds, and 'timeExceeded_ret' is set to 'true'.
-	 *
-	 * If 'maxLineOut' is > 0, the command is killed (with SIGKILL) if more
-	 * than 'maxLineOut' lines have been collected in both stdout and
-	 * stderr.
-	 *
-	 * This function returns the command's exit code if none of the limits
-	 * was exceeded, and -257 otherwise.
-	 */
-	int executeRestricted(unsigned long maxTimeSec, unsigned long maxLineOut,
-			      bool& timeExceeded_ret, bool& linesExceeded_ret);
 
     public:
 
@@ -185,7 +160,7 @@ namespace storage
 	 */
 	static string quote(const vector<string>& strs);
 
-    protected:
+    private:
 
 	enum OutputStream { IDX_STDOUT, IDX_STDERR };
 
@@ -194,14 +169,14 @@ namespace storage
 	void invalidate();
 	void closeOpenFds() const;
 	int doExecute();
-	bool doWait(bool hang, int& cmdRet_ret);
+	bool doWait(int& cmdRet_ret);
 	void checkOutput();
         void sendStdin();
-	void getUntilEOF(FILE* file, std::vector<string>& lines,
+	void getUntilEOF(FILE* file, vector<string>& lines,
 			 bool& newLineSeen_ret, bool isStderr) const;
 	void extractNewline(const string& buffer, int count, bool& newLineSeen_ret,
-			    string& text, std::vector<string>& lines) const;
-	void addLine(const string& text, std::vector<string>& lines) const;
+			    string& text, vector<string>& lines) const;
+	void addLine(const string& text, vector<string>& lines) const;
 
 	void logOutput() const;
 
@@ -210,18 +185,12 @@ namespace storage
 	const string& mockup_key() const
 	    { return options.mockup_key.empty() ? options.command : options.mockup_key; }
 
-	//
-	// Data members
-	//
-
 	Options options;
 
 	FILE* _files[2];
         FILE* _childStdin;
-	std::vector<string> _outputLines[2];
+	vector<string> _outputLines[2];
 	bool _newLineSeen[2];
-	bool _combineOutput;
-	bool _execInBackground;
 	int _cmdRet;
 	int _cmdPid;
 	struct pollfd _pfds[3];

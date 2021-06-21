@@ -295,7 +295,7 @@ namespace storage
 
 	for (const Entry& entry : entries)
 	{
-	    for (const string dep_id : entry.dep_ids)
+	    for (const string& dep_id : entry.dep_ids)
 	    {
 		if (ids.find(dep_id) == ids.end())
 		    ST_THROW(Exception("unknown dependency-id"));

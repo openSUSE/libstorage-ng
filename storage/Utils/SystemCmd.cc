@@ -25,8 +25,6 @@
 #include <unistd.h>
 #include <errno.h>
 #include <fcntl.h>
-#include <ostream>
-#include <fstream>
 #include <sys/wait.h>
 #include <string>
 #include <sstream>
@@ -62,7 +60,7 @@ namespace storage
 
 
     SystemCmd::SystemCmd(const Options& options)
-	: options(options), _combineOutput(false), _execInBackground(false), _cmdRet(0), _cmdPid(0)
+	: options(options), _cmdRet(0), _cmdPid(0)
     {
 	y2mil("constructor SystemCmd(\"" << command() << "\")");
 
@@ -189,7 +187,6 @@ namespace storage
 	{
 	    y2mil("SystemCmd Executing:\"" << command() << "\"");
 	    y2mil("timestamp " << timestamp());
-	    _execInBackground = false;
 	    ret = doExecute();
 	}
 
@@ -198,78 +195,6 @@ namespace storage
 	    Mockup::set_command(mockup_key(), Mockup::Command(stdout(), stderr(), retcode()));
 	}
 
-	return ret;
-    }
-
-
-    int
-    SystemCmd::executeBackground()
-    {
-	y2mil("SystemCmd Executing (Background): \"" << command() << "\"");
-	_execInBackground = true;
-	return doExecute();
-    }
-
-
-    int
-    SystemCmd::executeRestricted(long unsigned maxTimeSec, long unsigned maxLineOut,
-				 bool& timeExceeded_ret, bool& linesExceeded_ret)
-    {
-	y2mil("cmd:" << command() << " MaxTime:" << maxTimeSec << " MaxLines:" << maxLineOut);
-	timeExceeded_ret = linesExceeded_ret = false;
-	int ret = executeBackground();
-	unsigned long ts = 0;
-	unsigned long ls = 0;
-	unsigned long start_time = time(NULL);
-	while ( !timeExceeded_ret && !linesExceeded_ret && !doWait( false, ret ) )
-	{
-	    if ( maxTimeSec>0 )
-	    {
-		ts = time(NULL)-start_time;
-		y2mil( "time used:" << ts );
-	    }
-	    if ( maxLineOut>0 )
-	    {
-		ls = stdout().size() + stderr().size();
-		y2mil( "lines out:" << ls );
-	    }
-	    timeExceeded_ret = maxTimeSec>0 && ts>maxTimeSec;
-	    linesExceeded_ret = maxLineOut>0 && ls>maxLineOut;
-	    sleep( 1 );
-	}
-	if ( timeExceeded_ret || linesExceeded_ret )
-	{
-	    int r = kill( _cmdPid, SIGKILL );
-	    y2mil( "kill pid:" << _cmdPid << " ret:" << r );
-	    unsigned count=0;
-	    int cmdStatus;
-	    int waitpidRet = -1;
-	    while ( count<5 && waitpidRet<=0 )
-	    {
-		waitpidRet = waitpid( _cmdPid, &cmdStatus, WNOHANG );
-		y2mil( "waitpid:" << waitpidRet );
-		count++;
-		sleep( 1 );
-	    }
-	    /*
-	      r = kill( _cmdPid, SIGKILL );
-	      y2mil( "kill pid:" << _cmdPid << " ret:" << r );
-	      count=0;
-	      waitDone = false;
-	      while ( count<8 && !waitDone )
-	      {
-		  y2mil( "doWait:" << count );
-		  waitDone = doWait( false, ret );
-		  count++;
-		  sleep( 1 );
-	      }
-	    */
-	    _cmdRet = -257;
-	}
-	else
-	    _cmdRet = ret;
-	y2mil("ret:" << ret << " timeExceeded:" << timeExceeded_ret
-	      << " linesExceeded_ret:" << linesExceeded_ret);
 	return ret;
     }
 
@@ -298,7 +223,7 @@ namespace storage
 	    SYSCALL_FAILED( "pipe stdout creation failed" );
 	    ok = false;
 	}
-	if ( !_combineOutput && pipe(serr)<0 )
+	if ( pipe(serr)<0 )
 	{
 	    SYSCALL_FAILED( "pipe stderr creation failed" );
 	    ok = false;
@@ -315,15 +240,12 @@ namespace storage
 	    {
 		SYSCALL_FAILED( "fcntl O_NONBLOCK failed for stdout" );
 	    }
-	    if ( !_combineOutput )
+	    _pfds[2].fd = serr[0];
+	    if ( fcntl( _pfds[2].fd, F_SETFL, O_NONBLOCK )<0 )
 	    {
-		_pfds[2].fd = serr[0];
-		if ( fcntl( _pfds[2].fd, F_SETFL, O_NONBLOCK )<0 )
-		{
-		    SYSCALL_FAILED( "fcntl O_NONBLOCK failed for stderr" );
-		}
+		SYSCALL_FAILED( "fcntl O_NONBLOCK failed for stderr" );
 	    }
-	    y2deb("sout:" << _pfds[1].fd << " serr:" << (_combineOutput?-1:_pfds[2].fd));
+	    y2deb("sout:" << _pfds[1].fd << " serr:" << _pfds[2].fd);
 
 	    const vector<const char*> env = make_env();
 
@@ -339,11 +261,7 @@ namespace storage
 		    {
 			SYSCALL_FAILED_NOTHROW( "dup2 stdout failed in child process" );
 		    }
-		    if ( !_combineOutput && dup2( serr[1], STDERR_FILENO )<0 )
-		    {
-			SYSCALL_FAILED_NOTHROW( "dup2 stderr failed in child process" );
-		    }
-		    if ( _combineOutput && dup2( STDOUT_FILENO, STDERR_FILENO )<0 )
+		    if ( dup2( serr[1], STDERR_FILENO )<0 )
 		    {
 			SYSCALL_FAILED_NOTHROW( "dup2 stderr failed in child process" );
 		    }
@@ -355,7 +273,7 @@ namespace storage
 		    {
 			SYSCALL_FAILED_NOTHROW( "close( stdout ) failed in child process" );
 		    }
-		    if ( !_combineOutput && close( serr[0] )<0 )
+		    if ( close( serr[0] )<0 )
 		    {
 			SYSCALL_FAILED_NOTHROW( "close( stderr ) failed in child process" );
 		    }
@@ -386,7 +304,7 @@ namespace storage
 		    {
 			SYSCALL_FAILED_NOTHROW( "close( stdout ) in parent failed" );
 		    }
-		    if ( !_combineOutput && close( serr[1] )<0 )
+		    if ( close( serr[1] )<0 )
 		    {
 			SYSCALL_FAILED_NOTHROW( "close( stderr ) in parent failed" );
 		    }
@@ -403,19 +321,15 @@ namespace storage
 		    {
 			SYSCALL_FAILED_NOTHROW( "fdopen( stdout ) failed" );
 		    }
-		    if ( !_combineOutput )
+		    _files[IDX_STDERR] = fdopen( serr[0], "r" );
+		    if ( _files[IDX_STDERR] == NULL )
 		    {
-			_files[IDX_STDERR] = fdopen( serr[0], "r" );
-			if ( _files[IDX_STDERR] == NULL )
-			{
-			    SYSCALL_FAILED_NOTHROW( "fdopen( stderr ) failed" );
-			}
+			SYSCALL_FAILED_NOTHROW( "fdopen( stderr ) failed" );
 		    }
-		    if ( !_execInBackground )
-		    {
-			doWait( true, _cmdRet );
-			y2mil("stopwatch " << stopwatch << " for \"" << command() << "\"");
-		    }
+
+		    doWait( _cmdRet );
+		    y2mil("stopwatch " << stopwatch << " for \"" << command() << "\"");
+
 		    break;
 	    }
 	}
@@ -436,16 +350,16 @@ namespace storage
 
 
     bool
-    SystemCmd::doWait( bool hang, int& cmdRet_ret )
+    SystemCmd::doWait( int& cmdRet_ret )
     {
 	int waitpidRet;
 	int cmdStatus;
 
 	do
 	{
-	    y2deb("[0] id:" <<	_pfds[1].fd << " ev:" << hex << (unsigned)_pfds[1].events << dec << " [1] fs:" <<
-		  (_combineOutput?-1:_pfds[2].fd) << " ev:" << hex << (_combineOutput?0:(unsigned)_pfds[2].events));
-	    int sel = poll( _pfds, _combineOutput?2:3, 1000 );
+	    y2deb("[1] fd:" << _pfds[1].fd << " ev:" << hex << (unsigned)(_pfds[1].events) << dec << " "
+		  "[2] fd:" << _pfds[2].fd << " ev:" << hex << (unsigned)(_pfds[2].events));
+	    int sel = poll( _pfds, 3, 1000 );
 	    if (sel < 0)
 	    {
 		SYSCALL_FAILED_NOTHROW( "poll() failed" );
@@ -461,7 +375,7 @@ namespace storage
 	    waitpidRet = waitpid( _cmdPid, &cmdStatus, WNOHANG );
 	    y2deb("Wait ret:" << waitpidRet);
 	}
-	while ( hang && waitpidRet == 0 );
+	while ( waitpidRet == 0 );
 
 	if ( waitpidRet != 0 )
 	{
@@ -473,11 +387,8 @@ namespace storage
             }
 	    fclose( _files[IDX_STDOUT] );
 	    _files[IDX_STDOUT] = NULL;
-	    if ( !_combineOutput )
-	    {
-		fclose( _files[IDX_STDERR] );
-		_files[IDX_STDERR] = NULL;
-	    }
+	    fclose( _files[IDX_STDERR] );
+	    _files[IDX_STDERR] = NULL;
 	    if (WIFEXITED(cmdStatus))
 	    {
 		cmdRet_ret = WEXITSTATUS(cmdStatus);
@@ -500,7 +411,7 @@ namespace storage
 	}
 
 	y2deb("Wait:" << waitpidRet << " pid:" << _cmdPid << " stat:" << cmdStatus <<
-	      " Hang:" << hang << " Ret:" << cmdRet_ret);
+	      " Ret:" << cmdRet_ret);
 	return waitpidRet != 0;
     }
 
@@ -735,7 +646,7 @@ namespace storage
     {
 	string ret;
 
-	for (std::vector<string>::const_iterator it = strs.begin(); it != strs.end(); ++it)
+	for (vector<string>::const_iterator it = strs.begin(); it != strs.end(); ++it)
 	{
 	    if (it != strs.begin())
 		ret.append(" ");
