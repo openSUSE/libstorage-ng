@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -81,6 +81,12 @@ namespace storage
 	 * @see get_vg_name()
 	 */
 	void set_vg_name(const std::string& vg_name);
+
+	/**
+	 * Check whether a volume group name is valid. Does not check for collisions in
+	 * /dev.
+	 */
+	static bool is_valid_vg_name(const std::string& vg_name);
 
 	const Region& get_region() const;
 
