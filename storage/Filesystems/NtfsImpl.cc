@@ -128,6 +128,8 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
+	// TODO labels starting with a '-' do not work (see bsc #1187746).
+
 	string cmd_line = NTFSLABEL_BIN " " + quote(blk_device->get_name()) + " " +
 	    quote(get_label());
 
