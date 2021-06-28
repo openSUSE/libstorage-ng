@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -166,6 +166,21 @@ namespace storage
     LvmVg::set_vg_name(const string& vg_name)
     {
 	get_impl().set_vg_name(vg_name);
+    }
+
+
+    bool
+    LvmVg::is_valid_vg_name(const string& vg_name)
+    {
+	static const regex rx("[a-zA-Z0-9+_.][a-zA-Z0-9+_.-]*", regex::extended);
+
+	if (!regex_match(vg_name, rx))
+	    return false;
+
+	if (vg_name == "." || vg_name == "..")
+	    return false;
+
+	return true;
     }
 
 

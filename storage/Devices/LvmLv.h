@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -169,6 +169,11 @@ namespace storage
 	 * @see get_lv_name()
 	 */
 	void set_lv_name(const std::string& lv_name);
+
+	/**
+	 * Check whether a (new and public) logical volume name is valid.
+	 */
+	static bool is_valid_lv_name(const std::string& lv_name);
 
 	/**
 	 * Return the logical volume type.

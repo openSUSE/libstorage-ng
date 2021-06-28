@@ -90,6 +90,9 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
+	// TODO labels starting with a '-' do not work with dosfstools 4.2, a preceding
+	// '--' is needed. But that does not work with dosfstools 4.1.
+
 	string cmd_line = FATLABEL_BIN " " + quote(blk_device->get_name()) + " " +
 	    quote(get_label());
 

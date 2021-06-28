@@ -84,6 +84,9 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
+	// TODO labels starting with a '-' work with exfat-utils-1.3. But they do not work
+	// with exfatprogs-1.1.2 (see bsc #1187744).
+
 	string cmd_line = EXFATLABEL_BIN " " + quote(blk_device->get_name()) + " " +
 	    quote(get_label());
 

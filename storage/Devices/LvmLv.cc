@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -19,6 +19,8 @@
  * find current contact information at www.novell.com.
  */
 
+
+#include <boost/algorithm/string.hpp>
 
 #include "storage/Devices/LvmLvImpl.h"
 #include "storage/Devicegraph.h"
@@ -116,6 +118,28 @@ namespace storage
     LvmLv::set_lv_name(const string& lv_name)
     {
 	get_impl().set_lv_name(lv_name);
+    }
+
+
+    bool
+    LvmLv::is_valid_lv_name(const string& lv_name)
+    {
+	static const regex rx("[a-zA-Z0-9+_.][a-zA-Z0-9+_.-]*", regex::extended);
+
+	if (!regex_match(lv_name, rx))
+	    return false;
+
+	if (lv_name == "." || lv_name == ".." || lv_name == "snapshot" || lv_name == "pvmove")
+	    return false;
+
+	static const vector<string> illegal_subnames = { "_cdata", "_cmeta", "_corig", "_mlog",
+	    "_mimage", "_pmspare", "_rimage", "_rmeta", "_tdata", "_tmeta", "_vorigin", "_vdata" };
+
+	for (const string& illegal_subname : illegal_subnames)
+	    if (boost::contains(lv_name, illegal_subname))
+		return false;
+
+	return true;
     }
 
 

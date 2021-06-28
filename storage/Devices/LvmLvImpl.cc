@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -1028,7 +1028,7 @@ namespace storage
 	    cmd_line += " --chunksize " + to_string(chunk_size / KiB);
 	}
 
-	cmd_line += " --name " + quote(lv_name) + " " + quote(lvm_vg->get_vg_name());
+	cmd_line += " --name " + quote(lv_name) + " -- " + quote(lvm_vg->get_vg_name());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
@@ -1041,7 +1041,7 @@ namespace storage
 
 	const LvmVg* lvm_vg = get_lvm_vg();
 
-	string cmd_line = LVS_BIN " --options vg_name,lv_name,lv_uuid,lv_size --units b " +
+	string cmd_line = LVS_BIN " --options vg_name,lv_name,lv_uuid,lv_size --units b -- " +
 	    quote(lvm_vg->get_vg_name() + "/" + lv_name);
 
 	SystemCmd cmd(cmd_line, SystemCmd::NoThrow);
@@ -1208,8 +1208,8 @@ namespace storage
 	if (action->resize_mode == ResizeMode::SHRINK)
 	    cmd_line += " --force";
 
-	cmd_line += " " + quote(lvm_vg->get_vg_name() + "/" + lv_name) + " --extents " +
-	    to_string(lvm_lv_rhs->get_region().get_length());
+	cmd_line += " --extents " + to_string(lvm_lv_rhs->get_region().get_length()) + " -- "
+	    + quote(lvm_vg->get_vg_name() + "/" + lv_name);
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
@@ -1276,7 +1276,7 @@ namespace storage
     {
 	const LvmVg* lvm_vg = get_lvm_vg();
 
-	string cmd_line = LVREMOVE_BIN " --force " + quote(lvm_vg->get_vg_name() + "/" + lv_name);
+	string cmd_line = LVREMOVE_BIN " --force -- " + quote(lvm_vg->get_vg_name() + "/" + lv_name);
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
@@ -1343,7 +1343,7 @@ namespace storage
     {
 	const LvmVg* lvm_vg = get_lvm_vg();
 
-	string cmd_line = LVCHANGE_BIN " --activate y " + quote(lvm_vg->get_vg_name() + "/" + lv_name);
+	string cmd_line = LVCHANGE_BIN " --activate y -- " + quote(lvm_vg->get_vg_name() + "/" + lv_name);
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
@@ -1410,7 +1410,7 @@ namespace storage
     {
 	const LvmVg* lvm_vg = get_lvm_vg();
 
-	string cmd_line = LVCHANGE_BIN " --activate n " + quote(lvm_vg->get_vg_name() + "/" + lv_name);
+	string cmd_line = LVCHANGE_BIN " --activate n -- " + quote(lvm_vg->get_vg_name() + "/" + lv_name);
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
