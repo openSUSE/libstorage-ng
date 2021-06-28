@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -555,7 +555,7 @@ namespace storage
     LvmVg::Impl::do_create()
     {
 	string cmd_line = VGCREATE_BIN " --physicalextentsize " + to_string(get_extent_size()) +
-	    "b " + quote(vg_name);
+	    "b -- " + quote(vg_name);
 
 	for (const LvmPv* lvm_pv : get_lvm_pvs())
 	    cmd_line += " " + quote(lvm_pv->get_blk_device()->get_name());
@@ -570,7 +570,7 @@ namespace storage
 	// log some data about the volume group that might be useful for debugging
 
 	string cmd_line = VGS_BIN " --options vg_name,vg_uuid,vg_size,vg_extent_size,"
-	    "vg_extent_count --units b " + quote(vg_name);
+	    "vg_extent_count --units b -- " + quote(vg_name);
 
 	SystemCmd cmd(cmd_line, SystemCmd::NoThrow);
     }
@@ -596,7 +596,7 @@ namespace storage
     void
     LvmVg::Impl::do_delete() const
     {
-	string cmd_line = VGREMOVE_BIN " " + quote(vg_name);
+	string cmd_line = VGREMOVE_BIN " -- " + quote(vg_name);
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
@@ -667,7 +667,7 @@ namespace storage
     void
     LvmVg::Impl::do_reduce(const LvmPv* lvm_pv) const
     {
-	string cmd_line = VGREDUCE_BIN " " + quote(vg_name) + " " + quote(lvm_pv->get_blk_device()->get_name());
+	string cmd_line = VGREDUCE_BIN " -- " + quote(vg_name) + " " + quote(lvm_pv->get_blk_device()->get_name());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
@@ -676,7 +676,7 @@ namespace storage
     void
     LvmVg::Impl::do_extend(const LvmPv* lvm_pv) const
     {
-	string cmd_line = VGEXTEND_BIN " " + quote(vg_name) + " " + quote(lvm_pv->get_blk_device()->get_name());
+	string cmd_line = VGEXTEND_BIN " -- " + quote(vg_name) + " " + quote(lvm_pv->get_blk_device()->get_name());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
@@ -700,7 +700,7 @@ namespace storage
     void
     LvmVg::Impl::do_reduce_missing() const
     {
-	string cmd_line = VGREDUCE_BIN " " + quote(vg_name) + " --removemissing --force";
+	string cmd_line = VGREDUCE_BIN " --removemissing --force -- " + quote(vg_name);
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
