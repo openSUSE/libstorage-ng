@@ -215,7 +215,7 @@ namespace storage
 
 	if (check_callbacks && chunk_size > 0)
 	{
-	    // See man page of mdadm and // http://bugzilla.suse.com/show_bug.cgi?id=1065381
+	    // See man page of mdadm and http://bugzilla.suse.com/show_bug.cgi?id=1065381
 	    // for the constraints.
 
 	    switch (md_level)
@@ -331,6 +331,17 @@ namespace storage
     void
     Md::Impl::set_chunk_size(unsigned long chunk_size)
     {
+	if (chunk_size > 0)
+	{
+	    // See check().
+
+	    if (chunk_size < 4 * KiB)
+		ST_THROW(InvalidChunkSize("chunk size below 4 KiB"));
+
+	    if (!is_multiple_of(chunk_size, 512 * B))
+		ST_THROW(InvalidChunkSize("chunk size not multiple of 512 B"));
+	}
+
 	if (Impl::chunk_size == chunk_size)
 	    return;
 

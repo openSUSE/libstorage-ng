@@ -124,6 +124,22 @@ namespace storage
     };
 
 
+    class InvalidStripeSize : public Exception
+    {
+    public:
+
+	InvalidStripeSize(const std::string& msg);
+    };
+
+
+    class InvalidChunkSize : public Exception
+    {
+    public:
+
+	InvalidChunkSize(const std::string& msg);
+    };
+
+
     /**
      * A Logical Volume of the Logical Volume Manager (LVM).
      */
@@ -182,6 +198,9 @@ namespace storage
 	 */
 	LvType get_lv_type() const;
 
+	/**
+	 * Get the number of stripes.
+	 */
 	unsigned int get_stripes() const;
 
 	/**
@@ -193,19 +212,29 @@ namespace storage
 	 */
 	void set_stripes(unsigned int stripes);
 
+	/**
+	 * Get the stripe size.
+	 */
 	unsigned long long get_stripe_size() const;
 
 	/**
-	 * @throw Exception
+	 * Set the stripe size.
+	 *
+	 * @see set_stripes(unsigned int)
+	 *
+	 * @throw InvalidStripeSize, Exception
 	 */
 	void set_stripe_size(unsigned long long stripe_size);
 
+	/**
+	 * Get the chunk size. Only thin pools can have a chunk size.
+	 */
 	unsigned long long get_chunk_size() const;
 
 	/**
 	 * Set the chunk size. Only thin pools can have a chunk size.
 	 *
-	 * @throw Exception
+	 * @throw InvalidChunkSize, Exception
 	 */
 	void set_chunk_size(unsigned long long chunk_size);
 

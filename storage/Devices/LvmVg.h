@@ -49,7 +49,8 @@ namespace storage
     {
     public:
 
-	InvalidExtentSize(unsigned long long extent_size);
+	InvalidExtentSize(unsigned long long extent_size) ST_DEPRECATED;
+	InvalidExtentSize(const std::string& msg);
     };
 
 

@@ -19,8 +19,10 @@
 %exceptionclass storage::IOException;
 %exceptionclass storage::IndexOutOfRangeException;
 %exceptionclass storage::InvalidBlockSize;
+%exceptionclass storage::InvalidChunkSize;
 %exceptionclass storage::InvalidExtentSize;
 %exceptionclass storage::InvalidMountPointPath;
+%exceptionclass storage::InvalidStripeSize;
 %exceptionclass storage::LockException;
 %exceptionclass storage::LogicException;
 %exceptionclass storage::LvmLvNotFoundByLvName;
@@ -297,8 +299,8 @@
 %catches(storage::Exception) storage::LvmLv::get_origin();
 %catches(storage::Exception) storage::LvmLv::get_origin() const;
 %catches(storage::Exception) storage::LvmLv::get_thin_pool() const;
-%catches(storage::Exception) storage::LvmLv::set_chunk_size(unsigned long long chunk_size);
-%catches(storage::Exception) storage::LvmLv::set_stripe_size(unsigned long long stripe_size);
+%catches(storage::InvalidChunkSize, storage::Exception) storage::LvmLv::set_chunk_size(unsigned long long chunk_size);
+%catches(storage::InvalidStripeSize, storage::Exception) storage::LvmLv::set_stripe_size(unsigned long long stripe_size);
 %catches(storage::Exception) storage::LvmLv::set_stripes(unsigned int stripes);
 %catches(storage::Exception) storage::LvmPv::get_blk_device();
 %catches(storage::Exception) storage::LvmPv::get_blk_device() const;
@@ -319,6 +321,7 @@
 %catches(storage::Exception) storage::Md::get_allowed_md_parities() const;
 %catches(storage::Exception) storage::Md::get_number() const;
 %catches(storage::Exception) storage::Md::remove_device(BlkDevice *blk_device);
+%catches(storage::InvalidChunkSize, storage::Exception) storage::Md::set_chunk_size(unsigned long chunk_size);
 %catches(storage::Exception) storage::MdContainer::create(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::Exception) storage::MdMember::create(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::Exception) storage::MdMember::get_md_container();

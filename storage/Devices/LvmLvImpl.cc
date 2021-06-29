@@ -456,10 +456,10 @@ namespace storage
 	if (stripe_size > 0)
 	{
 	    if (stripe_size < 4 * KiB)
-		ST_THROW(Exception("stripe size below 4 KiB"));
+		ST_THROW(InvalidStripeSize("stripe size below 4 KiB"));
 
 	    if (!is_power_of_two(stripe_size))
-		ST_THROW(Exception("stripe size not a power of two"));
+		ST_THROW(InvalidStripeSize("stripe size not a power of two"));
 	}
 
 	Impl::stripe_size = stripe_size;
@@ -480,13 +480,13 @@ namespace storage
 	if (chunk_size > 0)
 	{
 	    if (chunk_size < 64 * KiB)
-		ST_THROW(Exception("chunk size below 64 KiB"));
+		ST_THROW(InvalidChunkSize("chunk size below 64 KiB"));
 
 	    if (chunk_size > 1 * GiB)
-		ST_THROW(Exception("chunk size above 1 GiB"));
+		ST_THROW(InvalidChunkSize("chunk size above 1 GiB"));
 
 	    if (!is_multiple_of(chunk_size, 64 * KiB))
-		ST_THROW(Exception("chunk size not multiple of 64 KiB"));
+		ST_THROW(InvalidChunkSize("chunk size not multiple of 64 KiB"));
 	}
 
 	Impl::chunk_size = chunk_size;
