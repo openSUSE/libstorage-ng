@@ -47,6 +47,18 @@ namespace storage
     }
 
 
+    InvalidStripeSize::InvalidStripeSize(const string& msg)
+	: Exception(msg)
+    {
+    }
+
+
+    InvalidChunkSize::InvalidChunkSize(const string& msg)
+	: Exception(msg)
+    {
+    }
+
+
     LvmLv*
     LvmLv::create(Devicegraph* devicegraph, const string& vg_name, const string& lv_name,
 		  LvType lv_type)

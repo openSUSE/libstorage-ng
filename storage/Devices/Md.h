@@ -169,7 +169,22 @@ namespace storage
 	 */
 	std::vector<MdParity> get_allowed_md_parities() const;
 
+	/**
+	 * Get the chunk size of the MD RAID. The chunk size is not meaningful for RAID1.
+	 */
 	unsigned long get_chunk_size() const;
+
+	/**
+	 * Set the chunk size of the MD RAID. The chunk size is not meaningful for RAID1.
+	 *
+	 * The function does not make a complete check of the chunk size since that
+	 * depends on the RAID Level and the underlying devices. Use the
+	 * Devicegraph::check() function.
+	 *
+	 * Only for MD RAIDs not created on disk yet.
+	 *
+	 * @throw InvalidChunkSize, Exception
+	 */
 	void set_chunk_size(unsigned long chunk_size);
 
 	/**

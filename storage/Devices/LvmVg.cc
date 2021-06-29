@@ -47,6 +47,12 @@ namespace storage
     }
 
 
+    InvalidExtentSize::InvalidExtentSize(const string& msg)
+	: Exception(msg)
+    {
+    }
+
+
     LvmVg*
     LvmVg::create(Devicegraph* devicegraph, const string& vg_name)
     {

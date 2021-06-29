@@ -158,8 +158,11 @@ namespace storage
 
 	unsigned long long old_extent_size = region.get_block_size();
 
-	if (!is_power_of_two(extent_size) || !is_multiple_of(extent_size, 128 * KiB))
-	    ST_THROW(InvalidExtentSize(extent_size));
+	if (!is_power_of_two(extent_size))
+	    ST_THROW(InvalidExtentSize("extent size not a power of two"));
+
+	if (!is_multiple_of(extent_size, 128 * KiB))
+	    ST_THROW(InvalidExtentSize("extent size not multiple of 128 KiB"));
 
 	region.set_block_size(extent_size);
 
