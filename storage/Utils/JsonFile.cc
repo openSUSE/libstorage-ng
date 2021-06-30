@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -43,10 +43,20 @@ namespace storage
 	{
 	    root = json_tokener_parse_ex(tokener.get(), line.c_str(), line.size());
 
-	    json_tokener_error jerr = json_tokener_get_error(tokener.get());
-	    if (jerr != json_tokener_success && jerr != json_tokener_continue)
-		ST_THROW(Exception("json parser failed"));
+	    switch (json_tokener_get_error(tokener.get()))
+	    {
+		case json_tokener_continue:
+		    continue;
+
+		case json_tokener_success:
+		    return;
+
+		default:
+		    break;
+	    }
 	}
+
+	ST_THROW(Exception("json parser failed"));
     }
 
 
