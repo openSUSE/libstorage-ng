@@ -748,6 +748,9 @@ namespace storage
     bool
     LvmVg::Impl::action_is_my_reallot(const Action::Base* action, const Actiongraph::Impl& actiongraph) const
     {
+	if (!action->affects_device())
+	    return false;
+
 	const Action::Reallot* reallot = dynamic_cast<const Action::Reallot*>(action);
 	return reallot && reallot->sid == get_sid();
     }
@@ -756,6 +759,9 @@ namespace storage
     bool
     LvmVg::Impl::action_is_my_pv_resize(const Action::Base* action, const Actiongraph::Impl& actiongraph) const
     {
+	if (!action->affects_device())
+	    return false;
+
 	const Action::Resize* resize = dynamic_cast<const Action::Resize*>(action);
 	if (!resize)
 	    return false;
@@ -776,6 +782,9 @@ namespace storage
     bool
     LvmVg::Impl::action_uses_vg_space(const Action::Base* action, const Actiongraph::Impl& actiongraph) const
     {
+	if (!action->affects_device())
+	    return false;
+
 	const Action::Create* create_action = dynamic_cast<const Action::Create*>(action);
 	if (create_action)
 	    return is_my_lvm_lv(create_action->get_device(actiongraph));
@@ -791,6 +800,9 @@ namespace storage
     bool
     LvmVg::Impl::action_frees_vg_space(const Action::Base* action, const Actiongraph::Impl& actiongraph) const
     {
+	if (!action->affects_device())
+	    return false;
+
 	const Action::Delete* delete_action = dynamic_cast<const Action::Delete*>(action);
 	if (delete_action)
 	    return is_my_lvm_lv(delete_action->get_device(actiongraph));

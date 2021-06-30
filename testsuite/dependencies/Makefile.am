@@ -2,7 +2,7 @@
 # Makefile.am for libstorage/testsuite/dependencies
 #
 
-SUBDIRS = luks lvm md partitions btrfs partition-tables resize bcache
+SUBDIRS = luks lvm md partitions btrfs partition-tables resize bcache rear
 
 AM_CPPFLAGS = -I$(top_srcdir)
 

@@ -144,7 +144,7 @@ namespace storage
 	Create::get_device(const Actiongraph::Impl& actiongraph) const
 	{
 	    if (!affects_device())
-		ST_THROW(Exception("requested device for action not affecting device"));
+		ST_THROW(Exception("requested device for action not affecting device, " + details()));
 
 	    return actiongraph.get_devicegraph(RHS)->find_device(sid);
 	}
@@ -154,7 +154,7 @@ namespace storage
 	Create::get_holder(const Actiongraph::Impl& actiongraph) const
 	{
 	    if (!affects_holder())
-		ST_THROW(Exception("requested holder for action not affecting holder"));
+		ST_THROW(Exception("requested holder for action not affecting holder, " + details()));
 
 	    return actiongraph.get_devicegraph(RHS)->find_holder(sid_pair.first, sid_pair.second);
 	}
@@ -164,7 +164,7 @@ namespace storage
 	Modify::get_device(const Actiongraph::Impl& actiongraph, Side side) const
 	{
 	    if (!affects_device())
-		ST_THROW(Exception("requested device for action not affecting device"));
+		ST_THROW(Exception("requested device for action not affecting device, " + details()));
 
 	    return actiongraph.get_devicegraph(side)->find_device(sid);
 	}
@@ -228,7 +228,7 @@ namespace storage
 	Delete::get_device(const Actiongraph::Impl& actiongraph) const
 	{
 	    if (!affects_device())
-		ST_THROW(Exception("requested device for action not affecting device"));
+		ST_THROW(Exception("requested device for action not affecting device, " + details()));
 
 	    return actiongraph.get_devicegraph(LHS)->find_device(sid);
 	}
@@ -238,7 +238,7 @@ namespace storage
 	Delete::get_holder(const Actiongraph::Impl& actiongraph) const
 	{
 	    if (!affects_holder())
-		ST_THROW(Exception("requested holder for action not affecting holder"));
+		ST_THROW(Exception("requested holder for action not affecting holder, " + details()));
 
 	    return actiongraph.get_devicegraph(LHS)->find_holder(sid_pair.first, sid_pair.second);
 	}

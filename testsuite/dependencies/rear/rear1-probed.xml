@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<Devicegraph>
+  <Devices>
+    <Disk>
+      <sid>42</sid>
+      <name>/dev/sda</name>
+      <sysfs-name>sda</sysfs-name>
+      <sysfs-path>/devices/pci0000:00/0000:00:01.1/ata1/host0/target0:0:0/0:0:0:0/block/sda</sysfs-path>
+      <region>
+        <length>41943040</length>
+        <block-size>512</block-size>
+      </region>
+      <udev-path>pci-0000:00:01.1-ata-1</udev-path>
+      <udev-path>pci-0000:00:01.1-ata-1.0</udev-path>
+      <udev-id>ata-QEMU_HARDDISK_QM00001</udev-id>
+      <udev-id>scsi-0ATA_QEMU_HARDDISK_QM00001</udev-id>
+      <udev-id>scsi-1ATA_QEMU_HARDDISK_QM00001</udev-id>
+      <udev-id>scsi-SATA_QEMU_HARDDISK_QM00001</udev-id>
+      <range>256</range>
+      <rotational>true</rotational>
+      <transport>ATA</transport>
+    </Disk>
+  </Devices>
+</Devicegraph>

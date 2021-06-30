@@ -1,0 +1,27 @@
+1a - Create GPT on /dev/sda -> 1b
+1b - Set protective MBR boot flag of GPT on /dev/sda -> 2a
+
+2a - Create partition /dev/sda2 (19.99 GiB) -> 2b
+2b - Set id of partition /dev/sda2 to Linux LVM -> 2c
+2c - Set legacy boot flag of partition /dev/sda2 -> 3a
+
+3a - Create physical volume on /dev/sda2 -> 3b
+3b - Create volume group system (19.99 GiB) from /dev/sda2 (19.99 GiB) -> 3c
+3c - Create logical volume root (12.59 GiB) on volume group system -> 4a
+
+4a - Create btrfs on /dev/system/root (12.59 GiB) -> 4b
+4b - Enable quota on /dev/system/root (12.59 GiB) -> 4c 4d 5a 7a
+4c - Create qgroup 1/0 on /dev/system/root (12.59 GiB) -> 7a
+4d - Create subvolume @ on /dev/system/root (12.59 GiB) -> 4e
+4e - Create subvolume @/.snapshots on /dev/system/root (12.59 GiB) -> 4f 4h 5b
+4f - Create subvolume @/.snapshots/1/snapshot on /dev/system/root (12.59 GiB) -> 4g
+4g - Set default subvolume to subvolume @/.snapshots/1/snapshot on /dev/system/root (12.59 GiB) -> 4h
+4h - Create subvolume @/.snapshots/2/snapshot on /dev/system/root (12.59 GiB) -> 4c 7a
+
+5a - Mount /dev/system/root (12.59 GiB) at / -> 5b 6a
+5b - Mount subvolume @/.snapshots on /dev/system/root (12.59 GiB) at /.snapshots -> 6b
+
+6a - Add mount point / of /dev/system/root (12.59 GiB) to /etc/fstab ->
+6b - Add mount point /.snapshots of subvolume @/.snapshots on /dev/system/root (12.59 GiB) to /etc/fstab ->
+
+7a - Assign qgroup of subvolume @/.snapshots/2/snapshot to qgroup 1/0 on /dev/system/root (12.59 GiB) ->
