@@ -63,10 +63,12 @@ BOOST_AUTO_TEST_CASE(find_vertex)
 
     const Devicegraph* system = storage.get_system();
 
+    SystemInfo system_info;
+
     // Looking up a device by the name libstorage-ng knows it does not need
     // udevadm info calls.
 
-    BOOST_CHECK_EQUAL(BlkDevice::find_by_any_name(system, "/dev/sda1")->get_sid(), sda1->get_sid());
+    BOOST_CHECK_EQUAL(BlkDevice::find_by_any_name(system, "/dev/sda1", system_info)->get_sid(), sda1->get_sid());
 
     // Looking up a device by another name needs udevadm info calls.
 
@@ -75,19 +77,19 @@ BOOST_AUTO_TEST_CASE(find_vertex)
 	"N: sda1"
     }));
 
-    BOOST_CHECK_EQUAL(BlkDevice::find_by_any_name(system, "/dev/block/8:1")->get_sid(), sda1->get_sid());
+    BOOST_CHECK_EQUAL(BlkDevice::find_by_any_name(system, "/dev/block/8:1", system_info)->get_sid(), sda1->get_sid());
 
     Mockup::set_command(UDEVADM_BIN " info '/dev/block/8:2'", vector<string>({
 	"P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda2",
 	"N: sda2"
     }));
 
-    BOOST_CHECK_THROW(BlkDevice::find_by_any_name(system, "/dev/block/8:2"), DeviceNotFound);
+    BOOST_CHECK_THROW(BlkDevice::find_by_any_name(system, "/dev/block/8:2", system_info), DeviceNotFound);
 
     // Looking up a device unknown to udevadm info throws DeviceNotFound.
 
     Mockup::set_command(UDEVADM_BIN " info '/dev/does-not-exist'",
 			RemoteCommand( vector<string>({}), vector<string>({ "Unknown device, [...]" }), 4));
 
-    BOOST_CHECK_THROW(BlkDevice::find_by_any_name(system, "/dev/does-not-exist"), DeviceNotFound);
+    BOOST_CHECK_THROW(BlkDevice::find_by_any_name(system, "/dev/does-not-exist", system_info), DeviceNotFound);
 }

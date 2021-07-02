@@ -572,7 +572,8 @@ namespace storage
 		vector<pair<BlkDevice*, unsigned int>> blk_devices;
 
 		for (const CmdBtrfsFilesystemShow::Device& device : detected_btrfs.devices)
-		    blk_devices.emplace_back(BlkDevice::find_by_any_name(system, device.name), device.id);
+		    blk_devices.emplace_back(BlkDevice::Impl::find_by_any_name(system, device.name, system_info),
+					     device.id);
 
 		BlkFilesystem* blk_filesystem = nullptr;
 
