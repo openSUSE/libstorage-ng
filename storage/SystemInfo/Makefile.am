@@ -6,6 +6,7 @@ noinst_LTLIBRARIES = libsystem-info.la
 
 libsystem_info_la_SOURCES =				\
 	SystemInfo.cc		SystemInfo.h		\
+	SystemInfoImpl.cc	SystemInfoImpl.h	\
 	Arch.cc			Arch.h			\
 	CmdBlkid.cc		CmdBlkid.h		\
 	CmdBtrfs.cc		CmdBtrfs.h		\
@@ -31,4 +32,5 @@ libsystem_info_la_SOURCES =				\
 pkgincludedir = $(includedir)/storage/SystemInfo
 
 pkginclude_HEADERS =		\
+	SystemInfo.h					\
 	Arch.h

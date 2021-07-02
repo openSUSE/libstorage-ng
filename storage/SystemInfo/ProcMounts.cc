@@ -25,7 +25,7 @@
 
 #include "storage/Utils/AsciiFile.h"
 #include "storage/Utils/StorageTmpl.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Filesystems/FilesystemImpl.h"
 #include "storage/Utils/StorageDefines.h"
@@ -130,7 +130,7 @@ namespace storage
 
 
     vector<const FstabEntry*>
-    ProcMounts::get_by_name(const string& name, SystemInfo& system_info) const
+    ProcMounts::get_by_name(const string& name, SystemInfo::Impl& system_info) const
     {
 	vector<const FstabEntry*> ret;
 

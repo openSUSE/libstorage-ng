@@ -33,7 +33,7 @@
 #include "storage/Utils/LoggerImpl.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/StorageDefines.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 
 
 #define FSTAB_COLUMN_COUNT	6
@@ -375,7 +375,7 @@ namespace storage
 
 
     vector<const FstabEntry*>
-    EtcFstab::find_all_by_any_name(SystemInfo& system_info, const string& name) const
+    EtcFstab::find_all_by_any_name(SystemInfo::Impl& system_info, const string& name) const
     {
 	dev_t majorminor = system_info.getCmdUdevadmInfo(name).get_majorminor();
 

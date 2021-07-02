@@ -78,7 +78,7 @@ namespace storage
 	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
 	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;
 
-	virtual vector<ExtendedFstabEntry> find_proc_mounts_entries_unfiltered(SystemInfo& system_info) const override;
+	virtual vector<ExtendedFstabEntry> find_proc_mounts_entries_unfiltered(SystemInfo::Impl& system_info) const override;
 
     protected:
 

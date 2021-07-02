@@ -153,7 +153,7 @@ namespace storage
 	 * exist in the system and that the same name is never
 	 * returned twice.
 	 */
-	static string next_free_cr_auto_name(SystemInfo& system_info);
+	static string next_free_cr_auto_name(SystemInfo::Impl& system_info);
 
 	void add_key_file_option_and_execute(const string& cmd_line) const;
 

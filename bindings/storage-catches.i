@@ -226,8 +226,11 @@
 %catches(storage::WrongNumberOfChildren) storage::BlkDevice::create_bcache_cset();
 %catches(storage::WrongNumberOfChildren, storage::UnsupportedException) storage::BlkDevice::create_blk_filesystem(FsType fs_type);
 %catches(storage::WrongNumberOfChildren, storage::UnsupportedException) storage::BlkDevice::create_filesystem(FsType fs_type);
+%catches(storage::Exception) storage::BlkDevice::exists_by_any_name(const Devicegraph *devicegraph, const std::string &name, SystemInfo &system_info);
 %catches(storage::DeviceNotFoundByName, storage::DeviceHasWrongType, storage::Exception) storage::BlkDevice::find_by_any_name(Devicegraph *devicegraph, const std::string &name);
+%catches(storage::DeviceNotFoundByName, storage::DeviceHasWrongType, storage::Exception) storage::BlkDevice::find_by_any_name(Devicegraph *devicegraph, const std::string &name, SystemInfo &system_info);
 %catches(storage::DeviceNotFoundByName, storage::DeviceHasWrongType, storage::Exception) storage::BlkDevice::find_by_any_name(const Devicegraph *devicegraph, const std::string &name);
+%catches(storage::DeviceNotFoundByName, storage::DeviceHasWrongType, storage::Exception) storage::BlkDevice::find_by_any_name(const Devicegraph *devicegraph, const std::string &name, SystemInfo &system_info);
 %catches(storage::DeviceNotFoundByName, storage::DeviceHasWrongType) storage::BlkDevice::find_by_name(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFoundByName, storage::DeviceHasWrongType) storage::BlkDevice::find_by_name(const Devicegraph *devicegraph, const std::string &name);
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_bcache();

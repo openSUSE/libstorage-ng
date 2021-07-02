@@ -33,7 +33,7 @@
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/HumanString.h"
 #include "storage/EtcFstab.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/StorageImpl.h"
 #include "storage/UsedFeatures.h"
 #include "storage/Holders/Subdevice.h"

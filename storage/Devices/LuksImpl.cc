@@ -29,7 +29,7 @@
 #include "storage/Holders/User.h"
 #include "storage/Devicegraph.h"
 #include "storage/StorageImpl.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/UsedFeatures.h"
 #include "storage/EtcCrypttab.h"
 #include "storage/Prober.h"
@@ -152,7 +152,7 @@ namespace storage
 
 
     bool
-    Luks::Impl::activate_luks(const ActivateCallbacks* activate_callbacks, SystemInfo& system_info,
+    Luks::Impl::activate_luks(const ActivateCallbacks* activate_callbacks, SystemInfo::Impl& system_info,
 			      const string& name, const string& uuid, const string& label)
     {
 	map<string, LuksActivationInfo>::const_iterator it = luks_activation_infos.find(uuid);
@@ -267,7 +267,7 @@ namespace storage
 
 	try
 	{
-	    SystemInfo system_info;
+	    SystemInfo::Impl system_info;
 
 	    bool ret = false;
 
@@ -319,7 +319,7 @@ namespace storage
 
 	bool ret = true;
 
-	SystemInfo system_info;
+	SystemInfo::Impl system_info;
 
 	for (const CmdDmsetupInfo::value_type& value : system_info.getCmdDmsetupInfo())
 	{
@@ -344,7 +344,7 @@ namespace storage
     void
     Luks::Impl::probe_lukses(Prober& prober)
     {
-	SystemInfo& system_info = prober.get_system_info();
+	SystemInfo::Impl& system_info = prober.get_system_info();
 	const CmdDmsetupTable& cmd_dmsetup_table = system_info.getCmdDmsetupTable();
 	const EtcCrypttab& etc_crypttab = system_info.getEtcCrypttab();
 	const Blkid& blkid = system_info.getBlkid();

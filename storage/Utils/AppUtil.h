@@ -36,6 +36,8 @@
 #include <regex>
 #include <utility>
 
+#include "storage/SystemInfo/SystemInfo.h"
+
 
 namespace storage
 {
@@ -47,7 +49,6 @@ namespace storage
     using std::pair;
 
     class Arch;
-    class SystemInfo;
 
 
     void createPath(const string& Path_Cv);
@@ -79,7 +80,7 @@ namespace storage
      * /sys. If the block device is a partition the disk is also check for
      * holders.
      */
-    bool has_kernel_holders(const string& name, SystemInfo& system_info);
+    bool has_kernel_holders(const string& name, SystemInfo::Impl& system_info);
 
     string extractNthWord(int Num_iv, const string& Line_Cv, bool GetRest_bi = false);
 

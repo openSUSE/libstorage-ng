@@ -24,7 +24,7 @@
 #include "storage/Devicegraph.h"
 #include "storage/Storage.h"
 #include "storage/Environment.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/Utils/Exception.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/XmlFile.h"

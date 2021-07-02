@@ -29,6 +29,7 @@
 #include <vector>
 
 #include "storage/Utils/ColumnConfigFile.h"
+#include "storage/SystemInfo/SystemInfo.h"
 #include "storage/EtcFstab.h"
 
 #define ETC_CRYPTTAB "/etc/crypttab"
@@ -38,8 +39,6 @@ namespace storage
 {
     using std::string;
     using std::vector;
-
-    class SystemInfo;
 
 
     /**
@@ -167,7 +166,7 @@ namespace storage
 	 * number. Aliases, e.g. udev symlinks, are handled by the
 	 * function.
 	 */
-	const CrypttabEntry* find_by_any_block_device(SystemInfo& system_info, const string& uuid,
+	const CrypttabEntry* find_by_any_block_device(SystemInfo::Impl& system_info, const string& uuid,
 						      const string& label, dev_t majorminor) const;
 
 	/**

@@ -28,6 +28,8 @@
 #include <vector>
 #include <functional>
 
+#include "storage/SystemInfo/SystemInfo.h"
+
 
 namespace storage
 {
@@ -37,7 +39,6 @@ namespace storage
 
     class ProbeCallbacks;
     class Devicegraph;
-    class SystemInfo;
     class Device;
     class Exception;
     class Text;
@@ -62,7 +63,7 @@ namespace storage
      * in the devicegraph are done in probe_sys_block_entries since the result
      * is also used for other functions (e.g. light_probe).
      */
-    SysBlockEntries probe_sys_block_entries(SystemInfo& system_info);
+    SysBlockEntries probe_sys_block_entries(SystemInfo::Impl& system_info);
 
 
     /**
@@ -75,13 +76,13 @@ namespace storage
 	/**
 	 * The constructor probes the system and places the result in system.
 	 */
-	Prober(const ProbeCallbacks* probe_callbacks, Devicegraph* system, SystemInfo& system_info);
+	Prober(const ProbeCallbacks* probe_callbacks, Devicegraph* system, SystemInfo::Impl& system_info);
 
 	const ProbeCallbacks* get_probe_callbacks() const { return probe_callbacks; }
 
 	Devicegraph* get_system() { return system; }
 
-	SystemInfo& get_system_info() { return system_info; }
+	SystemInfo::Impl& get_system_info() { return system_info; }
 
 	typedef std::function<void(Devicegraph* system, Device* a, Device* b)> add_holder_func_t;
 
@@ -108,7 +109,7 @@ namespace storage
 
 	Devicegraph* system;
 
-	SystemInfo& system_info;
+	SystemInfo::Impl& system_info;
 
 	SysBlockEntries sys_block_entries;
 

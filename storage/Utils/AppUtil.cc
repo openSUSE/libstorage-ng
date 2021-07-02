@@ -41,7 +41,7 @@
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/StorageTypes.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/Utils/LoggerImpl.h"
 #include "storage/Utils/Format.h"
 
@@ -175,7 +175,7 @@ namespace storage
 
 
     bool
-    has_kernel_holders(const string& name, SystemInfo& system_info)
+    has_kernel_holders(const string& name, SystemInfo::Impl& system_info)
     {
 	const CmdUdevadmInfo& cmd_udevadm_info = system_info.getCmdUdevadmInfo(name);
 

@@ -37,7 +37,6 @@ namespace storage
     using namespace std;
 
 
-    class SystemInfo;
     class File;
 
 
@@ -72,7 +71,7 @@ namespace storage
 	const string& get_sysfs_path() const { return sysfs_path; }
 	void set_sysfs_path(const string& sysfs_path) { Impl::sysfs_path = sysfs_path; }
 
-	const File& get_sysfs_file(SystemInfo& system_info, const char* filename) const;
+	const File& get_sysfs_file(SystemInfo::Impl& system_info, const char* filename) const;
 
 	/**
 	 * The implementation in BlkDevice looks at udev paths and ids thus
@@ -156,12 +155,12 @@ namespace storage
 	 * lookup is not cached),
 	 */
 	static bool exists_by_any_name(const Devicegraph* devicegraph, const string& name,
-				       SystemInfo& system_info);
+				       SystemInfo::Impl& system_info);
 
 	static BlkDevice* find_by_any_name(Devicegraph* devicegraph, const string& name,
-					   SystemInfo& system_info);
+					   SystemInfo::Impl& system_info);
 	static const BlkDevice* find_by_any_name(const Devicegraph* devicegraph, const string& name,
-						 SystemInfo& system_info);
+						 SystemInfo::Impl& system_info);
 
 	virtual void probe_pass_1a(Prober& prober) override;
 

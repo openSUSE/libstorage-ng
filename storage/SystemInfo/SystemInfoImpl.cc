@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 SUSE LLC
+ * Copyright (c) [2004-2010] Novell, Inc.
  *
  * All Rights Reserved.
  *
@@ -20,37 +20,23 @@
  */
 
 
-#ifndef STORAGE_SYSTEM_INFO_H
-#define STORAGE_SYSTEM_INFO_H
-
-
-#include <memory>
-#include <boost/noncopyable.hpp>
+#include "storage/Utils/StorageDefines.h"
+#include "storage/Utils/SystemCmd.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 
 
 namespace storage
 {
 
-    class SystemInfo : private boost::noncopyable
+    SystemInfo::Impl::Impl()
     {
-    public:
+	y2deb("constructed SystemInfo::Impl");
+    }
 
-	SystemInfo();
-	~SystemInfo();
 
-    public:
-
-	class Impl;
-
-	Impl& get_impl() { return *impl; }
-	const Impl& get_impl() const { return *impl; }
-
-    private:
-
-	const std::unique_ptr<Impl> impl;
-
-    };
+    SystemInfo::Impl::~Impl()
+    {
+	y2deb("destructed SystemInfo::Impl");
+    }
 
 }
-
-#endif

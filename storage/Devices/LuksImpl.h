@@ -56,7 +56,7 @@ namespace storage
 	virtual string get_pretty_classname() const override;
 
 	static bool activate_luks(const ActivateCallbacks* activate_callbacks,
-				  SystemInfo& system_info, const string& name, const string& uuid,
+				  SystemInfo::Impl& system_info, const string& name, const string& uuid,
 				  const string& label);
 
 	static bool activate_lukses(const ActivateCallbacks* activate_callbacks);

@@ -23,7 +23,7 @@
 #include "storage/Devices/MdMemberImpl.h"
 #include "storage/Devices/MdContainerImpl.h"
 #include "storage/Devices/MdImpl.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/Holders/MdSubdeviceImpl.h"
 #include "storage/EtcMdadm.h"
 #include "storage/Prober.h"

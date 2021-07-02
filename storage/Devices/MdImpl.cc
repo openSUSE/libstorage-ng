@@ -33,7 +33,7 @@
 #include "storage/Storage.h"
 #include "storage/Prober.h"
 #include "storage/Environment.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/Exception.h"
 #include "storage/Utils/Enum.h"
@@ -426,7 +426,7 @@ namespace storage
     void
     Md::Impl::probe_mds(Prober& prober)
     {
-	SystemInfo& system_info = prober.get_system_info();
+	SystemInfo::Impl& system_info = prober.get_system_info();
 	const MdLinks& md_links = system_info.getMdLinks();
 
 	for (const string& short_name : prober.get_sys_block_entries().mds)
@@ -519,7 +519,7 @@ namespace storage
     Md::Impl::probe_pass_1f(Prober& prober)
     {
 	Devicegraph* system = prober.get_system();
-	SystemInfo& system_info = prober.get_system_info();
+	SystemInfo::Impl& system_info = prober.get_system_info();
 
 	// The order/sort-key/role cannot be probed by looking at
 	// /proc/mdstat. As an example consider a RAID10 where the

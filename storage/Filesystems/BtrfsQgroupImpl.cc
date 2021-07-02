@@ -29,7 +29,7 @@
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/Format.h"
 #include "storage/UsedFeatures.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/Holders/BtrfsQgroupRelation.h"
 #include "storage/Storage.h"
 #include "storage/Redirect.h"

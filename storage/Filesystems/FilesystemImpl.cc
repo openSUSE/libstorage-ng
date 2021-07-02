@@ -30,7 +30,7 @@
 #include "storage/Filesystems/BlkFilesystemImpl.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Devicegraph.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/StorageImpl.h"
 #include "storage/FreeInfo.h"
 
@@ -104,7 +104,7 @@ namespace storage
     {
 	EnsureMounted ensure_mounted(get_filesystem());
 
-	SystemInfo system_info;
+	SystemInfo::Impl system_info;
 	const CmdDf& cmd_df = system_info.getCmdDf(ensure_mounted.get_any_mount_point());
 
 	return cmd_df.get_space_info();

@@ -28,7 +28,7 @@
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/HumanString.h"
 #include "storage/Utils/SystemCmd.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/Devices/LvmVgImpl.h"
 #include "storage/Devices/LvmPvImpl.h"
 #include "storage/Devices/LvmLvImpl.h"

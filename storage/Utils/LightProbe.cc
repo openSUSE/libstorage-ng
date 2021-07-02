@@ -21,7 +21,7 @@
 
 
 #include "storage/Utils/LightProbe.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/Prober.h"
 
 
@@ -31,7 +31,7 @@ namespace storage
     bool
     light_probe()
     {
-	SystemInfo system_info;
+	SystemInfo::Impl system_info;
 
 	SysBlockEntries sys_block_entries = probe_sys_block_entries(system_info);
 

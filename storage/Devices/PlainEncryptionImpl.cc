@@ -25,7 +25,7 @@
 #include "storage/Devices/PlainEncryptionImpl.h"
 #include "storage/Holders/User.h"
 #include "storage/Devicegraph.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/UsedFeatures.h"
 #include "storage/EtcCrypttab.h"
 #include "storage/Prober.h"
@@ -68,7 +68,7 @@ namespace storage
     void
     PlainEncryption::Impl::probe_plain_encryptions(Prober& prober)
     {
-	SystemInfo& system_info = prober.get_system_info();
+	SystemInfo::Impl& system_info = prober.get_system_info();
 	const CmdDmsetupTable& cmd_dmsetup_table = system_info.getCmdDmsetupTable();
 	const EtcCrypttab& etc_crypttab = system_info.getEtcCrypttab();
 	const Blkid& blkid = system_info.getBlkid();

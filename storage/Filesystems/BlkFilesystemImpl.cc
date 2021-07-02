@@ -38,7 +38,7 @@
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Devices/LvmLv.h"
 #include "storage/Devicegraph.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/StorageImpl.h"
 #include "storage/FreeInfo.h"
 #include "storage/Prober.h"
@@ -163,7 +163,7 @@ namespace storage
     void
     BlkFilesystem::Impl::probe_blk_filesystems(Prober& prober)
     {
-	SystemInfo& system_info = prober.get_system_info();
+	SystemInfo::Impl& system_info = prober.get_system_info();
 	const Blkid& blkid = system_info.getBlkid();
 
 	for (BlkDevice* blk_device : BlkDevice::get_all(prober.get_system()))
@@ -216,7 +216,7 @@ namespace storage
     void
     BlkFilesystem::Impl::probe_pass_2a(Prober& prober)
     {
-	SystemInfo& system_info = prober.get_system_info();
+	SystemInfo::Impl& system_info = prober.get_system_info();
 
 	const BlkDevice* blk_device = get_blk_device();
 
@@ -684,7 +684,7 @@ namespace storage
 
 
     vector<ExtendedFstabEntry>
-    BlkFilesystem::Impl::find_etc_fstab_entries_unfiltered(SystemInfo& system_info) const
+    BlkFilesystem::Impl::find_etc_fstab_entries_unfiltered(SystemInfo::Impl& system_info) const
     {
 	const EtcFstab& etc_fstab = system_info.getEtcFstab();
 
@@ -716,7 +716,7 @@ namespace storage
 
 
     vector<ExtendedFstabEntry>
-    BlkFilesystem::Impl::find_proc_mounts_entries_unfiltered(SystemInfo& system_info) const
+    BlkFilesystem::Impl::find_proc_mounts_entries_unfiltered(SystemInfo::Impl& system_info) const
     {
 	const ProcMounts& proc_mounts = system_info.getProcMounts();
 

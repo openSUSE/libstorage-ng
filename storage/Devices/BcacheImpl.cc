@@ -33,7 +33,7 @@
 #include "storage/Devices/BcacheImpl.h"
 #include "storage/Devices/BcacheCsetImpl.h"
 #include "storage/Devicegraph.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/UsedFeatures.h"
 #include "storage/Prober.h"
 #include "storage/Utils/CallbacksImpl.h"
@@ -196,7 +196,7 @@ namespace storage
     static bool
     is_backed(Prober& prober, const string& short_name)
     {
-	SystemInfo& system_info = prober.get_system_info();
+	SystemInfo::Impl& system_info = prober.get_system_info();
 
 	string dev_path = SYSFS_DIR "/devices/virtual/block/" + short_name + "/dev";
 	const File& dev_file = system_info.getFile(dev_path);
@@ -289,7 +289,7 @@ namespace storage
     {
 	Partitionable::Impl::probe_pass_1a(prober);
 
-	SystemInfo& system_info = prober.get_system_info();
+	SystemInfo::Impl& system_info = prober.get_system_info();
 
 	const File& size_file = get_sysfs_file(system_info, "size");
 	set_region(Region(0, size_file.get<unsigned long long>(), 512));
@@ -315,7 +315,7 @@ namespace storage
 
 	if (get_type() == BcacheType::BACKED)
 	{
-	    SystemInfo& system_info = prober.get_system_info();
+	    SystemInfo::Impl& system_info = prober.get_system_info();
 
 	    // Creating relationship with its backing device
 	    const File& dev_file = get_sysfs_file(system_info, "bcache/../dev");

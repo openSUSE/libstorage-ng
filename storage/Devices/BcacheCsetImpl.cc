@@ -27,7 +27,7 @@
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/Devices/BcacheCsetImpl.h"
 #include "storage/Devices/Bcache.h"
 #include "storage/Devices/BlkDeviceImpl.h"
@@ -131,7 +131,7 @@ namespace storage
 
 	Device::Impl::probe_pass_1b(prober);
 
-	SystemInfo& system_info = prober.get_system_info();
+	SystemInfo::Impl& system_info = prober.get_system_info();
 
 	string path = SYSFS_DIR "/fs/bcache/" + uuid;
 

@@ -38,8 +38,6 @@ namespace storage
     using std::vector;
     using std::multimap;
 
-    class SystemInfo;
-
 
     class ProcMounts
     {
@@ -53,7 +51,7 @@ namespace storage
 	 * symlinks, are handled by the function. This object keeps
 	 * ownership of the entries; do not delete them.
 	 */
-	vector<const FstabEntry*> get_by_name(const string& name, SystemInfo& system_info) const;
+	vector<const FstabEntry*> get_by_name(const string& name, SystemInfo::Impl& system_info) const;
 
 	/**
 	 * Return all NFS and NFS4 entries. This object keeps ownership of the entries; do

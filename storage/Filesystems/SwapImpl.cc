@@ -31,7 +31,7 @@
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/HumanString.h"
 #include "storage/Utils/ExceptionImpl.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/FreeInfo.h"
 #include "storage/UsedFeatures.h"
 #include "storage/Redirect.h"
@@ -193,7 +193,7 @@ namespace storage
 	{
 	    ST_CAUGHT(exception);
 
-	    SystemInfo system_info;
+	    SystemInfo::Impl system_info;
 
 	    if (is_active_at_present(system_info, mount_point))
 		ST_RETHROW(exception);

@@ -36,7 +36,7 @@
 #include "storage/Utils/CallbacksImpl.h"
 #include "storage/FreeInfo.h"
 #include "storage/UsedFeatures.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Holders/FilesystemUserImpl.h"
 #include "storage/Holders/Snapshot.h"
@@ -556,7 +556,7 @@ namespace storage
 	if (!support_btrfs_multiple_devices())
 	    return;
 
-	SystemInfo& system_info = prober.get_system_info();
+	SystemInfo::Impl& system_info = prober.get_system_info();
 	Devicegraph* system = prober.get_system();
 
 	const CmdBtrfsFilesystemShow& cmd_btrfs_filesystem_show = system_info.getCmdBtrfsFilesystemShow();
@@ -614,7 +614,7 @@ namespace storage
     {
 	BlkFilesystem::Impl::probe_pass_2a(prober);
 
-	SystemInfo& system_info = prober.get_system_info();
+	SystemInfo::Impl& system_info = prober.get_system_info();
 
 	const BlkDevice* blk_device = get_blk_device();
 

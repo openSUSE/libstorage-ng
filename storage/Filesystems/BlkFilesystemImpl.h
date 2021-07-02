@@ -127,9 +127,9 @@ namespace storage
 	 */
 	virtual const BlkDevice* get_etc_fstab_blk_device(const MountPoint* mount_point) const;
 
-	virtual vector<ExtendedFstabEntry> find_etc_fstab_entries_unfiltered(SystemInfo& system_info) const override;
+	virtual vector<ExtendedFstabEntry> find_etc_fstab_entries_unfiltered(SystemInfo::Impl& system_info) const override;
 
-	virtual vector<ExtendedFstabEntry> find_proc_mounts_entries_unfiltered(SystemInfo& system_info) const override;
+	virtual vector<ExtendedFstabEntry> find_proc_mounts_entries_unfiltered(SystemInfo::Impl& system_info) const override;
 
 	virtual BlkFilesystem* get_non_impl() override { return to_blk_filesystem(Device::Impl::get_non_impl()); }
 	virtual const BlkFilesystem* get_non_impl() const override { return to_blk_filesystem(Device::Impl::get_non_impl()); }

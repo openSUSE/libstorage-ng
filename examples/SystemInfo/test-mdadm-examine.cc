@@ -1,14 +1,14 @@
 
 #include <iostream>
 
-#include <storage/SystemInfo/SystemInfo.h>
+#include <storage/SystemInfo/SystemInfoImpl.h>
 
 using namespace std;
 using namespace storage;
 
 
 void
-test_mdadm_examine(SystemInfo& system_info, const vector<string>& devices)
+test_mdadm_examine(SystemInfo::Impl& system_info, const vector<string>& devices)
 {
     try
     {
@@ -28,7 +28,7 @@ main()
 {
     set_logger(get_logfile_logger());
 
-    SystemInfo system_info;
+    SystemInfo::Impl system_info;
 
     test_mdadm_examine(system_info, { "/dev/sda", "/dev/sdb" });
 }

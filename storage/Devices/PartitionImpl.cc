@@ -37,7 +37,7 @@
 #include "storage/Devices/DiskImpl.h"
 #include "storage/Filesystems/FilesystemImpl.h"
 #include "storage/Devicegraph.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/Storage.h"
 #include "storage/FreeInfo.h"
 #include "storage/Utils/XmlFile.h"
@@ -109,7 +109,7 @@ namespace storage
     {
 	BlkDevice::Impl::probe_pass_1a(prober);
 
-	SystemInfo& system_info = prober.get_system_info();
+	SystemInfo::Impl& system_info = prober.get_system_info();
 
 	const PartitionTable* partition_table = get_partition_table();
 	const Partitionable* partitionable = partition_table->get_partitionable();
@@ -146,7 +146,7 @@ namespace storage
     void
     Partition::Impl::probe_topology(Prober& prober)
     {
-	SystemInfo& system_info = prober.get_system_info();
+	SystemInfo::Impl& system_info = prober.get_system_info();
 
 	const Partitionable* partitionable = get_partitionable();
 
