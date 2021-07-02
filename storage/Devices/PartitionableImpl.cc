@@ -36,7 +36,7 @@
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/CallbacksImpl.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/StorageImpl.h"
 #include "storage/Prober.h"
 #include "storage/Utils/Format.h"
@@ -89,7 +89,7 @@ namespace storage
 
 	if (get_dm_table_name().empty())
 	{
-	    SystemInfo& system_info = prober.get_system_info();
+	    SystemInfo::Impl& system_info = prober.get_system_info();
 
 	    const File& range_file = get_sysfs_file(system_info, "ext_range");
 	    range = range_file.get<int>();

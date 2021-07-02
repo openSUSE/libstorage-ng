@@ -23,7 +23,7 @@
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/HumanString.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/Devices/EncryptionImpl.h"
 #include "storage/Holders/User.h"
 #include "storage/Devicegraph.h"
@@ -108,7 +108,7 @@ namespace storage
 
 
     string
-    Encryption::Impl::next_free_cr_auto_name(SystemInfo& system_info)
+    Encryption::Impl::next_free_cr_auto_name(SystemInfo::Impl& system_info)
     {
 	const CmdDmsetupInfo& cmd_dmsetup_info = system_info.getCmdDmsetupInfo();
 	const EtcCrypttab& etc_crypttab = system_info.getEtcCrypttab();

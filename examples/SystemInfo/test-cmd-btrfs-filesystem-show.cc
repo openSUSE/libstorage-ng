@@ -1,14 +1,14 @@
 
 #include <iostream>
 
-#include <storage/SystemInfo/SystemInfo.h>
+#include <storage/SystemInfo/SystemInfoImpl.h>
 
 using namespace std;
 using namespace storage;
 
 
 void
-test_cmd_btrfs_filesystem_show(SystemInfo& system_info)
+test_cmd_btrfs_filesystem_show(SystemInfo::Impl& system_info)
 {
     try
     {
@@ -28,7 +28,7 @@ main()
 {
     set_logger(get_logfile_logger());
 
-    SystemInfo system_info;
+    SystemInfo::Impl system_info;
 
     test_cmd_btrfs_filesystem_show(system_info);
 }

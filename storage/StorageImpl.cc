@@ -33,7 +33,7 @@
 #include "storage/Devices/LvmLvImpl.h"
 #include "storage/Devices/LuksImpl.h"
 #include "storage/Pool.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/Actiongraph.h"
 #include "storage/Prober.h"
 #include "storage/EnvironmentImpl.h"
@@ -223,7 +223,7 @@ namespace storage
     void
     Storage::Impl::probe_helper(const ProbeCallbacks* probe_callbacks, Devicegraph* probed)
     {
-	SystemInfo system_info;
+	SystemInfo::Impl system_info;
 
 	arch = system_info.getArch();
 

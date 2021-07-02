@@ -31,6 +31,7 @@
 #include <vector>
 
 #include "storage/Filesystems/Filesystem.h"
+#include "storage/SystemInfo/SystemInfo.h"
 
 
 namespace storage
@@ -39,9 +40,6 @@ namespace storage
     using std::map;
     using std::list;
     using std::vector;
-
-
-    class SystemInfo;
 
 
     /**
@@ -92,7 +90,7 @@ namespace storage
 	 * /dev. Function might require a system lookup and is therefore
 	 * slow.
 	 */
-	const_iterator find_by_any_name(const string& device, SystemInfo& system_info) const;
+	const_iterator find_by_any_name(const string& device, SystemInfo::Impl& system_info) const;
 
 	const_iterator find_by_journal_uuid(const string& journal_uuid) const;
 

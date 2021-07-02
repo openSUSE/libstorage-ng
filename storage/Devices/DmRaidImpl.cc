@@ -24,7 +24,7 @@
 #include "storage/Devicegraph.h"
 #include "storage/Storage.h"
 #include "storage/Prober.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/Utils/Exception.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/StorageTypes.h"
@@ -128,7 +128,7 @@ namespace storage
 	// Unfortunately from the return value of dmraid it is unclear whether
 	// there are no raids or some raid could not be deactivated.
 
-	SystemInfo system_info;
+	SystemInfo::Impl system_info;
 	for (const CmdDmsetupInfo::value_type& value : system_info.getCmdDmsetupInfo())
 	{
 	    if (value.second.subsystem == "DMRAID")
@@ -157,7 +157,7 @@ namespace storage
     {
 	Partitionable::Impl::probe_pass_1a(prober);
 
-	SystemInfo& system_info = prober.get_system_info();
+	SystemInfo::Impl& system_info = prober.get_system_info();
 
 	const File& rotational_file = get_sysfs_file(system_info, "queue/rotational");
 	rotational = rotational_file.get<bool>();

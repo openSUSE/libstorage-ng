@@ -25,7 +25,7 @@
 
 #include "storage/Prober.h"
 #include "storage/Devices/BlkDeviceImpl.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/CallbacksImpl.h"
 #include "storage/Utils/SystemCmd.h"
@@ -48,7 +48,6 @@
 #include "storage/Filesystems/BtrfsImpl.h"
 #include "storage/Filesystems/NfsImpl.h"
 #include "storage/Filesystems/TmpfsImpl.h"
-#include "storage/SystemInfo/SystemInfo.h"
 #include "storage/UsedFeatures.h"
 
 
@@ -57,7 +56,7 @@ namespace storage
 
 
     SysBlockEntries
-    probe_sys_block_entries(SystemInfo& system_info)
+    probe_sys_block_entries(SystemInfo::Impl& system_info)
     {
 	const Arch& arch = system_info.getArch();
 
@@ -156,7 +155,7 @@ namespace storage
     }
 
 
-    Prober::Prober(const ProbeCallbacks* probe_callbacks, Devicegraph* system, SystemInfo& system_info)
+    Prober::Prober(const ProbeCallbacks* probe_callbacks, Devicegraph* system, SystemInfo::Impl& system_info)
 	: probe_callbacks(probe_callbacks), system(system), system_info(system_info)
     {
 	/**

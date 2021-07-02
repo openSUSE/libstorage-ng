@@ -1,14 +1,14 @@
 
 #include <iostream>
 
-#include <storage/SystemInfo/SystemInfo.h>
+#include <storage/SystemInfo/SystemInfoImpl.h>
 
 using namespace std;
 using namespace storage;
 
 
 void
-test_dasdview(SystemInfo& system_info, const string& device)
+test_dasdview(SystemInfo::Impl& system_info, const string& device)
 {
     try
     {
@@ -28,7 +28,7 @@ main()
 {
     set_logger(get_logfile_logger());
 
-    SystemInfo system_info;
+    SystemInfo::Impl system_info;
 
     test_dasdview(system_info, "/dev/dasda");
 }

@@ -37,7 +37,7 @@
 #include "storage/Devices/LvmPv.h"
 #include "storage/Holders/FilesystemUser.h"
 #include "storage/Filesystems/BlkFilesystemImpl.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/FreeInfo.h"
 #include "storage/Prober.h"
 #include "storage/Utils/Format.h"
@@ -95,7 +95,7 @@ namespace storage
 
 	if (active)
 	{
-	    SystemInfo& system_info = prober.get_system_info();
+	    SystemInfo::Impl& system_info = prober.get_system_info();
 
 	    const CmdUdevadmInfo& cmd_udevadm_info = system_info.getCmdUdevadmInfo(name);
 
@@ -125,7 +125,7 @@ namespace storage
     void
     BlkDevice::Impl::probe_size(Prober& prober)
     {
-	SystemInfo& system_info = prober.get_system_info();
+	SystemInfo::Impl& system_info = prober.get_system_info();
 
 	const File& size_file = get_sysfs_file(system_info, "size");
 	const File& logical_block_size_file = get_sysfs_file(system_info, "queue/logical_block_size");
@@ -145,7 +145,7 @@ namespace storage
     void
     BlkDevice::Impl::probe_topology(Prober& prober)
     {
-	SystemInfo& system_info = prober.get_system_info();
+	SystemInfo::Impl& system_info = prober.get_system_info();
 
 	const File& alignment_offset_file = get_sysfs_file(system_info, "alignment_offset");
 	const File& optimal_io_size_file = get_sysfs_file(system_info, "queue/optimal_io_size");
@@ -239,7 +239,7 @@ namespace storage
 
 
     const File&
-    BlkDevice::Impl::get_sysfs_file(SystemInfo& system_info, const char* filename) const
+    BlkDevice::Impl::get_sysfs_file(SystemInfo::Impl& system_info, const char* filename) const
     {
 	return system_info.getFile(SYSFS_DIR + get_sysfs_path() + "/" + filename);
     }
@@ -316,7 +316,7 @@ namespace storage
 
     bool
     BlkDevice::Impl::exists_by_any_name(const Devicegraph* devicegraph, const string& name,
-					SystemInfo& system_info)
+					SystemInfo::Impl& system_info)
     {
 	if (!devicegraph->get_impl().is_system() && !devicegraph->get_impl().is_probed())
 	    ST_THROW(Exception("function called on wrong devicegraph"));
@@ -356,7 +356,7 @@ namespace storage
 
     BlkDevice*
     BlkDevice::Impl::find_by_any_name(Devicegraph* devicegraph, const string& name,
-				      SystemInfo& system_info)
+				      SystemInfo::Impl& system_info)
     {
 	if (!devicegraph->get_impl().is_system() && !devicegraph->get_impl().is_probed())
 	    ST_THROW(Exception("function called on wrong devicegraph"));
@@ -396,7 +396,7 @@ namespace storage
 
     const BlkDevice*
     BlkDevice::Impl::find_by_any_name(const Devicegraph* devicegraph, const string& name,
-				      SystemInfo& system_info)
+				      SystemInfo::Impl& system_info)
     {
 	if (!devicegraph->get_impl().is_system() && !devicegraph->get_impl().is_probed())
 	    ST_THROW(Exception("function called on wrong devicegraph"));

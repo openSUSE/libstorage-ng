@@ -25,7 +25,7 @@
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/Holders/User.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Devices/LvmPvImpl.h"

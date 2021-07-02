@@ -28,7 +28,7 @@
 #include "storage/EtcCrypttab.h"
 #include "storage/Utils/LoggerImpl.h"
 #include "storage/Utils/StorageDefines.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 
 
 #define CRYPTTAB_MIN_COLUMN_COUNT	2
@@ -217,7 +217,7 @@ namespace storage
 
 
     const CrypttabEntry*
-    EtcCrypttab::find_by_any_block_device(SystemInfo& system_info, const string& uuid,
+    EtcCrypttab::find_by_any_block_device(SystemInfo::Impl& system_info, const string& uuid,
 					  const string& label, dev_t majorminor) const
     {
 	for (int i = 0; i < get_entry_count(); ++i)

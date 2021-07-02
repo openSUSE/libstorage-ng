@@ -23,7 +23,6 @@
 
 #include <vector>
 
-#include "storage/Storage.h"
 #include "storage/StorageImpl.h"
 
 

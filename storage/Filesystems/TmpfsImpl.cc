@@ -30,7 +30,7 @@
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/EtcFstab.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/StorageImpl.h"
 #include "storage/Prober.h"
 
@@ -68,7 +68,7 @@ namespace storage
     void
     Tmpfs::Impl::probe_tmpfses(Prober& prober)
     {
-	SystemInfo& system_info = prober.get_system_info();
+	SystemInfo::Impl& system_info = prober.get_system_info();
 
 	vector<ExtendedFstabEntry> fstab_entries;
 	const EtcFstab& etc_fstab = system_info.getEtcFstab();
@@ -197,7 +197,7 @@ namespace storage
 
 
     vector<ExtendedFstabEntry>
-    Tmpfs::Impl::find_proc_mounts_entries_unfiltered(SystemInfo& system_info) const
+    Tmpfs::Impl::find_proc_mounts_entries_unfiltered(SystemInfo::Impl& system_info) const
     {
 	const ProcMounts& proc_mounts = system_info.getProcMounts();
 

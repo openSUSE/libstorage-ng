@@ -33,7 +33,7 @@
 #include "storage/Utils/HumanString.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/EtcFstab.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/StorageImpl.h"
 #include "storage/UsedFeatures.h"
 #include "storage/Holders/Subdevice.h"
@@ -331,7 +331,7 @@ namespace storage
 
 
     vector<ExtendedFstabEntry>
-    BtrfsSubvolume::Impl::find_etc_fstab_entries_unfiltered(SystemInfo& system_info) const
+    BtrfsSubvolume::Impl::find_etc_fstab_entries_unfiltered(SystemInfo::Impl& system_info) const
     {
 	return get_btrfs()->get_impl().find_etc_fstab_entries_unfiltered(system_info);
     }
@@ -352,7 +352,7 @@ namespace storage
 
 
     vector<ExtendedFstabEntry>
-    BtrfsSubvolume::Impl::find_proc_mounts_entries_unfiltered(SystemInfo& system_info) const
+    BtrfsSubvolume::Impl::find_proc_mounts_entries_unfiltered(SystemInfo::Impl& system_info) const
     {
 	return get_btrfs()->get_impl().find_proc_mounts_entries_unfiltered(system_info);
     }
@@ -393,7 +393,7 @@ namespace storage
     void
     BtrfsSubvolume::Impl::probe_pass_2a(Prober& prober, const string& mount_point)
     {
-	SystemInfo& system_info = prober.get_system_info();
+	SystemInfo::Impl& system_info = prober.get_system_info();
 
 	const Btrfs* btrfs = get_btrfs();
 	const BlkDevice* blk_device = btrfs->get_impl().get_blk_device();

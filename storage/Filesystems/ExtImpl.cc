@@ -27,7 +27,7 @@
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Holders/FilesystemUser.h"
 #include "storage/Filesystems/ExtImpl.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/SystemInfo/CmdDumpe2fs.h"
 #include "storage/SystemInfo/CmdResize2fs.h"
 #include "storage/Prober.h"

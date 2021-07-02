@@ -28,7 +28,7 @@
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/StorageDefines.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/SystemInfo/CmdBlkid.h"
 #include "storage/Filesystems/FilesystemImpl.h"
 
@@ -210,7 +210,7 @@ namespace storage
 
 
     Blkid::const_iterator
-    Blkid::find_by_any_name(const string& device, SystemInfo& system_info) const
+    Blkid::find_by_any_name(const string& device, SystemInfo::Impl& system_info) const
     {
 	const_iterator it = data.find(device);
 	if (it != end())

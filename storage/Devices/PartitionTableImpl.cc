@@ -31,7 +31,7 @@
 #include "storage/Devices/Multipath.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Devicegraph.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/AlignmentImpl.h"

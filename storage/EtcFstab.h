@@ -30,6 +30,7 @@
 
 #include "storage/Utils/ColumnConfigFile.h"
 #include "storage/Filesystems/Filesystem.h"
+#include "storage/SystemInfo/SystemInfo.h"
 
 #define ETC_FSTAB "/etc/fstab"
 
@@ -41,7 +42,6 @@ namespace storage
 
     class BlkDevice;
     class BlkFilesystem;
-    class SystemInfo;
 
 
     /**
@@ -307,7 +307,7 @@ namespace storage
 	 * name. Aliases, e.g. udev symlinks, are handled by the
 	 * function.
 	 */
-	vector<const FstabEntry*> find_all_by_any_name(SystemInfo& system_info, const string& name) const;
+	vector<const FstabEntry*> find_all_by_any_name(SystemInfo::Impl& system_info, const string& name) const;
 
 	/**
 	 * Return the first entry for mount point 'mount_point' or 0 if there

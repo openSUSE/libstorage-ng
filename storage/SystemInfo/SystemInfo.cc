@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2004-2010] Novell, Inc.
+ * Copyright (c) 2021 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -20,23 +20,20 @@
  */
 
 
-#include "storage/Utils/StorageDefines.h"
-#include "storage/Utils/SystemCmd.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 
 
 namespace storage
 {
 
     SystemInfo::SystemInfo()
+	: impl(make_unique<Impl>())
     {
-	y2deb("constructed SystemInfo");
     }
 
 
     SystemInfo::~SystemInfo()
     {
-	y2deb("destructed SystemInfo");
     }
 
 }

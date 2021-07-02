@@ -122,14 +122,14 @@ namespace storage
 	virtual MountByType get_default_mount_by() const override;
 	virtual MountOpts default_mount_options() const override;
 
-	virtual vector<ExtendedFstabEntry> find_etc_fstab_entries_unfiltered(SystemInfo& system_info) const override;
+	virtual vector<ExtendedFstabEntry> find_etc_fstab_entries_unfiltered(SystemInfo::Impl& system_info) const override;
 
 	virtual vector<FstabEntry*> find_etc_fstab_entries_unfiltered(EtcFstab& etc_fstab,
 								      const FstabAnchor& fstab_anchor) const override;
 
 	virtual bool predicate_etc_fstab(const FstabEntry* fstab_entry) const override;
 
-	virtual vector<ExtendedFstabEntry> find_proc_mounts_entries_unfiltered(SystemInfo& system_info) const override;
+	virtual vector<ExtendedFstabEntry> find_proc_mounts_entries_unfiltered(SystemInfo::Impl& system_info) const override;
 
 	virtual bool predicate_proc_mounts(const FstabEntry* fstab_entry) const override;
 

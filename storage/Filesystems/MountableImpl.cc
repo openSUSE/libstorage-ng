@@ -37,7 +37,7 @@
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Holders/User.h"
 #include "storage/Devicegraph.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/StorageImpl.h"
 #include "storage/Redirect.h"
 #include "storage/Utils/Format.h"
@@ -204,7 +204,7 @@ namespace storage
     void
     Mountable::Impl::probe_pass_2b(Prober& prober)
     {
-	SystemInfo& system_info = prober.get_system_info();
+	SystemInfo::Impl& system_info = prober.get_system_info();
 
 	vector<ExtendedFstabEntry> fstab_entries = find_etc_fstab_entries(system_info);
 	vector<ExtendedFstabEntry> mount_entries = find_proc_mounts_entries(system_info);
@@ -278,7 +278,7 @@ namespace storage
 
 
     vector<ExtendedFstabEntry>
-    Mountable::Impl::find_etc_fstab_entries_unfiltered(SystemInfo& system_info) const
+    Mountable::Impl::find_etc_fstab_entries_unfiltered(SystemInfo::Impl& system_info) const
     {
 	return {};
     }
@@ -292,7 +292,7 @@ namespace storage
 
 
     vector<ExtendedFstabEntry>
-    Mountable::Impl::find_etc_fstab_entries(SystemInfo& system_info) const
+    Mountable::Impl::find_etc_fstab_entries(SystemInfo::Impl& system_info) const
     {
 	vector<ExtendedFstabEntry> ret;
 
@@ -322,7 +322,7 @@ namespace storage
 
 
     vector<ExtendedFstabEntry>
-    Mountable::Impl::find_proc_mounts_entries(SystemInfo& system_info) const
+    Mountable::Impl::find_proc_mounts_entries(SystemInfo::Impl& system_info) const
     {
 	vector<ExtendedFstabEntry> ret;
 
@@ -523,7 +523,7 @@ namespace storage
 
 
     bool
-    Mountable::Impl::is_active_at_present(SystemInfo& system_info, const MountPoint* mount_point) const
+    Mountable::Impl::is_active_at_present(SystemInfo::Impl& system_info, const MountPoint* mount_point) const
     {
 	y2mil("active check begin");
 
@@ -582,7 +582,7 @@ namespace storage
 	{
 	    ST_CAUGHT(exception);
 
-	    SystemInfo system_info;
+	    SystemInfo::Impl system_info;
 
 	    if (is_active_at_present(system_info, mount_point))
 		ST_RETHROW(exception);

@@ -39,7 +39,6 @@ namespace storage
 
     using namespace std;
 
-    class SystemInfo;
     class FstabAnchor;
 
 
@@ -142,14 +141,14 @@ namespace storage
 	 *
 	 * Used for probe.
 	 */
-	vector<ExtendedFstabEntry> find_etc_fstab_entries(SystemInfo& system_info) const;
+	vector<ExtendedFstabEntry> find_etc_fstab_entries(SystemInfo::Impl& system_info) const;
 
 	/**
 	 * Unfiltered version of find_etc_fstab_entries().
 	 *
 	 * Used for probe.
 	 */
-	virtual vector<ExtendedFstabEntry> find_etc_fstab_entries_unfiltered(SystemInfo& system_info) const;
+	virtual vector<ExtendedFstabEntry> find_etc_fstab_entries_unfiltered(SystemInfo::Impl& system_info) const;
 
 	/**
 	 * Find the fstab entry for the Mountable. Normally just looks for the
@@ -183,7 +182,7 @@ namespace storage
 	 *
 	 * Used for probe.
 	 */
-	vector<ExtendedFstabEntry> find_proc_mounts_entries(SystemInfo& system_info) const;
+	vector<ExtendedFstabEntry> find_proc_mounts_entries(SystemInfo::Impl& system_info) const;
 
 	/**
 	 * Find the fstab entry for the Mountable in /proc/mounts. Normally
@@ -192,7 +191,7 @@ namespace storage
 	 *
 	 * Used for probe.
 	 */
-	virtual vector<ExtendedFstabEntry> find_proc_mounts_entries_unfiltered(SystemInfo& system_info) const = 0;
+	virtual vector<ExtendedFstabEntry> find_proc_mounts_entries_unfiltered(SystemInfo::Impl& system_info) const = 0;
 
 	/**
 	 * Predicate for filtering. So far only needed for btrfs where
@@ -233,7 +232,7 @@ namespace storage
 	 * Checks if the mount point of the mountable is active at
 	 * present. Does system lookups via the system_info.
 	 */
-	virtual bool is_active_at_present(SystemInfo& system_info, const MountPoint* mount_point) const;
+	virtual bool is_active_at_present(SystemInfo::Impl& system_info, const MountPoint* mount_point) const;
 
 	virtual void immediate_activate(MountPoint* mount_point, bool force_rw = false) const;
 	virtual void immediate_deactivate(MountPoint* mount_point) const;

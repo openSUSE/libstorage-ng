@@ -31,7 +31,7 @@
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/HumanString.h"
 #include "storage/EtcFstab.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/StorageImpl.h"
 #include "storage/UsedFeatures.h"
 #include "storage/Prober.h"
@@ -110,7 +110,7 @@ namespace storage
     {
 	// TODO the old library filters the mount options
 
-	SystemInfo& system_info = prober.get_system_info();
+	SystemInfo::Impl& system_info = prober.get_system_info();
 
 	/*
 	 * The key of the map is a pair of server and path of the NFS mounts.
@@ -281,7 +281,7 @@ namespace storage
 
 
     vector<ExtendedFstabEntry>
-    Nfs::Impl::find_proc_mounts_entries_unfiltered(SystemInfo& system_info) const
+    Nfs::Impl::find_proc_mounts_entries_unfiltered(SystemInfo::Impl& system_info) const
     {
 	const ProcMounts& proc_mounts = system_info.getProcMounts();
 

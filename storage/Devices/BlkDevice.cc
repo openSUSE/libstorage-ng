@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -22,7 +22,7 @@
 
 
 #include "storage/Devices/BlkDeviceImpl.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/FreeInfo.h"
 #include "storage/FindBy.h"
 
@@ -67,21 +67,42 @@ namespace storage
     }
 
 
+    bool
+    BlkDevice::exists_by_any_name(const Devicegraph* devicegraph, const string& name, SystemInfo& system_info)
+    {
+	return BlkDevice::Impl::exists_by_any_name(devicegraph, name, system_info.get_impl());
+    }
+
+
     BlkDevice*
     BlkDevice::find_by_any_name(Devicegraph* devicegraph, const string& name)
     {
-	SystemInfo system_info;
+	SystemInfo::Impl system_info;
 
 	return BlkDevice::Impl::find_by_any_name(devicegraph, name, system_info);
+    }
+
+
+    BlkDevice*
+    BlkDevice::find_by_any_name(Devicegraph* devicegraph, const string& name, SystemInfo& system_info)
+    {
+	return BlkDevice::Impl::find_by_any_name(devicegraph, name, system_info.get_impl());
     }
 
 
     const BlkDevice*
     BlkDevice::find_by_any_name(const Devicegraph* devicegraph, const string& name)
     {
-	SystemInfo system_info;
+	SystemInfo::Impl system_info;
 
 	return BlkDevice::Impl::find_by_any_name(devicegraph, name, system_info);
+    }
+
+
+    const BlkDevice*
+    BlkDevice::find_by_any_name(const Devicegraph* devicegraph, const string& name, SystemInfo& system_info)
+    {
+	return BlkDevice::Impl::find_by_any_name(devicegraph, name, system_info.get_impl());
     }
 
 

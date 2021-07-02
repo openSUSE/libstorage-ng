@@ -61,6 +61,9 @@ use_ostream(storage::PartitionSlot);
 #include "storage/UsedFeatures.h"
 #include "storage/View.h"
 
+#include "storage/SystemInfo/Arch.h"
+#include "storage/SystemInfo/SystemInfo.h"
+
 #include "storage/Devices/Device.h"
 #include "storage/Filesystems/Mountable.h"
 #include "storage/Filesystems/Filesystem.h"
@@ -120,8 +123,6 @@ use_ostream(storage::PartitionSlot);
 #include "storage/Holders/Snapshot.h"
 #include "storage/Holders/BtrfsQgroupRelation.h"
 
-#include "storage/SystemInfo/Arch.h"
-
 #include "storage/Graphviz.h"
 #include "storage/SimpleEtcFstab.h"
 #include "storage/SimpleEtcCrypttab.h"
@@ -156,6 +157,9 @@ use_ostream(storage::PartitionSlot);
 %include "../../storage/FreeInfo.h"
 %include "../../storage/UsedFeatures.h"
 %include "../../storage/View.h"
+
+%include "../../storage/SystemInfo/Arch.h"
+%include "../../storage/SystemInfo/SystemInfo.h"
 
 %include "../../storage/Devices/Device.h"
 %include "../../storage/Filesystems/Mountable.h"
@@ -216,8 +220,6 @@ use_ostream(storage::PartitionSlot);
 %include "../../storage/Holders/Snapshot.h"
 %include "../../storage/Holders/BtrfsQgroupRelation.h"
 
-%include "../../storage/SystemInfo/Arch.h"
-
 %include "../../storage/Graphviz.h"
 %include "../../storage/SimpleEtcFstab.h"
 %include "../../storage/SimpleEtcCrypttab.h"
@@ -233,4 +235,3 @@ use_ostream(storage::PartitionSlot);
 using namespace storage;
 
 %include "storage-template.i"
-

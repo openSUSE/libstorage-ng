@@ -25,7 +25,7 @@
 #include "storage/Devicegraph.h"
 #include "storage/Storage.h"
 #include "storage/Environment.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/Utils/Exception.h"
 #include "storage/Utils/Enum.h"
 #include "storage/Utils/StorageTypes.h"
@@ -199,7 +199,7 @@ namespace storage
     {
 	Partitionable::Impl::probe_pass_1a(prober);
 
-	SystemInfo& system_info = prober.get_system_info();
+	SystemInfo::Impl& system_info = prober.get_system_info();
 
 	const File& rotational_file = get_sysfs_file(system_info, "queue/rotational");
 	rotational = rotational_file.get<bool>();

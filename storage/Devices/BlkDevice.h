@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -29,6 +29,7 @@
 #include "storage/Utils/Swig.h"
 #include "storage/Devices/Device.h"
 #include "storage/Filesystems/BlkFilesystem.h"
+#include "storage/SystemInfo/SystemInfo.h"
 
 
 namespace storage
@@ -173,18 +174,45 @@ namespace storage
 	static const BlkDevice* find_by_name(const Devicegraph* devicegraph, const std::string& name);
 
 	/**
+	 * Check if a block device by any name including any symbolic links in
+	 * /dev. Function might require a system lookup and is therefore
+	 * slow. Only works on the probed devicegraph.
+	 *
+	 * @throw Exception
+	 *
+	 */
+	static bool exists_by_any_name(const Devicegraph* devicegraph, const std::string& name,
+				       SystemInfo& system_info);
+
+	/**
 	 * Find a block device by any name including any symbolic links in
 	 * /dev. Function might require a system lookup and is therefore
 	 * slow. Only works on the probed devicegraph.
 	 *
 	 * @throw DeviceNotFoundByName, DeviceHasWrongType, Exception
 	 */
-	static BlkDevice* find_by_any_name(Devicegraph* devicegraph, const std::string& name);
+	static BlkDevice* find_by_any_name(Devicegraph* devicegraph, const std::string& name) ST_DEPRECATED;
+
+	/**
+	 * Find a block device by any name including any symbolic links in
+	 * /dev. Function might require a system lookup and is therefore
+	 * slow. Only works on the probed devicegraph.
+	 *
+	 * @throw DeviceNotFoundByName, DeviceHasWrongType, Exception
+	 */
+	static BlkDevice* find_by_any_name(Devicegraph* devicegraph, const std::string& name,
+					   SystemInfo& system_info);
 
 	/**
 	 * @copydoc find_by_any_name
 	 */
-	static const BlkDevice* find_by_any_name(const Devicegraph* devicegraph, const std::string& name);
+	static const BlkDevice* find_by_any_name(const Devicegraph* devicegraph, const std::string& name) ST_DEPRECATED;
+
+	/**
+	 * @copydoc find_by_any_name
+	 */
+	static const BlkDevice* find_by_any_name(const Devicegraph* devicegraph, const std::string& name,
+						 SystemInfo& system_info);
 
 	/**
 	 * Creates a block filesystem on the block device.

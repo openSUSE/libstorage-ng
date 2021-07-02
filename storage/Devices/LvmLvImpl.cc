@@ -28,7 +28,7 @@
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/Math.h"
 #include "storage/Utils/CallbacksImpl.h"
-#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/Devices/LvmLvImpl.h"
 #include "storage/Devices/LvmVgImpl.h"
 #include "storage/Holders/Subdevice.h"
@@ -252,7 +252,7 @@ namespace storage
     void
     LvmLv::Impl::probe_lvm_lvs(Prober& prober)
     {
-	SystemInfo& system_info = prober.get_system_info();
+	SystemInfo::Impl& system_info = prober.get_system_info();
 
 	vector<CmdLvs::Lv> lvs = system_info.getCmdLvs().get_lvs();
 
@@ -392,7 +392,7 @@ namespace storage
 
 	// Use the stripes, stripe_size and chunk_size from the first segment.
 
-	SystemInfo& system_info = prober.get_system_info();
+	SystemInfo::Impl& system_info = prober.get_system_info();
 
 	if (lv_type == LvType::THIN_POOL)
 	{
