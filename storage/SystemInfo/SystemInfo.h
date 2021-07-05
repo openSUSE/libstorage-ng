@@ -31,6 +31,13 @@
 namespace storage
 {
 
+    /**
+     * The SystemInfo class keeps various system information.
+     *
+     * So far the class can only be used for the BlkDevice::find_by_any_name() functions.
+     * There it can avoid querying the same information from the system several times when
+     * using several calls to BlkDevice::find_by_any_name().
+     */
     class SystemInfo : private boost::noncopyable
     {
     public:

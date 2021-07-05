@@ -274,9 +274,7 @@ namespace storage
 	spec = EtcFstab::fstab_decode( get_column( col++ ) );
 	set_mount_point( EtcFstab::fstab_decode( get_column( col++ ) ) );
 
-	bool ok = toValue( get_column( col++ ), fs_type );
-
-	if ( ! ok )
+	if (!toValue( get_column( col++ ), fs_type ))
             fs_type = FsType::UNKNOWN;
 
 	mount_opts.parse( EtcFstab::fstab_decode( get_column( col++ ) ), line_no );
