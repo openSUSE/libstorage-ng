@@ -25,8 +25,6 @@
 #define STORAGE_SYSTEM_INFO_IMPL_H
 
 
-#include <boost/noncopyable.hpp>
-
 #include "storage/EtcFstab.h"
 #include "storage/EtcCrypttab.h"
 #include "storage/EtcMdadm.h"
@@ -86,11 +84,11 @@ namespace storage
 	const Dir& getDir(const string& path) { return dirs.get(path); }
 	const File& getFile(const string& path) { return files.get(path); }
 	const CmdStat& getCmdStat(const string& path) { return cmd_stats.get(path); }
-	const MdLinks& getMdLinks() { return mdlinks.get(); }
-	const ProcMounts& getProcMounts() { return procmounts.get(); }
-	const ProcMdstat& getProcMdstat() { return procmdstat.get(); }
-	const MdadmDetail& getMdadmDetail(const string& device) { return mdadmdetails.get(device); }
-	const MdadmExamine& getMdadmExamine(const vector<string>& devices) { return mdadmexamines.get(devices); }
+	const MdLinks& getMdLinks() { return md_links.get(); }
+	const ProcMounts& getProcMounts() { return proc_mounts.get(); }
+	const ProcMdstat& getProcMdstat() { return proc_mdstat.get(); }
+	const MdadmDetail& getMdadmDetail(const string& device) { return mdadm_details.get(device); }
+	const MdadmExamine& getMdadmExamine(const vector<string>& devices) { return mdadm_examines.get(devices); }
 	const Blkid& getBlkid() { return blkid.get(); }
 	const Lsscsi& getLsscsi() { return lsscsi.get(); }
 	const Parted& getParted(const string& device) { return parteds.get(device); }
@@ -98,8 +96,8 @@ namespace storage
 	const CmdDmsetupInfo& getCmdDmsetupInfo() { return cmd_dmsetup_info.get(); }
 	const CmdDmsetupTable& getCmdDmsetupTable() { return cmd_dmsetup_table.get(); }
 	const CmdCryptsetupLuksDump& getCmdCryptsetupLuksDump(const string& name) { return cmd_cryptsetup_luks_dumps.get(name); }
-	const CmdDmraid& getCmdDmraid() { return cmddmraid.get(); }
-	const CmdMultipath& getCmdMultipath() { return cmdmultipath.get(); }
+	const CmdDmraid& getCmdDmraid() { return cmd_dmraid.get(); }
+	const CmdMultipath& getCmdMultipath() { return cmd_multipath.get(); }
 
 	const CmdBtrfsFilesystemShow& getCmdBtrfsFilesystemShow() { return cmd_btrfs_filesystem_show.get(); }
 
@@ -239,11 +237,11 @@ namespace storage
 	LazyObjects<Dir> dirs;
 	LazyObjects<File> files;
 	LazyObjects<CmdStat> cmd_stats;
-	LazyObject<MdLinks> mdlinks;
-	LazyObject<ProcMounts> procmounts;
-	LazyObject<ProcMdstat> procmdstat;
-	LazyObjects<MdadmDetail> mdadmdetails;
-	LazyObjects<MdadmExamine, vector<string>> mdadmexamines;
+	LazyObject<MdLinks> md_links;
+	LazyObject<ProcMounts> proc_mounts;
+	LazyObject<ProcMdstat> proc_mdstat;
+	LazyObjects<MdadmDetail> mdadm_details;
+	LazyObjects<MdadmExamine, vector<string>> mdadm_examines;
 	LazyObject<Blkid> blkid;
 	LazyObject<Lsscsi> lsscsi;
 	LazyObjects<Parted> parteds;
@@ -251,8 +249,8 @@ namespace storage
 	LazyObject<CmdDmsetupInfo> cmd_dmsetup_info;
 	LazyObject<CmdDmsetupTable> cmd_dmsetup_table;
 	LazyObjects<CmdCryptsetupLuksDump> cmd_cryptsetup_luks_dumps;
-	LazyObject<CmdDmraid> cmddmraid;
-	LazyObject<CmdMultipath> cmdmultipath;
+	LazyObject<CmdDmraid> cmd_dmraid;
+	LazyObject<CmdMultipath> cmd_multipath;
 
 	LazyObject<CmdBtrfsFilesystemShow> cmd_btrfs_filesystem_show;
 	LazyObjectsWithKey<CmdBtrfsSubvolumeList, string> cmd_btrfs_subvolume_lists;

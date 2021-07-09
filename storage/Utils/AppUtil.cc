@@ -74,30 +74,6 @@ namespace storage
 
 
     bool
-    getStatMode(const string& Path_Cv, mode_t& val )
-    {
-        struct stat Stat_ri;
-        int ret_ii = stat(Path_Cv.c_str(), &Stat_ri);
-
-        if( ret_ii==0 )
-            val = Stat_ri.st_mode;
-        else
-            y2mil( "stat " << Path_Cv << " ret:" << ret_ii );
-
-        return (ret_ii==0);
-    }
-
-    bool
-    setStatMode(const string& Path_Cv, mode_t val )
-    {
-        int ret_ii = chmod( Path_Cv.c_str(), val );
-        if( ret_ii!=0 )
-            y2mil( "chmod " << Path_Cv << " ret:" << ret_ii );
-        return( ret_ii==0 );
-    }
-
-
-    bool
     checkNormalFile(const string& Path_Cv)
     {
         struct stat Stat_ri;
@@ -243,6 +219,7 @@ namespace storage
             Ret_Ci.erase(pos);
         return Ret_Ci;
     }
+
 
     list<string> splitString( const string& s, const string& delChars,
                               bool multipleDelim, bool skipEmpty,

@@ -79,8 +79,7 @@ namespace storage
 
 
     /**
-     * Temporary switch to enable multiple device support for btrfs
-     * (during probing).
+     * Switch to enable multiple device support for btrfs (during probing).
      */
     bool support_btrfs_multiple_devices();
 
