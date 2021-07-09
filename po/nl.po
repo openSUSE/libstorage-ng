@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: libstorage.nl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2019-05-02 20:14+0000\n"
+"PO-Revision-Date: 2021-07-09 15:10+0000\n"
 "Last-Translator: Freek de Kruijf <freek@opensuse.org>\n"
 "Language-Team: Dutch <https://l10n.opensuse.org/projects/libstorage/"
 "ng-sle-15-sp1/nl/>\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.3\n"
+"X-Generator: Weblate 4.6.2\n"
 
 msgid ""
 "\n"
@@ -68,7 +68,7 @@ msgstr "%1$s en %2$s"
 #. (e.g. "/dev/sdb1 (64 GiB), /dev/sdc1 (160 GiB)")
 #, c-format
 msgid "%1$s is cached by %2$s"
-msgstr "%1$s wordt gebruikt voor cache door %2$s"
+msgstr "%1$s heeft een cache in %2$s"
 
 #. TRANSLATORS: used to construct list of values
 #. %1$s is replaced by first value
@@ -1648,7 +1648,7 @@ msgstr "Bcache %1$s op %2$s (%3$s) versleutelen"
 #. %5$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Encrypt bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
-msgstr "Bcache %1$s op %2$s (%3$s) versleutelen met %4$s met %5$s"
+msgstr "Bcache %1$s op %2$s (%3$s) versleutelen voor %4$s met %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -2195,7 +2195,7 @@ msgstr "Additionele attributen worden afgetast"
 
 #. TRANSLATORS: error message
 msgid "Probing additional attributes failed"
-msgstr "Aftasten van  additionele attributen is mislukt"
+msgstr "Aftasten van additionele attributen is mislukt"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
@@ -2764,7 +2764,7 @@ msgstr "NFS %1$s op %2$s afkoppelen"
 #. %2$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Unmount file system btrfs on %1$s at %2$s"
-msgstr "Bestandssysteem btrfs op %1$s op %2$s afkoppelen"
+msgstr "Bestandssysteem btrfs op %1$s van %2$s afkoppelen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. home),
@@ -2772,7 +2772,7 @@ msgstr "Bestandssysteem btrfs op %1$s op %2$s afkoppelen"
 #. %3$s is replaced by mount point (e.g. /home)
 #, c-format
 msgid "Unmount subvolume %1$s on %2$s at %3$s"
-msgstr "Subvolume %1$s op %2$s op %3$s ontkoppelen"
+msgstr "Subvolume %1$s op %2$s van %3$s ontkoppelen"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -2787,7 +2787,7 @@ msgstr "%1$s op %2$s ontkoppelen"
 #. %3$s is replaced by mount point (e.g. /home)
 #, c-format
 msgid "Unmounting subvolume %1$s on %2$s at %3$s"
-msgstr "Subvolume %1$s op %2$s op %3$s ontkoppelen"
+msgstr "Subvolume %1$s op %2$s wordt van %3$s ontkoppeld"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
