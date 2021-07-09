@@ -418,7 +418,7 @@ namespace storage
 	 * Writes the devicegraph in graphviz format. The node id is
 	 * the sid (storage id).
 	 *
-	 * Deprecated in favor of write_graphviz(const std::string&, DevicegraphStyleCallbacks*).
+	 * Deprecated in favor of write_graphviz(const std::string&, DevicegraphStyleCallbacks*, View).
 	 *
 	 * @throw Exception
 	 */

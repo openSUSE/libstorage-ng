@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.ko\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-28 14:51+0000\n"
+"POT-Creation-Date: 2021-07-09 13:17+0200\n"
 "PO-Revision-Date: 2019-04-04 15:03+0000\n"
 "Last-Translator: Hwajin Kim <hwajin.kim@e4net.net>\n"
 "Language-Team: Korean <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -80,6 +80,14 @@ msgstr "%1$s, %2$s"
 msgid "Activate encryption layer device on %1$s"
 msgstr "%1$s에 암호화된 레이어 장치 활성화"
 
+# SLE12
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by the device name (e.g. /dev/loop0),
+#. %2$s is replaced by the size (e.g. 20.00 GiB)
+#, fuzzy, c-format
+msgid "Activate hard disk %1$s (%2$s)"
+msgstr "하드 디스크 %1$s(%2$s) 생성"
+
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2.00 GiB),
@@ -127,6 +135,14 @@ msgstr "LVM 활성화하지 못함"
 #, c-format
 msgid "Activating encryption layer device on %1$s"
 msgstr "%1$s에 암호화된 레이어 장치 활성화 중"
+
+# SLE12
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by the device name (e.g. /dev/loop0),
+#. %2$s is replaced by the size (e.g. 20.00 GiB)
+#, fuzzy, c-format
+msgid "Activating hard disk %1$s (%2$s)"
+msgstr "하드 디스크 %1$s(%2$s) 생성"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -838,7 +854,7 @@ msgstr "%1$s에 파일 시스템 btrfs를 생성하고 %2$s에 마운트합니�
 
 # SLE12
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %1$s is replaced by the device name (e.g. /dev/loop0),
 #. %2$s is replaced by the size (e.g. 20.00 GiB)
 #, c-format
 msgid "Create hard disk %1$s (%2$s)"
@@ -1082,7 +1098,7 @@ msgstr "확장 파티션 %1$s(%2$s) 생성 중"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %1$s is replaced by the device name (e.g. /dev/loop0),
 #. %2$s is replaced by the size (e.g. 20.00 GiB)
 #, c-format
 msgid "Creating hard disk %1$s (%2$s)"

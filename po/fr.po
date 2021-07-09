@@ -10,11 +10,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-28 14:51+0000\n"
+"POT-Creation-Date: 2021-07-09 13:17+0200\n"
 "PO-Revision-Date: 2021-03-25 13:56+0000\n"
 "Last-Translator: Sophie Leroy <sophie@stoquart.com>\n"
-"Language-Team: French <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/fr/>\n"
+"Language-Team: French <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -81,6 +81,13 @@ msgstr "%1$s, %2$s"
 msgid "Activate encryption layer device on %1$s"
 msgstr "Activer la couche de chiffrement sur %1$s"
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by the device name (e.g. /dev/loop0),
+#. %2$s is replaced by the size (e.g. 20.00 GiB)
+#, fuzzy, c-format
+msgid "Activate hard disk %1$s (%2$s)"
+msgstr "Créer le disque dur %1$s (%2$s)"
+
 # TLABEL partitioning_2002_03_14_2340__121
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -133,6 +140,13 @@ msgstr "Échec de l'activation de LVM"
 #, c-format
 msgid "Activating encryption layer device on %1$s"
 msgstr "Activation du périphérique de la couche de chiffrement sur %1$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by the device name (e.g. /dev/loop0),
+#. %2$s is replaced by the size (e.g. 20.00 GiB)
+#, fuzzy, c-format
+msgid "Activating hard disk %1$s (%2$s)"
+msgstr "Création du disque dur %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -863,7 +877,7 @@ msgstr ""
 "Créer un système de fichiers btrfs sur %1$s et le monter à l'emplacement %2$s"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %1$s is replaced by the device name (e.g. /dev/loop0),
 #. %2$s is replaced by the size (e.g. 20.00 GiB)
 #, c-format
 msgid "Create hard disk %1$s (%2$s)"
@@ -1104,7 +1118,7 @@ msgid "Creating extended partition %1$s (%2$s)"
 msgstr "Création de la partition étendue %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %1$s is replaced by the device name (e.g. /dev/loop0),
 #. %2$s is replaced by the size (e.g. 20.00 GiB)
 #, c-format
 msgid "Creating hard disk %1$s (%2$s)"

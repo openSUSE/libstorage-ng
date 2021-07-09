@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-28 14:51+0000\n"
+"POT-Creation-Date: 2021-07-09 13:17+0200\n"
 "PO-Revision-Date: 2019-04-04 15:03+0000\n"
 "Last-Translator: Ewelina Michalowska <ewelina.michalowska@stgambit.com>\n"
 "Language-Team: Polish <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -78,6 +78,13 @@ msgid "Activate encryption layer device on %1$s"
 msgstr "Aktywuj urządzenie warstwy szyfrowania na urządzeniu %1$s"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by the device name (e.g. /dev/loop0),
+#. %2$s is replaced by the size (e.g. 20.00 GiB)
+#, fuzzy, c-format
+msgid "Activate hard disk %1$s (%2$s)"
+msgstr "Utwórz dysk twardy %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
@@ -125,6 +132,13 @@ msgstr "Aktywowanie LVM nie powiodło się"
 #, c-format
 msgid "Activating encryption layer device on %1$s"
 msgstr "Aktywowanie urządzenia warstwy szyfrowania na urządzeniu %1$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by the device name (e.g. /dev/loop0),
+#. %2$s is replaced by the size (e.g. 20.00 GiB)
+#, fuzzy, c-format
+msgid "Activating hard disk %1$s (%2$s)"
+msgstr "Tworzenie dysku twardego %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -845,7 +859,7 @@ msgstr ""
 "montowania %2$s"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %1$s is replaced by the device name (e.g. /dev/loop0),
 #. %2$s is replaced by the size (e.g. 20.00 GiB)
 #, c-format
 msgid "Create hard disk %1$s (%2$s)"
@@ -1068,7 +1082,7 @@ msgid "Creating extended partition %1$s (%2$s)"
 msgstr "Tworzenie partycji rozszerzonej %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %1$s is replaced by the device name (e.g. /dev/loop0),
 #. %2$s is replaced by the size (e.g. 20.00 GiB)
 #, c-format
 msgid "Creating hard disk %1$s (%2$s)"

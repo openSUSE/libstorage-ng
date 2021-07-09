@@ -74,25 +74,20 @@ gpt = to_gpt(disk.create_partition_table(PtType_GPT))
 
 partition1 = create_partition(gpt, 512 * MiB)
 partition1.set_id(ID_ESP)
-file_system1 = partition1.create_filesystem(FsType_VFAT)
-mount_point1 = file_system1.create_mount_point("/boot/efi")
+vfat = partition1.create_filesystem(FsType_VFAT)
+vfat.create_mount_point("/boot/efi")
 
 
 partition2 = create_partition(gpt, 1 * GiB)
-partition1.set_id(ID_SWAP)
-file_system2 = partition2.create_filesystem(FsType_SWAP)
-mount_point2 = file_system2.create_mount_point("swap")
+partition2.set_id(ID_SWAP)
+swap = partition2.create_filesystem(FsType_SWAP)
+swap.create_mount_point("swap")
 
 
 partition3 = create_partition(gpt, 8 * GiB)
-file_system3 = partition3.create_filesystem(FsType_BTRFS)
-mount_point3 = file_system3.create_mount_point("/")
-
-top_level = to_btrfs(file_system3).get_top_level_btrfs_subvolume()
-
-for path in ["root", "var", "opt", "tmp", "home"]:
-    subvolume = top_level.create_btrfs_subvolume(path)
-    subvolume.create_mount_point("/" + path)
+partition3.set_id(ID_LINUX)
+ext4 = to_ext4(partition3.create_filesystem(FsType_EXT4))
+ext4.create_mount_point("/")
 
 
 commit_options = CommitOptions(True)

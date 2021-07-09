@@ -11,11 +11,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-28 14:51+0000\n"
+"POT-Creation-Date: 2021-07-09 13:17+0200\n"
 "PO-Revision-Date: 2021-03-15 12:56+0000\n"
 "Last-Translator: Tommi Nieminen <software@legisign.org>\n"
-"Language-Team: Finnish <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/fi/>\n"
+"Language-Team: Finnish <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -81,6 +81,13 @@ msgid "Activate encryption layer device on %1$s"
 msgstr "Ota käyttöön salaustaso laitteella %1$s"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by the device name (e.g. /dev/loop0),
+#. %2$s is replaced by the size (e.g. 20.00 GiB)
+#, fuzzy, c-format
+msgid "Activate hard disk %1$s (%2$s)"
+msgstr "Luo kiintolevy %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
@@ -127,6 +134,13 @@ msgstr "LVM:n käyttöönotto epäonnistui"
 #, c-format
 msgid "Activating encryption layer device on %1$s"
 msgstr "Otetaan käyttöön salaustaso laitteella %1$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by the device name (e.g. /dev/loop0),
+#. %2$s is replaced by the size (e.g. 20.00 GiB)
+#, fuzzy, c-format
+msgid "Activating hard disk %1$s (%2$s)"
+msgstr "Luodaan kiintolevy %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -819,7 +833,7 @@ msgid "Create file system btrfs on %1$s and mount at %2$s"
 msgstr "Luo Btrfs-tiedostojärjestelmä laitteelle %1$s ja liitä se kohtaan %2$s"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %1$s is replaced by the device name (e.g. /dev/loop0),
 #. %2$s is replaced by the size (e.g. 20.00 GiB)
 #, c-format
 msgid "Create hard disk %1$s (%2$s)"
@@ -1040,7 +1054,7 @@ msgid "Creating extended partition %1$s (%2$s)"
 msgstr "Luodaan laajennettu osio %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %1$s is replaced by the device name (e.g. /dev/loop0),
 #. %2$s is replaced by the size (e.g. 20.00 GiB)
 #, c-format
 msgid "Creating hard disk %1$s (%2$s)"

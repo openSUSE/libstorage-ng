@@ -14,11 +14,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.nl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-28 14:51+0000\n"
+"POT-Creation-Date: 2021-07-09 13:17+0200\n"
 "PO-Revision-Date: 2021-03-16 12:56+0000\n"
 "Last-Translator: Freek de Kruijf <freek@opensuse.org>\n"
-"Language-Team: Dutch <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/nl/>\n"
+"Language-Team: Dutch <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -84,6 +84,13 @@ msgid "Activate encryption layer device on %1$s"
 msgstr "Versleutelingslaag van apparaat activeren op %1$s"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by the device name (e.g. /dev/loop0),
+#. %2$s is replaced by the size (e.g. 20.00 GiB)
+#, fuzzy, c-format
+msgid "Activate hard disk %1$s (%2$s)"
+msgstr "Vaste schijf %1$s (%2$s) aanmaken"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
@@ -130,6 +137,13 @@ msgstr "LVM activeren is mislukt"
 #, c-format
 msgid "Activating encryption layer device on %1$s"
 msgstr "Versleutelingslaag van apparaat wordt geactiveerd op %1$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by the device name (e.g. /dev/loop0),
+#. %2$s is replaced by the size (e.g. 20.00 GiB)
+#, fuzzy, c-format
+msgid "Activating hard disk %1$s (%2$s)"
+msgstr "Vaste schijf %1$s (%2$s) aanmaken"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -815,7 +829,7 @@ msgid "Create file system btrfs on %1$s and mount at %2$s"
 msgstr "Bestandssysteem btrfs op %1$s aanmaken en aankoppelen op %2$s"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %1$s is replaced by the device name (e.g. /dev/loop0),
 #. %2$s is replaced by the size (e.g. 20.00 GiB)
 #, c-format
 msgid "Create hard disk %1$s (%2$s)"
@@ -1036,7 +1050,7 @@ msgid "Creating extended partition %1$s (%2$s)"
 msgstr "Uitgebreide partitie %1$s (%2$s) wordt aangemaakt"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %1$s is replaced by the device name (e.g. /dev/loop0),
 #. %2$s is replaced by the size (e.g. 20.00 GiB)
 #, c-format
 msgid "Creating hard disk %1$s (%2$s)"

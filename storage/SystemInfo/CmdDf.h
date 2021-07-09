@@ -55,8 +55,8 @@ namespace storage
 
 	string path;
 
-	unsigned long long size;
-	unsigned long long used;
+	unsigned long long size = 0;
+	unsigned long long used = 0;
 
     };
 
