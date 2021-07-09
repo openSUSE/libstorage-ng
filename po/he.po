@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-28 14:51+0000\n"
+"POT-Creation-Date: 2021-07-09 13:17+0200\n"
 "PO-Revision-Date: 2004-08-09 10:24+0200\n"
 "Last-Translator: xxx <yyy@example.org>\n"
 "Language-Team: Hebrew <i18n@suse.de>\n"
@@ -84,6 +84,14 @@ msgstr "משנה גודל %1 ל %2 MB"
 msgid "Activate encryption layer device on %1$s"
 msgstr "בחרו שם להתקן loop."
 
+#  popup heading 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by the device name (e.g. /dev/loop0),
+#. %2$s is replaced by the size (e.g. 20.00 GiB)
+#, fuzzy, c-format
+msgid "Activate hard disk %1$s (%2$s)"
+msgstr "יצור כרך לוגי"
+
 #  to translators: * Create partition hda3 700 MB (for /var with ext2)
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -135,6 +143,14 @@ msgstr ""
 #, fuzzy, c-format
 msgid "Activating encryption layer device on %1$s"
 msgstr "בחרו שם להתקן loop."
+
+#  popup heading 
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by the device name (e.g. /dev/loop0),
+#. %2$s is replaced by the size (e.g. 20.00 GiB)
+#, fuzzy, c-format
+msgid "Activating hard disk %1$s (%2$s)"
+msgstr "יצור כרך לוגי"
 
 #  to translators: * Create partition hda3 700 MB (for /var with ext2)
 #. TRANSLATORS: displayed during action,
@@ -885,7 +901,7 @@ msgstr ""
 
 #  popup heading 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %1$s is replaced by the device name (e.g. /dev/loop0),
 #. %2$s is replaced by the size (e.g. 20.00 GiB)
 #, fuzzy, c-format
 msgid "Create hard disk %1$s (%2$s)"
@@ -1135,7 +1151,7 @@ msgstr "צור מחיצה מורחבת %2 (%3)"
 
 #  popup heading 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %1$s is replaced by the device name (e.g. /dev/loop0),
 #. %2$s is replaced by the size (e.g. 20.00 GiB)
 #, fuzzy, c-format
 msgid "Creating hard disk %1$s (%2$s)"
