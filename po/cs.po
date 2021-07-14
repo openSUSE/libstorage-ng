@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2019-04-02 16:54+0000\n"
+"PO-Revision-Date: 2021-07-14 21:10+0000\n"
 "Last-Translator: Aleš Kastner <alkas@volny.cz>\n"
 "Language-Team: Czech <https://l10n.opensuse.org/projects/libstorage/"
 "ng-sle-15-sp1/cs/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 3.3\n"
+"X-Generator: Weblate 4.7.1\n"
 
 msgid ""
 "\n"
@@ -153,7 +153,7 @@ msgstr "Aktivace multipath selhala"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Aktivuje se tenký logický svazek  %1$s (%2$s) ve skupině svazků %3$s"
+msgstr "Aktivuje se tenký logický svazek %1$s (%2$s) ve skupině svazků %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2083,7 +2083,7 @@ msgstr "Připojit bcache %1$s na %2$s (%3$s) k %4$s"
 #. %2$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Mount file system btrfs on %1$s at %2$s"
-msgstr "Připojit systém souborů btrfs na %1$s na přípojném bodu %2$s"
+msgstr "Připojit systém souborů btrfs na %1$s k %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
