@@ -768,6 +768,8 @@ namespace storage
 	const Partitionable* partitionable = get_partitionable();
 	const PartitionTable* partition_table = get_partition_table();
 
+	// Note: --wipesignatures is not available in upstream parted.
+
 	string cmd_line = PARTED_BIN " --script --wipesignatures " + quote(partitionable->get_name()) +
 	    " unit s mkpart ";
 
@@ -901,61 +903,65 @@ namespace storage
 	string cmd_line = PARTED_BIN " --script " + quote(partitionable->get_name()) + " set " +
 	    to_string(get_number()) + " ";
 
-	if (is_msdos(partition_table))
-	{
-	    // Note: The type option is not available in upstream parted.
+	// Note: The 'type' option is not available in upstream parted. 'swap' is not
+	// available for MS-DOS in parted.
 
-	    cmd_line += "type " + to_string(get_id());
-	}
-	else
+	switch (get_id())
 	{
-	    switch (get_id())
-	    {
-		case ID_LINUX:
-		    // this is tricky but parted has no clearer way
-		    cmd_line += "lvm on set " + to_string(get_number()) + " lvm off";
-		    break;
+	    case ID_LINUX:
+		// this is tricky but parted has no clearer way
+		cmd_line += "lvm on set " + to_string(get_number()) + " lvm off";
+		break;
 
-		case ID_SWAP:
+	    case ID_SWAP:
+		if (!is_msdos(partition_table))
 		    cmd_line += "swap on";
-		    break;
+		else
+		    cmd_line += "type 130";
+		break;
 
-		case ID_LVM:
-		    cmd_line += "lvm on";
-		    break;
+	    case ID_LVM:
+		cmd_line += "lvm on";
+		break;
 
-		case ID_RAID:
-		    cmd_line += "raid on";
-		    break;
+	    case ID_RAID:
+		cmd_line += "raid on";
+		break;
 
-		case ID_IRST:
-		    cmd_line += "irst on";
-		    break;
+	    case ID_IRST:
+		cmd_line += "irst on";
+		break;
 
-		case ID_ESP:
-		    cmd_line += "esp on";
-		    break;
+	    case ID_ESP:
+		cmd_line += "esp on";
+		break;
 
-		case ID_BIOS_BOOT:
-		    cmd_line += "bios_grub on";
-		    break;
+	    case ID_BIOS_BOOT:
+		cmd_line += "bios_grub on";
+		break;
 
-		case ID_PREP:
-		    cmd_line += "prep on";
-		    break;
+	    case ID_PREP:
+		cmd_line += "prep on";
+		break;
 
-		case ID_WINDOWS_BASIC_DATA:
-		    cmd_line += "msftdata";
-		    break;
+	    case ID_WINDOWS_BASIC_DATA:
+		cmd_line += "msftdata";
+		break;
 
-		case ID_MICROSOFT_RESERVED:
-		    cmd_line += "msftres";
-		    break;
+	    case ID_MICROSOFT_RESERVED:
+		cmd_line += "msftres";
+		break;
 
-		case ID_DIAG:
-		    cmd_line += "diag";
-		    break;
-	    }
+	    case ID_DIAG:
+		cmd_line += "diag";
+		break;
+
+	    default:
+		if (is_msdos(partition_table))
+		    cmd_line += "type " + to_string(get_id());
+		else
+		    ST_THROW(Exception("impossible to set partition id"));
+		break;
 	}
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);

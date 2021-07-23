@@ -52,10 +52,6 @@ AC_SUBST(LIBVERSION_MINOR)
 AC_SUBST(LIBVERSION_PATCHLEVEL)
 AC_SUBST(LIBVERSION_INFO)
 
-docdir=\${prefix}/share/doc/packages/libstorage-ng
-
-AC_SUBST(docdir)
-
 PYTHON_CONFIG=${PYTHON_CONFIG:-python3-config}
 PYTHON_INCLUDES=$($PYTHON_CONFIG --includes)
 PYTHON_LIBS=$($PYTHON_CONFIG --libs)
