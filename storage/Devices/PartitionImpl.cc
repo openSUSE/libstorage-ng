@@ -768,6 +768,8 @@ namespace storage
 	const Partitionable* partitionable = get_partitionable();
 	const PartitionTable* partition_table = get_partition_table();
 
+	// Note: --wipesignatures is not available in upstream parted.
+
 	string cmd_line = PARTED_BIN " --script --wipesignatures " + quote(partitionable->get_name()) +
 	    " unit s mkpart ";
 

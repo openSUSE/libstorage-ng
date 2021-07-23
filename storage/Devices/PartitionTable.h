@@ -195,6 +195,10 @@ namespace storage
 
 	/**
 	 * Returns whether the partition id is supported on the partition table.
+	 *
+	 * This function does not consider the partition type (primary, extended or
+	 * logical) so further restriction may apply, e.g. ID_EXTENDED is not allowed for
+	 * primary partitions.
 	 */
 	bool is_partition_id_supported(unsigned int id) const;
 
