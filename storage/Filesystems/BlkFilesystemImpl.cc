@@ -192,13 +192,12 @@ namespace storage
 		continue;
 	    }
 
+	    // btrfs is probed independently in probe_btrfses().
+	    if (it->second.fs_type == FsType::BTRFS && support_btrfs_multiple_devices())
+		continue;
+
 	    try
 	    {
-		// btrfs is probed independently in probe_btrfses().
-
-		if (support_btrfs_multiple_devices() && it->second.fs_type == FsType::BTRFS)
-		    continue;
-
 		BlkFilesystem* blk_filesystem = blk_device->create_blk_filesystem(it->second.fs_type);
 		blk_filesystem->get_impl().probe_pass_2a(prober);
 		blk_filesystem->get_impl().probe_pass_2b(prober);
