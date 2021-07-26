@@ -768,7 +768,7 @@ namespace storage
 	const Partitionable* partitionable = get_partitionable();
 	const PartitionTable* partition_table = get_partition_table();
 
-	// Note: --wipesignatures is not available in upstream parted.
+	// Note: --wipesignatures is not available in upstream parted (2021-07-26).
 
 	string cmd_line = PARTED_BIN " --script --wipesignatures " + quote(partitionable->get_name()) +
 	    " unit s mkpart ";
@@ -903,8 +903,8 @@ namespace storage
 	string cmd_line = PARTED_BIN " --script " + quote(partitionable->get_name()) + " set " +
 	    to_string(get_number()) + " ";
 
-	// Note: The 'type' option is not available in upstream parted. 'swap' is not
-	// available for MS-DOS in parted.
+	// Note: The 'type' option is not available in upstream parted (2021-07-26).
+	// 'swap' is not available for MS-DOS in parted (2021-07-26).
 
 	switch (get_id())
 	{
@@ -1229,6 +1229,8 @@ namespace storage
     {
 	const Partition* partition_rhs = to_partition(action->get_device(commit_data.actiongraph, RHS));
 	const Partitionable* partitionable = get_partitionable();
+
+	// Note: --ignore-busy is not available in upstream parted (2021-07-26).
 
 	string cmd_line = PARTED_BIN " --script --ignore-busy " + quote(partitionable->get_name()) +
 	    " unit s resizepart " + to_string(get_number()) + " ";
