@@ -88,6 +88,7 @@
 #define DMRAID_BIN "/sbin/dmraid"
 #define BTRFS_BIN "/sbin/btrfs"
 #define WIPEFS_BIN "/sbin/wipefs"
+#define BLKDISCARD_BIN "/usr/sbin/blkdiscard"
 
 #define BCACHE_BIN "/usr/sbin/bcache"
 

@@ -14,7 +14,13 @@
       <name>/usr/sbin/parted --script --wipesignatures '/dev/dasda' unit s mkpart ext2 192 409727</name>
     </Command>
     <Command>
+      <name>/usr/sbin/blkdiscard '/dev/dasda1'</name>
+    </Command>
+    <Command>
       <name>/usr/sbin/parted --script --wipesignatures '/dev/vda' unit s mkpart ext2 24 51215</name>
+    </Command>
+    <Command>
+      <name>/usr/sbin/blkdiscard '/dev/vda1'</name>
     </Command>
   </Commands>
 </Mockup>

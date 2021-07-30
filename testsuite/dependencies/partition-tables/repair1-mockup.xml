@@ -13,6 +13,10 @@
       <!-- stdout missing -->
     </Command>
     <Command>
+      <name>/usr/sbin/blkdiscard '/dev/sdb1'</name>
+      <!-- stdout missing -->
+    </Command>
+    <Command>
       <name>/usr/sbin/parted --script '/dev/sdb' unit s print</name>
       <!-- stdout missing -->
     </Command>

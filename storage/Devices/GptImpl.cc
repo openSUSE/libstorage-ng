@@ -23,7 +23,7 @@
 
 #include "storage/Utils/HumanString.h"
 #include "storage/Devices/GptImpl.h"
-#include "storage/Devices/Partitionable.h"
+#include "storage/Devices/PartitionableImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
 #include "storage/Utils/StorageTmpl.h"
@@ -247,6 +247,8 @@ namespace storage
     Gpt::Impl::do_create()
     {
 	const Partitionable* partitionable = get_partitionable();
+
+	partitionable->get_impl().discard_device();
 
 	string cmd_line = PARTED_BIN " --script " + quote(partitionable->get_name()) + " mklabel gpt";
 

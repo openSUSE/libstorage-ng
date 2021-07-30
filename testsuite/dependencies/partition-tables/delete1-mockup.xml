@@ -14,7 +14,15 @@
       <!-- stdout missing -->
     </Command>
     <Command>
+      <name>/usr/sbin/blkdiscard '/dev/sda4'</name>
+      <!-- stdout missing -->
+    </Command>
+    <Command>
       <name>/usr/sbin/parted --script '/dev/sda' rm 4</name>
+      <!-- stdout missing -->
+    </Command>
+    <Command>
+      <name>/usr/sbin/blkdiscard '/dev/sda3'</name>
       <!-- stdout missing -->
     </Command>
     <Command>
@@ -22,7 +30,15 @@
       <!-- stdout missing -->
     </Command>
     <Command>
+      <name>/usr/sbin/blkdiscard '/dev/sda2'</name>
+      <!-- stdout missing -->
+    </Command>
+    <Command>
       <name>/usr/sbin/parted --script '/dev/sda' rm 2</name>
+      <!-- stdout missing -->
+    </Command>
+    <Command>
+      <name>/usr/sbin/blkdiscard '/dev/sda1'</name>
       <!-- stdout missing -->
     </Command>
     <Command>
@@ -31,6 +47,10 @@
     </Command>
     <Command>
       <name>/sbin/wipefs --all '/dev/sda'</name>
+      <!-- stdout missing -->
+    </Command>
+    <Command>
+      <name>/usr/sbin/blkdiscard '/dev/sda'</name>
       <!-- stdout missing -->
     </Command>
   </Commands>
