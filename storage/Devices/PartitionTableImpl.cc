@@ -644,6 +644,8 @@ namespace storage
 	// https://bugzilla.suse.com/show_bug.cgi?id=896485
 
 	partitionable->get_impl().wipe_device();
+
+	partitionable->get_impl().discard_device();
     }
 
 }

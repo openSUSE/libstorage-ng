@@ -819,6 +819,8 @@ namespace storage
 	SystemCmd(UDEVADM_BIN_SETTLE);
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+
+	discard_device();
     }
 
 
@@ -1123,6 +1125,8 @@ namespace storage
     Partition::Impl::do_delete() const
     {
 	do_delete_efi_boot_mgr();
+
+	discard_device();
 
 	const Partitionable* partitionable = get_partitionable();
 

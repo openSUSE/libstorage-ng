@@ -879,6 +879,15 @@ namespace storage
     }
 
 
+    void
+    BlkDevice::Impl::discard_device() const
+    {
+	string cmd_line = BLKDISCARD_BIN " " + quote(get_name());
+
+	SystemCmd cmd(cmd_line, SystemCmd::NoThrow);
+    }
+
+
     bool
     BlkDevice::Impl::is_valid_name(const string& name)
     {
