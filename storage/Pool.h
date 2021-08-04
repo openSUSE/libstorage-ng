@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2020 Arvin Schnell
+ * Copyright (c) 2021 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -25,6 +26,7 @@
 
 
 #include <vector>
+#include <map>
 #include <memory>
 #include <boost/noncopyable.hpp>
 
@@ -83,6 +85,16 @@ namespace storage
 
 	Pool();
 	~Pool();
+
+	/**
+	 * Return the userdata of the pool.
+	 */
+	const std::map<std::string, std::string>& get_userdata() const;
+
+	/**
+	 * Set the userdata of the pool.
+	 */
+	void set_userdata(const std::map<std::string, std::string>& userdata);
 
 	/**
 	 * Add a device to the pool. The devicegraph the device belongs to is irrelevant.

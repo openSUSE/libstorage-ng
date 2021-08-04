@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -120,6 +120,8 @@ namespace storage
 	bool exists_pool(const string& name) const;
 
 	vector<string> get_pool_names() const;
+
+	map<string, Pool*> get_pools();
 	map<string, const Pool*> get_pools() const;
 
 	Pool* get_pool(const string& name);
