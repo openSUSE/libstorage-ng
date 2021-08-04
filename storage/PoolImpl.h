@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2020 Arvin Schnell
+ * Copyright (c) 2021 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -24,8 +25,6 @@
 #define STORAGE_POOL_IMPL_H
 
 
-#include <vector>
-
 #include "storage/Pool.h"
 #include "storage/Devices/Device.h"
 
@@ -34,6 +33,7 @@ namespace storage
 {
     using std::string;
     using std::vector;
+    using std::map;
 
     class Partitionable;
 
@@ -43,7 +43,10 @@ namespace storage
 
     public:
 
-       	void add_device(const Device* device);
+	const map<string, string>& get_userdata() const { return userdata; }
+	void set_userdata(const map<string, string>& userdata) { Impl::userdata = userdata; }
+
+	void add_device(const Device* device);
 	void remove_device(const Device* device);
 
 	size_t size(const Devicegraph* devicegraph) const;
@@ -67,6 +70,8 @@ namespace storage
 					     unsigned long long size) const;
 
     private:
+
+	map<string, string> userdata;
 
 	vector<sid_t> devices;
 

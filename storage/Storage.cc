@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -310,6 +310,13 @@ namespace storage
     Storage::get_pool_names() const
     {
 	return get_impl().get_pool_names();
+    }
+
+
+    map<string, Pool*>
+    Storage::get_pools()
+    {
+	return get_impl().get_pools();
     }
 
 

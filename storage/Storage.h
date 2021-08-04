@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -477,7 +477,8 @@ namespace storage
 
 	/**
 	 * Generate pools, e.g. "HDDs (512 B)" for HDDs with 512 B sector size and "SSDs
-	 * (4 KiB)" for SSDs with 4 KiB sector size.
+	 * (4 KiB)" for SSDs with 4 KiB sector size. The pools generated and their names
+	 * may change anytime.
 	 */
 	void generate_pools(const Devicegraph* devicegraph);
 
@@ -507,6 +508,11 @@ namespace storage
 
 	/**
 	 * Get all pools with their names.
+	 */
+	std::map<std::string, Pool*> get_pools();
+
+	/**
+	 * @copydoc get_pools()
 	 */
 	std::map<std::string, const Pool*> get_pools() const;
 

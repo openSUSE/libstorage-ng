@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2020 Arvin Schnell
+ * Copyright (c) 2021 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -43,6 +44,20 @@ namespace storage
 
     Pool::~Pool()
     {
+    }
+
+
+    const map<string, string>&
+    Pool::get_userdata() const
+    {
+	return get_impl().get_userdata();
+    }
+
+
+    void
+    Pool::set_userdata(const map<string, string>& userdata)
+    {
+	get_impl().set_userdata(userdata);
     }
 
 

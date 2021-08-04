@@ -554,6 +554,18 @@ namespace storage
     }
 
 
+    map<string, Pool*>
+    Storage::Impl::get_pools()
+    {
+	map<string, Pool*> ret;
+
+	for (pools_t::value_type& tmp : pools)
+	    ret[tmp.first] = &tmp.second;
+
+	return ret;
+    }
+
+
     map<string, const Pool*>
     Storage::Impl::get_pools() const
     {
