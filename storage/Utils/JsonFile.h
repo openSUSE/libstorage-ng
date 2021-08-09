@@ -44,7 +44,7 @@ namespace storage
 
 	~JsonFile();
 
-	json_object* get_root() const { return root; }
+	json_object* get_root() { return root; }
 
     private:
 
