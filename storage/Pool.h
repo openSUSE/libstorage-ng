@@ -97,6 +97,11 @@ namespace storage
 	void set_userdata(const std::map<std::string, std::string>& userdata);
 
 	/**
+	 * Check whether the device exists in the pool.
+	 */
+	bool exists_device(const Device* device) const;
+
+	/**
 	 * Add a device to the pool. The devicegraph the device belongs to is irrelevant.
 	 *
 	 * @see remove_device(const Device*)

@@ -407,6 +407,7 @@
 %catches(storage::Aborted, storage::Exception) storage::Storage::probe(const ProbeCallbacks *probe_callbacks=nullptr);
 %catches(storage::Exception) storage::Storage::remove_devicegraph(const std::string &name);
 %catches(storage::Exception) storage::Storage::remove_pool(const std::string &name);
+%catches(storage::Exception) storage::Storage::rename_pool(const std::string &old_name, const std::string &new_name);
 %catches(storage::Exception) storage::Storage::restore_devicegraph(const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::StrayBlkDevice::find_by_name(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::StrayBlkDevice::find_by_name(const Devicegraph *devicegraph, const std::string &name);

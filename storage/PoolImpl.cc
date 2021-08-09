@@ -32,6 +32,16 @@
 namespace storage
 {
 
+
+    bool
+    Pool::Impl::exists_device(const Device* device) const
+    {
+	ST_CHECK_PTR(device);
+
+	return find(devices.begin(), devices.end(), device->get_sid()) != devices.end();
+    }
+
+
     void
     Pool::Impl::add_device(const Device* device)
     {

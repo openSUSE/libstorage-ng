@@ -140,6 +140,13 @@ namespace storage
     }
 
 
+    bool
+    Disk::Impl::is_brd() const
+    {
+	return boost::starts_with(get_name(), DEV_DIR "/ram");
+    }
+
+
     void
     Disk::Impl::probe_disks(Prober& prober)
     {

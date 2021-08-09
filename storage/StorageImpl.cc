@@ -476,7 +476,6 @@ namespace storage
 
 	// TODO more types, e.g. dasd, multipath?
 	// TODO check partition table?
-	// TODO do not add already existing devices
 
 	for (const Disk* disk : Disk::get_all(devicegraph))
 	{
@@ -489,6 +488,8 @@ namespace storage
 		name = "PMEMs";
 	    else if (disk->is_nvme())
 		name = "NVMes";
+	    else if (disk->get_impl().is_brd())
+		name = "BRDs";
 	    else if (!disk->is_rotational())
 		name = "SSDs";
 	    else
@@ -497,7 +498,9 @@ namespace storage
 	    name += " (" + byte_to_humanstring(disk->get_region().get_block_size(), false, 2, true) + ")";
 
 	    Pool* pool = exists_pool(name) ? get_pool(name) : create_pool(name);
-	    pool->add_device(disk);
+
+	    if (!pool->exists_device(disk))
+		pool->add_device(disk);
 	}
     }
 
@@ -532,6 +535,23 @@ namespace storage
     {
 	if (pools.erase(name) == 0)
 	    ST_THROW(Exception(sformat("pool '%s' not found", name)));
+    }
+
+
+    void
+    Storage::Impl::rename_pool(const string& old_name, const string& new_name)
+    {
+	pools_t::iterator it1 = pools.find(old_name);
+	if (it1 == pools.end())
+	    ST_THROW(Exception(sformat("pool '%s' not found", old_name)));
+
+	pools_t::iterator it2 = pools.find(new_name);
+	if (it2 != pools.end())
+	    ST_THROW(Exception(sformat("pool '%s' already exists", new_name)));
+
+	map<string, Pool>::node_type node = pools.extract(it1);
+	node.key() = new_name;
+	pools.insert(std::move(node));
     }
 
 

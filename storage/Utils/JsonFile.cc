@@ -75,13 +75,12 @@ namespace storage
 	if (!json_object_object_get_ex(parent, name, &child))
 	    return false;
 
-	if (json_object_is_type(child, json_type_string))
-	{
-	    value = json_object_get_string(child);
-	    return true;
-	}
+	if (!json_object_is_type(child, json_type_string))
+	    return false;
 
-	return false;
+	value = json_object_get_string(child);
+
+	return true;
     }
 
 
@@ -94,15 +93,14 @@ namespace storage
 	if (!json_object_object_get_ex(parent, name, &child))
 	    return false;
 
-	if (json_object_is_type(child, json_type_string))
-	{
-	    std::istringstream istr(json_object_get_string(child));
-	    classic(istr);
-	    istr >> value;
-	    return true;
-	}
+	if (!json_object_is_type(child, json_type_string))
+	    return false;
 
-	return false;
+	std::istringstream istr(json_object_get_string(child));
+	classic(istr);
+	istr >> value;
+
+	return true;
     }
 
 
@@ -115,32 +113,33 @@ namespace storage
 	if (!json_object_object_get_ex(parent, name, &child))
 	    return false;
 
-	if (json_object_is_type(child, json_type_string))
-	{
-	    std::istringstream istr(json_object_get_string(child));
-	    classic(istr);
-	    istr >> value;
-	    return true;
-	}
+	if (!json_object_is_type(child, json_type_string))
+	    return false;
 
-	return false;
+	std::istringstream istr(json_object_get_string(child));
+	classic(istr);
+	istr >> value;
+
+	return true;
     }
 
 
     bool
     get_child_nodes(json_object* parent, const char* name, vector<json_object*>& children)
     {
-	json_object* tmp;
-        json_object_object_get_ex(parent, name, &tmp);
+	json_object* child;
 
-        if (!json_object_is_type(tmp, json_type_array))
+	if (!json_object_object_get_ex(parent, name, &child))
+	    return false;
+
+	if (!json_object_is_type(child, json_type_array))
 	    return false;
 
 	children.clear();
 
-	size_t s = json_object_array_length(tmp);
+	size_t s = json_object_array_length(child);
 	for (size_t i = 0; i < s; ++i)
-	    children.push_back(json_object_array_get_idx(tmp, i));
+	    children.push_back(json_object_array_get_idx(child, i));
 
 	return true;
     }
