@@ -479,6 +479,8 @@ namespace storage
 	 * Generate pools, e.g. "HDDs (512 B)" for HDDs with 512 B sector size and "SSDs
 	 * (4 KiB)" for SSDs with 4 KiB sector size. The pools generated and their names
 	 * may change anytime.
+	 *
+	 * This function does not remove pools or devices from pools. It only adds things.
 	 */
 	void generate_pools(const Devicegraph* devicegraph);
 
@@ -495,6 +497,13 @@ namespace storage
 	 * @throw Exception
 	 */
 	void remove_pool(const std::string& name);
+
+	/**
+	 * Rename a pool.
+	 *
+	 * @throw Exception
+	 */
+	void rename_pool(const std::string& old_name, const std::string& new_name);
 
 	/**
 	 * Check whether a pool exists by name.

@@ -299,6 +299,13 @@ namespace storage
     }
 
 
+    void
+    Storage::rename_pool(const std::string& old_name, const std::string& new_name)
+    {
+	get_impl().rename_pool(old_name, new_name);
+    }
+
+
     bool
     Storage::exists_pool(const std::string& name) const
     {

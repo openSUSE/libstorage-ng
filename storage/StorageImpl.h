@@ -117,6 +117,8 @@ namespace storage
 
 	void remove_pool(const string& name);
 
+	void rename_pool(const string& old_name, const string& new_name);
+
 	bool exists_pool(const string& name) const;
 
 	vector<string> get_pool_names() const;

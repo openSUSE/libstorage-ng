@@ -46,6 +46,8 @@ namespace storage
 	const map<string, string>& get_userdata() const { return userdata; }
 	void set_userdata(const map<string, string>& userdata) { Impl::userdata = userdata; }
 
+	bool exists_device(const Device* device) const;
+
 	void add_device(const Device* device);
 	void remove_device(const Device* device);
 

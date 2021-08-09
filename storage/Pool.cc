@@ -68,6 +68,13 @@ namespace storage
     }
 
 
+    bool
+    Pool::exists_device(const Device* device) const
+    {
+	return get_impl().exists_device(device);
+    }
+
+
     void
     Pool::add_device(const Device* device)
     {

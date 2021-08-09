@@ -84,6 +84,7 @@ namespace storage
 
 	bool is_pmem() const;
 	bool is_nvme() const;
+	bool is_brd() const;
 
 	const string& get_image_filename() const { return image_filename; }
 	void set_image_filename(const string& image_filename) { Impl::image_filename = image_filename; }
