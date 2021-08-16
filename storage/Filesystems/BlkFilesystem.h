@@ -179,6 +179,14 @@ namespace storage
 	static std::vector<const BlkFilesystem*> find_by_uuid(const Devicegraph* devicegraph,
 							      const std::string& uuid);
 
+	/**
+	 * Get underlying blk devices of the blk filesystem.
+	 */
+	std::vector<BlkDevice*> get_blk_devices();
+
+	/**
+	 * @copydoc get_blk_devices()
+	 */
 	std::vector<const BlkDevice*> get_blk_devices() const;
 
     public:

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -227,6 +227,13 @@ namespace storage
 	};
 
 	return devicegraph->get_impl().get_devices_of_type_if<const BlkFilesystem>(pred);
+    }
+
+
+    vector<BlkDevice*>
+    BlkFilesystem::get_blk_devices()
+    {
+	return get_impl().get_blk_devices();
     }
 
 

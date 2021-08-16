@@ -55,16 +55,26 @@ namespace storage
 	 */
 	struct Entry
 	{
-	    Entry() : number(0), type(PartitionType::PRIMARY), id(0), boot(false),
-		      legacy_boot(false), name() {}
+	    /** Partition number (1..n) */
+	    unsigned int number = 0;
 
-	    unsigned int number; // Partition number (1..n)
-	    Region region;	// Partition region in sectors
-	    PartitionType type;	// primary / extended / logical
-	    unsigned int id;	// Numeric partition ID (Linux: 0x83 etc.)
-	    bool boot;		// Boot flag of the partition (only MSDOS)
-	    bool legacy_boot;	// Legacy boot flag of the partition (only GPT)
-	    string name;	// Partition name (only GPT)
+	    /** Partition region in sectors */
+	    Region region;
+
+	    /** Partition type (primary, extended or logical) */
+	    PartitionType type = PartitionType::PRIMARY;
+
+	    /** Numeric partition ID (Linux = 0x83 etc.) */
+	    unsigned int id = 0;
+
+	    /** Boot flag of the partition (only MS-DOS) */
+	    bool boot = false;
+
+	    /** Legacy boot flag of the partition (only GPT) */
+	    bool legacy_boot = false;
+
+	    /** Partition name (only GPT) */
+	    string name;
 	};
 
 	friend std::ostream& operator<<(std::ostream& s, const Parted& parted);
@@ -88,9 +98,8 @@ namespace storage
 	int get_primary_slots() const { return primary_slots; }
 
 	/**
-	 * S/390 arch: zFCP DASDs create implicit partitions if there is none
-	 * on that disk yet. This function returns if this is the case for
-	 * this device.
+	 * S/390 arch: zFCP DASDs create implicit partitions if there is none on that disk
+	 * yet. This function returns true if this is the case for this device.
 	 */
 	bool is_implicit() const { return implicit; }
 
@@ -127,19 +136,19 @@ namespace storage
 
 	typedef vector<Entry>::const_iterator const_iterator;
 
-	string device;
-	PtType label;
+	const string device;
+	PtType label = PtType::UNKNOWN;
 	Region region;
-	int primary_slots;
-	bool implicit;
-	bool gpt_undersized;
-	bool gpt_backup_broken;
-	bool gpt_pmbr_boot;
+	int primary_slots = -1;
+	bool implicit = false;
+	bool gpt_undersized = false;
+	bool gpt_backup_broken = false;
+	bool gpt_pmbr_boot = false;
 	vector<Entry> entries;
 	vector<string> stderr;
 
-	int logical_sector_size;
-	int physical_sector_size;
+	int logical_sector_size = 0;
+	int physical_sector_size = 0;
 
 	/**
 	 * Parse the output of the 'parted' command in 'lines'.

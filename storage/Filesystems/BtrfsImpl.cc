@@ -1000,7 +1000,7 @@ namespace storage
 	    cmd_line += " " + get_mkfs_options();
 
 	// sort is required for testsuite
-	vector<const BlkDevice*> blk_devices = get_blk_devices();
+	vector<const BlkDevice*> blk_devices = std::as_const(*this).get_blk_devices();
 	sort(blk_devices.begin(), blk_devices.end(), BlkDevice::compare_by_name);
 	for (const BlkDevice* blk_device : blk_devices)
 	    cmd_line += " " + quote(blk_device->get_name());

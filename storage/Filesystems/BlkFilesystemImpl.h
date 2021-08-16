@@ -95,7 +95,9 @@ namespace storage
 	static void probe_blk_filesystems(Prober& prober);
 	virtual void probe_pass_2a(Prober& prober);
 
+	vector<BlkDevice*> get_blk_devices();
 	vector<const BlkDevice*> get_blk_devices() const;
+
 	const BlkDevice* get_blk_device() const;
 
 	virtual void wait_for_devices() const override;

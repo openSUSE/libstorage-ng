@@ -916,6 +916,7 @@ namespace storage
 		break;
 
 	    case ID_SWAP:
+		// 'swap on' should work with parted 3.5 also for ms-dos
 		if (!is_msdos(partition_table))
 		    cmd_line += "swap on";
 		else
