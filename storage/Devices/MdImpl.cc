@@ -920,7 +920,7 @@ namespace storage
 	if (exists_in_system())
 	    return;
 
-	vector<BlkDevice*> devices = get_devices();
+	vector<const BlkDevice*> devices = as_const(*this).get_devices();
 
 	long real_chunk_size = chunk_size;
 

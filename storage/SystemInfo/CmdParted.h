@@ -98,9 +98,8 @@ namespace storage
 	int get_primary_slots() const { return primary_slots; }
 
 	/**
-	 * S/390 arch: zFCP DASDs create implicit partitions if there is none
-	 * on that disk yet. This function returns if this is the case for
-	 * this device.
+	 * S/390 arch: zFCP DASDs create implicit partitions if there is none on that disk
+	 * yet. This function returns true if this is the case for this device.
 	 */
 	bool is_implicit() const { return implicit; }
 
