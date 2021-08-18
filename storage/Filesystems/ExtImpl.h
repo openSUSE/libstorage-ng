@@ -43,6 +43,8 @@ namespace storage
 
     public:
 
+	virtual bool supports_tune_options() const override { return true; }
+
 	virtual bool supports_mounted_shrink() const override { return false; }
 	virtual bool supports_mounted_grow() const override { return true; }
 

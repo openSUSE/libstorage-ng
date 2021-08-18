@@ -103,6 +103,11 @@ namespace storage
 	void set_mkfs_options(const std::string& mkfs_options);
 
 	/**
+	 * Checks whether the filesystem supports tune options.
+	 */
+	bool supports_tune_options() const;
+
+	/**
 	 * Get extra options for the filesystem tune command.
 	 */
 	const std::string& get_tune_options() const;

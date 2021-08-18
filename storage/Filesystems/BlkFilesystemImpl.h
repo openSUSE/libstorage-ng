@@ -82,6 +82,8 @@ namespace storage
 	const string& get_mkfs_options() const { return mkfs_options; }
 	void set_mkfs_options(const string& mkfs_options) { Impl::mkfs_options = mkfs_options; }
 
+	virtual bool supports_tune_options() const { return false; }
+
 	const string& get_tune_options() const { return tune_options; }
 	void set_tune_options(const string& tune_options) { Impl::tune_options = tune_options; }
 

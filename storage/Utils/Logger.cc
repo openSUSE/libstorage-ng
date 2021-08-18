@@ -57,7 +57,7 @@ namespace storage
 
 
     bool
-    Logger::test(LogLevel log_level, const std::string& component)
+    Logger::test(LogLevel log_level, const string& component)
     {
 	return log_level != LogLevel::DEBUG;
     }
@@ -65,17 +65,18 @@ namespace storage
 
     class StdoutLogger : public Logger
     {
+
     public:
 
-	virtual void write(LogLevel log_level, const std::string& component, const std::string& file,
-			   int line, const std::string& function, const std::string& content) override;
+	virtual void write(LogLevel log_level, const string& component, const string& file,
+			   int line, const string& function, const string& content) override;
 
     };
 
 
     void
-    StdoutLogger::write(LogLevel log_level, const std::string& component, const std::string& file,
-			int line, const std::string& function, const std::string& content)
+    StdoutLogger::write(LogLevel log_level, const string& component, const string& file,
+			int line, const string& function, const string& content)
     {
 	std::cout << datetime(time(nullptr)) << " <" << static_cast<log_level_underlying_type>(log_level)
 		  << "> [" << component << "] " << file << "(" << function << "):" << line << " "
@@ -94,33 +95,34 @@ namespace storage
 
     class LogfileLogger : public Logger
     {
-    public:
-	LogfileLogger(const std::string& filename, int permissions = DEFAULT_PERMISSIONS);
 
-	virtual void write(LogLevel log_level, const std::string& component, const std::string& file,
-			   int line, const std::string& function, const std::string& content) override;
+    public:
+
+	LogfileLogger(const string& filename, int permissions = DEFAULT_PERMISSIONS);
+
+	virtual void write(LogLevel log_level, const string& component, const string& file,
+			   int line, const string& function, const string& content) override;
 
     private:
 
 	// log file should not be world-readable
 	static const int DEFAULT_PERMISSIONS = 0640;
 
-	const std::string filename;
+	const string filename;
 	const int permissions;
     };
 
 
 
-    LogfileLogger::LogfileLogger(const string& filename, int permissions) :
-	filename(filename),
-	permissions(permissions)
+    LogfileLogger::LogfileLogger(const string& filename, int permissions)
+	: filename(filename), permissions(permissions)
     {
     }
 
 
     void
-    LogfileLogger::write(LogLevel log_level, const std::string& component, const std::string& file,
-			 int line, const std::string& function, const std::string& content)
+    LogfileLogger::write(LogLevel log_level, const string& component, const string& file,
+			 int line, const string& function, const string& content)
     {
 	int fd = open(filename.c_str(), O_WRONLY | O_APPEND | O_CREAT | O_CLOEXEC, permissions);
 
@@ -141,7 +143,7 @@ namespace storage
 
 
     Logger*
-    get_logfile_logger(const std::string& filename)
+    get_logfile_logger(const string& filename)
     {
 	static LogfileLogger logfile_logger(filename);
 

@@ -131,6 +131,13 @@ namespace storage
     }
 
 
+    bool
+    BlkFilesystem::supports_tune_options() const
+    {
+	return get_impl().supports_tune_options();
+    }
+
+
     const string&
     BlkFilesystem::get_tune_options() const
     {
