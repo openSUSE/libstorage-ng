@@ -130,6 +130,10 @@ namespace storage
 	    partitionables.push_back(partitionable);
 	}
 
+	// sort_by_key is stable so first sort by name to get nice and predictable results
+
+	sort(partitionables.begin(), partitionables.end(), Partitionable::compare_by_name);
+
 	std::function<unsigned long long(Partitionable*)> key_fnc =
 	    [](const Partitionable* partitionable) {
 		const PartitionTable* partition_table = partitionable->get_partition_table();
@@ -248,6 +252,9 @@ namespace storage
 
 	if (candidates.size() < number)
 	    ST_THROW(PoolOutOfSpace());
+
+	// somehow reversing the candidates gives the "natural" order in the actiongraph
+	std::reverse(candidates.begin(), candidates.end());
 
 	// TODO exceptions thrown below can result in only some partitions created
 
