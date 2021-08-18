@@ -46,6 +46,8 @@ namespace storage
 	virtual unsigned long long min_size() const override { return 64 * MiB; }
 	virtual unsigned long long max_size() const override { return 16 * TiB; }
 
+	virtual bool supports_tune_options() const override { return true; }
+
 	virtual bool supports_mounted_shrink() const override { return false; }
 	virtual bool supports_mounted_grow() const override { return true; }
 
