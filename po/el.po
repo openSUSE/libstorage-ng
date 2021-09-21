@@ -3,16 +3,16 @@ msgstr ""
 "Project-Id-Version: Greek (libstorage)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-09 13:17+0200\n"
-"PO-Revision-Date: 2018-05-06 20:25+0000\n"
-"Last-Translator: Konstantina Tsolakoglou <konstantina@accountant.com>\n"
-"Language-Team: Greek <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/el/>\n"
+"PO-Revision-Date: 2021-09-21 09:12+0000\n"
+"Last-Translator: Efstathios Iosifidis <eiosifidis@gmail.com>\n"
+"Language-Team: Greek <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/el/>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 4.7.1\n"
 
 msgid ""
 "\n"
@@ -24,7 +24,7 @@ msgstr ""
 #. %1$d is replaced by the number of elements omitted
 #, c-format
 msgid "%1$d more"
-msgstr ""
+msgstr "%1$d περισσότερο"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the device name (e.g. /dev/sdc1),
@@ -39,7 +39,7 @@ msgstr "Προσθήκη %1$s σε %2$s"
 #. %2$s is replaced by the number of elements omitted
 #, c-format
 msgid "%1$s and %2$d more"
-msgstr ""
+msgstr "%1$s και %2$d περισσότερο"
 
 #. TRANSLATORS: used to construct list of values
 #. %1$s is replaced by first value
@@ -59,9 +59,9 @@ msgstr ""
 #. TRANSLATORS: used to construct list of values
 #. %1$s is replaced by first value
 #. %2$s is replaced by second value
-#, fuzzy, c-format
+#, c-format
 msgid "%1$s, %2$s"
-msgstr "Προσθήκη %1$s σε %2$s"
+msgstr "%1$s, %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -332,7 +332,7 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "BitLocker"
-msgstr ""
+msgstr "BitLocker"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs"
@@ -370,7 +370,7 @@ msgstr "Δημιουργία Λογικού Τόμου %1$s στη συσκευ�
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Clear protective MBR boot flag of GPT on %1$s"
-msgstr ""
+msgstr "Εκκαθάριση προστατευτικής σημαίας εκκίνησης MBR του GPT στο %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -1119,19 +1119,16 @@ msgid "DM RAID"
 msgstr "DM RAID"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "DOS12 Partition"
-msgstr "Κατάτμηση"
+msgstr "Κατάτμηση DOS12"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "DOS16 Partition"
-msgstr "Κατάτμηση"
+msgstr "Κατάτμηση DOS16"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "DOS32 Partition"
-msgstr "Κατάτμηση"
+msgstr "Κατάτμηση DOS32"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -1615,9 +1612,8 @@ msgid ""
 msgstr ""
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Diagnostics Partition"
-msgstr "Κατάτμηση"
+msgstr "Κατάτμηση διαγνωστικών"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
@@ -1646,9 +1642,8 @@ msgid "EB"
 msgstr "EB"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "EFI System Partition"
-msgstr "Κατάτμηση"
+msgstr "Κατάτμηση συστήματος EFI"
 
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
 msgid "EiB"
@@ -1798,7 +1793,7 @@ msgstr "Κατάτμηση"
 
 #. TRANSLATORS: name of object
 msgid "F2FS"
-msgstr ""
+msgstr "F2FS"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -2059,7 +2054,7 @@ msgstr ""
 
 #. TRANSLATORS: name of partition type
 msgid "Intel RST"
-msgstr ""
+msgstr "Intel RST"
 
 #. TRANSLATORS: name of object
 msgid "JFS"
@@ -2087,19 +2082,19 @@ msgstr "Ομάδα τόμων LVM"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux"
-msgstr ""
+msgstr "Linux"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux LVM"
-msgstr ""
+msgstr "Linux LVM"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux RAID"
-msgstr ""
+msgstr "Linux RAID"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Swap"
-msgstr ""
+msgstr "Linux Swap"
 
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
 msgid "M"
@@ -2114,9 +2109,8 @@ msgid "MD RAID"
 msgstr "MD RAID"
 
 #. TRANSLATORS: name of object
-#, fuzzy
 msgid "MS-DOS Partition Table"
-msgstr "Δημιουργία κατάτμησης RAID %1$s"
+msgstr "Πίνακας κατατμήσεων MS-DOS"
 
 #. TRANSLATORS: symbol for "mebi bytes" (best keep untranslated)
 msgid "MiB"
@@ -2124,7 +2118,7 @@ msgstr "MiB"
 
 #. TRANSLATORS: name of partition type
 msgid "Microsoft Reserved Partition"
-msgstr ""
+msgstr "Δεσμευμένη κατάτμηση της Microsoft"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the names of the devices with sizes (e.g. /dev/sda1
@@ -2237,7 +2231,7 @@ msgstr "Δημιουργία Λογικού Τόμου %1$s στη συσκευ�
 
 #. TRANSLATORS: name of object
 msgid "Multipath"
-msgstr ""
+msgstr "Πολλαπλό μονοπάτι"
 
 #. TRANSLATORS: name of object
 msgid "NFS"
@@ -2248,9 +2242,8 @@ msgid "NTFS"
 msgstr "NTFS"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "NTFS Partition"
-msgstr "Κατάτμηση"
+msgstr "Κατάτμηση NTFS"
 
 #. TRANSLATORS: symbol for "peta" (best keep untranslated)
 msgid "P"
@@ -2285,7 +2278,7 @@ msgstr ""
 
 #. TRANSLATORS: progress message
 msgid "Probing DASDs"
-msgstr ""
+msgstr "Ανίχνευση DASDs"
 
 #. TRANSLATORS: error message
 msgid "Probing DASDs failed"
@@ -2293,7 +2286,7 @@ msgstr ""
 
 #. TRANSLATORS: progress message
 msgid "Probing DM RAIDs"
-msgstr ""
+msgstr "Ανίχνευση DM RAIDs"
 
 #. TRANSLATORS: error message
 msgid "Probing DM RAIDs failed"
@@ -2301,7 +2294,7 @@ msgstr ""
 
 #. TRANSLATORS: progress message
 msgid "Probing LUKS"
-msgstr ""
+msgstr "Ανίχνευση LUKS"
 
 #. TRANSLATORS: error message
 msgid "Probing LUKS failed"
@@ -2309,7 +2302,7 @@ msgstr ""
 
 #. TRANSLATORS: progress message
 msgid "Probing LVM"
-msgstr ""
+msgstr "Ανίχνευση LVM"
 
 #. TRANSLATORS: error message
 msgid "Probing LVM failed"
@@ -2322,7 +2315,7 @@ msgstr ""
 
 #. TRANSLATORS: progress message
 msgid "Probing MD RAIDs"
-msgstr ""
+msgstr "Ανίχνευση MD RAIDs"
 
 #. TRANSLATORS: error message
 msgid "Probing MD RAIDs failed"
@@ -2330,7 +2323,7 @@ msgstr ""
 
 #. TRANSLATORS: progress message
 msgid "Probing NFS"
-msgstr ""
+msgstr "Ανίχνευση NFS"
 
 #. TRANSLATORS: error message
 msgid "Probing NFS failed"
@@ -2348,7 +2341,7 @@ msgstr "Δημιουργία κατάτμησης RAID %1$s (%2$s)"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
-msgstr ""
+msgstr "Ανίχνευση bcache"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -2374,7 +2367,7 @@ msgstr ""
 
 #. TRANSLATORS: progress message
 msgid "Probing disks"
-msgstr ""
+msgstr "Ανίχνευση δίσκων"
 
 #. TRANSLATORS: error message
 msgid "Probing disks failed"
@@ -2397,7 +2390,7 @@ msgstr "Δημιουργία κατάτμησης RAID %1$s (%2$s)"
 
 #. TRANSLATORS: progress message
 msgid "Probing file systems"
-msgstr ""
+msgstr "Ανίχνευση συστημάτων αρχείων"
 
 #. TRANSLATORS: error message
 msgid "Probing file systems failed"
@@ -2473,9 +2466,8 @@ msgid "Reducing volume group %1$s by missing physical volumes"
 msgstr ""
 
 #. TRANSLATORS: name of object
-#, fuzzy
 msgid "ReiserFS"
-msgstr "Reiserfs"
+msgstr "ReiserFS"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the device name (e.g. /dev/sdc1),
@@ -3141,7 +3133,7 @@ msgstr "XFS"
 
 #. TRANSLATORS: name of a filesystem object in the storage devicegraph
 msgid "exFAT"
-msgstr ""
+msgstr "exFAT"
 
 #. TRANSLATORS: symbol for "kilo" (best keep untranslated)
 msgid "k"
@@ -3153,7 +3145,7 @@ msgstr "kB"
 
 #. TRANSLATORS: name of object
 msgid "tmpfs"
-msgstr ""
+msgstr "tmpfs"
 
 #, fuzzy, c-format
 #~ msgid "Create subvolume %1$s on %2$s with limits for qgroup"
