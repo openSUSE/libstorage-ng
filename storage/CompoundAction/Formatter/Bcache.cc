@@ -45,9 +45,9 @@ namespace storage
 	Text text = bcache_text();
 	Text cset_text = bcache_cset_text();
 
-	if ( ! cset_text.translated.empty() )
+	if (!cset_text.empty())
 	{
-	    text += Text( "\n", "\n" );
+	    text += UntranslatedText("\n");
 	    text += cset_text;
 	}
 

@@ -434,12 +434,12 @@ namespace storage
 	const char* files[] = { "boot.ini", "msdos.sys", "io.sys", "config.sys", "MSDOS.SYS",
 				"IO.SYS", "bootmgr", "$Boot" };
 
-	for (unsigned int i = 0; i < lengthof(files); ++i)
+	for (const char* file : files)
 	{
-	    string file = mount_point + "/" + files[i];
-	    if (access(file.c_str(), R_OK) == 0)
+	    string tmp = mount_point + "/" + file;
+	    if (access(tmp.c_str(), R_OK) == 0)
 	    {
-		y2mil("found windows file " << quote(file));
+		y2mil("found windows file " << quote(tmp));
 		return true;
 	    }
 	}
@@ -468,12 +468,12 @@ namespace storage
 	{
 	    if (!boost::ends_with(dir, "/root") && checkDir(dir))
 	    {
-		for (unsigned int i = 0; i < lengthof(files); ++i)
+		for (const char* file : files)
 		{
-		    string file = dir + "/" + files[i];
-		    if (access(file.c_str(), R_OK) == 0)
+		    string tmp = dir + "/" + file;
+		    if (access(tmp.c_str(), R_OK) == 0)
 		    {
-			y2mil("found home file " << quote(file));
+			y2mil("found home file " << quote(tmp));
 			++num_homes;
 			break;
 		    }
