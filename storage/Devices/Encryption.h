@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -33,6 +33,14 @@ namespace storage
     enum class EncryptionType {
 	NONE, TWOFISH, TWOFISH_OLD, TWOFISH256_OLD, LUKS, LUKS1 = LUKS, UNKNOWN, LUKS2, PLAIN
     };
+
+
+    /**
+     * Convert the EncryptionType encryption_type to a string.
+     *
+     * @see EncryptionType
+     */
+    std::string get_encryption_type_name(EncryptionType encryption_type);
 
 
     // TODO depending on the encryption types supported the Encryption class

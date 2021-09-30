@@ -59,11 +59,14 @@ namespace storage
 
 
     /**
-     * Untranslated version of class Text. Useful for fatal logical error
-     * messages that need no translation but where a Text object is required.
+     * Untranslated version of class Text. Useful for fatal logical error messages that
+     * need no translation but where a Text object is required or for adding spaces and
+     * newlines.
      */
-    struct UntranslatedText : public Text
+    class UntranslatedText : public Text
     {
+    public:
+
 	UntranslatedText(const char* native) : Text(native, native) {}
 	UntranslatedText(const string& native) : Text(native, native) {}
     };
