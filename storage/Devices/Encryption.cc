@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -28,6 +28,13 @@ namespace storage
 {
 
     using namespace std;
+
+
+    string
+    get_encryption_type_name(EncryptionType encryption_type)
+    {
+	return toString(encryption_type);
+    }
 
 
     Encryption*
