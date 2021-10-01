@@ -290,6 +290,8 @@
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Disk::find_by_name(const Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::DmRaid::find_by_name(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::DmRaid::find_by_name(const Devicegraph *devicegraph, const std::string &name);
+%catches(storage::Exception) storage::Encryption::get_blk_device();
+%catches(storage::Exception) storage::Encryption::get_blk_device() const;
 %catches(storage::Exception) storage::Filesystem::detect_space_info() const;
 %catches(storage::HolderAlreadyExists) storage::FilesystemUser::create(Devicegraph *devicegraph, const Device *source, const Device *target);
 %catches(storage::Exception) storage::Holder::copy_to_devicegraph(Devicegraph *devicegraph) const;

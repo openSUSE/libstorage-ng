@@ -171,6 +171,13 @@ namespace storage
 
 	/**
 	 * Return underlying blk device.
+	 *
+	 * @throw Exception
+	 */
+	BlkDevice* get_blk_device();
+
+	/**
+	 * @copydoc get_blk_device()
 	 */
 	const BlkDevice* get_blk_device() const;
 

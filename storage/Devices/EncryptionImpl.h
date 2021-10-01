@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -104,6 +104,7 @@ namespace storage
         const string& get_crypttab_blk_device_name() const { return crypttab_blk_device_name; }
         void set_crypttab_blk_device_name(const string& name) { Impl::crypttab_blk_device_name = name; }
 
+	BlkDevice* get_blk_device();
 	const BlkDevice* get_blk_device() const;
 
 	/**
