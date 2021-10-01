@@ -201,6 +201,13 @@ namespace storage
     }
 
 
+    BlkDevice*
+    Encryption::get_blk_device()
+    {
+	return get_impl().get_blk_device();
+    }
+
+
     const BlkDevice*
     Encryption::get_blk_device() const
     {

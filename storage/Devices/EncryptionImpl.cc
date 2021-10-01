@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -222,6 +222,15 @@ namespace storage
 
 	if (get_size() > get_blk_device()->get_size())
 	    ST_THROW(Exception("Encryption bigger than parent BlkDevice"));
+    }
+
+
+    BlkDevice*
+    Encryption::Impl::get_blk_device()
+    {
+	Devicegraph::Impl::vertex_descriptor vertex = get_devicegraph()->get_impl().parent(get_vertex());
+
+	return to_blk_device(get_devicegraph()->get_impl()[vertex]);
     }
 
 
