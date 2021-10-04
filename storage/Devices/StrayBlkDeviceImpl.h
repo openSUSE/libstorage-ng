@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2018-2019] SUSE LLC
+ * Copyright (c) [2018-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -60,6 +60,8 @@ namespace storage
 	virtual void save(xmlNode* node) const override;
 
 	virtual ResizeInfo detect_resize_info(const BlkDevice* blk_device = nullptr) const override;
+
+	virtual bool can_be_removed() const override { return false; }
 
 	static void probe_stray_blk_devices(Prober& prober);
 	virtual void probe_pass_1a(Prober& prober) override;

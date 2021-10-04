@@ -113,6 +113,13 @@ namespace storage
     }
 
 
+    bool
+    BlkDevice::can_be_removed() const
+    {
+	return get_impl().can_be_removed();
+    }
+
+
     void
     BlkDevice::set_name(const string& name)
     {

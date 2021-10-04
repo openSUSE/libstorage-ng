@@ -62,6 +62,8 @@ namespace storage
 
 	virtual bool is_usable_as_blk_device() const { return active; }
 
+	virtual bool can_be_removed() const { return true; }
+
 	const string& get_name() const { return name; }
 	void set_name(const string& name);
 

@@ -138,6 +138,14 @@ namespace storage
 	bool is_usable_as_blk_device() const;
 
 	/**
+	 * Check whether the device can be removed. E.g. disks and DASDs cannot be
+	 * removed.
+	 *
+	 * @throw Exception
+	 */
+	bool can_be_removed() const;
+
+	/**
 	 * Return device-mapper table name (dm-table-name for short). Empty if
 	 * this is not a device-mapper device.
 	 */

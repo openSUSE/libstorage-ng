@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2019] SUSE LLC
+ * Copyright (c) [2017-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -64,6 +64,8 @@ namespace storage
 	virtual void save(xmlNode* node) const override;
 
 	virtual void check(const CheckCallbacks* check_callbacks) const override;
+
+	virtual bool can_be_removed() const override { return false; }
 
 	static bool is_valid_name(const string& name);
 
