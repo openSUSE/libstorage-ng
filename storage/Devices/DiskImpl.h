@@ -70,6 +70,8 @@ namespace storage
 
 	virtual ResizeInfo detect_resize_info(const BlkDevice* blk_device = nullptr) const override;
 
+	virtual bool can_be_removed() const override { return false; }
+
 	bool is_rotational() const { return rotational; }
 	void set_rotational(bool rotational) { Impl::rotational = rotational; }
 

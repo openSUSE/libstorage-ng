@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -65,6 +65,8 @@ namespace storage
 	virtual ResizeInfo detect_resize_info(const BlkDevice* blk_device = nullptr) const override;
 
 	virtual void check(const CheckCallbacks* check_callbacks) const override;
+
+	virtual bool can_be_removed() const override { return false; }
 
 	string get_bus_id() const { return bus_id; }
 	void set_bus_id(string bus_id) { Impl::bus_id = bus_id; }
