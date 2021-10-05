@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -45,6 +45,22 @@ namespace storage
     enum class DasdFormat {
 	NONE, LDL, CDL
     };
+
+
+    /**
+     * Convert the DASD type dasd_type to a string.
+     *
+     * @see DasdType
+     */
+    std::string get_dasd_type_name(DasdType dasd_type);
+
+
+    /**
+     * Convert the DASD format dasd_format to a string.
+     *
+     * @see DasdFormat
+     */
+    std::string get_dasd_format_name(DasdFormat dasd_format);
 
 
     /**
