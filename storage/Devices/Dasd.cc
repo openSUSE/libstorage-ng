@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -33,6 +33,20 @@ namespace storage
 {
 
     using namespace std;
+
+
+    string
+    get_dasd_type_name(DasdType dasd_type)
+    {
+	return toString(dasd_type);
+    }
+
+
+    string
+    get_dasd_format_name(DasdFormat dasd_format)
+    {
+	return toString(dasd_format);
+    }
 
 
     Dasd*
