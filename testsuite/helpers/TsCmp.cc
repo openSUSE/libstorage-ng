@@ -9,6 +9,7 @@
 #include "storage/Environment.h"
 #include "storage/Storage.h"
 #include "storage/Action.h"
+#include "storage/Pool.h"
 #include "storage/Devices/DeviceImpl.h"
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Devices/Partitionable.h"
@@ -21,6 +22,7 @@
 #include "storage/Filesystems/BtrfsSubvolume.h"
 #include "storage/Filesystems/MountPoint.h"
 #include "storage/Utils/Mockup.h"
+#include "storage/Utils/Format.h"
 #include "testsuite/helpers/TsCmp.h"
 
 
@@ -390,5 +392,24 @@ namespace storage
 	return get_used_features_names(actiongraph->used_features());
     }
 
+
+    string
+    pools(Storage* storage)
+    {
+	const Devicegraph* probed = storage->get_probed();
+
+	storage->generate_pools(probed);
+
+	string ret;
+	for (const map<string, const Pool*>::value_type tmp : storage->get_pools())
+	{
+	    if (!ret.empty())
+		ret += ", ";
+
+	    ret += sformat("%s [%d]", tmp.first, tmp.second->get_devices(probed).size());
+	}
+
+	return ret;
+    }
 
 }

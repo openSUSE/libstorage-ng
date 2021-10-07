@@ -38,4 +38,6 @@ BOOST_AUTO_TEST_CASE(probe)
 
     BOOST_CHECK_EQUAL(required_features(probed), "dasd ext2 ext4 fc multipath swap");
     BOOST_CHECK_EQUAL(suggested_features(probed), "dasd ext2 ext3 ext4 fc multipath swap");
+
+    BOOST_CHECK_EQUAL(pools(&storage), "DASDs ECKD CDL (4 KiB) [1], MPs (512 B) [2]");
 }

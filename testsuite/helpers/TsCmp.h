@@ -129,4 +129,6 @@ namespace storage
 
     string features(const Actiongraph* actiongraph);
 
+    string pools(Storage* storage);
+
 }
