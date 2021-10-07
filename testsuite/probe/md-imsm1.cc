@@ -38,4 +38,6 @@ BOOST_AUTO_TEST_CASE(probe)
 
     BOOST_CHECK_EQUAL(required_features(probed), "ext4 md-raid swap");
     BOOST_CHECK_EQUAL(suggested_features(probed), "ext4 md-raid swap");
+
+    BOOST_CHECK_EQUAL(pools(&storage), "SSDs (512 B) [1]");
 }

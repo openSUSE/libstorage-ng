@@ -38,4 +38,6 @@ BOOST_AUTO_TEST_CASE(probe)
 
     BOOST_CHECK_EQUAL(required_features(probed), "dasd ext2 ext4 swap");
     BOOST_CHECK_EQUAL(suggested_features(probed), "dasd ext2 ext4 swap");
+
+    BOOST_CHECK_EQUAL(pools(&storage), "DASDs ECKD CDL (4 KiB) [1], DASDs ECKD LDL (4 KiB) [1], DASDs FBA (512 B) [1]");
 }

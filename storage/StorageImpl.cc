@@ -482,6 +482,13 @@ namespace storage
 	    if (partitionable->get_size() == 0)
 		continue;
 
+	    // Ignore partitionables used by multipath or md raid.
+	    vector<const Device*> children = partitionable->get_children();
+	    if (any_of(children.begin(), children.end(), [](const Device* child) {
+		return is_multipath(child) || is_md(child);
+	    }))
+		continue;
+
 	    string name;
 
 	    if (is_disk(partitionable))
