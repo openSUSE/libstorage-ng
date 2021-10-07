@@ -474,33 +474,61 @@ namespace storage
     {
 	ST_CHECK_PTR(devicegraph);
 
-	// TODO more types, e.g. dasd, multipath?
 	// TODO check partition table?
 
-	for (const Disk* disk : Disk::get_all(devicegraph))
+	for (const Partitionable* partitionable : Partitionable::get_all(devicegraph))
 	{
-	    // Ignore disks with size zero - maybe some card reader.
-	    if (disk->get_size() == 0)
+	    // Ignore partitionables with size zero - maybe some card reader.
+	    if (partitionable->get_size() == 0)
 		continue;
 
 	    string name;
-	    if (disk->is_pmem())
-		name = "PMEMs";
-	    else if (disk->is_nvme())
-		name = "NVMes";
-	    else if (disk->get_impl().is_brd())
-		name = "BRDs";
-	    else if (!disk->is_rotational())
-		name = "SSDs";
-	    else
-		name = "HDDs";
 
-	    name += " (" + byte_to_humanstring(disk->get_region().get_block_size(), false, 2, true) + ")";
+	    if (is_disk(partitionable))
+	    {
+		const Disk* disk = to_disk(partitionable);
+
+		if (disk->is_pmem())
+		    name = "PMEMs";
+		else if (disk->is_nvme())
+		    name = "NVMes";
+		else if (disk->get_impl().is_brd())
+		    name = "BRDs";
+		else if (!disk->is_rotational())
+		    name = "SSDs";
+		else
+		    name = "HDDs";
+	    }
+	    else if (is_multipath(partitionable))
+	    {
+		name = "MPs";
+	    }
+	    else if (is_dasd(partitionable))
+	    {
+		const Dasd* dasd = to_dasd(partitionable);
+
+		if (dasd->get_type() == DasdType::ECKD)
+		{
+		    if (dasd->get_format() == DasdFormat::CDL)
+			name = "DASDs ECKD CDL";
+		    else if (dasd->get_format() == DasdFormat::LDL)
+			name = "DASDs ECKD LDL";
+		}
+		else if (dasd->get_type() == DasdType::FBA)
+		{
+		    name = "DASDs FBA";
+		}
+	    }
+
+	    if (name.empty())
+		continue;
+
+	    name += " (" + byte_to_humanstring(partitionable->get_region().get_block_size(), false, 2, true) + ")";
 
 	    Pool* pool = exists_pool(name) ? get_pool(name) : create_pool(name);
 
-	    if (!pool->exists_device(disk))
-		pool->add_device(disk);
+	    if (!pool->exists_device(partitionable))
+		pool->add_device(partitionable);
 	}
     }
 
