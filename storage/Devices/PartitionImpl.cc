@@ -36,6 +36,7 @@
 #include "storage/Devices/ImplicitPt.h"
 #include "storage/Devices/DiskImpl.h"
 #include "storage/Filesystems/FilesystemImpl.h"
+#include "storage/Filesystems/MountPoint.h"
 #include "storage/Devicegraph.h"
 #include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/Storage.h"
@@ -622,6 +623,35 @@ namespace storage
 	resize_info.combine_block_size(get_region().get_block_size());
 
 	return resize_info;
+    }
+
+
+    RemoveInfo
+    Partition::Impl::detect_remove_info() const
+    {
+	const PartitionTable* partition_table = get_partition_table();
+
+	if ((is_msdos(partition_table) && get_type() == PartitionType::LOGICAL) ||
+	    (is_dasd(partition_table)))
+	{
+	    for (const Partition* partition : partition_table->get_partitions())
+	    {
+		if (partition->get_number() <= get_number())
+		    continue;
+
+		if (partition->get_impl().has_any_active_descendants())
+		{
+		    return RemoveInfo(false, RMB_RENUMBER_ACTIVE_PARTITIONS);
+		}
+	    }
+	}
+
+	if (is_implicit_pt(partition_table))
+	{
+	    return RemoveInfo(false, RMB_ON_IMPLICIT_PARTITION_TABLE);
+	}
+
+	return RemoveInfo(true, 0);
     }
 
 

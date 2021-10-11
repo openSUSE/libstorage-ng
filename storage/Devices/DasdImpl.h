@@ -66,7 +66,7 @@ namespace storage
 
 	virtual void check(const CheckCallbacks* check_callbacks) const override;
 
-	virtual bool can_be_removed() const override { return false; }
+	virtual RemoveInfo detect_remove_info() const override { return RemoveInfo(false, RMB_HARDWARE); }
 
 	string get_bus_id() const { return bus_id; }
 	void set_bus_id(string bus_id) { Impl::bus_id = bus_id; }

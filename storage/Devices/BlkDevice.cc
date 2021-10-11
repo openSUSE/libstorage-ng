@@ -113,10 +113,10 @@ namespace storage
     }
 
 
-    bool
-    BlkDevice::can_be_removed() const
+    RemoveInfo
+    BlkDevice::detect_remove_info() const
     {
-	return get_impl().can_be_removed();
+	return get_impl().detect_remove_info();
     }
 
 

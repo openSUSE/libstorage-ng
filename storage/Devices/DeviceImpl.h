@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -135,6 +135,8 @@ namespace storage
 	virtual const Device* get_non_impl() const { return devicegraph->get_impl()[vertex]; }
 
 	void remove_descendants(View view = View::CLASSIC);
+
+	bool has_any_active_descendants() const;
 
 	const map<string, string>& get_userdata() const { return userdata; }
 	void set_userdata(const map<string, string>& userdata) { Impl::userdata = userdata; }

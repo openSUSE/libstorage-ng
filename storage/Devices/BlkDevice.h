@@ -41,6 +41,7 @@ namespace storage
     enum class EncryptionType;
     class Bcache;
     class BcacheCset;
+    class RemoveInfo;
 
 
     //! An abstract Block Device.
@@ -141,9 +142,11 @@ namespace storage
 	 * Check whether the device can be removed. E.g. disks and DASDs cannot be
 	 * removed.
 	 *
+	 * @see RemoveInfo
+	 *
 	 * @throw Exception
 	 */
-	bool can_be_removed() const;
+	RemoveInfo detect_remove_info() const;
 
 	/**
 	 * Return device-mapper table name (dm-table-name for short). Empty if

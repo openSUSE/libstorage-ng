@@ -223,10 +223,10 @@
 %catches(storage::LogicException, storage::Exception) storage::Bcache::remove_bcache_cset();
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::BcacheCset::find_by_uuid(Devicegraph *devicegraph, const std::string &uuid);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::BcacheCset::find_by_uuid(const Devicegraph *devicegraph, const std::string &uuid);
-%catches(storage::Exception) storage::BlkDevice::can_be_removed() const;
 %catches(storage::WrongNumberOfChildren) storage::BlkDevice::create_bcache_cset();
 %catches(storage::WrongNumberOfChildren, storage::UnsupportedException) storage::BlkDevice::create_blk_filesystem(FsType fs_type);
 %catches(storage::WrongNumberOfChildren, storage::UnsupportedException) storage::BlkDevice::create_filesystem(FsType fs_type);
+%catches(storage::Exception) storage::BlkDevice::detect_remove_info() const;
 %catches(storage::Exception) storage::BlkDevice::exists_by_any_name(const Devicegraph *devicegraph, const std::string &name, SystemInfo &system_info);
 %catches(storage::DeviceNotFoundByName, storage::DeviceHasWrongType, storage::Exception) storage::BlkDevice::find_by_any_name(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFoundByName, storage::DeviceHasWrongType, storage::Exception) storage::BlkDevice::find_by_any_name(Devicegraph *devicegraph, const std::string &name, SystemInfo &system_info);

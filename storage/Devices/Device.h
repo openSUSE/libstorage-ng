@@ -136,6 +136,8 @@ namespace storage
 	 *
 	 * If the device holds an NTFS it must not be mounted.
 	 *
+	 * @see ResizeInfo
+	 *
 	 * @throw Exception
 	 */
 	ResizeInfo detect_resize_info() const;
