@@ -293,6 +293,15 @@ namespace storage
     }
 
 
+    Partitionable*
+    Partition::Impl::get_partitionable()
+    {
+	PartitionTable* partition_table = get_partition_table();
+
+	return partition_table->get_partitionable();
+    }
+
+
     const Partitionable*
     Partition::Impl::get_partitionable() const
     {
@@ -906,7 +915,8 @@ namespace storage
 	    to_string(get_number()) + " ";
 
 	// Note: The 'type' option is not available in upstream parted (2021-07-26).
-	// 'swap' is not available for MS-DOS in parted (2021-07-26).
+	// 'swap' is not available for MS-DOS in parted (2021-07-26). 'swap' for DASD is
+	// SUSE specific (2021-10-07).
 
 	switch (get_id())
 	{

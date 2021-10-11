@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2015-2017] SUSE LLC
+ * Copyright (c) [2015-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -209,6 +209,13 @@ namespace storage
     PartitionTable::get_extended() const
     {
 	return get_impl().get_extended();
+    }
+
+
+    Partitionable*
+    PartitionTable::get_partitionable()
+    {
+	return get_impl().get_partitionable();
     }
 
 

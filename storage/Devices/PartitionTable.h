@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2015-2018] SUSE LLC
+ * Copyright (c) [2015-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -161,7 +161,14 @@ namespace storage
 	const Partition* get_extended() const;
 
 	/**
+	 * Return the partitionable of the partition table.
+	 *
 	 * @throw Exception
+	 */
+	Partitionable* get_partitionable();
+
+	/**
+	 * @copydoc get_partitionable()
 	 */
 	const Partitionable* get_partitionable() const;
 

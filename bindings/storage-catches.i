@@ -354,7 +354,9 @@
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Nfs::find_by_server_and_path(const Devicegraph *devicegraph, const std::string &server, const std::string &path);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Partition::find_by_name(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Partition::find_by_name(const Devicegraph *devicegraph, const std::string &name);
+%catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Partition::get_partition_table();
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Partition::get_partition_table() const;
+%catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Partition::get_partitionable();
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Partition::get_partitionable() const;
 %catches(storage::Exception) storage::Partition::get_unused_surrounding_region() const;
 %catches(storage::Exception) storage::Partition::set_boot(bool boot);
@@ -365,6 +367,7 @@
 %catches(storage::DifferentBlockSizes) storage::PartitionTable::create_partition(const std::string &name, const Region &region, PartitionType type);
 %catches(storage::Exception) storage::PartitionTable::get_extended() const;
 %catches(storage::Exception) storage::PartitionTable::get_partition(const std::string &name);
+%catches(storage::Exception) storage::PartitionTable::get_partitionable();
 %catches(storage::Exception) storage::PartitionTable::get_partitionable() const;
 %catches(storage::Exception) storage::PartitionTable::get_unused_partition_slots(AlignPolicy align_policy=AlignPolicy::ALIGN_START_KEEP_END, AlignType align_type=AlignType::OPTIMAL) const;
 %catches(storage::WrongNumberOfChildren, storage::UnsupportedException, storage::Exception) storage::Partitionable::create_partition_table(PtType pt_type);

@@ -112,6 +112,7 @@ namespace storage
 	PartitionTable* get_partition_table();
 	const PartitionTable* get_partition_table() const;
 
+	Partitionable* get_partitionable();
 	const Partitionable* get_partitionable() const;
 
 	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
