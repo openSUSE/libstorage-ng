@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2010] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -244,6 +244,54 @@ namespace storage
     private:
 
 	void check();
+
+    };
+
+
+    /**
+     * Remove blockers.
+     *
+     * Some remove operations are not supported (e.g. remove a disk or DASD). Some are not
+     * supported by the library (e.g. remove a partition if that causes renumbering of
+     * active partition).
+     *
+     * Be careful: Temporarily deactivating e.g. a mount point with the aim of getting rid
+     * of the blocker will result in failures later on.
+     */
+    enum : uint32_t
+    {
+
+	/**
+	 * The device corresponds to hardware, e.g. a disk or DASD.
+	 */
+	RMB_HARDWARE = 1 << 0,
+
+	/**
+	 * Removing the partition would result in renumbering of partitions with active
+	 * stuff on them.
+	 */
+	RMB_RENUMBER_ACTIVE_PARTITIONS = 1 << 1,
+
+	/**
+	 * Partition on an implicit partition table cannot be removed - at least not
+	 * without creating a partition table.
+	 */
+	RMB_ON_IMPLICIT_PARTITION_TABLE = 1 << 2,
+
+    };
+
+
+    class RemoveInfo
+    {
+    public:
+
+	RemoveInfo(bool remove_ok, uint32_t reasons);
+
+	bool remove_ok;
+
+	uint32_t reasons;
+
+	friend std::ostream& operator<<(std::ostream& out, const RemoveInfo& remove_info);
 
     };
 

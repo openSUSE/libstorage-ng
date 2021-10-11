@@ -36,6 +36,7 @@
 #include "storage/Devices/ImplicitPt.h"
 #include "storage/Devices/DiskImpl.h"
 #include "storage/Filesystems/FilesystemImpl.h"
+#include "storage/Filesystems/MountPoint.h"
 #include "storage/Devicegraph.h"
 #include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/Storage.h"
@@ -290,6 +291,15 @@ namespace storage
 	    vertex = get_devicegraph()->get_impl().parent(vertex);
 
 	return to_partition_table(get_devicegraph()->get_impl()[vertex]);
+    }
+
+
+    Partitionable*
+    Partition::Impl::get_partitionable()
+    {
+	PartitionTable* partition_table = get_partition_table();
+
+	return partition_table->get_partitionable();
     }
 
 
@@ -616,6 +626,35 @@ namespace storage
     }
 
 
+    RemoveInfo
+    Partition::Impl::detect_remove_info() const
+    {
+	const PartitionTable* partition_table = get_partition_table();
+
+	if ((is_msdos(partition_table) && get_type() == PartitionType::LOGICAL) ||
+	    (is_dasd(partition_table)))
+	{
+	    for (const Partition* partition : partition_table->get_partitions())
+	    {
+		if (partition->get_number() <= get_number())
+		    continue;
+
+		if (partition->get_impl().has_any_active_descendants())
+		{
+		    return RemoveInfo(false, RMB_RENUMBER_ACTIVE_PARTITIONS);
+		}
+	    }
+	}
+
+	if (is_implicit_pt(partition_table))
+	{
+	    return RemoveInfo(false, RMB_ON_IMPLICIT_PARTITION_TABLE);
+	}
+
+	return RemoveInfo(true, 0);
+    }
+
+
     Region
     Partition::Impl::get_unused_surrounding_region() const
     {
@@ -906,7 +945,8 @@ namespace storage
 	    to_string(get_number()) + " ";
 
 	// Note: The 'type' option is not available in upstream parted (2021-07-26).
-	// 'swap' is not available for MS-DOS in parted (2021-07-26).
+	// 'swap' is not available for MS-DOS in parted (2021-07-26). 'swap' for DASD is
+	// SUSE specific (2021-10-07).
 
 	switch (get_id())
 	{

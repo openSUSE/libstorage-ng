@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2010] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -155,6 +155,19 @@ namespace storage
 	return out << "resize-ok:" << resize_info.resize_ok << " reasons:" << resize_info.reasons
 		   << " min-size:" << resize_info.min_size << " max-size:" << resize_info.max_size
 		   << " block-size:" << resize_info.block_size;
+    }
+
+
+    RemoveInfo::RemoveInfo(bool remove_ok, uint32_t reasons)
+	: remove_ok(remove_ok), reasons(reasons)
+    {
+    }
+
+
+    std::ostream&
+    operator<<(std::ostream& out, const RemoveInfo& remove_info)
+    {
+	return out << "remove-ok:" << remove_info.remove_ok << " reasons:" << remove_info.reasons;
     }
 
 

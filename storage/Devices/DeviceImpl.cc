@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -25,6 +25,7 @@
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
+#include "storage/Filesystems/MountPoint.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/FreeInfo.h"
@@ -241,6 +242,22 @@ namespace storage
 
 	for (Devicegraph::Impl::vertex_descriptor descendant : devicegraph_impl.descendants(vertex, false, view))
 	    devicegraph_impl.remove_vertex(descendant);
+    }
+
+
+    bool
+    Device::Impl::has_any_active_descendants() const
+    {
+	for (const Device* descendant : get_non_impl()->get_descendants(false))
+	{
+	    if (is_mount_point(descendant) && to_mount_point(descendant)->is_active())
+		return true;
+
+	    if (is_blk_device(descendant) && to_blk_device(descendant)->is_active())
+		return true;
+	}
+
+	return false;
     }
 
 

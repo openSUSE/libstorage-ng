@@ -29,6 +29,7 @@
 #include "storage/Utils/Topology.h"
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Devices/DeviceImpl.h"
+#include "storage/FreeInfo.h"
 
 
 namespace storage
@@ -62,7 +63,7 @@ namespace storage
 
 	virtual bool is_usable_as_blk_device() const { return active; }
 
-	virtual bool can_be_removed() const { return true; }
+	virtual RemoveInfo detect_remove_info() const { return RemoveInfo(true, 0); }
 
 	const string& get_name() const { return name; }
 	void set_name(const string& name);

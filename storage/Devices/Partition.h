@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -246,12 +246,22 @@ namespace storage
 	 *
 	 * @throw WrongNumberOfChildren, DeviceHasWrongType
 	 */
+	PartitionTable* get_partition_table();
+
+	/**
+	 * @copydoc get_partition_table()
+	 */
 	const PartitionTable* get_partition_table() const;
 
 	/**
 	 * Return the partitionable the partition belongs to.
 	 *
 	 * @throw WrongNumberOfChildren, DeviceHasWrongType
+	 */
+	Partitionable* get_partitionable();
+
+	/**
+	 * @copydoc get_partitionable()
 	 */
 	const Partitionable* get_partitionable() const;
 

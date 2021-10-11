@@ -61,7 +61,7 @@ namespace storage
 
 	virtual ResizeInfo detect_resize_info(const BlkDevice* blk_device = nullptr) const override;
 
-	virtual bool can_be_removed() const override { return false; }
+	virtual RemoveInfo detect_remove_info() const override { return RemoveInfo(false, RMB_HARDWARE); }
 
 	static void probe_stray_blk_devices(Prober& prober);
 	virtual void probe_pass_1a(Prober& prober) override;
