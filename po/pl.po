@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-09 13:17+0200\n"
+"POT-Creation-Date: 2021-10-13 15:31+0200\n"
 "PO-Revision-Date: 2019-04-04 15:03+0000\n"
 "Last-Translator: Ewelina Michalowska <ewelina.michalowska@stgambit.com>\n"
 "Language-Team: Polish <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -2224,6 +2224,11 @@ msgstr "Grupa wolumenów LVM"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux"
+msgstr "Linux"
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "Linux Home"
 msgstr "Linux"
 
 #. TRANSLATORS: name of partition type

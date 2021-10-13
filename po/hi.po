@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-09 13:17+0200\n"
+"POT-Creation-Date: 2021-10-13 15:31+0200\n"
 "PO-Revision-Date: 2020-09-09 18:51+0000\n"
 "Last-Translator: Panwar <caspian7pena@gmail.com>\n"
 "Language-Team: Hindi <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -2096,6 +2096,10 @@ msgstr ""
 
 #. TRANSLATORS: name of partition type
 msgid "Linux"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Home"
 msgstr ""
 
 #. TRANSLATORS: name of partition type

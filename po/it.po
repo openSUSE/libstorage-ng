@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-09 13:17+0200\n"
+"POT-Creation-Date: 2021-10-13 15:31+0200\n"
 "PO-Revision-Date: 2021-03-24 12:56+0000\n"
 "Last-Translator: Davide Aiello <davide.aiello@novilingulists.com>\n"
 "Language-Team: Italian <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -2360,6 +2360,11 @@ msgstr "Gruppo di volumi LVM"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux"
+msgstr "Linux"
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "Linux Home"
 msgstr "Linux"
 
 #. TRANSLATORS: name of partition type

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-09 13:17+0200\n"
+"POT-Creation-Date: 2021-10-13 15:31+0200\n"
 "PO-Revision-Date: 2012-02-12 09:27+0100\n"
 "Last-Translator: Karl Eichwalder <ke@suse.de>\n"
 "Language-Team: Esperanto <i18n@suse.de>\n"
@@ -2079,6 +2079,10 @@ msgstr ""
 
 #. TRANSLATORS: name of partition type
 msgid "Linux"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Home"
 msgstr ""
 
 #. TRANSLATORS: name of partition type

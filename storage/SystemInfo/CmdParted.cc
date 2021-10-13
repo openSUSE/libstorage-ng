@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -216,26 +216,14 @@ namespace storage
 	vector<string> flags;
 	boost::split(flags, s, boost::is_any_of(", "), boost::token_compress_on);
 
-	if (contains(flags, "raid"))
-	    entry.id = ID_RAID;
-	else if (contains(flags, "lvm"))
-	    entry.id = ID_LVM;
-	else if (contains(flags, "irst"))
-	    entry.id = ID_IRST;
-	else if (contains(flags, "prep"))
-	    entry.id = ID_PREP;
-	else if (contains(flags, "esp"))
-	    entry.id = ID_ESP;
-	else if (contains(flags, "swap"))
-	    entry.id = ID_SWAP;
-	else if (contains(flags, "bios_grub"))
-	    entry.id = ID_BIOS_BOOT;
-	else if (contains(flags, "msftdata"))
-	    entry.id = ID_WINDOWS_BASIC_DATA;
-	else if (contains(flags, "msftres"))
-	    entry.id = ID_MICROSOFT_RESERVED;
-	else if (contains(flags, "diag"))
-	    entry.id = ID_DIAG;
+	for (map<unsigned int, const char*>::value_type tmp : id_to_name)
+	{
+	    if (contains(flags, tmp.second))
+	    {
+		entry.id = tmp.first;
+		break;
+	    }
+	}
 
 	if (label == PtType::MSDOS)
 	{
@@ -412,5 +400,20 @@ namespace storage
 
 	return s;
     }
+
+
+    const map<unsigned int, const char*> Parted::id_to_name = {
+	{ ID_BIOS_BOOT, "bios_grub"},
+	{ ID_DIAG, "diag"},
+	{ ID_ESP, "esp"},
+	{ ID_IRST, "irst"},
+	{ ID_LINUX_HOME, "linux-home" },
+	{ ID_LVM, "lvm"},
+	{ ID_MICROSOFT_RESERVED, "msftres"},
+	{ ID_PREP, "prep"},
+	{ ID_RAID, "raid" },
+	{ ID_SWAP, "swap"},
+	{ ID_WINDOWS_BASIC_DATA, "msftdata"},
+    };
 
 }

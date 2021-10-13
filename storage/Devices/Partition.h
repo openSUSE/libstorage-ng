@@ -134,7 +134,10 @@ namespace storage
 	ID_WINDOWS_BASIC_DATA = 0x102,
 
 	/** Microsoft reserved partition, only for GPT. */
-	ID_MICROSOFT_RESERVED = 0x103
+	ID_MICROSOFT_RESERVED = 0x103,
+
+	/** Linux home, only for GPT. */
+	ID_LINUX_HOME = 0x104,
 
     };
 

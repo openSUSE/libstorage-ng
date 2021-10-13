@@ -948,63 +948,33 @@ namespace storage
 	// 'swap' is not available for MS-DOS in parted (2021-07-26). 'swap' for DASD is
 	// SUSE specific (2021-10-07).
 
-	switch (get_id())
+	map<unsigned int, const char*>::const_iterator it = Parted::id_to_name.find(get_id());
+	if (it != Parted::id_to_name.end() && it->first != ID_SWAP)
 	{
-	    case ID_LINUX:
-		// this is tricky but parted has no clearer way
-		cmd_line += "lvm on set " + to_string(get_number()) + " lvm off";
-		break;
+	    cmd_line += string(it->second) + " on";
+	}
+	else if (is_msdos(partition_table))
+	{
+	    cmd_line += "type " + to_string(get_id());
+	}
+	else
+	{
+	    switch (get_id())
+	    {
+		case ID_LINUX:
+		    // this is tricky but parted has no clearer way - it also fails if the
+		    // partition has a swap signature
+		    cmd_line += "lvm on set " + to_string(get_number()) + " lvm off";
+		    break;
 
-	    case ID_SWAP:
-		// 'swap on' should work with parted 3.5 also for ms-dos
-		if (!is_msdos(partition_table))
+		case ID_SWAP:
 		    cmd_line += "swap on";
-		else
-		    cmd_line += "type 130";
-		break;
+		    break;
 
-	    case ID_LVM:
-		cmd_line += "lvm on";
-		break;
-
-	    case ID_RAID:
-		cmd_line += "raid on";
-		break;
-
-	    case ID_IRST:
-		cmd_line += "irst on";
-		break;
-
-	    case ID_ESP:
-		cmd_line += "esp on";
-		break;
-
-	    case ID_BIOS_BOOT:
-		cmd_line += "bios_grub on";
-		break;
-
-	    case ID_PREP:
-		cmd_line += "prep on";
-		break;
-
-	    case ID_WINDOWS_BASIC_DATA:
-		cmd_line += "msftdata";
-		break;
-
-	    case ID_MICROSOFT_RESERVED:
-		cmd_line += "msftres";
-		break;
-
-	    case ID_DIAG:
-		cmd_line += "diag";
-		break;
-
-	    default:
-		if (is_msdos(partition_table))
-		    cmd_line += "type " + to_string(get_id());
-		else
+		default:
 		    ST_THROW(Exception("impossible to set partition id"));
-		break;
+		    break;
+	    }
 	}
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
@@ -1452,6 +1422,9 @@ namespace storage
 		// TRANSLATORS: name of partition type
 		return _("Microsoft Reserved Partition");
 
+	    case ID_LINUX_HOME:
+		// TRANSLATORS: name of partition type
+		return _("Linux Home");
 	}
 
 	return Text();

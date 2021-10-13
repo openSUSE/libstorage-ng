@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: autoinst.fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-09 13:17+0200\n"
+"POT-Creation-Date: 2021-10-13 15:31+0200\n"
 "PO-Revision-Date: 2019-12-02 16:54+0000\n"
 "Last-Translator: Jaanus Ojangu <jaanus.ojangu@gmail.com>\n"
 "Language-Team: Estonian <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -2109,6 +2109,11 @@ msgstr "LVM osade grupp"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux"
+msgstr "Linux"
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "Linux Home"
 msgstr "Linux"
 
 #. TRANSLATORS: name of partition type

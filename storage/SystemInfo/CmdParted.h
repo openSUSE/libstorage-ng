@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -33,6 +33,7 @@ namespace storage
 {
     using std::string;
     using std::vector;
+    using std::map;
 
 
     /**
@@ -131,6 +132,11 @@ namespace storage
 	 * entry with that number.
 	 */
 	bool get_entry(unsigned int number, Entry& entry) const;
+
+	/**
+	 * Mapping from partition ids to parted flag names.
+	 */
+	static const map<unsigned int, const char*> id_to_name;
 
     private:
 

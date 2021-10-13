@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.ko\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-09 13:17+0200\n"
+"POT-Creation-Date: 2021-10-13 15:31+0200\n"
 "PO-Revision-Date: 2019-04-04 15:03+0000\n"
 "Last-Translator: Hwajin Kim <hwajin.kim@e4net.net>\n"
 "Language-Team: Korean <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -2246,6 +2246,11 @@ msgstr "LVM 볼륨 그룹"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux"
+msgstr "Linux"
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "Linux Home"
 msgstr "Linux"
 
 #. TRANSLATORS: name of partition type
