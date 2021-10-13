@@ -407,6 +407,7 @@ namespace storage
 	{ ID_DIAG, "diag"},
 	{ ID_ESP, "esp"},
 	{ ID_IRST, "irst"},
+	{ ID_LINUX_HOME, "linux-home" },
 	{ ID_LVM, "lvm"},
 	{ ID_MICROSOFT_RESERVED, "msftres"},
 	{ ID_PREP, "prep"},

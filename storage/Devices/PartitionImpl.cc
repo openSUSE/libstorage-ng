@@ -1422,6 +1422,9 @@ namespace storage
 		// TRANSLATORS: name of partition type
 		return _("Microsoft Reserved Partition");
 
+	    case ID_LINUX_HOME:
+		// TRANSLATORS: name of partition type
+		return _("Linux Home");
 	}
 
 	return Text();
