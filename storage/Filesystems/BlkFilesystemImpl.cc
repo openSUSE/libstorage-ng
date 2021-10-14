@@ -37,6 +37,7 @@
 #include "storage/Holders/FilesystemUserImpl.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Devices/LvmLv.h"
+#include "storage/Devices/Luks.h"
 #include "storage/Devicegraph.h"
 #include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/StorageImpl.h"
@@ -113,7 +114,14 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	if (is_lvm_lv(blk_device))
+	/*
+	 * If the device name of the block device is fully stable, then use it.
+	 * That's true by definition for LVM LVs. It's also true for LUKS
+	 * devices as long as the name used in /etc/crypttab remains stable.
+	 * According to bsc#1181196 and the subsequent jsc#SLE-20416, using
+	 * that name is the safest option for LUKS devices when systemd is used.
+	 */
+	if (is_lvm_lv(blk_device) || is_luks(blk_device))
 	    return MountByType::DEVICE;
 	else
 	    return get_storage()->get_default_mount_by();
