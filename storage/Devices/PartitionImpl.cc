@@ -804,8 +804,12 @@ namespace storage
     void
     Partition::Impl::do_create()
     {
-	const Partitionable* partitionable = get_partitionable();
 	const PartitionTable* partition_table = get_partition_table();
+	const Partitionable* partitionable = partition_table->get_partitionable();
+
+	vector<unsigned int> tmps = do_create_calc_hack();
+
+	do_create_pre_hack(tmps);
 
 	// Note: --wipesignatures is not available in upstream parted (2021-07-26).
 
@@ -853,13 +857,129 @@ namespace storage
 	unsigned long long factor = parted_sector_adjustment_factor();
 
 	cmd_line += to_string(get_region().get_start() * factor) + " " +
-	    to_string(get_region().get_end() * factor + (factor - 1));
+	    to_string((get_region().get_end() - tmps.size()) * factor + (factor - 1));
 
 	SystemCmd(UDEVADM_BIN_SETTLE);
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
+	do_create_post_hack(tmps);
+
 	discard_device();
+    }
+
+
+    vector<unsigned int>
+    Partition::Impl::do_create_calc_hack() const
+    {
+	/*
+	 * With parted it is not possible to specify the partition number when creating a
+	 * new partition. The first free number is used.
+	 *
+	 * Since rear wants to keep the partition numbers a hack has to be used: Create
+	 * temporary partitions so that the main partition gets the desired number, later
+	 * remove those temporary partitions again. The temporary partitions are created
+	 * at the end of the main partition since in general that is the only available
+	 * space. Thus the main partition must first be created with a slightly smaller
+	 * size and later be resized.
+	 *
+	 * Fails miserable if main partition is very small.
+	 *
+	 * TODO Improve parted or use something else.
+	 */
+
+	y2mil("do_create_calc_hack");
+
+	vector<unsigned int> tmps;
+
+	if (get_type() == PartitionType::PRIMARY || get_type() == PartitionType::EXTENDED)
+	{
+	    const PartitionTable* partition_table = get_partition_table();
+
+	    vector<unsigned int> numbers;
+	    for (const Partition* partition : partition_table->get_partitions())
+		numbers.push_back(partition->get_number());
+
+	    unsigned int num = get_number();
+	    for (unsigned int i = 1; i < num; ++i)
+	    {
+		if (!contains(numbers, i))
+		    tmps.push_back(i);
+	    }
+	}
+
+	if (!tmps.empty())
+	    y2mil("tmps " << tmps);
+
+	return tmps;
+    }
+
+
+    void
+    Partition::Impl::do_create_pre_hack(const vector<unsigned int>& tmps)
+    {
+	if (tmps.empty())
+	    return;
+
+	y2mil("do_create_pre_number_hack begin");
+
+	const PartitionTable* partition_table = get_partition_table();
+	const Partitionable* partitionable = partition_table->get_partitionable();
+
+	for (unsigned int i = 0; i < tmps.size(); ++i)
+	{
+	    string cmd_line = PARTED_BIN " --script --wipesignatures " + quote(partitionable->get_name()) +
+		" unit s mkpart ";
+
+	    if (is_msdos(partition_table))
+		cmd_line += "primary ";
+
+	    if (is_gpt(partition_table))
+		cmd_line += "'\"\"' ";
+
+	    cmd_line += "ext2 ";
+
+	    cmd_line += to_string(get_region().get_end() - i) + " " + to_string(get_region().get_end() - i);
+
+	    SystemCmd(UDEVADM_BIN_SETTLE);
+
+	    SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	}
+
+	y2mil("do_create_pre_number_hack end");
+    }
+
+
+    void
+    Partition::Impl::do_create_post_hack(const vector<unsigned int>& tmps)
+    {
+	if (tmps.empty())
+	    return;
+
+	y2mil("do_create_post_number_hack begin");
+
+	const Partitionable* partitionable = get_partitionable();
+
+	for (unsigned int i : tmps)
+	{
+	    string cmd_line = PARTED_BIN " --script " + quote(partitionable->get_name()) + " rm " +
+		to_string(i);
+
+	    SystemCmd(UDEVADM_BIN_SETTLE);
+
+	    SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	}
+
+	string cmd_line = PARTED_BIN " --script " + quote(partitionable->get_name()) +
+	    " unit s resizepart " + to_string(get_number()) + " " + to_string(get_region().get_end());
+
+	SystemCmd(UDEVADM_BIN_SETTLE);
+
+	wait_for_devices({ get_non_impl() });
+
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+
+	y2mil("do_create_post_number_hack end");
     }
 
 

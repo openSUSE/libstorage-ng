@@ -165,6 +165,10 @@ namespace storage
 
 	unsigned long long parted_sector_adjustment_factor() const;
 
+	vector<unsigned int> do_create_calc_hack() const;
+	void do_create_pre_hack(const vector<unsigned int>& tmps);
+	void do_create_post_hack(const vector<unsigned int>& tmps);
+
     };
 
 
