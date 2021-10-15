@@ -29,9 +29,9 @@
 #include "storage/Utils/StorageDefines.h"
 #include "storage/SystemInfo/CmdParted.h"
 #include "storage/Utils/Enum.h"
-#include "storage/Devices/PartitionImpl.h"
+#include "storage/Devices/Partition.h"
 #include "storage/Utils/StorageTypes.h"
-#include "storage/Devices/PartitionTableImpl.h"
+#include "storage/Devices/PartitionTable.h"
 #include "storage/Utils/Format.h"
 
 
@@ -356,7 +356,7 @@ namespace storage
     std::ostream&
     operator<<(std::ostream& s, const Parted& parted)
     {
-	s << "device:" << parted.device << " label:" << toString(parted.label)
+	s << "device:" << parted.device << " label:" << get_pt_type_name(parted.label)
 	  << " region:" << parted.region;
 
 	if (parted.primary_slots >= 0)
@@ -387,7 +387,7 @@ namespace storage
     operator<<(std::ostream& s, const Parted::Entry& entry)
     {
 	s << "number:" << entry.number << " region:" << entry.region << " type:"
-	  << toString(entry.type) << " id:" << sformat("0x%02X", entry.id);
+	  << get_partition_type_name(entry.type) << " id:" << sformat("0x%02X", entry.id);
 
 	if (entry.boot)
 	    s << " boot";
