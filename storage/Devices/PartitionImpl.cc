@@ -1058,8 +1058,8 @@ namespace storage
     void
     Partition::Impl::do_set_id() const
     {
-	const Partitionable* partitionable = get_partitionable();
 	const PartitionTable* partition_table = get_partition_table();
+	const Partitionable* partitionable = partition_table->get_partitionable();
 
 	string cmd_line = PARTED_BIN " --script " + quote(partitionable->get_name()) + " set " +
 	    to_string(get_number()) + " ";
