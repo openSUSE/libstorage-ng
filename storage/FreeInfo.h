@@ -262,7 +262,8 @@ namespace storage
     {
 
 	/**
-	 * The device corresponds to hardware, e.g. a disk or DASD.
+	 * The device corresponds to hardware, e.g. a disks, DASDs, multipath devices or
+	 * BIOS RAIDs.
 	 */
 	RMB_HARDWARE = 1 << 0,
 
