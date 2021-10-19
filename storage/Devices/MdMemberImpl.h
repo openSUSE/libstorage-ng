@@ -50,6 +50,8 @@ namespace storage
 
 	virtual void check(const CheckCallbacks* check_callbacks) const override;
 
+	virtual RemoveInfo detect_remove_info() const override { return RemoveInfo(false, RMB_HARDWARE); }
+
 	MdContainer* get_md_container();
 	const MdContainer* get_md_container() const;
 

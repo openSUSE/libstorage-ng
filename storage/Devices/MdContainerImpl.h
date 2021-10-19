@@ -52,6 +52,8 @@ namespace storage
 
 	virtual bool is_usable_as_blk_device() const override { return false; }
 
+	virtual RemoveInfo detect_remove_info() const override { return RemoveInfo(false, RMB_HARDWARE); }
+
 	vector<MdMember*> get_md_members();
 	vector<const MdMember*> get_md_members() const;
 
