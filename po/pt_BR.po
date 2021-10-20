@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-13 15:31+0200\n"
-"PO-Revision-Date: 2021-07-09 21:10+0000\n"
+"PO-Revision-Date: 2021-10-20 20:53+0000\n"
 "Last-Translator: Rodrigo Macedo <rmsolucoeseminformatic4@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.opensuse.org/projects/"
 "libstorage/ng-master/pt_BR/>\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.6.2\n"
+"X-Generator: Weblate 4.8.1\n"
 
 msgid ""
 "\n"
@@ -2151,9 +2151,8 @@ msgid "Linux"
 msgstr "Linux"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Linux Home"
-msgstr "Linux"
+msgstr "Início do Linux"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux LVM"
@@ -2535,7 +2534,7 @@ msgstr "ReiserFS"
 #. and /dev/sdb2 (2.00 GiB))
 #, c-format
 msgid "Remove %1$s (%2$s) from btrfs on %3$s"
-msgstr "Remover %1$s  (%2$s) para btrfs em %3$s"
+msgstr "Remover %1$s (%2$s) de btrfs em %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
