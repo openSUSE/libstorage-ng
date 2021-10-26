@@ -57,8 +57,7 @@ namespace storage
 	 */
 	struct Options
 	{
-	    Options(const string& command, ThrowBehaviour throw_behaviour = NoThrow)
-		: command(command), throw_behaviour(throw_behaviour) {}
+	    Options(const string& command, ThrowBehaviour throw_behaviour = NoThrow);
 
 	    /**
 	     * The command to be executed.
@@ -94,9 +93,9 @@ namespace storage
 
 	    /**
 	     * Environment variables to override existing environment variables. Per
-	     * default this includes LC_ALL=C and LANGUAGE=C.
+	     * default this includes LC_ALL=C[.UTF-8] and LANGUAGE=C[.UTF-8].
 	     */
-	    vector<string> env = { "LC_ALL=C", "LANGUAGE=C" };
+	    vector<string> env;
 
 	};
 
