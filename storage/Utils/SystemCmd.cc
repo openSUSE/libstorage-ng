@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -25,6 +25,7 @@
 #include <unistd.h>
 #include <errno.h>
 #include <fcntl.h>
+#include <langinfo.h>
 #include <sys/wait.h>
 #include <string>
 #include <sstream>
@@ -57,6 +58,20 @@ extern char **environ;
 namespace storage
 {
     using namespace std;
+
+
+    SystemCmd::Options::Options(const string& command, ThrowBehaviour throw_behaviour)
+	: command(command), throw_behaviour(throw_behaviour)
+    {
+	// parted needs UTF-8 to decode partition names with non-ASCII characters. Might
+	// be the case for other programs as well. Running in non-UTF-8 is not really
+	// supported.
+
+	if (strcmp(nl_langinfo(CODESET), "UTF-8") == 0)
+	    env = { "LC_ALL=C.UTF-8", "LANGUAGE=C.UTF-8" };
+	else
+	    env = { "LC_ALL=C", "LANGUAGE=C" };
+    }
 
 
     SystemCmd::SystemCmd(const Options& options)
