@@ -46,7 +46,7 @@ namespace storage
 
 
     Luks::Impl::Impl(const xmlNode* node)
-	: Encryption::Impl(node), uuid(), label(), format_options()
+	: Encryption::Impl(node)
     {
 	getChildValue(node, "uuid", uuid);
 	getChildValue(node, "label", label);
@@ -410,6 +410,7 @@ namespace storage
 	    luks->get_impl().Encryption::Impl::set_type(cmd_cryptsetup_luks_dump.get_encryption_type());
 	    luks->get_impl().set_cipher(cmd_cryptsetup_luks_dump.get_cipher());
 	    luks->get_impl().set_key_size(cmd_cryptsetup_luks_dump.get_key_size());
+	    luks->get_impl().set_pbkdf(cmd_cryptsetup_luks_dump.get_pbkdf());
 
 	    if (crypttab_entry)
 	    {
@@ -599,6 +600,9 @@ namespace storage
 
 	if (get_key_size() != 0)
 	    cmd_line += " --key-size " + to_string(get_key_size() * 8);
+
+	if (!get_pbkdf().empty())
+	    cmd_line += " --pbkdf " + quote(get_pbkdf());
 
 	if (!get_format_options().empty())
 	    cmd_line += " " + get_format_options();

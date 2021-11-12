@@ -73,6 +73,7 @@ namespace storage
 
 	getChildValue(node, "cipher", cipher);
 	getChildValue(node, "key-size", key_size);
+	getChildValue(node, "pbkdf", pbkdf);
 
 	if (getChildValue(node, "mount-by", tmp))
 	    mount_by = toValueWithFallback(tmp, MountByType::DEVICE);
@@ -200,6 +201,7 @@ namespace storage
 
 	setChildValueIf(node, "cipher", cipher, !cipher.empty());
 	setChildValueIf(node, "key-size", key_size, key_size != 0);
+	setChildValueIf(node, "pbkdf", pbkdf, !pbkdf.empty());
 
 	setChildValue(node, "mount-by", toString(mount_by));
 

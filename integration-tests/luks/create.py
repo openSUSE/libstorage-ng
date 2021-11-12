@@ -21,6 +21,7 @@ sdc1 = Partition.find_by_name(staging, "/dev/sdc1")
 luks = to_luks(sdc1.create_encryption("cr-test"))
 
 luks.set_type(EncryptionType_LUKS2)
+luks.set_pbkdf("argon2i")
 luks.set_format_options("--pbkdf-memory=1024")
 luks.set_password("12345678")
 luks.set_label("TOP-SECRET")
