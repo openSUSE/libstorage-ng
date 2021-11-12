@@ -492,44 +492,7 @@ namespace storage
 	    }))
 		continue;
 
-	    string name;
-
-	    if (is_disk(partitionable))
-	    {
-		const Disk* disk = to_disk(partitionable);
-
-		if (disk->is_pmem())
-		    name = "PMEMs";
-		else if (disk->is_nvme())
-		    name = "NVMes";
-		else if (disk->get_impl().is_brd())
-		    name = "BRDs";
-		else if (!disk->is_rotational())
-		    name = "SSDs";
-		else
-		    name = "HDDs";
-	    }
-	    else if (is_multipath(partitionable))
-	    {
-		name = "MPs";
-	    }
-	    else if (is_dasd(partitionable))
-	    {
-		const Dasd* dasd = to_dasd(partitionable);
-
-		if (dasd->get_type() == DasdType::ECKD)
-		{
-		    if (dasd->get_format() == DasdFormat::CDL)
-			name = "DASDs ECKD CDL";
-		    else if (dasd->get_format() == DasdFormat::LDL)
-			name = "DASDs ECKD LDL";
-		}
-		else if (dasd->get_type() == DasdType::FBA)
-		{
-		    name = "DASDs FBA";
-		}
-	    }
-
+	    string name = partitionable->get_impl().pool_name();
 	    if (name.empty())
 		continue;
 

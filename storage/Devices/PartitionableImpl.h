@@ -74,6 +74,8 @@ namespace storage
 
 	virtual string partition_name(int number) const;
 
+	virtual string pool_name() const = 0;
+
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
 	virtual void print(std::ostream& out) const override;

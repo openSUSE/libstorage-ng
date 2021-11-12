@@ -61,6 +61,8 @@ namespace storage
 
 	virtual ResizeInfo detect_resize_info(const BlkDevice* blk_device = nullptr) const override;
 
+	virtual string pool_name() const override { return ""; }
+
 	virtual void save(xmlNode* node) const override;
 
 	virtual void check(const CheckCallbacks* check_callbacks) const override;

@@ -78,6 +78,8 @@ namespace storage
 
 	virtual void parent_has_new_region(const Device* parent) override;
 
+	virtual string pool_name() const override { return ""; }
+
 	bool is_numeric() const;
 
 	unsigned int get_number() const;

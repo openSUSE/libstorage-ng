@@ -69,6 +69,8 @@ namespace storage
 
 	static bool is_valid_name(const string& name);
 
+	virtual string pool_name() const override { return "MPs"; }
+
 	const string& get_vendor() const { return vendor; }
 
 	const string& get_model() const { return model; }

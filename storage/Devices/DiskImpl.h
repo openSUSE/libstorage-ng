@@ -64,6 +64,8 @@ namespace storage
 	virtual bool is_usable_as_blk_device() const override;
 	virtual bool is_usable_as_partitionable() const override;
 
+	virtual string pool_name() const override;
+
 	virtual Impl* clone() const override { return new Impl(*this); }
 
 	virtual void save(xmlNode* node) const override;
