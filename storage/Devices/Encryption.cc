@@ -201,6 +201,20 @@ namespace storage
     }
 
 
+    const string&
+    Encryption::get_pbkdf() const
+    {
+	return get_impl().get_pbkdf();
+    }
+
+
+    void
+    Encryption::set_pbkdf(const std::string& pbkdf)
+    {
+	get_impl().set_pbkdf(pbkdf);
+    }
+
+
     BlkDevice*
     Encryption::get_blk_device()
     {

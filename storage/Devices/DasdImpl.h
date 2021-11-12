@@ -84,6 +84,8 @@ namespace storage
 
 	virtual bool is_usable_as_partitionable() const override;
 
+	virtual string pool_name() const override;
+
 	virtual vector<PtType> get_possible_partition_table_types() const override;
 
 	static void probe_dasds(Prober& prober);

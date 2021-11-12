@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) 2019 SUSE LLC
+ * Copyright (c) [2019-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -71,6 +71,7 @@ namespace storage
 	EncryptionType get_encryption_type() const { return encryption_type; }
 	const string& get_cipher() const { return cipher; }
 	unsigned int get_key_size() const { return key_size; }
+	const string& get_pbkdf() const { return pbkdf; }
 
     private:
 
@@ -84,7 +85,7 @@ namespace storage
 	/**
 	 * Either UNKNOWN, LUKS1 or LUKS2
 	 */
-	EncryptionType encryption_type;
+	EncryptionType encryption_type = EncryptionType::UNKNOWN;
 
 	/**
 	 * The cipher, e.g. aes-xts-plain64, twofish-cbc-plain or aes-cbc-plain:sha512.
@@ -95,7 +96,12 @@ namespace storage
 	 * The size of the master key, e.g. 32 or 64 bytes. Note:
 	 * Usually displayed in bits.
 	 */
-	unsigned int key_size;
+	unsigned int key_size = 0;
+
+	/**
+	 * The PBKDF, e.g. argon2i or argon2id, of the first used slot. Only for LUKS2.
+	 */
+	string pbkdf;
 
     };
 

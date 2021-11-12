@@ -147,6 +147,20 @@ namespace storage
     }
 
 
+    string
+    Disk::Impl::pool_name() const
+    {
+	if (is_pmem())
+	    return "PMEMs";
+	else if (is_nvme())
+	    return "NVMes";
+	else if (is_brd())
+	    return "BRDs";
+
+	return is_rotational() ? "HDDs" : "SSDs";
+    }
+
+
     void
     Disk::Impl::probe_disks(Prober& prober)
     {

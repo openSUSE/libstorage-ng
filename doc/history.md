@@ -41,3 +41,10 @@ January 2018
 
 Included in openSUSE Tumbleweed, replacing legacy libstorage.
 
+
+November 2021
+-------------
+
+Used by [barrel](https://github.com/aschnell/barrel) included in
+openSUSE Tumbleweed.
+

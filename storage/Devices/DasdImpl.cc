@@ -134,6 +134,25 @@ namespace storage
     }
 
 
+    string
+    Dasd::Impl::pool_name() const
+    {
+	if (get_type() == DasdType::ECKD)
+	{
+	    if (get_format() == DasdFormat::CDL)
+		return "DASDs ECKD CDL";
+	    else if (get_format() == DasdFormat::LDL)
+		return "DASDs ECKD LDL";
+	}
+	else if (get_type() == DasdType::FBA)
+	{
+	    return "DASDs FBA";
+	}
+
+	return "";
+    }
+
+
     vector<PtType>
     Dasd::Impl::get_possible_partition_table_types() const
     {

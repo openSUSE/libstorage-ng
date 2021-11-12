@@ -123,7 +123,7 @@ BOOST_AUTO_TEST_CASE(parse2)
     };
 
     vector<string> output = {
-	"name:/dev/sdc1 encryption-type:luks2 cipher:aes-xts-plain64 key-size:64"
+	"name:/dev/sdc1 encryption-type:luks2 cipher:aes-xts-plain64 key-size:64 pbkdf:argon2i"
     };
 
     check("/dev/sdc1", input, output);
@@ -177,8 +177,80 @@ BOOST_AUTO_TEST_CASE(parse3_paes)
     };
 
     vector<string> output = {
-	"name:/dev/dasdb1 encryption-type:luks2 cipher:paes-xts-plain64 key-size:128"
+	"name:/dev/dasdb1 encryption-type:luks2 cipher:paes-xts-plain64 key-size:128 pbkdf:argon2i"
     };
 
     check("/dev/dasdb1", input, output);
+}
+
+
+BOOST_AUTO_TEST_CASE(parse4_two_keyslots)
+{
+    vector<string> input = {
+	"LUKS header information",
+	"Version:       	2",
+	"Epoch:         	4",
+	"Metadata area: 	16384 [bytes]",
+	"Keyslots area: 	16744448 [bytes]",
+	"UUID:          	30c4e059-7c30-4913-9c89-2d18bb818c87",
+	"Label:         	(no label)",
+	"Subsystem:     	(no subsystem)",
+	"Flags:       	(no flags)",
+	"",
+	"Data segments:",
+	"  0: crypt",
+	"	offset: 16777216 [bytes]",
+	"	length: (whole device)",
+	"	cipher: aes-xts-plain64",
+	"	sector: 4096 [bytes]",
+	"",
+	"Keyslots:",
+	"  0: luks2",
+	"	Key:        512 bits",
+	"	Priority:   normal",
+	"	Cipher:     aes-xts-plain64",
+	"	Cipher key: 512 bits",
+	"	PBKDF:      argon2id",
+	"	Time cost:  10",
+	"	Memory:     1048576",
+	"	Threads:    4",
+	"	Salt:       df 02 b0 b5 07 32 7c 21 ec 78 23 e8 94 06 fd fe ",
+	"	            3f 38 23 03 97 dd 17 fd 1c b9 55 06 59 a5 bf a2 ",
+	"	AF stripes: 4000",
+	"	AF hash:    sha256",
+	"	Area offset:32768 [bytes]",
+	"	Area length:258048 [bytes]",
+	"	Digest ID:  0",
+	"  1: luks2",
+	"	Key:        512 bits",
+	"	Priority:   normal",
+	"	Cipher:     aes-xts-plain64",
+	"	Cipher key: 256 bits",
+	"	PBKDF:      argon2i",
+	"	Time cost:  9",
+	"	Memory:     1048576",
+	"	Threads:    4",
+	"	Salt:       f7 e6 6a be 6a 05 38 57 cb 6a 1f 91 00 b9 e4 ab ",
+	"	            bd dd 69 e7 2f c3 97 ee 99 3d a4 ba e8 6c d0 a8 ",
+	"	AF stripes: 4000",
+	"	AF hash:    sha256",
+	"	Area offset:290816 [bytes]",
+	"	Area length:258048 [bytes]",
+	"	Digest ID:  0",
+	"Tokens:",
+	"Digests:",
+	"  0: pbkdf2",
+	"	Hash:       sha256",
+	"	Iterations: 136818",
+	"	Salt:       f0 d5 dd a7 ba 83 53 77 2f 62 89 ad 9b 87 03 46 ",
+	"	            c7 c1 84 c9 bb 83 06 d0 7a c2 d5 fb 6b 6f 42 89 ",
+	"	Digest:     5b da 8b c4 58 69 29 61 aa 77 1a 48 17 99 ef 6e ",
+	"	            37 ba e2 64 35 c4 61 e0 27 38 98 61 0a fb 13 e1 "
+    };
+
+    vector<string> output = {
+	"name:/dev/ram0p1 encryption-type:luks2 cipher:aes-xts-plain64 key-size:64 pbkdf:argon2id"
+    };
+
+    check("/dev/ram0p1", input, output);
 }

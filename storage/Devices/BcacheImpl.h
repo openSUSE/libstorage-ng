@@ -96,6 +96,8 @@ namespace storage
 
 	BcacheType get_type() const { return type; }
 
+	virtual string pool_name() const override { return ""; }
+
 	CacheMode get_cache_mode() const { return cache_mode; }
 	void set_cache_mode(CacheMode mode) { cache_mode = mode; }
 

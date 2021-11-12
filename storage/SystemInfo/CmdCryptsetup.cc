@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2019-2020] SUSE LLC
+ * Copyright (c) [2019-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -92,7 +92,7 @@ namespace storage
 
 
     CmdCryptsetupLuksDump::CmdCryptsetupLuksDump(const string& name)
-	: name(name), encryption_type(EncryptionType::UNKNOWN), cipher(), key_size(0)
+	: name(name)
     {
 	SystemCmd cmd(CRYPTSETUP_BIN " luksDump " + quote(name), SystemCmd::DoThrow);
 
@@ -187,9 +187,13 @@ namespace storage
 
 	static const regex cipher_regex("[ \t]*cipher:[ \t]*([^ \t]+)[ \t]*", regex::extended);
 
+	static const regex keyslot_number_regex("[ \t]*([0-9]+): .*", regex::extended);
 	static const regex key_regex("[ \t]*Key:[ \t]*([0-9]+) bits[ \t]*", regex::extended);
+	static const regex pbkdf_regex("[ \t]*PBKDF:[ \t]*([^ \t]+)[ \t]*", regex::extended);
 
 	enum { DATA_SECTION, KEYSLOT_SECTION, UNUSED_SECTION } section = UNUSED_SECTION;
+
+	int keyslot_cnt = 0;
 
 	smatch match;
 
@@ -217,10 +221,20 @@ namespace storage
 
 		case KEYSLOT_SECTION:
 		{
-		    if (regex_match(line, match, key_regex) && match.size() == 2)
+		    if (regex_match(line, match, keyslot_number_regex))
+			++keyslot_cnt;
+
+		    if (keyslot_cnt == 1)
 		    {
-			match[1] >> key_size;
-			key_size /= 8;
+			if (regex_match(line, match, key_regex) && match.size() == 2)
+			{
+			    match[1] >> key_size;
+			    key_size /= 8;
+			}
+			else if (regex_match(line, match, pbkdf_regex) && match.size() == 2)
+			{
+			    pbkdf = match[1];
+			}
 		    }
 		}
 		break;
@@ -242,6 +256,9 @@ namespace storage
 	  << toString(cmd_cryptsetup_luks_dump.encryption_type) << " cipher:"
 	  << cmd_cryptsetup_luks_dump.cipher << " key-size:"
 	  << cmd_cryptsetup_luks_dump.key_size;
+
+	if (!cmd_cryptsetup_luks_dump.pbkdf.empty())
+	    s << " pbkdf:" << cmd_cryptsetup_luks_dump.pbkdf;
 
 	return s;
     }

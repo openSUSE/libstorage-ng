@@ -129,6 +129,21 @@ namespace storage
 	void set_key_size(unsigned int key_size);
 
 	/**
+	 * Get the PBKDF (of the first used keyslot).
+	 *
+	 * Currently only supported for LUKS2.
+	 */
+	const std::string& get_pbkdf() const;
+
+	/**
+	 * Set the PBKDF. Only used during creation. If empty the default of cryptsetup
+	 * will be used.
+	 *
+	 * Currently only supported for LUKS2.
+	 */
+	void set_pbkdf(const std::string& pbkdf);
+
+	/**
 	 * Get the mount-by method. For encrypted devices the mount-by method
 	 * defines the name used for the second parameter in /etc/crypttab.
 	 */

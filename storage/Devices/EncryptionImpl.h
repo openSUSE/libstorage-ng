@@ -83,6 +83,9 @@ namespace storage
 	unsigned int get_key_size() const { return key_size; }
 	void set_key_size(unsigned int key_size) { Impl::key_size = key_size; }
 
+	const string& get_pbkdf() const { return pbkdf; }
+	void set_pbkdf(const string& pbkdf) { Impl::pbkdf = pbkdf; }
+
 	MountByType get_mount_by() const { return mount_by; }
 	void set_mount_by(MountByType mount_by) { Impl::mount_by = mount_by; }
 
@@ -173,6 +176,7 @@ namespace storage
 
 	string cipher;
 	unsigned int key_size = 0;
+	string pbkdf;
 
 	MountByType mount_by = MountByType::DEVICE;
 
