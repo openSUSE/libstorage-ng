@@ -111,14 +111,28 @@ namespace storage
     vector<BlkDevice*>
     Md::get_devices()
     {
-	return get_impl().get_devices();
+	return get_impl().get_blk_devices();
     }
 
 
     vector<const BlkDevice*>
     Md::get_devices() const
     {
-	return get_impl().get_devices();
+	return get_impl().get_blk_devices();
+    }
+
+
+    vector<BlkDevice*>
+    Md::get_blk_devices()
+    {
+	return get_impl().get_blk_devices();
+    }
+
+
+    vector<const BlkDevice*>
+    Md::get_blk_devices() const
+    {
+	return get_impl().get_blk_devices();
     }
 
 

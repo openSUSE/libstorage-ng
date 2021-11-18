@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2020] SUSE LLC
+ * Copyright (c) [2017-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -83,6 +83,16 @@ namespace storage
 	 * @see get_vendor()
 	 */
 	const std::string& get_model() const;
+
+	/**
+	 * Return blk devices used for the Multipath.
+	 */
+	std::vector<BlkDevice*> get_blk_devices();
+
+	/**
+	 * @copydoc get_blk_devices()
+	 */
+	std::vector<const BlkDevice*> get_blk_devices() const;
 
 	/**
 	 * Return whether the multipath device is of rotational or

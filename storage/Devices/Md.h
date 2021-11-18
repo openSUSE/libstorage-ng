@@ -107,16 +107,19 @@ namespace storage
 	 */
 	void remove_device(BlkDevice* blk_device);
 
-	/**
-	 * Return devices used for the MD RAID. For Mds of type
-	 * MdMember this does not include the MdContainer.
-	 */
-	std::vector<BlkDevice*> get_devices();
+	std::vector<BlkDevice*> get_devices() ST_DEPRECATED;
+	std::vector<const BlkDevice*> get_devices() const ST_DEPRECATED;
 
 	/**
-	 * @copydoc get_devices()
+	 * Return blk devices used for the MD RAID. For Mds of type
+	 * MdMember this does not include the MdContainer.
 	 */
-	std::vector<const BlkDevice*> get_devices() const;
+	std::vector<BlkDevice*> get_blk_devices();
+
+	/**
+	 * @copydoc get_blk_devices()
+	 */
+	std::vector<const BlkDevice*> get_blk_devices() const;
 
 	/**
 	 * Returns true if the name of the MD is numeric.

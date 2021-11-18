@@ -55,8 +55,8 @@ namespace storage
 	MdContainer* get_md_container();
 	const MdContainer* get_md_container() const;
 
-	virtual vector<BlkDevice*> get_devices() override;
-	virtual vector<const BlkDevice*> get_devices() const override;
+	virtual vector<BlkDevice*> get_blk_devices() override;
+	virtual vector<const BlkDevice*> get_blk_devices() const override;
 
 	virtual void probe_pass_1b(Prober& prober) override;
 

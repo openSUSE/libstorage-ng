@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -104,6 +104,20 @@ namespace storage
     DmRaid::find_by_name(const Devicegraph* devicegraph, const string& name)
     {
 	return to_dm_raid(BlkDevice::find_by_name(devicegraph, name));
+    }
+
+
+    vector<BlkDevice*>
+    DmRaid::get_blk_devices()
+    {
+	return get_impl().get_blk_devices();
+    }
+
+
+    vector<const BlkDevice*>
+    DmRaid::get_blk_devices() const
+    {
+	return get_impl().get_blk_devices();
     }
 
 

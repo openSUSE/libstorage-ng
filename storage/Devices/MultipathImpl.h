@@ -75,6 +75,9 @@ namespace storage
 
 	const string& get_model() const { return model; }
 
+	vector<BlkDevice*> get_blk_devices();
+	vector<const BlkDevice*> get_blk_devices() const;
+
 	bool is_rotational() const { return rotational; }
 	void set_rotational(bool rotational) { Impl::rotational = rotational; }
 

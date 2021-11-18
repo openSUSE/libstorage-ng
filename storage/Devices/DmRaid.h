@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2020] SUSE LLC
+ * Copyright (c) [2017-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -69,6 +69,16 @@ namespace storage
 	 * @copydoc get_all()
 	 */
 	static std::vector<const DmRaid*> get_all(const Devicegraph* devicegraph);
+
+	/**
+	 * Return blk devices used for the DmRaid.
+	 */
+	std::vector<BlkDevice*> get_blk_devices();
+
+	/**
+	 * @copydoc get_blk_devices()
+	 */
+	std::vector<const BlkDevice*> get_blk_devices() const;
 
 	/**
 	 * Return whether the DM RAID is of rotational or

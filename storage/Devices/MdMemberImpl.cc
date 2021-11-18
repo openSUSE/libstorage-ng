@@ -87,9 +87,9 @@ namespace storage
 
 
     vector<BlkDevice*>
-    MdMember::Impl::get_devices()
+    MdMember::Impl::get_blk_devices()
     {
-	vector<BlkDevice*> tmp = Md::Impl::get_devices();
+	vector<BlkDevice*> tmp = Md::Impl::get_blk_devices();
 
 	erase_if(tmp, [](BlkDevice* blk_device) { return is_md_container(blk_device); });
 
@@ -98,9 +98,9 @@ namespace storage
 
 
     vector<const BlkDevice*>
-    MdMember::Impl::get_devices() const
+    MdMember::Impl::get_blk_devices() const
     {
-	vector<const BlkDevice*> tmp = Md::Impl::get_devices();
+	vector<const BlkDevice*> tmp = Md::Impl::get_blk_devices();
 
 	erase_if(tmp, [](const BlkDevice* blk_device) { return is_md_container(blk_device); });
 

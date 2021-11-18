@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -118,6 +118,20 @@ namespace storage
     Multipath::get_model() const
     {
 	return get_impl().get_model();
+    }
+
+
+    vector<BlkDevice*>
+    Multipath::get_blk_devices()
+    {
+	return get_impl().get_blk_devices();
+    }
+
+
+    vector<const BlkDevice*>
+    Multipath::get_blk_devices() const
+    {
+	return get_impl().get_blk_devices();
     }
 
 

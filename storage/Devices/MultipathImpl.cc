@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2019] SUSE LLC
+ * Copyright (c) [2017-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -243,6 +243,26 @@ namespace storage
 	setChildValue(node, "model", model);
 
 	setChildValueIf(node, "rotational", rotational, rotational);
+    }
+
+
+    vector<BlkDevice*>
+    Multipath::Impl::get_blk_devices()
+    {
+	Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
+	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
+
+	return devicegraph.filter_devices_of_type<BlkDevice>(devicegraph.parents(vertex));
+    }
+
+
+    vector<const BlkDevice*>
+    Multipath::Impl::get_blk_devices() const
+    {
+	const Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
+	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
+
+	return devicegraph.filter_devices_of_type<const BlkDevice>(devicegraph.parents(vertex));
     }
 
 
