@@ -229,7 +229,7 @@ namespace storage
 		    }
 
 		    unsigned long long tmp = 1 * KiB;
-		    for (const BlkDevice* blk_device : get_devices())
+		    for (const BlkDevice* blk_device : get_blk_devices())
 		    {
 			tmp = boost::integer::lcm(tmp, (unsigned long long)
 						  blk_device->get_region().get_block_size());
@@ -703,7 +703,7 @@ namespace storage
 
 
     vector<BlkDevice*>
-    Md::Impl::get_devices()
+    Md::Impl::get_blk_devices()
     {
 	Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
 	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
@@ -713,7 +713,7 @@ namespace storage
 
 
     vector<const BlkDevice*>
-    Md::Impl::get_devices() const
+    Md::Impl::get_blk_devices() const
     {
 	const Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
 	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
@@ -892,9 +892,9 @@ namespace storage
     unsigned int
     Md::Impl::number_of_devices() const
     {
-	vector<const BlkDevice*> devices = get_devices();
+	vector<const BlkDevice*> blk_devices = get_blk_devices();
 
-	return std::count_if(devices.begin(), devices.end(), [](const BlkDevice* blk_device) {
+	return std::count_if(blk_devices.begin(), blk_devices.end(), [](const BlkDevice* blk_device) {
 	    const MdUser* md_user = blk_device->get_impl().get_single_out_holder_of_type<const MdUser>();
 	    return !md_user->is_spare() && !md_user->is_journal();
 	});
@@ -920,7 +920,7 @@ namespace storage
 	if (exists_in_system())
 	    return;
 
-	vector<const BlkDevice*> devices = as_const(*this).get_devices();
+	vector<const BlkDevice*> blk_devices = as_const(*this).get_blk_devices();
 
 	long real_chunk_size = chunk_size;
 
@@ -937,11 +937,11 @@ namespace storage
 
 	unsigned int block_size = 0;
 
-	for (const BlkDevice* blk_device : devices)
+	for (const BlkDevice* blk_device : blk_devices)
 	{
 	    unsigned long long size = blk_device->get_size();
 
-	    block_size = std::max( block_size, blk_device->get_region().get_block_size() );
+	    block_size = std::max(block_size, blk_device->get_region().get_block_size());
 
 	    const MdUser* md_user = blk_device->get_impl().get_single_out_holder_of_type<const MdUser>();
 	    bool spare = md_user->is_spare();
@@ -1056,7 +1056,7 @@ namespace storage
 			   _("Creating MD %1$s %2$s (%3$s) from %4$s"));
 
 	return sformat(text, get_md_level_name(md_level), get_displayname(),
-		       get_size_text(), join(get_devices(), JoinMode::COMMA, 20));
+		       get_size_text(), join(get_blk_devices(), JoinMode::COMMA, 20));
     }
 
 
@@ -1072,7 +1072,7 @@ namespace storage
 	multimap<unsigned int, string> spares;
 	vector<string> journals;
 
-	for (const BlkDevice* blk_device : get_devices())
+	for (const BlkDevice* blk_device : get_blk_devices())
 	{
 	    const MdUser* md_user = blk_device->get_impl().get_single_out_holder_of_type<const MdUser>();
 
@@ -1122,7 +1122,7 @@ namespace storage
 	if (!journals.empty())
 	    cmd_line += " --write-journal=" + quote(journals.front());
 
-	wait_for_devices(std::as_const(*this).get_devices());
+	wait_for_devices(std::as_const(*this).get_blk_devices());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
@@ -1168,7 +1168,7 @@ namespace storage
     {
 	string cmd_line = MDADM_BIN " --zero-superblock ";
 
-	for (const BlkDevice* blk_device : get_devices())
+	for (const BlkDevice* blk_device : get_blk_devices())
 	    cmd_line += " " + quote(blk_device->get_name());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);

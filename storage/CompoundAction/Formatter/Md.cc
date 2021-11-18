@@ -100,7 +100,7 @@ namespace storage
     Text
     CompoundAction::Formatter::Md::blk_devices_text() const
     {
-        return join(md->get_devices(), JoinMode::COMMA, 20);
+        return join(md->get_blk_devices(), JoinMode::COMMA, 20);
     }
 
 

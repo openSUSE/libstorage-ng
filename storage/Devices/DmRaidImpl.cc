@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2019] SUSE LLC
+ * Copyright (c) [2017-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -184,6 +184,26 @@ namespace storage
     DmRaid::Impl::used_features(UsedFeaturesDependencyType used_features_dependency_type) const
     {
 	return UF_DMRAID | Partitionable::Impl::used_features(used_features_dependency_type);
+    }
+
+
+    vector<BlkDevice*>
+    DmRaid::Impl::get_blk_devices()
+    {
+	Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
+	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
+
+	return devicegraph.filter_devices_of_type<BlkDevice>(devicegraph.parents(vertex));
+    }
+
+
+    vector<const BlkDevice*>
+    DmRaid::Impl::get_blk_devices() const
+    {
+	const Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
+	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
+
+	return devicegraph.filter_devices_of_type<const BlkDevice>(devicegraph.parents(vertex));
     }
 
 

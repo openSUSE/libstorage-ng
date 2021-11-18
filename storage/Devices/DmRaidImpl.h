@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2019] SUSE LLC
+ * Copyright (c) [2017-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -70,6 +70,9 @@ namespace storage
 	virtual RemoveInfo detect_remove_info() const override { return RemoveInfo(false, RMB_HARDWARE); }
 
 	static bool is_valid_name(const string& name);
+
+	vector<BlkDevice*> get_blk_devices();
+	vector<const BlkDevice*> get_blk_devices() const;
 
 	bool is_rotational() const { return rotational; }
 	void set_rotational(bool rotational) { Impl::rotational = rotational; }

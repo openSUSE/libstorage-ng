@@ -81,7 +81,7 @@ namespace storage
 	return get_impl().get_md_container();
     }
 
-    
+
     const MdContainer*
     MdMember::get_md_container() const
     {
