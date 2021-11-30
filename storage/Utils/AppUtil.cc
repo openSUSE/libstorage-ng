@@ -425,24 +425,27 @@ namespace storage
 
 
     /**
-     * Breaks a device name like "/dev/sda2" into "/dev/sda" and 2
+     * Breaks a device name like "/dev/sda2" into "/dev/sda" and 2.
+     *
+     * Does in general not break partition names into disk name and number,
+     * e.g. "/dev/md0p1" breaks into "/dev/md0p" and "1".
      *
      * Throws an exception if the provided name does not contain the number
      * part.
      */
-    std::pair<string, unsigned int>
+    pair<string, unsigned int>
     device_to_name_and_number(const string& full_name)
     {
 	string::size_type pos = full_name.find_last_not_of("0123456789");
-        if (pos == string::npos || pos == full_name.size() - 1)
-            ST_THROW(Exception("device name has no number"));
+	if (pos == string::npos || pos == full_name.size() - 1)
+	    ST_THROW(Exception("device name has no number"));
 
-	return std::make_pair(full_name.substr(0, pos + 1), atoi(full_name.substr(pos + 1).c_str()));
+	return make_pair(full_name.substr(0, pos + 1), atoi(full_name.substr(pos + 1).c_str()));
     }
 
 
     /**
-     * Inverse of device_to_name_and_number
+     * Inverse of device_to_name_and_number.
      */
     string
     name_and_number_to_device(const string& name, unsigned int number)
