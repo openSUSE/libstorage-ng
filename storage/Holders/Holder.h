@@ -72,8 +72,10 @@ namespace storage
 	/**
 	 * Set the source device of the holder. Experimental.
 	 *
+	 * The new source must not be the old source.
+	 *
 	 * So far it is undefined whether this function adjusts the devices connected to
-	 * the holder. E.g.  setting a disk as source for a partition table adjusts the
+	 * the holder. E.g. setting a disk as source for a partition table adjusts the
 	 * device names of the partitions but not the topology. This may change in the
 	 * future.
 	 *
@@ -83,6 +85,8 @@ namespace storage
 
 	/**
 	 * Set the target device of the holder.
+	 *
+	 * The new target must not be the old target.
 	 *
 	 * @see set_source(const Device*)
 	 *

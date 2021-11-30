@@ -231,9 +231,9 @@ namespace storage
     void
     Partition::Impl::set_number(unsigned int number)
     {
-	std::pair<string, unsigned int> pair = device_to_name_and_number(get_name());
+	const Partitionable* partitionable = get_partitionable();
 
-	set_name(name_and_number_to_device(pair.first, number));
+	set_name(partitionable->partition_name(number));
 
 	update_sysfs_name_and_path();
 	update_udev_paths_and_ids();
@@ -529,7 +529,7 @@ namespace storage
     {
 	const Partitionable* partitionable = get_partitionable();
 
-	set_name(name_and_number_to_device(partitionable->get_name(), get_number()));
+	set_name(partitionable->partition_name(get_number()));
     }
 
 
@@ -538,9 +538,8 @@ namespace storage
     {
 	const Partitionable* partitionable = get_partitionable();
 
-	// TODO different for device-mapper partitions
-
-	if (!partitionable->get_sysfs_name().empty() && !partitionable->get_sysfs_path().empty())
+	if ((!partitionable->get_sysfs_name().empty() && !partitionable->get_sysfs_path().empty()) &&
+	    partitionable->get_dm_table_name().empty())
 	{
 	    set_sysfs_name(partitionable->get_sysfs_name() + to_string(get_number()));
 	    set_sysfs_path(partitionable->get_sysfs_path() + "/" + get_sysfs_name());

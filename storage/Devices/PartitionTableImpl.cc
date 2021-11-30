@@ -243,6 +243,8 @@ namespace storage
 	    partition->get_impl().update_sysfs_name_and_path();
 	    partition->get_impl().update_udev_paths_and_ids();
 
+	    partition->set_dm_table_name("");
+
 	    // TODO topology? at least block size? could cascade to even more devices
 	}
     }
