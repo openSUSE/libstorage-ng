@@ -6,6 +6,7 @@
 
 #include "storage/Utils/HumanString.h"
 #include "storage/Devices/DiskImpl.h"
+#include "storage/Devices/Multipath.h"
 #include "storage/Devices/Gpt.h"
 #include "storage/Holders/Holder.h"
 #include "storage/Devicegraph.h"
@@ -60,4 +61,33 @@ BOOST_AUTO_TEST_CASE(test1)
     BOOST_CHECK_EQUAL(sda1->get_udev_paths()[0], "pci-0000:00:1f.2-ata-2.0-part1");
     BOOST_CHECK_EQUAL(sda1->get_udev_ids().size(), 1);
     BOOST_CHECK_EQUAL(sda1->get_udev_ids()[0], "scsi-SATA_VBOX_HARDDISK_VB20a8f410-8a3f17dc-part1");
+}
+
+
+BOOST_AUTO_TEST_CASE(test2)
+{
+    Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
+
+    Storage storage(environment);
+
+    Devicegraph* staging = storage.get_staging();
+
+    Multipath* multipath1 = Multipath::create(staging, "/dev/mapper/mpatha");
+    multipath1->set_dm_table_name("dm-0");
+
+    Multipath* multipath2 = Multipath::create(staging, "/dev/mapper/mpathb");
+    multipath2->set_dm_table_name("dm-1");
+
+    Gpt* gpt = to_gpt(multipath1->create_partition_table(PtType::GPT));
+    Partition* partition = gpt->create_partition("/dev/mapper/mpatha-part2", Region(2048, 1048576, 512), PartitionType::PRIMARY);
+    partition->set_dm_table_name("dm-2");
+
+    BOOST_CHECK_EQUAL(partition->get_name(), "/dev/mapper/mpatha-part2");
+    BOOST_CHECK_EQUAL(partition->get_dm_table_name(), "dm-2");
+
+    Holder* holder = staging->find_holder(multipath1->get_sid(), gpt->get_sid());
+    holder->set_source(multipath2);
+
+    BOOST_CHECK_EQUAL(partition->get_name(), "/dev/mapper/mpathb-part2");
+    BOOST_CHECK_EQUAL(partition->get_dm_table_name(), "");
 }
