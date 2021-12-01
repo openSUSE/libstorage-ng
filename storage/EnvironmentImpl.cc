@@ -137,4 +137,12 @@ namespace storage
 	return read_env_var("LIBSTORAGE_DEVELOPER_MODE", false);
     }
 
+
+    bool
+    prefer_filesystem_over_empty_msdos()
+    {
+	const char* p = getenv("LIBSTORAGE_PFSOEMS");
+	return !p || strcmp(p, "yes") == 0;
+    }
+
 }
