@@ -42,7 +42,7 @@ BOOST_AUTO_TEST_CASE(probe)
     probed->check();
 
     Devicegraph* staging = storage.get_staging();
-    staging->save("ambiguous2-devicegraph.xml");
+    staging->load("ambiguous2-devicegraph.xml");
     staging->check();
 
     TsCmpDevicegraph cmp(*probed, *staging);
