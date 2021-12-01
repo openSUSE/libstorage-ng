@@ -98,6 +98,12 @@ namespace storage
      */
     bool developer_mode();
 
+    /**
+     * If there is a file system and an empty MS-DOS partition table on a partitionable
+     * prefer the file system.
+     */
+    bool prefer_filesystem_over_empty_msdos();
+
 }
 
 #endif

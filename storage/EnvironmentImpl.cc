@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2018-2020] SUSE LLC
+ * Copyright (c) [2018-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -130,6 +130,13 @@ namespace storage
     developer_mode()
     {
 	return read_env_var("LIBSTORAGE_DEVELOPER_MODE", false);
+    }
+
+
+    bool
+    prefer_filesystem_over_empty_msdos()
+    {
+	return read_env_var("LIBSTORAGE_PFSOEMS", true);
     }
 
 }
