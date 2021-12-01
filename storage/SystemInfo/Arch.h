@@ -58,6 +58,8 @@ namespace storage
 	bool is_efiboot() const { return efiboot; }
 	void set_efiboot(bool efiboot) { Arch::efiboot = efiboot; }
 
+	static bool is_efibootmgr();
+
 	unsigned int get_page_size() const { return page_size; }
 
 	friend std::ostream& operator<<(std::ostream& s, const Arch& arch);
