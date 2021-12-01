@@ -109,4 +109,12 @@ namespace storage
 	return !p || strcmp(p, "yes") == 0;
     }
 
+
+    bool
+    prefer_filesystem_over_empty_msdos()
+    {
+	const char* p = getenv("LIBSTORAGE_PFSOEMS");
+	return !p || strcmp(p, "yes") == 0;
+    }
+
 }

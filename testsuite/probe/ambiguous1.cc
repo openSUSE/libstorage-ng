@@ -21,6 +21,7 @@ using namespace storage;
 BOOST_AUTO_TEST_CASE(probe)
 {
     setenv("YAST_MULTIPLE_DEVICES_BTRFS", "no", 1);
+    setenv("LIBSTORAGE_PFSOEMS", "no", 1);
 
     set_logger(get_stdout_logger());
 

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -40,6 +40,7 @@
 #include "storage/Utils/CallbacksImpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/StorageImpl.h"
+#include "storage/EnvironmentImpl.h"
 #include "storage/Prober.h"
 #include "storage/Utils/Format.h"
 
@@ -159,6 +160,20 @@ namespace storage
 	try
 	{
 	    const Parted& parted = prober.get_system_info().getParted(get_name());
+
+	    // Ignore MS-DOS partition table without any partitions if there is also a
+	    // filesystem - likely the partition table is in fact only the MBR signature
+	    // installed from grub (see bsc #1186823).
+	    if (parted.get_label() == PtType::MSDOS && parted.get_entries().empty() &&
+		prefer_filesystem_over_empty_msdos())
+	    {
+		SystemInfo& system_info = prober.get_system_info();
+		const Blkid& blkid = system_info.getBlkid();
+		Blkid::const_iterator it = blkid.find_by_any_name(get_name(), system_info);
+		if (it != blkid.end() && it->second.is_fs)
+		    return;
+	    }
+
 	    if (parted.get_label() == PtType::MSDOS || parted.get_label() == PtType::GPT ||
 		parted.get_label() == PtType::DASD)
 	    {
