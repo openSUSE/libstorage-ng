@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -38,6 +38,7 @@
 #include "storage/Utils/CallbacksImpl.h"
 #include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/StorageImpl.h"
+#include "storage/EnvironmentImpl.h"
 #include "storage/Prober.h"
 #include "storage/Utils/Format.h"
 
@@ -156,9 +157,24 @@ namespace storage
 
 	try
 	{
-	    const Parted& parted = prober.get_system_info().getParted(get_name());
-	    if (parted.get_label() == PtType::MSDOS || parted.get_label() == PtType::GPT ||
-		parted.get_label() == PtType::DASD)
+	    SystemInfo::Impl& system_info = prober.get_system_info();
+
+	    const Parted& parted = system_info.getParted(get_name());
+	    PtType label = parted.get_label();
+
+	    // Ignore MS-DOS partition table without any partitions if there is also an
+	    // filesystem - likely the partition table is in fact only the MBR signature
+	    // from instelled from grub (#see bsc #) 1186823.
+	    if (label == PtType::MSDOS && parted.get_entries().empty() &&
+		prefer_filesystem_over_empty_msdos())
+	    {
+		const Blkid& blkid = system_info.getBlkid();
+		Blkid::const_iterator it = blkid.find_by_any_name(get_name(), system_info);
+		if (it != blkid.end() && it->second.is_fs)
+		    return;
+	    }
+
+	    if (label == PtType::MSDOS || label == PtType::GPT || label == PtType::DASD)
 	    {
 		if (get_region().get_block_size() != parted.get_region().get_block_size())
 		    ST_THROW(Exception(sformat("different block size reported by kernel and parted for %s",
@@ -167,8 +183,6 @@ namespace storage
 		if (get_region().get_length() != parted.get_region().get_length())
 		    ST_THROW(Exception(sformat("different size reported by kernel and parted for %s",
 					       get_name())));
-
-		PtType label = parted.get_label();
 
 		// parted reports DASD partition table for implicit partition
 		// tables. Convert that to implicit partition table.

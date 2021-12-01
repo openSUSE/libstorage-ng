@@ -24,7 +24,7 @@ BOOST_AUTO_TEST_CASE(probe)
     set_logger(get_stdout_logger());
 
     Environment environment(true, ProbeMode::READ_MOCKUP, TargetMode::DIRECT);
-    environment.set_mockup_filename("ambiguous1-mockup.xml");
+    environment.set_mockup_filename("ambiguous2-mockup.xml");
 
     vector<string> probe_messages;
     ProbeCallbacksRecorder probe_callbacks_recorder(probe_messages);
@@ -32,20 +32,22 @@ BOOST_AUTO_TEST_CASE(probe)
     Storage storage(environment);
     storage.probe(&probe_callbacks_recorder);
 
-    BOOST_REQUIRE_EQUAL(probe_messages.size(), 2);
+    BOOST_REQUIRE_EQUAL(probe_messages.size(), 3);
     BOOST_CHECK_EQUAL(probe_messages[0], "begin:");
-    BOOST_CHECK_EQUAL(probe_messages[1], "end:");
+    BOOST_CHECK_EQUAL(probe_messages[1], "error: message = 'Detected a file system next to a partition table on the\n"
+		      "device /dev/sdc. The file system will be ignored.', what = ''");
+    BOOST_CHECK_EQUAL(probe_messages[2], "end:");
 
     const Devicegraph* probed = storage.get_probed();
     probed->check();
 
     Devicegraph* staging = storage.get_staging();
-    staging->load("ambiguous1-devicegraph.xml");
+    staging->save("ambiguous2-devicegraph.xml");
     staging->check();
 
     TsCmpDevicegraph cmp(*probed, *staging);
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
 
     BOOST_CHECK_EQUAL(required_features(probed), "");
-    BOOST_CHECK_EQUAL(suggested_features(probed), "btrfs");
+    BOOST_CHECK_EQUAL(suggested_features(probed), "");
 }
