@@ -1267,39 +1267,13 @@ namespace storage
     }
 
 
-    // TODO move to Arch class
-    static bool
-    is_efibootmgr()
-    {
-	static bool did_check = false;
-	static bool efibootmgr;
-
-	if (!did_check)
-	{
-	    // Check that efivars directory is writeable and nonempty (bsc #1185610).
-
-	    SystemCmd::Options options(TEST_BIN " -w '" EFIVARS_DIR "' -a "
-				       "\"$(" LS_BIN " -A '" EFIVARS_DIR "')\"", SystemCmd::DoThrow);
-	    options.verify = [](int exit_code) { return exit_code == 0 || exit_code == 1; };
-
-	    SystemCmd cmd(options);
-
-	    efibootmgr = cmd.retcode() == 0;
-
-	    did_check = true;
-	}
-
-	return efibootmgr;
-    }
-
-
     void
     Partition::Impl::do_delete_efi_boot_mgr() const
     {
 	if (!is_gpt(get_partition_table()))
 	    return;
 
-	if (!get_devicegraph()->get_storage()->get_arch().is_efiboot() || !is_efibootmgr())
+	if (!get_devicegraph()->get_storage()->get_arch().is_efiboot() || !Arch::is_efibootmgr())
 	    return;
 
 	const Partitionable* partitionable = get_partitionable();

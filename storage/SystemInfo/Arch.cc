@@ -171,6 +171,33 @@ namespace storage
     }
 
 
+    bool
+    Arch::is_efibootmgr()
+    {
+	// TODO move efibootmgr to Arch class - but breaks ABI
+
+	static bool did_check = false;
+	static bool efibootmgr;
+
+	if (!did_check)
+	{
+	    // Check that efivars directory is writeable and nonempty (bsc #1185610).
+
+	    SystemCmd::Options options(TEST_BIN " -w '" EFIVARS_DIR "' -a "
+				       "\"$(" LS_BIN " -A '" EFIVARS_DIR "')\"", SystemCmd::DoThrow);
+	    options.verify = [](int exit_code) { return exit_code == 0 || exit_code == 1; };
+
+	    SystemCmd cmd(options);
+
+	    efibootmgr = cmd.retcode() == 0;
+
+	    did_check = true;
+	}
+
+	return efibootmgr;
+    }
+
+
     std::ostream&
     operator<<(std::ostream& s, const Arch& arch)
     {
