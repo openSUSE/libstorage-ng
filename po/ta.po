@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-13 15:31+0200\n"
+"POT-Creation-Date: 2021-12-02 12:53+0100\n"
 "PO-Revision-Date: 2003-08-14 10:47+0200\n"
 "Last-Translator: xxx <yyy@example.org>\n"
 "Language-Team: Tamil <i18n@suse.de>\n"
@@ -355,6 +355,20 @@ msgid "Clear boot flag of partition %1$s"
 msgstr "பகுதி பிரிப்பு %1$s உருவாக்கப்படுகிறது"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by file system name (e.g. ext4),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB)),
+#, fuzzy, c-format
+msgid "Clear label of %1$s on %2$s"
+msgstr "%2$sக்கு %1$s மீது விளக்கச்சீட்டு அமைக்கவும்"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#, fuzzy, c-format
+msgid "Clear label of partition %1$s"
+msgstr "பகுதி பிரிப்பு %1$s உருவாக்கப்படுகிறது"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #, fuzzy, c-format
 msgid "Clear legacy boot flag of partition %1$s"
@@ -378,6 +392,20 @@ msgstr ""
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #, fuzzy, c-format
 msgid "Clearing boot flag of partition %1$s"
+msgstr "பகுதி பிரிப்பு %1$s உருவாக்கப்படுகிறது"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by file system name (e.g. ext4),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB)),
+#, fuzzy, c-format
+msgid "Clearing label of %1$s on %2$s"
+msgstr "%2$sக்கு %1$s மீது விளக்கச்சீட்டு அமைக்கப்படுகிறது"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#, fuzzy, c-format
+msgid "Clearing label of partition %1$s"
 msgstr "பகுதி பிரிப்பு %1$s உருவாக்கப்படுகிறது"
 
 #. TRANSLATORS: displayed during action,
@@ -2711,6 +2739,13 @@ msgid "Set label of %1$s on %2$s to %3$s"
 msgstr "%2$sக்கு %1$s மீது விளக்கச்சீட்டு அமைக்கவும்"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by partition label (e.g. ROOT),
+#, fuzzy, c-format
+msgid "Set label of partition %1$s to %2$s"
+msgstr "பகுதி பிரிப்பு வகை %1$sஐ %2$Xக்கு அமைக்கவும்"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #, fuzzy, c-format
 msgid "Set legacy boot flag of partition %1$s"
@@ -2815,6 +2850,13 @@ msgstr "பகுதி பிரிப்பு வகை %1$s %2$Xக்கு
 #, fuzzy, c-format
 msgid "Setting label of %1$s on %2$s to %3$s"
 msgstr "%2$sக்கு %1$s மீது விளக்கச்சீட்டு அமைக்கப்படுகிறது"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by partition label (e.g. ROOT),
+#, fuzzy, c-format
+msgid "Setting label of partition %1$s to %2$s"
+msgstr "பகுதி பிரிப்பு வகை %1$s %2$Xக்கு அமைக்கப்படுகிறது"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)

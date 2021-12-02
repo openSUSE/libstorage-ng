@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-13 15:31+0200\n"
+"POT-Creation-Date: 2021-12-02 12:53+0100\n"
 "PO-Revision-Date: 2021-03-25 13:56+0000\n"
 "Last-Translator: Sophie Leroy <sophie@stoquart.com>\n"
 "Language-Team: French <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -384,6 +384,21 @@ msgstr "Sous-volume Btrfs"
 msgid "Clear boot flag of partition %1$s"
 msgstr "Effacer le fanion de démarrage de la partition %1$s"
 
+# TLABEL storage_2002_08_07_0216__32
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by file system name (e.g. ext4),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB)),
+#, fuzzy, c-format
+msgid "Clear label of %1$s on %2$s"
+msgstr "Configurer le label de %1$s sur %2$s"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#, fuzzy, c-format
+msgid "Clear label of partition %1$s"
+msgstr "Effacer le fanion de démarrage de la partition %1$s"
+
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #, c-format
@@ -412,6 +427,22 @@ msgstr ""
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #, c-format
 msgid "Clearing boot flag of partition %1$s"
+msgstr "Effacement du fanion de démarrage de la partition %1$s"
+
+# TLABEL storage_2002_08_07_0216__32
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by file system name (e.g. ext4),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB)),
+#, fuzzy, c-format
+msgid "Clearing label of %1$s on %2$s"
+msgstr "Configuration du label de %1$s sur %2$s"
+
+# TLABEL update_2002_01_04_0147__20
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#, fuzzy, c-format
+msgid "Clearing label of partition %1$s"
 msgstr "Effacement du fanion de démarrage de la partition %1$s"
 
 # TLABEL update_2002_01_04_0147__20
@@ -3005,6 +3036,14 @@ msgstr "Définir le type de la partition %1$s à 0x%2$02X"
 msgid "Set label of %1$s on %2$s to %3$s"
 msgstr "Définir l'étiquette de %1$s sur %2$s à %3$s"
 
+# TLABEL partitioning_2002_01_04_0147__425
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by partition label (e.g. ROOT),
+#, fuzzy, c-format
+msgid "Set label of partition %1$s to %2$s"
+msgstr "Définir le type de la partition %1$s à %2$s"
+
 # TLABEL update_2002_01_04_0147__20
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -3124,6 +3163,14 @@ msgstr "Définition du type de la partition %1$s à 0x%2$02X"
 #, c-format
 msgid "Setting label of %1$s on %2$s to %3$s"
 msgstr "Définition de l'étiquette de %1$s sur %2$s à %3$s"
+
+# TLABEL partitioning_2002_01_04_0147__425
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by partition label (e.g. ROOT),
+#, fuzzy, c-format
+msgid "Setting label of partition %1$s to %2$s"
+msgstr "Définition du type de la partition %1$s à %2$s"
 
 # TLABEL partitioning_2002_01_04_0147__425
 #. TRANSLATORS: displayed during action,
@@ -4048,10 +4095,6 @@ msgstr "tmpfs"
 #~ msgid "Set disk label of %1$s to %2$s"
 #~ msgstr "Configurer l'étiquette de disque de %1$s à %2$s"
 
-# TLABEL storage_2002_08_07_0216__32
-#~ msgid "Set label on %1$s to %2$s"
-#~ msgstr "Configurer le label de %1$s sur %2$s"
-
 # TLABEL storage_2002_08_07_0216__33
 #~ msgid "Set mount point of tmpfs to %1$s"
 #~ msgstr "Définition du point de montage de tmpfs sur %1$s"
@@ -4074,10 +4117,6 @@ msgstr "tmpfs"
 
 #~ msgid "Setting disk label of %1$s to %2$s"
 #~ msgstr "Configuration de l'étiquette de disque de %1$s à %2$s"
-
-# TLABEL storage_2002_08_07_0216__32
-#~ msgid "Setting label on %1$s to %2$s"
-#~ msgstr "Configuration du label de %1$s sur %2$s"
 
 # TLABEL partitioning_2002_01_04_0147__425
 #~ msgid "Setting type of RAID partition %1$s to %2$X"

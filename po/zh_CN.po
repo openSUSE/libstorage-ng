@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-13 15:31+0200\n"
+"POT-Creation-Date: 2021-12-02 12:53+0100\n"
 "PO-Revision-Date: 2021-03-19 09:56+0000\n"
 "Last-Translator: Grace Yu <grace.yu@excel-gits.com>\n"
 "Language-Team: Chinese (China) <https://l10n.opensuse.org/projects/"
@@ -359,6 +359,20 @@ msgid "Clear boot flag of partition %1$s"
 msgstr "清除分区 %1$s 的引导旗标"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by file system name (e.g. ext4),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB)),
+#, fuzzy, c-format
+msgid "Clear label of %1$s on %2$s"
+msgstr "将 %2$s 上 %1$s 的标签设为 %3$s"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#, fuzzy, c-format
+msgid "Clear label of partition %1$s"
+msgstr "清除分区 %1$s 的引导旗标"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #, c-format
 msgid "Clear legacy boot flag of partition %1$s"
@@ -382,6 +396,20 @@ msgstr "清除 %1$s 上 GPT 的保护性 MBR 引导旗标"
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #, c-format
 msgid "Clearing boot flag of partition %1$s"
+msgstr "正在清除分区 %1$s  的引导旗标"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by file system name (e.g. ext4),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB)),
+#, fuzzy, c-format
+msgid "Clearing label of %1$s on %2$s"
+msgstr "正在将 %2$s 上 %1$s 的标签设为 %3$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#, fuzzy, c-format
+msgid "Clearing label of partition %1$s"
 msgstr "正在清除分区 %1$s  的引导旗标"
 
 #. TRANSLATORS: displayed during action,
@@ -2697,6 +2725,13 @@ msgid "Set label of %1$s on %2$s to %3$s"
 msgstr "将 %2$s 上 %1$s 的标签设为 %3$s"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by partition label (e.g. ROOT),
+#, fuzzy, c-format
+msgid "Set label of partition %1$s to %2$s"
+msgstr "设置分区 %1$s 的 ID 为 %2$s"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #, c-format
 msgid "Set legacy boot flag of partition %1$s"
@@ -2801,6 +2836,13 @@ msgstr "正在设置分区 %1$s 的 ID 为 0x%2$02X"
 #, c-format
 msgid "Setting label of %1$s on %2$s to %3$s"
 msgstr "正在将 %2$s 上 %1$s 的标签设为 %3$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by partition label (e.g. ROOT),
+#, fuzzy, c-format
+msgid "Setting label of partition %1$s to %2$s"
+msgstr "正在设置分区 %1$s 的 ID 为 %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)

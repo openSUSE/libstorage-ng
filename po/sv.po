@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-13 15:31+0200\n"
+"POT-Creation-Date: 2021-12-02 12:53+0100\n"
 "PO-Revision-Date: 2020-05-14 17:08+0000\n"
 "Last-Translator: Luna Jernberg <droidbittin@gmail.com>\n"
 "Language-Team: Swedish <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -369,6 +369,21 @@ msgstr "Btrfs-undervolym"
 msgid "Clear boot flag of partition %1$s"
 msgstr "Ta bort bootflagga för partitionen %1$s"
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by file system name (e.g. ext4),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB)),
+#, fuzzy, c-format
+msgid "Clear label of %1$s on %2$s"
+msgstr "Ange etiketten för %1$s på %2$s till %3$s"
+
+# SLE12
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#, fuzzy, c-format
+msgid "Clear label of partition %1$s"
+msgstr "Ta bort bootflagga för partitionen %1$s"
+
 # SLE12
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -396,6 +411,21 @@ msgstr "Ta bort skyddsbootflagga MBR  från GPT på %1$s"
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #, c-format
 msgid "Clearing boot flag of partition %1$s"
+msgstr "Tar bort bootflagga för partitionen %1$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by file system name (e.g. ext4),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB)),
+#, fuzzy, c-format
+msgid "Clearing label of %1$s on %2$s"
+msgstr "Anger etiketten på %1$s som %2$s"
+
+# SLE12
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#, fuzzy, c-format
+msgid "Clearing label of partition %1$s"
 msgstr "Tar bort bootflagga för partitionen %1$s"
 
 # SLE12
@@ -2835,6 +2865,13 @@ msgid "Set label of %1$s on %2$s to %3$s"
 msgstr "Ange etiketten för %1$s på %2$s till %3$s"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by partition label (e.g. ROOT),
+#, fuzzy, c-format
+msgid "Set label of partition %1$s to %2$s"
+msgstr "Ange id för partition %1$s som %2$s"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #, c-format
 msgid "Set legacy boot flag of partition %1$s"
@@ -2942,6 +2979,13 @@ msgstr "Anger id för partitionen %1$s som 0x%2$02X"
 #, fuzzy, c-format
 msgid "Setting label of %1$s on %2$s to %3$s"
 msgstr "Anger etiketten på %1$s som %2$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by partition label (e.g. ROOT),
+#, fuzzy, c-format
+msgid "Setting label of partition %1$s to %2$s"
+msgstr "Anger id för partitionen %1$s som %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)

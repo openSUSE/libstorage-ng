@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-13 15:31+0200\n"
+"POT-Creation-Date: 2021-12-02 12:53+0100\n"
 "PO-Revision-Date: 2003-02-12 09:27+0100\n"
 "Last-Translator: nds <i18n@suse.de>\n"
 "Language-Team: Low German <i18n@suse.de>\n"
@@ -351,6 +351,20 @@ msgid "Clear boot flag of partition %1$s"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by file system name (e.g. ext4),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB)),
+#, c-format
+msgid "Clear label of %1$s on %2$s"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#, c-format
+msgid "Clear label of partition %1$s"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #, c-format
 msgid "Clear legacy boot flag of partition %1$s"
@@ -374,6 +388,20 @@ msgstr ""
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #, c-format
 msgid "Clearing boot flag of partition %1$s"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by file system name (e.g. ext4),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB)),
+#, c-format
+msgid "Clearing label of %1$s on %2$s"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#, c-format
+msgid "Clearing label of partition %1$s"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,
@@ -2682,6 +2710,13 @@ msgid "Set label of %1$s on %2$s to %3$s"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by partition label (e.g. ROOT),
+#, c-format
+msgid "Set label of partition %1$s to %2$s"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #, c-format
 msgid "Set legacy boot flag of partition %1$s"
@@ -2785,6 +2820,13 @@ msgstr ""
 #. %3$s is replaced by label (e.g. ROOT)
 #, c-format
 msgid "Setting label of %1$s on %2$s to %3$s"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by partition label (e.g. ROOT),
+#, c-format
+msgid "Setting label of partition %1$s to %2$s"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,
