@@ -240,6 +240,11 @@ namespace storage
 	const std::string& get_label() const;
 
 	/**
+	 * Set the partition label. Only available for partitions on GPT.
+	 */
+	void set_label(const std::string& label);
+
+	/**
 	 * Get the partition UUID. Only available for partitions on GPT.
 	 */
 	const std::string& get_uuid() const;

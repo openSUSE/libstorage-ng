@@ -167,6 +167,13 @@ namespace storage
     }
 
 
+    void
+    Partition::set_label(const string& label)
+    {
+	get_impl().set_label(label);
+    }
+
+
     const string&
     Partition::get_uuid() const
     {
