@@ -236,11 +236,16 @@ namespace storage
 
 	/**
 	 * Get the partition label. Can be empty. Only available for partitions on GPT.
+	 *
+	 * In the UEFI spec this is called name instead of label. But many tools,
+	 * e.g. udev and blkid, use label.
 	 */
 	const std::string& get_label() const;
 
 	/**
-	 * Set the partition label. Only available for partitions on GPT.
+	 * Set the partition label.
+	 *
+	 * @see get_label()
 	 */
 	void set_label(const std::string& label);
 
