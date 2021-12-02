@@ -68,7 +68,7 @@ namespace storage
 
 
     Partition::Impl::Impl(const xmlNode* node)
-	: BlkDevice::Impl(node), type(PartitionType::PRIMARY), id(ID_LINUX)
+	: BlkDevice::Impl(node)
     {
 	string tmp;
 
@@ -334,6 +334,9 @@ namespace storage
 		actions.push_back(new Action::SetPartitionId(get_sid()));
 	}
 
+	if (!label.empty())
+	    actions.push_back(new Action::SetPartitionLabel(get_sid()));
+
 	if (boot)
 	    actions.push_back(new Action::SetBoot(get_sid()));
 
@@ -364,6 +367,12 @@ namespace storage
 	if (get_id() != lhs.get_id())
 	{
 	    Action::Base* action = new Action::SetPartitionId(get_sid());
+	    actiongraph.add_vertex(action);
+	}
+
+	if (label != lhs.label)
+	{
+	    Action::Base* action = new Action::SetPartitionLabel(get_sid());
 	    actiongraph.add_vertex(action);
 	}
 
@@ -1101,6 +1110,56 @@ namespace storage
 
 
     Text
+    Partition::Impl::do_set_label_text(Tense tense) const
+    {
+	if (label.empty())
+	{
+	    Text text = tenser(tense,
+			       // TRANSLATORS: displayed before action,
+			       // %1$s is replaced by partition name (e.g. /dev/sda1),
+			       _("Clear label of partition %1$s"),
+			       // TRANSLATORS: displayed during action,
+			       // %1$s is replaced by partition name (e.g. /dev/sda1),
+			       _("Clearing label of partition %1$s"));
+
+	    return sformat(text, get_name());
+	}
+	else
+	{
+	    Text text = tenser(tense,
+			       // TRANSLATORS: displayed before action,
+			       // %1$s is replaced by partition name (e.g. /dev/sda1),
+			       // %2$s is replaced by partition label (e.g. ROOT),
+			       _("Set label of partition %1$s to %2$s"),
+			       // TRANSLATORS: displayed during action,
+			       // %1$s is replaced by partition name (e.g. /dev/sda1),
+			       // %2$s is replaced by partition label (e.g. ROOT),
+			       _("Setting label of partition %1$s to %2$s"));
+
+	    return sformat(text, get_name(), label);
+	}
+    }
+
+
+    void
+    Partition::Impl::do_set_label() const
+    {
+	const PartitionTable* partition_table = get_partition_table();
+	const Partitionable* partitionable = partition_table->get_partitionable();
+
+	string cmd_line = PARTED_BIN " --script " + quote(partitionable->get_name()) + " name " +
+	    to_string(get_number()) + " ";
+
+	if (label.empty())
+	    cmd_line += "'\"\"' ";
+	else
+	    cmd_line += quote(label);
+
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+    }
+
+
+    Text
     Partition::Impl::do_set_boot_text(Tense tense) const
     {
 	Text text;
@@ -1369,6 +1428,22 @@ namespace storage
 	{
 	    const Partition* partition = to_partition(get_device(commit_data.actiongraph, RHS));
 	    partition->get_impl().do_set_id();
+	}
+
+
+	Text
+	SetPartitionLabel::text(const CommitData& commit_data) const
+	{
+	    const Partition* partition = to_partition(get_device(commit_data.actiongraph, RHS));
+	    return partition->get_impl().do_set_label_text(commit_data.tense);
+	}
+
+
+	void
+	SetPartitionLabel::commit(CommitData& commit_data, const CommitOptions& commit_options) const
+	{
+	    const Partition* partition = to_partition(get_device(commit_data.actiongraph, RHS));
+	    partition->get_impl().do_set_label();
 	}
 
 

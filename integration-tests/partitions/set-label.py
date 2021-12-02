@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# requirements: partition /dev/sdc1 with ext4
+# requirements: partition /dev/sdc1 on GPT
 
 
 from storage import *
@@ -18,11 +18,9 @@ staging = storage.get_staging()
 
 print(staging)
 
-sdc1 = BlkDevice.find_by_name(staging, "/dev/sdc1")
+partition = Partition.find_by_name(staging, "/dev/sdc1")
 
-blk_filesystem = sdc1.get_blk_filesystem()
-
-blk_filesystem.set_label("" if blk_filesystem.get_label() != "" else "TEST")
+partition.set_label("" if partition.get_label() != "" else "TEST")
 
 print(staging)
 

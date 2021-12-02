@@ -138,6 +138,9 @@ namespace storage
 	virtual Text do_set_id_text(Tense tense) const;
 	virtual void do_set_id() const;
 
+	virtual Text do_set_label_text(Tense tense) const;
+	virtual void do_set_label() const;
+
 	virtual Text do_set_boot_text(Tense tense) const;
 	virtual void do_set_boot() const;
 
@@ -156,8 +159,8 @@ namespace storage
 
     private:
 
-	PartitionType type;
-	unsigned int id;
+	PartitionType type = PartitionType::PRIMARY;
+	unsigned int id = ID_LINUX;
 	bool boot = false;
 	bool legacy_boot = false;
 	string label;
@@ -180,6 +183,18 @@ namespace storage
 	public:
 
 	    SetPartitionId(sid_t sid) : Modify(sid) {}
+
+	    virtual Text text(const CommitData& commit_data) const override;
+	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
+
+	};
+
+
+	class SetPartitionLabel : public Modify
+	{
+	public:
+
+	    SetPartitionLabel(sid_t sid) : Modify(sid) {}
 
 	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;

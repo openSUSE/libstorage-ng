@@ -777,21 +777,40 @@ namespace storage
     Text
     BlkFilesystem::Impl::do_set_label_text(Tense tense) const
     {
-	Text text = tenser(tense,
-			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by file system name (e.g. ext4),
-			   // %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
-			   // /dev/sdb2 (1.00 GiB)),
-			   // %3$s is replaced by label (e.g. ROOT)
-			   _("Set label of %1$s on %2$s to %3$s"),
-			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by file system name (e.g. ext4),
-			   // %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
-			   // /dev/sdb2 (1.00 GiB)),
-			   // %3$s is replaced by label (e.g. ROOT)
-			   _("Setting label of %1$s on %2$s to %3$s"));
+	if (label.empty())
+	{
+	    Text text = tenser(tense,
+			       // TRANSLATORS: displayed before action,
+			       // %1$s is replaced by file system name (e.g. ext4),
+			       // %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+			       // /dev/sdb2 (1.00 GiB)),
+			       _("Clear label of %1$s on %2$s"),
+			       // TRANSLATORS: displayed during action,
+			       // %1$s is replaced by file system name (e.g. ext4),
+			       // %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+			       // /dev/sdb2 (1.00 GiB)),
+			       _("Clearing label of %1$s on %2$s"));
 
-	return sformat(text, get_displayname(), get_message_name(), label);
+	    return sformat(text, get_displayname(), get_message_name());
+	}
+	else
+	{
+	    Text text = tenser(tense,
+			       // TRANSLATORS: displayed before action,
+			       // %1$s is replaced by file system name (e.g. ext4),
+			       // %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+			       // /dev/sdb2 (1.00 GiB)),
+			       // %3$s is replaced by label (e.g. ROOT)
+			       _("Set label of %1$s on %2$s to %3$s"),
+			       // TRANSLATORS: displayed during action,
+			       // %1$s is replaced by file system name (e.g. ext4),
+			       // %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+			       // /dev/sdb2 (1.00 GiB)),
+			       // %3$s is replaced by label (e.g. ROOT)
+			       _("Setting label of %1$s on %2$s to %3$s"));
+
+	    return sformat(text, get_displayname(), get_message_name(), label);
+	}
     }
 
 

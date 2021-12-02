@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-13 15:31+0200\n"
+"POT-Creation-Date: 2021-12-02 12:53+0100\n"
 "PO-Revision-Date: 2005-07-29 15:37+0530\n"
 "Last-Translator: \"( अमेय पाळंदे ) Ameya Palande\" <2ameya@gmail.com>\n"
 "Language-Team: Marathi <i18n@suse.de>\n"
@@ -355,6 +355,20 @@ msgid "Clear boot flag of partition %1$s"
 msgstr "निर्माण करत आहे %1$s"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by file system name (e.g. ext4),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB)),
+#, fuzzy, c-format
+msgid "Clear label of %1$s on %2$s"
+msgstr "सेट करा लेबल यावर %1$s ते %2$s"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#, fuzzy, c-format
+msgid "Clear label of partition %1$s"
+msgstr "निर्माण करत आहे %1$s"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #, fuzzy, c-format
 msgid "Clear legacy boot flag of partition %1$s"
@@ -378,6 +392,20 @@ msgstr ""
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #, fuzzy, c-format
 msgid "Clearing boot flag of partition %1$s"
+msgstr "निर्माण करत आहे %1$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by file system name (e.g. ext4),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB)),
+#, fuzzy, c-format
+msgid "Clearing label of %1$s on %2$s"
+msgstr "सेट करत आहे लेबल यावर %1$s ते %2$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#, fuzzy, c-format
+msgid "Clearing label of partition %1$s"
 msgstr "निर्माण करत आहे %1$s"
 
 #. TRANSLATORS: displayed during action,
@@ -2711,6 +2739,13 @@ msgid "Set label of %1$s on %2$s to %3$s"
 msgstr "सेट करा लेबल यावर %1$s ते %2$s"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by partition label (e.g. ROOT),
+#, fuzzy, c-format
+msgid "Set label of partition %1$s to %2$s"
+msgstr "सेट करा विभाजन प्रकार %1$s ते %2$X"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #, fuzzy, c-format
 msgid "Set legacy boot flag of partition %1$s"
@@ -2815,6 +2850,13 @@ msgstr "सेटिंग विभाजन प्रकार %1$s ते %2$
 #, fuzzy, c-format
 msgid "Setting label of %1$s on %2$s to %3$s"
 msgstr "सेट करत आहे लेबल यावर %1$s ते %2$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by partition label (e.g. ROOT),
+#, fuzzy, c-format
+msgid "Setting label of partition %1$s to %2$s"
+msgstr "सेटिंग विभाजन प्रकार %1$s ते %2$X"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)

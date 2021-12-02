@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-13 15:31+0200\n"
+"POT-Creation-Date: 2021-12-02 12:53+0100\n"
 "PO-Revision-Date: 2019-02-19 09:18+0000\n"
 "Last-Translator: Miguel Branco <mgl.branco@gmail.com>\n"
 "Language-Team: Galician <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -370,6 +370,20 @@ msgid "Clear boot flag of partition %1$s"
 msgstr "Limpar a etiqueta de arrinque da partición %1$s"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by file system name (e.g. ext4),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB)),
+#, fuzzy, c-format
+msgid "Clear label of %1$s on %2$s"
+msgstr "Definir a etiqueta de %1$s como %2$s"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#, fuzzy, c-format
+msgid "Clear label of partition %1$s"
+msgstr "Limpar a etiqueta de arrinque da partición %1$s"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #, c-format
 msgid "Clear legacy boot flag of partition %1$s"
@@ -395,6 +409,20 @@ msgstr "Retirar a etiqueta de arrinque MBR do GPT en %1$s"
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #, c-format
 msgid "Clearing boot flag of partition %1$s"
+msgstr "Limpando a etiqueta de arrinque da partición %1$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by file system name (e.g. ext4),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB)),
+#, fuzzy, c-format
+msgid "Clearing label of %1$s on %2$s"
+msgstr "Definindo a etiqueta de %1$s como %2$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#, fuzzy, c-format
+msgid "Clearing label of partition %1$s"
 msgstr "Limpando a etiqueta de arrinque da partición %1$s"
 
 #. TRANSLATORS: displayed during action,
@@ -2782,6 +2810,13 @@ msgid "Set label of %1$s on %2$s to %3$s"
 msgstr "Definir a etiqueta de %1$s como %2$s"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by partition label (e.g. ROOT),
+#, fuzzy, c-format
+msgid "Set label of partition %1$s to %2$s"
+msgstr "Definir a id da partición %1$s como %2$s"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #, c-format
 msgid "Set legacy boot flag of partition %1$s"
@@ -2888,6 +2923,13 @@ msgstr "Definindo a id da partición %1$s como 0x%2$02X"
 #, fuzzy, c-format
 msgid "Setting label of %1$s on %2$s to %3$s"
 msgstr "Definindo a etiqueta de %1$s como %2$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by partition label (e.g. ROOT),
+#, fuzzy, c-format
+msgid "Setting label of partition %1$s to %2$s"
+msgstr "Definindo a id da partición %1$s como %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
