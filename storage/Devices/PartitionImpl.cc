@@ -502,7 +502,7 @@ namespace storage
     void
     Partition::Impl::set_boot(bool boot)
     {
-	const PartitionTable* partition_table = get_partition_table();
+	PartitionTable* partition_table = get_partition_table();
 
 	if (!partition_table->get_impl().is_partition_boot_flag_supported())
 	    ST_THROW(Exception(sformat("set_boot not supported on %s",
@@ -510,8 +510,6 @@ namespace storage
 
 	if (boot && !Impl::boot)
 	{
-	    PartitionTable* partition_table = get_partition_table();
-
 	    for (Partition* partition : partition_table->get_partitions())
 		partition->get_impl().boot = false;
 	}
@@ -737,9 +735,11 @@ namespace storage
     Text
     Partition::Impl::do_create_text(Tense tense) const
     {
+	const PartitionTable* partition_table = get_partition_table();
+
 	Text text;
 
-	if (is_implicit_pt(get_partition_table()))
+	if (is_implicit_pt(partition_table))
 	{
 	    text = tenser(tense,
 			  // TRANSLATORS: displayed before action,
@@ -751,7 +751,7 @@ namespace storage
 			  // %2$s is replaced by size (e.g. 2.00 GiB)
 			  _("Creating implicit partition %1$s (%2$s)"));
 	}
-	else if (!is_msdos(get_partition_table()))
+	else if (!is_msdos(partition_table))
 	{
 	    text = tenser(tense,
 			  // TRANSLATORS: displayed before action,
@@ -1162,8 +1162,7 @@ namespace storage
     void
     Partition::Impl::do_set_label() const
     {
-	const PartitionTable* partition_table = get_partition_table();
-	const Partitionable* partitionable = partition_table->get_partitionable();
+	const Partitionable* partitionable = get_partitionable();
 
 	string cmd_line = PARTED_BIN " --script " + quote(partitionable->get_name()) + " name " +
 	    to_string(get_number()) + " ";
@@ -1253,9 +1252,11 @@ namespace storage
     Text
     Partition::Impl::do_delete_text(Tense tense) const
     {
+	const PartitionTable* partition_table = get_partition_table();
+
 	Text text;
 
-	if (is_implicit_pt(get_partition_table()))
+	if (is_implicit_pt(partition_table))
 	{
 	    text = tenser(tense,
 			  // TRANSLATORS: displayed before action,
@@ -1267,7 +1268,7 @@ namespace storage
 			  // %2$s is replaced by size (e.g. 2.00 GiB)
 			  _("Deleting implicit partition %1$s (%2$s)"));
 	}
-	else if (!is_msdos(get_partition_table()))
+	else if (!is_msdos(partition_table))
 	{
 	    text = tenser(tense,
 			  // TRANSLATORS: displayed before action,
@@ -1344,13 +1345,15 @@ namespace storage
     void
     Partition::Impl::do_delete_efi_boot_mgr() const
     {
-	if (!is_gpt(get_partition_table()))
+	const PartitionTable* partition_table = get_partition_table();
+
+	if (!is_gpt(partition_table))
 	    return;
 
 	if (!get_devicegraph()->get_storage()->get_arch().is_efiboot() || !Arch::is_efibootmgr())
 	    return;
 
-	const Partitionable* partitionable = get_partitionable();
+	const Partitionable* partitionable = partition_table->get_partitionable();
 
 	string cmd_line = EFIBOOTMGR_BIN " --verbose --delete --disk " +
 	    quote(partitionable->get_name()) + " --part " + to_string(get_number());
