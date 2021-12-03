@@ -11,10 +11,10 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-02 12:53+0100\n"
-"PO-Revision-Date: 2021-10-17 02:12+0000\n"
+"PO-Revision-Date: 2021-12-04 01:18+0000\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
-"Language-Team: Japanese <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/ja/>\n"
+"Language-Team: Japanese <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -377,15 +377,15 @@ msgstr "パーティション %1$s の boot フラグの消去"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
 #. /dev/sdb2 (1.00 GiB)),
-#, fuzzy, c-format
+#, c-format
 msgid "Clear label of %1$s on %2$s"
-msgstr "%2$s にある %1$s のラベルを %3$s に設定"
+msgstr "%2$s にある %1$s のラベルを消去"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#, fuzzy, c-format
+#, c-format
 msgid "Clear label of partition %1$s"
-msgstr "パーティション %1$s の boot フラグの消去"
+msgstr "パーティション %1$s のラベルを消去"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -418,15 +418,15 @@ msgstr "パーティション %1$s の boot フラグを消去しています"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
 #. /dev/sdb2 (1.00 GiB)),
-#, fuzzy, c-format
+#, c-format
 msgid "Clearing label of %1$s on %2$s"
-msgstr "%2$s にある %1$s のラベルを %3$s に設定しています"
+msgstr "%2$s にある %1$s のラベルを消去しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#, fuzzy, c-format
+#, c-format
 msgid "Clearing label of partition %1$s"
-msgstr "パーティション %1$s の boot フラグを消去しています"
+msgstr "パーティション %1$s のラベルを消去しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -2815,9 +2815,9 @@ msgstr "%2$s にある %1$s のラベルを %3$s に設定"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition label (e.g. ROOT),
-#, fuzzy, c-format
+#, c-format
 msgid "Set label of partition %1$s to %2$s"
-msgstr "パーティション %1$s に対する ID (%2$s) の設定"
+msgstr "パーティション %1$s に対するラベル (%2$s) の設定"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -2929,9 +2929,9 @@ msgstr "%2$s にある %1$s のラベルを %3$s に設定しています"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition label (e.g. ROOT),
-#, fuzzy, c-format
+#, c-format
 msgid "Setting label of partition %1$s to %2$s"
-msgstr "パーティション %1$s の ID を %2$s に設定しています"
+msgstr "パーティション %1$s のラベルを %2$s に設定しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
