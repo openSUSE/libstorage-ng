@@ -22,6 +22,16 @@ partition = Partition.find_by_name(staging, "/dev/sdc1")
 
 partition.set_label("" if partition.get_label() != "" else "TEST")
 
+# partition.set_label("")
+# partition.set_label(" ")
+
+# partition.set_label("hello world")
+
+# partition.set_label("'test'")
+# partition.set_label("\"test\"")
+# partition.set_label("\"'test'\"")
+# partition.set_label("'\"test\"'")
+
 print(staging)
 
 commit(storage)

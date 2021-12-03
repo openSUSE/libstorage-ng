@@ -809,6 +809,25 @@ namespace storage
     }
 
 
+    namespace
+    {
+
+	string
+	quote_label(const string& label)
+	{
+	    // funny syntax (see https://bugzilla.suse.com/show_bug.cgi?id=1023818)
+
+	    string t = label;
+
+	    boost::replace_all(t, "'", "\\'");
+	    boost::replace_all(t, "\"", "\\\"");
+
+	    return "\"'" + t + "'\"";
+	}
+
+    }
+
+
     void
     Partition::Impl::do_create()
     {
@@ -828,9 +847,8 @@ namespace storage
 	    cmd_line += toString(get_type()) + " ";
 
 	if (is_gpt(partition_table))
-	    // pass empty string as partition name, funny syntax (see
-	    // https://bugzilla.suse.com/show_bug.cgi?id=1023818)
-	    cmd_line += "'\"\"' ";
+	    // pass empty string as partition name
+	    cmd_line += quote_label("") + " ";
 
 	if (get_type() != PartitionType::EXTENDED)
 	{
@@ -1150,10 +1168,7 @@ namespace storage
 	string cmd_line = PARTED_BIN " --script " + quote(partitionable->get_name()) + " name " +
 	    to_string(get_number()) + " ";
 
-	if (label.empty())
-	    cmd_line += "'\"\"' ";
-	else
-	    cmd_line += quote(label);
+	cmd_line += quote_label(label);
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
