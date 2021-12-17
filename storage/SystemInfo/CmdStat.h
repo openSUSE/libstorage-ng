@@ -57,7 +57,7 @@ namespace storage
 
 	string path;
 
-	mode_t mode;
+	mode_t mode = 0;
 
     };
 

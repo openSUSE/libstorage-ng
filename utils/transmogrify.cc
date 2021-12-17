@@ -41,14 +41,14 @@ doit(const string& filename, const vector<string>& commands)
 	else if (command == "remove+")
         {
 	    Device* device = staging->find_device(std::stoi(commands[index++]));
-	    device->remove_descendants();
+	    device->remove_descendants(View::CLASSIC);
 	    staging->remove_device(device);
         }
 	// only remove descendants of device with sid
 	else if (command == "remove+-")
         {
 	    Device* device = staging->find_device(std::stoi(commands[index++]));
-	    device->remove_descendants();
+	    device->remove_descendants(View::CLASSIC);
         }
 	// keep device with sid and its descendants
 	else if (command == "keep+")
