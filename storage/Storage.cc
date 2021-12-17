@@ -49,6 +49,13 @@ namespace storage
     }
 
 
+    unsigned long long
+    LuksInfo::get_size() const
+    {
+	return get_impl().size;
+    }
+
+
     const string&
     LuksInfo::get_uuid() const
     {

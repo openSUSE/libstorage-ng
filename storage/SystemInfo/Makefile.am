@@ -24,6 +24,7 @@ libsystem_info_la_SOURCES =				\
 	CmdParted.cc		CmdParted.h		\
 	CmdResize2fs.cc		CmdResize2fs.h		\
 	CmdStat.cc		CmdStat.h		\
+	CmdBlockdev.cc		CmdBlockdev.h		\
 	CmdUdevadm.cc		CmdUdevadm.h		\
 	DevAndSys.cc		DevAndSys.h		\
 	ProcMdstat.cc		ProcMdstat.h		\

@@ -45,9 +45,8 @@ namespace storage
     {
     public:
 
-	Impl() : device_name(), uuid(), label() {}
-
 	string device_name;
+	unsigned long long size = 0;
 	string uuid;
 	string label;
 
