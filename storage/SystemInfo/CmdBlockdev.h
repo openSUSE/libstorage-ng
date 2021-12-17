@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2018-2020] SUSE LLC
+ * Copyright (c) 2021 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -20,13 +20,9 @@
  */
 
 
-#ifndef STORAGE_CMD_STAT_H
-#define STORAGE_CMD_STAT_H
+#ifndef STORAGE_CMD_BLOCKDEV_H
+#define STORAGE_CMD_BLOCKDEV_H
 
-
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <unistd.h>
 
 #include <string>
 #include <vector>
@@ -38,18 +34,15 @@ namespace storage
     using std::vector;
 
 
-    class CmdStat
+    class CmdBlockdev
     {
     public:
 
-	CmdStat(const string& path);
+	CmdBlockdev(const string& path);
 
-	bool is_blk() const { return S_ISBLK(mode); }
-	bool is_dir() const { return S_ISDIR(mode); }
-	bool is_reg() const { return S_ISREG(mode); }
-	bool is_lnk() const { return S_ISLNK(mode); }
+	unsigned long long get_size() const { return size; }
 
-	friend std::ostream& operator<<(std::ostream& s, const CmdStat& cmd_stat);
+	friend std::ostream& operator<<(std::ostream& s, const CmdBlockdev& cmd_blockdev);
 
     private:
 
@@ -57,7 +50,7 @@ namespace storage
 
 	string path;
 
-	mode_t mode = 0;
+	unsigned long long size = 0;
 
     };
 

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -38,6 +38,7 @@
 #include "storage/SystemInfo/CmdLsscsi.h"
 #include "storage/SystemInfo/CmdParted.h"
 #include "storage/SystemInfo/CmdStat.h"
+#include "storage/SystemInfo/CmdBlockdev.h"
 #include "storage/SystemInfo/CmdDasdview.h"
 #include "storage/SystemInfo/CmdDf.h"
 #include "storage/SystemInfo/CmdDmsetup.h"
@@ -84,6 +85,7 @@ namespace storage
 	const Dir& getDir(const string& path) { return dirs.get(path); }
 	const File& getFile(const string& path) { return files.get(path); }
 	const CmdStat& getCmdStat(const string& path) { return cmd_stats.get(path); }
+	const CmdBlockdev& getCmdBlockdev(const string& path) { return cmd_blockdev.get(path); }
 	const MdLinks& getMdLinks() { return md_links.get(); }
 	const ProcMounts& getProcMounts() { return proc_mounts.get(); }
 	const ProcMdstat& getProcMdstat() { return proc_mdstat.get(); }
@@ -237,6 +239,7 @@ namespace storage
 	LazyObjects<Dir> dirs;
 	LazyObjects<File> files;
 	LazyObjects<CmdStat> cmd_stats;
+	LazyObjects<CmdBlockdev> cmd_blockdev;
 	LazyObject<MdLinks> md_links;
 	LazyObject<ProcMounts> proc_mounts;
 	LazyObject<ProcMdstat> proc_mdstat;

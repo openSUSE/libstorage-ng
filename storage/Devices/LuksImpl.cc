@@ -172,6 +172,7 @@ namespace storage
 		    LuksInfo info;
 
 		    info.get_impl().device_name = name;
+		    info.get_impl().size = system_info.getCmdBlockdev(name).get_size();
 		    info.get_impl().uuid = uuid;
 		    info.get_impl().label = label;
 

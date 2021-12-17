@@ -68,7 +68,7 @@ namespace storage
 		//
 		// See also bsc#938572, bsc#938561
 
-		for ( const string& line: stderr )
+		for (const string& line : stderr)
 		{
 		    y2war( "parted stderr> " + line );
 		}
@@ -403,17 +403,17 @@ namespace storage
 
 
     const map<unsigned int, const char*> Parted::id_to_name = {
-	{ ID_BIOS_BOOT, "bios_grub"},
-	{ ID_DIAG, "diag"},
-	{ ID_ESP, "esp"},
-	{ ID_IRST, "irst"},
+	{ ID_BIOS_BOOT, "bios_grub" },
+	{ ID_DIAG, "diag" },
+	{ ID_ESP, "esp" },
+	{ ID_IRST, "irst" },
 	{ ID_LINUX_HOME, "linux-home" },
-	{ ID_LVM, "lvm"},
-	{ ID_MICROSOFT_RESERVED, "msftres"},
-	{ ID_PREP, "prep"},
+	{ ID_LVM, "lvm" },
+	{ ID_MICROSOFT_RESERVED, "msftres" },
+	{ ID_PREP, "prep" },
 	{ ID_RAID, "raid" },
-	{ ID_SWAP, "swap"},
-	{ ID_WINDOWS_BASIC_DATA, "msftdata"},
+	{ ID_SWAP, "swap" },
+	{ ID_WINDOWS_BASIC_DATA, "msftdata" },
     };
 
 }

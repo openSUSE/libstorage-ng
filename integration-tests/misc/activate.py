@@ -10,7 +10,7 @@ from storageitu import *
 
 set_logger(get_logfile_logger())
 
-class MyActivateCallbacks(ActivateCallbacks):
+class MyActivateCallbacks(ActivateCallbacksLuks):
 
     def __init__(self):
         super(MyActivateCallbacks, self).__init__()
@@ -19,8 +19,9 @@ class MyActivateCallbacks(ActivateCallbacks):
         print("multipath callback")
         return looks_like_real_multipath
 
-    def luks(self, uuid, attempt):
-        print("luks callback uuid:%s attempt:%d" % (uuid, attempt))
+    def luks(self, luks_info, attempt):
+        print("luks callback name:%s size:%u label:%s uuid:%s attempt:%d" % (luks_info.get_device_name(),
+            luks_info.get_size(), luks_info.get_label(), luks_info.get_uuid(), attempt))
         if attempt == 2:
             return PairBoolString(True, "12345678")
         else:

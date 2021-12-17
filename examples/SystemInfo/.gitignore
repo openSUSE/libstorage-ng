@@ -1,5 +1,6 @@
 *.o
 test-blkid
+test-cmd-blockdev
 test-cmd-btrfs-filesystem-df
 test-cmd-btrfs-filesystem-show
 test-cmd-btrfs-qgroup-show

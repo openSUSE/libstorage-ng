@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2018-2020] SUSE LLC
+ * Copyright (c) 2021 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -20,47 +20,42 @@
  */
 
 
-#ifndef STORAGE_CMD_STAT_H
-#define STORAGE_CMD_STAT_H
-
-
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <unistd.h>
-
-#include <string>
-#include <vector>
+#include "storage/Utils/LoggerImpl.h"
+#include "storage/Utils/SystemCmd.h"
+#include "storage/Utils/StorageDefines.h"
+#include "storage/SystemInfo/CmdBlockdev.h"
 
 
 namespace storage
 {
-    using std::string;
-    using std::vector;
+    using namespace std;
 
 
-    class CmdStat
+    CmdBlockdev::CmdBlockdev(const string& path)
+	: path(path)
     {
-    public:
+	SystemCmd cmd(BLOCKDEV_BIN " --getsize64 " + quote(path));
 
-	CmdStat(const string& path);
+	if (cmd.retcode() == 0 && cmd.stdout().size() >= 1)
+	    parse(cmd.stdout());
 
-	bool is_blk() const { return S_ISBLK(mode); }
-	bool is_dir() const { return S_ISDIR(mode); }
-	bool is_reg() const { return S_ISREG(mode); }
-	bool is_lnk() const { return S_ISLNK(mode); }
+	y2mil(*this);
+    }
 
-	friend std::ostream& operator<<(std::ostream& s, const CmdStat& cmd_stat);
 
-    private:
+    void
+    CmdBlockdev::parse(const vector<string>& lines)
+    {
+	size = stoull(lines[0]);
+    }
 
-	void parse(const vector<string>& lines);
 
-	string path;
+    std::ostream&
+    operator<<(std::ostream& s, const CmdBlockdev& cmd_blockdev)
+    {
+	s << "path:" << cmd_blockdev.path << " size:" << cmd_blockdev.size << '\n';
 
-	mode_t mode = 0;
-
-    };
+        return s;
+    }
 
 }
-
-#endif

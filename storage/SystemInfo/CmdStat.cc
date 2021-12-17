@@ -20,11 +20,8 @@
  */
 
 
-#include <boost/algorithm/string.hpp>
-
 #include "storage/Utils/LoggerImpl.h"
 #include "storage/Utils/SystemCmd.h"
-#include "storage/Utils/Mockup.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/SystemInfo/CmdStat.h"
 
@@ -35,7 +32,7 @@ namespace storage
 
 
     CmdStat::CmdStat(const string& path)
-	: path(path), mode(0)
+	: path(path)
     {
 	SystemCmd cmd(STAT_BIN " --format '%f' " + quote(path));
 
@@ -49,7 +46,7 @@ namespace storage
     void
     CmdStat::parse(const vector<string>& lines)
     {
-	mode = stoi(lines[0], 0, 16);
+	mode = stoi(lines[0], nullptr, 16);
     }
 
 

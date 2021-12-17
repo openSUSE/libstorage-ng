@@ -127,13 +127,11 @@ namespace storage
     public:
 
 	LuksInfo();
-
 	~LuksInfo();
 
 	const std::string& get_device_name() const;
-
+	unsigned long long get_size() const;
 	const std::string& get_uuid() const;
-
 	const std::string& get_label() const;
 
     public:

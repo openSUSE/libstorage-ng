@@ -106,6 +106,7 @@
 #define DF_BIN "/usr/bin/df"
 #define TEST_BIN "/usr/bin/test"
 #define STAT_BIN "/usr/bin/stat"
+#define BLOCKDEV_BIN "/usr/sbin/blockdev"
 
 #define LOSETUP_BIN "/sbin/losetup"
 
