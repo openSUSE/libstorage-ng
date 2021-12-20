@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-02 12:53+0100\n"
+"POT-Creation-Date: 2021-12-20 12:10+0100\n"
 "PO-Revision-Date: 2021-03-20 10:56+0000\n"
 "Last-Translator: Grace Yu <grace.yu@excel-gits.com>\n"
 "Language-Team: Chinese (Taiwan) <https://l10n.opensuse.org/projects/"
@@ -1634,32 +1634,54 @@ msgstr ""
 "上執行操作可能會失敗。"
 
 #. TRANSLATORS: Error message displayed during probing,
-#. %1$s is replaced by the device name (e.g. /dev/sda)
-#, c-format
+#. %1$s is replaced by the filesystem type (e.g. ext4),
+#. %2$s is replaced by the partition table type (e.g. GPT),
+#. %3$s is replaced by the device name (e.g. /dev/sda)
+#, fuzzy, c-format
 msgid ""
-"Detected a LUKS device next to a partition table on the\n"
-"device %1$s. The LUKS device will be ignored."
+"Detected a %1$s file system next to a partition table of type %2$s on the\n"
+"device %3$s. The file system will be ignored."
+msgstr ""
+"在裝置 %1$s 上的分割區表旁偵測到檔案系統。\n"
+"該檔案系統將被忽略。"
+
+#. TRANSLATORS: Error message displayed during probing,
+#. %1$s is replaced by the partition table type (e.g. GPT),
+#. %2$s is replaced by the device name (e.g. /dev/sda)
+#, fuzzy, c-format
+msgid ""
+"Detected a LUKS device next to a partition table of type %1$s on the\n"
+"device %2$s. The LUKS device will be ignored."
 msgstr "在裝置 %1$s 上的分割區表旁偵測到 LUKS 裝置。該 LUKS 裝置將被忽略。"
 
 #. TRANSLATORS: Error message displayed during probing,
-#. %1$s is replaced by the device name (e.g. /dev/sda)
-#, c-format
+#. %1$s is replaced by the partition table type (e.g. GPT),
+#. %2$s is replaced by the device name (e.g. /dev/sda)
+#, fuzzy, c-format
 msgid ""
-"Detected a LVM logical volume next to a partition table on the\n"
-"device %1$s. The LVM logical volume will be ignored."
+"Detected a LVM logical volume next to a partition table of type %1$s on the\n"
+"device %2$s. The LVM logical volume will be ignored as good as possible."
 msgstr ""
 "在裝置 %1$s 上的分割區表旁偵測到 LVM 邏輯磁碟區。\n"
 "該 LVM 邏輯磁碟區將被忽略。"
 
 #. TRANSLATORS: Error message displayed during probing,
-#. %1$s is replaced by the device name (e.g. /dev/sda)
+#. %1$s is replaced by the filesystem type (e.g. minix),
+#. %2$s is replaced by the device name (e.g. /dev/sda1)
 #, c-format
 msgid ""
-"Detected a file system next to a partition table on the\n"
-"device %1$s. The file system will be ignored."
+"Detected an unsupported file system of type %1$s on the\n"
+"device %2$s."
 msgstr ""
-"在裝置 %1$s 上的分割區表旁偵測到檔案系統。\n"
-"該檔案系統將被忽略。"
+
+#. TRANSLATORS: Error message displayed during probing,
+#. %1$s is replaced by the partition table type (e.g. BSD),
+#. %2$s is replaced by the device name (e.g. /dev/sda)
+#, c-format
+msgid ""
+"Detected an unsupported partition table of type %1$s on the\n"
+"device %2$s."
+msgstr ""
 
 #. TRANSLATORS: name of partition type
 msgid "Diagnostics Partition"
