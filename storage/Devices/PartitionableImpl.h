@@ -60,7 +60,7 @@ namespace storage
 	 * logical volume) is found on the partitionable (next to a
 	 * partitiontable).
 	 */
-	void check_unambiguity(Prober& prober) const;
+	void check_unambiguity(Prober& prober, PtType pt_type) const;
 
 	virtual void probe_pass_1a(Prober& prober) override;
 	virtual void probe_pass_1c(Prober& prober) override;

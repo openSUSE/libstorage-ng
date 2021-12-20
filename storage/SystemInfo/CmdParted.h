@@ -193,6 +193,8 @@ namespace storage
 
 	vector<string> tokenize(const string& line) const;
 
+	static const map<const char*, PtType> name_to_pt_type;
+
     };
 
 }

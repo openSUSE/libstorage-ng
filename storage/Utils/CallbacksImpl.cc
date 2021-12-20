@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2018-2020] SUSE LLC
+ * Copyright (c) [2018-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -77,6 +77,107 @@ namespace storage
 
 
     void
+    ambiguity_partition_table_and_filesystem_callback(const ProbeCallbacks* probe_callbacks, const Text& message,
+						      const std::string& name, PtType pt_type, FsType fs_type)
+    {
+	const ProbeCallbacksV4* probe_callbacks_v4 = dynamic_cast<const ProbeCallbacksV4*>(probe_callbacks);
+
+	if (probe_callbacks_v4)
+	{
+	    if (!probe_callbacks_v4->ambiguity_partition_table_and_filesystem(message.translated, "", name,
+									      pt_type, fs_type))
+		ST_THROW(Aborted("aborted"));
+
+	    y2mil("user decides to continue after error");
+	}
+	else
+	{
+	    error_callback(probe_callbacks, message);
+	}
+    }
+
+
+    void
+    ambiguity_partition_table_and_luks_callback(const ProbeCallbacks* probe_callbacks, const Text& message,
+						const std::string& name, PtType pt_type)
+    {
+	const ProbeCallbacksV4* probe_callbacks_v4 = dynamic_cast<const ProbeCallbacksV4*>(probe_callbacks);
+
+	if (probe_callbacks_v4)
+	{
+	    if (!probe_callbacks_v4->ambiguity_partition_table_and_luks(message.translated, "", name, pt_type))
+		ST_THROW(Aborted("aborted"));
+
+	    y2mil("user decides to continue after error");
+	}
+	else
+	{
+	    error_callback(probe_callbacks, message);
+	}
+    }
+
+
+    void
+    ambiguity_partition_table_and_lvm_pv_callback(const ProbeCallbacks* probe_callbacks, const Text& message,
+						  const std::string& name, PtType pt_type)
+    {
+	const ProbeCallbacksV4* probe_callbacks_v4 = dynamic_cast<const ProbeCallbacksV4*>(probe_callbacks);
+
+	if (probe_callbacks_v4)
+	{
+	    if (!probe_callbacks_v4->ambiguity_partition_table_and_lvm_pv(message.translated, "", name, pt_type))
+		ST_THROW(Aborted("aborted"));
+
+	    y2mil("user decides to continue after error");
+	}
+	else
+	{
+	    error_callback(probe_callbacks, message);
+	}
+    }
+
+
+    void
+    unsupported_partition_table_callback(const ProbeCallbacks* probe_callbacks, const Text& message,
+					 const std::string& name, PtType pt_type)
+    {
+	const ProbeCallbacksV4* probe_callbacks_v4 = dynamic_cast<const ProbeCallbacksV4*>(probe_callbacks);
+
+	if (probe_callbacks_v4)
+	{
+	    if (!probe_callbacks_v4->unsupported_partition_table(message.translated, "", name, pt_type))
+		ST_THROW(Aborted("aborted"));
+
+	    y2mil("user decides to continue after error");
+	}
+	else
+	{
+	    error_callback(probe_callbacks, message);
+	}
+    }
+
+
+    void
+    unsupported_filesystem_callback(const ProbeCallbacks* probe_callbacks, const Text& message,
+				    const std::string& name, FsType fs_type)
+    {
+	const ProbeCallbacksV4* probe_callbacks_v4 = dynamic_cast<const ProbeCallbacksV4*>(probe_callbacks);
+
+	if (probe_callbacks_v4)
+	{
+	    if (!probe_callbacks_v4->unsupported_filesystem(message.translated, "", name, fs_type))
+		ST_THROW(Aborted("aborted"));
+
+	    y2mil("user decides to continue after error");
+	}
+	else
+	{
+	    error_callback(probe_callbacks, message);
+	}
+    }
+
+
+    void
     error_callback(const Callbacks* callbacks, const Text& message, const Exception& exception)
     {
 	ST_CAUGHT(exception);
@@ -99,7 +200,7 @@ namespace storage
 
 
     void
-    missing_command_callback(const ProbeCallbacksV2* callbacks, const Text& message, const std::string& command,
+    missing_command_callback(const ProbeCallbacksV2* probe_callbacks, const Text& message, const std::string& command,
 			     uint64_t features, const Exception& exception)
     {
 	ST_CAUGHT(exception);
@@ -107,9 +208,9 @@ namespace storage
 	if (typeid(exception) == typeid(Aborted))
 	    ST_RETHROW(exception);
 
-	if (callbacks)
+	if (probe_callbacks)
 	{
-	    if (!callbacks->missing_command(message.translated, exception.what(), command, features))
+	    if (!probe_callbacks->missing_command(message.translated, exception.what(), command, features))
 		ST_THROW(Aborted("aborted"));
 
 	    y2mil("user decides to continue after missing command");

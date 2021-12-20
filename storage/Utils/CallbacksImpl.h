@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2018-2020] SUSE LLC
+ * Copyright (c) [2018-2021] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -32,7 +32,10 @@ namespace storage
 
     class Text;
     class Exception;
+    class ProbeCallbacks;
     class ProbeCallbacksV2;
+    enum class PtType;
+    enum class FsType;
 
 
     /**
@@ -67,6 +70,27 @@ namespace storage
     error_callback(const Callbacks* callbacks, const Text& message);
 
 
+    void
+    ambiguity_partition_table_and_filesystem_callback(const ProbeCallbacks* probe_callbacks, const Text& message,
+						      const std::string& name, PtType pt_type, FsType fs_type);
+
+    void
+    ambiguity_partition_table_and_luks_callback(const ProbeCallbacks* probe_callbacks, const Text& message,
+						const std::string& name, PtType pt_type);
+
+    void
+    ambiguity_partition_table_and_lvm_pv_callback(const ProbeCallbacks* probe_callbacks, const Text& message,
+						  const std::string& name, PtType pt_type);
+
+    void
+    unsupported_partition_table_callback(const ProbeCallbacks* probe_callbacks, const Text& message,
+					 const std::string& name, PtType pt_type);
+
+    void
+    unsupported_filesystem_callback(const ProbeCallbacks* probe_callbacks, const Text& message,
+				    const std::string& name, FsType fs_type);
+
+
     /**
      * Call the error callback of callbacks and handle return value.
      *
@@ -82,7 +106,7 @@ namespace storage
      * Also calls ST_CAUGHT().
      */
     void
-    missing_command_callback(const ProbeCallbacksV2* callbacks, const Text& message, const std::string& command,
+    missing_command_callback(const ProbeCallbacksV2* probe_callbacks, const Text& message, const std::string& command,
 			     uint64_t features, const Exception& exception);
 
 }

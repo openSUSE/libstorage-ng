@@ -186,27 +186,35 @@ namespace storage
 	    if (it == blkid.end() || !it->second.is_fs)
 		continue;
 
-	    if (it->second.fs_type != FsType::EXT2 && it->second.fs_type != FsType::EXT3 &&
-		it->second.fs_type != FsType::EXT4 && it->second.fs_type != FsType::BTRFS &&
-		it->second.fs_type != FsType::REISERFS && it->second.fs_type != FsType::XFS &&
-		it->second.fs_type != FsType::SWAP && it->second.fs_type != FsType::NTFS &&
-		it->second.fs_type != FsType::VFAT && it->second.fs_type != FsType::ISO9660 &&
-		it->second.fs_type != FsType::UDF && it->second.fs_type != FsType::JFS &&
-		it->second.fs_type != FsType::F2FS && it->second.fs_type != FsType::EXFAT &&
-		it->second.fs_type != FsType::BITLOCKER)
+	    const FsType fs_type = it->second.fs_type;
+
+	    if (fs_type != FsType::EXT2 && fs_type != FsType::EXT3 && fs_type != FsType::EXT4 &&
+		fs_type != FsType::BTRFS && fs_type != FsType::REISERFS && fs_type != FsType::XFS &&
+		fs_type != FsType::SWAP && fs_type != FsType::NTFS && fs_type != FsType::VFAT &&
+		fs_type != FsType::ISO9660 && fs_type != FsType::UDF && fs_type != FsType::JFS &&
+		fs_type != FsType::F2FS && fs_type != FsType::EXFAT && fs_type != FsType::BITLOCKER)
 	    {
-		y2war("detected unsupported filesystem " << toString(it->second.fs_type) << " on " <<
+		y2err("detected unsupported filesystem " << toString(fs_type) << " on " <<
 		      blk_device->get_name());
+
+		// TRANSLATORS: Error message displayed during probing,
+		// %1$s is replaced by the filesystem type (e.g. minix),
+		// %2$s is replaced by the device name (e.g. /dev/sda1)
+		Text text = sformat(_("Detected an unsupported file system of type %1$s on the\n"
+				      "device %2$s."), toString(fs_type), blk_device->get_name());
+
+		unsupported_filesystem_callback(prober.get_probe_callbacks(), text, blk_device->get_name(), fs_type);
+
 		continue;
 	    }
 
 	    // btrfs is probed independently in probe_btrfses().
-	    if (it->second.fs_type == FsType::BTRFS && support_btrfs_multiple_devices())
+	    if (fs_type == FsType::BTRFS && support_btrfs_multiple_devices())
 		continue;
 
 	    try
 	    {
-		BlkFilesystem* blk_filesystem = blk_device->create_blk_filesystem(it->second.fs_type);
+		BlkFilesystem* blk_filesystem = blk_device->create_blk_filesystem(fs_type);
 		blk_filesystem->get_impl().probe_pass_2a(prober);
 		blk_filesystem->get_impl().probe_pass_2b(prober);
 	    }

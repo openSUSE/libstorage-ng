@@ -99,7 +99,7 @@ namespace storage
 
 
     void
-    Partitionable::Impl::check_unambiguity(Prober& prober) const
+    Partitionable::Impl::check_unambiguity(Prober& prober, PtType pt_type) const
     {
 	const Blkid& blkid = prober.get_system_info().getBlkid();
 
@@ -112,11 +112,15 @@ namespace storage
 	    y2err("found filesystem next to partition table on " << get_name());
 
 	    // TRANSLATORS: Error message displayed during probing,
-	    // %1$s is replaced by the device name (e.g. /dev/sda)
-	    Text text = sformat(_("Detected a file system next to a partition table on the\n"
-				  "device %1$s. The file system will be ignored."), get_name());
+	    // %1$s is replaced by the filesystem type (e.g. ext4),
+	    // %2$s is replaced by the partition table type (e.g. GPT),
+	    // %3$s is replaced by the device name (e.g. /dev/sda)
+	    Text text = sformat(_("Detected a %1$s file system next to a partition table of type %2$s on the\n"
+				  "device %3$s. The file system will be ignored."), toString(it->second.fs_type),
+				toString(pt_type), get_name());
 
-	    error_callback(prober.get_probe_callbacks(), text);
+	    ambiguity_partition_table_and_filesystem_callback(prober.get_probe_callbacks(), text, get_name(), pt_type,
+							      it->second.fs_type);
 	}
 
 	if (it->second.is_luks)
@@ -124,11 +128,12 @@ namespace storage
 	    y2err("found LUKS next to partition table on " << get_name());
 
 	    // TRANSLATORS: Error message displayed during probing,
-	    // %1$s is replaced by the device name (e.g. /dev/sda)
-	    Text text = sformat(_("Detected a LUKS device next to a partition table on the\n"
-				  "device %1$s. The LUKS device will be ignored."), get_name());
+	    // %1$s is replaced by the partition table type (e.g. GPT),
+	    // %2$s is replaced by the device name (e.g. /dev/sda)
+	    Text text = sformat(_("Detected a LUKS device next to a partition table of type %1$s on the\n"
+				  "device %2$s. The LUKS device will be ignored."), get_name());
 
-	    error_callback(prober.get_probe_callbacks(), text);
+	    ambiguity_partition_table_and_luks_callback(prober.get_probe_callbacks(), text, get_name(), pt_type);
 	}
 
 	if (it->second.is_lvm)
@@ -136,11 +141,13 @@ namespace storage
 	    y2err("found LVM logical volume next to partition table on " << get_name());
 
 	    // TRANSLATORS: Error message displayed during probing,
-	    // %1$s is replaced by the device name (e.g. /dev/sda)
-	    Text text = sformat(_("Detected a LVM logical volume next to a partition table on the\n"
-				  "device %1$s. The LVM logical volume will be ignored."), get_name());
+	    // %1$s is replaced by the partition table type (e.g. GPT),
+	    // %2$s is replaced by the device name (e.g. /dev/sda)
+	    Text text = sformat(_("Detected a LVM logical volume next to a partition table of type %1$s on the\n"
+				  "device %2$s. The LVM logical volume will be ignored as good as possible."),
+				get_name());
 
-	    error_callback(prober.get_probe_callbacks(), text);
+	    ambiguity_partition_table_and_lvm_pv_callback(prober.get_probe_callbacks(), text, get_name(), pt_type);
 	}
     }
 
@@ -201,7 +208,22 @@ namespace storage
 		PartitionTable* partition_table = create_partition_table(label);
 		partition_table->get_impl().probe_pass_1c(prober);
 
-		check_unambiguity(prober);
+		check_unambiguity(prober, label);
+	    }
+
+	    if (label != PtType::UNKNOWN && label != PtType::LOOP && label != PtType::MSDOS &&
+		label != PtType::GPT && label != PtType::DASD && label != PtType::IMPLICIT)
+	    {
+		y2err("detected unsupported partition table " << toString(label) << " on " <<
+		      get_name());
+
+		// TRANSLATORS: Error message displayed during probing,
+		// %1$s is replaced by the partition table type (e.g. BSD),
+		// %2$s is replaced by the device name (e.g. /dev/sda)
+		Text text = sformat(_("Detected an unsupported partition table of type %1$s on the\n"
+				      "device %2$s."), toString(label), get_name());
+
+		unsupported_partition_table_callback(prober.get_probe_callbacks(), text, get_name(), label);
 	    }
 	}
 	catch (const Exception& exception)

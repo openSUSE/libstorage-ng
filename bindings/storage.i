@@ -33,6 +33,7 @@ use_ostream(storage::PartitionSlot);
 %feature("director") storage::ProbeCallbacks;
 %feature("director") storage::ProbeCallbacksV2;
 %feature("director") storage::ProbeCallbacksV3;
+%feature("director") storage::ProbeCallbacksV4;
 %feature("director") storage::CheckCallbacks;
 %feature("director") storage::CommitCallbacks;
 %feature("director") storage::RemoteCallbacks;
