@@ -27,13 +27,14 @@
 
 #include <string>
 #include <vector>
+#include <map>
 #include <utility>
 #include <memory>
 #include <boost/noncopyable.hpp>
 
-#include "storage/Filesystems/Mountable.h"
 #include "storage/CommitOptions.h"
 #include "storage/Utils/Callbacks.h"
+#include "storage/Utils/Swig.h"
 
 
 /**
@@ -79,6 +80,9 @@ namespace storage
     class Devicegraph;
     class Actiongraph;
     class Pool;
+    enum class PtType;
+    enum class FsType;
+    enum class MountByType;
 
 
     /**
@@ -231,6 +235,65 @@ namespace storage
 	 * Called at the end of probing.
 	 */
 	virtual void end() const {}
+
+    };
+
+
+    class ProbeCallbacksV4 : public ProbeCallbacksV3
+    {
+    public:
+
+	virtual ~ProbeCallbacksV4() {}
+
+	/**
+	 * This error callback is called when a partition table and a filesystem are found
+	 * on a device.
+	 *
+	 * @see error()
+	 */
+	virtual bool ambiguity_partition_table_and_filesystem(const std::string& message, const std::string& what,
+							      const std::string& name, PtType pt_type,
+							      FsType fs_type) const = 0;
+
+	/**
+	 * This error callback is called when a partition table and a LUKS are found on a
+	 * device.
+	 *
+	 * @see error()
+	 */
+	virtual bool ambiguity_partition_table_and_luks(const std::string& message, const std::string& what,
+							const std::string& name, PtType pt_type) const = 0;
+
+	/**
+	 * This error callback is called when a partition table and a LVM PV are found on
+	 * a device.
+	 *
+	 * @see error()
+	 */
+	virtual bool ambiguity_partition_table_and_lvm_pv(const std::string& message, const std::string& what,
+							  const std::string& name, PtType pt_type) const = 0;
+
+	/**
+	 * This error callback is called when a known but unsupported partition table
+	 * type, e.g. AIX, is found. If parted reports an (to libstorage-ng) unknown
+	 * partition table type, e.g. "super-pt", no error is reported. And surely there
+	 * can be partition table types not even parted knows.
+	 *
+	 * @see error()
+	 */
+	virtual bool unsupported_partition_table(const std::string& message, const std::string& what,
+						 const std::string& name, PtType pt_type) const = 0;
+
+	/**
+	 * This error callback is called when a known but unsupported filesystem type,
+	 * e.g. MINIX, is found. If blkid reports an (to libstorage-ng) unknown filesystem
+	 * type, e.g. "super-fs", no error is reported. And surely there can be filesystem
+	 * types not even blkid knows.
+	 *
+	 * @see error()
+	 */
+	virtual bool unsupported_filesystem(const std::string& message, const std::string& what,
+					    const std::string& name, FsType fs_type) const = 0;
 
     };
 

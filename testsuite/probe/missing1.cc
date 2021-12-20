@@ -6,6 +6,7 @@
 
 #include "storage/Environment.h"
 #include "storage/Storage.h"
+#include "storage/Utils/Logger.h"
 
 #include "testsuite/helpers/CallbacksRecorder.h"
 
@@ -31,6 +32,6 @@ BOOST_AUTO_TEST_CASE(probe)
     BOOST_CHECK_EQUAL(probe_messages[0], "begin:");
     BOOST_CHECK_EQUAL(probe_messages[1], "missing-command: message = 'Probing file systems failed', "
 		      "what = 'Command not found: \"/sbin/btrfs filesystem show\"', "
-		      "command = '/sbin/btrfs filesystem show', used_features = 8");
+		      "command = '/sbin/btrfs filesystem show', used-features = 8");
     BOOST_CHECK_EQUAL(probe_messages[2], "end:");
 }

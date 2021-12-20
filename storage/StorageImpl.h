@@ -25,8 +25,7 @@
 #define STORAGE_STORAGE_IMPL_H
 
 
-#include <map>
-
+#include "storage/Devices/Device.h"
 #include "storage/Utils/FileUtils.h"
 #include "storage/Utils/LockImpl.h"
 #include "storage/Storage.h"

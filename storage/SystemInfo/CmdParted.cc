@@ -151,22 +151,13 @@ namespace storage
     PtType
     Parted::scan_partition_table_type(const string& s) const
     {
-	PtType partition_type = PtType::UNKNOWN;
+	for (map<const char*, PtType>::value_type tmp : name_to_pt_type)
+	{
+	    if (tmp.first == s)
+		return tmp.second;
+	}
 
-	if (s == "msdos")
-	    partition_type = PtType::MSDOS;
-	else if (s == "gpt" || s == "gpt_sync_mbr")
-	    partition_type = PtType::GPT;
-	else if (s == "dasd")
-	    partition_type = PtType::DASD;
-	else if (s == "loop")
-	    partition_type = PtType::LOOP;
-	else if (s == "unknown")
-	    partition_type = PtType::UNKNOWN;
-	else
-	    ST_THROW(Exception("unknown partition table type reported by parted"));
-
-	return partition_type;
+	return PtType::UNKNOWN;
     }
 
 
@@ -414,6 +405,24 @@ namespace storage
 	{ ID_RAID, "raid" },
 	{ ID_SWAP, "swap" },
 	{ ID_WINDOWS_BASIC_DATA, "msftdata" },
+    };
+
+
+    const map<const char*, PtType> Parted::name_to_pt_type = {
+	{ "aix", PtType::AIX },
+	{ "amiga", PtType::AMIGA },
+	{ "atari", PtType::ATARI },
+	{ "bsd", PtType::BSD },
+	{ "dasd", PtType::DASD },
+	{ "dvh", PtType::DVH },
+	{ "gpt", PtType::GPT },
+	{ "gpt_sync_mbr", PtType::GPT },
+	{ "implicit", PtType::IMPLICIT },
+	{ "loop", PtType::LOOP },
+	{ "mac", PtType::MAC },
+	{ "msdos", PtType::MSDOS },
+	{ "sun", PtType::SUN },
+	{ "unknown", PtType::UNKNOWN },
     };
 
 }

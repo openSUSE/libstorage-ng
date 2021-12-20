@@ -1,0 +1,432 @@
+<?xml version="1.0"?>
+<Mockup>
+  <Commands>
+    <Command>
+      <name>/bin/ls -1 --sort=none '/sys/block'</name>
+      <stdout>sdc</stdout>
+      <stdout>sdd</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/blkid -c '/dev/null'</name>
+      <stdout>/dev/sdc1: BLOCK_SIZE="1024" TYPE="minix" PARTUUID="5d543afa-1d1c-4373-8565-1c417156e893"</stdout>
+      <stdout>/dev/sdd: PTTYPE="PMBR"</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/dmraid --sets=active -ccc</name>
+      <stdout>no raid disks</stdout>
+      <exit-code>1</exit-code>
+    </Command>
+    <Command>
+      <name>/sbin/dmsetup table</name>
+    </Command>
+    <Command>
+      <name>/sbin/multipath -d -v 2 -ll</name>
+    </Command>
+    <Command>
+      <name>/usr/bin/getconf PAGESIZE</name>
+      <stdout>4096</stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/lsscsi --transport</name>
+      <stdout>[2:0:0:0]    disk    sata:50000393a258296e           /dev/sdc </stdout>
+      <stdout>[3:0:0:0]    disk    sata:50014ee2020387a1           /dev/sdd </stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/stat --format '%f' '/dev/sdc'</name>
+      <stdout>61b0</stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/stat --format '%f' '/dev/sdd'</name>
+      <stdout>61b0</stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/test -d '/sys/firmware/efi/efivars'</name>
+      <exit-code>1</exit-code>
+    </Command>
+    <Command>
+      <name>/usr/bin/udevadm info '/dev/sdc'</name>
+      <stdout>P: /devices/pci0000:00/0000:00:17.0/ata3/host2/target2:0:0/2:0:0:0/block/sdc</stdout>
+      <stdout>N: sdc</stdout>
+      <stdout>L: 0</stdout>
+      <stdout>S: disk/by-path/pci-0000:00:17.0-ata-3.0</stdout>
+      <stdout>S: disk/by-id/scsi-350000393a258296e</stdout>
+      <stdout>S: disk/by-id/scsi-SATA_TOSHIBA_MK3261GS_Y169P5D6T</stdout>
+      <stdout>S: disk/by-id/scsi-0ATA_TOSHIBA_MK3261GS_Y169P5D6T</stdout>
+      <stdout>S: disk/by-id/wwn-0x50000393a258296e</stdout>
+      <stdout>S: disk/by-path/pci-0000:00:17.0-ata-3</stdout>
+      <stdout>S: disk/by-id/scsi-1ATA_TOSHIBA_MK3261GSYN_Y169P5D6T</stdout>
+      <stdout>S: disk/by-id/ata-TOSHIBA_MK3261GSYN_Y169P5D6T</stdout>
+      <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:17.0/ata3/host2/target2:0:0/2:0:0:0/block/sdc</stdout>
+      <stdout>E: DEVNAME=/dev/sdc</stdout>
+      <stdout>E: DEVTYPE=disk</stdout>
+      <stdout>E: DISKSEQ=3</stdout>
+      <stdout>E: MAJOR=8</stdout>
+      <stdout>E: MINOR=32</stdout>
+      <stdout>E: SUBSYSTEM=block</stdout>
+      <stdout>E: USEC_INITIALIZED=4894937</stdout>
+      <stdout>E: DONT_DEL_PART_NODES=1</stdout>
+      <stdout>E: ID_ATA=1</stdout>
+      <stdout>E: ID_TYPE=disk</stdout>
+      <stdout>E: ID_BUS=ata</stdout>
+      <stdout>E: ID_MODEL=TOSHIBA_MK3261GSYN</stdout>
+      <stdout>E: ID_MODEL_ENC=TOSHIBA\x20MK3261GSYN\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: ID_REVISION=MH000C</stdout>
+      <stdout>E: ID_SERIAL=TOSHIBA_MK3261GSYN_Y169P5D6T</stdout>
+      <stdout>E: ID_SERIAL_SHORT=Y169P5D6T</stdout>
+      <stdout>E: ID_ATA_WRITE_CACHE=1</stdout>
+      <stdout>E: ID_ATA_WRITE_CACHE_ENABLED=1</stdout>
+      <stdout>E: ID_ATA_FEATURE_SET_PM=1</stdout>
+      <stdout>E: ID_ATA_FEATURE_SET_PM_ENABLED=1</stdout>
+      <stdout>E: ID_ATA_FEATURE_SET_SECURITY=1</stdout>
+      <stdout>E: ID_ATA_FEATURE_SET_SECURITY_ENABLED=0</stdout>
+      <stdout>E: ID_ATA_FEATURE_SET_SECURITY_ERASE_UNIT_MIN=62</stdout>
+      <stdout>E: ID_ATA_FEATURE_SET_SECURITY_ENHANCED_ERASE_UNIT_MIN=62</stdout>
+      <stdout>E: ID_ATA_FEATURE_SET_SECURITY_FROZEN=1</stdout>
+      <stdout>E: ID_ATA_FEATURE_SET_SMART=1</stdout>
+      <stdout>E: ID_ATA_FEATURE_SET_SMART_ENABLED=1</stdout>
+      <stdout>E: ID_ATA_FEATURE_SET_APM=1</stdout>
+      <stdout>E: ID_ATA_FEATURE_SET_APM_ENABLED=1</stdout>
+      <stdout>E: ID_ATA_FEATURE_SET_APM_CURRENT_VALUE=128</stdout>
+      <stdout>E: ID_ATA_DOWNLOAD_MICROCODE=1</stdout>
+      <stdout>E: ID_ATA_SATA=1</stdout>
+      <stdout>E: ID_ATA_SATA_SIGNAL_RATE_GEN2=1</stdout>
+      <stdout>E: ID_ATA_SATA_SIGNAL_RATE_GEN1=1</stdout>
+      <stdout>E: ID_ATA_ROTATION_RATE_RPM=7200</stdout>
+      <stdout>E: ID_WWN=0x50000393a258296e</stdout>
+      <stdout>E: ID_WWN_WITH_EXTENSION=0x50000393a258296e</stdout>
+      <stdout>E: ID_PATH=pci-0000:00:17.0-ata-3.0</stdout>
+      <stdout>E: ID_PATH_TAG=pci-0000_00_17_0-ata-3_0</stdout>
+      <stdout>E: ID_PATH_ATA_COMPAT=pci-0000:00:17.0-ata-3</stdout>
+      <stdout>E: SCSI_TPGS=0</stdout>
+      <stdout>E: SCSI_TYPE=disk</stdout>
+      <stdout>E: SCSI_VENDOR=ATA</stdout>
+      <stdout>E: SCSI_VENDOR_ENC=ATA\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: SCSI_MODEL=TOSHIBA_MK3261GS</stdout>
+      <stdout>E: SCSI_MODEL_ENC=TOSHIBA\x20MK3261GS</stdout>
+      <stdout>E: SCSI_REVISION=0C</stdout>
+      <stdout>E: ID_SCSI=1</stdout>
+      <stdout>E: ID_SCSI_INQUIRY=1</stdout>
+      <stdout>E: SCSI_IDENT_SERIAL=Y169P5D6T</stdout>
+      <stdout>E: SCSI_IDENT_LUN_VENDOR=Y169P5D6T</stdout>
+      <stdout>E: SCSI_IDENT_LUN_T10=ATA_TOSHIBA_MK3261GSYN_Y169P5D6T</stdout>
+      <stdout>E: SCSI_IDENT_LUN_ATA=TOSHIBA_MK3261GSYN_Y169P5D6T</stdout>
+      <stdout>E: SCSI_IDENT_LUN_NAA_REG=50000393a258296e</stdout>
+      <stdout>E: ID_VENDOR=ATA</stdout>
+      <stdout>E: ID_VENDOR_ENC=ATA\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: ID_SCSI_SERIAL=Y169P5D6T</stdout>
+      <stdout>E: MPATH_SBIN_PATH=/sbin</stdout>
+      <stdout>E: DM_MULTIPATH_DEVICE_PATH=0</stdout>
+      <stdout>E: ID_PART_TABLE_UUID=8d5511b8-9052-4b76-bf99-1638c10e962c</stdout>
+      <stdout>E: ID_PART_TABLE_TYPE=gpt</stdout>
+      <stdout>E: COMPAT_SYMLINK_GENERATION=2</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-path/pci-0000:00:17.0-ata-3.0 /dev/disk/by-id/scsi-350000393a258296e /dev/disk/by-id/scsi-SATA_TOSHIBA_MK3261GS_Y169P5D6T /dev/disk/by-id/scsi-0ATA_TOSHIBA_MK3261GS_Y169P5D6T /dev/disk/by-id/wwn-0x50000393a258296e /dev/disk/by-path/pci-0000:00:17.0-ata-3 /dev/disk/by-id/scsi-1ATA_TOSHIBA_MK3261GSYN_Y169P5D6T /dev/disk/by-id/ata-TOSHIBA_MK3261GSYN_Y169P5D6T</stdout>
+      <stdout>E: TAGS=:systemd:</stdout>
+      <stdout>E: CURRENT_TAGS=:systemd:</stdout>
+      <stdout></stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/udevadm info '/dev/sdc1'</name>
+      <stdout>P: /devices/pci0000:00/0000:00:17.0/ata3/host2/target2:0:0/2:0:0:0/block/sdc/sdc1</stdout>
+      <stdout>N: sdc1</stdout>
+      <stdout>L: 0</stdout>
+      <stdout>S: disk/by-id/ata-TOSHIBA_MK3261GSYN_Y169P5D6T-part1</stdout>
+      <stdout>S: disk/by-path/pci-0000:00:17.0-ata-3-part1</stdout>
+      <stdout>S: disk/by-id/scsi-0ATA_TOSHIBA_MK3261GS_Y169P5D6T-part1</stdout>
+      <stdout>S: disk/by-path/pci-0000:00:17.0-ata-3.0-part1</stdout>
+      <stdout>S: disk/by-id/scsi-1ATA_TOSHIBA_MK3261GSYN_Y169P5D6T-part1</stdout>
+      <stdout>S: disk/by-id/wwn-0x50000393a258296e-part1</stdout>
+      <stdout>S: disk/by-id/scsi-350000393a258296e-part1</stdout>
+      <stdout>S: disk/by-partuuid/5d543afa-1d1c-4373-8565-1c417156e893</stdout>
+      <stdout>S: disk/by-id/scsi-SATA_TOSHIBA_MK3261GS_Y169P5D6T-part1</stdout>
+      <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:17.0/ata3/host2/target2:0:0/2:0:0:0/block/sdc/sdc1</stdout>
+      <stdout>E: DEVNAME=/dev/sdc1</stdout>
+      <stdout>E: DEVTYPE=partition</stdout>
+      <stdout>E: DISKSEQ=3</stdout>
+      <stdout>E: PARTN=1</stdout>
+      <stdout>E: MAJOR=8</stdout>
+      <stdout>E: MINOR=33</stdout>
+      <stdout>E: SUBSYSTEM=block</stdout>
+      <stdout>E: USEC_INITIALIZED=6548222946</stdout>
+      <stdout>E: DONT_DEL_PART_NODES=1</stdout>
+      <stdout>E: ID_ATA=1</stdout>
+      <stdout>E: ID_TYPE=disk</stdout>
+      <stdout>E: ID_BUS=ata</stdout>
+      <stdout>E: ID_MODEL=TOSHIBA_MK3261GSYN</stdout>
+      <stdout>E: ID_MODEL_ENC=TOSHIBA\x20MK3261GSYN\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: ID_REVISION=MH000C</stdout>
+      <stdout>E: ID_SERIAL=TOSHIBA_MK3261GSYN_Y169P5D6T</stdout>
+      <stdout>E: ID_SERIAL_SHORT=Y169P5D6T</stdout>
+      <stdout>E: ID_ATA_WRITE_CACHE=1</stdout>
+      <stdout>E: ID_ATA_WRITE_CACHE_ENABLED=1</stdout>
+      <stdout>E: ID_ATA_FEATURE_SET_PM=1</stdout>
+      <stdout>E: ID_ATA_FEATURE_SET_PM_ENABLED=1</stdout>
+      <stdout>E: ID_ATA_FEATURE_SET_SECURITY=1</stdout>
+      <stdout>E: ID_ATA_FEATURE_SET_SECURITY_ENABLED=0</stdout>
+      <stdout>E: ID_ATA_FEATURE_SET_SECURITY_ERASE_UNIT_MIN=62</stdout>
+      <stdout>E: ID_ATA_FEATURE_SET_SECURITY_ENHANCED_ERASE_UNIT_MIN=62</stdout>
+      <stdout>E: ID_ATA_FEATURE_SET_SECURITY_FROZEN=1</stdout>
+      <stdout>E: ID_ATA_FEATURE_SET_SMART=1</stdout>
+      <stdout>E: ID_ATA_FEATURE_SET_SMART_ENABLED=1</stdout>
+      <stdout>E: ID_ATA_FEATURE_SET_APM=1</stdout>
+      <stdout>E: ID_ATA_FEATURE_SET_APM_ENABLED=1</stdout>
+      <stdout>E: ID_ATA_FEATURE_SET_APM_CURRENT_VALUE=128</stdout>
+      <stdout>E: ID_ATA_DOWNLOAD_MICROCODE=1</stdout>
+      <stdout>E: ID_ATA_SATA=1</stdout>
+      <stdout>E: ID_ATA_SATA_SIGNAL_RATE_GEN2=1</stdout>
+      <stdout>E: ID_ATA_SATA_SIGNAL_RATE_GEN1=1</stdout>
+      <stdout>E: ID_ATA_ROTATION_RATE_RPM=7200</stdout>
+      <stdout>E: ID_WWN=0x50000393a258296e</stdout>
+      <stdout>E: ID_WWN_WITH_EXTENSION=0x50000393a258296e</stdout>
+      <stdout>E: ID_PATH=pci-0000:00:17.0-ata-3.0</stdout>
+      <stdout>E: ID_PATH_TAG=pci-0000_00_17_0-ata-3_0</stdout>
+      <stdout>E: ID_PATH_ATA_COMPAT=pci-0000:00:17.0-ata-3</stdout>
+      <stdout>E: ID_SCSI=1</stdout>
+      <stdout>E: ID_SCSI_INQUIRY=1</stdout>
+      <stdout>E: ID_VENDOR=ATA</stdout>
+      <stdout>E: ID_VENDOR_ENC=ATA\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: ID_SCSI_SERIAL=Y169P5D6T</stdout>
+      <stdout>E: ID_PART_TABLE_UUID=8d5511b8-9052-4b76-bf99-1638c10e962c</stdout>
+      <stdout>E: ID_PART_TABLE_TYPE=gpt</stdout>
+      <stdout>E: SCSI_TPGS=0</stdout>
+      <stdout>E: SCSI_TYPE=disk</stdout>
+      <stdout>E: SCSI_VENDOR=ATA</stdout>
+      <stdout>E: SCSI_VENDOR_ENC=ATA\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: SCSI_MODEL=TOSHIBA_MK3261GS</stdout>
+      <stdout>E: SCSI_MODEL_ENC=TOSHIBA\x20MK3261GS</stdout>
+      <stdout>E: SCSI_REVISION=0C</stdout>
+      <stdout>E: SCSI_IDENT_SERIAL=Y169P5D6T</stdout>
+      <stdout>E: SCSI_IDENT_LUN_VENDOR=Y169P5D6T</stdout>
+      <stdout>E: SCSI_IDENT_LUN_T10=ATA_TOSHIBA_MK3261GSYN_Y169P5D6T</stdout>
+      <stdout>E: SCSI_IDENT_LUN_ATA=TOSHIBA_MK3261GSYN_Y169P5D6T</stdout>
+      <stdout>E: SCSI_IDENT_LUN_NAA_REG=50000393a258296e</stdout>
+      <stdout>E: DM_MULTIPATH_DEVICE_PATH=0</stdout>
+      <stdout>E: ID_FS_VERSION=1</stdout>
+      <stdout>E: ID_FS_TYPE=minix</stdout>
+      <stdout>E: ID_FS_USAGE=filesystem</stdout>
+      <stdout>E: ID_PART_ENTRY_SCHEME=gpt</stdout>
+      <stdout>E: ID_PART_ENTRY_UUID=5d543afa-1d1c-4373-8565-1c417156e893</stdout>
+      <stdout>E: ID_PART_ENTRY_TYPE=0fc63daf-8483-4772-8e79-3d69d8477de4</stdout>
+      <stdout>E: ID_PART_ENTRY_NUMBER=1</stdout>
+      <stdout>E: ID_PART_ENTRY_OFFSET=2048</stdout>
+      <stdout>E: ID_PART_ENTRY_SIZE=62513152</stdout>
+      <stdout>E: ID_PART_ENTRY_DISK=8:32</stdout>
+      <stdout>E: COMPAT_SYMLINK_GENERATION=2</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-id/ata-TOSHIBA_MK3261GSYN_Y169P5D6T-part1 /dev/disk/by-path/pci-0000:00:17.0-ata-3-part1 /dev/disk/by-id/scsi-0ATA_TOSHIBA_MK3261GS_Y169P5D6T-part1 /dev/disk/by-path/pci-0000:00:17.0-ata-3.0-part1 /dev/disk/by-id/scsi-1ATA_TOSHIBA_MK3261GSYN_Y169P5D6T-part1 /dev/disk/by-id/wwn-0x50000393a258296e-part1 /dev/disk/by-id/scsi-350000393a258296e-part1 /dev/disk/by-partuuid/5d543afa-1d1c-4373-8565-1c417156e893 /dev/disk/by-id/scsi-SATA_TOSHIBA_MK3261GS_Y169P5D6T-part1</stdout>
+      <stdout>E: TAGS=:systemd:</stdout>
+      <stdout>E: CURRENT_TAGS=:systemd:</stdout>
+      <stdout></stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/udevadm info '/dev/sdd'</name>
+      <stdout>P: /devices/pci0000:00/0000:00:17.0/ata4/host3/target3:0:0/3:0:0:0/block/sdd</stdout>
+      <stdout>N: sdd</stdout>
+      <stdout>L: 0</stdout>
+      <stdout>S: disk/by-id/scsi-0ATA_WDC_WD3200BEKT-6_WD-WXE808CSC938</stdout>
+      <stdout>S: disk/by-path/pci-0000:00:17.0-ata-4</stdout>
+      <stdout>S: disk/by-id/wwn-0x50014ee2020387a1</stdout>
+      <stdout>S: disk/by-path/pci-0000:00:17.0-ata-4.0</stdout>
+      <stdout>S: disk/by-id/ata-WDC_WD3200BEKT-60F3T0_WD-WXE808CSC938</stdout>
+      <stdout>S: disk/by-id/scsi-SATA_WDC_WD3200BEKT-6_WD-WXE808CSC938</stdout>
+      <stdout>S: disk/by-id/scsi-1ATA_WDC_WD3200BEKT-60F3T0_WD-WXE808CSC938</stdout>
+      <stdout>S: disk/by-id/scsi-350014ee2020387a1</stdout>
+      <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:17.0/ata4/host3/target3:0:0/3:0:0:0/block/sdd</stdout>
+      <stdout>E: DEVNAME=/dev/sdd</stdout>
+      <stdout>E: DEVTYPE=disk</stdout>
+      <stdout>E: DISKSEQ=4</stdout>
+      <stdout>E: MAJOR=8</stdout>
+      <stdout>E: MINOR=48</stdout>
+      <stdout>E: SUBSYSTEM=block</stdout>
+      <stdout>E: USEC_INITIALIZED=4713788</stdout>
+      <stdout>E: DONT_DEL_PART_NODES=1</stdout>
+      <stdout>E: ID_ATA=1</stdout>
+      <stdout>E: ID_TYPE=disk</stdout>
+      <stdout>E: ID_BUS=ata</stdout>
+      <stdout>E: ID_MODEL=WDC_WD3200BEKT-60F3T0</stdout>
+      <stdout>E: ID_MODEL_ENC=WDC\x20WD3200BEKT-60F3T0\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: ID_REVISION=11.01A11</stdout>
+      <stdout>E: ID_SERIAL=WDC_WD3200BEKT-60F3T0_WD-WXE808CSC938</stdout>
+      <stdout>E: ID_SERIAL_SHORT=WD-WXE808CSC938</stdout>
+      <stdout>E: ID_ATA_WRITE_CACHE=1</stdout>
+      <stdout>E: ID_ATA_WRITE_CACHE_ENABLED=1</stdout>
+      <stdout>E: ID_ATA_FEATURE_SET_PM=1</stdout>
+      <stdout>E: ID_ATA_FEATURE_SET_PM_ENABLED=1</stdout>
+      <stdout>E: ID_ATA_FEATURE_SET_SECURITY=1</stdout>
+      <stdout>E: ID_ATA_FEATURE_SET_SECURITY_ENABLED=0</stdout>
+      <stdout>E: ID_ATA_FEATURE_SET_SECURITY_ERASE_UNIT_MIN=80</stdout>
+      <stdout>E: ID_ATA_FEATURE_SET_SECURITY_ENHANCED_ERASE_UNIT_MIN=80</stdout>
+      <stdout>E: ID_ATA_FEATURE_SET_SECURITY_FROZEN=1</stdout>
+      <stdout>E: ID_ATA_FEATURE_SET_SMART=1</stdout>
+      <stdout>E: ID_ATA_FEATURE_SET_SMART_ENABLED=1</stdout>
+      <stdout>E: ID_ATA_FEATURE_SET_APM=1</stdout>
+      <stdout>E: ID_ATA_FEATURE_SET_APM_ENABLED=1</stdout>
+      <stdout>E: ID_ATA_FEATURE_SET_APM_CURRENT_VALUE=128</stdout>
+      <stdout>E: ID_ATA_DOWNLOAD_MICROCODE=1</stdout>
+      <stdout>E: ID_ATA_SATA=1</stdout>
+      <stdout>E: ID_ATA_SATA_SIGNAL_RATE_GEN2=1</stdout>
+      <stdout>E: ID_ATA_SATA_SIGNAL_RATE_GEN1=1</stdout>
+      <stdout>E: ID_ATA_ROTATION_RATE_RPM=7200</stdout>
+      <stdout>E: ID_WWN=0x50014ee2020387a1</stdout>
+      <stdout>E: ID_WWN_WITH_EXTENSION=0x50014ee2020387a1</stdout>
+      <stdout>E: ID_PATH=pci-0000:00:17.0-ata-4.0</stdout>
+      <stdout>E: ID_PATH_TAG=pci-0000_00_17_0-ata-4_0</stdout>
+      <stdout>E: ID_PATH_ATA_COMPAT=pci-0000:00:17.0-ata-4</stdout>
+      <stdout>E: SCSI_TPGS=0</stdout>
+      <stdout>E: SCSI_TYPE=disk</stdout>
+      <stdout>E: SCSI_VENDOR=ATA</stdout>
+      <stdout>E: SCSI_VENDOR_ENC=ATA\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: SCSI_MODEL=WDC_WD3200BEKT-6</stdout>
+      <stdout>E: SCSI_MODEL_ENC=WDC\x20WD3200BEKT-6</stdout>
+      <stdout>E: SCSI_REVISION=1A11</stdout>
+      <stdout>E: ID_SCSI=1</stdout>
+      <stdout>E: ID_SCSI_INQUIRY=1</stdout>
+      <stdout>E: SCSI_IDENT_SERIAL=WD-WXE808CSC938</stdout>
+      <stdout>E: SCSI_IDENT_LUN_VENDOR=WD-WXE808CSC938</stdout>
+      <stdout>E: SCSI_IDENT_LUN_T10=ATA_WDC_WD3200BEKT-60F3T0_WD-WXE808CSC938</stdout>
+      <stdout>E: SCSI_IDENT_LUN_ATA=WDC_WD3200BEKT-60F3T0_WD-WXE808CSC938</stdout>
+      <stdout>E: SCSI_IDENT_LUN_NAA_REG=50014ee2020387a1</stdout>
+      <stdout>E: ID_VENDOR=ATA</stdout>
+      <stdout>E: ID_VENDOR_ENC=ATA\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: ID_SCSI_SERIAL=WD-WXE808CSC938</stdout>
+      <stdout>E: MPATH_SBIN_PATH=/sbin</stdout>
+      <stdout>E: DM_MULTIPATH_DEVICE_PATH=0</stdout>
+      <stdout>E: ID_PART_TABLE_TYPE=PMBR</stdout>
+      <stdout>E: COMPAT_SYMLINK_GENERATION=2</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-id/scsi-0ATA_WDC_WD3200BEKT-6_WD-WXE808CSC938 /dev/disk/by-path/pci-0000:00:17.0-ata-4 /dev/disk/by-id/wwn-0x50014ee2020387a1 /dev/disk/by-path/pci-0000:00:17.0-ata-4.0 /dev/disk/by-id/ata-WDC_WD3200BEKT-60F3T0_WD-WXE808CSC938 /dev/disk/by-id/scsi-SATA_WDC_WD3200BEKT-6_WD-WXE808CSC938 /dev/disk/by-id/scsi-1ATA_WDC_WD3200BEKT-60F3T0_WD-WXE808CSC938 /dev/disk/by-id/scsi-350014ee2020387a1</stdout>
+      <stdout>E: TAGS=:systemd:</stdout>
+      <stdout>E: CURRENT_TAGS=:systemd:</stdout>
+      <stdout></stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/udevadm settle --timeout=20</name>
+    </Command>
+    <Command>
+      <name>/usr/bin/uname -m</name>
+      <stdout>x86_64</stdout>
+    </Command>
+    <Command>
+      <name>/usr/sbin/parted --script --machine '/dev/sdc' unit s print</name>
+      <stdout>BYT;</stdout>
+      <stdout>/dev/sdc:625142448s:scsi:512:512:gpt:ATA TOSHIBA MK3261GS::128;</stdout>
+      <stdout>1:2048s:62515199s:62513152s:::;</stdout>
+    </Command>
+    <Command>
+      <name>/usr/sbin/parted --script --machine '/dev/sdd' unit s print</name>
+      <stdout>BYT;</stdout>
+      <stdout>/dev/sdd:625142448s:scsi:512:4096:amiga:ATA WDC WD3200BEKT-6::128;</stdout>
+    </Command>
+  </Commands>
+  <Files>
+    <File>
+      <name>/etc/crypttab</name>
+    </File>
+    <File>
+      <name>/etc/fstab</name>
+    </File>
+    <File>
+      <name>/proc/mounts</name>
+      <content>proc /proc proc rw,nosuid,nodev,noexec,relatime 0 0</content>
+      <content>sysfs /sys sysfs rw,nosuid,nodev,noexec,relatime 0 0</content>
+      <content>devtmpfs /dev devtmpfs rw,nosuid,size=16253452k,nr_inodes=4063363,mode=755,inode64 0 0</content>
+      <content>securityfs /sys/kernel/security securityfs rw,nosuid,nodev,noexec,relatime 0 0</content>
+      <content>tmpfs /dev/shm tmpfs rw,nosuid,nodev,inode64 0 0</content>
+      <content>devpts /dev/pts devpts rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000 0 0</content>
+      <content>tmpfs /run tmpfs rw,nosuid,nodev,size=6507640k,nr_inodes=819200,mode=755,inode64 0 0</content>
+      <content>cgroup2 /sys/fs/cgroup cgroup2 rw,nosuid,nodev,noexec,relatime,nsdelegate,memory_recursiveprot 0 0</content>
+      <content>pstore /sys/fs/pstore pstore rw,nosuid,nodev,noexec,relatime 0 0</content>
+      <content>none /sys/fs/bpf bpf rw,nosuid,nodev,noexec,relatime,mode=700 0 0</content>
+      <content>systemd-1 /proc/sys/fs/binfmt_misc autofs rw,relatime,fd=30,pgrp=1,timeout=0,minproto=5,maxproto=5,direct,pipe_ino=19827 0 0</content>
+      <content>tracefs /sys/kernel/tracing tracefs rw,nosuid,nodev,noexec,relatime 0 0</content>
+      <content>mqueue /dev/mqueue mqueue rw,nosuid,nodev,noexec,relatime 0 0</content>
+      <content>debugfs /sys/kernel/debug debugfs rw,nosuid,nodev,noexec,relatime 0 0</content>
+      <content>hugetlbfs /dev/hugepages hugetlbfs rw,relatime,pagesize=2M 0 0</content>
+      <content>fusectl /sys/fs/fuse/connections fusectl rw,nosuid,nodev,noexec,relatime 0 0</content>
+      <content>configfs /sys/kernel/config configfs rw,nosuid,nodev,noexec,relatime 0 0</content>
+      <content>tmpfs /tmp tmpfs rw,nosuid,nodev,size=16269096k,nr_inodes=409600,inode64 0 0</content>
+      <content>tmpfs /run/user/0 tmpfs rw,nosuid,nodev,relatime,size=3253816k,nr_inodes=813454,mode=700,inode64 0 0</content>
+    </File>
+    <File>
+      <name>/proc/swaps</name>
+      <content>Filename				Type		Size		Used		Priority</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:17.0/ata3/host2/target2:0:0/2:0:0:0/block/sdc/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:17.0/ata3/host2/target2:0:0/2:0:0:0/block/sdc/ext_range</name>
+      <content>256</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:17.0/ata3/host2/target2:0:0/2:0:0:0/block/sdc/queue/dax</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:17.0/ata3/host2/target2:0:0/2:0:0:0/block/sdc/queue/logical_block_size</name>
+      <content>512</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:17.0/ata3/host2/target2:0:0/2:0:0:0/block/sdc/queue/optimal_io_size</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:17.0/ata3/host2/target2:0:0/2:0:0:0/block/sdc/queue/rotational</name>
+      <content>1</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:17.0/ata3/host2/target2:0:0/2:0:0:0/block/sdc/queue/zoned</name>
+      <content>none</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:17.0/ata3/host2/target2:0:0/2:0:0:0/block/sdc/ro</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:17.0/ata3/host2/target2:0:0/2:0:0:0/block/sdc/sdc1/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:17.0/ata3/host2/target2:0:0/2:0:0:0/block/sdc/sdc1/ro</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:17.0/ata3/host2/target2:0:0/2:0:0:0/block/sdc/size</name>
+      <content>625142448</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:17.0/ata4/host3/target3:0:0/3:0:0:0/block/sdd/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:17.0/ata4/host3/target3:0:0/3:0:0:0/block/sdd/ext_range</name>
+      <content>256</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:17.0/ata4/host3/target3:0:0/3:0:0:0/block/sdd/queue/dax</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:17.0/ata4/host3/target3:0:0/3:0:0:0/block/sdd/queue/logical_block_size</name>
+      <content>512</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:17.0/ata4/host3/target3:0:0/3:0:0:0/block/sdd/queue/optimal_io_size</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:17.0/ata4/host3/target3:0:0/3:0:0:0/block/sdd/queue/rotational</name>
+      <content>1</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:17.0/ata4/host3/target3:0:0/3:0:0:0/block/sdd/queue/zoned</name>
+      <content>none</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:17.0/ata4/host3/target3:0:0/3:0:0:0/block/sdd/ro</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:17.0/ata4/host3/target3:0:0/3:0:0:0/block/sdd/size</name>
+      <content>625142448</content>
+    </File>
+  </Files>
+</Mockup>

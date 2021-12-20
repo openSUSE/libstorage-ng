@@ -6,6 +6,7 @@
 
 #include "storage/Environment.h"
 #include "storage/Storage.h"
+#include "storage/Utils/Logger.h"
 
 #include "testsuite/helpers/CallbacksRecorder.h"
 

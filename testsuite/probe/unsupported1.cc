@@ -19,12 +19,10 @@ using namespace storage;
 
 BOOST_AUTO_TEST_CASE(probe)
 {
-    setenv("LIBSTORAGE_MULTIPLE_DEVICES_BTRFS", "no", 1);
-
     set_logger(get_stdout_logger());
 
     Environment environment(true, ProbeMode::READ_MOCKUP, TargetMode::DIRECT);
-    environment.set_mockup_filename("ambiguous2-mockup.xml");
+    environment.set_mockup_filename("unsupported1-mockup.xml");
 
     vector<string> probe_messages;
     ProbeCallbacksRecorder probe_callbacks_recorder(probe_messages);
@@ -32,23 +30,21 @@ BOOST_AUTO_TEST_CASE(probe)
     Storage storage(environment);
     storage.probe(&probe_callbacks_recorder);
 
-    BOOST_REQUIRE_EQUAL(probe_messages.size(), 3);
+    BOOST_REQUIRE_EQUAL(probe_messages.size(), 4);
     BOOST_CHECK_EQUAL(probe_messages[0], "begin:");
-    BOOST_CHECK_EQUAL(probe_messages[1], "ambiguity-partition-table-and-filesystem: message = 'Detected a btrfs file "
-		      "system next to a partition table of type GPT on the\ndevice /dev/sdc. The file system will be "
-		      "ignored.', what = '', name = '/dev/sdc', pt-type = GPT, fs-type = btrfs");
-    BOOST_CHECK_EQUAL(probe_messages[2], "end:");
+    BOOST_CHECK_EQUAL(probe_messages[1], "unsupported-partition-table: message = 'Detected an unsupported partition "
+		      "table of type Amiga on the\ndevice /dev/sdd.', what = '', name = '/dev/sdd', pt-type = Amiga");
+    BOOST_CHECK_EQUAL(probe_messages[2], "unsupported-filesystem: message = 'Detected an unsupported file system of "
+		      "type minix on the\ndevice /dev/sdc1.', what = '', name = '/dev/sdc1', fs-type = minix");
+    BOOST_CHECK_EQUAL(probe_messages[3], "end:");
 
     const Devicegraph* probed = storage.get_probed();
     probed->check();
 
     Devicegraph* staging = storage.get_staging();
-    staging->load("ambiguous2-devicegraph.xml");
+    staging->load("unsupported1-devicegraph.xml");
     staging->check();
 
     TsCmpDevicegraph cmp(*probed, *staging);
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
-
-    BOOST_CHECK_EQUAL(required_features(probed), "");
-    BOOST_CHECK_EQUAL(suggested_features(probed), "");
 }

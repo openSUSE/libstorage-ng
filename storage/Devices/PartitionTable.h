@@ -40,7 +40,7 @@ namespace storage
 
     //! Partition Table Type.
     enum class PtType {
-	UNKNOWN, LOOP, MSDOS, GPT, DASD, MAC, IMPLICIT
+	UNKNOWN, LOOP, MSDOS, GPT, DASD, MAC, IMPLICIT, AIX, SUN, ATARI, BSD, AMIGA, DVH
     };
 
 
