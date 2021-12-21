@@ -6,16 +6,16 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-20 12:10+0100\n"
-"PO-Revision-Date: 2021-12-03 20:13+0000\n"
+"PO-Revision-Date: 2021-12-21 10:14+0000\n"
 "Last-Translator: Ferdinand Galko <galko.ferdinand@gmail.com>\n"
-"Language-Team: Slovak <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/sk/>\n"
+"Language-Team: Slovak <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.8.1\n"
+"X-Generator: Weblate 4.9.1\n"
 
 msgid ""
 "\n"
@@ -1665,35 +1665,36 @@ msgstr ""
 #. %1$s is replaced by the filesystem type (e.g. ext4),
 #. %2$s is replaced by the partition table type (e.g. GPT),
 #. %3$s is replaced by the device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Detected a %1$s file system next to a partition table of type %2$s on the\n"
 "device %3$s. The file system will be ignored."
 msgstr ""
-"Zistený súborový systém vedľa tabuľky oddielov\n"
-"na zariadení %1$s. Súborový systém bude ignorovaný."
+"Zistený súborový systém %1$s vedľa tabuľky oddielov typu %2$s\n"
+"na zariadení %3$s. Súborový systém bude ignorovaný."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the partition table type (e.g. GPT),
 #. %2$s is replaced by the device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Detected a LUKS device next to a partition table of type %1$s on the\n"
 "device %2$s. The LUKS device will be ignored."
 msgstr ""
-"Zistené zariadenie LUKS vedľa tabuľky oddielov\n"
-"na zariadení %1$s. Zariadenie LUKS bude ignorované."
+"Zistené zariadenie LUKS vedľa tabuľky oddielov typu %1$s\n"
+"na zariadení %2$s. Zariadenie LUKS bude ignorované."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the partition table type (e.g. GPT),
 #. %2$s is replaced by the device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Detected a LVM logical volume next to a partition table of type %1$s on the\n"
 "device %2$s. The LVM logical volume will be ignored as good as possible."
 msgstr ""
-"Zistený logický zväzok LVM vedľa tabuľky oddielov\n"
-"na zariadení %1$s. Logický zväzok LVM bude ignorovaný."
+"Zistený logický zväzok LVM vedľa tabuľky oddielov typu %1$s\n"
+"na zariadení %2$s. Logický zväzok LVM bude ignorovaný tak dobre, ako je to "
+"možné."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the filesystem type (e.g. minix),
@@ -1703,6 +1704,8 @@ msgid ""
 "Detected an unsupported file system of type %1$s on the\n"
 "device %2$s."
 msgstr ""
+"Zistený nepodporovaný súborový systém typu %1$s\n"
+"na zariadení %2$s."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the partition table type (e.g. BSD),
@@ -1712,6 +1715,8 @@ msgid ""
 "Detected an unsupported partition table of type %1$s on the\n"
 "device %2$s."
 msgstr ""
+"Zistená nepodporovaná tabuľka oddielov typu %1$s\n"
+"na zariadení %2$s."
 
 #. TRANSLATORS: name of partition type
 msgid "Diagnostics Partition"
