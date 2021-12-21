@@ -9,16 +9,16 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-20 12:10+0100\n"
-"PO-Revision-Date: 2021-12-03 20:13+0000\n"
+"PO-Revision-Date: 2021-12-21 22:13+0000\n"
 "Last-Translator: David Medina <medipas@gmail.com>\n"
-"Language-Team: Catalan <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/ca/>\n"
+"Language-Team: Catalan <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/ca/>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.8.1\n"
+"X-Generator: Weblate 4.9.1\n"
 
 msgid ""
 "\n"
@@ -1667,35 +1667,37 @@ msgstr ""
 #. %1$s is replaced by the filesystem type (e.g. ext4),
 #. %2$s is replaced by the partition table type (e.g. GPT),
 #. %3$s is replaced by the device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Detected a %1$s file system next to a partition table of type %2$s on the\n"
 "device %3$s. The file system will be ignored."
 msgstr ""
-"S'ha detectat un sistema de fitxers al costat d'una taula de\n"
-"particions al dispositiu %1$s. S'ignorarà el sistema de fitxers."
+"S'ha detectat un sistema de fitxers %1$s al costat d'una taula de "
+"particions\n"
+"del tipus %2$s al dispositiu %3$s. S'ignorarà el sistema de fitxers."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the partition table type (e.g. GPT),
 #. %2$s is replaced by the device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Detected a LUKS device next to a partition table of type %1$s on the\n"
 "device %2$s. The LUKS device will be ignored."
 msgstr ""
-"S'ha detectat un dispositiu de LUKS al costat d'una taula de\n"
-"particions al dispositiu %1$s. S'ignorarà el dispositiu de LUKS."
+"S'ha detectat un dispositiu de LUKS al costat d'una taula de particions\n"
+"del tipus %1$s al dispositiu %2$s. S'ignorarà el dispositiu de LUKS."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the partition table type (e.g. GPT),
 #. %2$s is replaced by the device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Detected a LVM logical volume next to a partition table of type %1$s on the\n"
 "device %2$s. The LVM logical volume will be ignored as good as possible."
 msgstr ""
-"S'ha detectat un volum lògic d'LVM al costat d'una taula de\n"
-"particions al dispositiu %1$s. S'ignorarà el volum lògic d'LVM."
+"S'ha detectat un volum lògic d'LVM al costat d'una taula de particions del "
+"tipus %1$s\n"
+"al dispositiu %2$s. S'ignorarà el volum lògic d'LVM tant com sigui possible."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the filesystem type (e.g. minix),
@@ -1705,6 +1707,8 @@ msgid ""
 "Detected an unsupported file system of type %1$s on the\n"
 "device %2$s."
 msgstr ""
+"S'ha detectat un sistema de fitxers no compatible de tipus %1$s al\n"
+"dispositiu %2$s."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the partition table type (e.g. BSD),
@@ -1714,6 +1718,8 @@ msgid ""
 "Detected an unsupported partition table of type %1$s on the\n"
 "device %2$s."
 msgstr ""
+"S'ha detectat una taula de particions no admesa del tipus %1$s al\n"
+"dispositiu %2$s."
 
 #. TRANSLATORS: name of partition type
 msgid "Diagnostics Partition"
