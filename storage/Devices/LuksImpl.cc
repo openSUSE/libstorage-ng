@@ -133,22 +133,34 @@ namespace storage
     }
 
 
-    /**
-     * Activation information about LUKS.
-     */
-    struct LuksActivationInfo
+    namespace
     {
-	LuksActivationInfo() : canceled(false), password() {}
 
-	bool canceled;
-	string password;
-    };
+	/**
+	 * Activation information about LUKS.
+	 */
+	struct LuksActivationInfo
+	{
+	    LuksActivationInfo() : canceled(false), password() {}
+
+	    bool canceled;
+	    string password;
+	};
 
 
-    /**
-     * Map with activation information about LUKS using the LUKS UUID as the key.
-     */
-    map<string, LuksActivationInfo> luks_activation_infos;
+	/**
+	 * Map with activation information about LUKS using the LUKS UUID as the key.
+	 */
+	map<string, LuksActivationInfo> luks_activation_infos;
+
+    }
+
+
+    void
+    Luks::Impl::reset_activation_infos()
+    {
+	luks_activation_infos.clear();
+    }
 
 
     bool

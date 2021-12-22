@@ -131,6 +131,13 @@ namespace storage
     }
 
 
+    void
+    Luks::reset_activation_infos()
+    {
+	Luks::Impl::reset_activation_infos();
+    }
+
+
     bool
     is_luks(const Device* device)
     {

@@ -97,6 +97,13 @@ namespace storage
 	 */
 	void set_format_options(const std::string& format_options);
 
+	/**
+	 * The library keeps track of whether the activation of a specific LUKS device was
+	 * canceled and of the password. Using this function that information can be
+	 * reset.
+	 */
+	static void reset_activation_infos();
+
     public:
 
 	class Impl;

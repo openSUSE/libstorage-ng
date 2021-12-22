@@ -47,7 +47,7 @@ namespace storage
     public:
 
 	Impl(const string& dm_name)
-	    : Encryption::Impl(dm_name), uuid(), label(), format_options() {}
+	    : Encryption::Impl(dm_name) {}
 
 	Impl(const xmlNode* node);
 
@@ -110,6 +110,8 @@ namespace storage
 
 	virtual void do_deactivate() const override;
 	virtual uf_t do_deactivate_used_features() const override { return UF_LUKS; }
+
+	static void reset_activation_infos();
 
     protected:
 
