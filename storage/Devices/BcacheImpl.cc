@@ -811,6 +811,7 @@ namespace storage
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
+
     Text
     Bcache::Impl::do_update_cache_mode_text(Tense tense) const
     {
