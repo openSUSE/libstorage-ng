@@ -668,7 +668,7 @@ namespace storage
 
 
 	const string&
-	Mount::get_path(Actiongraph::Impl& actiongraph) const
+	Mount::get_path(const Actiongraph::Impl& actiongraph) const
 	{
 	    const MountPoint* mount_point = to_mount_point(get_device(actiongraph));
 	    return mount_point->get_path();
@@ -676,7 +676,7 @@ namespace storage
 
 
 	string
-	Mount::get_rootprefixed_path(Actiongraph::Impl& actiongraph) const
+	Mount::get_rootprefixed_path(const Actiongraph::Impl& actiongraph) const
 	{
 	    const MountPoint* mount_point = to_mount_point(get_device(actiongraph));
 	    return mount_point->get_impl().get_rootprefixed_path();
@@ -684,7 +684,7 @@ namespace storage
 
 
 	const MountPoint*
-	Mount::get_mount_point(Actiongraph::Impl& actiongraph) const
+	Mount::get_mount_point(const Actiongraph::Impl& actiongraph) const
 	{
 	    return to_mount_point(get_device(actiongraph));
 	}
@@ -715,7 +715,7 @@ namespace storage
 
 
 	const string&
-	Unmount::get_path(Actiongraph::Impl& actiongraph) const
+	Unmount::get_path(const Actiongraph::Impl& actiongraph) const
 	{
 	    const MountPoint* mount_point = to_mount_point(get_device(actiongraph));
 	    return mount_point->get_path();
@@ -723,7 +723,7 @@ namespace storage
 
 
 	string
-	Unmount::get_rootprefixed_path(Actiongraph::Impl& actiongraph) const
+	Unmount::get_rootprefixed_path(const Actiongraph::Impl& actiongraph) const
 	{
 	    const MountPoint* mount_point = to_mount_point(get_device(actiongraph));
 	    return mount_point->get_impl().get_rootprefixed_path();
@@ -747,7 +747,7 @@ namespace storage
 
 
 	const string&
-	AddToEtcFstab::get_path(Actiongraph::Impl& actiongraph) const
+	AddToEtcFstab::get_path(const Actiongraph::Impl& actiongraph) const
 	{
 	    const MountPoint* mount_point = to_mount_point(get_device(actiongraph, RHS));
 	    return mount_point->get_path();

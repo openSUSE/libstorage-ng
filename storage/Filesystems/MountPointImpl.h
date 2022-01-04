@@ -238,10 +238,10 @@ namespace storage
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
 	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const override;
 
-	    const string& get_path(Actiongraph::Impl& actiongraph) const;
-	    string get_rootprefixed_path(Actiongraph::Impl& actiongraph) const;
+	    const string& get_path(const Actiongraph::Impl& actiongraph) const;
+	    string get_rootprefixed_path(const Actiongraph::Impl& actiongraph) const;
 
-	    const MountPoint* get_mount_point(Actiongraph::Impl& actiongraph) const;
+	    const MountPoint* get_mount_point(const Actiongraph::Impl& actiongraph) const;
 
 	};
 
@@ -255,8 +255,8 @@ namespace storage
 	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
 
-	    const string& get_path(Actiongraph::Impl& actiongraph) const;
-	    string get_rootprefixed_path(Actiongraph::Impl& actiongraph) const;
+	    const string& get_path(const Actiongraph::Impl& actiongraph) const;
+	    string get_rootprefixed_path(const Actiongraph::Impl& actiongraph) const;
 
 	};
 
@@ -270,7 +270,7 @@ namespace storage
 	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
 
-	    const string& get_path(Actiongraph::Impl& actiongraph) const;
+	    const string& get_path(const Actiongraph::Impl& actiongraph) const;
 
 	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
 					  Actiongraph::Impl& actiongraph) const override;
