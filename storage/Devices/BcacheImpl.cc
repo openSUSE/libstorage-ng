@@ -583,12 +583,12 @@ namespace storage
 
 	if(get_type() == BcacheType::BACKED)
 	{
-	    vector<Action::Base*> actions;
+	    vector<shared_ptr<Action::Base>> actions;
 
-	    actions.push_back(new Action::Create(get_sid()));
+	    actions.push_back(make_shared<Action::Create>(get_sid()));
 
 	    if (has_bcache_cset())
-		actions.push_back(new Action::AttachBcacheCset(get_sid()));
+		actions.push_back(make_shared<Action::AttachBcacheCset>(get_sid()));
 
 	    actiongraph.add_chain(actions);
 	}
@@ -604,27 +604,27 @@ namespace storage
 
 	if(get_type() == BcacheType::BACKED)
 	{
-	    vector<Action::Base*> actions;
+	    vector<shared_ptr<Action::Base>> actions;
 
 	    if(lhs_bcache->has_bcache_cset() && has_bcache_cset())
 	    {
 		if(!lhs_bcache->get_bcache_cset()->get_impl().equal(get_bcache_cset()->get_impl()))
 		{
-		    actions.push_back(new Action::DetachBcacheCset(get_sid(), lhs_bcache->get_bcache_cset()));
-		    actions.push_back(new Action::AttachBcacheCset(get_sid()));
+		    actions.push_back(make_shared<Action::DetachBcacheCset>(get_sid(), lhs_bcache->get_bcache_cset()));
+		    actions.push_back(make_shared<Action::AttachBcacheCset>(get_sid()));
 		}
 	    }
 	    else if(lhs_bcache->has_bcache_cset() && !has_bcache_cset())
 	    {
-		actions.push_back(new Action::DetachBcacheCset(get_sid(), lhs_bcache->get_bcache_cset()));
+		actions.push_back(make_shared<Action::DetachBcacheCset>(get_sid(), lhs_bcache->get_bcache_cset()));
 	    }
 	    else if(!lhs_bcache->has_bcache_cset() && has_bcache_cset())
 	    {
-		actions.push_back(new Action::AttachBcacheCset(get_sid()));
+		actions.push_back(make_shared<Action::AttachBcacheCset>(get_sid()));
 	    }
 
 	    if(lhs_bcache->get_cache_mode() != get_cache_mode())
-		actions.push_back(new Action::UpdateCacheMode(get_sid()));
+		actions.push_back(make_shared<Action::UpdateCacheMode>(get_sid()));
 
 	    actiongraph.add_chain(actions);
 	}
@@ -638,12 +638,12 @@ namespace storage
 
 	if(get_type() == BcacheType::BACKED)
 	{
-	    vector<Action::Base*> actions;
+	    vector<shared_ptr<Action::Base>> actions;
 
 	    if (is_active())
-		actions.push_back(new Action::Deactivate(get_sid()));
+		actions.push_back(make_shared<Action::Deactivate>(get_sid()));
 
-	    actions.push_back(new Action::Delete(get_sid()));
+	    actions.push_back(make_shared<Action::Delete>(get_sid()));
 
 	    actiongraph.add_chain(actions);
 	}

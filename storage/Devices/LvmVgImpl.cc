@@ -518,12 +518,12 @@ namespace storage
     void
     LvmVg::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
     {
-	vector<Action::Base*> actions;
+	vector<shared_ptr<Action::Base>> actions;
 
 	if (is_partial())
-	    actions.push_back(new Action::ReduceMissing(get_sid()));
+	    actions.push_back(make_shared<Action::ReduceMissing>(get_sid()));
 
-	actions.push_back(new Action::Delete(get_sid()));
+	actions.push_back(make_shared<Action::Delete>(get_sid()));
 
 	actiongraph.add_chain(actions);
     }

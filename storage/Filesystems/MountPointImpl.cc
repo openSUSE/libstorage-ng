@@ -405,13 +405,13 @@ namespace storage
     void
     MountPoint::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
     {
-	vector<Action::Base*> actions;
+	vector<shared_ptr<Action::Base>> actions;
 
 	if (active)
-	    actions.push_back(new Action::Mount(get_sid()));
+	    actions.push_back(make_shared<Action::Mount>(get_sid()));
 
 	if (in_etc_fstab)
-	    actions.push_back(new Action::AddToEtcFstab(get_sid()));
+	    actions.push_back(make_shared<Action::AddToEtcFstab>(get_sid()));
 
 	actiongraph.add_chain(actions);
     }
@@ -424,11 +424,11 @@ namespace storage
 
 	const Impl& lhs = dynamic_cast<const Impl&>(lhs_base->get_impl());
 
-	vector<Action::Base*> actions;
+	vector<shared_ptr<Action::Base>> actions;
 
 	if (lhs.in_etc_fstab && !in_etc_fstab)
 	{
-	    actions.push_back(new Action::RemoveFromEtcFstab(get_sid()));
+	    actions.push_back(make_shared<Action::RemoveFromEtcFstab>(get_sid()));
 	}
 
 	// A unmount action could be required when the device is set as unmounted in the target system
@@ -436,7 +436,7 @@ namespace storage
 	// currently mounted in the system.
 	if (lhs.active && (!active || lhs.path != path))
 	{
-	    actions.push_back(new Action::Unmount(get_sid()));
+	    actions.push_back(make_shared<Action::Unmount>(get_sid()));
 	}
 
 	if (lhs.in_etc_fstab && in_etc_fstab)
@@ -444,7 +444,7 @@ namespace storage
 	    if (lhs.mount_by != mount_by || lhs.mount_options != mount_options ||
 		lhs.freq != freq || lhs.passno != passno || lhs.path != path)
 	    {
-		actions.push_back(new Action::UpdateInEtcFstab(get_sid()));
+		actions.push_back(make_shared<Action::UpdateInEtcFstab>(get_sid()));
 	    }
 	}
 
@@ -453,12 +453,12 @@ namespace storage
 	// mounted in the target system.
 	if (active && (!lhs.active || lhs.path != path))
 	{
-	    actions.push_back(new Action::Mount(get_sid()));
+	    actions.push_back(make_shared<Action::Mount>(get_sid()));
 	}
 
 	if (!lhs.in_etc_fstab && in_etc_fstab)
 	{
-	    actions.push_back(new Action::AddToEtcFstab(get_sid()));
+	    actions.push_back(make_shared<Action::AddToEtcFstab>(get_sid()));
 	}
 
 	// Check whether the name of the device used in fstab has changed.
@@ -479,7 +479,7 @@ namespace storage
 
 		    if (blk_device->get_name() != blk_device_lhs->get_name())
 		    {
-			actions.push_back(new Action::RenameInEtcFstab(get_sid(), blk_device_lhs));
+			actions.push_back(make_shared<Action::RenameInEtcFstab>(get_sid(), blk_device_lhs));
 		    }
 		}
 	    }
@@ -492,13 +492,13 @@ namespace storage
     void
     MountPoint::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
     {
-	vector<Action::Base*> actions;
+	vector<shared_ptr<Action::Base>> actions;
 
 	if (in_etc_fstab)
-	    actions.push_back(new Action::RemoveFromEtcFstab(get_sid()));
+	    actions.push_back(make_shared<Action::RemoveFromEtcFstab>(get_sid()));
 
 	if (active)
-	    actions.push_back(new Action::Unmount(get_sid()));
+	    actions.push_back(make_shared<Action::Unmount>(get_sid()));
 
 	actiongraph.add_chain(actions);
     }

@@ -177,9 +177,9 @@ namespace storage
     void
     Tmpfs::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
     {
-	vector<Action::Base*> actions;
+	vector<shared_ptr<Action::Base>> actions;
 
-	actions.push_back(new Action::Create(get_sid(), true));
+	actions.push_back(make_shared<Action::Create>(get_sid(), true));
 
 	actiongraph.add_chain(actions);
     }
@@ -188,9 +188,9 @@ namespace storage
     void
     Tmpfs::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
     {
-	vector<Action::Base*> actions;
+	vector<shared_ptr<Action::Base>> actions;
 
-	actions.push_back(new Action::Delete(get_sid(), true));
+	actions.push_back(make_shared<Action::Delete>(get_sid(), true));
 
 	actiongraph.add_chain(actions);
     }

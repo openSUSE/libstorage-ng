@@ -315,11 +315,11 @@ namespace storage
     void
     Partition::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
     {
-	vector<Action::Base*> actions;
+	vector<shared_ptr<Action::Base>> actions;
 
 	bool nop = is_implicit_pt(get_partition_table());
 
-	actions.push_back(new Action::Create(get_sid(), false, nop));
+	actions.push_back(make_shared<Action::Create>(get_sid(), false, nop));
 
 	if (default_id_for_type(type) != id)
 	{
@@ -331,17 +331,17 @@ namespace storage
 	    };
 
 	    if (!contains(skip_ids, id))
-		actions.push_back(new Action::SetPartitionId(get_sid()));
+		actions.push_back(make_shared<Action::SetPartitionId>(get_sid()));
 	}
 
 	if (!label.empty())
-	    actions.push_back(new Action::SetPartitionLabel(get_sid()));
+	    actions.push_back(make_shared<Action::SetPartitionLabel>(get_sid()));
 
 	if (boot)
-	    actions.push_back(new Action::SetBoot(get_sid()));
+	    actions.push_back(make_shared<Action::SetBoot>(get_sid()));
 
 	if (legacy_boot)
-	    actions.push_back(new Action::SetLegacyBoot(get_sid()));
+	    actions.push_back(make_shared<Action::SetLegacyBoot>(get_sid()));
 
 	actiongraph.add_chain(actions);
     }
@@ -366,25 +366,25 @@ namespace storage
 
 	if (get_id() != lhs.get_id())
 	{
-	    Action::Base* action = new Action::SetPartitionId(get_sid());
+	    shared_ptr<Action::Base> action = make_shared<Action::SetPartitionId>(get_sid());
 	    actiongraph.add_vertex(action);
 	}
 
 	if (label != lhs.label)
 	{
-	    Action::Base* action = new Action::SetPartitionLabel(get_sid());
+	    shared_ptr<Action::Base> action = make_shared<Action::SetPartitionLabel>(get_sid());
 	    actiongraph.add_vertex(action);
 	}
 
 	if (boot != lhs.boot)
 	{
-	    Action::Base* action = new Action::SetBoot(get_sid());
+	    shared_ptr<Action::Base> action = make_shared<Action::SetBoot>(get_sid());
 	    actiongraph.add_vertex(action);
 	}
 
 	if (legacy_boot != lhs.legacy_boot)
 	{
-	    Action::Base* action = new Action::SetLegacyBoot(get_sid());
+	    shared_ptr<Action::Base> action = make_shared<Action::SetLegacyBoot>(get_sid());
 	    actiongraph.add_vertex(action);
 	}
     }
@@ -393,11 +393,11 @@ namespace storage
     void
     Partition::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
     {
-	vector<Action::Base*> actions;
+	vector<shared_ptr<Action::Base>> actions;
 
 	bool nop = is_implicit_pt(get_partition_table());
 
-	actions.push_back(new Action::Delete(get_sid(), false, nop));
+	actions.push_back(make_shared<Action::Delete>(get_sid(), false, nop));
 
 	actiongraph.add_chain(actions);
     }

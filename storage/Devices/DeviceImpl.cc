@@ -276,9 +276,9 @@ namespace storage
     void
     Device::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
     {
-	vector<Action::Base*> actions;
+	vector<shared_ptr<Action::Base>> actions;
 
-	actions.push_back(new Action::Create(sid));
+	actions.push_back(make_shared<Action::Create>(sid));
 
 	actiongraph.add_chain(actions);
     }
@@ -313,13 +313,13 @@ namespace storage
 	for (sid_t sid : added_sids)
 	{
 	    const Device* device = actiongraph.get_devicegraph(RHS)->find_device(sid);
-	    actiongraph.add_vertex(new Action::Reallot(get_sid(), ReallotMode::EXTEND, device));
+	    actiongraph.add_vertex(make_shared<Action::Reallot>(get_sid(), ReallotMode::EXTEND, device));
 	}
 
 	for (sid_t sid : removed_sids)
 	{
 	    const Device* device = actiongraph.get_devicegraph(LHS)->find_device(sid);
-	    actiongraph.add_vertex(new Action::Reallot(get_sid(), ReallotMode::REDUCE, device));
+	    actiongraph.add_vertex(make_shared<Action::Reallot>(get_sid(), ReallotMode::REDUCE, device));
 	}
     }
 
@@ -327,9 +327,9 @@ namespace storage
     void
     Device::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
     {
-	vector<Action::Base*> actions;
+	vector<shared_ptr<Action::Base>> actions;
 
-	actions.push_back(new Action::Delete(sid));
+	actions.push_back(make_shared<Action::Delete>(sid));
 
 	actiongraph.add_chain(actions);
     }

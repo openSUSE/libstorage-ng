@@ -120,12 +120,12 @@ namespace storage
     void
     Gpt::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
     {
-	vector<Action::Base*> actions;
+	vector<shared_ptr<Action::Base>> actions;
 
-	actions.push_back(new Action::Create(get_sid()));
+	actions.push_back(make_shared<Action::Create>(get_sid()));
 
 	if (pmbr_boot)
-	    actions.push_back(new Action::SetPmbrBoot(get_sid()));
+	    actions.push_back(make_shared<Action::SetPmbrBoot>(get_sid()));
 
 	actiongraph.add_chain(actions);
     }
@@ -140,14 +140,14 @@ namespace storage
 
 	if (pmbr_boot != lhs.pmbr_boot)
 	{
-	    Action::Base* action = new Action::SetPmbrBoot(get_sid());
+	    shared_ptr<Action::SetPmbrBoot> action = make_shared<Action::SetPmbrBoot>(get_sid());
 	    actiongraph.add_vertex(action);
 	}
 
 	if (!undersized && lhs.undersized)
 	{
-	    Action::Repair* repair = new Action::Repair(get_sid());
-	    actiongraph.add_vertex(repair);
+	    shared_ptr<Action::Repair> action = make_shared<Action::Repair>(get_sid());
+	    actiongraph.add_vertex(action);
 	}
     }
 

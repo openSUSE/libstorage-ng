@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -234,9 +234,9 @@ namespace storage
 
 
     Actiongraph::Impl::vertex_descriptor
-    Actiongraph::Impl::add_vertex(Action::Base* action)
+    Actiongraph::Impl::add_vertex(const shared_ptr<Action::Base>& action)
     {
-	return boost::add_vertex(shared_ptr<Action::Base>(action), graph);
+	return boost::add_vertex(action, graph);
     }
 
 
@@ -250,11 +250,11 @@ namespace storage
 
 
     void
-    Actiongraph::Impl::add_chain(const vector<Action::Base*>& actions)
+    Actiongraph::Impl::add_chain(const vector<shared_ptr<Action::Base>>& actions)
     {
 	vertex_descriptor v1 = 0;
 
-	for (vector<Action::Base*>::const_iterator it = actions.begin(); it != actions.end(); ++it)
+	for (vector<shared_ptr<Action::Base>>::const_iterator it = actions.begin(); it != actions.end(); ++it)
 	{
 	    (*it)->first = it == actions.begin();
 	    (*it)->last = it == --actions.end();
