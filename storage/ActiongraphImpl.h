@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -128,7 +128,7 @@ namespace storage
 
 	uf_t used_features() const;
 
-	vertex_descriptor add_vertex(Action::Base* action);
+	vertex_descriptor add_vertex(const shared_ptr<Action::Base>& action);
 
 	edge_descriptor add_edge(vertex_descriptor a, vertex_descriptor b);
 
@@ -137,7 +137,7 @@ namespace storage
 	 * the graph, linking each other with edges (dependencies) in the given
 	 * order. Also sets the first and last flag of the actions.
 	 */
-	void add_chain(const vector<Action::Base*>& actions);
+	void add_chain(const vector<shared_ptr<Action::Base>>& actions);
 
 	/**
 	 * Adds several edges (dependencies) to the graph, linking the actions

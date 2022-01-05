@@ -268,7 +268,7 @@ namespace storage
     void
     BtrfsQgroup::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
     {
-	vector<Action::Base*> actions;
+	vector<shared_ptr<Action::Base>> actions;
 
 	bool sync_only = false;
 
@@ -301,10 +301,10 @@ namespace storage
 	    }
 	}
 
-	actions.push_back(new Action::Create(get_sid(), sync_only));
+	actions.push_back(make_shared<Action::Create>(get_sid(), sync_only));
 
 	if (referenced_limit != std::nullopt || exclusive_limit != std::nullopt)
-	    actions.push_back(new Action::SetLimits(get_sid()));
+	    actions.push_back(make_shared<Action::SetLimits>(get_sid()));
 
 	actiongraph.add_chain(actions);
     }
@@ -317,10 +317,10 @@ namespace storage
 
 	const Impl& lhs = dynamic_cast<const Impl&>(lhs_base->get_impl());
 
-	vector<Action::Base*> actions;
+	vector<shared_ptr<Action::Base>> actions;
 
 	if (lhs.referenced_limit != referenced_limit || lhs.exclusive_limit != exclusive_limit)
-	    actions.push_back(new Action::SetLimits(get_sid()));
+	    actions.push_back(make_shared<Action::SetLimits>(get_sid()));
 
 	actiongraph.add_chain(actions);
     }
@@ -332,9 +332,9 @@ namespace storage
 	if (contains(actiongraph.btrfs_qgroup_delete_is_nop, get_btrfs()->get_sid()))
 	    return;
 
-	vector<Action::Base*> actions;
+	vector<shared_ptr<Action::Base>> actions;
 
-	actions.push_back(new Action::Delete(get_sid()));
+	actions.push_back(make_shared<Action::Delete>(get_sid()));
 
 	actiongraph.add_chain(actions);
     }

@@ -535,7 +535,7 @@ namespace storage
 	    // Only insert mount and resize actions if the devices exist in
 	    // LHS and RHS.
 
-	    vector<Action::Base*> actions;
+	    vector<shared_ptr<Action::Base>> actions;
 
 	    if (need_tmp_unmount && blk_filesystem_lhs)
 	    {
@@ -549,13 +549,13 @@ namespace storage
 		{
 		    if (device_to_resize.child->exists_in_devicegraph(actiongraph.get_devicegraph(RHS)))
 		    {
-			actions.push_back(new Action::Resize(device_to_resize.child->get_sid(), resize_mode,
+			actions.push_back(make_shared<Action::Resize>(device_to_resize.child->get_sid(), resize_mode,
 							     device_to_resize.parent));
 		    }
 		}
 	    }
 
-	    actions.push_back(new Action::Resize(get_sid(), resize_mode, nullptr));
+	    actions.push_back(make_shared<Action::Resize>(get_sid(), resize_mode, nullptr));
 
 	    if (resize_mode == ResizeMode::GROW)
 	    {
@@ -563,7 +563,7 @@ namespace storage
 		{
 		    if (device_to_resize.child->exists_in_devicegraph(actiongraph.get_devicegraph(LHS)))
 		    {
-			actions.push_back(new Action::Resize(device_to_resize.child->get_sid(), resize_mode,
+			actions.push_back(make_shared<Action::Resize>(device_to_resize.child->get_sid(), resize_mode,
 							     device_to_resize.parent));
 		    }
 		}
@@ -580,12 +580,12 @@ namespace storage
 
 	if (!lhs.is_active() && is_active())
 	{
-	    Action::Base* action = new Action::Activate(get_sid());
+	    shared_ptr<Action::Base> action = make_shared<Action::Activate>(get_sid());
 	    actiongraph.add_vertex(action);
 	}
 	else if (lhs.is_active() && !is_active())
 	{
-	    Action::Base* action = new Action::Deactivate(get_sid());
+	    shared_ptr<Action::Base> action = make_shared<Action::Deactivate>(get_sid());
 	    actiongraph.add_vertex(action);
 	}
     }

@@ -226,11 +226,11 @@ namespace storage
     void
     BcacheCset::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
     {
-	vector<Action::Base*> actions;
+	vector<shared_ptr<Action::Base>> actions;
 
-	actions.push_back(new Action::Deactivate(get_sid()));
+	actions.push_back(make_shared<Action::Deactivate>(get_sid()));
 
-	actions.push_back(new Action::Delete(get_sid()));
+	actions.push_back(make_shared<Action::Delete>(get_sid()));
 
 	actiongraph.add_chain(actions);
     }

@@ -254,9 +254,9 @@ namespace storage
 	const Environment& environment = actiongraph.get_storage().get_environment();
 	if (environment.get_target_mode() == TargetMode::IMAGE)
 	{
-	    vector<Action::Base*> actions;
-	    actions.push_back(new Action::Create(get_sid()));
-	    actions.push_back(new Action::Activate(get_sid()));
+	    vector<shared_ptr<Action::Base>> actions;
+	    actions.push_back(make_shared<Action::Create>(get_sid()));
+	    actions.push_back(make_shared<Action::Activate>(get_sid()));
 	    actiongraph.add_chain(actions);
 	}
 	else

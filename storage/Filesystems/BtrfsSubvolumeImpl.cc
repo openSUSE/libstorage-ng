@@ -479,15 +479,15 @@ namespace storage
     void
     BtrfsSubvolume::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
     {
-	vector<Action::Base*> actions;
+	vector<shared_ptr<Action::Base>> actions;
 
-	actions.push_back(new Action::Create(get_sid(), is_top_level()));
+	actions.push_back(make_shared<Action::Create>(get_sid(), is_top_level()));
 
 	if (nocow)
-	    actions.push_back(new Action::SetNocow(get_sid()));
+	    actions.push_back(make_shared<Action::SetNocow>(get_sid()));
 
 	if (default_btrfs_subvolume && !is_top_level())
-	    actions.push_back(new Action::SetDefaultBtrfsSubvolume(get_sid()));
+	    actions.push_back(make_shared<Action::SetDefaultBtrfsSubvolume>(get_sid()));
 
 	actiongraph.add_chain(actions);
     }
@@ -507,13 +507,13 @@ namespace storage
 
 	if (nocow != lhs.nocow)
 	{
-	    Action::Base* action = new Action::SetNocow(get_sid());
+	    shared_ptr<Action::Base> action = make_shared<Action::SetNocow>(get_sid());
 	    actiongraph.add_vertex(action);
 	}
 
 	if (default_btrfs_subvolume && !lhs.default_btrfs_subvolume)
 	{
-	    Action::Base* action = new Action::SetDefaultBtrfsSubvolume(get_sid());
+	    shared_ptr<Action::Base> action = make_shared<Action::SetDefaultBtrfsSubvolume>(get_sid());
 	    actiongraph.add_vertex(action);
 	}
     }
@@ -522,7 +522,7 @@ namespace storage
     void
     BtrfsSubvolume::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
     {
-	vector<Action::Base*> actions;
+	vector<shared_ptr<Action::Base>> actions;
 
 	// set sync_only if this is the top-level subvolume
 	bool sync_only = is_top_level();
@@ -530,7 +530,7 @@ namespace storage
 	// set nop if the btrfs filesystem is also deleted
 	bool nop = contains(actiongraph.btrfs_subvolume_delete_is_nop, get_btrfs()->get_sid());
 
-	actions.push_back(new Action::Delete(get_sid(), sync_only, nop));
+	actions.push_back(make_shared<Action::Delete>(get_sid(), sync_only, nop));
 
 	actiongraph.add_chain(actions);
     }

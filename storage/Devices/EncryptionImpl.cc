@@ -248,18 +248,18 @@ namespace storage
     void
     Encryption::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
     {
-	vector<Action::Base*> actions;
+	vector<shared_ptr<Action::Base>> actions;
 
-	actions.push_back(new Action::Create(get_sid()));
-	actions.push_back(new Action::Activate(get_sid()));
+	actions.push_back(make_shared<Action::Create>(get_sid()));
+	actions.push_back(make_shared<Action::Activate>(get_sid()));
 
 	if (in_etc_crypttab)
-	    actions.push_back(new Action::AddToEtcCrypttab(get_sid()));
+	    actions.push_back(make_shared<Action::AddToEtcCrypttab>(get_sid()));
 
 	actiongraph.add_chain(actions);
 
 	// Normally last means that the action is the last for the object. But
-	// this fails for LUKS encryption sind adding to /etc/crypttab must
+	// this fails for LUKS encryption since adding to /etc/crypttab must
 	// happen after the root filesystem is mounted. If the root filesystem
 	// in somehow located on the LUKS this results in a cycle in the
 	// actiongraph. So set last to the activate action.
@@ -283,12 +283,12 @@ namespace storage
 
 	if (!lhs.in_etc_crypttab && in_etc_crypttab)
 	{
-	    Action::Base* action = new Action::AddToEtcCrypttab(get_sid());
+	    shared_ptr<Action::Base> action = make_shared<Action::AddToEtcCrypttab>(get_sid());
 	    actiongraph.add_vertex(action);
 	}
 	else if (lhs.in_etc_crypttab && !in_etc_crypttab)
 	{
-	    Action::Base* action = new Action::RemoveFromEtcCrypttab(get_sid());
+	    shared_ptr<Action::Base> action = make_shared<Action::RemoveFromEtcCrypttab>(get_sid());
 	    actiongraph.add_vertex(action);
 	}
 	else if (lhs.in_etc_crypttab && in_etc_crypttab)
@@ -297,7 +297,7 @@ namespace storage
 
 	    if (get_blk_device()->get_name() != lhs.get_blk_device()->get_name())
 	    {
-		Action::Base* action = new Action::RenameInEtcCrypttab(get_sid(), get_blk_device());
+		shared_ptr<Action::Base> action = make_shared<Action::RenameInEtcCrypttab>(get_sid(), get_blk_device());
 		actiongraph.add_vertex(action);
 	    }
 	}
@@ -307,15 +307,15 @@ namespace storage
     void
     Encryption::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
     {
-	vector<Action::Base*> actions;
+	vector<shared_ptr<Action::Base>> actions;
 
 	if (in_etc_crypttab)
-	    actions.push_back(new Action::RemoveFromEtcCrypttab(get_sid()));
+	    actions.push_back(make_shared<Action::RemoveFromEtcCrypttab>(get_sid()));
 
 	if (is_active())
-	    actions.push_back(new Action::Deactivate(get_sid()));
+	    actions.push_back(make_shared<Action::Deactivate>(get_sid()));
 
-	actions.push_back(new Action::Delete(get_sid()));
+	actions.push_back(make_shared<Action::Delete>(get_sid()));
 
 	actiongraph.add_chain(actions);
     }

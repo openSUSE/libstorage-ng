@@ -125,12 +125,12 @@ namespace storage
 	/**
 	 * Add mount action for all active mount points. Likely always used on RHS.
 	 */
-	virtual void insert_mount_action(vector<Action::Base*>& actions) const;
+	virtual void insert_mount_action(vector<shared_ptr<Action::Base>>& actions) const;
 
 	/**
 	 * Add unmount action for all active mount points. Likely always used on LHS.
 	 */
-	virtual void insert_unmount_action(vector<Action::Base*>& actions) const;
+	virtual void insert_unmount_action(vector<shared_ptr<Action::Base>>& actions) const;
 
 	virtual void probe_pass_2b(Prober& prober);
 

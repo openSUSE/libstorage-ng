@@ -521,15 +521,15 @@ namespace storage
     void
     Btrfs::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
     {
-	vector<Action::Base*> actions;
+	vector<shared_ptr<Action::Base>> actions;
 
-	actions.push_back(new Action::Create(get_sid()));
+	actions.push_back(make_shared<Action::Create>(get_sid()));
 
 	if (!get_label().empty())
-	    actions.push_back(new Action::SetLabel(get_sid()));
+	    actions.push_back(make_shared<Action::SetLabel>(get_sid()));
 
 	if (quota)
-	    actions.push_back(new Action::SetQuota(get_sid()));
+	    actions.push_back(make_shared<Action::SetQuota>(get_sid()));
 
 	actiongraph.add_chain(actions);
     }
@@ -544,7 +544,7 @@ namespace storage
 
 	if (quota != lhs.quota)
 	{
-	    Action::Base* action = new Action::SetQuota(get_sid());
+	    shared_ptr<Action::Base> action = make_shared<Action::SetQuota>(get_sid());
 	    actiongraph.add_vertex(action);
 	}
     }

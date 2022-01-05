@@ -584,12 +584,12 @@ namespace storage
     void
     Md::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
     {
-	vector<Action::Base*> actions;
+	vector<shared_ptr<Action::Base>> actions;
 
-	actions.push_back(new Action::Create(get_sid()));
+	actions.push_back(make_shared<Action::Create>(get_sid()));
 
 	if (in_etc_mdadm)
-	    actions.push_back(new Action::AddToEtcMdadm(get_sid()));
+	    actions.push_back(make_shared<Action::AddToEtcMdadm>(get_sid()));
 
 	actiongraph.add_chain(actions);
 
@@ -627,12 +627,12 @@ namespace storage
 
 	if (!lhs.in_etc_mdadm && in_etc_mdadm)
 	{
-	    Action::Base* action = new Action::AddToEtcMdadm(get_sid());
+	    shared_ptr<Action::Base> action = make_shared<Action::AddToEtcMdadm>(get_sid());
 	    actiongraph.add_vertex(action);
 	}
 	else if (lhs.in_etc_mdadm && !in_etc_mdadm)
 	{
-	    Action::Base* action = new Action::RemoveFromEtcMdadm(get_sid());
+	    shared_ptr<Action::Base> action = make_shared<Action::RemoveFromEtcMdadm>(get_sid());
 	    actiongraph.add_vertex(action);
 	}
     }
@@ -641,15 +641,15 @@ namespace storage
     void
     Md::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
     {
-	vector<Action::Base*> actions;
+	vector<shared_ptr<Action::Base>> actions;
 
 	if (in_etc_mdadm)
-	    actions.push_back(new Action::RemoveFromEtcMdadm(get_sid()));
+	    actions.push_back(make_shared<Action::RemoveFromEtcMdadm>(get_sid()));
 
 	if (is_active())
-	    actions.push_back(new Action::Deactivate(get_sid()));
+	    actions.push_back(make_shared<Action::Deactivate>(get_sid()));
 
-	actions.push_back(new Action::Delete(get_sid()));
+	actions.push_back(make_shared<Action::Delete>(get_sid()));
 
 	actiongraph.add_chain(actions);
     }

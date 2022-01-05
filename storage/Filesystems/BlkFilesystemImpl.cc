@@ -507,18 +507,18 @@ namespace storage
     void
     BlkFilesystem::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
     {
-	vector<Action::Base*> actions;
+	vector<shared_ptr<Action::Base>> actions;
 
-	actions.push_back(new Action::Create(get_sid()));
+	actions.push_back(make_shared<Action::Create>(get_sid()));
 
 	if (!get_label().empty() && supports_modify_label())
-	    actions.push_back(new Action::SetLabel(get_sid()));
+	    actions.push_back(make_shared<Action::SetLabel>(get_sid()));
 
 	if (!get_uuid().empty() && supports_modify_uuid())
-	    actions.push_back(new Action::SetUuid(get_sid()));
+	    actions.push_back(make_shared<Action::SetUuid>(get_sid()));
 
 	if (!tune_options.empty())
-	    actions.push_back(new Action::SetTuneOptions(get_sid()));
+	    actions.push_back(make_shared<Action::SetTuneOptions>(get_sid()));
 
 	actiongraph.add_chain(actions);
     }
@@ -531,7 +531,7 @@ namespace storage
 
 	const Impl& lhs = dynamic_cast<const Impl&>(lhs_base->get_impl());
 
-	vector<Action::Base*> actions;
+	vector<shared_ptr<Action::Base>> actions;
 
 	if (get_type() != lhs.get_type())
 	{
@@ -540,17 +540,17 @@ namespace storage
 
 	if (get_label() != lhs.get_label())
 	{
-	    actions.push_back(new Action::SetLabel(get_sid()));
+	    actions.push_back(make_shared<Action::SetLabel>(get_sid()));
 	}
 
 	if (get_uuid() != lhs.get_uuid())
 	{
-	    actions.push_back(new Action::SetUuid(get_sid()));
+	    actions.push_back(make_shared<Action::SetUuid>(get_sid()));
 	}
 
 	if (get_tune_options() != lhs.get_tune_options())
 	{
-	    actions.push_back(new Action::SetTuneOptions(get_sid()));
+	    actions.push_back(make_shared<Action::SetTuneOptions>(get_sid()));
 	}
 
 	actiongraph.add_chain(actions);

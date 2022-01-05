@@ -885,7 +885,7 @@ namespace storage
 
 	if (get_name() != lhs.get_name())
 	{
-	    Action::Base* action = new Action::Rename(get_sid());
+	    shared_ptr<Action::Base> action = make_shared<Action::Rename>(get_sid());
 	    actiongraph.add_vertex(action);
 	    action->first = action->last = true;
 	}

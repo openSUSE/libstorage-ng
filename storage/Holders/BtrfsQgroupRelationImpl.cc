@@ -96,10 +96,10 @@ namespace storage
 	// Only btrfs qgroup relations between btrfs qgroups must be created in the
 	// system. Relations from a btrfs or from a subvolume do not exists in the system.
 
-	vector<Action::Base*> actions;
+	vector<shared_ptr<Action::Base>> actions;
 
 	if (is_btrfs_qgroup(get_source()) && is_btrfs_qgroup(get_target()))
-	    actions.push_back(new Action::Create(make_pair(get_source_sid(), get_target_sid())));
+	    actions.push_back(make_shared<Action::Create>(make_pair(get_source_sid(), get_target_sid())));
 
 	actiongraph.add_chain(actions);
     }
@@ -113,10 +113,10 @@ namespace storage
 
 	// See above.
 
-	vector<Action::Base*> actions;
+	vector<shared_ptr<Action::Base>> actions;
 
 	if (is_btrfs_qgroup(get_source()) && is_btrfs_qgroup(get_target()))
-	    actions.push_back(new Action::Delete(make_pair(get_source_sid(), get_target_sid())));
+	    actions.push_back(make_shared<Action::Delete>(make_pair(get_source_sid(), get_target_sid())));
 
 	actiongraph.add_chain(actions);
     }
