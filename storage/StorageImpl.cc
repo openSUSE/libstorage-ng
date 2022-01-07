@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -450,14 +450,14 @@ namespace storage
     const Actiongraph*
     Storage::Impl::calculate_actiongraph()
     {
-	actiongraph.reset();	// free old actiongraph before generating new to avoid memory peak
+	actiongraph = nullptr;	// free old actiongraph before generating new to avoid memory peak
 
-	Actiongraph* tmp = new Actiongraph(storage, get_system(), get_staging());
+	unique_ptr<Actiongraph> tmp = make_unique<Actiongraph>(storage, get_system(), get_staging());
 	tmp->generate_compound_actions();
 
-	actiongraph.reset(tmp);
+	actiongraph = std::move(tmp);
 
-	return tmp;
+	return actiongraph.get();
     }
 
 
