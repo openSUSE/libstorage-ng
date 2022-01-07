@@ -50,8 +50,8 @@ namespace storage
 
 	pair<const Device*, CompoundAction::Impl::Type> get_meta_device(const Action::Base* action) const;
 
-	CompoundAction* find_by_target_device(const vector<CompoundAction*>& compound_actions,
-					      const Device* device, CompoundAction::Impl::Type type) const;
+	shared_ptr<CompoundAction> find_by_target_device(const vector<shared_ptr<CompoundAction>>& compound_actions,
+							 const Device* device, CompoundAction::Impl::Type type) const;
 
 	const Actiongraph* actiongraph = nullptr;
 

@@ -45,7 +45,7 @@ namespace storage
 	 * An action can either affect a device or a holder. Thus either sid or sid_pair
 	 * is valid.
 	 */
-	class Base
+	class Base : private boost::noncopyable
 	{
 
 	public:

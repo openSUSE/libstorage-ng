@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2021] SUSE LLC
+ * Copyright (c) [2017-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -43,13 +43,14 @@ namespace storage
     vector<shared_ptr<CompoundAction>>
     CompoundAction::Generator::generate() const
     {
-	vector<CompoundAction*> compound_actions;
+	vector<shared_ptr<CompoundAction>> compound_actions;
 
 	for (const Action::Base* action : actiongraph->get_commit_actions())
 	{
 	    pair<const Device*, CompoundAction::Impl::Type> meta_device = get_meta_device(action);
 
-	    auto compound_action = find_by_target_device(compound_actions, meta_device.first, meta_device.second);
+	    shared_ptr<CompoundAction> compound_action = find_by_target_device(compound_actions, meta_device.first,
+									       meta_device.second);
 
 	    if (compound_action)
 	    {
@@ -57,7 +58,7 @@ namespace storage
 	    }
 	    else
 	    {
-		compound_action = new CompoundAction(actiongraph);
+		compound_action = make_shared<CompoundAction>(actiongraph);
 		compound_action->get_impl().set_target_device(meta_device.first);
 		compound_action->get_impl().set_type(meta_device.second);
 		compound_action->get_impl().add_commit_action(action);
@@ -65,10 +66,7 @@ namespace storage
 	    }
 	}
 
-	vector<shared_ptr<CompoundAction>> ret;
-	for (CompoundAction* compound_action : compound_actions)
-	    ret.push_back(shared_ptr<CompoundAction>(compound_action));
-	return ret;
+	return compound_actions;
     }
 
 
@@ -156,21 +154,20 @@ namespace storage
     }
 
 
-    CompoundAction*
-    CompoundAction::Generator::find_by_target_device(const vector<CompoundAction*>& compound_actions,
+    shared_ptr<CompoundAction>
+    CompoundAction::Generator::find_by_target_device(const vector<shared_ptr<CompoundAction>>& compound_actions,
 						     const Device* device, CompoundAction::Impl::Type type) const
     {
-	auto begin = compound_actions.begin();
-	auto end = compound_actions.end();
+	vector<shared_ptr<CompoundAction>>::const_iterator it =
+	    find_if(compound_actions.begin(), compound_actions.end(),
+		[device, type](shared_ptr<const CompoundAction> a) -> bool {
+		    return a->get_target_device() == device && a->get_impl().get_type() == type;
+		});
 
-	auto it = find_if(begin, end, [device, type](const CompoundAction* a) -> bool {
-	    return a->get_target_device() == device && a->get_impl().get_type() == type;
-	});
-
-	if (it != end)
-	    return *it;
-	else
+	if (it == compound_actions.end())
 	    return nullptr;
+
+	return *it;
     }
 
 }

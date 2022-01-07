@@ -54,7 +54,7 @@ namespace storage
 	string mount_point;
 	string path;
 
-	bool nocow;
+	bool nocow = false;
 
     };
 
