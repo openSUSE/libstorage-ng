@@ -60,6 +60,7 @@ BuildRequires:  glibc-langpack-en
 BuildRequires:  libjson-c-devel
 %endif
 BuildRequires:  pkgconfig(python3)
+BuildRequires:  python-rpm-macros
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description
