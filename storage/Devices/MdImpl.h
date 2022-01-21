@@ -95,7 +95,7 @@ namespace storage
 	unsigned long get_chunk_size() const { return chunk_size; }
 	void set_chunk_size(unsigned long chunk_size);
 
-	unsigned long get_default_chunk_size() const;
+	static unsigned long get_default_chunk_size();
 
 	const string& get_uuid() const { return uuid; }
 	void set_uuid(const string& uuid) { Impl::uuid = uuid; }

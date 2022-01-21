@@ -79,6 +79,16 @@ namespace storage
 	return __builtin_clzll(i);
     }
 
+
+    /**
+     * Saturated subtraction.
+     */
+    inline unsigned long long
+    subtract_saturated(unsigned long long a, unsigned long long b)
+    {
+	return b < a ? a - b : 0;
+    }
+
 }
 
 
