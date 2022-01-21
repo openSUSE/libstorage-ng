@@ -3,7 +3,6 @@
 # requirements: md raid /dev/md/test
 
 
-from sys import exit
 from storage import *
 from storageitu import *
 

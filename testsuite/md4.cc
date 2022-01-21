@@ -36,13 +36,13 @@ BOOST_AUTO_TEST_CASE(calculate_size)
 
     md0->add_device(sdb);
 
-    BOOST_CHECK_EQUAL(md0->get_size(), 10079961088);
+    BOOST_CHECK_EQUAL(md0->get_size(), 10066974720);
 
     md0->add_device(sdc);
 
-    BOOST_CHECK_EQUAL(md0->get_size(), 15119941632);
+    BOOST_CHECK_EQUAL(md0->get_size(), 15100462080);
 
     md0->remove_device(sdc);
 
-    BOOST_CHECK_EQUAL(md0->get_size(), 10079961088);
+    BOOST_CHECK_EQUAL(md0->get_size(), 10066974720);
 }

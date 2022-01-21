@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 
-# requirements: disk /dev/sdb with three empty and unused partitions (sdb1-sdb3)
+# requirements: disk /dev/sdc with three empty and unused partitions (sdc1-sdc3)
 
 
-from sys import exit
 from storage import *
 from storageitu import *
 
@@ -17,16 +16,16 @@ storage.probe()
 
 staging = storage.get_staging()
 
-sdb1 = Partition.find_by_name(staging, "/dev/sdb1")
-sdb2 = Partition.find_by_name(staging, "/dev/sdb2")
-sdb3 = Partition.find_by_name(staging, "/dev/sdb3")
+sdc1 = Partition.find_by_name(staging, "/dev/sdc1")
+sdc2 = Partition.find_by_name(staging, "/dev/sdc2")
+sdc3 = Partition.find_by_name(staging, "/dev/sdc3")
 
 md = Md.create(staging, "/dev/md0")
 md.set_md_level(MdLevel_RAID4)
 
-md.add_device(sdb1)
-md.add_device(sdb2)
-md.add_device(sdb3)
+for partition in [sdc1, sdc2, sdc3]:
+    md.add_device(partition)
+    partition.set_id(ID_RAID)
 
 print(staging)
 

@@ -3,7 +3,6 @@
 # requirements: md raid md0
 
 
-from sys import exit
 from storage import *
 from storageitu import *
 

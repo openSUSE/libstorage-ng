@@ -199,7 +199,12 @@ namespace storage
 	}
 
 	// see calculate_region_and_topology
+	underlying_size += max(128 * KiB, underlying_size / 1024);
+	underlying_size += get_default_chunk_size();
+	underlying_size += 1 * MiB;
+	underlying_size += 8 * KiB;
 	underlying_size += min(128 * MiB, underlying_size / 64);
+	underlying_size += 16 * KiB;
 
 	return underlying_size;
     }
@@ -352,7 +357,7 @@ namespace storage
 
 
     unsigned long
-    Md::Impl::get_default_chunk_size() const
+    Md::Impl::get_default_chunk_size()
     {
 	return 512 * KiB;
     }
@@ -908,9 +913,13 @@ namespace storage
 	// big can lead to severe problems later on, e.g. a partition not
 	// fitting anymore, we make a conservative calculation.
 
-	// For combining disks with different block sizes, see doc/md-raid.md.
+	// The size depends slightly on the metadata version but this effect is not
+	// considered here.
 
-	const bool conservative = true;
+	// Location of superblock, data offset and more can be seen with "mdadm --examine
+	// /dev/sdxn" for each device.
+
+	// For combining disks with different block sizes, see doc/md-raid.md.
 
 	// Since our size calculation is not accurate we must not recalculate
 	// the size of an RAID existing on disk. That would cause a resize
@@ -947,21 +956,28 @@ namespace storage
 	    bool spare = md_user->is_spare();
 	    bool journal = md_user->is_journal();
 
-	    // metadata for version 1.0 is 4 KiB block at end aligned to 4 KiB,
-	    // https://raid.wiki.kernel.org/index.php/RAID_superblock_formats
-	    size = (size & ~(0x1000ULL - 1)) - 0x2000;
+	    // see super1.c in mdadm sources for hints
 
-	    // size used for bitmap depends on device size
+	    // includes some alignment
+	    unsigned long long superblock_size = 16 * KiB;
 
-	    if (conservative)
-	    {
-		// trim device size by 128 MiB but not more than roughly 1%
-		size -= min(128 * MiB, size / 64);
-	    }
+	    // roughly 1% with 128 MiB limit
+	    unsigned long long bitmap_size = min(128 * MiB, size / 64);
+
+	    // man page says 4 KiB but from the code it looks like 8 KiB
+	    unsigned long long badblocklog_size = 8 * KiB;
+
+	    size = subtract_saturated(size, superblock_size + bitmap_size + badblocklog_size + real_chunk_size);
+
+	    // for metadata version 1.1 and 1.2 the data-offset is rounded by 1 MiB
+	    size = round_down(size, 1 * MiB);
 
 	    long rest = size % real_chunk_size;
 	    if (rest > 0)
-		size -= rest;
+		size = subtract_saturated(size, rest);
+
+	    // safety net
+	    size = subtract_saturated(size, max(128 * KiB, size / 1024));
 
 	    if (!spare && !journal)
 	    {

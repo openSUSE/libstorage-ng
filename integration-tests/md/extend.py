@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 
-# requirements: md raid /dev/md0 with partitions sdb[1-4] and unused partition sdb5
+# requirements: md raid /dev/md0 with partitions sdc[1-4] and unused partition sdc5
 
 
-from sys import exit
 from storage import *
 from storageitu import *
 
@@ -17,11 +16,11 @@ storage.probe()
 
 staging = storage.get_staging()
 
-sdb5 = Partition.find_by_name(staging, "/dev/sdb5")
+sdc5 = Partition.find_by_name(staging, "/dev/sdc5")
 
 md = Md.find_by_name(staging, "/dev/md0")
 
-md_user = md.add_device(sdb5)
+md_user = md.add_device(sdc5)
 md_user.set_spare(True)
 
 print(staging)

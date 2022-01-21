@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -207,7 +207,12 @@ namespace storage
 	const std::string& get_metadata() const;
 
 	/**
-	 * Currently only creating metadata 1.0 is supported. Although others might work.
+	 * Set metadata for new created Linux RAID. Allowed values are "1.0", "1.1", "1.2"
+	 * and "default" (as long as mdadm treats "default" as "1.2"). Other values might
+	 * also work.
+	 *
+	 * If a specific metadata version is required it should be set since the default
+	 * can change.
 	 */
 	void set_metadata(const std::string& metadata);
 
@@ -289,7 +294,8 @@ namespace storage
 	 * desired size.
 	 *
 	 * Calculation is not accurate. Does not consider details like alignment, chunk
-	 * size, bitmap location or metadata version.
+	 * size, bitmap location or metadata version. It may also change in future
+	 * versions.
 	 *
 	 * @throw Exception
 	 */

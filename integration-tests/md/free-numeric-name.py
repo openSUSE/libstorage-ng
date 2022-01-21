@@ -3,7 +3,6 @@
 # requirements: none
 
 
-from sys import exit
 from storage import *
 
 
