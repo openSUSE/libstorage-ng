@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
-# requirements: disk /dev/sdb with 8 empty and unused partitions preferably of
-# slightly different size (sdb1-sdb8)
+# requirements: unused partitions listed below
 
 # TODO create the partitions in the program so that tests are run several
 # times with partitions of different sizes
@@ -9,10 +8,15 @@
 # TODO add spare devices
 
 
-from sys import exit
 from os import system
 from storage import *
 from storageitu import *
+
+
+# should be of slightly different size
+# should be at least 130 GiB so that mdadm reserves the max limit for bitmap
+
+partitions = ["/dev/sdc1", "/dev/sdd1", "/dev/sdc2", "/dev/sdd2"]
 
 
 results = open("size-and-topology.txt", 'w')
@@ -29,10 +33,11 @@ def read_int(filename):
     return int(line)
 
 
-def doit(level, devices, chunk_size):
+def doit(metadata, level, num_devices, chunk_size):
 
     print()
-    print("level:", get_md_level_name(level), "devices:", devices, "chunk-size:", chunk_size)
+    print("metadata:", metadata, "level:", get_md_level_name(level), "devices:", num_devices,
+          "chunk-size:", chunk_size)
     print()
 
     storage = Storage(environment)
@@ -41,11 +46,13 @@ def doit(level, devices, chunk_size):
     staging = storage.get_staging()
 
     md = Md.create(staging, "/dev/md0")
+    md.set_in_etc_mdadm(False)
+    md.set_metadata(metadata)
     md.set_md_level(level)
     md.set_chunk_size(chunk_size)
 
-    for number in range(1, devices + 1):
-        partition = Partition.find_by_name(staging, '/dev/sdb%d' % number)
+    for number in range(num_devices):
+        partition = Partition.find_by_name(staging, partitions[number])
         md.add_device(partition)
 
     expected_size = md.get_size()
@@ -60,18 +67,19 @@ def doit(level, devices, chunk_size):
     size_ok = expected_size == seen_size
     io_size_ok = expected_io_size == seen_io_size
 
-    results.write("level:%s, devices:%d, chunk-size:%d" %(get_md_level_name(level), devices, chunk_size))
+    results.write("metadata:%s, level:%s, devices:%d, chunk-size:%d" %(metadata, get_md_level_name(level),
+                                                                       num_devices, chunk_size))
     if size_ok:
         results.write(", size %d" % (expected_size))
     else:
         if expected_size < seen_size:
             results.write(", size %d < %d" % (expected_size, seen_size))
         else:
-            results.write(", size %d > %d" % (expected_size, seen_size))
+            results.write(", size! %d > %d" % (expected_size, seen_size))
     if io_size_ok:
         results.write(", io-size %d" % (expected_io_size))
     else:
-        results.write(", io-size %d != %d" % (expected_io_size, seen_io_size))
+        results.write(", io-size! %d != %d" % (expected_io_size, seen_io_size))
     results.write("\n")
     results.flush()
 
@@ -85,44 +93,50 @@ def cleanup():
     commit(storage)
 
 
-max_devices = 8
+max_devices = len(partitions)
 
 
-for devices in range(2, max_devices + 1):
+for num_devices in range(2, max_devices + 1):
     for chunk_size in range(15, 20):
-        doit(MdLevel_RAID0, devices, 2**chunk_size)
+        for metadata in ["1.0", "1.2"]:
+            doit(metadata, MdLevel_RAID0, num_devices, 2**chunk_size)
+            cleanup()
+
+results.write("\n")
+
+for num_devices in range(2, max_devices + 1):
+    for metadata in ["1.0", "1.2"]:
+        doit(metadata, MdLevel_RAID1, 2, 0)
         cleanup()
 
 results.write("\n")
 
-for devices in range(2, max_devices + 1):
-    doit(MdLevel_RAID1, devices, 0)
-    cleanup()
+for num_devices in range(3, max_devices + 1):
+    for chunk_size in range(15, 20):
+        for metadata in ["1.0", "1.2"]:
+            doit(metadata, MdLevel_RAID4, num_devices, 2**chunk_size)
+            cleanup()
 
 results.write("\n")
 
-for devices in range(3, max_devices + 1):
+for num_devices in range(3, max_devices + 1):
     for chunk_size in range(15, 20):
-        doit(MdLevel_RAID4, devices, 2**chunk_size)
-        cleanup()
+        for metadata in ["1.0", "1.2"]:
+            doit(metadata, MdLevel_RAID5, num_devices, 2**chunk_size)
+            cleanup()
 
 results.write("\n")
 
-for devices in range(3, max_devices + 1):
+for num_devices in range(4, max_devices + 1):
     for chunk_size in range(15, 20):
-        doit(MdLevel_RAID5, devices, 2**chunk_size)
-        cleanup()
+        for metadata in ["1.0", "1.2"]:
+            doit(metadata, MdLevel_RAID6, num_devices, 2**chunk_size)
+            cleanup()
 
 results.write("\n")
 
-for devices in range(4, max_devices + 1):
+for num_devices in range(2, max_devices + 1):
     for chunk_size in range(15, 20):
-        doit(MdLevel_RAID6, devices, 2**chunk_size)
-        cleanup()
-
-results.write("\n")
-
-for devices in range(2, max_devices + 1):
-    for chunk_size in range(15, 20):
-        doit(MdLevel_RAID10, devices, 2**chunk_size)
-        cleanup()
+        for metadata in ["1.0", "1.2"]:
+            doit(metadata, MdLevel_RAID10, num_devices, 2**chunk_size)
+            cleanup()

@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 
-# requirements: md raid /dev/md0 with partitions sdb[1-5]
+# requirements: md raid /dev/md0 with partitions sdc[1-5]
 
 
-from sys import exit
 from storage import *
 from storageitu import *
 
@@ -17,11 +16,11 @@ storage.probe()
 
 staging = storage.get_staging()
 
-sdb5 = Partition.find_by_name(staging, "/dev/sdb5")
+sdc5 = Partition.find_by_name(staging, "/dev/sdc5")
 
 md = Md.find_by_name(staging, "/dev/md0")
 
-md.remove_device(sdb5)
+md.remove_device(sdc5)
 
 print(staging)
 

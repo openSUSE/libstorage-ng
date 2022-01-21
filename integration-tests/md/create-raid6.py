@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 
-# requirements: disk /dev/sdb with five empty and unused partitions (sdb1-sdb5)
+# requirements: disk /dev/sdc with five empty and unused partitions (sdc1-sdc5)
 
 
-from sys import exit
 from storage import *
 from storageitu import *
 
@@ -17,20 +16,20 @@ storage.probe()
 
 staging = storage.get_staging()
 
-sdb1 = Partition.find_by_name(staging, "/dev/sdb1")
-sdb2 = Partition.find_by_name(staging, "/dev/sdb2")
-sdb3 = Partition.find_by_name(staging, "/dev/sdb3")
-sdb4 = Partition.find_by_name(staging, "/dev/sdb4")
-sdb5 = Partition.find_by_name(staging, "/dev/sdb5")
+sdc1 = Partition.find_by_name(staging, "/dev/sdc1")
+sdc2 = Partition.find_by_name(staging, "/dev/sdc2")
+sdc3 = Partition.find_by_name(staging, "/dev/sdc3")
+sdc4 = Partition.find_by_name(staging, "/dev/sdc4")
+sdc5 = Partition.find_by_name(staging, "/dev/sdc5")
 
 md = Md.create(staging, "/dev/md0")
 md.set_md_level(MdLevel_RAID6)
 
-md.add_device(sdb1)
-md.add_device(sdb2)
-md.add_device(sdb3)
-md.add_device(sdb4)
-md.add_device(sdb5).set_spare(True)
+md.add_device(sdc1)
+md.add_device(sdc2)
+md.add_device(sdc3)
+md.add_device(sdc4)
+md.add_device(sdc5).set_spare(True)
 
 print(staging)
 

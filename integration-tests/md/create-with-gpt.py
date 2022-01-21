@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 
-# requirements: disk /dev/sdb with two empty and unused partitions (sdb1-sdb2)
+# requirements: disk /dev/sdc with two empty and unused partitions (sdc1-sdc2)
 
 
-from sys import exit
 from storage import *
 from storageitu import *
 
@@ -17,17 +16,15 @@ storage.probe()
 
 staging = storage.get_staging()
 
-sdb1 = Partition.find_by_name(staging, "/dev/sdb1")
-sdb2 = Partition.find_by_name(staging, "/dev/sdb2")
+sdc1 = Partition.find_by_name(staging, "/dev/sdc1")
+sdc2 = Partition.find_by_name(staging, "/dev/sdc2")
 
 md = Md.create(staging, "/dev/md0")
 md.set_md_level(MdLevel_RAID0)
 
-md.add_device(sdb1)
-sdb1.set_id(ID_RAID)
-
-md.add_device(sdb2)
-sdb2.set_id(ID_RAID)
+for partition in [sdc1, sdc2]:
+    md.add_device(partition)
+    partition.set_id(ID_RAID)
 
 gpt = to_gpt(md.create_partition_table(PtType_GPT))
 

@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 
-# requirements: disk /dev/sdb with four empty and unused partitions (sdb1-sdb4)
+# requirements: disk /dev/sdc with four empty and unused partitions (sdc1-sdc4)
 
 
-from sys import exit
 from storage import *
 from storageitu import *
 
@@ -17,18 +16,18 @@ storage.probe()
 
 staging = storage.get_staging()
 
-sdb1 = Partition.find_by_name(staging, "/dev/sdb1")
-sdb2 = Partition.find_by_name(staging, "/dev/sdb2")
-sdb3 = Partition.find_by_name(staging, "/dev/sdb3")
-sdb4 = Partition.find_by_name(staging, "/dev/sdb4")
+sdc1 = Partition.find_by_name(staging, "/dev/sdc1")
+sdc2 = Partition.find_by_name(staging, "/dev/sdc2")
+sdc3 = Partition.find_by_name(staging, "/dev/sdc3")
+sdc4 = Partition.find_by_name(staging, "/dev/sdc4")
 
 md = Md.create(staging, "/dev/md0")
+md.set_metadata("1.2")
 md.set_md_level(MdLevel_RAID5)
 
-md.add_device(sdb1)
-md.add_device(sdb2)
-md.add_device(sdb3)
-md.add_device(sdb4)
+for partition in [sdc1, sdc2, sdc3, sdc4]:
+    md.add_device(partition)
+    partition.set_id(ID_RAID)
 
 print(staging)
 
