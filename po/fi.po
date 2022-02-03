@@ -12,16 +12,16 @@ msgstr ""
 "Project-Id-Version: libstorage.fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-20 12:10+0100\n"
-"PO-Revision-Date: 2021-03-15 12:56+0000\n"
+"PO-Revision-Date: 2022-02-03 12:12+0000\n"
 "Last-Translator: Tommi Nieminen <software@legisign.org>\n"
-"Language-Team: Finnish <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/fi/>\n"
+"Language-Team: Finnish <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.6.1\n"
+"X-Generator: Weblate 4.9.1\n"
 
 msgid ""
 "\n"
@@ -83,9 +83,9 @@ msgstr "Ota käyttöön salaustaso laitteella %1$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the device name (e.g. /dev/loop0),
 #. %2$s is replaced by the size (e.g. 20.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Activate hard disk %1$s (%2$s)"
-msgstr "Luo kiintolevy %1$s (%2$s)"
+msgstr "Aktivoi kiintolevy %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -138,9 +138,9 @@ msgstr "Otetaan käyttöön salaustaso laitteella %1$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/loop0),
 #. %2$s is replaced by the size (e.g. 20.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Activating hard disk %1$s (%2$s)"
-msgstr "Luodaan kiintolevy %1$s (%2$s)"
+msgstr "Aktivoidaan kiintolevy %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -366,15 +366,15 @@ msgstr "Poista käynnistyslippu osiolta %1$s"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
 #. /dev/sdb2 (1.00 GiB)),
-#, fuzzy, c-format
+#, c-format
 msgid "Clear label of %1$s on %2$s"
-msgstr "Aseta osion %2$s (%1$s) nimiöksi %3$s"
+msgstr "Poista osion %1$s nimiö ( %2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#, fuzzy, c-format
+#, c-format
 msgid "Clear label of partition %1$s"
-msgstr "Poista käynnistyslippu osiolta %1$s"
+msgstr "Poista osion %1$s nimiö"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -407,15 +407,15 @@ msgstr "Poistetaan käynnistyslippu osiolta %1$s"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
 #. /dev/sdb2 (1.00 GiB)),
-#, fuzzy, c-format
+#, c-format
 msgid "Clearing label of %1$s on %2$s"
-msgstr "Asetetaan laitteiden %2$s (%1$s) nimiöksi %3$s"
+msgstr "Poistetaan osion %1$s nimiö (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#, fuzzy, c-format
+#, c-format
 msgid "Clearing label of partition %1$s"
-msgstr "Poistetaan käynnistyslippu osiolta %1$s"
+msgstr "Poistetaan osion %1$s nimiö"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -1670,35 +1670,35 @@ msgstr ""
 #. %1$s is replaced by the filesystem type (e.g. ext4),
 #. %2$s is replaced by the partition table type (e.g. GPT),
 #. %3$s is replaced by the device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Detected a %1$s file system next to a partition table of type %2$s on the\n"
 "device %3$s. The file system will be ignored."
 msgstr ""
-"Havaittiin osiotaulukon viereinen tiedostojärjestelmä laitteella\n"
-"%1$s. Tiedostojärjestelmä sivuutetaan."
+"Havaittiin %1$s-tiedostojärjestelmä %2$s-osiotaulukon vierestä laitteella\n"
+"%3$s. Tiedostojärjestelmä sivuutetaan."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the partition table type (e.g. GPT),
 #. %2$s is replaced by the device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Detected a LUKS device next to a partition table of type %1$s on the\n"
 "device %2$s. The LUKS device will be ignored."
 msgstr ""
-"Havaittiin osiotaulukon viereinen LUKS-laite laitteella\n"
-"%1$s. LUKS-laite sivuutetaan."
+"Havaittiin LUKS-laite %1$s-osiotaulukon vierestä laitteella %2$s.\n"
+"LUKS-laite sivuutetaan."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the partition table type (e.g. GPT),
 #. %2$s is replaced by the device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Detected a LVM logical volume next to a partition table of type %1$s on the\n"
 "device %2$s. The LVM logical volume will be ignored as good as possible."
 msgstr ""
-"Havaittiin osiotaulukon viereinen looginen LVM-taltio laitteella\n"
-"%1$s. Looginen LVM-taltio sivuutetaan."
+"Havaittiin looginen LVM-taltio %1$s-osiotaulukon vierestä laitteella %2$s.\n"
+"Looginen LVM-taltio sivuutetaan niin hyvin kuin mahdollista."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the filesystem type (e.g. minix),
@@ -1708,6 +1708,8 @@ msgid ""
 "Detected an unsupported file system of type %1$s on the\n"
 "device %2$s."
 msgstr ""
+"Havaittiin ei-tuettu %1$s-tiedostojärjestelmä laitteella\n"
+"%2$s."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the partition table type (e.g. BSD),
@@ -1717,6 +1719,8 @@ msgid ""
 "Detected an unsupported partition table of type %1$s on the\n"
 "device %2$s."
 msgstr ""
+"Havaittiin ei-tuettu %1$s-osiotaulukko laitteella\n"
+"%2$s."
 
 #. TRANSLATORS: name of partition type
 msgid "Diagnostics Partition"
@@ -2216,9 +2220,8 @@ msgid "Linux"
 msgstr "Linux"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Linux Home"
-msgstr "Linux"
+msgstr "Linuxin /home"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux LVM"
@@ -2826,9 +2829,9 @@ msgstr "Aseta osion %2$s (%1$s) nimiöksi %3$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition label (e.g. ROOT),
-#, fuzzy, c-format
+#, c-format
 msgid "Set label of partition %1$s to %2$s"
-msgstr "Aseta osion %1$s ID:ksi %2$s"
+msgstr "Aseta osion %1$s nimiöksi %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -2939,9 +2942,9 @@ msgstr "Asetetaan laitteiden %2$s (%1$s) nimiöksi %3$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition label (e.g. ROOT),
-#, fuzzy, c-format
+#, c-format
 msgid "Setting label of partition %1$s to %2$s"
-msgstr "Asetetaan laitteen %1$s tunnisteeksi %2$s"
+msgstr "Asetetaan osion %1$s nimiöksi %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
