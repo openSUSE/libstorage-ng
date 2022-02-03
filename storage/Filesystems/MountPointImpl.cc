@@ -442,7 +442,8 @@ namespace storage
 	if (lhs.in_etc_fstab && in_etc_fstab)
 	{
 	    if (lhs.mount_by != mount_by || lhs.mount_options != mount_options ||
-		lhs.freq != freq || lhs.passno != passno || lhs.path != path)
+		lhs.freq != freq || lhs.passno != passno || lhs.path != path ||
+		lhs.mount_type != mount_type)
 	    {
 		actions.push_back(make_shared<Action::UpdateInEtcFstab>(get_sid()));
 	    }
