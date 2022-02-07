@@ -33,7 +33,6 @@ namespace storage
 {
 
     JsonFile::JsonFile(const vector<string>& lines)
-	: root(nullptr)
     {
 	std::unique_ptr<json_tokener, std::function<void(json_tokener*)>> tokener(
 	    json_tokener_new(), [](json_tokener* p) { json_tokener_free(p); }

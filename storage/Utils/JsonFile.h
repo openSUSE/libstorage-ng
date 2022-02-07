@@ -48,7 +48,7 @@ namespace storage
 
     private:
 
-	json_object* root;
+	json_object* root = nullptr;
 
     };
 
