@@ -432,9 +432,9 @@ namespace storage
 	}
 
 	// A unmount action could be required when the device is set as unmounted in the target system
-	// or when its mount path has changed. But the unmount action only makes sense if the device is
-	// currently mounted in the system.
-	if (lhs.active && (!active || lhs.path != path))
+	// or when some of its mount properties have changed (e.g., path, mount type). But the unmount
+	// action only makes sense if the device is currently mounted in the system.
+	if (lhs.active && (!active || lhs.path != path || lhs.mount_type != mount_type))
 	{
 	    actions.push_back(make_shared<Action::Unmount>(get_sid()));
 	}
@@ -442,16 +442,17 @@ namespace storage
 	if (lhs.in_etc_fstab && in_etc_fstab)
 	{
 	    if (lhs.mount_by != mount_by || lhs.mount_options != mount_options ||
-		lhs.freq != freq || lhs.passno != passno || lhs.path != path)
+		lhs.freq != freq || lhs.passno != passno || lhs.path != path ||
+		lhs.mount_type != mount_type)
 	    {
 		actions.push_back(make_shared<Action::UpdateInEtcFstab>(get_sid()));
 	    }
 	}
 
 	// A mount action could be required when the device is currently unmounted in the system or when
-	// its mount path has changed. But the mount action only makes sense if the device is set as
-	// mounted in the target system.
-	if (active && (!lhs.active || lhs.path != path))
+	// when some of its mount properties have changed (e.g., path, mount type). But the mount action
+	// only makes sense if the device is set as mounted in the target system.
+	if (active && (!lhs.active || lhs.path != path || lhs.mount_type != mount_type))
 	{
 	    actions.push_back(make_shared<Action::Mount>(get_sid()));
 	}
