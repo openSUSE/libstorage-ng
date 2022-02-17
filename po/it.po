@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-20 12:10+0100\n"
-"PO-Revision-Date: 2022-01-15 10:12+0000\n"
-"Last-Translator: Paolo Za <zapaolo@email.it>\n"
+"PO-Revision-Date: 2022-02-17 17:12+0000\n"
+"Last-Translator: Davide Aiello <davide.aiello@novilingulists.com>\n"
 "Language-Team: Italian <https://l10n.opensuse.org/projects/libstorage/"
 "ng-master/it/>\n"
 "Language: it\n"
@@ -2118,7 +2118,7 @@ msgstr ""
 #, c-format
 msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
 msgstr ""
-"Formatta il volume logico LVM %1$s (%2$s) sul gruppo di volumi %3$s con  %4$s"
+"Formatta il volume logico LVM %1$s (%2$s) sul gruppo di volumi %3$s con %4$s"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2474
@@ -2419,7 +2419,6 @@ msgid "Linux"
 msgstr "Linux"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Linux Home"
 msgstr "Linux Home"
 
