@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2021-03-07 01:54+0000\n"
+"PO-Revision-Date: 2022-02-17 17:12+0000\n"
 "Last-Translator: Davide Aiello <davide.aiello@novilingulists.com>\n"
 "Language-Team: Italian <https://l10n.opensuse.org/projects/libstorage/"
 "ng-sle-15-sp1/it/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.6.1\n"
+"X-Generator: Weblate 4.9.1\n"
 "X-Poedit-Language: Italian\n"
 
 msgid ""
@@ -1917,7 +1917,7 @@ msgstr ""
 #, c-format
 msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
 msgstr ""
-"Formatta il volume logico LVM %1$s (%2$s) sul gruppo di volumi %3$s con  %4$s"
+"Formatta il volume logico LVM %1$s (%2$s) sul gruppo di volumi %3$s con %4$s"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2474
