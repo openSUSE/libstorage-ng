@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-20 12:10+0100\n"
-"PO-Revision-Date: 2021-03-20 10:56+0000\n"
+"PO-Revision-Date: 2022-02-18 11:12+0000\n"
 "Last-Translator: Grace Yu <grace.yu@excel-gits.com>\n"
 "Language-Team: Chinese (Taiwan) <https://l10n.opensuse.org/projects/"
 "libstorage/ng-master/zh_TW/>\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.6.1\n"
+"X-Generator: Weblate 4.9.1\n"
 
 msgid ""
 "\n"
@@ -83,9 +83,9 @@ msgstr "在 %1$s 上啟動加密層裝置"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the device name (e.g. /dev/loop0),
 #. %2$s is replaced by the size (e.g. 20.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Activate hard disk %1$s (%2$s)"
-msgstr "建立硬碟 %1$s (%2$s)"
+msgstr "啟用硬碟 %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -138,9 +138,9 @@ msgstr "正在 %1$s 上啟用加密層裝置"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/loop0),
 #. %2$s is replaced by the size (e.g. 20.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Activating hard disk %1$s (%2$s)"
-msgstr "正在建立硬碟 %1$s (%2$s)"
+msgstr "正在啟用硬碟 %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -364,15 +364,15 @@ msgstr "清除分割區 %1$s 的開機旗標"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
 #. /dev/sdb2 (1.00 GiB)),
-#, fuzzy, c-format
+#, c-format
 msgid "Clear label of %1$s on %2$s"
-msgstr "設定 %2$s 上 %1$s 的標籤至 %3$s"
+msgstr "清除 %2$s 上 %1$s 的標籤"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#, fuzzy, c-format
+#, c-format
 msgid "Clear label of partition %1$s"
-msgstr "清除分割區 %1$s 的開機旗標"
+msgstr "清除分割區 %1$s 的標籤"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -404,15 +404,15 @@ msgstr "正在清除分割區 %1$s 的開機旗標"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
 #. /dev/sdb2 (1.00 GiB)),
-#, fuzzy, c-format
+#, c-format
 msgid "Clearing label of %1$s on %2$s"
-msgstr "正在設定 %2$s 上 %1$s 的標籤至 %3$s"
+msgstr "正在清除 %2$s 上 %1$s 的標籤"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#, fuzzy, c-format
+#, c-format
 msgid "Clearing label of partition %1$s"
-msgstr "正在清除分割區 %1$s 的開機旗標"
+msgstr "正在清除分割區 %1$s 的標籤"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -447,7 +447,9 @@ msgstr "正在清除 %1$s 上 GPT 的保護性 MBR 開機旗標"
 msgid ""
 "Create %1$s %2$s (%3$s) for %4$s with %5$s\n"
 "from %6$s"
-msgstr "從 %6$s 為包含 %5$s 的 %4$s 建立 %1$s %2$s (%3$s)"
+msgstr ""
+"從 %6$s 為包含 %5$s 的 %4$s 建立\n"
+"%1$s %2$s (%3$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -460,7 +462,9 @@ msgstr "從 %6$s 為包含 %5$s 的 %4$s 建立 %1$s %2$s (%3$s)"
 msgid ""
 "Create %1$s %2$s (%3$s) for swap\n"
 "from %4$s"
-msgstr "從 %4$s 為交換分割區建立 %1$s %2$s (%3$s)"
+msgstr ""
+"從 %4$s 為 swap 建立\n"
+"%1$s %2$s (%3$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -485,7 +489,9 @@ msgstr "從 %4$s 建立 %1$s %2$s (%3$s)"
 msgid ""
 "Create %1$s %2$s (%3$s) with %4$s\n"
 "from %5$s"
-msgstr "從 %5$s 建立包含 %4$s 的 %1$s %2$s (%3$s)"
+msgstr ""
+"從 %5$s 建立包含 %4$s 的\n"
+"%1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
@@ -640,7 +646,9 @@ msgstr "在 %1$s (%2$s) 建立 bcache 快取集合"
 msgid ""
 "Create encrypted %1$s %2$s (%3$s)\n"
 "from %4$s"
-msgstr "從 %4$s 建立加密的 %1$s %2$s (%3$s)"
+msgstr ""
+"從 %4$s 建立加密的\n"
+"%1$s %2$s (%3$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
@@ -655,7 +663,9 @@ msgstr "從 %4$s 建立加密的 %1$s %2$s (%3$s)"
 msgid ""
 "Create encrypted %1$s %2$s (%3$s) for %4$s with %5$s\n"
 "from %6$s"
-msgstr "從 %6$s 為包含 %5$s 的 %4$s 建立加密的 %1$s %2$s (%3$s)"
+msgstr ""
+"從 %6$s 為包含 %5$s 的 %4$s 建立加密的\n"
+"%1$s %2$s (%3$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -668,7 +678,9 @@ msgstr "從 %6$s 為包含 %5$s 的 %4$s 建立加密的 %1$s %2$s (%3$s)"
 msgid ""
 "Create encrypted %1$s %2$s (%3$s) for swap\n"
 "from %4$s"
-msgstr "從 %4$s 為交換分割區建立加密的 %1$s %2$s (%3$s)"
+msgstr ""
+"從 %4$s 為 swap 建立加密的\n"
+"%1$s %2$s (%3$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
@@ -682,7 +694,9 @@ msgstr "從 %4$s 為交換分割區建立加密的 %1$s %2$s (%3$s)"
 msgid ""
 "Create encrypted %1$s %2$s (%3$s) with %4$s\n"
 "from %5$s"
-msgstr "從 %5$s 建立包含 %4$s 的加密 %1$s %2$s (%3$s)"
+msgstr ""
+"從 %5$s 建立包含 %4$s 的加密\n"
+"%1$s %2$s (%3$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -1637,33 +1651,35 @@ msgstr ""
 #. %1$s is replaced by the filesystem type (e.g. ext4),
 #. %2$s is replaced by the partition table type (e.g. GPT),
 #. %3$s is replaced by the device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Detected a %1$s file system next to a partition table of type %2$s on the\n"
 "device %3$s. The file system will be ignored."
 msgstr ""
-"在裝置 %1$s 上的分割區表旁偵測到檔案系統。\n"
-"該檔案系統將被忽略。"
+"在裝置 %3$s 上 %2$s 類型的分割區表旁偵測到\n"
+"%1$s 檔案系統。將忽略該檔案系統。"
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the partition table type (e.g. GPT),
 #. %2$s is replaced by the device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Detected a LUKS device next to a partition table of type %1$s on the\n"
 "device %2$s. The LUKS device will be ignored."
-msgstr "在裝置 %1$s 上的分割區表旁偵測到 LUKS 裝置。該 LUKS 裝置將被忽略。"
+msgstr ""
+"在裝置 %2$s 上 %1$s 類型的分割區表旁偵測到\n"
+"LUKS 裝置。將忽略該 LUKS 裝置。"
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the partition table type (e.g. GPT),
 #. %2$s is replaced by the device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Detected a LVM logical volume next to a partition table of type %1$s on the\n"
 "device %2$s. The LVM logical volume will be ignored as good as possible."
 msgstr ""
-"在裝置 %1$s 上的分割區表旁偵測到 LVM 邏輯磁碟區。\n"
-"該 LVM 邏輯磁碟區將被忽略。"
+"在裝置 %2$s 上 %1$s 類型的分割區表旁偵測到\n"
+"LVM 邏輯磁碟區。將儘量忽略該 LVM 邏輯磁碟區。"
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the filesystem type (e.g. minix),
@@ -1673,6 +1689,8 @@ msgid ""
 "Detected an unsupported file system of type %1$s on the\n"
 "device %2$s."
 msgstr ""
+"在裝置 %2$s 上偵測到不受支援的 %1$s 類型\n"
+"檔案系統。"
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the partition table type (e.g. BSD),
@@ -1682,6 +1700,8 @@ msgid ""
 "Detected an unsupported partition table of type %1$s on the\n"
 "device %2$s."
 msgstr ""
+"在裝置 %2$s 上偵測到不受支援的 %1$s 類型\n"
+"分割區表。"
 
 #. TRANSLATORS: name of partition type
 msgid "Diagnostics Partition"
@@ -2161,9 +2181,8 @@ msgid "Linux"
 msgstr "Linux"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Linux Home"
-msgstr "Linux"
+msgstr "Linux 主目錄"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux LVM"
@@ -2769,9 +2788,9 @@ msgstr "設定 %2$s 上 %1$s 的標籤至 %3$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition label (e.g. ROOT),
-#, fuzzy, c-format
+#, c-format
 msgid "Set label of partition %1$s to %2$s"
-msgstr "將分割區 %1$s 的 ID 設定為 %2$s"
+msgstr "將分割區 %1$s 的標籤設定為 %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -2883,9 +2902,9 @@ msgstr "正在設定 %2$s 上 %1$s 的標籤至 %3$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition label (e.g. ROOT),
-#, fuzzy, c-format
+#, c-format
 msgid "Setting label of partition %1$s to %2$s"
-msgstr "正在將分割區 %1$s 的 ID 設定為 %2$s"
+msgstr "正在將分割區 %1$s 的標籤設定為 %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
