@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-20 12:10+0100\n"
-"PO-Revision-Date: 2022-02-16 08:12+0000\n"
+"PO-Revision-Date: 2022-02-18 06:12+0000\n"
 "Last-Translator: Grace Yu <grace.yu@excel-gits.com>\n"
 "Language-Team: Chinese (China) <https://l10n.opensuse.org/projects/"
 "libstorage/ng-master/zh_CN/>\n"
@@ -1648,7 +1648,7 @@ msgid ""
 "Detected a %1$s file system next to a partition table of type %2$s on the\n"
 "device %3$s. The file system will be ignored."
 msgstr ""
-"在设备 %3$s 上检测到 %2$s 类型的分区表邻近有 %1$s 文件系统。\n"
+"在设备 %3$s 上 %2$s 类型的分区表旁检测到 %1$s 文件系统。\n"
 "将忽略该文件系统。"
 
 #. TRANSLATORS: Error message displayed during probing,
@@ -1659,7 +1659,7 @@ msgid ""
 "Detected a LUKS device next to a partition table of type %1$s on the\n"
 "device %2$s. The LUKS device will be ignored."
 msgstr ""
-"在设备 %2$s 上检测到 %1$s 类型的分区表邻近有\n"
+"在设备 %2$s 上 %1$s 类型的分区表旁检测到\n"
 "LUKS 设备。将忽略该 LUKS 设备。"
 
 #. TRANSLATORS: Error message displayed during probing,
@@ -1670,7 +1670,7 @@ msgid ""
 "Detected a LVM logical volume next to a partition table of type %1$s on the\n"
 "device %2$s. The LVM logical volume will be ignored as good as possible."
 msgstr ""
-"在设备 %2$s 上检测到 %1$s 类型的分区表邻近有\n"
+"在设备 %2$s 上 %1$s 类型的分区表旁检测到\n"
 "LVM 逻辑卷。将尽量忽略该 LVM 逻辑卷。"
 
 #. TRANSLATORS: Error message displayed during probing,
@@ -1681,7 +1681,7 @@ msgid ""
 "Detected an unsupported file system of type %1$s on the\n"
 "device %2$s."
 msgstr ""
-"在设备 %2$s 上检测到 %1$s 类型的不受支持\n"
+"在设备 %2$s 上检测到不受支持的 %1$s 类型\n"
 "文件系统。"
 
 #. TRANSLATORS: Error message displayed during probing,
@@ -1692,7 +1692,7 @@ msgid ""
 "Detected an unsupported partition table of type %1$s on the\n"
 "device %2$s."
 msgstr ""
-"在设备 %2$s 上检测到 %1$s 类型的不受支持\n"
+"在设备 %2$s 上检测到不受支持的 %1$s 类型\n"
 "分区表。"
 
 #. TRANSLATORS: name of partition type
