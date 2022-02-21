@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2022-02-17 17:12+0000\n"
+"PO-Revision-Date: 2022-02-21 12:12+0000\n"
 "Last-Translator: Davide Aiello <davide.aiello@novilingulists.com>\n"
 "Language-Team: Italian <https://l10n.opensuse.org/projects/libstorage/"
 "ng-sle-15-sp1/it/>\n"
@@ -966,7 +966,7 @@ msgstr "Crea gruppo di volumi %1$s (%2$s) a partire da %3$s"
 #. %3$s is replaced with the name of devices (e.g. /dev/sda1, /dev/sda2)
 #, c-format
 msgid "Create volume group %1$s (%2$s) with %3$s"
-msgstr "Cre il gruppo di volumi %1$s (%2$s) con %3$s"
+msgstr "Crea il gruppo di volumi %1$s (%2$s) con %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
@@ -2411,7 +2411,7 @@ msgstr "Rilevamento di NFS in corso"
 
 #. TRANSLATORS: error message
 msgid "Probing NFS failed"
-msgstr "Rlevamento di NFS non riuscito"
+msgstr "Rilevamento di NFS non riuscito"
 
 #. TRANSLATORS: progress message
 msgid "Probing additional attributes"
