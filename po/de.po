@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2021-03-07 13:54+0000\n"
+"PO-Revision-Date: 2022-02-21 12:12+0000\n"
 "Last-Translator: Gemineo <vistatec@gemineo.de>\n"
 "Language-Team: German <https://l10n.opensuse.org/projects/libstorage/"
 "ng-sle-15-sp1/de/>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.6.1\n"
+"X-Generator: Weblate 4.9.1\n"
 
 msgid ""
 "\n"
@@ -344,7 +344,9 @@ msgstr "Schützendes MBR-Boot-Flag von GPT auf %1$s wird gelöscht"
 msgid ""
 "Create %1$s %2$s (%3$s) for %4$s with %5$s\n"
 "from %6$s"
-msgstr "%1$s %2$s (%3$s) für %4$s mit %5$s von %6$s erstellen"
+msgstr ""
+"%1$s %2$s (%3$s) für %4$s mit %5$s \n"
+"von %6$s erstellen"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -1193,7 +1195,7 @@ msgstr ""
 #. %3$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Delete %1$s %2$s (%3$s)"
-msgstr "%1$s  %2$s (%3$s) löschen"
+msgstr "%1$s %2$s (%3$s) löschen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
