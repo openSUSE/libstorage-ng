@@ -17,16 +17,16 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-20 12:10+0100\n"
-"PO-Revision-Date: 2021-03-31 14:56+0000\n"
+"PO-Revision-Date: 2022-02-22 03:12+0000\n"
 "Last-Translator: Antonio Simón <antonio@trans-mission.com>\n"
-"Language-Team: Spanish <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/es/>\n"
+"Language-Team: Spanish <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.6.1\n"
+"X-Generator: Weblate 4.9.1\n"
 "X-Poedit-Language: Spanish\n"
 
 msgid ""
@@ -89,9 +89,9 @@ msgstr "Activar el dispositivo de capa de cifrado en %1$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the device name (e.g. /dev/loop0),
 #. %2$s is replaced by the size (e.g. 20.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Activate hard disk %1$s (%2$s)"
-msgstr "Crear disco duro %1$s (%2$s)"
+msgstr "Activar disco duro %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -147,9 +147,9 @@ msgstr "Activando el dispositivo de capa de cifrado en %1$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/loop0),
 #. %2$s is replaced by the size (e.g. 20.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Activating hard disk %1$s (%2$s)"
-msgstr "Creando disco duro %1$s (%2$s)"
+msgstr "Activando disco duro %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -378,15 +378,15 @@ msgstr "Borrar indicador de arranque de partición %1$s"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
 #. /dev/sdb2 (1.00 GiB)),
-#, fuzzy, c-format
+#, c-format
 msgid "Clear label of %1$s on %2$s"
-msgstr "Definir etiqueta de %1$s en %2$s como %3$s"
+msgstr "Borrar etiqueta de %1$s en %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#, fuzzy, c-format
+#, c-format
 msgid "Clear label of partition %1$s"
-msgstr "Borrar indicador de arranque de partición %1$s"
+msgstr "Borrar etiqueta de partición %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -419,15 +419,15 @@ msgstr "Borrando indicador de arranque de partición %1$s"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
 #. /dev/sdb2 (1.00 GiB)),
-#, fuzzy, c-format
+#, c-format
 msgid "Clearing label of %1$s on %2$s"
-msgstr "Definiendo etiqueta de %1$s en %2$s como %3$s"
+msgstr "Borrando etiqueta de %1$s en %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#, fuzzy, c-format
+#, c-format
 msgid "Clearing label of partition %1$s"
-msgstr "Borrando indicador de arranque de partición %1$s"
+msgstr "Borrando etiqueta de partición %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -1698,37 +1698,37 @@ msgstr ""
 #. %1$s is replaced by the filesystem type (e.g. ext4),
 #. %2$s is replaced by the partition table type (e.g. GPT),
 #. %3$s is replaced by the device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Detected a %1$s file system next to a partition table of type %2$s on the\n"
 "device %3$s. The file system will be ignored."
 msgstr ""
-"Se ha detectado un sistema de archivos junto a una tabla de particiones en "
-"el\n"
-"dispositivo %1$s. El sistema de archivos será ignorado."
+"Se ha detectado un sistema de archivos %1$s junto a una tabla de particiones "
+"de tipo %2$s\n"
+"en el dispositivo %3$s. El sistema de archivos se ignorará."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the partition table type (e.g. GPT),
 #. %2$s is replaced by the device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Detected a LUKS device next to a partition table of type %1$s on the\n"
 "device %2$s. The LUKS device will be ignored."
 msgstr ""
-"Se ha detectado un dispositivo LUKS junto a una tabla de particiones en el\n"
-"dispositivo %1$s. El dispositivo LUKS será ignorado."
+"Se ha detectado un dispositivo LUKS junto a una tabla de particiones\n"
+"de tipo %1$s en el dispositivo %2$s. El dispositivo LUKS se ignorará."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the partition table type (e.g. GPT),
 #. %2$s is replaced by the device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Detected a LVM logical volume next to a partition table of type %1$s on the\n"
 "device %2$s. The LVM logical volume will be ignored as good as possible."
 msgstr ""
-"Se ha detectado un volumen lógico LVM junto a una tabla de particiones en "
-"el\n"
-"dispositivo %1$s. El volumen lógico LVM será ignorado."
+"Se ha detectado un volumen lógico LVM junto a una tabla de particiones de\n"
+"tipo %1$s en el dispositivo %2$s. El volumen lógico LVM se ignorará como se "
+"pueda."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the filesystem type (e.g. minix),
@@ -1738,6 +1738,8 @@ msgid ""
 "Detected an unsupported file system of type %1$s on the\n"
 "device %2$s."
 msgstr ""
+"Se ha detectado un sistema de archivos no admitido de tipo %1$s en el\n"
+"dispositivo %2$s."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the partition table type (e.g. BSD),
@@ -1747,6 +1749,8 @@ msgid ""
 "Detected an unsupported partition table of type %1$s on the\n"
 "device %2$s."
 msgstr ""
+"Se ha detectado una tabla de particiones no admitida de tipo %1$s en el\n"
+"dispositivo %2$s."
 
 #. TRANSLATORS: name of partition type
 msgid "Diagnostics Partition"
@@ -2238,9 +2242,8 @@ msgid "Linux"
 msgstr "Linux"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Linux Home"
-msgstr "Linux"
+msgstr "Linux Home"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux LVM"
@@ -2847,9 +2850,9 @@ msgstr "Definir etiqueta de %1$s en %2$s como %3$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition label (e.g. ROOT),
-#, fuzzy, c-format
+#, c-format
 msgid "Set label of partition %1$s to %2$s"
-msgstr "Definir ID de partición %1$s como %2$s"
+msgstr "Definir etiqueta de partición %1$s como %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -2961,9 +2964,9 @@ msgstr "Definiendo etiqueta de %1$s en %2$s como %3$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition label (e.g. ROOT),
-#, fuzzy, c-format
+#, c-format
 msgid "Setting label of partition %1$s to %2$s"
-msgstr "Definiendo ID de partición %1$s como %2$s"
+msgstr "Definiendo etiqueta de partición %1$s como %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -3168,7 +3171,7 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"
-msgstr "Dispositivo de bloques extraviado"
+msgstr "Dispositivo de bloque extraviado"
 
 #. TRANSLATORS: name of object
 msgid "Swap"
