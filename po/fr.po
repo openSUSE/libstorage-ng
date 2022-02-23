@@ -11,16 +11,16 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-20 12:10+0100\n"
-"PO-Revision-Date: 2021-03-25 13:56+0000\n"
+"PO-Revision-Date: 2022-02-23 12:12+0000\n"
 "Last-Translator: Sophie Leroy <sophie@stoquart.com>\n"
-"Language-Team: French <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/fr/>\n"
+"Language-Team: French <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.6.1\n"
+"X-Generator: Weblate 4.9.1\n"
 "X-Poedit-Language: French\n"
 
 msgid ""
@@ -84,9 +84,9 @@ msgstr "Activer la couche de chiffrement sur %1$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the device name (e.g. /dev/loop0),
 #. %2$s is replaced by the size (e.g. 20.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Activate hard disk %1$s (%2$s)"
-msgstr "Créer le disque dur %1$s (%2$s)"
+msgstr "Activer le disque dur %1$s (%2$s)"
 
 # TLABEL partitioning_2002_03_14_2340__121
 #. TRANSLATORS: displayed before action,
@@ -144,9 +144,9 @@ msgstr "Activation du périphérique de la couche de chiffrement sur %1$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/loop0),
 #. %2$s is replaced by the size (e.g. 20.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Activating hard disk %1$s (%2$s)"
-msgstr "Création du disque dur %1$s (%2$s)"
+msgstr "Activation du disque dur %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -389,15 +389,15 @@ msgstr "Effacer le fanion de démarrage de la partition %1$s"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
 #. /dev/sdb2 (1.00 GiB)),
-#, fuzzy, c-format
+#, c-format
 msgid "Clear label of %1$s on %2$s"
-msgstr "Configurer le label de %1$s sur %2$s"
+msgstr "Effacer l'étiquette de %1$s sur %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#, fuzzy, c-format
+#, c-format
 msgid "Clear label of partition %1$s"
-msgstr "Effacer le fanion de démarrage de la partition %1$s"
+msgstr "Effacer l'étiquette de la partition %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -434,16 +434,16 @@ msgstr "Effacement du fanion de démarrage de la partition %1$s"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
 #. /dev/sdb2 (1.00 GiB)),
-#, fuzzy, c-format
+#, c-format
 msgid "Clearing label of %1$s on %2$s"
-msgstr "Configuration du label de %1$s sur %2$s"
+msgstr "Effacement de l'étiquette de %1$s sur %2$s"
 
 # TLABEL update_2002_01_04_0147__20
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#, fuzzy, c-format
+#, c-format
 msgid "Clearing label of partition %1$s"
-msgstr "Effacement du fanion de démarrage de la partition %1$s"
+msgstr "Effacement de l'étiquette de la partition %1$s"
 
 # TLABEL update_2002_01_04_0147__20
 #. TRANSLATORS: displayed during action,
@@ -483,7 +483,9 @@ msgstr ""
 msgid ""
 "Create %1$s %2$s (%3$s) for %4$s with %5$s\n"
 "from %6$s"
-msgstr "Créer le %1$s %2$s (%3$s) pour %4$s avec %5$s à partir de %6$s"
+msgstr ""
+"Créer le %1$s %2$s (%3$s) pour %4$s avec %5$s\n"
+"à partir de %6$s"
 
 # TLABEL partitioning_2002_01_04_0147__351
 #. TRANSLATORS:
@@ -497,7 +499,9 @@ msgstr "Créer le %1$s %2$s (%3$s) pour %4$s avec %5$s à partir de %6$s"
 msgid ""
 "Create %1$s %2$s (%3$s) for swap\n"
 "from %4$s"
-msgstr "Créer le %1$s %2$s (%3$s) pour la swap à partir de %4$s"
+msgstr ""
+"Créer le %1$s %2$s (%3$s) pour la partition d'échange\n"
+"à partir de %4$s"
 
 # TLABEL partitioning_2002_01_04_0147__351
 #. TRANSLATORS:
@@ -523,7 +527,9 @@ msgstr "Créer le %1$s %2$s (%3$s) à partir de %4$s"
 msgid ""
 "Create %1$s %2$s (%3$s) with %4$s\n"
 "from %5$s"
-msgstr "Créer le %1$s %2$s (%3$s) avec %4$s à partir de %5$s"
+msgstr ""
+"Créer le %1$s %2$s (%3$s) avec %4$s\n"
+"à partir de %5$s"
 
 # TLABEL partitioning_2002_01_04_0147__351
 #. TRANSLATORS: displayed before action,
@@ -1810,37 +1816,38 @@ msgstr ""
 #. %1$s is replaced by the filesystem type (e.g. ext4),
 #. %2$s is replaced by the partition table type (e.g. GPT),
 #. %3$s is replaced by the device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Detected a %1$s file system next to a partition table of type %2$s on the\n"
 "device %3$s. The file system will be ignored."
 msgstr ""
-"Un système de fichiers a été détecté en plus d'une table de partitions sur "
-"le\n"
-"périphérique %1$s. Ce système de fichiers va être ignoré."
+"Un système de fichiers %1$s a été détecté en plus d'une table de partitions "
+"de type %2$s sur le\n"
+"périphérique %3$s. Ce système de fichiers va être ignoré."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the partition table type (e.g. GPT),
 #. %2$s is replaced by the device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Detected a LUKS device next to a partition table of type %1$s on the\n"
 "device %2$s. The LUKS device will be ignored."
 msgstr ""
-"Un périphérique LUKS a été détecté en plus d'une table de partitions sur\n"
-"le périphérique %1$s. Ce périphérique LUKS va être ignoré."
+"Un périphérique LUKS a été détecté en plus d'une table de partitions de type "
+"%1$s sur\n"
+"le périphérique %2$s. Ce périphérique LUKS va être ignoré."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the partition table type (e.g. GPT),
 #. %2$s is replaced by the device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Detected a LVM logical volume next to a partition table of type %1$s on the\n"
 "device %2$s. The LVM logical volume will be ignored as good as possible."
 msgstr ""
-"Un volume logique LVM a été détecté en plus d'une table de partitions sur "
-"le\n"
-"périphérique %1$s. Ce volume logique LVM va être ignoré."
+"Un volume logique LVM a été détecté en plus d'une table de partitions de "
+"type %1$s sur le\n"
+"périphérique %2$s. Ce volume logique LVM va être ignoré autant que possible."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the filesystem type (e.g. minix),
@@ -1850,6 +1857,8 @@ msgid ""
 "Detected an unsupported file system of type %1$s on the\n"
 "device %2$s."
 msgstr ""
+"Un système de fichier de type %1$s non pris en charge a été détecté\n"
+"sur le périphérique %2$s."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the partition table type (e.g. BSD),
@@ -1859,6 +1868,8 @@ msgid ""
 "Detected an unsupported partition table of type %1$s on the\n"
 "device %2$s."
 msgstr ""
+"Une table de partitions de type %1$s a été détectée sur le\n"
+"périphérique %2$s."
 
 # TLABEL packages_2002_01_04_0147__160
 #. TRANSLATORS: name of partition type
@@ -2401,9 +2412,8 @@ msgid "Linux"
 msgstr "Linux"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Linux Home"
-msgstr "Linux"
+msgstr "Répertoire privé Linux"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux LVM"
@@ -3062,9 +3072,9 @@ msgstr "Définir l'étiquette de %1$s sur %2$s à %3$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition label (e.g. ROOT),
-#, fuzzy, c-format
+#, c-format
 msgid "Set label of partition %1$s to %2$s"
-msgstr "Définir le type de la partition %1$s à %2$s"
+msgstr "Définir l'étiquette de la partition %1$s sur %2$s"
 
 # TLABEL update_2002_01_04_0147__20
 #. TRANSLATORS: displayed before action,
@@ -3190,9 +3200,9 @@ msgstr "Définition de l'étiquette de %1$s sur %2$s à %3$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition label (e.g. ROOT),
-#, fuzzy, c-format
+#, c-format
 msgid "Setting label of partition %1$s to %2$s"
-msgstr "Définition du type de la partition %1$s à %2$s"
+msgstr "Définition de l'étiquette de la partition %1$s sur %2$s"
 
 # TLABEL partitioning_2002_01_04_0147__425
 #. TRANSLATORS: displayed during action,
