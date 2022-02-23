@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2022-02-23 12:12+0000\n"
+"PO-Revision-Date: 2022-02-23 19:12+0000\n"
 "Last-Translator: Sophie Leroy <sophie@stoquart.com>\n"
 "Language-Team: French <https://l10n.opensuse.org/projects/libstorage/"
 "ng-sle-15-sp1/fr/>\n"
@@ -586,7 +586,9 @@ msgstr "Créer le bcache %1$s sur %2$s (%3$s) avec %4$s"
 msgid ""
 "Create encrypted %1$s %2$s (%3$s)\n"
 "from %4$s"
-msgstr "Créer et chiffrer %1$s de %2$s (%3$s) à partir de %4$s"
+msgstr ""
+"Créer l'élément %1$s %2$s chiffré (%3$s)\n"
+"à partir de %4$s"
 
 # TLABEL partitioning_2002_03_14_2340__121
 #. TRANSLATORS:
@@ -603,7 +605,8 @@ msgid ""
 "Create encrypted %1$s %2$s (%3$s) for %4$s with %5$s\n"
 "from %6$s"
 msgstr ""
-"Créer et chiffrer %1$s de %2$s (%3$s) pour %4$s avec %5$s à partir de %6$s"
+"Créer l'élément %1$s %2$s chiffré (%3$s) pour %4$s avec %5$s\n"
+"à partir de %6$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -616,7 +619,9 @@ msgstr ""
 msgid ""
 "Create encrypted %1$s %2$s (%3$s) for swap\n"
 "from %4$s"
-msgstr "Créer le %1$s chiffré %2$s (%3$s) pour la swap à partir de %4$s"
+msgstr ""
+"Créer l'élément %1$s %2$s chiffré (%3$s) pour la partition d'échange\n"
+"à partir de %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
@@ -630,7 +635,9 @@ msgstr "Créer le %1$s chiffré %2$s (%3$s) pour la swap à partir de %4$s"
 msgid ""
 "Create encrypted %1$s %2$s (%3$s) with %4$s\n"
 "from %5$s"
-msgstr "Créer et chiffrer %1$s de %2$s (%3$s) avec %4$s à partir de %5$s"
+msgstr ""
+"Créer l'élément %1$s %2$s chiffré (%3$s) avec %4$s\n"
+"à partir de %5$s"
 
 # TLABEL partitioning_2002_03_14_2340__121
 #. TRANSLATORS:
@@ -1657,8 +1664,8 @@ msgstr ""
 "\n"
 "%1$s\n"
 "\n"
-"Ces volumes logiques sont ignorés. Les opérations sur les groupes de volumes "
-"correspondants risquent d'échouer."
+"Ces volumes logiques sont ignorés. Les opérations sur les\n"
+"groupes de volumes correspondants risquent d'échouer."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
