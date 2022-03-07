@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2018-2021] SUSE LLC
+ * Copyright (c) [2018-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -60,6 +60,8 @@ namespace storage
 	bool is_do_lock() const;
 
 	friend std::ostream& operator<<(std::ostream& out, const Impl& environment);
+
+	static void extra_log();
 
     private:
 
