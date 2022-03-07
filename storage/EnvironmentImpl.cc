@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2018-2021] SUSE LLC
+ * Copyright (c) [2018-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,6 +21,7 @@
  */
 
 
+#include <langinfo.h>
 #include <string.h>
 #include <ostream>
 
@@ -137,6 +138,31 @@ namespace storage
     prefer_filesystem_over_empty_msdos()
     {
 	return read_env_var("LIBSTORAGE_PFSOEMS", true);
+    }
+
+
+    void
+    Environment::Impl::extra_log()
+    {
+	y2mil("codeset " << nl_langinfo(CODESET));
+
+	const char* env_vars[] = {
+	    "PATH",
+	    "LD_LIBRARY_PATH",
+	    "LD_PRELOAD",
+	    "LIBSTORAGE_BTRFS_QGROUPS",
+	    "LIBSTORAGE_MULTIPLE_DEVICES_BTRFS",
+	    "LIBSTORAGE_PFSOEMS",
+	    "LIBSTORAGE_BTRFS_SNAPSHOT_RELATIONS",
+	    "LIBSTORAGE_DEVELOPER_MODE",
+	};
+
+	for (const char* env_var : env_vars)
+	{
+	    const char* value = getenv(env_var);
+	    if (value)
+		y2mil(env_var << "=" << value);
+	}
     }
 
 }
