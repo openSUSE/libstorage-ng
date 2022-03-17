@@ -891,7 +891,10 @@ namespace storage
 
 	do_create_post_hack(tmps);
 
-	discard_device();
+	if (get_type() == PartitionType::PRIMARY || get_type() == PartitionType::LOGICAL)
+	{
+	    discard_device();
+	}
     }
 
 
@@ -1331,7 +1334,10 @@ namespace storage
     {
 	do_delete_efi_boot_mgr();
 
-	discard_device();
+	if (get_type() == PartitionType::PRIMARY || get_type() == PartitionType::LOGICAL)
+	{
+	    discard_device();
+	}
 
 	const Partitionable* partitionable = get_partitionable();
 
