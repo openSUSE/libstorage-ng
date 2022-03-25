@@ -66,6 +66,8 @@ namespace storage
 	static pair<string, string> split_name(const string& name);
 	static string canonical_path(const string& path);
 
+	static bool is_valid_vfstype(storage::FsType& name);
+
 	static void probe_nfses(Prober& prober);
 
 	virtual Text get_message_name() const override;
