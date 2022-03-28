@@ -82,9 +82,9 @@ namespace storage
     }
 
     bool
-    Nfs::Impl::is_valid_vfstype(storage::FsType& name)
+    Nfs::Impl::is_valid_vfstype(FsType& fs_type)
     {
-       return name == FsType::NFS || name == FsType::NFS4 || name == FsType::AUTO;
+       return fs_type == FsType::NFS || fs_type == FsType::NFS4 || fs_type == FsType::AUTO;
     }
 
     pair<string, string>
@@ -131,7 +131,7 @@ namespace storage
 	{
 	    const FstabEntry* fstab_entry = etc_fstab.get_entry(i);
 	    string device = fstab_entry->get_spec();
-	    storage::FsType vfstype = fstab_entry->get_fs_type();
+	    FsType vfstype = fstab_entry->get_fs_type();
 
 	    if (is_valid_name(device) && is_valid_vfstype(vfstype))
 		entries[Nfs::Impl::split_name(device)].first.emplace_back(fstab_entry);

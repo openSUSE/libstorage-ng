@@ -66,7 +66,7 @@ namespace storage
 	static pair<string, string> split_name(const string& name);
 	static string canonical_path(const string& path);
 
-	static bool is_valid_vfstype(storage::FsType& name);
+	static bool is_valid_vfstype(FsType& fs_type);
 
 	static void probe_nfses(Prober& prober);
 
