@@ -49,7 +49,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	unsigned int block_size = blk_device->get_region().get_block_size();
+	unsigned long long block_size = blk_device->get_region().get_block_size();
 
 	if (block_size < 512 * B || block_size > 4 * KiB || !is_power_of_two(block_size))
 	    ST_THROW(InvalidBlockSize(block_size));

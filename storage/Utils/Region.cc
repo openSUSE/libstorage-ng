@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -34,8 +34,20 @@ namespace storage
     }
 
 
+    InvalidBlockSize::InvalidBlockSize(unsigned long long block_size)
+	: Exception(sformat("invalid block size %lld", block_size), LogLevel::ERROR)
+    {
+    }
+
+
     DifferentBlockSizes::DifferentBlockSizes(unsigned int seen, unsigned int expected)
 	: Exception(sformat("different block sizes, seen: %d, expected: %d", seen, expected), LogLevel::ERROR)
+    {
+    }
+
+
+    DifferentBlockSizes::DifferentBlockSizes(unsigned long long seen, unsigned long long expected)
+	: Exception(sformat("different block sizes, seen: %lld, expected: %lld", seen, expected), LogLevel::ERROR)
     {
     }
 
@@ -59,6 +71,12 @@ namespace storage
 
 
     Region::Region(unsigned long long start, unsigned long long len, unsigned int block_size)
+        : impl(make_unique<Impl>(start, len, block_size))
+    {
+    }
+
+
+    Region::Region(unsigned long long start, unsigned long long len, unsigned long long block_size, ull_hack_t)
         : impl(make_unique<Impl>(start, len, block_size))
     {
     }
@@ -160,8 +178,22 @@ namespace storage
     }
 
 
+    unsigned long long
+    Region::get_block_size(ull_hack_t) const
+    {
+        return get_impl().get_block_size();
+    }
+
+
     void
     Region::set_block_size(unsigned int block_size)
+    {
+        get_impl().set_block_size(block_size);
+    }
+
+
+    void
+    Region::set_block_size(unsigned long long block_size, ull_hack_t)
     {
         get_impl().set_block_size(block_size);
     }

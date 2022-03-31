@@ -528,7 +528,7 @@ namespace storage
     {
 	unsigned long long tmp = chunk_size > 0 ? chunk_size : default_chunk_size();
 
-	return default_metadata_size(get_size(), tmp, get_region().get_block_size());
+	return default_metadata_size(get_size(), tmp, get_region().get_block_size(ULL_HACK));
     }
 
 
@@ -655,8 +655,8 @@ namespace storage
 	LvmLv* lvm_lv = LvmLv::create(devicegraph, lvm_vg->get_vg_name(), lv_name, lv_type);
 	Subdevice::create(devicegraph, get_non_impl(), lvm_lv);
 
-	unsigned long long extent_size = lvm_vg->get_region().get_block_size();
-	lvm_lv->set_region(Region(0, size / extent_size, extent_size));
+	unsigned long long extent_size = lvm_vg->get_extent_size();
+	lvm_lv->set_region(Region(0, size / extent_size, extent_size, ULL_HACK));
 
 	return lvm_lv;
     }

@@ -84,7 +84,7 @@ namespace storage
 
 	Text get_size_text() const;
 
-	unsigned long long get_extent_size() const { return region.get_block_size(); }
+	unsigned long long get_extent_size() const { return region.get_block_size(ULL_HACK); }
 	void set_extent_size(unsigned long long extent_size);
 
 	virtual void parent_has_new_region(const Device* parent) override;
@@ -168,7 +168,7 @@ namespace storage
 	 * Number of reserved extents in the volume group. Those reserved
 	 * extents are not used by libstorage-ng. Also see doc/lvm.md.
 	 */
-	unsigned long long reserved_extents;
+	unsigned long long reserved_extents = 0;
 
 	void calculate_region();
 

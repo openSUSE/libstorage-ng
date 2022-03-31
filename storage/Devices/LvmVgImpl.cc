@@ -120,7 +120,7 @@ namespace storage
 	const CmdVgs& cmd_vgs = prober.get_system_info().getCmdVgs();
 	const CmdVgs::Vg& vg = cmd_vgs.find_by_vg_uuid(uuid);
 
-	region = Region(0, vg.extent_count, vg.extent_size);
+	region = Region(0, vg.extent_count, vg.extent_size, ULL_HACK);
     }
 
 
@@ -156,7 +156,7 @@ namespace storage
     {
 	// see vgcreate(8) for valid values
 
-	unsigned long long old_extent_size = region.get_block_size();
+	unsigned long long old_extent_size = region.get_block_size(ULL_HACK);
 
 	if (!is_power_of_two(extent_size))
 	    ST_THROW(InvalidExtentSize("extent size not a power of two"));
@@ -164,7 +164,7 @@ namespace storage
 	if (!is_multiple_of(extent_size, 128 * KiB))
 	    ST_THROW(InvalidExtentSize("extent size not multiple of 128 KiB"));
 
-	region.set_block_size(extent_size);
+	region.set_block_size(extent_size, ULL_HACK);
 
 	calculate_region();
 
@@ -172,7 +172,7 @@ namespace storage
 	{
 	    Region region = lvm_lv->get_region();
 
-	    region.set_block_size(extent_size);
+	    region.set_block_size(extent_size, ULL_HACK);
 	    region.set_length(region.get_length() * old_extent_size / extent_size);
 
 	    lvm_lv->set_region(region);
@@ -301,7 +301,7 @@ namespace storage
     void
     LvmVg::Impl::calculate_region()
     {
-	unsigned long long extent_size = region.get_block_size();
+	unsigned long long extent_size = region.get_block_size(ULL_HACK);
 
 	unsigned long long extent_count = 0;
 
@@ -400,8 +400,8 @@ namespace storage
 	LvmLv* lvm_lv = LvmLv::create(devicegraph, vg_name, lv_name, lv_type);
 	Subdevice::create(devicegraph, get_non_impl(), lvm_lv);
 
-	unsigned long long extent_size = region.get_block_size();
-	lvm_lv->set_region(Region(0, size / extent_size, extent_size));
+	unsigned long long extent_size = region.get_block_size(ULL_HACK);
+	lvm_lv->set_region(Region(0, size / extent_size, extent_size, ULL_HACK));
 
 	return lvm_lv;
     }

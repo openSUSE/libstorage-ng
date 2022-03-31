@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -30,22 +30,33 @@
 #include <vector>
 
 #include "storage/Utils/Exception.h"
+#include "storage/Utils/Swig.h"
 
 
 namespace storage
 {
 
+    // TODO make block_size unsigned long long everywhere and remove ull_hack
+
+    // ull_hack_t is only used to resolve ambiguities (esp. for the constructors of
+    // Region). With simple overloading there are several hundreds ambiguities, mainly in
+    // the testsuite.
+    enum ull_hack_t { ULL_HACK };
+
+
     class InvalidBlockSize : public Exception
     {
     public:
-	InvalidBlockSize(unsigned int block_size);
+	InvalidBlockSize(unsigned int block_size) ST_DEPRECATED;
+	InvalidBlockSize(unsigned long long block_size);
     };
 
 
     class DifferentBlockSizes : public Exception
     {
     public:
-	DifferentBlockSizes(unsigned int seen, unsigned int expected);
+	DifferentBlockSizes(unsigned int seen, unsigned int expected) ST_DEPRECATED;
+	DifferentBlockSizes(unsigned long long seen, unsigned long long expected);
     };
 
 
@@ -76,6 +87,7 @@ namespace storage
 
 	Region();
 	Region(unsigned long long start, unsigned long long length, unsigned int block_size);
+	Region(unsigned long long start, unsigned long long length, unsigned long long block_size, ull_hack_t);
 	Region(const Region& region);
 	Region(Region&& region) = default;
 	~Region();
@@ -128,7 +140,9 @@ namespace storage
 	void adjust_length(long long delta);
 
 	unsigned int get_block_size() const;
+	unsigned long long get_block_size(ull_hack_t) const;
 	void set_block_size(unsigned int block_size);
+	void set_block_size(unsigned long long block_size, ull_hack_t);
 
 	unsigned long long to_bytes(unsigned long long blocks) const;
 	unsigned long long to_blocks(unsigned long long bytes) const;
