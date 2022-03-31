@@ -92,7 +92,7 @@ namespace storage
     bool
     Alignment::Impl::align_region_in_place(Region& region, AlignPolicy align_policy) const
     {
-	unsigned long block_size = region.get_block_size();
+	unsigned long block_size = region.get_block_size(ULL_HACK);
 
 	unsigned long long start = region.get_start();
 
@@ -127,7 +127,7 @@ namespace storage
 	    } break;
 	}
 
-	region = Region(start, length, region.get_block_size());
+	region = Region(start, length, region.get_block_size(ULL_HACK), ULL_HACK);
 	return true;
     }
 

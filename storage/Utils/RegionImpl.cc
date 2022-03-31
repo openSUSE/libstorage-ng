@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2015-2017] SUSE LLC
+ * Copyright (c) [2015-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -30,7 +30,7 @@
 namespace storage
 {
 
-    Region::Impl::Impl(unsigned long long start, unsigned long long length, unsigned int block_size)
+    Region::Impl::Impl(unsigned long long start, unsigned long long length, unsigned long long block_size)
 	: start(start), length(length), block_size(block_size)
     {
 	assert_valid_block_size();
@@ -53,7 +53,7 @@ namespace storage
 
 
     void
-    Region::Impl::assert_valid_block_size(unsigned int block_size) const
+    Region::Impl::assert_valid_block_size(unsigned long long block_size) const
     {
 	if (block_size == 0)
 	    ST_THROW(InvalidBlockSize(block_size));
@@ -99,7 +99,7 @@ namespace storage
 
 
     void
-    Region::Impl::set_block_size(unsigned int block_size)
+    Region::Impl::set_block_size(unsigned long long block_size)
     {
 	assert_valid_block_size(block_size);
 
@@ -170,7 +170,7 @@ namespace storage
 	unsigned long long s = std::max(rhs.get_start(), get_start());
 	unsigned long long e = std::min(rhs.get_end(), get_end());
 
-	return Region(s, e - s + 1, block_size);
+	return Region(s, e - s + 1, block_size, ULL_HACK);
     }
 
 
@@ -194,13 +194,13 @@ namespace storage
 		continue;
 
 	    if (used_region.get_start() > start)
-		ret.emplace_back(start, used_region.get_start() - start, block_size);
+		ret.emplace_back(start, used_region.get_start() - start, block_size, ULL_HACK);
 
 	    start = max(start, used_region.get_end() + 1);
 	}
 
 	if (end > start)
-	    ret.emplace_back(start, end - start + 1, block_size);
+	    ret.emplace_back(start, end - start + 1, block_size, ULL_HACK);
 
 	return ret;
     }

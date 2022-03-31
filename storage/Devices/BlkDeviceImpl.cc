@@ -138,7 +138,7 @@ namespace storage
 	    ST_THROW(Exception("invalid logical block size"));
 
 	unsigned long long c = a * 512 / b;
-	set_region(Region(0, c, b));
+	set_region(Region(0, c, b, ULL_HACK));
     }
 
 
@@ -186,7 +186,7 @@ namespace storage
     {
 	Device::Impl::check(check_callbacks);
 
-	if (region.get_block_size() == 0)
+	if (region.get_block_size(ULL_HACK) == 0)
 	    ST_THROW(Exception(sformat("block size is zero for %s", get_name())));
 
 	if (!is_valid_name(get_name()))
@@ -224,7 +224,7 @@ namespace storage
 	// Direct to virtual set_region so that derived classes can perform
 	// checks and that children can be informed.
 
-	set_region(Region(region.get_start(), region.to_blocks(size), region.get_block_size()));
+	set_region(Region(region.get_start(), region.to_blocks(size), region.get_block_size(ULL_HACK), ULL_HACK));
     }
 
 
