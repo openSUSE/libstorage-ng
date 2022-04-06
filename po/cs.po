@@ -13,16 +13,16 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-20 12:10+0100\n"
-"PO-Revision-Date: 2021-10-19 20:11+0000\n"
-"Last-Translator: Aleš Kastner <alkas@volny.cz>\n"
-"Language-Team: Czech <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/cs/>\n"
+"PO-Revision-Date: 2022-04-06 23:12+0000\n"
+"Last-Translator: Jan Papež <honyczek@centrum.cz>\n"
+"Language-Team: Czech <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.8.1\n"
+"X-Generator: Weblate 4.9.1\n"
 
 msgid ""
 "\n"
@@ -368,15 +368,15 @@ msgstr "Ruším boot příznak oddílu %1$s"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
 #. /dev/sdb2 (1.00 GiB)),
-#, fuzzy, c-format
+#, c-format
 msgid "Clear label of %1$s on %2$s"
-msgstr "Nastavit popisek z %1$s na %2$s na %3$s"
+msgstr "Vymazat popisek z %1$s na %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#, fuzzy, c-format
+#, c-format
 msgid "Clear label of partition %1$s"
-msgstr "Ruším boot příznak oddílu %1$s"
+msgstr "Vymazat štítek oddílu %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -410,15 +410,15 @@ msgstr "Ruším zaváděcí (boot) příznak oddílu %1$s"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
 #. /dev/sdb2 (1.00 GiB)),
-#, fuzzy, c-format
+#, c-format
 msgid "Clearing label of %1$s on %2$s"
-msgstr "Nastavuji popisek z %1$s na %2$s na %3$s"
+msgstr "Mazání popisku z %1$s na %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#, fuzzy, c-format
+#, c-format
 msgid "Clearing label of partition %1$s"
-msgstr "Ruším zaváděcí (boot) příznak oddílu %1$s"
+msgstr "Mazání štítku na oddílu %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -1678,35 +1678,35 @@ msgstr ""
 #. %1$s is replaced by the filesystem type (e.g. ext4),
 #. %2$s is replaced by the partition table type (e.g. GPT),
 #. %3$s is replaced by the device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Detected a %1$s file system next to a partition table of type %2$s on the\n"
 "device %3$s. The file system will be ignored."
 msgstr ""
-"Rozpoznán systém souborů vedle tabulky oddílů jednotky\n"
-"%1$s. Systém souborů bude ignorován."
+"Rozpoznán systém souborů %1$s vedle tabulky oddílů jednotky typu %2$s\n"
+"na zařízení %3$s. Tento systém souborů bude ignorován."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the partition table type (e.g. GPT),
 #. %2$s is replaced by the device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Detected a LUKS device next to a partition table of type %1$s on the\n"
 "device %2$s. The LUKS device will be ignored."
 msgstr ""
-"Rozpoznána jednotka LUKS vedle tabulky oddílů jednotky\n"
-"%1$s. Jednotka LUKS bude ignorována."
+"Rozpoznáno zařízení LUKS vedle tabulky oddílů jednotky typu %1$s\n"
+"na zařízení %2$s. Zařízení LUKS bude ignorováno."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the partition table type (e.g. GPT),
 #. %2$s is replaced by the device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Detected a LVM logical volume next to a partition table of type %1$s on the\n"
 "device %2$s. The LVM logical volume will be ignored as good as possible."
 msgstr ""
-"Rozpoznán logický svazek LVM vedle tabulky oddílů jednotky\n"
-"%1$s. Logický svazek LVM bude ignorován."
+"Rozpoznán logický svazek LVM vedle tabulky oddílů jednotky typu %1$s\n"
+"na zařízení %2$s. Logický svazek LVM bude ignorován."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the filesystem type (e.g. minix),
@@ -1716,6 +1716,8 @@ msgid ""
 "Detected an unsupported file system of type %1$s on the\n"
 "device %2$s."
 msgstr ""
+"Na zařízení %2$s byl zjištěn nepodporovaný souborový systém\n"
+"typu %1$s."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the partition table type (e.g. BSD),
@@ -1725,6 +1727,8 @@ msgid ""
 "Detected an unsupported partition table of type %1$s on the\n"
 "device %2$s."
 msgstr ""
+"Na zařízení %2$s byla zjištěna nepodporovaná tabulka oddílů\n"
+"typu %1$s."
 
 #. TRANSLATORS: name of partition type
 msgid "Diagnostics Partition"
@@ -2816,14 +2820,14 @@ msgstr "Nastavit id oddílu %1$s na 0x%2$02X"
 #. %3$s is replaced by label (e.g. ROOT)
 #, c-format
 msgid "Set label of %1$s on %2$s to %3$s"
-msgstr "Nastavit popisek z %1$s na %2$s na %3$s"
+msgstr "Nastavit popisek %1$s u %2$s na hodnotu %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition label (e.g. ROOT),
-#, fuzzy, c-format
+#, c-format
 msgid "Set label of partition %1$s to %2$s"
-msgstr "Nastavit id oddílu %1$s na %2$s"
+msgstr "Nastavit štítek oddílu %1$s na %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -2876,7 +2880,7 @@ msgstr "Nastavte možnosti ladění pro %1$s na %2$s"
 #. %3$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
 #, c-format
 msgid "Setting UUID of %1$s on %2$s to %3$s"
-msgstr "Nastavuji UUID z %1$s na %2$s na %3$s"
+msgstr "Nastavuji UUID %1$s u %2$s na %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -2930,14 +2934,14 @@ msgstr "Nastavuji id oddílu %1$s na 0x%2$02X"
 #. %3$s is replaced by label (e.g. ROOT)
 #, c-format
 msgid "Setting label of %1$s on %2$s to %3$s"
-msgstr "Nastavuji popisek z %1$s na %2$s na %3$s"
+msgstr "Nastavování popisku %1$s u %2$s na %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition label (e.g. ROOT),
-#, fuzzy, c-format
+#, c-format
 msgid "Setting label of partition %1$s to %2$s"
-msgstr "Nastavuji id oddílu %1$s na %2$s"
+msgstr "Nastavuji štítek oddílu %1$s na %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
