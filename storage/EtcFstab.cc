@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2017-2021] SUSE LLC
+ * Copyright (c) [2017-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -551,15 +551,38 @@ namespace storage
     }
 
 
-    string EtcFstab::fstab_encode( const string & unencoded )
+    string
+    EtcFstab::fstab_encode(const string& unencoded)
     {
-	return boost::replace_all_copy( unencoded, " ", "\\040" );
+	string tmp = unencoded;
+
+	// see fstab(5) and getmntent(3)
+
+	boost::replace_all(tmp, "\\", "\\\\");
+
+	boost::replace_all(tmp, "\t", "\\011");
+	boost::replace_all(tmp, "\n", "\\012");
+	boost::replace_all(tmp, " ", "\\040");
+
+	return tmp;
     }
 
 
-    string EtcFstab::fstab_decode( const string & encoded )
+    string
+    EtcFstab::fstab_decode(const string& encoded)
     {
-	return boost::replace_all_copy( encoded, "\\040", " " );
+	string tmp = encoded;
+
+	// see fstab(5) and getmntent(3)
+
+	boost::replace_all(tmp, "\\011", "\t");
+	boost::replace_all(tmp, "\\012", "\n");
+	boost::replace_all(tmp, "\\040", " ");
+	boost::replace_all(tmp, "\\123", "\\");
+
+	boost::replace_all(tmp, "\\\\", "\\");
+
+	return tmp;
     }
 
 
