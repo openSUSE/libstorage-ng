@@ -714,8 +714,8 @@ namespace storage
     Encryption*
     BlkDevice::Impl::create_encryption(const string& dm_name, EncryptionType type)
     {
-	map<EncryptionType, encryption_create_fnc>::const_iterator it = encryption_create_fnc_registry.find(type);
-	if (it == encryption_create_fnc_registry.end())
+	map<EncryptionType, encryption_create_fnc>::const_iterator it = encryption_create_registry.find(type);
+	if (it == encryption_create_registry.end())
 	{
 	    ST_THROW(Exception("invalid encryption type"));
 	}

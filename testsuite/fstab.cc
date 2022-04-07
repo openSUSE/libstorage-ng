@@ -430,3 +430,30 @@ BOOST_AUTO_TEST_CASE( validate_entry )
     for ( size_t i=0; i < output.size(); ++i )
         BOOST_CHECK_EQUAL( output[i], initial[i] );
 }
+
+
+BOOST_AUTO_TEST_CASE(escape_and_unescape)
+{
+    // input needs to be formatted exactly like the expected output
+
+    string_vec input = {
+        "LABEL=a\\040b  /test\\0111  ext4  defaults  0  0",
+        "LABEL=c\\012d  /test\\\\2    ext4  defaults  0  0"
+    };
+
+    EtcFstab fstab;
+    fstab.parse(input);
+
+    BOOST_CHECK_EQUAL(fstab.get_entry_count(), 2);
+
+    BOOST_CHECK_EQUAL(fstab.get_entry(0)->get_spec(), "LABEL=a b");
+    BOOST_CHECK_EQUAL(fstab.get_entry(0)->get_mount_point(), "/test\t1");
+
+    BOOST_CHECK_EQUAL(fstab.get_entry(1)->get_spec(), "LABEL=c\nd");
+    BOOST_CHECK_EQUAL(fstab.get_entry(1)->get_mount_point(), "/test\\2");
+
+    vector<string> output = fstab.format_lines();
+
+    for (int i = 0; i < fstab.get_entry_count(); ++i)
+        BOOST_CHECK_EQUAL(output[i], input[i]);
+}

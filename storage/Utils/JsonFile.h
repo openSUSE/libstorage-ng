@@ -35,6 +35,13 @@ namespace storage
     using namespace std;
 
 
+    /*
+     * The user might expect more use of const here but in the end it does not work out
+     * since json_object_get_string does not take a const (likely due to reference
+     * counting).
+     */
+
+
     class JsonFile : private boost::noncopyable
     {
 

@@ -89,10 +89,14 @@ namespace storage
 	 */
 	static bool is_valid_vg_name(const std::string& vg_name);
 
+	/**
+	 * Get the region of the volume group. The start of the region is always 0, the
+	 * length is the number of extents and the block size in the extent size.
+	 */
 	const Region& get_region() const;
 
 	/**
-	 * Returns the size of the volume group.
+	 * Returns the size of the volume group in bytes.
 	 */
 	unsigned long long get_size() const;
 
@@ -125,7 +129,7 @@ namespace storage
 	void set_extent_size(unsigned long long extent_size);
 
 	/**
-	 * Calculates the number of extents in the volume group.
+	 * Returns the number of extents in the volume group.
 	 */
 	unsigned long long number_of_extents() const;
 
