@@ -228,7 +228,7 @@ public:
 	string	   line_comment;   // at the end of the line
 	string	   content;
 
-	CommentedConfigFile * parent;
+	CommentedConfigFile* parent = nullptr;
     };
 
 

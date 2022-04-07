@@ -152,7 +152,7 @@ namespace storage
     };
 
 
-    const map<EncryptionType, encryption_create_fnc> encryption_create_fnc_registry = {
+    const map<EncryptionType, encryption_create_fnc> encryption_create_registry = {
 	{ EncryptionType::PLAIN, &PlainEncryption::create },
 	{ EncryptionType::LUKS1, &Luks::create },
 	{ EncryptionType::LUKS2, &Luks::create }

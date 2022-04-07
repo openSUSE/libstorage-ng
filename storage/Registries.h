@@ -69,7 +69,7 @@ namespace storage
      * Map with encryption type of all non-abstract encryptions and corresponding create
      * function.
      */
-    extern const map<EncryptionType, encryption_create_fnc> encryption_create_fnc_registry;
+    extern const map<EncryptionType, encryption_create_fnc> encryption_create_registry;
 
 }
 
