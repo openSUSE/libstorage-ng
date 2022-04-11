@@ -1,5 +1,6 @@
+AC_INIT
 
-AC_INIT(storage/Storage.h)
+AC_CONFIG_SRCDIR([storage/Storage.h])
 
 VERSION=`cat ./VERSION`
 
@@ -88,7 +89,7 @@ AC_SUBST(RUBY_SHARED_LIB)
 RUBY_ARCH_NAME=$(RBCONFIG(arch))
 AC_SUBST(RUBY_ARCH_NAME)
 
-AC_OUTPUT(
+AC_CONFIG_FILES([
 	Makefile
 	storage/Makefile
 	storage/Version.h:storage/Version.h.in
@@ -157,4 +158,6 @@ AC_OUTPUT(
 	bindings/ruby/examples/Makefile
 	bindings/ruby/testsuite/Makefile
 	package/libstorage-ng.spec:libstorage-ng.spec.in
-)
+])
+
+AC_OUTPUT
