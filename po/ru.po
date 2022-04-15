@@ -5,17 +5,17 @@ msgstr ""
 "Project-Id-Version: libstorage.ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-20 12:10+0100\n"
-"PO-Revision-Date: 2021-05-12 22:57+0000\n"
-"Last-Translator: Alex Minton <alex239@gmail.com>\n"
-"Language-Team: Russian <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/ru/>\n"
+"PO-Revision-Date: 2022-04-16 00:12+0000\n"
+"Last-Translator: Michael <michaelbelachev@gmail.com>\n"
+"Language-Team: Russian <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.6.2\n"
+"X-Generator: Weblate 4.9.1\n"
 
 msgid ""
 "\n"
@@ -77,9 +77,9 @@ msgstr "Включить зашифрованное устройство на %1
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the device name (e.g. /dev/loop0),
 #. %2$s is replaced by the size (e.g. 20.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Activate hard disk %1$s (%2$s)"
-msgstr "Создать жёсткий диск %1$s (%2$s)"
+msgstr "Активировать жёсткий диск %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -132,9 +132,9 @@ msgstr "Включение зашифрованного устройства н�
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/loop0),
 #. %2$s is replaced by the size (e.g. 20.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Activating hard disk %1$s (%2$s)"
-msgstr "Создание жесткого диска %1$s (%2$s)"
+msgstr "Активация жесткого диска %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -327,7 +327,7 @@ msgstr "Загрузочный раздел BIOS"
 
 #. TRANSLATORS: name of object
 msgid "Bcache"
-msgstr "Bcache"
+msgstr "Bcаche"
 
 #. TRANSLATORS: name of object
 msgid "Bcache Cache Set"
@@ -335,11 +335,11 @@ msgstr "Набор кэша Bcache"
 
 #. TRANSLATORS: name of object
 msgid "BitLocker"
-msgstr "BitLocker"
+msgstr "BitLoсker"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs"
-msgstr "Btrfs"
+msgstr "Вtrfs"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs Qgroup"
@@ -359,15 +359,15 @@ msgstr "Снять загрузочный флаг раздела %1$s"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
 #. /dev/sdb2 (1.00 GiB)),
-#, fuzzy, c-format
+#, c-format
 msgid "Clear label of %1$s on %2$s"
-msgstr "Задать %1$s на %2$s метку %3$s"
+msgstr "Очистить метку %1$s на %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#, fuzzy, c-format
+#, c-format
 msgid "Clear label of partition %1$s"
-msgstr "Снять загрузочный флаг раздела %1$s"
+msgstr "Очистить метку раздела %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -399,15 +399,15 @@ msgstr "Снятие загрузочного флага раздела %1$s"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
 #. /dev/sdb2 (1.00 GiB)),
-#, fuzzy, c-format
+#, c-format
 msgid "Clearing label of %1$s on %2$s"
-msgstr "Установка %1$s на %2$s метки %3$s"
+msgstr "Очищение метки %1$s на %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#, fuzzy, c-format
+#, c-format
 msgid "Clearing label of partition %1$s"
-msgstr "Снятие загрузочного флага раздела %1$s"
+msgstr "Очищение метки раздела %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -1673,35 +1673,35 @@ msgstr ""
 #. %1$s is replaced by the filesystem type (e.g. ext4),
 #. %2$s is replaced by the partition table type (e.g. GPT),
 #. %3$s is replaced by the device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Detected a %1$s file system next to a partition table of type %2$s on the\n"
 "device %3$s. The file system will be ignored."
 msgstr ""
-"Обнаружена файловая система рядом с таблицей разделов на\n"
-"устройстве %1$s. Файловая система будет проигнорирована."
+"Обнаружена файловая система %1$s рядом с таблицей разделов %2$s на\n"
+"устройстве %3$s. Файловая система будет проигнорирована."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the partition table type (e.g. GPT),
 #. %2$s is replaced by the device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Detected a LUKS device next to a partition table of type %1$s on the\n"
 "device %2$s. The LUKS device will be ignored."
 msgstr ""
-"Обнаружено устройство LUKS рядом с таблицей разделов на\n"
-"устройстве %1$s. Устройство LUKS будет проигнорировано."
+"Обнаружено устройство LUKS рядом с таблицей разделов %1$s на\n"
+"устройстве %2$s. Устройство LUKS будет проигнорировано."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the partition table type (e.g. GPT),
 #. %2$s is replaced by the device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Detected a LVM logical volume next to a partition table of type %1$s on the\n"
 "device %2$s. The LVM logical volume will be ignored as good as possible."
 msgstr ""
-"Обнаружен логический том LVM рядом с таблицей разделов на\n"
-"устройстве %1$s. Логический том LVM будет проигнорирован."
+"Обнаружен логический том LVM рядом с таблицей разделов %1$s на\n"
+"устройстве %2$s. Логический том LVM будет проигнорирован."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the filesystem type (e.g. minix),
@@ -1711,6 +1711,8 @@ msgid ""
 "Detected an unsupported file system of type %1$s on the\n"
 "device %2$s."
 msgstr ""
+"Обнаружена неподдерживаемая файловая система %1$s\n"
+"на устройстве %2$s."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the partition table type (e.g. BSD),
@@ -1720,6 +1722,8 @@ msgid ""
 "Detected an unsupported partition table of type %1$s on the\n"
 "device %2$s."
 msgstr ""
+"Обнаружена неподдерживаемая таблица разделов %1$s\n"
+"на устройстве %2$s."
 
 #. TRANSLATORS: name of partition type
 msgid "Diagnostics Partition"
@@ -1898,15 +1902,15 @@ msgstr "Шифрование"
 
 #. TRANSLATORS: name of object
 msgid "Ext2"
-msgstr "Ext2"
+msgstr "Еxt2"
 
 #. TRANSLATORS: name of object
 msgid "Ext3"
-msgstr "Ext3"
+msgstr "Еxt3"
 
 #. TRANSLATORS: name of object
 msgid "Ext4"
-msgstr "Ext4"
+msgstr "Еxt4"
 
 #. TRANSLATORS: name of partition type
 msgid "Extended Partition"
@@ -2193,7 +2197,7 @@ msgstr "Таблица неявных разделов"
 
 #. TRANSLATORS: name of partition type
 msgid "Intel RST"
-msgstr "Intel RST"
+msgstr "Intеl RST"
 
 #. TRANSLATORS: name of object
 msgid "JFS"
@@ -2201,7 +2205,7 @@ msgstr "JFS"
 
 #. TRANSLATORS: symbol for "kibi bytes" (best keep untranslated)
 msgid "KiB"
-msgstr "киБ"
+msgstr "КиБ"
 
 #. TRANSLATORS: name of object
 msgid "LUKS"
@@ -2224,17 +2228,16 @@ msgid "Linux"
 msgstr "Linux"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Linux Home"
-msgstr "Linux"
+msgstr "Домашний раздел Linux"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux LVM"
-msgstr "Linux LVM"
+msgstr "Linux LVМ"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux RAID"
-msgstr "Linux RAID"
+msgstr "Linux RАID"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Swap"
@@ -2375,7 +2378,7 @@ msgstr "Монтирование подтома %1$s на %2$s в %3$s"
 
 #. TRANSLATORS: name of object
 msgid "Multipath"
-msgstr "Multipath"
+msgstr "Multipаth"
 
 #. TRANSLATORS: name of object
 msgid "NFS"
@@ -2599,7 +2602,7 @@ msgstr "Уменьшение группы томов %1$s на отсутств�
 
 #. TRANSLATORS: name of object
 msgid "ReiserFS"
-msgstr "ReiserFS"
+msgstr "RеiserFS"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the device name (e.g. /dev/sdc1),
@@ -2828,9 +2831,9 @@ msgstr "Задать %1$s на %2$s метку %3$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition label (e.g. ROOT),
-#, fuzzy, c-format
+#, c-format
 msgid "Set label of partition %1$s to %2$s"
-msgstr "Задать разделу %1$s идентификатор %2$s"
+msgstr "Изменить разделу метку с %1$s на %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -2941,9 +2944,9 @@ msgstr "Установка %1$s на %2$s метки %3$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition label (e.g. ROOT),
-#, fuzzy, c-format
+#, c-format
 msgid "Setting label of partition %1$s to %2$s"
-msgstr "Установка разделу %1$s идентификатора %2$s"
+msgstr "Установка метки раздела с %1$s на %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -3286,7 +3289,7 @@ msgstr "XFS"
 
 #. TRANSLATORS: name of a filesystem object in the storage devicegraph
 msgid "exFAT"
-msgstr "exFAT"
+msgstr "еxFAT"
 
 #. TRANSLATORS: symbol for "kilo" (best keep untranslated)
 msgid "k"
@@ -3298,7 +3301,7 @@ msgstr "кБ"
 
 #. TRANSLATORS: name of object
 msgid "tmpfs"
-msgstr "tmpfs"
+msgstr "tmрfs"
 
 #, fuzzy, c-format
 #~ msgid "Create subvolume %1$s on %2$s with limits for qgroup"
