@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: libstorage.ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2021-05-12 22:57+0000\n"
-"Last-Translator: Alex Minton <alex239@gmail.com>\n"
+"PO-Revision-Date: 2022-04-16 00:12+0000\n"
+"Last-Translator: Michael <michaelbelachev@gmail.com>\n"
 "Language-Team: Russian <https://l10n.opensuse.org/projects/libstorage/"
 "ng-sle-15-sp1/ru/>\n"
 "Language: ru\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.6.2\n"
+"X-Generator: Weblate 4.9.1\n"
 
 msgid ""
 "\n"
@@ -255,7 +255,7 @@ msgstr "Загрузочный раздел BIOS"
 
 #. TRANSLATORS: name of object
 msgid "Bcache"
-msgstr "Bcache"
+msgstr "Bcаche"
 
 #. TRANSLATORS: name of object
 msgid "Bcache Cache Set"
@@ -263,7 +263,7 @@ msgstr "Набор кэша Bcache"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs"
-msgstr "Btrfs"
+msgstr "Вtrfs"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs Subvolume"
@@ -1711,15 +1711,15 @@ msgstr "Шифрование"
 
 #. TRANSLATORS: name of object
 msgid "Ext2"
-msgstr "Ext2"
+msgstr "Еxt2"
 
 #. TRANSLATORS: name of object
 msgid "Ext3"
-msgstr "Ext3"
+msgstr "Еxt3"
 
 #. TRANSLATORS: name of object
 msgid "Ext4"
-msgstr "Ext4"
+msgstr "Еxt4"
 
 #. TRANSLATORS: name of object
 msgid "F2FS"
@@ -1980,7 +1980,7 @@ msgstr "Таблица неявных разделов"
 
 #. TRANSLATORS: name of partition type
 msgid "Intel RST"
-msgstr "Intel RST"
+msgstr "Intеl RST"
 
 #. TRANSLATORS: name of object
 msgid "JFS"
@@ -1988,7 +1988,7 @@ msgstr "JFS"
 
 #. TRANSLATORS: symbol for "kibi bytes" (best keep untranslated)
 msgid "KiB"
-msgstr "киБ"
+msgstr "КиБ"
 
 #. TRANSLATORS: name of object
 msgid "LUKS"
@@ -2012,11 +2012,11 @@ msgstr "Linux"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux LVM"
-msgstr "Linux LVM"
+msgstr "Linux LVМ"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux RAID"
-msgstr "Linux RAID"
+msgstr "Linux RАID"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Swap"
@@ -2131,7 +2131,7 @@ msgstr "Монтирование подтома %1$s на %2$s в %3$s"
 
 #. TRANSLATORS: name of object
 msgid "Multipath"
-msgstr "Multipath"
+msgstr "Multipаth"
 
 #. TRANSLATORS: name of object
 msgid "NFS"
@@ -2842,7 +2842,7 @@ msgstr "XFS"
 
 #. TRANSLATORS: name of a filesystem object in the storage devicegraph
 msgid "exFAT"
-msgstr "exFAT"
+msgstr "еxFAT"
 
 #. TRANSLATORS: symbol for "kilo" (best keep untranslated)
 msgid "k"
