@@ -470,6 +470,10 @@
       <stderr></stderr>
     </Command>
     <Command>
+      <name>/usr/sbin/parted --version</name>
+      <stdout>parted (GNU parted) 3.4</stdout>
+    </Command>
+    <Command>
       <name>/usr/sbin/parted --script --machine '/dev/md0' unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/md0:4173s:md:512:512:unknown:Linux Software RAID Array:;</stdout>

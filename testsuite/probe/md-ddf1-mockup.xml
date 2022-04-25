@@ -702,6 +702,10 @@
       <stdout>x86_64</stdout>
     </Command>
     <Command>
+      <name>/usr/sbin/parted --version</name>
+      <stdout>parted (GNU parted) 3.4</stdout>
+    </Command>
+    <Command>
       <name>/usr/sbin/parted --script --machine '/dev/md/a' unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/md/a:20971520s:md:512:512:loop:Linux Software RAID Array:;</stdout>

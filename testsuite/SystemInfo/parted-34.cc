@@ -20,6 +20,7 @@ check(const string& device, const vector<string>& stdout, const vector<string>& 
       const vector<string>& result)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
+    Mockup::set_command(PARTED_BIN " --version", RemoteCommand({ "parted (GNU parted) 3.4" }, {}, 0));
     Mockup::set_command(PARTED_BIN " --script --machine " + quote(device) + " unit s print",
 			RemoteCommand(stdout, stderr, 0));
 
@@ -47,6 +48,7 @@ void
 check_exception(const string& device, const vector<string>& input)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
+    Mockup::set_command(PARTED_BIN " --version", RemoteCommand({ "parted (GNU parted) 3.4" }, {}, 0));
     Mockup::set_command(PARTED_BIN " --script --machine " + quote(device) + " unit s print", input);
 
     BOOST_CHECK_THROW({ Parted parted(device); }, ParseException);
@@ -82,7 +84,7 @@ BOOST_AUTO_TEST_CASE(parse_gpt_good)
 {
     vector<string> input = {
 	"BYT;",
-        "/dev/sda:976773168s:scsi:512:512:gpt_sync_mbr:ATA ST3500320NS:;",
+	"/dev/sda:976773168s:scsi:512:512:gpt_sync_mbr:ATA ST3500320NS:;",
 	"1:2048s:1028095s:1026048s:fat32::msftdata;",
 	"2:1028096s:2056191s:1028096s:ext3::legacy_boot;",
 	"3:2056192s:295098367s:293042176s:ext3::;",
@@ -170,13 +172,13 @@ BOOST_AUTO_TEST_CASE(parse_dasd_good3)
 {
     vector<string> input = {
 	"BYT;",
-        "/dev/dasda:144540s:dasd:512:1024:dasd:IBM S390 DASD drive:;",
-        "1:6s:144539s:144534s:::;"
+	"/dev/dasda:144540s:dasd:512:1024:dasd:IBM S390 DASD drive:;",
+	"1:6s:144539s:144534s:::;"
     };
 
     vector<string> output = {
-        "device:/dev/dasda label:DASD region:[0, 72270, 1024 B]",
-        "number:1 region:[3, 72267, 1024 B] type:primary id:0x83"
+	"device:/dev/dasda label:DASD region:[0, 72270, 1024 B]",
+	"number:1 region:[3, 72267, 1024 B] type:primary id:0x83"
     };
 
     check("/dev/dasda", input, output);
@@ -391,7 +393,7 @@ BOOST_AUTO_TEST_CASE(parse_missing_semicolon)
 {
     vector<string> input = {
 	"BYT;",
-        "/dev/sdc:160086528s:scsi:512:512:gpt:Maxtor 6 Y080L0:;"
+	"/dev/sdc:160086528s:scsi:512:512:gpt:Maxtor 6 Y080L0:;"
 	"1:2048s:923647s:921600s:ext4::",
     };
 

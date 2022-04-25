@@ -648,6 +648,10 @@
       <stdout>s390x</stdout>
     </Command>
     <Command>
+      <name>/usr/sbin/parted --version</name>
+      <stdout>parted (GNU parted) 3.4</stdout>
+    </Command>
+    <Command>
       <name>/usr/sbin/parted --script --machine '/dev/dasdb' unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/dasdb:14424480s:dasd:512:4096:dasd:IBM S390 DASD drive:;</stdout>

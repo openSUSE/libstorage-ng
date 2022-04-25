@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,7 +21,7 @@
  */
 
 
-#include <fstream>
+#include <regex>
 
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/Mockup.h"
@@ -29,7 +29,7 @@
 #include "storage/Utils/StorageDefines.h"
 #include "storage/SystemInfo/CmdParted.h"
 #include "storage/Utils/Enum.h"
-#include "storage/Devices/Partition.h"
+#include "storage/Devices/PartitionImpl.h"
 #include "storage/Utils/StorageTypes.h"
 #include "storage/Devices/PartitionTable.h"
 #include "storage/Utils/Format.h"
@@ -43,10 +43,12 @@ namespace storage
     Parted::Parted(const string& device)
 	: device(device)
     {
-	SystemCmd::Options options(PARTED_BIN " --script --machine " + quote(device) +
-				   " unit s print", SystemCmd::DoThrow);
+	SystemCmd::Options options(PARTED_BIN " --script " +
+				   string(PartedVersion::supports_json() ? "--json " : "--machine ") +
+				   quote(device) + " unit s print", SystemCmd::DoThrow);
 	options.verify = [](int) { return true; };
-	options.env.push_back("PARTED_PRINT_NUMBER_OF_PARTITION_SLOTS=1");
+	if (!PartedVersion::supports_json())
+	    options.env.push_back("PARTED_PRINT_NUMBER_OF_PARTITION_SLOTS=1");
 
 	SystemCmd cmd(options);
 
@@ -89,18 +91,41 @@ namespace storage
 	gpt_pmbr_boot = false;
 	entries.clear();
 
-	if (stdout.size() < 2)
-	    ST_THROW(Exception("wrong number of lines"));
-
-	if (stdout[0] != "BYT;")
-	    ST_THROW(ParseException("Bad first line", stdout[0], "BYT;"));
-
-	scan_device_line(stdout[1]);
-
-	if (label != PtType::UNKNOWN && label != PtType::LOOP)
+	if (PartedVersion::supports_json())
 	{
-	    for (size_t i = 2; i < stdout.size(); ++i)
-		scan_entry_line(stdout[i]);
+	    JsonFile json_file(stdout);
+
+	    json_object* tmp1;
+	    if (!get_child_node(json_file.get_root(), "disk", tmp1))
+		ST_THROW(Exception("\"disk\" not found in json output of parted"));
+
+	    scan_device(tmp1);
+
+	    if (label != PtType::UNKNOWN && label != PtType::LOOP)
+	    {
+		vector<json_object*> tmp2;
+		if (!get_child_nodes(tmp1, "partitions", tmp2))
+		    ST_THROW(Exception("\"partitions\" not found in json output of parted"));
+
+		for (json_object* tmp3 : tmp2)
+		    scan_entry(tmp3);
+	    }
+	}
+	else
+	{
+	    if (stdout.size() < 2)
+		ST_THROW(Exception("wrong number of lines"));
+
+	    if (stdout[0] != "BYT;")
+		ST_THROW(ParseException("Bad first line", stdout[0], "BYT;"));
+
+	    scan_device_line(stdout[1]);
+
+	    if (label != PtType::UNKNOWN && label != PtType::LOOP)
+	    {
+		for (size_t i = 2; i < stdout.size(); ++i)
+		    scan_entry_line(stdout[i]);
+	    }
 	}
 
 	scan_stderr(stderr);
@@ -112,6 +137,149 @@ namespace storage
 	);
 
 	y2mil(*this);
+    }
+
+
+    void
+    Parted::scan_device(json_object* node)
+    {
+	string tmp;
+
+	unsigned long long num_sectors = 0;
+	if (get_child_value(node, "size", tmp))
+	    num_sectors = scan_sectors(tmp);
+
+	get_child_value(node, "logical-sector-size", logical_sector_size);
+	get_child_value(node, "physical-sector-size", physical_sector_size);
+
+	region.set_length(num_sectors);
+	region.set_block_size(logical_sector_size);
+
+	if (get_child_value(node, "label", tmp))
+	    label = scan_partition_table_type(tmp);
+
+	scan_device_flags(node);
+
+	get_child_value(node, "max-partitions", primary_slots);
+    }
+
+
+    void
+    Parted::scan_device_flags(json_object* node)
+    {
+	vector<json_object*> nodes;
+	if (!get_child_nodes(node, "flags", nodes))
+	    return;
+
+	for (json_object* node : nodes)
+	{
+	    if (!json_object_is_type(node, json_type_string))
+		continue;
+
+	    string flag = json_object_get_string(node);
+
+	    if (flag == "pmbr_boot")
+		gpt_pmbr_boot = true;
+	    else if (flag == "implicit_partition_table")
+		implicit = true;
+	}
+    }
+
+
+    void
+    Parted::scan_entry(json_object* node)
+    {
+	Entry entry;
+
+	if (!get_child_value(node, "number", entry.number))
+	    ST_THROW(Exception("number not found"));
+
+	if (entry.number == 0)
+	    ST_THROW(Exception("illegal partition number 0"));
+
+	string tmp;
+
+	unsigned long long start_sector = 0;
+	if (get_child_value(node, "start", tmp))
+	    start_sector = scan_sectors(tmp);
+
+	unsigned long long size_sector = 0;
+	if (get_child_value(node, "size", tmp))
+	    size_sector = scan_sectors(tmp);
+
+	entry.region = Region(start_sector, size_sector, region.get_block_size());
+
+	if (label == PtType::MSDOS)
+	{
+	    if (get_child_value(node, "type", tmp))
+		toValue(tmp, entry.type);
+	}
+
+	if (label == PtType::GPT)
+	{
+	    get_child_value(node, "name", entry.name);
+	}
+
+	scan_entry_flags(node, entry);
+
+	if (label == PtType::MSDOS)
+	{
+	    // the "type-id" entry is SUSE specific (2022-04-22).
+	    if (get_child_value(node, "type-id", tmp))
+	    {
+		std::istringstream data(tmp);
+		classic(data);
+		data >> std::hex >> entry.id;
+	    }
+	}
+
+	entries.push_back(entry);
+    }
+
+
+    void
+    Parted::scan_entry_flags(json_object* node, Entry& entry) const
+    {
+	entry.id = ID_LINUX;
+	entry.boot = false;
+	entry.legacy_boot = false;
+
+	vector<json_object*> nodes;
+	if (!get_child_nodes(node, "flags", nodes))
+	    return;
+
+	for (json_object* node : nodes)
+	{
+	    if (!json_object_is_type(node, json_type_string))
+		continue;
+
+	    string flag = json_object_get_string(node);
+
+	    for (map<unsigned int, const char*>::value_type tmp : id_to_name)
+	    {
+		if (flag == tmp.second)
+		{
+		    entry.id = tmp.first;
+		    break;
+		}
+	    }
+
+	    switch (label)
+	    {
+		case PtType::MSDOS:
+		    if (flag == "boot")
+			entry.boot = true;
+		    break;
+
+		case PtType::GPT:
+		    if (flag == "legacy_boot")
+			entry.legacy_boot = true;
+		    break;
+
+		default:
+		    break;
+	    }
+	}
     }
 
 
@@ -171,7 +339,7 @@ namespace storage
 	tmp[0] >> entry.number;
 
 	if (entry.number == 0)
-            ST_THROW(ParseException("Illegal partition number 0", line, ""));
+	    ST_THROW(ParseException("Illegal partition number 0", line, ""));
 
 	unsigned long long start_sector = 0;
 	unsigned long long size_sector = 0;
@@ -248,6 +416,22 @@ namespace storage
     }
 
 
+    unsigned long long
+    Parted::scan_sectors(const string& s) const
+    {
+	if (s.empty() || s.back() != 's')
+	    ST_THROW(ParseException("bad sector value", s, "1024s"));
+
+	unsigned long long ret;
+
+	std::istringstream istr(s);
+	classic(istr);
+	istr >> ret;
+
+	return ret;
+    }
+
+
     void
     Parted::scan_stderr(const vector<string>& stderr)
     {
@@ -261,7 +445,7 @@ namespace storage
     void
     Parted::fix_dasd_sector_size()
     {
-        // see do_resize() and do_create() in PartitionImpl.cc
+	// see do_resize() and do_create() in PartitionImpl.cc
 	if (label == PtType::DASD && logical_sector_size == 512 &&
 	    (physical_sector_size == 4096 || physical_sector_size == 1024 || physical_sector_size == 2048))
 	{
@@ -424,5 +608,57 @@ namespace storage
 	{ "sun", PtType::SUN },
 	{ "unknown", PtType::UNKNOWN },
     };
+
+
+    void
+    PartedVersion::query_version()
+    {
+	static bool did_query_version = false;
+
+	if (did_query_version)
+	    return;
+
+	SystemCmd cmd(PARTED_BIN " --version", SystemCmd::DoThrow);
+	if (cmd.stdout().empty())
+	    ST_THROW(SystemCmdException(&cmd, "failed to query parted version"));
+
+	// example versions: "3.4", "3.5"
+	const regex version_rx("parted \\(GNU parted\\) ([0-9]+)\\.([0-9]+)",
+			       regex::extended);
+
+	smatch match;
+
+	if (!regex_match(cmd.stdout()[0], match, version_rx))
+	    ST_THROW(SystemCmdException(&cmd, "failed to parse parted version"));
+
+	major = stoi(match[1]);
+	minor = stoi(match[2]);
+
+	y2mil("major:" << major << " minor:" << minor);
+
+	did_query_version = true;
+    }
+
+
+    bool
+    PartedVersion::supports_json()
+    {
+	query_version();
+
+	return major >= 4 || (major == 3 && minor >= 5);
+    }
+
+
+    bool
+    PartedVersion::supports_type_id()
+    {
+	query_version();
+
+	return major >= 4 || (major == 3 && minor >= 5);
+    }
+
+
+    int PartedVersion::major = 0;
+    int PartedVersion::minor = 0;
 
 }

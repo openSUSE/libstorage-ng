@@ -14,7 +14,7 @@ check_PROGRAMS =								\
 	dir.test dmraid.test dumpe2fs.test resize2fs.test ntfsresize.test	\
 	dmsetup-info.test dmsetup-table.test lsattr.test lsscsi.test lvs.test	\
 	mdadm-detail.test mdadm-examine.test mdlinks.test			\
-	parted.test								\
+	parted-34.test parted-35.test						\
 	proc-mdstat.test proc-mounts.test pvs.test systeminfo.test		\
 	udevadm-info.test vgs.test multipath.test
 
