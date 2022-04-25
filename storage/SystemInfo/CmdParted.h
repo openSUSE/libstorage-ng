@@ -52,7 +52,7 @@ namespace storage
 	 */
 	Parted(const string& device);
 
-        /**
+	/**
 	 * Entry for one partition.
 	 */
 	struct Entry

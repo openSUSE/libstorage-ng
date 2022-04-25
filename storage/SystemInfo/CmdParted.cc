@@ -339,7 +339,7 @@ namespace storage
 	tmp[0] >> entry.number;
 
 	if (entry.number == 0)
-            ST_THROW(ParseException("Illegal partition number 0", line, ""));
+	    ST_THROW(ParseException("Illegal partition number 0", line, ""));
 
 	unsigned long long start_sector = 0;
 	unsigned long long size_sector = 0;
@@ -445,7 +445,7 @@ namespace storage
     void
     Parted::fix_dasd_sector_size()
     {
-        // see do_resize() and do_create() in PartitionImpl.cc
+	// see do_resize() and do_create() in PartitionImpl.cc
 	if (label == PtType::DASD && logical_sector_size == 512 &&
 	    (physical_sector_size == 4096 || physical_sector_size == 1024 || physical_sector_size == 2048))
 	{

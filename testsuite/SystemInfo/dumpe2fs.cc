@@ -92,10 +92,10 @@ BOOST_AUTO_TEST_CASE(parse1)
 	"Journal checksum:         0x196bfe83",
 	""
     };
-    
+
     vector<string> output = {
 	"device:/dev/sdc1 block-size:4096 feature-64bit:true"
     };
-    
+
     check("/dev/sdc1", input, output);
 }

@@ -33,5 +33,5 @@ libsystem_info_la_SOURCES =				\
 pkgincludedir = $(includedir)/storage/SystemInfo
 
 pkginclude_HEADERS =		\
-	SystemInfo.h					\
+	SystemInfo.h		\
 	Arch.h
