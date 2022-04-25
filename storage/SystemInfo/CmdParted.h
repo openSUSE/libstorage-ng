@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -26,6 +26,7 @@
 
 
 #include "storage/Utils/Region.h"
+#include "storage/Utils/JsonFile.h"
 #include "storage/Devices/PartitionTable.h"
 
 
@@ -184,16 +185,42 @@ namespace storage
 
 	void scan_device_line(const string& line);
 	void scan_device_flags(const string& s);
+
+	void scan_device(json_object* node);
+	void scan_device_flags(json_object* node);
+
 	PtType scan_partition_table_type(const string& s) const;
 
 	void scan_entry_line(const string& line);
 	void scan_entry_flags(const string& s, Entry& entry) const;
+
+	void scan_entry(json_object* node);
+	void scan_entry_flags(json_object* node, Entry& entry) const;
+
+	unsigned long long scan_sectors(const string& s) const;
 
 	void scan_stderr(const vector<string>& stderr);
 
 	vector<string> tokenize(const string& line) const;
 
 	static const map<const char*, PtType> name_to_pt_type;
+
+    };
+
+
+    class PartedVersion
+    {
+    public:
+
+	static bool supports_json();
+	static bool supports_type_id();
+
+    private:
+
+	static void query_version();
+
+	static int major;
+	static int minor;
 
     };
 

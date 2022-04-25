@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2021] SUSE LLC
+ * Copyright (c) [2017-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -85,6 +85,42 @@ namespace storage
 
     template<>
     bool
+    get_child_value(json_object* parent, const char* name, int& value)
+    {
+	json_object* child;
+
+	if (!json_object_object_get_ex(parent, name, &child))
+	    return false;
+
+	if (!json_object_is_type(child, json_type_int))
+	    return false;
+
+	value = json_object_get_int(child);
+
+	return true;
+    }
+
+
+    template<>
+    bool
+    get_child_value(json_object* parent, const char* name, unsigned int& value)
+    {
+	json_object* child;
+
+	if (!json_object_object_get_ex(parent, name, &child))
+	    return false;
+
+	if (!json_object_is_type(child, json_type_int))
+	    return false;
+
+	value = json_object_get_int(child);
+
+	return true;
+    }
+
+
+    template<>
+    bool
     get_child_value(json_object* parent, const char* name, unsigned long& value)
     {
 	json_object* child;
@@ -118,6 +154,19 @@ namespace storage
 	std::istringstream istr(json_object_get_string(child));
 	classic(istr);
 	istr >> value;
+
+	return true;
+    }
+
+
+    bool
+    get_child_node(json_object* parent, const char* name, json_object*& child)
+    {
+	if (!json_object_object_get_ex(parent, name, &child))
+	    return false;
+
+	if (!json_object_is_type(child, json_type_object))
+	    return false;
 
 	return true;
     }

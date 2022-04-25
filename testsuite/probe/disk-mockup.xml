@@ -353,17 +353,75 @@
       <stderr></stderr>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --machine '/dev/sda' unit s print</name>
-      <stdout>BYT;</stdout>
-      <stdout>/dev/sda:16777216s:scsi:512:512:msdos:ATA VBOX HARDDISK:;</stdout>
-      <stdout>1:2048s:2039807s:2037760s:linux-swap(v1)::type=82;</stdout>
-      <stdout>2:2039808s:16777215s:14737408s:ext4::boot, type=83;</stdout>
+      <name>/usr/sbin/parted --version</name>
+      <stdout>parted (GNU parted) 3.5</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --machine '/dev/sdb' unit s print</name>
-      <stdout>BYT;</stdout>
-      <stdout>/dev/sdb:33554432s:scsi:512:512:loop:ATA VBOX HARDDISK:;</stdout>
-      <stdout>1:0s:33554431s:33554432s:ext4::;</stdout>
+      <!-- output faked -->
+      <name>/usr/sbin/parted --script --json '/dev/sda' unit s print</name>
+      <stdout>{</stdout>
+      <stdout>   "disk": {</stdout>
+      <stdout>      "path": "/dev/sda",</stdout>
+      <stdout>      "size": "16777216s",</stdout>
+      <stdout>      "model": "ATA VBOX HARDDISK",</stdout>
+      <stdout>      "transport": "scsi",</stdout>
+      <stdout>      "logical-sector-size": 512,</stdout>
+      <stdout>      "physical-sector-size": 512,</stdout>
+      <stdout>      "label": "msdos",</stdout>
+      <stdout>      "max-partitions": 4,</stdout>
+      <stdout>      "partitions": [</stdout>
+      <stdout>         {</stdout>
+      <stdout>            "number": 1,</stdout>
+      <stdout>            "start": "2048s",</stdout>
+      <stdout>            "end": "2039807s",</stdout>
+      <stdout>            "size": "2037760s",</stdout>
+      <stdout>            "type": "primary",</stdout>
+      <stdout>            "type-id": "0x82",</stdout>
+      <stdout>            "filesystem": "linux-swap(v1)",</stdout>
+      <stdout>            "flags": [</stdout>
+      <stdout>                "swap"</stdout>
+      <stdout>            ]</stdout>
+      <stdout>         },{</stdout>
+      <stdout>            "number": 2,</stdout>
+      <stdout>            "start": "2039808s",</stdout>
+      <stdout>            "end": "16777215s",</stdout>
+      <stdout>            "size": "14737408s",</stdout>
+      <stdout>            "type": "primary",</stdout>
+      <stdout>            "type-id": "0x83",</stdout>
+      <stdout>            "filesystem": "ext4",</stdout>
+      <stdout>            "flags": [</stdout>
+      <stdout>                "boot"</stdout>
+      <stdout>            ]</stdout>
+      <stdout>         }</stdout>
+      <stdout>      ]</stdout>
+      <stdout>   }</stdout>
+      <stdout>}</stdout>
+    </Command>
+    <Command>
+      <!-- output faked -->
+      <name>/usr/sbin/parted --script --json '/dev/sdb' unit s print</name>
+      <stdout>{</stdout>
+      <stdout>   "disk": {</stdout>
+      <stdout>      "path": "/dev/sdb",</stdout>
+      <stdout>      "size": "33554432s",</stdout>
+      <stdout>      "model": "ATA VBOX HARDDISK",</stdout>
+      <stdout>      "transport": "scsi",</stdout>
+      <stdout>      "logical-sector-size": 512,</stdout>
+      <stdout>      "physical-sector-size": 512,</stdout>
+      <stdout>      "label": "loop",</stdout>
+      <stdout>      "max-partitions": 1,</stdout>
+      <stdout>      "partitions": [</stdout>
+      <stdout>         {</stdout>
+      <stdout>            "number": 1,</stdout>
+      <stdout>            "start": "0s",</stdout>
+      <stdout>            "end": "33554431s",</stdout>
+      <stdout>            "size": "33554432s",</stdout>
+      <stdout>            "type": "primary",</stdout>
+      <stdout>            "filesystem": "ext4"</stdout>
+      <stdout>         }</stdout>
+      <stdout>      ]</stdout>
+      <stdout>   }</stdout>
+      <stdout>}</stdout>
     </Command>
     <Command>
       <name>/sbin/multipath -d -v 2 -ll</name>

@@ -25,6 +25,7 @@ BOOST_AUTO_TEST_CASE(exception1)
     };
 
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
+    Mockup::set_command(PARTED_BIN " --version", RemoteCommand({ "parted (GNU parted) 3.4" }, {}, 0));
     Mockup::set_command(PARTED_BIN " --script --machine '/dev/sda' unit s print", input);
 
     SystemInfo::Impl system_info;

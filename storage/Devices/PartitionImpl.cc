@@ -1090,21 +1090,23 @@ namespace storage
 	const PartitionTable* partition_table = get_partition_table();
 	const Partitionable* partitionable = partition_table->get_partitionable();
 
-	string cmd_line = PARTED_BIN " --script " + quote(partitionable->get_name()) + " set " +
-	    to_string(get_number()) + " ";
+	string cmd_line = PARTED_BIN " --script " + quote(partitionable->get_name());
 
-	// Note: The 'type' option is not available in upstream parted (2021-07-26).
-	// 'swap' is not available for MS-DOS in parted (2021-07-26). 'swap' for DASD is
-	// SUSE specific (2021-10-07).
+	// Note: Neither the 'type' option nor the "type-id" command are available in
+	// upstream parted (2022-04-22). 'swap' is not available for MS-DOS in upstream
+	// parted (2021-07-26). 'swap' for DASD is SUSE specific (2021-10-07).
 
 	map<unsigned int, const char*>::const_iterator it = Parted::id_to_name.find(get_id());
 	if (it != Parted::id_to_name.end() && it->first != ID_SWAP)
 	{
-	    cmd_line += string(it->second) + " on";
+	    cmd_line += " set " + to_string(get_number()) + " " + string(it->second) + " on";
 	}
 	else if (is_msdos(partition_table))
 	{
-	    cmd_line += "type " + to_string(get_id());
+	    if (PartedVersion::supports_type_id())
+		cmd_line += " type-id " + to_string(get_number()) + " " + sformat("0x%02x", get_id());
+	    else
+		cmd_line += " set " + to_string(get_number()) + " type " + to_string(get_id());
 	}
 	else
 	{
@@ -1113,11 +1115,12 @@ namespace storage
 		case ID_LINUX:
 		    // this is tricky but parted has no clearer way - it also fails if the
 		    // partition has a swap signature
-		    cmd_line += "lvm on set " + to_string(get_number()) + " lvm off";
+		    cmd_line += " set " + to_string(get_number()) + " lvm on set " +
+			to_string(get_number()) + " lvm off";
 		    break;
 
 		case ID_SWAP:
-		    cmd_line += "swap on";
+		    cmd_line += " set " + to_string(get_number()) + " swap on";
 		    break;
 
 		default:

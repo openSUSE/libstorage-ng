@@ -409,6 +409,10 @@
       <stdout>s390x</stdout>
     </Command>
     <Command>
+      <name>/usr/sbin/parted --version</name>
+      <stdout>parted (GNU parted) 3.4</stdout>
+    </Command>
+    <Command>
       <name>/usr/sbin/parted --script --machine '/dev/dasda' unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/dasda:20000s:dasd:512:512:dasd:IBM S390 DASD drive:implicit_partition_table;</stdout>

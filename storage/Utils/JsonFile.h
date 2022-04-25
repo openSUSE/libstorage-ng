@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -60,9 +60,11 @@ namespace storage
     };
 
 
-    template<typename Type>
-    bool get_child_value(json_object* parent, const char* name, Type& value);
+    template<typename Type> bool
+    get_child_value(json_object* parent, const char* name, Type& value);
 
+    bool
+    get_child_node(json_object* parent, const char* name, json_object*& child);
 
     bool
     get_child_nodes(json_object* parent, const char* name, vector<json_object*>& children);

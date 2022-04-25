@@ -353,6 +353,10 @@
       <stderr></stderr>
     </Command>
     <Command>
+      <name>/usr/sbin/parted --version</name>
+      <stdout>parted (GNU parted) 3.4</stdout>
+    </Command>
+    <Command>
       <name>/usr/sbin/parted --script --machine '/dev/sda' unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/sda:16777216s:scsi:512:512:msdos:ATA VBOX HARDDISK:;</stdout>
