@@ -49,6 +49,7 @@ namespace storage
     CmdCryptsetupStatus::parse(const vector<string>& lines)
     {
 	string type, cipher, keysize;
+	string integrity;
 	for (const string& line : lines)
 	{
 	    string key = extractNthWord(0, line);
@@ -58,6 +59,8 @@ namespace storage
 		cipher = extractNthWord(1, line);
 	    else if(key == "keysize:")
 		keysize = extractNthWord(1, line);
+	    else if(key == "integrity:")
+		integrity = extractNthWord(1, line);
 	}
 
 	if (type == "LUKS1")
@@ -187,6 +190,8 @@ namespace storage
 
 	static const regex cipher_regex("[ \t]*cipher:[ \t]*([^ \t]+)[ \t]*", regex::extended);
 
+	static const regex integrity_regex("[ \t]*integrity:[ \t]*([^ \t]+)[ \t]*", regex::extended);
+
 	static const regex keyslot_number_regex("[ \t]*([0-9]+): .*", regex::extended);
 	static const regex key_regex("[ \t]*Key:[ \t]*([0-9]+) bits[ \t]*", regex::extended);
 	static const regex pbkdf_regex("[ \t]*PBKDF:[ \t]*([^ \t]+)[ \t]*", regex::extended);
@@ -216,6 +221,8 @@ namespace storage
 		{
 		    if (regex_match(line, match, cipher_regex) && match.size() == 2)
 			cipher = match[1];
+		    if (regex_match(line, match, integrity_regex) && match.size() == 2)
+			integrity = match[1];
 		}
 		break;
 
@@ -259,6 +266,9 @@ namespace storage
 
 	if (!cmd_cryptsetup_luks_dump.pbkdf.empty())
 	    s << " pbkdf:" << cmd_cryptsetup_luks_dump.pbkdf;
+
+	if (!cmd_cryptsetup_luks_dump.integrity.empty())
+	    s << " integrity:" << cmd_cryptsetup_luks_dump.integrity;
 
 	return s;
     }

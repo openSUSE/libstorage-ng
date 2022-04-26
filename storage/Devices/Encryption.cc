@@ -215,6 +215,20 @@ namespace storage
     }
 
 
+    const string&
+    Encryption::get_integrity() const
+    {
+	return get_impl().get_integrity();
+    }
+
+
+    void
+    Encryption::set_integrity(const std::string& integrity)
+    {
+	get_impl().set_integrity(integrity);
+    }
+
+
     BlkDevice*
     Encryption::get_blk_device()
     {

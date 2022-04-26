@@ -72,6 +72,7 @@ namespace storage
 	const string& get_cipher() const { return cipher; }
 	unsigned int get_key_size() const { return key_size; }
 	const string& get_pbkdf() const { return pbkdf; }
+	const string& get_integrity() const { return integrity; }
 
     private:
 
@@ -102,6 +103,11 @@ namespace storage
 	 * The PBKDF, e.g. argon2i or argon2id, of the first used slot. Only for LUKS2.
 	 */
 	string pbkdf;
+
+	/**
+	 * Is integrity used. Currently is only expected AEAD. Only for LUKS2.
+	 */
+	string integrity;
 
     };
 
