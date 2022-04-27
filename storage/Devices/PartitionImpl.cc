@@ -1113,8 +1113,8 @@ namespace storage
 	    switch (get_id())
 	    {
 		case ID_LINUX:
-		    // this is tricky but parted has no clearer way - it also fails if the
-		    // partition has a swap signature
+		    // This is tricky but parted has no clearer way - it also fails if the
+		    // partition has a swap signature. TODO Use type-id and type-uuid.
 		    cmd_line += " set " + to_string(get_number()) + " lvm on set " +
 			to_string(get_number()) + " lvm off";
 		    break;
