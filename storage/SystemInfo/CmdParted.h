@@ -221,6 +221,7 @@ namespace storage
 
 	static int major;
 	static int minor;
+	static int patchlevel;
 
     };
 

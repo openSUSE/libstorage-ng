@@ -622,8 +622,8 @@ namespace storage
 	if (cmd.stdout().empty())
 	    ST_THROW(SystemCmdException(&cmd, "failed to query parted version"));
 
-	// example versions: "3.4", "3.5"
-	const regex version_rx("parted \\(GNU parted\\) ([0-9]+)\\.([0-9]+)",
+	// example versions: "3.4", "3.5", "3.5.1", "3.5.1-cec5"
+	const regex version_rx("parted \\(GNU parted\\) ([0-9]+)\\.([0-9]+)(\\.([0-9]+)(-([0-9a-z]+))?)?",
 			       regex::extended);
 
 	smatch match;
@@ -633,8 +633,9 @@ namespace storage
 
 	major = stoi(match[1]);
 	minor = stoi(match[2]);
+	patchlevel = match[4].length() == 0 ? 0 : stoi(match[4]);
 
-	y2mil("major:" << major << " minor:" << minor);
+	y2mil("major:" << major << " minor:" << minor << " patchlevel:" << patchlevel);
 
 	did_query_version = true;
     }
@@ -660,5 +661,6 @@ namespace storage
 
     int PartedVersion::major = 0;
     int PartedVersion::minor = 0;
+    int PartedVersion::patchlevel = 0;
 
 }
