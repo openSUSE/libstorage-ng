@@ -187,7 +187,7 @@ namespace storage
     bool
     Bcache::Impl::is_valid_name(const string& name)
     {
-	static regex name_regex(DEV_DIR "/bcache[0-9]+", regex::extended);
+	static const regex name_regex(DEV_DIR "/bcache[0-9]+", regex::extended);
 
 	return regex_match(name, name_regex);
     }

@@ -125,9 +125,9 @@ namespace storage
     void
     BcacheCset::Impl::probe_pass_1b(Prober& prober)
     {
-	static regex cache_regex("cache[0-9]+", regex::extended);
-	static regex bdev_regex("bdev[0-9]+", regex::extended);
-	static regex volume_regex("volume[0-9]+", regex::extended);
+	static const regex cache_regex("cache[0-9]+", regex::extended);
+	static const regex bdev_regex("bdev[0-9]+", regex::extended);
+	static const regex volume_regex("volume[0-9]+", regex::extended);
 
 	Device::Impl::probe_pass_1b(prober);
 
@@ -260,7 +260,7 @@ namespace storage
     void
     BcacheCset::Impl::do_create()
     {
-	static regex set_uuid_regex("Set UUID:[ \t]*([a-f0-9-]{36})", regex::extended);
+	static const regex set_uuid_regex("Set UUID:[ \t]*([a-f0-9-]{36})", regex::extended);
 
 	// TODO handle multiple BlkDevices?
 

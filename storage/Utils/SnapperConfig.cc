@@ -40,12 +40,12 @@
 #define INSTALLATION_HELPER_BIN "/usr/lib/snapper/installation-helper"
 #define SNAPSHOTS_DIR ".snapshots"
 
-using namespace storage;
 
+namespace storage
+{
 
-SnapperConfig::SnapperConfig( Btrfs * btrfs )
-    : btrfs( btrfs )
-    , do_exec( true )
+SnapperConfig::SnapperConfig(const Btrfs* btrfs)
+    : btrfs(btrfs)
 {
     ST_CHECK_PTR( btrfs );
 }
@@ -208,7 +208,7 @@ SnapperConfig::get_default_subvolume_name() const
 string
 SnapperConfig::get_root_prefix() const
 {
-    Device * device = to_device_of_type<Device>(btrfs);
+    const Device* device = to_device_of_type<const Device>(btrfs);
 
     return device->get_impl().get_devicegraph()->get_storage()->get_rootprefix();
 }
@@ -232,4 +232,6 @@ SnapperConfig::get_snapshots_subvol_name() const
     subvol_name += SNAPSHOTS_DIR;
 
     return subvol_name;
+}
+
 }
