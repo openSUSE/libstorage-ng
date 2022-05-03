@@ -34,8 +34,8 @@ using std::endl;
 #define DEFAULT_MAX_COLUMN_WIDTH        40
 
 
-using namespace storage;
-
+namespace storage
+{
 
 string ColumnConfigFile::Entry::format()
 {
@@ -95,20 +95,16 @@ string_vec ColumnConfigFile::Entry::split( const string & line ) const
 }
 
 
-
-
 ColumnConfigFile::ColumnConfigFile(int permissions) :
     CommentedConfigFile(permissions),
     max_column_width( DEFAULT_MAX_COLUMN_WIDTH ),
     pad_columns( true )
 {
-
 }
 
 
 ColumnConfigFile::~ColumnConfigFile()
 {
-
 }
 
 
@@ -213,4 +209,6 @@ ColumnConfigFile::Entry * ColumnConfigFile::get_entry( int index ) const
         CommentedConfigFile::get_entry( index );
 
     return entry ? dynamic_cast<ColumnConfigFile::Entry *>( entry ) : 0;
+}
+
 }

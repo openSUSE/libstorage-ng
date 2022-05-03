@@ -67,7 +67,6 @@ namespace storage
 	    }
 
 	    fd = open(LOCK_DIR "/lock", (read_only ? O_RDONLY : O_WRONLY) | O_CREAT | O_CLOEXEC, 0600);
-
 	    if (fd < 0)
 	    {
 		// Opening lock-file failed.

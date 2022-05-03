@@ -74,7 +74,6 @@ namespace storage
 	getChildValue(node, "cipher", cipher);
 	getChildValue(node, "key-size", key_size);
 	getChildValue(node, "pbkdf", pbkdf);
-
 	getChildValue(node, "integrity", integrity);
 
 	if (getChildValue(node, "mount-by", tmp))
@@ -204,7 +203,6 @@ namespace storage
 	setChildValueIf(node, "cipher", cipher, !cipher.empty());
 	setChildValueIf(node, "key-size", key_size, key_size != 0);
 	setChildValueIf(node, "pbkdf", pbkdf, !pbkdf.empty());
-
 	setChildValueIf(node, "integrity", integrity, !integrity.empty());
 
 	setChildValue(node, "mount-by", toString(mount_by));
@@ -357,7 +355,6 @@ namespace storage
 	storage::log_diff(log, "cipher", cipher, rhs.cipher);
 	storage::log_diff(log, "key-size", key_size, rhs.key_size);
 	storage::log_diff(log, "pbkdf", pbkdf, rhs.pbkdf);
-
 	storage::log_diff(log, "integrity", integrity, rhs.integrity);
 
 	storage::log_diff_enum(log, "mount-by", mount_by, rhs.mount_by);
@@ -377,9 +374,8 @@ namespace storage
 
 	out << " type:" << toString(type);
 
-	if (!password.empty())
-	    if (get_storage()->get_environment().get_impl().is_debug_credentials())
-		out << " password:" << get_password();
+	if (!password.empty() && get_storage()->get_environment().get_impl().is_debug_credentials())
+	    out << " password:" << get_password();
 
 	if (!key_file.empty())
 	    out << " key-file:" << get_key_file();

@@ -83,7 +83,8 @@ namespace storage
 	if (get_type() != EncryptionType::LUKS1 && get_type() != EncryptionType::LUKS2)
 	    ST_THROW(Exception("invalid encryption type for Luks"));
 
-	if (get_cipher() == "aegis128-random" || !get_integrity().empty()) {
+	if (get_cipher() == "aegis128-random" || !get_integrity().empty())
+	{
 	    if (get_cipher() != "aegis128-random")
 		ST_THROW(Exception("when integrity is set it is expected aegis128-random cipher"));
 
@@ -107,6 +108,7 @@ namespace storage
 	calculate_region_and_topology();
     }
 
+
     void
     Luks::Impl::set_integrity(const string& integrity)
     {
@@ -114,6 +116,7 @@ namespace storage
 
 	calculate_region_and_topology();
     }
+
 
     string
     Luks::Impl::get_mount_by_name(MountByType mount_by_type) const
@@ -422,11 +425,11 @@ namespace storage
 		dm_table_name = it2->first;
 
 		/*
-		 * If integrity is set the name will ends with _dif,
-		 * and later we will find the target with the correct
-		 * name
+		 * If integrity is set the name will ends with _dif, and later we will
+		 * find the target with the correct name.
 		 */
-		if (boost::ends_with(dm_table_name, "_dif")) {
+		if (boost::ends_with(dm_table_name, "_dif"))
+		{
 		    bool integrity = false;
 		    for (const CmdDmsetupTable::Table& table : it2->second)
 		    {
@@ -466,7 +469,6 @@ namespace storage
 	    luks->get_impl().set_cipher(cmd_cryptsetup_luks_dump.get_cipher());
 	    luks->get_impl().set_key_size(cmd_cryptsetup_luks_dump.get_key_size());
 	    luks->get_impl().set_pbkdf(cmd_cryptsetup_luks_dump.get_pbkdf());
-
 	    luks->get_impl().set_integrity(cmd_cryptsetup_luks_dump.get_integrity());
 
 	    if (crypttab_entry)

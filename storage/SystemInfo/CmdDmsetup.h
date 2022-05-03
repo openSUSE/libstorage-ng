@@ -46,10 +46,8 @@ namespace storage
 
 	struct Entry
 	{
-	    Entry() : majorminor(0), segments(0), subsystem(), uuid() {}
-
-	    dev_t majorminor;
-	    unsigned segments;
+	    dev_t majorminor = 0;
+	    unsigned segments = 0;
 	    string subsystem;
 	    string uuid;
 	};
@@ -84,15 +82,15 @@ namespace storage
 	struct Table
 	{
 	    Table(const string& target)
-		: target(target), stripes(0), stripe_size(0), majorminors() {}
+		: target(target) {}
 
 	    string target;
 
 	    /**
 	     * stripes and stripe_size are valid iff target == striped.
 	     */
-	    unsigned long stripes;
-	    unsigned long long stripe_size;
+	    unsigned long stripes = 0;
+	    unsigned long long stripe_size = 0;
 
 	    vector<dev_t> majorminors;
 	};
@@ -120,6 +118,7 @@ namespace storage
 	map<string, vector<Table>> data;
 
     };
+
 }
 
 #endif

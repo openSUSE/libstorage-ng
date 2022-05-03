@@ -180,7 +180,6 @@ namespace storage
 	string cipher;
 	unsigned int key_size = 0;
 	string pbkdf;
-
 	string integrity;
 
 	MountByType mount_by = MountByType::DEVICE;

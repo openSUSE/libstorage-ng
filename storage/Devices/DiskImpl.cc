@@ -262,7 +262,7 @@ namespace storage
     void
     Disk::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
     {
-	const Environment& environment = actiongraph.get_storage().get_environment();
+	const Environment& environment = get_storage()->get_environment();
 	if (environment.get_target_mode() == TargetMode::IMAGE)
 	{
 	    vector<shared_ptr<Action::Base>> actions;
