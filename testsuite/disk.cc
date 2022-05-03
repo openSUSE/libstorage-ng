@@ -46,6 +46,7 @@ BOOST_AUTO_TEST_CASE(disk2)
     Devicegraph* rhs = storage.get_staging();
 
     Disk* sda = Disk::create(rhs, "/dev/sda");
+    sda->set_image_filename("/tmp/disk.img");
     sda->set_size(16 * GiB);
 
     Actiongraph actiongraph(storage, lhs, rhs);

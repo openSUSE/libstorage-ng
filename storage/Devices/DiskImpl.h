@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -63,6 +63,8 @@ namespace storage
 
 	virtual bool is_usable_as_blk_device() const override;
 	virtual bool is_usable_as_partitionable() const override;
+
+	virtual void check(const CheckCallbacks* check_callbacks) const override;
 
 	virtual string pool_name() const override;
 

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -123,6 +123,17 @@ namespace storage
     Disk::Impl::is_usable_as_partitionable() const
     {
 	return zone_model != ZoneModel::HOST_MANAGED;
+    }
+
+
+    void
+    Disk::Impl::check(const CheckCallbacks* check_callbacks) const
+    {
+	BlkDevice::Impl::check(check_callbacks);
+
+	const Environment& environment = get_storage()->get_environment();
+	if (environment.get_target_mode() == TargetMode::IMAGE && image_filename.empty())
+	    ST_THROW(Exception("image filename empty"));
     }
 
 
@@ -375,9 +386,6 @@ namespace storage
     Disk::Impl::do_create()
     {
 	// only used for TargetMode::IMAGE
-
-	if (image_filename.empty())
-	    ST_THROW(Exception("image filename empty"));
 
 	string cmd_line = DD_BIN " if='" DEV_ZERO_FILE "' of=" + quote(image_filename) +
 	    " obs=" + to_string(get_region().get_block_size()) + " seek=" +
