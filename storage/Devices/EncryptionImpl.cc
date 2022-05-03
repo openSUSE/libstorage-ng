@@ -334,8 +334,8 @@ namespace storage
 	    return false;
 
 	return type == rhs.type && password == rhs.password && key_file == rhs.key_file &&
-	    cipher == rhs.cipher && key_size == rhs.key_size && integrity == rhs.integrity &&
-	    mount_by == rhs.mount_by && crypt_options == rhs.crypt_options &&
+	    cipher == rhs.cipher && key_size == rhs.key_size && pbkdf == rhs.pbkdf &&
+	    integrity == rhs.integrity && mount_by == rhs.mount_by && crypt_options == rhs.crypt_options &&
 	    in_etc_crypttab == rhs.in_etc_crypttab && open_options == rhs.open_options;
     }
 
@@ -356,6 +356,7 @@ namespace storage
 
 	storage::log_diff(log, "cipher", cipher, rhs.cipher);
 	storage::log_diff(log, "key-size", key_size, rhs.key_size);
+	storage::log_diff(log, "pbkdf", pbkdf, rhs.pbkdf);
 
 	storage::log_diff(log, "integrity", integrity, rhs.integrity);
 
@@ -388,6 +389,9 @@ namespace storage
 
 	if (key_size != 0)
 	    out << " key-size:" << key_size;
+
+	if (!pbkdf.empty())
+	  out << " pbkdf:" << pbkdf;
 
 	if (!integrity.empty())
 	  out << " integrity:" << integrity;
