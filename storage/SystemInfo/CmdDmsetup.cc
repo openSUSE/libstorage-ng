@@ -114,7 +114,7 @@ namespace storage
     void
     CmdDmsetupTable::parse(const vector<string>& lines)
     {
-	static regex devspec("([0-9]+):([0-9]+)", regex::extended);
+	static const regex devspec("([0-9]+):([0-9]+)", regex::extended);
 
 	if (lines.size() == 1 && lines[0] == "No devices found")
 	    return;

@@ -50,7 +50,8 @@ namespace storage
     class SnapperConfig
     {
     public:
-        SnapperConfig( Btrfs * btrfs );
+
+	SnapperConfig(const Btrfs* btrfs);
 
         /**
          * Hook to be called just before the Btrfs root filesystem is mounted.
@@ -81,7 +82,7 @@ namespace storage
         /**
          * Return the Btrfs filesystem this object works on.
          **/
-        Btrfs * get_btrfs() const { return btrfs; }
+	const Btrfs* get_btrfs() const { return btrfs; }
 
         /**
          * Enable or disable actually executing the external commands.  By
@@ -150,11 +151,12 @@ namespace storage
          **/
         string get_snapshots_subvol_name() const;
 
-
     private:
-        Btrfs * btrfs;
-        bool    do_exec;
-        string  command_line;
+
+	const Btrfs* btrfs = nullptr;
+	bool do_exec = true;
+        string command_line;
+
     };
 }
 

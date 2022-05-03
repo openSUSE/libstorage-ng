@@ -34,8 +34,8 @@
 #define WHITESPACE " \t"
 
 
-using namespace storage;
-
+namespace storage
+{
 
 CommentedConfigFile::CommentedConfigFile(int permissions) :
     permissions(permissions),
@@ -412,3 +412,4 @@ void CommentedConfigFile::save_orig( const string_vec & new_orig_lines )
     orig_lines = new_orig_lines;
 }
 
+}

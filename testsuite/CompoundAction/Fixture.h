@@ -29,12 +29,14 @@ namespace storage
 	    void
 	    initialize_staging_with_one_disk()
 	    {
-		Environment environment(true, ProbeMode::NONE, TargetMode::IMAGE);
+		Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
 		storage = make_unique<Storage>(environment);
 		staging = storage->get_staging();
 
 		sda = Disk::create(staging, "/dev/sda");
 		sda_gpt = to_gpt(sda->create_partition_table(PtType::GPT));
+
+		copy_staging_to_probed();
 	    }
 
 

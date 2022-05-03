@@ -30,8 +30,9 @@
 using std::cout;
 using std::endl;
 
-using namespace storage;
 
+namespace storage
+{
 
 string_vec Diff::diff( const string_vec & lines_a,
 		       const string_vec & lines_b,
@@ -331,8 +332,6 @@ string_vec Diff::format_patch_header( const string & filename_old,
 }
 
 
-
-
 string_vec Diff::Hunk::format() const
 {
     string_vec result = format_lines();
@@ -406,4 +405,6 @@ Diff::Hunk::added_range() const
     range.end   = added_start_pos + lines_added.size() + context_lines_after.size() - 1;
 
     return range;
+}
+
 }
