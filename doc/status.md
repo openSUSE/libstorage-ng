@@ -82,11 +82,14 @@ Implemented:
 * Handling of /etc/crypttab.
 * LUKS1 and LUKS2.
 
+Experimental:
+
+* LUKS2 integrity sypport.
+
 Missing:
 
 * Handling different mount-by options.
 * Detached header.
-* LUKS2 integrity (experimental in cryptsetup).
 
 
 MD RAID
