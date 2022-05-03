@@ -144,6 +144,25 @@ namespace storage
 	void set_pbkdf(const std::string& pbkdf);
 
 	/**
+	 * Get the integrity. For now we only expect AEAD.
+	 *
+	 * Currently only supported for LUKS2 (experimental).
+	 */
+	const std::string& get_integrity() const;
+
+	/**
+	 * Set the integrity. If the integrity is set, this will
+	 * restrict the number of allowed cipher algorithms.  Also the
+	 * expected value is "aead" or empty string.  Technically this
+	 * can be replaced as a boolean flag, but we maintain a string
+	 * in case of future new options.  The value is only used
+	 * during creation.
+	 *
+	 * Currently only supported for LUKS2 (experimental).
+	 */
+	void set_integrity(const std::string& integrity);
+
+	/**
 	 * Get the mount-by method. For encrypted devices the mount-by method
 	 * defines the name used for the second parameter in /etc/crypttab.
 	 */

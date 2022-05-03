@@ -82,6 +82,17 @@ namespace storage
 
 	if (get_type() != EncryptionType::LUKS1 && get_type() != EncryptionType::LUKS2)
 	    ST_THROW(Exception("invalid encryption type for Luks"));
+
+	if (get_cipher() == "aegis128-random" || !get_integrity().empty()) {
+	    if (get_cipher() != "aegis128-random")
+		ST_THROW(Exception("when integrity is set it is expected aegis128-random cipher"));
+
+	    if (get_key_size() * 8 != 128)
+		ST_THROW(Exception("for aegis128-random it is expected a key-size of 16 (128 bits)"));
+
+	    if (get_integrity() != "aead")
+		ST_THROW(Exception("for now only AEAD integrity is supported"));
+	}
     }
 
 
@@ -96,6 +107,13 @@ namespace storage
 	calculate_region_and_topology();
     }
 
+    void
+    Luks::Impl::set_integrity(const string& integrity)
+    {
+	Encryption::Impl::set_integrity(integrity);
+
+	calculate_region_and_topology();
+    }
 
     string
     Luks::Impl::get_mount_by_name(MountByType mount_by_type) const
@@ -400,7 +418,31 @@ namespace storage
 	     */
 	    string dm_table_name;
 	    if (it2 != cmd_dmsetup_table.end())
+	    {
 		dm_table_name = it2->first;
+
+		/*
+		 * If integrity is set the name will ends with _dif,
+		 * and later we will find the target with the correct
+		 * name
+		 */
+		if (boost::ends_with(dm_table_name, "_dif")) {
+		    bool integrity = false;
+		    for (const CmdDmsetupTable::Table& table : it2->second)
+		    {
+			if (table.target == "integrity")
+			    integrity = true;
+		    }
+
+		    if (integrity)
+		    {
+			dm_table_name = dm_table_name.substr(0, dm_table_name.length() - 4);
+			const CmdDmsetupInfo& cmd_dmsetup_info = system_info.getCmdDmsetupInfo();
+			if (!cmd_dmsetup_info.exists(dm_table_name))
+			    ST_THROW(Exception("integrity device found, missing the associated 'crypt' target"));
+		    }
+		}
+	    }
 	    else if (crypttab_entry)
 		dm_table_name = crypttab_entry->get_crypt_device();
 	    else
@@ -424,6 +466,8 @@ namespace storage
 	    luks->get_impl().set_cipher(cmd_cryptsetup_luks_dump.get_cipher());
 	    luks->get_impl().set_key_size(cmd_cryptsetup_luks_dump.get_key_size());
 	    luks->get_impl().set_pbkdf(cmd_cryptsetup_luks_dump.get_pbkdf());
+
+	    luks->get_impl().set_integrity(cmd_cryptsetup_luks_dump.get_integrity());
 
 	    if (crypttab_entry)
 	    {
@@ -484,6 +528,11 @@ namespace storage
     void
     Luks::Impl::calculate_region_and_topology()
     {
+	// We return early for the same reason that we did in
+	// Md::Impl::calculate_region_and_topology()
+	if (exists_in_system())
+	    return;
+
 	const BlkDevice* blk_device = get_blk_device();
 
 	unsigned long long size = blk_device->get_size();
@@ -495,6 +544,10 @@ namespace storage
 	    size -= metadata_size();
 	else
 	    size = 0 * B;
+
+	// If we use integrity, calculate a pesimistic size
+	if (!get_integrity().empty())
+	    size *= 0.85;
 
 	set_size(size);
 
@@ -616,6 +669,10 @@ namespace storage
 
 	if (!get_pbkdf().empty())
 	    cmd_line += " --pbkdf " + quote(get_pbkdf());
+
+	// TODO(check the LUKS version and the cipher)
+	if (!get_integrity().empty())
+	    cmd_line += " --integrity " + quote(get_integrity());
 
 	if (!get_format_options().empty())
 	    cmd_line += " " + get_format_options();

@@ -73,6 +73,8 @@ namespace storage
 
 	virtual void set_type(EncryptionType type) override;
 
+	virtual void set_integrity(const string& integrity) override;
+
 	virtual string get_mount_by_name(MountByType mount_by_type) const override;
 
 	const string& get_uuid() const { return uuid; }

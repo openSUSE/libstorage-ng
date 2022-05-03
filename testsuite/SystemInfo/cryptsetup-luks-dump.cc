@@ -254,3 +254,60 @@ BOOST_AUTO_TEST_CASE(parse4_two_keyslots)
 
     check("/dev/ram0p1", input, output);
 }
+
+
+BOOST_AUTO_TEST_CASE(parse5_aead)
+{
+    vector<string> input = {
+	"LUKS header information",
+	"Version:        2",
+	"Epoch:          3",
+	"Metadata area:  16384 [bytes]",
+	"Keyslots area:  16744448 [bytes]",
+	"UUID:           dfcefa36-2548-45b7-98f4-700bd80fa67a",
+	"Label:          (no label)",
+	"Subsystem:      (no subsystem)",
+	"Flags:          (no flags)",
+	"",
+	"Data segments:",
+	"  0: crypt",
+	"        offset: 16777216 [bytes]",
+	"        length: (whole device)",
+	"        cipher: aegis128-random",
+	"        sector: 512 [bytes]",
+	"        integrity: aead",
+	"",
+	"Keyslots:",
+	"  0: luks2",
+	"        Key:        128 bits",
+	"        Priority:   normal",
+	"        Cipher:     aes-xts-plain64",
+	"        Cipher key: 512 bits",
+	"        PBKDF:      argon2id",
+	"        Time cost:  4",
+	"        Memory:     635984",
+	"        Threads:    1",
+	"        Salt:       cc 68 5d 98 ba 76 59 73 04 43 0d e1 5c 7a 3d 1b ",
+	"                    4a 88 32 63 b4 ac 37 b3 9f 5a f0 d4 f0 92 ab 6f ",
+	"        AF stripes: 4000",
+	"        AF hash:    sha256",
+	"        Area offset:32768 [bytes]",
+	"        Area length:65536 [bytes]",
+	"        Digest ID:  0",
+	"Tokens:",
+	"Digests:",
+	"  0: pbkdf2",
+	"        Hash:       sha256",
+	"        Iterations: 154202",
+	"        Salt:       bd 4f e2 58 e5 28 32 5e e7 d9 4e 20 fb 09 06 9c ",
+	"                    99 a8 e0 4f f1 6d 52 4f b3 7a b2 37 c4 d0 3b c4 ",
+	"        Digest:     31 6c a5 44 31 b2 75 39 05 c3 33 da ec 2f ad 5b ",
+	"                    1e e4 8d b0 71 63 69 fc 76 af 48 ca 31 46 62 ab "
+    };
+
+    vector<string> output = {
+	"name:/dev/sdc1 encryption-type:luks2 cipher:aegis128-random key-size:16 pbkdf:argon2id integrity:aead"
+    };
+
+    check("/dev/sdc1", input, output);
+}
