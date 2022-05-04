@@ -58,7 +58,7 @@
       <udev-id>scsi-1ATA_VBOX_HARDDISK_VB3b96ac9d-f9f14bd2-part1</udev-id>
       <udev-id>scsi-SATA_VBOX_HARDDISK_VB3b96ac9d-f9f14bd2-part1</udev-id>
       <type>primary</type>
-      <id>130</id>
+      <id>0x82</id>
     </Partition>
     <Partition>
       <sid>46</sid>
@@ -76,7 +76,7 @@
       <udev-id>scsi-1ATA_VBOX_HARDDISK_VB3b96ac9d-f9f14bd2-part2</udev-id>
       <udev-id>scsi-SATA_VBOX_HARDDISK_VB3b96ac9d-f9f14bd2-part2</udev-id>
       <type>primary</type>
-      <id>131</id>
+      <id>0x83</id>
       <boot>true</boot>
     </Partition>
     <Ext4>

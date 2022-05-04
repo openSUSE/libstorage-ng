@@ -105,8 +105,8 @@ BOOST_AUTO_TEST_CASE(parse_msdos)
     vector<string> output = {
 	"device:/dev/sdc label:MS-DOS region:[0, 625142448, 512 B] primary-slots:4",
 	"number:1 region:[2048, 20971520, 512 B] type:primary id:0x83",
-	"number:2 region:[20973568, 62914560, 512 B] type:extended id:0x0F",
-	"number:5 region:[20975616, 41943040, 512 B] type:logical id:0xFD",
+	"number:2 region:[20973568, 62914560, 512 B] type:extended id:0x0f",
+	"number:5 region:[20975616, 41943040, 512 B] type:logical id:0xfd",
     };
 
     check("/dev/sdc", input, output);
@@ -153,7 +153,7 @@ BOOST_AUTO_TEST_CASE(parse_gpt)
     vector<string> output = {
 	"device:/dev/sdc label:GPT region:[0, 625142448, 512 B] primary-slots:128",
 	"number:1 region:[2048, 20971520, 512 B] type:primary id:0x83",
-	"number:2 region:[20973568, 41943040, 512 B] type:primary id:0xFD",
+	"number:2 region:[20973568, 41943040, 512 B] type:primary id:0xfd",
     };
 
     check("/dev/sdc", input, output);

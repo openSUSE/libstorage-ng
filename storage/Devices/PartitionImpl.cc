@@ -168,7 +168,7 @@ namespace storage
 	BlkDevice::Impl::save(node);
 
 	setChildValue(node, "type", toString(type));
-	setChildValueIf(node, "id", id, id != 0);
+	setChildValueIf(node, "id", sformat("0x%02x", id), id != 0);
 	setChildValueIf(node, "boot", boot, boot);
 	setChildValueIf(node, "legacy-boot", legacy_boot, legacy_boot);
 
@@ -439,7 +439,7 @@ namespace storage
 	BlkDevice::Impl::print(out);
 
 	out << " type:" << toString(type)
-	    << " id:" << id;
+	    << " id:" << sformat("0x%02x", id);
 
 	if (boot)
 	    out << " boot";
@@ -491,7 +491,7 @@ namespace storage
     {
 	const PartitionTable* partition_table = get_partition_table();
 
-	if (!partition_table->get_impl().is_partition_id_supported(id))
+	if (!partition_table->is_partition_id_supported(id))
 	    ST_THROW(Exception(sformat("illegal partition id %d on %s", id,
 				       toString(partition_table->get_type()))));
 
@@ -504,7 +504,7 @@ namespace storage
     {
 	PartitionTable* partition_table = get_partition_table();
 
-	if (!partition_table->get_impl().is_partition_boot_flag_supported())
+	if (!partition_table->is_partition_boot_flag_supported())
 	    ST_THROW(Exception(sformat("set_boot not supported on %s",
 				       toString(partition_table->get_type()))));
 
@@ -523,7 +523,7 @@ namespace storage
     {
 	const PartitionTable* partition_table = get_partition_table();
 
-	if (!partition_table->get_impl().is_partition_legacy_boot_flag_supported())
+	if (!partition_table->is_partition_legacy_boot_flag_supported())
 	    ST_THROW(Exception(sformat("set_legacy_boot not supported on %s",
 				       toString(partition_table->get_type()))));
 
