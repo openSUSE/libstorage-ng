@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -192,9 +192,18 @@ namespace storage
 	 */
 	void set_type(PartitionType type);
 
+	/**
+	 * Get the partition id.
+	 *
+	 * @see IdNum
+	 */
 	unsigned int get_id() const;
 
 	/**
+	 * Set the partition id.
+	 *
+	 * @see IdNum, PartitionTable::is_partition_id_supported()
+	 *
 	 * @throw Exception
 	 */
 	void set_id(unsigned int id);
@@ -205,7 +214,7 @@ namespace storage
 	bool is_boot() const;
 
 	/**
-	 * Set the boot flag of the partition. Only supported on Msdos.
+	 * Set the boot flag of the partition. Only supported on MS-DOS.
 	 *
 	 * Notes:
 	 *
@@ -218,6 +227,8 @@ namespace storage
 	 * parted on GPT partitions only sets the partition type to EFI System
 	 * Partition.
 	 *
+	 * @see PartitionTable::is_partition_boot_flag_supported()
+	 *
 	 * @throw Exception
 	 */
 	void set_boot(bool boot);
@@ -229,6 +240,8 @@ namespace storage
 
 	/**
 	 * Set the legacy boot flag of the partition. Only supported on GPT.
+	 *
+	 * @see PartitionTable::is_partition_legacy_boot_flag_supported()
 	 *
 	 * @throw Exception
 	 */
