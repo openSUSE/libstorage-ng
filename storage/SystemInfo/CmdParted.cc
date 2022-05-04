@@ -562,7 +562,7 @@ namespace storage
     operator<<(std::ostream& s, const Parted::Entry& entry)
     {
 	s << "number:" << entry.number << " region:" << entry.region << " type:"
-	  << get_partition_type_name(entry.type) << " id:" << sformat("0x%02X", entry.id);
+	  << get_partition_type_name(entry.type) << " id:" << sformat("0x%02x", entry.id);
 
 	if (entry.boot)
 	    s << " boot";

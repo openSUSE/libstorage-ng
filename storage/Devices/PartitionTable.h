@@ -88,6 +88,11 @@ namespace storage
     {
     public:
 
+	/**
+	 * Get the partition type.
+	 *
+	 * @see PtType
+	 */
 	PtType get_type() const;
 
 	/**

@@ -29,6 +29,7 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <iomanip>
 #include <optional>
 #include <boost/noncopyable.hpp>
 
@@ -94,7 +95,7 @@ namespace storage
 
 	std::istringstream istr(tmp);
 	classic(istr);
-	istr >> value;
+	istr >> std::setbase(0) >> value;
 	return true;
     }
 

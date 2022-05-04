@@ -70,10 +70,10 @@ BOOST_AUTO_TEST_CASE(parse_msdos_disk_label_good)
     vector<string> output = {
 	"device:/dev/sdb label:MS-DOS region:[0, 160086528, 512 B]",
 	"number:1 region:[2048, 32014336, 512 B] type:primary id:0x83",
-	"number:2 region:[32016384, 96053248, 512 B] type:extended id:0x0F",
+	"number:2 region:[32016384, 96053248, 512 B] type:extended id:0x0f",
 	"number:5 region:[32018432, 32016384, 512 B] type:logical id:0x82",
-	"number:6 region:[64036864, 32014336, 512 B] type:logical id:0xFD",
-	"number:7 region:[96053248, 32016384, 512 B] type:logical id:0x8E"
+	"number:6 region:[64036864, 32014336, 512 B] type:logical id:0xfd",
+	"number:7 region:[96053248, 32016384, 512 B] type:logical id:0x8e"
     };
 
     check("/dev/sdb", input, output);
@@ -159,8 +159,8 @@ BOOST_AUTO_TEST_CASE(parse_dasd_good2)
 
     vector<string> output = {
 	"device:/dev/dasda label:DASD region:[0, 601020, 4096 B]",
-	"number:1 region:[24, 180276, 4096 B] type:primary id:0xFD",
-	"number:2 region:[180300, 180312, 4096 B] type:primary id:0x8E",
+	"number:1 region:[24, 180276, 4096 B] type:primary id:0xfd",
+	"number:2 region:[180300, 180312, 4096 B] type:primary id:0x8e",
 	"number:3 region:[360612, 180300, 4096 B] type:primary id:0x82"
     };
 
@@ -247,7 +247,7 @@ BOOST_AUTO_TEST_CASE(parse_gpt_of_windows)
     vector<string> output = {
 	"device:/dev/vda label:GPT region:[0, 104857600, 512 B]",
 	"number:1 region:[2048, 921600, 512 B] type:primary id:0x12 name:Basic data partition",
-	"number:2 region:[923648, 202752, 512 B] type:primary id:0xEF name:EFI system partition",
+	"number:2 region:[923648, 202752, 512 B] type:primary id:0xef name:EFI system partition",
 	"number:3 region:[1126400, 32768, 512 B] type:primary id:0x103 name:Microsoft reserved partition",
 	"number:4 region:[1159168, 103696384, 512 B] type:primary id:0x102 name:Basic data partition"
     };
@@ -334,7 +334,7 @@ BOOST_AUTO_TEST_CASE(parse_jetson_nano)
 	"number:12 region:[29367208, 128, 512 B] type:primary id:0x102 name:EKS",
 	"number:13 region:[29367336, 160, 512 B] type:primary id:0x102 name:BMP",
 	"number:14 region:[29367496, 256, 512 B] type:primary id:0x102 name:RP4",
-	"number:15 region:[29367752, 262144, 512 B] type:primary id:0xEF name:EFI"
+	"number:15 region:[29367752, 262144, 512 B] type:primary id:0xef name:EFI"
     };
 
     check("/dev/mmcblk1", input, output);

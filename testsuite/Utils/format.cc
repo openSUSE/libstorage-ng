@@ -14,6 +14,7 @@ BOOST_AUTO_TEST_CASE(test_string)
     BOOST_CHECK_EQUAL(sformat("a %1$s %2$s d", "b", "c"s), "a b c d");
     BOOST_CHECK_EQUAL(sformat("a %2$s %1$s d", "b", "c"s), "a c b d");
 
+    BOOST_CHECK_EQUAL(sformat("0x%1$02x", 10), "0x0a");
     BOOST_CHECK_EQUAL(sformat("0x%1$02X", 10), "0x0A");
     BOOST_CHECK_EQUAL(sformat("0x%1$02X", 32), "0x20");
 
