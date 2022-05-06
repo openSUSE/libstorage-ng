@@ -64,17 +64,14 @@ namespace storage
 
 
     Btrfs::Impl::Impl()
-	: BlkFilesystem::Impl(), configure_snapper(false), snapper_config(nullptr),
-	  metadata_raid_level(BtrfsRaidLevel::DEFAULT), data_raid_level(BtrfsRaidLevel::DEFAULT),
-	  multi_device_resize_info()
+	: BlkFilesystem::Impl(), metadata_raid_level(BtrfsRaidLevel::DEFAULT),
+	  data_raid_level(BtrfsRaidLevel::DEFAULT)
     {
     }
 
 
     Btrfs::Impl::Impl(const xmlNode* node)
-	: BlkFilesystem::Impl(node), configure_snapper(false), snapper_config(nullptr),
-	  metadata_raid_level(BtrfsRaidLevel::UNKNOWN), data_raid_level(BtrfsRaidLevel::UNKNOWN),
-	  multi_device_resize_info()
+	: BlkFilesystem::Impl(node)
     {
 	string tmp;
 

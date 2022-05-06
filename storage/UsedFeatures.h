@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -69,6 +69,7 @@ namespace storage
 	UF_NFS = 1 << 9,
 	UF_JFS = 1 << 10,
 	UF_F2FS = 1 << 23,
+	UF_NILFS2 = 1 << 30,
 	UF_EXFAT = 1 << 24,
 	UF_UDF = 1 << 25,
 	UF_BITLOCKER = 1 << 27,

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -192,7 +192,8 @@ namespace storage
 		fs_type != FsType::BTRFS && fs_type != FsType::REISERFS && fs_type != FsType::XFS &&
 		fs_type != FsType::SWAP && fs_type != FsType::NTFS && fs_type != FsType::VFAT &&
 		fs_type != FsType::ISO9660 && fs_type != FsType::UDF && fs_type != FsType::JFS &&
-		fs_type != FsType::F2FS && fs_type != FsType::EXFAT && fs_type != FsType::BITLOCKER)
+		fs_type != FsType::F2FS && fs_type != FsType::NILFS2 &&fs_type != FsType::EXFAT &&
+		fs_type != FsType::BITLOCKER)
 	    {
 		y2err("detected unsupported filesystem " << toString(fs_type) << " on " <<
 		      blk_device->get_name());

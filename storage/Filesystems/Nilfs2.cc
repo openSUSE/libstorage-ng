@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2014-2015] Novell, Inc.
+ * Copyright (c) 2022 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -20,7 +20,7 @@
  */
 
 
-#include "storage/Filesystems/SwapImpl.h"
+#include "storage/Filesystems/Nilfs2Impl.h"
 #include "storage/Devicegraph.h"
 
 
@@ -30,83 +30,69 @@ namespace storage
     using namespace std;
 
 
-    Swap*
-    Swap::create(Devicegraph* devicegraph)
+    Nilfs2*
+    Nilfs2::create(Devicegraph* devicegraph)
     {
-	Swap* ret = new Swap(new Swap::Impl());
+	Nilfs2* ret = new Nilfs2(new Nilfs2::Impl());
 	ret->Device::create(devicegraph);
 	return ret;
     }
 
 
-    Swap*
-    Swap::load(Devicegraph* devicegraph, const xmlNode* node)
+    Nilfs2*
+    Nilfs2::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	Swap* ret = new Swap(new Swap::Impl(node));
+	Nilfs2* ret = new Nilfs2(new Nilfs2::Impl(node));
 	ret->Device::load(devicegraph);
 	return ret;
     }
 
 
-    Swap::Swap(Impl* impl)
+    Nilfs2::Nilfs2(Impl* impl)
 	: BlkFilesystem(impl)
     {
     }
 
 
-    Swap*
-    Swap::clone() const
+    Nilfs2*
+    Nilfs2::clone() const
     {
-	return new Swap(get_impl().clone());
+	return new Nilfs2(get_impl().clone());
     }
 
 
-    Swap::Impl&
-    Swap::get_impl()
+    Nilfs2::Impl&
+    Nilfs2::get_impl()
     {
 	return dynamic_cast<Impl&>(Device::get_impl());
     }
 
 
-    const Swap::Impl&
-    Swap::get_impl() const
+    const Nilfs2::Impl&
+    Nilfs2::get_impl() const
     {
 	return dynamic_cast<const Impl&>(Device::get_impl());
     }
 
 
-    vector<Swap*>
-    Swap::get_all(Devicegraph* devicegraph)
-    {
-	return devicegraph->get_impl().get_devices_of_type<Swap>();
-    }
-
-
-    vector<const Swap*>
-    Swap::get_all(const Devicegraph* devicegraph)
-    {
-	return devicegraph->get_impl().get_devices_of_type<const Swap>();
-    }
-
-
     bool
-    is_swap(const Device* device)
+    is_nilfs2(const Device* device)
     {
-	return is_device_of_type<const Swap>(device);
+	return is_device_of_type<const Nilfs2>(device);
     }
 
 
-    Swap*
-    to_swap(Device* device)
+    Nilfs2*
+    to_nilfs2(Device* device)
     {
-	return to_device_of_type<Swap>(device);
+	return to_device_of_type<Nilfs2>(device);
     }
 
 
-    const Swap*
-    to_swap(const Device* device)
+    const Nilfs2*
+    to_nilfs2(const Device* device)
     {
-	return to_device_of_type<const Swap>(device);
+	return to_device_of_type<const Nilfs2>(device);
     }
 
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 SUSE LLC
+ * Copyright (c) [2020-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -42,7 +42,7 @@ namespace storage
 					      "multipath", "bcache", "iscsi", "fcoe", "fc",
 					      "dasd", "quota", "snapshot", "f2fs", "exfat",
 					      "udf", "plain-encryption", "bitlocker", "nvme",
-					      "pmem" };
+					      "pmem", "nilfs2" };
 
 	vector<string> tmp;
 

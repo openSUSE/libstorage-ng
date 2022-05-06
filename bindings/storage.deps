@@ -54,6 +54,7 @@ DEPENDENCIES =							\
 	${top_srcdir}/storage/Filesystems/Ext3.h		\
 	${top_srcdir}/storage/Filesystems/Ext4.h		\
 	${top_srcdir}/storage/Filesystems/F2fs.h		\
+	${top_srcdir}/storage/Filesystems/Nilfs2.h		\
 	${top_srcdir}/storage/Filesystems/Filesystem.h		\
 	${top_srcdir}/storage/Filesystems/Iso9660.h		\
 	${top_srcdir}/storage/Filesystems/Jfs.h			\

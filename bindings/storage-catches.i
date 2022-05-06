@@ -81,6 +81,7 @@
 %catches(storage::NullPointerException) storage::is_msdos(const Device *device);
 %catches(storage::NullPointerException) storage::is_multipath(const Device *device);
 %catches(storage::NullPointerException) storage::is_nfs(const Device *device);
+%catches(storage::NullPointerException) storage::is_nilfs2(const Device *device);
 %catches(storage::NullPointerException) storage::is_ntfs(const Device *device);
 %catches(storage::NullPointerException) storage::is_partition(const Device *device);
 %catches(storage::NullPointerException) storage::is_partition_table(const Device *device);
@@ -179,6 +180,8 @@
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_multipath(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_nfs(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_nfs(const Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_nilfs2(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_nilfs2(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_ntfs(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_ntfs(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_partition(Device *device);

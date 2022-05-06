@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -125,20 +125,21 @@ namespace storage
 			 int line, const string& function, const string& content)
     {
 	int fd = open(filename.c_str(), O_WRONLY | O_APPEND | O_CREAT | O_CLOEXEC, permissions);
+	if (fd < 0)
+	    return;
 
-	if (fd >= 0)
+	FILE* f = fdopen(fd, "ae");
+	if (!f)
 	{
-	    FILE* f = fdopen(fd, "ae");
-
-	    if (f)
-	    {
-		fprintf(f, "%s <%d> [%s] %s(%s):%d %s\n", datetime(time(nullptr)).c_str(),
-			static_cast<log_level_underlying_type>(log_level), component.c_str(),
-			file.c_str(), function.c_str(), line, content.c_str());
-
-		fclose(f);
-	    }
+	    close(fd);
+	    return;
 	}
+
+	fprintf(f, "%s <%d> [%s] %s(%s):%d %s\n", datetime(time(nullptr)).c_str(),
+		static_cast<log_level_underlying_type>(log_level), component.c_str(),
+		file.c_str(), function.c_str(), line, content.c_str());
+
+	fclose(f);
     }
 
 
