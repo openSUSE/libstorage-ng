@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -69,7 +69,8 @@ namespace storage
 	const std::string& get_label() const;
 
 	/**
-	 * Set the filesystem label.
+	 * Set the filesystem label. May not work if the filesystem is mounted (e.g. for
+	 * swap).
 	 */
 	void set_label(const std::string& label);
 
@@ -84,9 +85,9 @@ namespace storage
 	const std::string& get_uuid() const;
 
 	/**
-	 * Set the filesystem UUID. Only supported for btrfs, xfs, ext, reiserfs, jfs, udf
-	 * and swap. In general the UUID is only set when creating a new filesystem on
-	 * disk.
+	 * Set the filesystem UUID. Only supported for btrfs, xfs, ext, reiserfs, jfs,
+	 * udf, nilfs2 and swap. In general the UUID is only set when creating a new
+	 * filesystem on disk. May not work if the filesystem is mounted (e.g. for swap).
 	 */
 	void set_uuid(const std::string& uuid);
 
@@ -115,9 +116,9 @@ namespace storage
 	/**
 	 * Set extra options for the filesystem tune command. The
 	 * options are injected as-is to the command so must be
-	 * properly quoted.
+	 * properly quoted. May not work if the filesystem is mounted.
 	 *
-	 * Only supported on Ext and Reiserfs.
+	 * Only supported on Ext, Reiserfs and Nilfs2.
 	 */
 	void set_tune_options(const std::string& tune_options);
 

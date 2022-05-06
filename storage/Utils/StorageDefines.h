@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -127,6 +127,7 @@
 #define REISERFSRESIZE_BIN "/sbin/resize_reiserfs"
 #define RESIZE2FS_BIN "/usr/sbin/resize2fs"
 #define FATRESIZE_BIN "/usr/sbin/fatresize"
+#define NILFS_RESIZE_BIN "/usr/sbin/nilfs-resize"
 
 #define TUNE2FS_BIN "/sbin/tune2fs"
 #define TUNEREISERFS_BIN "/sbin/reiserfstune"
@@ -136,6 +137,7 @@
 #define FATLABEL_BIN "/usr/sbin/fatlabel"
 #define SWAPLABEL_BIN "/sbin/swaplabel"
 #define EXFATLABEL_BIN "/usr/sbin/exfatlabel"
+#define NILFS_TUNE_BIN "/usr/sbin/nilfs-tune"
 
 #define DUMPE2FS_BIN "/sbin/dumpe2fs"
 
@@ -148,6 +150,7 @@
 #define MKFS_EXT2_BIN "/sbin/mke2fs"
 #define MKFS_BTRFS_BIN "/sbin/mkfs.btrfs"
 #define MKFS_F2FS_BIN "/usr/sbin/mkfs.f2fs"
+#define MKFS_NILFS2_BIN "/usr/sbin/mkfs.nilfs2"
 #define MKFS_EXFAT_BIN "/usr/sbin/mkfs.exfat"
 #define MKFS_UDF_BIN "/usr/sbin/mkfs.udf"
 

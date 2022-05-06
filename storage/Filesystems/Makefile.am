@@ -51,6 +51,8 @@ libfilesystems_la_SOURCES =				\
 	TmpfsImpl.h		TmpfsImpl.cc		\
 	F2fs.h			F2fs.cc			\
 	F2fsImpl.h		F2fsImpl.cc		\
+	Nilfs2.h		Nilfs2.cc		\
+	Nilfs2Impl.h		Nilfs2Impl.cc		\
 	Bitlocker.h		Bitlocker.cc		\
 	BitlockerImpl.h		BitlockerImpl.cc
 
@@ -80,5 +82,6 @@ pkginclude_HEADERS =		\
 	Nfs.h			\
 	Tmpfs.h			\
 	F2fs.h			\
+	Nilfs2.h		\
 	Bitlocker.h
 

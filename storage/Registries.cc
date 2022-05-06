@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -58,6 +58,7 @@
 #include "storage/Filesystems/Xfs.h"
 #include "storage/Filesystems/Jfs.h"
 #include "storage/Filesystems/F2fs.h"
+#include "storage/Filesystems/Nilfs2.h"
 #include "storage/Filesystems/Swap.h"
 #include "storage/Filesystems/Iso9660.h"
 #include "storage/Filesystems/Udf.h"
@@ -78,84 +79,86 @@ namespace storage
 {
 
     const map<string, device_load_fnc> device_load_registry = {
-	{ "Disk", &Disk::load },
-	{ "Dasd", &Dasd::load },
-	{ "Multipath", &Multipath::load },
-	{ "DmRaid", &DmRaid::load },
-	{ "Md", &Md::load },
-	{ "MdContainer", &MdContainer::load },
-	{ "MdMember", &MdMember::load },
-	{ "Msdos", &Msdos::load },
-	{ "Gpt", &Gpt::load },
-	{ "DasdPt", &DasdPt::load },
-	{ "ImplicitPt", &ImplicitPt::load },
-	{ "Partition", &Partition::load },
-	{ "StrayBlkDevice", &StrayBlkDevice::load },
-	{ "LvmPv", &LvmPv::load },
-	{ "LvmVg", &LvmVg::load },
-	{ "LvmLv", &LvmLv::load },
-	{ "Encryption", &Encryption::load },
-	{ "PlainEncryption", &PlainEncryption::load },
-	{ "Luks", &Luks::load },
 	{ "Bcache", &Bcache::load },
 	{ "BcacheCset", &BcacheCset::load },
+	{ "Bitlocker", &Bitlocker::load },
+	{ "Btrfs", &Btrfs::load },
+	{ "BtrfsQgroup", &BtrfsQgroup::load },
+	{ "BtrfsSubvolume", &BtrfsSubvolume::load },
+	{ "Dasd", &Dasd::load },
+	{ "DasdPt", &DasdPt::load },
+	{ "Disk", &Disk::load },
+	{ "DmRaid", &DmRaid::load },
+	{ "Encryption", &Encryption::load },
+	{ "Exfat", &Exfat::load },
 	{ "Ext2", &Ext2::load },
 	{ "Ext3", &Ext3::load },
 	{ "Ext4", &Ext4::load },
-	{ "Ntfs", &Ntfs::load },
-	{ "Vfat", &Vfat::load },
-	{ "Exfat", &Exfat::load },
-	{ "Btrfs", &Btrfs::load },
-	{ "BtrfsSubvolume", &BtrfsSubvolume::load },
-	{ "BtrfsQgroup", &BtrfsQgroup::load },
-	{ "Reiserfs", &Reiserfs::load },
-	{ "Xfs", &Xfs::load },
-	{ "Jfs", &Jfs::load },
 	{ "F2fs", &F2fs::load },
-	{ "Swap", &Swap::load },
+	{ "Gpt", &Gpt::load },
+	{ "ImplicitPt", &ImplicitPt::load },
 	{ "Iso9660", &Iso9660::load },
-	{ "Udf", &Udf::load },
-	{ "Bitlocker", &Bitlocker::load },
+	{ "Jfs", &Jfs::load },
+	{ "Luks", &Luks::load },
+	{ "LvmLv", &LvmLv::load },
+	{ "LvmPv", &LvmPv::load },
+	{ "LvmVg", &LvmVg::load },
+	{ "Md", &Md::load },
+	{ "MdContainer", &MdContainer::load },
+	{ "MdMember", &MdMember::load },
+	{ "MountPoint", &MountPoint::load },
+	{ "Msdos", &Msdos::load },
+	{ "Multipath", &Multipath::load },
 	{ "Nfs", &Nfs::load },
+	{ "Nilfs2", &Nilfs2::load },
+	{ "Ntfs", &Ntfs::load },
+	{ "Partition", &Partition::load },
+	{ "PlainEncryption", &PlainEncryption::load },
+	{ "Reiserfs", &Reiserfs::load },
+	{ "StrayBlkDevice", &StrayBlkDevice::load },
+	{ "Swap", &Swap::load },
 	{ "Tmpfs", &Tmpfs::load },
-	{ "MountPoint", &MountPoint::load }
+	{ "Udf", &Udf::load },
+	{ "Vfat", &Vfat::load },
+	{ "Xfs", &Xfs::load }
     };
 
 
     const map<string, holder_load_fnc> holder_load_registry = {
-	{ "User", &User::load },
-	{ "MdUser", &MdUser::load },
+	{ "BtrfsQgroupRelation", &BtrfsQgroupRelation::load },
 	{ "FilesystemUser", &FilesystemUser::load },
-	{ "Subdevice", &Subdevice::load },
 	{ "MdSubdevice", &MdSubdevice::load },
+	{ "MdUser", &MdUser::load },
 	{ "Snapshot", &Snapshot::load },
-	{ "BtrfsQgroupRelation", &BtrfsQgroupRelation::load }
+	{ "Subdevice", &Subdevice::load },
+	{ "User", &User::load }
     };
 
 
     const map<FsType, blk_filesystem_create_fnc> blk_filesystem_create_registry = {
+	{ FsType::BITLOCKER, &Bitlocker::create },
 	{ FsType::BTRFS, &Btrfs::create },
+	{ FsType::EXFAT, &Exfat::create },
 	{ FsType::EXT2, &Ext2::create },
 	{ FsType::EXT3, &Ext3::create },
 	{ FsType::EXT4, &Ext4::create },
+	{ FsType::F2FS, &F2fs::create },
 	{ FsType::ISO9660, &Iso9660::create },
+	{ FsType::JFS, &Jfs::create },
+	{ FsType::NILFS2, &Nilfs2::create },
 	{ FsType::NTFS, &Ntfs::create },
 	{ FsType::REISERFS, &Reiserfs::create },
 	{ FsType::SWAP, &Swap::create },
 	{ FsType::UDF, &Udf::create },
 	{ FsType::VFAT, &Vfat::create },
-	{ FsType::EXFAT, &Exfat::create },
-	{ FsType::XFS, &Xfs::create },
-	{ FsType::JFS, &Jfs::create },
-	{ FsType::F2FS, &F2fs::create },
-	{ FsType::BITLOCKER, &Bitlocker::create }
+	{ FsType::XFS, &Xfs::create }
     };
 
 
     const map<EncryptionType, encryption_create_fnc> encryption_create_registry = {
-	{ EncryptionType::PLAIN, &PlainEncryption::create },
 	{ EncryptionType::LUKS1, &Luks::create },
-	{ EncryptionType::LUKS2, &Luks::create }
+	{ EncryptionType::LUKS2, &Luks::create },
+	{ EncryptionType::PLAIN, &PlainEncryption::create }
     };
 
 }
