@@ -87,8 +87,8 @@ namespace storage
      * ("/var/log/libstorage.log") or to a given file. Do not use this
      * function for production code but only for examples and test-cases.
      *
-     * Note that this method only uses the given filename the first time that
-     * is called.
+     * Note that this method only uses the given filename the first time
+     * it is called.
      */
     Logger* get_logfile_logger(const std::string& filename = "/var/log/libstorage.log");
 

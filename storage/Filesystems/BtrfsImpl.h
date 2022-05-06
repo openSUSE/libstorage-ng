@@ -186,11 +186,11 @@ namespace storage
 
     private:
 
-        bool configure_snapper;
-        SnapperConfig * snapper_config;
+	bool configure_snapper = false;
+	SnapperConfig* snapper_config = nullptr;
 
-	BtrfsRaidLevel metadata_raid_level;
-	BtrfsRaidLevel data_raid_level;
+	BtrfsRaidLevel metadata_raid_level = BtrfsRaidLevel::UNKNOWN;
+	BtrfsRaidLevel data_raid_level = BtrfsRaidLevel::UNKNOWN;
 
 	bool quota = false;
 
