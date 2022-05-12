@@ -42,6 +42,12 @@ January 2018
 Included in openSUSE Tumbleweed, replacing legacy libstorage.
 
 
+August 2021
+-----------
+
+Used by [TIU (Transactional Image Update)](https://github.com/thkukuk/tiu).
+
+
 November 2021
 -------------
 
