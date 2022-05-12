@@ -161,6 +161,9 @@ namespace storage
     string
     Disk::Impl::pool_name() const
     {
+	if (!is_usable_as_partitionable())
+	    return "";
+
 	if (is_pmem())
 	    return "PMEMs";
 	else if (is_nvme())
