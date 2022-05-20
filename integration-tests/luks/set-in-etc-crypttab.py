@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# requirements: partition sdc1 with mounted blk filesystem
+# requirements: partition sdc1 with LUKS
 
 
 from storage import *
@@ -18,12 +18,10 @@ staging = storage.get_staging()
 
 sdc1 = BlkDevice.find_by_name(staging, "/dev/sdc1")
 
-blk_filesystem = sdc1.get_blk_filesystem()
+encryption = sdc1.get_encryption()
 
-mount_point = blk_filesystem.get_mount_point()
-
-mount_point.set_in_etc_fstab(not mount_point.is_in_etc_fstab())
-mount_point.set_default_mount_by()
+encryption.set_in_etc_crypttab(not encryption.is_in_etc_crypttab())
+encryption.set_default_mount_by()
 
 print(staging)
 
