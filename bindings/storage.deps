@@ -20,6 +20,7 @@ DEPENDENCIES =							\
 	${top_srcdir}/storage/View.h				\
 	${top_srcdir}/storage/Devices/Bcache.h			\
 	${top_srcdir}/storage/Devices/BcacheCset.h		\
+	${top_srcdir}/storage/Devices/BitlockerV2.h		\
 	${top_srcdir}/storage/Devices/BlkDevice.h		\
 	${top_srcdir}/storage/Devices/Dasd.h			\
 	${top_srcdir}/storage/Devices/DasdPt.h			\

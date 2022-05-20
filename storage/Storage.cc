@@ -70,6 +70,119 @@ namespace storage
     }
 
 
+    BitlockerInfo::BitlockerInfo()
+	: impl(make_unique<Impl>())
+    {
+    }
+
+
+    BitlockerInfo::~BitlockerInfo()
+    {
+    }
+
+
+    const string&
+    BitlockerInfo::get_device_name() const
+    {
+	return get_impl().device_name;
+    }
+
+
+    unsigned long long
+    BitlockerInfo::get_size() const
+    {
+	return get_impl().size;
+    }
+
+
+    const string&
+    BitlockerInfo::get_dm_table_name() const
+    {
+	return get_impl().dm_table_name;
+    }
+
+
+    bool
+    BitlockerInfo::is_dm_table_name_generated() const
+    {
+	return get_impl().is_dm_table_name_generated;
+    }
+
+
+    const string&
+    BitlockerInfo::get_uuid() const
+    {
+	return get_impl().uuid;
+    }
+
+
+    DeactivateStatusV2::DeactivateStatusV2()
+	: impl(make_unique<Impl>())
+    {
+    }
+
+
+    DeactivateStatusV2::DeactivateStatusV2(const DeactivateStatusV2& deactivate_status)
+	: impl(make_unique<Impl>(deactivate_status.get_impl()))
+    {
+    }
+
+
+    DeactivateStatusV2::~DeactivateStatusV2()
+    {
+    }
+
+
+    DeactivateStatusV2&
+    DeactivateStatusV2::operator=(const DeactivateStatusV2& deactivate_status)
+    {
+	*impl = deactivate_status.get_impl();
+	return *this;
+    }
+
+
+    bool
+    DeactivateStatusV2::multipath() const
+    {
+	return get_impl().multipath;
+    }
+
+
+    bool
+    DeactivateStatusV2::dm_raid() const
+    {
+	return get_impl().dm_raid;
+    }
+
+
+    bool
+    DeactivateStatusV2::md() const
+    {
+	return get_impl().md;
+    }
+
+
+    bool
+    DeactivateStatusV2::lvm_lv() const
+    {
+	return get_impl().lvm_lv;
+    }
+
+
+    bool
+    DeactivateStatusV2::luks() const
+    {
+	return get_impl().luks;
+    }
+
+
+    bool
+    DeactivateStatusV2::bitlocker() const
+    {
+	return get_impl().bitlocker;
+    }
+
+
     Storage::Storage(const Environment& environment)
 	: impl(make_unique<Impl>(*this, environment))
     {
@@ -258,6 +371,21 @@ namespace storage
 
     DeactivateStatus
     Storage::deactivate() const
+    {
+	DeactivateStatusV2 v2 = deactivate_v2();
+
+	DeactivateStatus v1;
+	v1.multipath = v2.multipath();
+	v1.dm_raid = v2.dm_raid();
+	v1.md = v2.md();
+	v1.lvm_lv = v2.lvm_lv();
+	v1.luks = v2.luks();
+	return v1;
+    }
+
+
+    DeactivateStatusV2
+    Storage::deactivate_v2() const
     {
 	return get_impl().deactivate();
     }

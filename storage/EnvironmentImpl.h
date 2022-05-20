@@ -106,6 +106,12 @@ namespace storage
      */
     bool prefer_filesystem_over_empty_msdos();
 
+    /**
+     * Switch to use cryptsetup for BitLocker (during probing) (Bitlocker
+     * vs. BitlockerV2).
+     */
+    bool cryptsetup_for_bitlocker();
+
 }
 
 #endif

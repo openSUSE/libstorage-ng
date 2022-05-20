@@ -34,6 +34,8 @@ namespace storage
      * Class for BitLocker filesystem. The library can only probe a
      * BitLocker filesystem on disk. It cannot mount, create or resize
      * it.
+     *
+     * Does not use cryptsetup. BitLockerV2 does.
      */
     class Bitlocker : public BlkFilesystem
     {

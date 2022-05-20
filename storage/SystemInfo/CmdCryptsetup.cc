@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2019-2021] SUSE LLC
+ * Copyright (c) [2019-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -269,6 +269,80 @@ namespace storage
 
 	if (!cmd_cryptsetup_luks_dump.integrity.empty())
 	    s << " integrity:" << cmd_cryptsetup_luks_dump.integrity;
+
+	return s;
+    }
+
+
+    CmdCryptsetupBitlkDump::CmdCryptsetupBitlkDump(const string& name)
+	: name(name)
+    {
+	SystemCmd cmd(CRYPTSETUP_BIN " bitlkDump " + quote(name), SystemCmd::DoThrow);
+
+	parse(cmd.stdout());
+    }
+
+
+    void
+    CmdCryptsetupBitlkDump::parse(const vector<string>& lines)
+    {
+	static const regex uuid_regex("GUID:[ \t]*(" UUID_REGEX ")[ \t]*", regex::extended);
+
+	static const regex cipher_name_regex("Cipher name:[ \t]*([^ \t]+)[ \t]*", regex::extended);
+	static const regex cipher_mode_regex("Cipher mode:[ \t]*([^ \t]+)[ \t]*", regex::extended);
+	static const regex cipher_key_size_regex("Cipher key:[ \t]*([0-9]+) bits[ \t]*", regex::extended);
+
+	enum { UNUSED_SECTION, HEADER_SECTION } section = HEADER_SECTION;
+
+	string cipher_name, cipher_mode;
+
+	smatch match;
+
+	for (const string& line : lines)
+	{
+	    if (line.empty())
+		section = UNUSED_SECTION;
+
+	    switch (section)
+	    {
+		case HEADER_SECTION:
+		{
+		    if (regex_match(line, match, uuid_regex) && match.size() == 2)
+			uuid = match[1];
+
+		    if (regex_match(line, match, cipher_name_regex) && match.size() == 2)
+			cipher_name = match[1];
+
+		    if (regex_match(line, match, cipher_mode_regex) && match.size() == 2)
+			cipher_mode = match[1];
+
+		    if (regex_match(line, match, cipher_key_size_regex) && match.size() == 2)
+		    {
+			match[1] >> key_size;
+			key_size /= 8;
+		    }
+		}
+		break;
+
+		case UNUSED_SECTION:
+		    break;
+	    }
+	}
+
+	if (cipher_name.empty() || cipher_mode.empty())
+	    y2err("failed to parse cipher in cryptsetup output");
+	else
+	    cipher = cipher_name + "-" + cipher_mode;
+    }
+
+
+    std::ostream&
+    operator<<(std::ostream& s, const CmdCryptsetupBitlkDump& cmd_cryptsetup_bitlk_dump)
+    {
+	s << "name:" << cmd_cryptsetup_bitlk_dump.name << " uuid:"
+	  << cmd_cryptsetup_bitlk_dump.uuid << " cipher:"
+	  << cmd_cryptsetup_bitlk_dump.cipher << " key-size:"
+	  << cmd_cryptsetup_bitlk_dump.key_size;
 
 	return s;
     }

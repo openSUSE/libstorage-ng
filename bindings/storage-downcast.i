@@ -15,6 +15,7 @@
 
 %factory(storage::Device* storage::downcast,
 	 storage::BcacheCset,
+	 storage::BitlockerV2,
 	 storage::Luks,
 	 storage::PlainEncryption,
 	 storage::Encryption,
@@ -67,6 +68,7 @@
 
 %factory(const storage::Device* storage::downcast,
 	 const storage::BcacheCset,
+	 const storage::BitlockerV2,
 	 const storage::Luks,
 	 const storage::PlainEncryption,
 	 const storage::Encryption,

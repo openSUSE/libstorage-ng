@@ -32,6 +32,7 @@
 #include "storage/Devices/MdImpl.h"
 #include "storage/Devices/LvmLvImpl.h"
 #include "storage/Devices/LuksImpl.h"
+#include "storage/Devices/BitlockerV2Impl.h"
 #include "storage/Pool.h"
 #include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/Actiongraph.h"
@@ -39,6 +40,7 @@
 #include "storage/EnvironmentImpl.h"
 #include "storage/Utils/Format.h"
 #include "storage/Utils/CallbacksImpl.h"
+#include "storage/Utils/StorageTmpl.h"
 
 
 namespace storage
@@ -75,6 +77,8 @@ namespace storage
     {
 	ST_CHECK_PTR(activate_callbacks);
 
+	CallbacksGuard callbacks_guard(activate_callbacks);
+
 	/**
 	 * Multipath is activated first since multipath can only use disks.
 	 *
@@ -93,6 +97,8 @@ namespace storage
 
 	y2mil("activate begin");
 
+	const ActivateCallbacksV3* activate_callbacks_v3 = dynamic_cast<const ActivateCallbacksV3*>(activate_callbacks);
+
 	Multipath::Impl::activate_multipaths(activate_callbacks);
 
 	Md::Impl::activate_mds(activate_callbacks, tmp_dir);
@@ -109,6 +115,9 @@ namespace storage
 	    if (Luks::Impl::activate_lukses(activate_callbacks))
 		again = true;
 
+	    if (activate_callbacks_v3 && BitlockerV2::Impl::activate_bitlockers(activate_callbacks_v3))
+		again = true;
+
 	    if (!again)
 		break;
 	}
@@ -117,7 +126,7 @@ namespace storage
     }
 
 
-    DeactivateStatus
+    DeactivateStatusV2
     Storage::Impl::deactivate() const
     {
 	y2mil("deactivate begin");
@@ -131,12 +140,16 @@ namespace storage
 	 * true.
 	 */
 
-	DeactivateStatus deactivate_status = { };
+	DeactivateStatusV2 ret;
+	DeactivateStatusV2::Impl& deactivate_status = ret.get_impl();
 
 	for (int i = 0; i < 3; ++i)
 	{
 	    if (!deactivate_status.luks)
 		deactivate_status.luks = Luks::Impl::deactivate_lukses();
+
+	    if (!deactivate_status.bitlocker)
+		deactivate_status.bitlocker = BitlockerV2::Impl::deactivate_bitlockers();
 
 	    if (!deactivate_status.lvm_lv)
 		deactivate_status.lvm_lv = LvmLv::Impl::deactivate_lvm_lvs();
@@ -144,7 +157,8 @@ namespace storage
 	    if (!deactivate_status.md)
 		deactivate_status.md = Md::Impl::deactivate_mds();
 
-	    if (deactivate_status.luks && deactivate_status.lvm_lv && deactivate_status.md)
+	    if (deactivate_status.luks && deactivate_status.bitlocker && deactivate_status.lvm_lv &&
+		deactivate_status.md)
 		break;
 	}
 
@@ -154,7 +168,7 @@ namespace storage
 
 	y2mil("deactivate end");
 
-	return deactivate_status;
+	return ret;
     }
 
 

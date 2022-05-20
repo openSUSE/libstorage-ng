@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -72,6 +72,8 @@ namespace storage
 	    string luks_uuid;
 	    string luks_label;
 
+	    bool is_bitlocker = false;
+
 	    bool is_bcache = false;
 	    string bcache_uuid;
 	};
@@ -103,6 +105,7 @@ namespace storage
 	bool any_md() const;
 	bool any_lvm() const;
 	bool any_luks() const;
+	bool any_bitlocker() const;
 	bool any_bcache() const;
 	bool any_btrfs() const;
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2018-2021] SUSE LLC
+ * Copyright (c) [2018-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -34,18 +34,24 @@ namespace storage
 	: callbacks(callbacks)
     {
 	const ProbeCallbacksV3* probe_callbacks_v3 = dynamic_cast<const ProbeCallbacksV3*>(callbacks);
-
 	if (probe_callbacks_v3)
 	    probe_callbacks_v3->begin();
+
+	const ActivateCallbacksV3* activate_callbacks_v3 = dynamic_cast<const ActivateCallbacksV3*>(callbacks);
+	if (activate_callbacks_v3)
+	    activate_callbacks_v3->begin();
     }
 
 
     CallbacksGuard::~CallbacksGuard()
     {
 	const ProbeCallbacksV3* probe_callbacks_v3 = dynamic_cast<const ProbeCallbacksV3*>(callbacks);
-
 	if (probe_callbacks_v3)
 	    probe_callbacks_v3->end();
+
+	const ActivateCallbacksV3* activate_callbacks_v3 = dynamic_cast<const ActivateCallbacksV3*>(callbacks);
+	if (activate_callbacks_v3)
+	    activate_callbacks_v3->end();
     }
 
 

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -48,6 +48,33 @@ namespace storage
 	unsigned long long size = 0;
 	string uuid;
 	string label;
+
+    };
+
+
+    class BitlockerInfo::Impl
+    {
+    public:
+
+	string device_name;
+	unsigned long long size = 0;
+	string dm_table_name;
+	bool is_dm_table_name_generated = false;
+	string uuid;
+
+    };
+
+
+    class DeactivateStatusV2::Impl
+    {
+    public:
+
+	bool multipath = false;
+	bool dm_raid = false;
+	bool md = false;
+	bool lvm_lv = false;
+	bool luks = false;
+	bool bitlocker = false;
 
     };
 
@@ -103,7 +130,7 @@ namespace storage
 
 	void activate(const ActivateCallbacks* activate_callbacks) const;
 
-	DeactivateStatus deactivate() const;
+	DeactivateStatusV2 deactivate() const;
 
 	void probe(const ProbeCallbacks* probe_callbacks);
 

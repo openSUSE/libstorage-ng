@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -115,7 +115,6 @@ namespace storage
 	 * again) if 1. the activation was canceled or 2. the
 	 * activation was successful.
 	 *
-	 * TODO Add label parameter for LUKS2.
 	 * TODO Also allow to return a key file?
 	 */
 	virtual std::pair<bool, std::string> luks(const std::string& uuid, int attempt) const = 0;
@@ -172,18 +171,107 @@ namespace storage
 
 
     /**
-     * Provides information whether deactivate() was able to deactivate
-     * subsystems. True indicates that the corresponding subsystem was
-     * deactivate or not activate in the first place.
+     * Stores information about a Bitlocker device.
      */
-    struct DeactivateStatus
+    class BitlockerInfo : private boost::noncopyable
+    {
+    public:
+
+	BitlockerInfo();
+	~BitlockerInfo();
+
+	const std::string& get_device_name() const;
+	unsigned long long get_size() const;
+	const std::string& get_dm_table_name() const;
+	bool is_dm_table_name_generated() const;
+	const std::string& get_uuid() const;
+
+    public:
+
+	class Impl;
+
+	Impl& get_impl() { return *impl; }
+	const Impl& get_impl() const { return *impl; }
+
+    private:
+
+	const std::unique_ptr<Impl> impl;
+
+    };
+
+
+    /**
+     * Specialized callbacks with a more generic parameter for Bitlocker activation.
+     */
+    class ActivateCallbacksV3 : public ActivateCallbacksLuks
+    {
+    public:
+
+	virtual ~ActivateCallbacksV3() {}
+
+	/**
+	 * Called at the begin of activation.
+	 */
+	virtual void begin() const {}
+
+	/**
+	 * Called at the end of activation.
+	 */
+	virtual void end() const {}
+
+	/**
+	 * Decide whether the BitLocker should be activated.
+	 *
+	 * Parameter "info" contains all known information about the BitLocker device.
+	 */
+	virtual std::pair<bool, std::string> bitlocker(const BitlockerInfo& bitlocker_info, int attempt) const = 0;
+
+    };
+
+
+    struct ST_DEPRECATED DeactivateStatus
     {
 	bool multipath;
 	bool dm_raid;
 	bool md;
 	bool lvm_lv;
 	bool luks;
-	// TODO add bcache?
+    };
+
+
+    /**
+     * Provides information whether deactivate_v2() was able to deactivate
+     * subsystems. True indicates that the corresponding subsystem was deactivate or not
+     * activate in the first place.
+     */
+    class DeactivateStatusV2
+    {
+    public:
+
+	DeactivateStatusV2();
+	DeactivateStatusV2(const DeactivateStatusV2& deactivate_status);
+	virtual ~DeactivateStatusV2();
+
+	DeactivateStatusV2& operator=(const DeactivateStatusV2& deactivate_status);
+
+	bool multipath() const;
+	bool dm_raid() const;
+	bool md() const;
+	bool lvm_lv() const;
+	bool luks() const;
+	bool bitlocker() const;
+
+    public:
+
+	class Impl;
+
+	Impl& get_impl() { return *impl; }
+	const Impl& get_impl() const { return *impl; }
+
+    private:
+
+	const std::unique_ptr<Impl> impl;
+
     };
 
 
@@ -491,6 +579,11 @@ namespace storage
 	void activate(const ActivateCallbacks* activate_callbacks) const;
 
 	/**
+	 * @throw Exception
+	 */
+	DeactivateStatus deactivate() const ST_DEPRECATED;
+
+	/**
 	 * Deactivate devices like multipath, DM and MD RAID, LVM and LUKS. It
 	 * is not required to have probed the system to call this function. On
 	 * the other hand after calling this function activate() should be
@@ -503,7 +596,7 @@ namespace storage
 	 *
 	 * @throw Exception
 	 */
-	DeactivateStatus deactivate() const;
+	DeactivateStatusV2 deactivate_v2() const;
 
 	/**
 	 * Probe the system and replace the probed, system and staging
