@@ -48,8 +48,8 @@ namespace storage
     void
     CmdCryptsetupStatus::parse(const vector<string>& lines)
     {
-	string type, cipher, keysize;
-	string integrity;
+	string type, cipher, keysize, integrity;
+
 	for (const string& line : lines)
 	{
 	    string key = extractNthWord(0, line);
@@ -57,9 +57,9 @@ namespace storage
 		type = extractNthWord(1, line);
 	    else if (key == "cipher:")
 		cipher = extractNthWord(1, line);
-	    else if(key == "keysize:")
+	    else if (key == "keysize:")
 		keysize = extractNthWord(1, line);
-	    else if(key == "integrity:")
+	    else if (key == "integrity:")
 		integrity = extractNthWord(1, line);
 	}
 
@@ -67,6 +67,8 @@ namespace storage
 	    encryption_type = EncryptionType::LUKS1;
 	else if (type == "LUKS2")
 	    encryption_type = EncryptionType::LUKS2;
+	else if (type == "BITLK")
+	    encryption_type = EncryptionType::BITLOCKER;
 	else if (cipher == "twofish-cbc-plain")
 	    encryption_type = EncryptionType::TWOFISH;
 	else if (cipher == "twofish-cbc-null" && keysize == "192")
