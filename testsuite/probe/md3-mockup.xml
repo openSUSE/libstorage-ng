@@ -26,31 +26,31 @@
     </Command>
     <Command>
       <name>/sbin/blkid -c '/dev/null'</name>
-      <stdout>/dev/sda1: UUID="2fd6a519-1b93-42dc-bc8f-99ac033a17a9" TYPE="ext4" PTTYPE="dos" PARTLABEL="primary" PARTUUID="7ec989ba-839c-4991-8a13-b66eab52c828"</stdout>
-      <stdout>/dev/sda2: PARTLABEL="primary" PARTUUID="2a68a80b-94f7-4770-abf5-058f9660e791"</stdout>
-      <stdout>/dev/sda3: UUID="fd1d0005-fb00-4cf8-ac57-c480276afbe8" TYPE="swap" PARTLABEL="primary" PARTUUID="8e2978ee-6ecb-4f3d-98d6-3a19ae5b1744"</stdout>
-      <stdout>/dev/sdb1: UUID="3615d8bc-263f-ad71-7878-2364ddf8dd58" UUID_SUB="06a21ae1-702e-6487-483d-fe74308e0376" LABEL="e146:0" TYPE="linux_raid_member" PARTLABEL="primary" PARTUUID="ce47be2c-9ab1-4c28-9ff5-a304b4768830"</stdout>
-      <stdout>/dev/sdb2: UUID="3615d8bc-263f-ad71-7878-2364ddf8dd58" UUID_SUB="ed46ce05-86a1-8bfd-e840-364c5363d22f" LABEL="e146:0" TYPE="linux_raid_member" PARTLABEL="primary" PARTUUID="250e5184-c37d-4ff3-adaa-f60571af2c5c"</stdout>
-      <stdout>/dev/sdb3: UUID="0ea71d45-8bed-4762-7e21-12f067d0a563" UUID_SUB="0151ebf5-386d-431c-6149-f7e3264531fa" LABEL="e146:1" TYPE="linux_raid_member" PARTLABEL="primary" PARTUUID="fae69e0b-9f42-426d-955a-5eca43f43cfe"</stdout>
-      <stdout>/dev/sdb4: UUID="0ea71d45-8bed-4762-7e21-12f067d0a563" UUID_SUB="5af6b107-222b-c6c1-7273-639a7bdb8611" LABEL="e146:1" TYPE="linux_raid_member" PARTLABEL="primary" PARTUUID="a2114d3d-cb17-4b40-8c86-124e82431fb1"</stdout>
-      <stdout>/dev/sdb5: UUID="5d1cea4b-8d7d-fcb2-3380-fe48b1934d2a" UUID_SUB="bcb26bdd-984d-e041-9369-4360e046d920" LABEL="e146:test2" TYPE="linux_raid_member" PARTLABEL="primary" PARTUUID="e3f1842e-53b2-46a4-85eb-ebd7e2a0200f"</stdout>
-      <stdout>/dev/sdb6: UUID="5d1cea4b-8d7d-fcb2-3380-fe48b1934d2a" UUID_SUB="1943db3f-7474-89a7-41ea-62ed8f81396a" LABEL="e146:test2" TYPE="linux_raid_member" PARTLABEL="primary" PARTUUID="4307f060-eec3-4c56-be05-ab1cd1f91cd3"</stdout>
-      <stdout>/dev/sdb7: UUID="d18642aa-6cec-3364-52da-8d3be6229373" UUID_SUB="18492024-e819-8da3-3410-c60b358224de" LABEL="e146:test3" TYPE="linux_raid_member" PARTLABEL="primary" PARTUUID="7305ac2d-cca9-4650-8425-824bbb54bdd7"</stdout>
-      <stdout>/dev/sdb8: UUID="d18642aa-6cec-3364-52da-8d3be6229373" UUID_SUB="75880d70-a8bc-d82e-1831-853c2a4b0c1c" LABEL="e146:test3" TYPE="linux_raid_member" PARTLABEL="primary" PARTUUID="e41b0358-9364-4db4-8502-f69f063c510e"</stdout>
-      <stdout>/dev/sdb9: UUID="529c9212-439a-e1e7-54ce-859519604ae5" UUID_SUB="da26abc8-9af8-8e0c-7bdb-8f4d075abb7c" LABEL="e146:test4" TYPE="linux_raid_member" PARTLABEL="primary" PARTUUID="b2c0e9c3-c82b-4df5-9fef-0ab55eb8f532"</stdout>
-      <stdout>/dev/sdb10: UUID="529c9212-439a-e1e7-54ce-859519604ae5" UUID_SUB="fd23cabf-af98-f336-b312-f97c4012944e" LABEL="e146:test4" TYPE="linux_raid_member" PARTLABEL="primary" PARTUUID="a5f92ac6-b053-402b-9aba-9888dd63e4cf"</stdout>
-      <stdout>/dev/sdb11: UUID="04ac694a-d517-0a17-75bf-9d816ec1f71f" UUID_SUB="d5f87c14-f3c8-05d0-940f-e28fb71246eb" LABEL="e146:test5" TYPE="linux_raid_member" PARTLABEL="primary" PARTUUID="45c294f7-36b9-4a7b-9f80-949fcb546a68"</stdout>
-      <stdout>/dev/sdb12: UUID="04ac694a-d517-0a17-75bf-9d816ec1f71f" UUID_SUB="247b0bfd-d826-3625-bba7-5c3234607949" LABEL="e146:test5" TYPE="linux_raid_member" PARTLABEL="primary" PARTUUID="d5132300-a1a7-466b-8200-7e2d4ca8fe14"</stdout>
+      <stdout>/dev/sda1: UUID="2fd6a519-1b93-42dc-bc8f-99ac033a17a9" TYPE="ext4" PTTYPE="dos" PARTUUID="7ec989ba-839c-4991-8a13-b66eab52c828"</stdout>
+      <stdout>/dev/sda2: PARTUUID="2a68a80b-94f7-4770-abf5-058f9660e791"</stdout>
+      <stdout>/dev/sda3: UUID="fd1d0005-fb00-4cf8-ac57-c480276afbe8" TYPE="swap" PARTUUID="8e2978ee-6ecb-4f3d-98d6-3a19ae5b1744"</stdout>
+      <stdout>/dev/sdb1: UUID="3615d8bc-263f-ad71-7878-2364ddf8dd58" UUID_SUB="06a21ae1-702e-6487-483d-fe74308e0376" LABEL="e146:0" TYPE="linux_raid_member" PARTUUID="ce47be2c-9ab1-4c28-9ff5-a304b4768830"</stdout>
+      <stdout>/dev/sdb2: UUID="3615d8bc-263f-ad71-7878-2364ddf8dd58" UUID_SUB="ed46ce05-86a1-8bfd-e840-364c5363d22f" LABEL="e146:0" TYPE="linux_raid_member" PARTUUID="250e5184-c37d-4ff3-adaa-f60571af2c5c"</stdout>
+      <stdout>/dev/sdb3: UUID="0ea71d45-8bed-4762-7e21-12f067d0a563" UUID_SUB="0151ebf5-386d-431c-6149-f7e3264531fa" LABEL="e146:1" TYPE="linux_raid_member" PARTUUID="fae69e0b-9f42-426d-955a-5eca43f43cfe"</stdout>
+      <stdout>/dev/sdb4: UUID="0ea71d45-8bed-4762-7e21-12f067d0a563" UUID_SUB="5af6b107-222b-c6c1-7273-639a7bdb8611" LABEL="e146:1" TYPE="linux_raid_member" PARTUUID="a2114d3d-cb17-4b40-8c86-124e82431fb1"</stdout>
+      <stdout>/dev/sdb5: UUID="5d1cea4b-8d7d-fcb2-3380-fe48b1934d2a" UUID_SUB="bcb26bdd-984d-e041-9369-4360e046d920" LABEL="e146:test2" TYPE="linux_raid_member" PARTUUID="e3f1842e-53b2-46a4-85eb-ebd7e2a0200f"</stdout>
+      <stdout>/dev/sdb6: UUID="5d1cea4b-8d7d-fcb2-3380-fe48b1934d2a" UUID_SUB="1943db3f-7474-89a7-41ea-62ed8f81396a" LABEL="e146:test2" TYPE="linux_raid_member" PARTUUID="4307f060-eec3-4c56-be05-ab1cd1f91cd3"</stdout>
+      <stdout>/dev/sdb7: UUID="d18642aa-6cec-3364-52da-8d3be6229373" UUID_SUB="18492024-e819-8da3-3410-c60b358224de" LABEL="e146:test3" TYPE="linux_raid_member" PARTUUID="7305ac2d-cca9-4650-8425-824bbb54bdd7"</stdout>
+      <stdout>/dev/sdb8: UUID="d18642aa-6cec-3364-52da-8d3be6229373" UUID_SUB="75880d70-a8bc-d82e-1831-853c2a4b0c1c" LABEL="e146:test3" TYPE="linux_raid_member" PARTUUID="e41b0358-9364-4db4-8502-f69f063c510e"</stdout>
+      <stdout>/dev/sdb9: UUID="529c9212-439a-e1e7-54ce-859519604ae5" UUID_SUB="da26abc8-9af8-8e0c-7bdb-8f4d075abb7c" LABEL="e146:test4" TYPE="linux_raid_member" PARTUUID="b2c0e9c3-c82b-4df5-9fef-0ab55eb8f532"</stdout>
+      <stdout>/dev/sdb10: UUID="529c9212-439a-e1e7-54ce-859519604ae5" UUID_SUB="fd23cabf-af98-f336-b312-f97c4012944e" LABEL="e146:test4" TYPE="linux_raid_member" PARTUUID="a5f92ac6-b053-402b-9aba-9888dd63e4cf"</stdout>
+      <stdout>/dev/sdb11: UUID="04ac694a-d517-0a17-75bf-9d816ec1f71f" UUID_SUB="d5f87c14-f3c8-05d0-940f-e28fb71246eb" LABEL="e146:test5" TYPE="linux_raid_member" PARTUUID="45c294f7-36b9-4a7b-9f80-949fcb546a68"</stdout>
+      <stdout>/dev/sdb12: UUID="04ac694a-d517-0a17-75bf-9d816ec1f71f" UUID_SUB="247b0bfd-d826-3625-bba7-5c3234607949" LABEL="e146:test5" TYPE="linux_raid_member" PARTUUID="d5132300-a1a7-466b-8200-7e2d4ca8fe14"</stdout>
       <stdout>/dev/sr0: UUID="2017-06-19-16-58-42-00" LABEL="StorageNG-Test-Build460.5" TYPE="iso9660"</stdout>
       <stdout>/dev/md0: UUID="43a83675-2fbb-4b03-a9b8-681cffb30afa" TYPE="ext4"</stdout>
       <stdout>/dev/md1: PTUUID="01482906-debc-4ad4-b992-4b44c234501f" PTTYPE="gpt"</stdout>
-      <stdout>/dev/md1p1: UUID="046d10b0-6d59-44d3-a0e4-e38656494c02" TYPE="ext4" PARTLABEL="primary" PARTUUID="bc004074-ed9f-47f4-89c8-31ddcf2367bf"</stdout>
+      <stdout>/dev/md1p1: UUID="046d10b0-6d59-44d3-a0e4-e38656494c02" TYPE="ext4" PARTUUID="bc004074-ed9f-47f4-89c8-31ddcf2367bf"</stdout>
       <stdout>/dev/md127: UUID="be68d781-36fc-49d7-9971-8b9a92006d3c" TYPE="ext4"</stdout>
       <stdout>/dev/md126: PTUUID="1f6376d4-c3dc-4e97-b6cb-b6e19515055e" PTTYPE="gpt"</stdout>
-      <stdout>/dev/md126p1: UUID="8dc4770e-a95f-43bd-b18f-eedef65f64d5" TYPE="ext4" PARTLABEL="primary" PARTUUID="d15df5bf-5ddc-4b7b-9ec5-7d0458972179"</stdout>
+      <stdout>/dev/md126p1: UUID="8dc4770e-a95f-43bd-b18f-eedef65f64d5" TYPE="ext4" PARTUUID="d15df5bf-5ddc-4b7b-9ec5-7d0458972179"</stdout>
       <stdout>/dev/md_test4: UUID="962125b5-4f94-45eb-80cf-272afae52a8f" TYPE="ext4"</stdout>
       <stdout>/dev/md_test5: PTUUID="8289f7bd-df8b-4007-bbd7-aaa4c5d7f8a3" PTTYPE="gpt"</stdout>
-      <stdout>/dev/md_test5p1: UUID="4603e3eb-e21b-46f5-9d5d-c31536f064fa" TYPE="ext4" PARTLABEL="primary" PARTUUID="6977800c-4983-4319-bfcf-906265e05745"</stdout>
+      <stdout>/dev/md_test5p1: UUID="4603e3eb-e21b-46f5-9d5d-c31536f064fa" TYPE="ext4" PARTUUID="6977800c-4983-4319-bfcf-906265e05745"</stdout>
     </Command>
     <Command>
       <name>/sbin/mdadm --detail '/dev/md/test2' --export</name>
@@ -219,7 +219,6 @@
       <stdout>E: ID_FS_UUID_ENC=8dc4770e-a95f-43bd-b18f-eedef65f64d5</stdout>
       <stdout>E: ID_FS_VERSION=1.0</stdout>
       <stdout>E: ID_PART_ENTRY_DISK=9:126</stdout>
-      <stdout>E: ID_PART_ENTRY_NAME=primary</stdout>
       <stdout>E: ID_PART_ENTRY_NUMBER=1</stdout>
       <stdout>E: ID_PART_ENTRY_OFFSET=2048</stdout>
       <stdout>E: ID_PART_ENTRY_SCHEME=gpt</stdout>
@@ -240,7 +239,6 @@
       <stdout>E: MD_UUID=d18642aa:6cec3364:52da8d3b:e6229373</stdout>
       <stdout>E: MINOR=2</stdout>
       <stdout>E: PARTN=1</stdout>
-      <stdout>E: PARTNAME=primary</stdout>
       <stdout>E: SUBSYSTEM=block</stdout>
       <stdout>E: TAGS=:systemd:</stdout>
       <stdout>E: USEC_INITIALIZED=789644385</stdout>
@@ -329,7 +327,6 @@
       <stdout>E: ID_FS_UUID_ENC=4603e3eb-e21b-46f5-9d5d-c31536f064fa</stdout>
       <stdout>E: ID_FS_VERSION=1.0</stdout>
       <stdout>E: ID_PART_ENTRY_DISK=9:513</stdout>
-      <stdout>E: ID_PART_ENTRY_NAME=primary</stdout>
       <stdout>E: ID_PART_ENTRY_NUMBER=1</stdout>
       <stdout>E: ID_PART_ENTRY_OFFSET=2048</stdout>
       <stdout>E: ID_PART_ENTRY_SCHEME=gpt</stdout>
@@ -350,7 +347,6 @@
       <stdout>E: MD_UUID=04ac694a:d5170a17:75bf9d81:6ec1f71f</stdout>
       <stdout>E: MINOR=3</stdout>
       <stdout>E: PARTN=1</stdout>
-      <stdout>E: PARTNAME=primary</stdout>
       <stdout>E: SUBSYSTEM=block</stdout>
       <stdout>E: TAGS=:systemd:</stdout>
       <stdout>E: USEC_INITIALIZED=791898024</stdout>
@@ -434,7 +430,6 @@
       <stdout>E: ID_FS_UUID_ENC=8dc4770e-a95f-43bd-b18f-eedef65f64d5</stdout>
       <stdout>E: ID_FS_VERSION=1.0</stdout>
       <stdout>E: ID_PART_ENTRY_DISK=9:126</stdout>
-      <stdout>E: ID_PART_ENTRY_NAME=primary</stdout>
       <stdout>E: ID_PART_ENTRY_NUMBER=1</stdout>
       <stdout>E: ID_PART_ENTRY_OFFSET=2048</stdout>
       <stdout>E: ID_PART_ENTRY_SCHEME=gpt</stdout>
@@ -455,7 +450,6 @@
       <stdout>E: MD_UUID=d18642aa:6cec3364:52da8d3b:e6229373</stdout>
       <stdout>E: MINOR=2</stdout>
       <stdout>E: PARTN=1</stdout>
-      <stdout>E: PARTNAME=primary</stdout>
       <stdout>E: SUBSYSTEM=block</stdout>
       <stdout>E: TAGS=:systemd:</stdout>
       <stdout>E: USEC_INITIALIZED=789644385</stdout>
@@ -512,7 +506,6 @@
       <stdout>E: ID_FS_UUID_ENC=046d10b0-6d59-44d3-a0e4-e38656494c02</stdout>
       <stdout>E: ID_FS_VERSION=1.0</stdout>
       <stdout>E: ID_PART_ENTRY_DISK=9:1</stdout>
-      <stdout>E: ID_PART_ENTRY_NAME=primary</stdout>
       <stdout>E: ID_PART_ENTRY_NUMBER=1</stdout>
       <stdout>E: ID_PART_ENTRY_OFFSET=2048</stdout>
       <stdout>E: ID_PART_ENTRY_SCHEME=gpt</stdout>
@@ -532,7 +525,6 @@
       <stdout>E: MD_UUID=0ea71d45:8bed4762:7e2112f0:67d0a563</stdout>
       <stdout>E: MINOR=1</stdout>
       <stdout>E: PARTN=1</stdout>
-      <stdout>E: PARTNAME=primary</stdout>
       <stdout>E: SUBSYSTEM=block</stdout>
       <stdout>E: TAGS=:systemd:</stdout>
       <stdout>E: USEC_INITIALIZED=748610962</stdout>
@@ -556,7 +548,6 @@
       <stdout>E: ID_FS_UUID_ENC=4603e3eb-e21b-46f5-9d5d-c31536f064fa</stdout>
       <stdout>E: ID_FS_VERSION=1.0</stdout>
       <stdout>E: ID_PART_ENTRY_DISK=9:513</stdout>
-      <stdout>E: ID_PART_ENTRY_NAME=primary</stdout>
       <stdout>E: ID_PART_ENTRY_NUMBER=1</stdout>
       <stdout>E: ID_PART_ENTRY_OFFSET=2048</stdout>
       <stdout>E: ID_PART_ENTRY_SCHEME=gpt</stdout>
@@ -577,7 +568,6 @@
       <stdout>E: MD_UUID=04ac694a:d5170a17:75bf9d81:6ec1f71f</stdout>
       <stdout>E: MINOR=3</stdout>
       <stdout>E: PARTN=1</stdout>
-      <stdout>E: PARTNAME=primary</stdout>
       <stdout>E: SUBSYSTEM=block</stdout>
       <stdout>E: TAGS=:systemd:</stdout>
       <stdout>E: USEC_INITIALIZED=791898024</stdout>
@@ -640,13 +630,12 @@
       <stdout>S: disk/by-id/scsi-0ATA_VBOX_HARDDISK_VB117fcb28-1410b7be-part1</stdout>
       <stdout>S: disk/by-id/scsi-1ATA_VBOX_HARDDISK_VB117fcb28-1410b7be-part1</stdout>
       <stdout>S: disk/by-id/scsi-SATA_VBOX_HARDDISK_VB117fcb28-1410b7be-part1</stdout>
-      <stdout>S: disk/by-partlabel/primary</stdout>
       <stdout>S: disk/by-partuuid/7ec989ba-839c-4991-8a13-b66eab52c828</stdout>
       <stdout>S: disk/by-path/pci-0000:00:1f.2-ata-1-part1</stdout>
       <stdout>S: disk/by-path/pci-0000:00:1f.2-scsi-0:0:0:0-part1</stdout>
       <stdout>S: disk/by-uuid/2fd6a519-1b93-42dc-bc8f-99ac033a17a9</stdout>
       <stdout>S: root</stdout>
-      <stdout>E: DEVLINKS=/dev/disk/by-uuid/2fd6a519-1b93-42dc-bc8f-99ac033a17a9 /dev/disk/by-path/pci-0000:00:1f.2-scsi-0:0:0:0-part1 /dev/disk/by-id/scsi-1ATA_VBOX_HARDDISK_VB117fcb28-1410b7be-part1 /dev/disk/by-id/scsi-SATA_VBOX_HARDDISK_VB117fcb28-1410b7be-part1 /dev/disk/by-partlabel/primary /dev/root /dev/disk/by-id/scsi-0ATA_VBOX_HARDDISK_VB117fcb28-1410b7be-part1 /dev/disk/by-id/ata-VBOX_HARDDISK_VB117fcb28-1410b7be-part1 /dev/disk/by-path/pci-0000:00:1f.2-ata-1-part1 /dev/disk/by-partuuid/7ec989ba-839c-4991-8a13-b66eab52c828</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-uuid/2fd6a519-1b93-42dc-bc8f-99ac033a17a9 /dev/disk/by-path/pci-0000:00:1f.2-scsi-0:0:0:0-part1 /dev/disk/by-id/scsi-1ATA_VBOX_HARDDISK_VB117fcb28-1410b7be-part1 /dev/disk/by-id/scsi-SATA_VBOX_HARDDISK_VB117fcb28-1410b7be-part1 /dev/root /dev/disk/by-id/scsi-0ATA_VBOX_HARDDISK_VB117fcb28-1410b7be-part1 /dev/disk/by-id/ata-VBOX_HARDDISK_VB117fcb28-1410b7be-part1 /dev/disk/by-path/pci-0000:00:1f.2-ata-1-part1 /dev/disk/by-partuuid/7ec989ba-839c-4991-8a13-b66eab52c828</stdout>
       <stdout>E: DEVNAME=/dev/sda1</stdout>
       <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda1</stdout>
       <stdout>E: DEVTYPE=partition</stdout>
@@ -661,7 +650,6 @@
       <stdout>E: ID_MODEL_ENC=VBOX\x20HARDDISK\x20\x20\x20</stdout>
       <stdout>E: ID_PART_ENTRY_DISK=8:0</stdout>
       <stdout>E: ID_PART_ENTRY_FLAGS=0x4</stdout>
-      <stdout>E: ID_PART_ENTRY_NAME=primary</stdout>
       <stdout>E: ID_PART_ENTRY_NUMBER=1</stdout>
       <stdout>E: ID_PART_ENTRY_OFFSET=2048</stdout>
       <stdout>E: ID_PART_ENTRY_SCHEME=gpt</stdout>
@@ -686,7 +674,6 @@
       <stdout>E: MAJOR=8</stdout>
       <stdout>E: MINOR=1</stdout>
       <stdout>E: PARTN=1</stdout>
-      <stdout>E: PARTNAME=primary</stdout>
       <stdout>E: SCSI_IDENT_LUN_ATA=VBOX_HARDDISK_VB117fcb28-1410b7be</stdout>
       <stdout>E: SCSI_IDENT_LUN_T10=ATA_VBOX_HARDDISK_VB117fcb28-1410b7be</stdout>
       <stdout>E: SCSI_IDENT_LUN_VENDOR=VB117fcb28-1410b7be</stdout>
@@ -710,11 +697,10 @@
       <stdout>S: disk/by-id/scsi-0ATA_VBOX_HARDDISK_VB117fcb28-1410b7be-part2</stdout>
       <stdout>S: disk/by-id/scsi-1ATA_VBOX_HARDDISK_VB117fcb28-1410b7be-part2</stdout>
       <stdout>S: disk/by-id/scsi-SATA_VBOX_HARDDISK_VB117fcb28-1410b7be-part2</stdout>
-      <stdout>S: disk/by-partlabel/primary</stdout>
       <stdout>S: disk/by-partuuid/2a68a80b-94f7-4770-abf5-058f9660e791</stdout>
       <stdout>S: disk/by-path/pci-0000:00:1f.2-ata-1-part2</stdout>
       <stdout>S: disk/by-path/pci-0000:00:1f.2-scsi-0:0:0:0-part2</stdout>
-      <stdout>E: DEVLINKS=/dev/disk/by-path/pci-0000:00:1f.2-ata-1-part2 /dev/disk/by-id/ata-VBOX_HARDDISK_VB117fcb28-1410b7be-part2 /dev/disk/by-id/scsi-0ATA_VBOX_HARDDISK_VB117fcb28-1410b7be-part2 /dev/disk/by-partuuid/2a68a80b-94f7-4770-abf5-058f9660e791 /dev/disk/by-id/scsi-1ATA_VBOX_HARDDISK_VB117fcb28-1410b7be-part2 /dev/disk/by-path/pci-0000:00:1f.2-scsi-0:0:0:0-part2 /dev/disk/by-partlabel/primary /dev/disk/by-id/scsi-SATA_VBOX_HARDDISK_VB117fcb28-1410b7be-part2</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-path/pci-0000:00:1f.2-ata-1-part2 /dev/disk/by-id/ata-VBOX_HARDDISK_VB117fcb28-1410b7be-part2 /dev/disk/by-id/scsi-0ATA_VBOX_HARDDISK_VB117fcb28-1410b7be-part2 /dev/disk/by-partuuid/2a68a80b-94f7-4770-abf5-058f9660e791 /dev/disk/by-id/scsi-1ATA_VBOX_HARDDISK_VB117fcb28-1410b7be-part2 /dev/disk/by-path/pci-0000:00:1f.2-scsi-0:0:0:0-part2 /dev/disk/by-id/scsi-SATA_VBOX_HARDDISK_VB117fcb28-1410b7be-part2</stdout>
       <stdout>E: DEVNAME=/dev/sda2</stdout>
       <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda2</stdout>
       <stdout>E: DEVTYPE=partition</stdout>
@@ -723,7 +709,6 @@
       <stdout>E: ID_MODEL=VBOX_HARDDISK</stdout>
       <stdout>E: ID_MODEL_ENC=VBOX\x20HARDDISK\x20\x20\x20</stdout>
       <stdout>E: ID_PART_ENTRY_DISK=8:0</stdout>
-      <stdout>E: ID_PART_ENTRY_NAME=primary</stdout>
       <stdout>E: ID_PART_ENTRY_NUMBER=2</stdout>
       <stdout>E: ID_PART_ENTRY_OFFSET=29356032</stdout>
       <stdout>E: ID_PART_ENTRY_SCHEME=gpt</stdout>
@@ -748,7 +733,6 @@
       <stdout>E: MAJOR=8</stdout>
       <stdout>E: MINOR=2</stdout>
       <stdout>E: PARTN=2</stdout>
-      <stdout>E: PARTNAME=primary</stdout>
       <stdout>E: SCSI_IDENT_LUN_ATA=VBOX_HARDDISK_VB117fcb28-1410b7be</stdout>
       <stdout>E: SCSI_IDENT_LUN_T10=ATA_VBOX_HARDDISK_VB117fcb28-1410b7be</stdout>
       <stdout>E: SCSI_IDENT_LUN_VENDOR=VB117fcb28-1410b7be</stdout>
@@ -772,12 +756,11 @@
       <stdout>S: disk/by-id/scsi-0ATA_VBOX_HARDDISK_VB117fcb28-1410b7be-part3</stdout>
       <stdout>S: disk/by-id/scsi-1ATA_VBOX_HARDDISK_VB117fcb28-1410b7be-part3</stdout>
       <stdout>S: disk/by-id/scsi-SATA_VBOX_HARDDISK_VB117fcb28-1410b7be-part3</stdout>
-      <stdout>S: disk/by-partlabel/primary</stdout>
       <stdout>S: disk/by-partuuid/8e2978ee-6ecb-4f3d-98d6-3a19ae5b1744</stdout>
       <stdout>S: disk/by-path/pci-0000:00:1f.2-ata-1-part3</stdout>
       <stdout>S: disk/by-path/pci-0000:00:1f.2-scsi-0:0:0:0-part3</stdout>
       <stdout>S: disk/by-uuid/fd1d0005-fb00-4cf8-ac57-c480276afbe8</stdout>
-      <stdout>E: DEVLINKS=/dev/disk/by-id/scsi-0ATA_VBOX_HARDDISK_VB117fcb28-1410b7be-part3 /dev/disk/by-path/pci-0000:00:1f.2-ata-1-part3 /dev/disk/by-partuuid/8e2978ee-6ecb-4f3d-98d6-3a19ae5b1744 /dev/disk/by-id/scsi-1ATA_VBOX_HARDDISK_VB117fcb28-1410b7be-part3 /dev/disk/by-path/pci-0000:00:1f.2-scsi-0:0:0:0-part3 /dev/disk/by-uuid/fd1d0005-fb00-4cf8-ac57-c480276afbe8 /dev/disk/by-partlabel/primary /dev/disk/by-id/scsi-SATA_VBOX_HARDDISK_VB117fcb28-1410b7be-part3 /dev/disk/by-id/ata-VBOX_HARDDISK_VB117fcb28-1410b7be-part3</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-id/scsi-0ATA_VBOX_HARDDISK_VB117fcb28-1410b7be-part3 /dev/disk/by-path/pci-0000:00:1f.2-ata-1-part3 /dev/disk/by-partuuid/8e2978ee-6ecb-4f3d-98d6-3a19ae5b1744 /dev/disk/by-id/scsi-1ATA_VBOX_HARDDISK_VB117fcb28-1410b7be-part3 /dev/disk/by-path/pci-0000:00:1f.2-scsi-0:0:0:0-part3 /dev/disk/by-uuid/fd1d0005-fb00-4cf8-ac57-c480276afbe8 /dev/disk/by-id/scsi-SATA_VBOX_HARDDISK_VB117fcb28-1410b7be-part3 /dev/disk/by-id/ata-VBOX_HARDDISK_VB117fcb28-1410b7be-part3</stdout>
       <stdout>E: DEVNAME=/dev/sda3</stdout>
       <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda3</stdout>
       <stdout>E: DEVTYPE=partition</stdout>
@@ -791,7 +774,6 @@
       <stdout>E: ID_MODEL=VBOX_HARDDISK</stdout>
       <stdout>E: ID_MODEL_ENC=VBOX\x20HARDDISK\x20\x20\x20</stdout>
       <stdout>E: ID_PART_ENTRY_DISK=8:0</stdout>
-      <stdout>E: ID_PART_ENTRY_NAME=primary</stdout>
       <stdout>E: ID_PART_ENTRY_NUMBER=3</stdout>
       <stdout>E: ID_PART_ENTRY_OFFSET=29358080</stdout>
       <stdout>E: ID_PART_ENTRY_SCHEME=gpt</stdout>
@@ -816,7 +798,6 @@
       <stdout>E: MAJOR=8</stdout>
       <stdout>E: MINOR=3</stdout>
       <stdout>E: PARTN=3</stdout>
-      <stdout>E: PARTNAME=primary</stdout>
       <stdout>E: SCSI_IDENT_LUN_ATA=VBOX_HARDDISK_VB117fcb28-1410b7be</stdout>
       <stdout>E: SCSI_IDENT_LUN_T10=ATA_VBOX_HARDDISK_VB117fcb28-1410b7be</stdout>
       <stdout>E: SCSI_IDENT_LUN_VENDOR=VB117fcb28-1410b7be</stdout>
@@ -890,11 +871,10 @@
       <stdout>S: disk/by-id/scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part1</stdout>
       <stdout>S: disk/by-id/scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part1</stdout>
       <stdout>S: disk/by-id/scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part1</stdout>
-      <stdout>S: disk/by-partlabel/primary</stdout>
       <stdout>S: disk/by-partuuid/ce47be2c-9ab1-4c28-9ff5-a304b4768830</stdout>
       <stdout>S: disk/by-path/pci-0000:00:1f.2-ata-2-part1</stdout>
       <stdout>S: disk/by-path/pci-0000:00:1f.2-scsi-1:0:0:0-part1</stdout>
-      <stdout>E: DEVLINKS=/dev/disk/by-id/scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part1 /dev/disk/by-path/pci-0000:00:1f.2-ata-2-part1 /dev/disk/by-partlabel/primary /dev/disk/by-path/pci-0000:00:1f.2-scsi-1:0:0:0-part1 /dev/disk/by-id/scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part1 /dev/disk/by-id/scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part1 /dev/disk/by-id/ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c-part1 /dev/disk/by-partuuid/ce47be2c-9ab1-4c28-9ff5-a304b4768830</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-id/scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part1 /dev/disk/by-path/pci-0000:00:1f.2-ata-2-part1 /dev/disk/by-path/pci-0000:00:1f.2-scsi-1:0:0:0-part1 /dev/disk/by-id/scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part1 /dev/disk/by-id/scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part1 /dev/disk/by-id/ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c-part1 /dev/disk/by-partuuid/ce47be2c-9ab1-4c28-9ff5-a304b4768830</stdout>
       <stdout>E: DEVNAME=/dev/sdb1</stdout>
       <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb1</stdout>
       <stdout>E: DEVTYPE=partition</stdout>
@@ -912,7 +892,6 @@
       <stdout>E: ID_MODEL=VBOX_HARDDISK</stdout>
       <stdout>E: ID_MODEL_ENC=VBOX\x20HARDDISK\x20\x20\x20</stdout>
       <stdout>E: ID_PART_ENTRY_DISK=8:16</stdout>
-      <stdout>E: ID_PART_ENTRY_NAME=primary</stdout>
       <stdout>E: ID_PART_ENTRY_NUMBER=1</stdout>
       <stdout>E: ID_PART_ENTRY_OFFSET=2048</stdout>
       <stdout>E: ID_PART_ENTRY_SCHEME=gpt</stdout>
@@ -937,7 +916,6 @@
       <stdout>E: MAJOR=8</stdout>
       <stdout>E: MINOR=17</stdout>
       <stdout>E: PARTN=1</stdout>
-      <stdout>E: PARTNAME=primary</stdout>
       <stdout>E: SCSI_IDENT_LUN_ATA=VBOX_HARDDISK_VBcc916f5f-e2309f1c</stdout>
       <stdout>E: SCSI_IDENT_LUN_T10=ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c</stdout>
       <stdout>E: SCSI_IDENT_LUN_VENDOR=VBcc916f5f-e2309f1c</stdout>
@@ -961,11 +939,10 @@
       <stdout>S: disk/by-id/scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part10</stdout>
       <stdout>S: disk/by-id/scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part10</stdout>
       <stdout>S: disk/by-id/scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part10</stdout>
-      <stdout>S: disk/by-partlabel/primary</stdout>
       <stdout>S: disk/by-partuuid/a5f92ac6-b053-402b-9aba-9888dd63e4cf</stdout>
       <stdout>S: disk/by-path/pci-0000:00:1f.2-ata-2-part10</stdout>
       <stdout>S: disk/by-path/pci-0000:00:1f.2-scsi-1:0:0:0-part10</stdout>
-      <stdout>E: DEVLINKS=/dev/disk/by-path/pci-0000:00:1f.2-scsi-1:0:0:0-part10 /dev/disk/by-id/scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part10 /dev/disk/by-id/ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c-part10 /dev/disk/by-path/pci-0000:00:1f.2-ata-2-part10 /dev/disk/by-id/scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part10 /dev/disk/by-id/scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part10 /dev/disk/by-partuuid/a5f92ac6-b053-402b-9aba-9888dd63e4cf /dev/disk/by-partlabel/primary</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-path/pci-0000:00:1f.2-scsi-1:0:0:0-part10 /dev/disk/by-id/scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part10 /dev/disk/by-id/ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c-part10 /dev/disk/by-path/pci-0000:00:1f.2-ata-2-part10 /dev/disk/by-id/scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part10 /dev/disk/by-id/scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part10 /dev/disk/by-partuuid/a5f92ac6-b053-402b-9aba-9888dd63e4cf</stdout>
       <stdout>E: DEVNAME=/dev/sdb10</stdout>
       <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb10</stdout>
       <stdout>E: DEVTYPE=partition</stdout>
@@ -974,7 +951,6 @@
       <stdout>E: ID_MODEL=VBOX_HARDDISK</stdout>
       <stdout>E: ID_MODEL_ENC=VBOX\x20HARDDISK\x20\x20\x20</stdout>
       <stdout>E: ID_PART_ENTRY_DISK=8:16</stdout>
-      <stdout>E: ID_PART_ENTRY_NAME=primary</stdout>
       <stdout>E: ID_PART_ENTRY_NUMBER=10</stdout>
       <stdout>E: ID_PART_ENTRY_OFFSET=30199808</stdout>
       <stdout>E: ID_PART_ENTRY_SCHEME=gpt</stdout>
@@ -1022,11 +998,10 @@
       <stdout>S: disk/by-id/scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part11</stdout>
       <stdout>S: disk/by-id/scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part11</stdout>
       <stdout>S: disk/by-id/scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part11</stdout>
-      <stdout>S: disk/by-partlabel/primary</stdout>
       <stdout>S: disk/by-partuuid/45c294f7-36b9-4a7b-9f80-949fcb546a68</stdout>
       <stdout>S: disk/by-path/pci-0000:00:1f.2-ata-2-part11</stdout>
       <stdout>S: disk/by-path/pci-0000:00:1f.2-scsi-1:0:0:0-part11</stdout>
-      <stdout>E: DEVLINKS=/dev/disk/by-id/ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c-part11 /dev/disk/by-path/pci-0000:00:1f.2-scsi-1:0:0:0-part11 /dev/disk/by-id/scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part11 /dev/disk/by-partlabel/primary /dev/disk/by-path/pci-0000:00:1f.2-ata-2-part11 /dev/disk/by-id/scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part11 /dev/disk/by-partuuid/45c294f7-36b9-4a7b-9f80-949fcb546a68 /dev/disk/by-id/scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part11</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-id/ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c-part11 /dev/disk/by-path/pci-0000:00:1f.2-scsi-1:0:0:0-part11 /dev/disk/by-id/scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part11 /dev/disk/by-path/pci-0000:00:1f.2-ata-2-part11 /dev/disk/by-id/scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part11 /dev/disk/by-partuuid/45c294f7-36b9-4a7b-9f80-949fcb546a68 /dev/disk/by-id/scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part11</stdout>
       <stdout>E: DEVNAME=/dev/sdb11</stdout>
       <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb11</stdout>
       <stdout>E: DEVTYPE=partition</stdout>
@@ -1044,7 +1019,6 @@
       <stdout>E: ID_MODEL=VBOX_HARDDISK</stdout>
       <stdout>E: ID_MODEL_ENC=VBOX\x20HARDDISK\x20\x20\x20</stdout>
       <stdout>E: ID_PART_ENTRY_DISK=8:16</stdout>
-      <stdout>E: ID_PART_ENTRY_NAME=primary</stdout>
       <stdout>E: ID_PART_ENTRY_NUMBER=11</stdout>
       <stdout>E: ID_PART_ENTRY_OFFSET=33554432</stdout>
       <stdout>E: ID_PART_ENTRY_SCHEME=gpt</stdout>
@@ -1092,11 +1066,10 @@
       <stdout>S: disk/by-id/scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part12</stdout>
       <stdout>S: disk/by-id/scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part12</stdout>
       <stdout>S: disk/by-id/scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part12</stdout>
-      <stdout>S: disk/by-partlabel/primary</stdout>
       <stdout>S: disk/by-partuuid/d5132300-a1a7-466b-8200-7e2d4ca8fe14</stdout>
       <stdout>S: disk/by-path/pci-0000:00:1f.2-ata-2-part12</stdout>
       <stdout>S: disk/by-path/pci-0000:00:1f.2-scsi-1:0:0:0-part12</stdout>
-      <stdout>E: DEVLINKS=/dev/disk/by-id/scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part12 /dev/disk/by-partuuid/d5132300-a1a7-466b-8200-7e2d4ca8fe14 /dev/disk/by-id/ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c-part12 /dev/disk/by-partlabel/primary /dev/disk/by-path/pci-0000:00:1f.2-ata-2-part12 /dev/disk/by-id/scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part12 /dev/disk/by-id/scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part12 /dev/disk/by-path/pci-0000:00:1f.2-scsi-1:0:0:0-part12</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-id/scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part12 /dev/disk/by-partuuid/d5132300-a1a7-466b-8200-7e2d4ca8fe14 /dev/disk/by-id/ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c-part12 /dev/disk/by-path/pci-0000:00:1f.2-ata-2-part12 /dev/disk/by-id/scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part12 /dev/disk/by-id/scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part12 /dev/disk/by-path/pci-0000:00:1f.2-scsi-1:0:0:0-part12</stdout>
       <stdout>E: DEVNAME=/dev/sdb12</stdout>
       <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb12</stdout>
       <stdout>E: DEVTYPE=partition</stdout>
@@ -1114,7 +1087,6 @@
       <stdout>E: ID_MODEL=VBOX_HARDDISK</stdout>
       <stdout>E: ID_MODEL_ENC=VBOX\x20HARDDISK\x20\x20\x20</stdout>
       <stdout>E: ID_PART_ENTRY_DISK=8:16</stdout>
-      <stdout>E: ID_PART_ENTRY_NAME=primary</stdout>
       <stdout>E: ID_PART_ENTRY_NUMBER=12</stdout>
       <stdout>E: ID_PART_ENTRY_OFFSET=36909056</stdout>
       <stdout>E: ID_PART_ENTRY_SCHEME=gpt</stdout>
@@ -1162,11 +1134,10 @@
       <stdout>S: disk/by-id/scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part2</stdout>
       <stdout>S: disk/by-id/scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part2</stdout>
       <stdout>S: disk/by-id/scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part2</stdout>
-      <stdout>S: disk/by-partlabel/primary</stdout>
       <stdout>S: disk/by-partuuid/250e5184-c37d-4ff3-adaa-f60571af2c5c</stdout>
       <stdout>S: disk/by-path/pci-0000:00:1f.2-ata-2-part2</stdout>
       <stdout>S: disk/by-path/pci-0000:00:1f.2-scsi-1:0:0:0-part2</stdout>
-      <stdout>E: DEVLINKS=/dev/disk/by-id/scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part2 /dev/disk/by-partlabel/primary /dev/disk/by-id/scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part2 /dev/disk/by-id/ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c-part2 /dev/disk/by-id/scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part2 /dev/disk/by-partuuid/250e5184-c37d-4ff3-adaa-f60571af2c5c /dev/disk/by-path/pci-0000:00:1f.2-ata-2-part2 /dev/disk/by-path/pci-0000:00:1f.2-scsi-1:0:0:0-part2</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-id/scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part2 /dev/disk/by-id/scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part2 /dev/disk/by-id/ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c-part2 /dev/disk/by-id/scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part2 /dev/disk/by-partuuid/250e5184-c37d-4ff3-adaa-f60571af2c5c /dev/disk/by-path/pci-0000:00:1f.2-ata-2-part2 /dev/disk/by-path/pci-0000:00:1f.2-scsi-1:0:0:0-part2</stdout>
       <stdout>E: DEVNAME=/dev/sdb2</stdout>
       <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb2</stdout>
       <stdout>E: DEVTYPE=partition</stdout>
@@ -1175,7 +1146,6 @@
       <stdout>E: ID_MODEL=VBOX_HARDDISK</stdout>
       <stdout>E: ID_MODEL_ENC=VBOX\x20HARDDISK\x20\x20\x20</stdout>
       <stdout>E: ID_PART_ENTRY_DISK=8:16</stdout>
-      <stdout>E: ID_PART_ENTRY_NAME=primary</stdout>
       <stdout>E: ID_PART_ENTRY_NUMBER=2</stdout>
       <stdout>E: ID_PART_ENTRY_OFFSET=3354624</stdout>
       <stdout>E: ID_PART_ENTRY_SCHEME=gpt</stdout>
@@ -1223,11 +1193,10 @@
       <stdout>S: disk/by-id/scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part3</stdout>
       <stdout>S: disk/by-id/scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part3</stdout>
       <stdout>S: disk/by-id/scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part3</stdout>
-      <stdout>S: disk/by-partlabel/primary</stdout>
       <stdout>S: disk/by-partuuid/fae69e0b-9f42-426d-955a-5eca43f43cfe</stdout>
       <stdout>S: disk/by-path/pci-0000:00:1f.2-ata-2-part3</stdout>
       <stdout>S: disk/by-path/pci-0000:00:1f.2-scsi-1:0:0:0-part3</stdout>
-      <stdout>E: DEVLINKS=/dev/disk/by-id/scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part3 /dev/disk/by-path/pci-0000:00:1f.2-scsi-1:0:0:0-part3 /dev/disk/by-id/scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part3 /dev/disk/by-path/pci-0000:00:1f.2-ata-2-part3 /dev/disk/by-partuuid/fae69e0b-9f42-426d-955a-5eca43f43cfe /dev/disk/by-id/ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c-part3 /dev/disk/by-partlabel/primary /dev/disk/by-id/scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part3</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-id/scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part3 /dev/disk/by-path/pci-0000:00:1f.2-scsi-1:0:0:0-part3 /dev/disk/by-id/scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part3 /dev/disk/by-path/pci-0000:00:1f.2-ata-2-part3 /dev/disk/by-partuuid/fae69e0b-9f42-426d-955a-5eca43f43cfe /dev/disk/by-id/ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c-part3 /dev/disk/by-id/scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part3</stdout>
       <stdout>E: DEVNAME=/dev/sdb3</stdout>
       <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb3</stdout>
       <stdout>E: DEVTYPE=partition</stdout>
@@ -1245,7 +1214,6 @@
       <stdout>E: ID_MODEL=VBOX_HARDDISK</stdout>
       <stdout>E: ID_MODEL_ENC=VBOX\x20HARDDISK\x20\x20\x20</stdout>
       <stdout>E: ID_PART_ENTRY_DISK=8:16</stdout>
-      <stdout>E: ID_PART_ENTRY_NAME=primary</stdout>
       <stdout>E: ID_PART_ENTRY_NUMBER=3</stdout>
       <stdout>E: ID_PART_ENTRY_OFFSET=6711296</stdout>
       <stdout>E: ID_PART_ENTRY_SCHEME=gpt</stdout>
@@ -1293,11 +1261,10 @@
       <stdout>S: disk/by-id/scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part4</stdout>
       <stdout>S: disk/by-id/scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part4</stdout>
       <stdout>S: disk/by-id/scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part4</stdout>
-      <stdout>S: disk/by-partlabel/primary</stdout>
       <stdout>S: disk/by-partuuid/a2114d3d-cb17-4b40-8c86-124e82431fb1</stdout>
       <stdout>S: disk/by-path/pci-0000:00:1f.2-ata-2-part4</stdout>
       <stdout>S: disk/by-path/pci-0000:00:1f.2-scsi-1:0:0:0-part4</stdout>
-      <stdout>E: DEVLINKS=/dev/disk/by-id/scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part4 /dev/disk/by-partuuid/a2114d3d-cb17-4b40-8c86-124e82431fb1 /dev/disk/by-path/pci-0000:00:1f.2-ata-2-part4 /dev/disk/by-id/scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part4 /dev/disk/by-path/pci-0000:00:1f.2-scsi-1:0:0:0-part4 /dev/disk/by-id/ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c-part4 /dev/disk/by-partlabel/primary /dev/disk/by-id/scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part4</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-id/scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part4 /dev/disk/by-partuuid/a2114d3d-cb17-4b40-8c86-124e82431fb1 /dev/disk/by-path/pci-0000:00:1f.2-ata-2-part4 /dev/disk/by-id/scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part4 /dev/disk/by-path/pci-0000:00:1f.2-scsi-1:0:0:0-part4 /dev/disk/by-id/ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c-part4 /dev/disk/by-id/scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part4</stdout>
       <stdout>E: DEVNAME=/dev/sdb4</stdout>
       <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb4</stdout>
       <stdout>E: DEVTYPE=partition</stdout>
@@ -1315,7 +1282,6 @@
       <stdout>E: ID_MODEL=VBOX_HARDDISK</stdout>
       <stdout>E: ID_MODEL_ENC=VBOX\x20HARDDISK\x20\x20\x20</stdout>
       <stdout>E: ID_PART_ENTRY_DISK=8:16</stdout>
-      <stdout>E: ID_PART_ENTRY_NAME=primary</stdout>
       <stdout>E: ID_PART_ENTRY_NUMBER=4</stdout>
       <stdout>E: ID_PART_ENTRY_OFFSET=10065920</stdout>
       <stdout>E: ID_PART_ENTRY_SCHEME=gpt</stdout>
@@ -1363,11 +1329,10 @@
       <stdout>S: disk/by-id/scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part5</stdout>
       <stdout>S: disk/by-id/scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part5</stdout>
       <stdout>S: disk/by-id/scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part5</stdout>
-      <stdout>S: disk/by-partlabel/primary</stdout>
       <stdout>S: disk/by-partuuid/e3f1842e-53b2-46a4-85eb-ebd7e2a0200f</stdout>
       <stdout>S: disk/by-path/pci-0000:00:1f.2-ata-2-part5</stdout>
       <stdout>S: disk/by-path/pci-0000:00:1f.2-scsi-1:0:0:0-part5</stdout>
-      <stdout>E: DEVLINKS=/dev/disk/by-path/pci-0000:00:1f.2-ata-2-part5 /dev/disk/by-partuuid/e3f1842e-53b2-46a4-85eb-ebd7e2a0200f /dev/disk/by-id/ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c-part5 /dev/disk/by-id/scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part5 /dev/disk/by-id/scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part5 /dev/disk/by-partlabel/primary /dev/disk/by-id/scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part5 /dev/disk/by-path/pci-0000:00:1f.2-scsi-1:0:0:0-part5</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-path/pci-0000:00:1f.2-ata-2-part5 /dev/disk/by-partuuid/e3f1842e-53b2-46a4-85eb-ebd7e2a0200f /dev/disk/by-id/ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c-part5 /dev/disk/by-id/scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part5 /dev/disk/by-id/scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part5 /dev/disk/by-id/scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part5 /dev/disk/by-path/pci-0000:00:1f.2-scsi-1:0:0:0-part5</stdout>
       <stdout>E: DEVNAME=/dev/sdb5</stdout>
       <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb5</stdout>
       <stdout>E: DEVTYPE=partition</stdout>
@@ -1385,7 +1350,6 @@
       <stdout>E: ID_MODEL=VBOX_HARDDISK</stdout>
       <stdout>E: ID_MODEL_ENC=VBOX\x20HARDDISK\x20\x20\x20</stdout>
       <stdout>E: ID_PART_ENTRY_DISK=8:16</stdout>
-      <stdout>E: ID_PART_ENTRY_NAME=primary</stdout>
       <stdout>E: ID_PART_ENTRY_NUMBER=5</stdout>
       <stdout>E: ID_PART_ENTRY_OFFSET=13422592</stdout>
       <stdout>E: ID_PART_ENTRY_SCHEME=gpt</stdout>
@@ -1433,11 +1397,10 @@
       <stdout>S: disk/by-id/scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part6</stdout>
       <stdout>S: disk/by-id/scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part6</stdout>
       <stdout>S: disk/by-id/scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part6</stdout>
-      <stdout>S: disk/by-partlabel/primary</stdout>
       <stdout>S: disk/by-partuuid/4307f060-eec3-4c56-be05-ab1cd1f91cd3</stdout>
       <stdout>S: disk/by-path/pci-0000:00:1f.2-ata-2-part6</stdout>
       <stdout>S: disk/by-path/pci-0000:00:1f.2-scsi-1:0:0:0-part6</stdout>
-      <stdout>E: DEVLINKS=/dev/disk/by-path/pci-0000:00:1f.2-scsi-1:0:0:0-part6 /dev/disk/by-path/pci-0000:00:1f.2-ata-2-part6 /dev/disk/by-id/scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part6 /dev/disk/by-id/ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c-part6 /dev/disk/by-partlabel/primary /dev/disk/by-partuuid/4307f060-eec3-4c56-be05-ab1cd1f91cd3 /dev/disk/by-id/scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part6 /dev/disk/by-id/scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part6</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-path/pci-0000:00:1f.2-scsi-1:0:0:0-part6 /dev/disk/by-path/pci-0000:00:1f.2-ata-2-part6 /dev/disk/by-id/scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part6 /dev/disk/by-id/ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c-part6 /dev/disk/by-partuuid/4307f060-eec3-4c56-be05-ab1cd1f91cd3 /dev/disk/by-id/scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part6 /dev/disk/by-id/scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part6</stdout>
       <stdout>E: DEVNAME=/dev/sdb6</stdout>
       <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb6</stdout>
       <stdout>E: DEVTYPE=partition</stdout>
@@ -1455,7 +1418,6 @@
       <stdout>E: ID_MODEL=VBOX_HARDDISK</stdout>
       <stdout>E: ID_MODEL_ENC=VBOX\x20HARDDISK\x20\x20\x20</stdout>
       <stdout>E: ID_PART_ENTRY_DISK=8:16</stdout>
-      <stdout>E: ID_PART_ENTRY_NAME=primary</stdout>
       <stdout>E: ID_PART_ENTRY_NUMBER=6</stdout>
       <stdout>E: ID_PART_ENTRY_OFFSET=16777216</stdout>
       <stdout>E: ID_PART_ENTRY_SCHEME=gpt</stdout>
@@ -1503,11 +1465,10 @@
       <stdout>S: disk/by-id/scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part7</stdout>
       <stdout>S: disk/by-id/scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part7</stdout>
       <stdout>S: disk/by-id/scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part7</stdout>
-      <stdout>S: disk/by-partlabel/primary</stdout>
       <stdout>S: disk/by-partuuid/7305ac2d-cca9-4650-8425-824bbb54bdd7</stdout>
       <stdout>S: disk/by-path/pci-0000:00:1f.2-ata-2-part7</stdout>
       <stdout>S: disk/by-path/pci-0000:00:1f.2-scsi-1:0:0:0-part7</stdout>
-      <stdout>E: DEVLINKS=/dev/disk/by-id/scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part7 /dev/disk/by-partuuid/7305ac2d-cca9-4650-8425-824bbb54bdd7 /dev/disk/by-id/scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part7 /dev/disk/by-id/scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part7 /dev/disk/by-path/pci-0000:00:1f.2-ata-2-part7 /dev/disk/by-partlabel/primary /dev/disk/by-path/pci-0000:00:1f.2-scsi-1:0:0:0-part7 /dev/disk/by-id/ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c-part7</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-id/scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part7 /dev/disk/by-partuuid/7305ac2d-cca9-4650-8425-824bbb54bdd7 /dev/disk/by-id/scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part7 /dev/disk/by-id/scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part7 /dev/disk/by-path/pci-0000:00:1f.2-ata-2-part7 /dev/disk/by-path/pci-0000:00:1f.2-scsi-1:0:0:0-part7 /dev/disk/by-id/ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c-part7</stdout>
       <stdout>E: DEVNAME=/dev/sdb7</stdout>
       <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb7</stdout>
       <stdout>E: DEVTYPE=partition</stdout>
@@ -1525,7 +1486,6 @@
       <stdout>E: ID_MODEL=VBOX_HARDDISK</stdout>
       <stdout>E: ID_MODEL_ENC=VBOX\x20HARDDISK\x20\x20\x20</stdout>
       <stdout>E: ID_PART_ENTRY_DISK=8:16</stdout>
-      <stdout>E: ID_PART_ENTRY_NAME=primary</stdout>
       <stdout>E: ID_PART_ENTRY_NUMBER=7</stdout>
       <stdout>E: ID_PART_ENTRY_OFFSET=20131840</stdout>
       <stdout>E: ID_PART_ENTRY_SCHEME=gpt</stdout>
@@ -1573,11 +1533,10 @@
       <stdout>S: disk/by-id/scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part8</stdout>
       <stdout>S: disk/by-id/scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part8</stdout>
       <stdout>S: disk/by-id/scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part8</stdout>
-      <stdout>S: disk/by-partlabel/primary</stdout>
       <stdout>S: disk/by-partuuid/e41b0358-9364-4db4-8502-f69f063c510e</stdout>
       <stdout>S: disk/by-path/pci-0000:00:1f.2-ata-2-part8</stdout>
       <stdout>S: disk/by-path/pci-0000:00:1f.2-scsi-1:0:0:0-part8</stdout>
-      <stdout>E: DEVLINKS=/dev/disk/by-id/scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part8 /dev/disk/by-id/scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part8 /dev/disk/by-id/ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c-part8 /dev/disk/by-id/scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part8 /dev/disk/by-path/pci-0000:00:1f.2-scsi-1:0:0:0-part8 /dev/disk/by-partuuid/e41b0358-9364-4db4-8502-f69f063c510e /dev/disk/by-path/pci-0000:00:1f.2-ata-2-part8 /dev/disk/by-partlabel/primary</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-id/scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part8 /dev/disk/by-id/scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part8 /dev/disk/by-id/ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c-part8 /dev/disk/by-id/scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part8 /dev/disk/by-path/pci-0000:00:1f.2-scsi-1:0:0:0-part8 /dev/disk/by-partuuid/e41b0358-9364-4db4-8502-f69f063c510e /dev/disk/by-path/pci-0000:00:1f.2-ata-2-part8</stdout>
       <stdout>E: DEVNAME=/dev/sdb8</stdout>
       <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb8</stdout>
       <stdout>E: DEVTYPE=partition</stdout>
@@ -1595,7 +1554,6 @@
       <stdout>E: ID_MODEL=VBOX_HARDDISK</stdout>
       <stdout>E: ID_MODEL_ENC=VBOX\x20HARDDISK\x20\x20\x20</stdout>
       <stdout>E: ID_PART_ENTRY_DISK=8:16</stdout>
-      <stdout>E: ID_PART_ENTRY_NAME=primary</stdout>
       <stdout>E: ID_PART_ENTRY_NUMBER=8</stdout>
       <stdout>E: ID_PART_ENTRY_OFFSET=23488512</stdout>
       <stdout>E: ID_PART_ENTRY_SCHEME=gpt</stdout>
@@ -1643,11 +1601,10 @@
       <stdout>S: disk/by-id/scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part9</stdout>
       <stdout>S: disk/by-id/scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part9</stdout>
       <stdout>S: disk/by-id/scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part9</stdout>
-      <stdout>S: disk/by-partlabel/primary</stdout>
       <stdout>S: disk/by-partuuid/b2c0e9c3-c82b-4df5-9fef-0ab55eb8f532</stdout>
       <stdout>S: disk/by-path/pci-0000:00:1f.2-ata-2-part9</stdout>
       <stdout>S: disk/by-path/pci-0000:00:1f.2-scsi-1:0:0:0-part9</stdout>
-      <stdout>E: DEVLINKS=/dev/disk/by-id/scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part9 /dev/disk/by-id/ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c-part9 /dev/disk/by-id/scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part9 /dev/disk/by-path/pci-0000:00:1f.2-ata-2-part9 /dev/disk/by-partuuid/b2c0e9c3-c82b-4df5-9fef-0ab55eb8f532 /dev/disk/by-id/scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part9 /dev/disk/by-partlabel/primary /dev/disk/by-path/pci-0000:00:1f.2-scsi-1:0:0:0-part9</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-id/scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part9 /dev/disk/by-id/ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c-part9 /dev/disk/by-id/scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part9 /dev/disk/by-path/pci-0000:00:1f.2-ata-2-part9 /dev/disk/by-partuuid/b2c0e9c3-c82b-4df5-9fef-0ab55eb8f532 /dev/disk/by-id/scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part9 /dev/disk/by-path/pci-0000:00:1f.2-scsi-1:0:0:0-part9</stdout>
       <stdout>E: DEVNAME=/dev/sdb9</stdout>
       <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb9</stdout>
       <stdout>E: DEVTYPE=partition</stdout>
@@ -1665,7 +1622,6 @@
       <stdout>E: ID_MODEL=VBOX_HARDDISK</stdout>
       <stdout>E: ID_MODEL_ENC=VBOX\x20HARDDISK\x20\x20\x20</stdout>
       <stdout>E: ID_PART_ENTRY_DISK=8:16</stdout>
-      <stdout>E: ID_PART_ENTRY_NAME=primary</stdout>
       <stdout>E: ID_PART_ENTRY_NUMBER=9</stdout>
       <stdout>E: ID_PART_ENTRY_OFFSET=26843136</stdout>
       <stdout>E: ID_PART_ENTRY_SCHEME=gpt</stdout>
@@ -1841,7 +1797,7 @@
       <name>/usr/sbin/parted --script --machine '/dev/md/test3' unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/md/test3:6707200s:md:512:512:gpt:Linux Software RAID Array:;</stdout>
-      <stdout>1:2048s:3354623s:3352576s:ext4:primary:;</stdout>
+      <stdout>1:2048s:3354623s:3352576s:ext4::;</stdout>
     </Command>
     <Command>
       <name>/usr/sbin/parted --script --machine '/dev/md/test4' unit s print</name>
@@ -1853,7 +1809,7 @@
       <name>/usr/sbin/parted --script --machine '/dev/md/test5' unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/md/test5:6707200s:md:512:512:gpt:Linux Software RAID Array:;</stdout>
-      <stdout>1:2048s:3354623s:3352576s:ext4:primary:;</stdout>
+      <stdout>1:2048s:3354623s:3352576s:ext4::;</stdout>
     </Command>
     <Command>
       <name>/usr/sbin/parted --script --machine '/dev/md0' unit s print</name>
@@ -1865,32 +1821,32 @@
       <name>/usr/sbin/parted --script --machine '/dev/md1' unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/md1:6707200s:md:512:512:gpt:Linux Software RAID Array:;</stdout>
-      <stdout>1:2048s:3354623s:3352576s:ext4:primary:;</stdout>
+      <stdout>1:2048s:3354623s:3352576s:ext4::;</stdout>
     </Command>
     <Command>
       <name>/usr/sbin/parted --script --machine '/dev/sda' unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/sda:33554432s:scsi:512:512:gpt:ATA VBOX HARDDISK:pmbr_boot;</stdout>
-      <stdout>1:2048s:29356031s:29353984s:ext4:primary:legacy_boot;</stdout>
-      <stdout>2:29356032s:29358079s:2048s::primary:bios_grub;</stdout>
-      <stdout>3:29358080s:33554398s:4196319s:linux-swap(v1):primary:;</stdout>
+      <stdout>1:2048s:29356031s:29353984s:ext4::legacy_boot;</stdout>
+      <stdout>2:29356032s:29358079s:2048s:::bios_grub;</stdout>
+      <stdout>3:29358080s:33554398s:4196319s:linux-swap(v1)::;</stdout>
     </Command>
     <Command>
       <name>/usr/sbin/parted --script --machine '/dev/sdb' unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/sdb:67108864s:scsi:512:512:gpt:ATA VBOX HARDDISK:;</stdout>
-      <stdout>1:2048s:3354623s:3352576s::primary:;</stdout>
-      <stdout>2:3354624s:6711295s:3356672s::primary:;</stdout>
-      <stdout>3:6711296s:10065919s:3354624s::primary:;</stdout>
-      <stdout>4:10065920s:13422591s:3356672s::primary:;</stdout>
-      <stdout>5:13422592s:16777215s:3354624s::primary:;</stdout>
-      <stdout>6:16777216s:20131839s:3354624s::primary:;</stdout>
-      <stdout>7:20131840s:23488511s:3356672s::primary:;</stdout>
-      <stdout>8:23488512s:26843135s:3354624s::primary:;</stdout>
-      <stdout>9:26843136s:30199807s:3356672s::primary:;</stdout>
-      <stdout>10:30199808s:33554431s:3354624s::primary:;</stdout>
-      <stdout>11:33554432s:36909055s:3354624s::primary:;</stdout>
-      <stdout>12:36909056s:40265727s:3356672s::primary:;</stdout>
+      <stdout>1:2048s:3354623s:3352576s:::;</stdout>
+      <stdout>2:3354624s:6711295s:3356672s:::;</stdout>
+      <stdout>3:6711296s:10065919s:3354624s:::;</stdout>
+      <stdout>4:10065920s:13422591s:3356672s:::;</stdout>
+      <stdout>5:13422592s:16777215s:3354624s:::;</stdout>
+      <stdout>6:16777216s:20131839s:3354624s:::;</stdout>
+      <stdout>7:20131840s:23488511s:3356672s:::;</stdout>
+      <stdout>8:23488512s:26843135s:3354624s:::;</stdout>
+      <stdout>9:26843136s:30199807s:3356672s:::;</stdout>
+      <stdout>10:30199808s:33554431s:3354624s:::;</stdout>
+      <stdout>11:33554432s:36909055s:3354624s:::;</stdout>
+      <stdout>12:36909056s:40265727s:3356672s:::;</stdout>
     </Command>
     <Command>
       <name>/sbin/dmraid --sets=active -ccc</name>

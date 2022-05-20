@@ -118,7 +118,7 @@ namespace storage
 	BlkFilesystem* get_blk_filesystem();
 	const BlkFilesystem* get_blk_filesystem() const;
 
-	Encryption* create_encryption(const string& dm_name, EncryptionType type);
+	Encryption* create_encryption(const string& dm_table_name, EncryptionType type);
 
 	void remove_encryption();
 

@@ -144,9 +144,9 @@ namespace storage
     {
 	const CmdDmraid& cmd_dm_raid = prober.get_system_info().getCmdDmraid();
 
-	for (const string& dm_name : cmd_dm_raid.get_entries())
+	for (const string& dm_table_name : cmd_dm_raid.get_entries())
 	{
-	    DmRaid* dm_raid = DmRaid::create(prober.get_system(), DEV_MAPPER_DIR "/" + dm_name);
+	    DmRaid* dm_raid = DmRaid::create(prober.get_system(), DEV_MAPPER_DIR "/" + dm_table_name);
 	    dm_raid->get_impl().probe_pass_1a(prober);
 	}
     }

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -31,6 +31,7 @@
 #include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/SystemInfo/CmdBlkid.h"
 #include "storage/Filesystems/FilesystemImpl.h"
+#include "storage/EnvironmentImpl.h"
 
 
 namespace storage
@@ -75,7 +76,11 @@ namespace storage
 	    map<string, string>::const_iterator it1 = m.find("TYPE");
 	    if (it1 != m.end())
 	    {
-		if (toValue(it1->second, entry.fs_type, false))
+		if (it1->second == "BitLocker" && cryptsetup_for_bitlocker())
+		{
+		    entry.is_bitlocker = true;
+		}
+		else if (toValue(it1->second, entry.fs_type, false))
 		{
 		    entry.is_fs = true;
 		}
@@ -138,6 +143,11 @@ namespace storage
 		    entry.luks_label = it1->second;
 	    }
 
+	    if (entry.is_bitlocker)
+	    {
+		// Unfortunately no UUID although BitLocker has one.
+	    }
+
 	    if (entry.is_bcache)
 	    {
 		it1 = m.find("UUID");
@@ -146,7 +156,7 @@ namespace storage
 	    }
 
 	    if (entry.is_fs || entry.is_journal || entry.is_md || entry.is_lvm || entry.is_luks ||
-		entry.is_bcache)
+		entry.is_bitlocker || entry.is_bcache)
 		data[device] = entry;
 	}
 
@@ -261,6 +271,13 @@ namespace storage
 
 
     bool
+    Blkid::any_bitlocker() const
+    {
+	return std::any_of(data.begin(), data.end(), [](const value_type& value) { return value.second.is_bitlocker; });
+    }
+
+
+    bool
     Blkid::any_bcache() const
     {
 	return std::any_of(data.begin(), data.end(), [](const value_type& value) { return value.second.is_bcache; });
@@ -327,6 +344,11 @@ namespace storage
 		s << " luks-uuid:" << entry.luks_uuid;
 	    if (!entry.luks_label.empty())
 		s << " luks-label:" << entry.luks_label;
+	}
+
+	if (entry.is_bitlocker)
+	{
+	    s << "is-bitlocker:" << entry.is_bitlocker;
 	}
 
 	if (entry.is_bcache)

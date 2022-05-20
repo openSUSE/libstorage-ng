@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2019-2021] SUSE LLC
+ * Copyright (c) [2019-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -68,6 +68,8 @@ namespace storage
 
 	friend std::ostream& operator<<(std::ostream& s, const CmdCryptsetupLuksDump& cmd_cryptsetup_luks_dump);
 
+	const string& get_uuid() const { return uuid; }
+
 	EncryptionType get_encryption_type() const { return encryption_type; }
 	const string& get_cipher() const { return cipher; }
 	unsigned int get_key_size() const { return key_size; }
@@ -82,6 +84,8 @@ namespace storage
 	void parse_version2(const vector<string>& lines);
 
 	string name;
+
+	string uuid;
 
 	/**
 	 * Either UNKNOWN, LUKS1 or LUKS2
@@ -108,6 +112,41 @@ namespace storage
 	 * Is integrity used. Currently is only expected AEAD. Only for LUKS2.
 	 */
 	string integrity;
+
+    };
+
+
+    class CmdCryptsetupBitlkDump
+    {
+
+    public:
+
+	CmdCryptsetupBitlkDump(const string& name);
+
+	friend std::ostream& operator<<(std::ostream& s, const CmdCryptsetupBitlkDump& cmd_cryptsetup_bitlk_dump);
+
+	const string& get_uuid() const { return uuid; }
+
+	const string& get_cipher() const { return cipher; }
+	unsigned int get_key_size() const { return key_size; }
+
+    private:
+
+	void parse(const vector<string>& lines);
+
+	string name;
+
+	string uuid;
+
+	/**
+	 * The cipher, e.g. aes-xts-plain64.
+	 */
+	string cipher;
+
+	/**
+	 * The size of the master key, e.g. 32 bytes. Note: Usually displayed in bits.
+	 */
+	unsigned int key_size = 0;
 
     };
 

@@ -30,6 +30,7 @@ use_ostream(storage::PartitionSlot);
 
 %feature("director") storage::ActivateCallbacks;
 %feature("director") storage::ActivateCallbacksLuks;
+%feature("director") storage::ActivateCallbacksV3;
 %feature("director") storage::ProbeCallbacks;
 %feature("director") storage::ProbeCallbacksV2;
 %feature("director") storage::ProbeCallbacksV3;
@@ -113,6 +114,7 @@ use_ostream(storage::PartitionSlot);
 #include "storage/Devices/Encryption.h"
 #include "storage/Devices/PlainEncryption.h"
 #include "storage/Devices/Luks.h"
+#include "storage/Devices/BitlockerV2.h"
 #include "storage/Devices/Bcache.h"
 #include "storage/Devices/BcacheCset.h"
 
@@ -211,6 +213,7 @@ use_ostream(storage::PartitionSlot);
 %include "../../storage/Devices/Encryption.h"
 %include "../../storage/Devices/PlainEncryption.h"
 %include "../../storage/Devices/Luks.h"
+%include "../../storage/Devices/BitlockerV2.h"
 %include "../../storage/Devices/Bcache.h"
 %include "../../storage/Devices/BcacheCset.h"
 

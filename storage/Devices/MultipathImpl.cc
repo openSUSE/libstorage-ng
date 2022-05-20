@@ -184,9 +184,9 @@ namespace storage
     {
 	const CmdMultipath& cmd_multipath = prober.get_system_info().getCmdMultipath();
 
-	for (const string& dm_name : cmd_multipath.get_entries())
+	for (const string& dm_table_name : cmd_multipath.get_entries())
 	{
-	    Multipath* multipath = Multipath::create(prober.get_system(), DEV_MAPPER_DIR "/" + dm_name);
+	    Multipath* multipath = Multipath::create(prober.get_system(), DEV_MAPPER_DIR "/" + dm_table_name);
 	    multipath->get_impl().probe_pass_1a(prober);
 	}
     }

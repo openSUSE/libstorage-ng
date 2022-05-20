@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -98,6 +98,7 @@ namespace storage
 	const CmdDmsetupInfo& getCmdDmsetupInfo() { return cmd_dmsetup_info.get(); }
 	const CmdDmsetupTable& getCmdDmsetupTable() { return cmd_dmsetup_table.get(); }
 	const CmdCryptsetupLuksDump& getCmdCryptsetupLuksDump(const string& name) { return cmd_cryptsetup_luks_dumps.get(name); }
+	const CmdCryptsetupBitlkDump& getCmdCryptsetupBitlkDump(const string& name) { return cmd_cryptsetup_bitlk_dumps.get(name); }
 	const CmdDmraid& getCmdDmraid() { return cmd_dmraid.get(); }
 	const CmdMultipath& getCmdMultipath() { return cmd_multipath.get(); }
 
@@ -252,6 +253,7 @@ namespace storage
 	LazyObject<CmdDmsetupInfo> cmd_dmsetup_info;
 	LazyObject<CmdDmsetupTable> cmd_dmsetup_table;
 	LazyObjects<CmdCryptsetupLuksDump> cmd_cryptsetup_luks_dumps;
+	LazyObjects<CmdCryptsetupBitlkDump> cmd_cryptsetup_bitlk_dumps;
 	LazyObject<CmdDmraid> cmd_dmraid;
 	LazyObject<CmdMultipath> cmd_multipath;
 

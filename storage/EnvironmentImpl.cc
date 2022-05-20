@@ -141,6 +141,13 @@ namespace storage
     }
 
 
+    bool
+    cryptsetup_for_bitlocker()
+    {
+	return read_env_var("LIBSTORAGE_CRYPTSETUP_FOR_BITLOCKER", false);
+    }
+
+
     void
     Environment::Impl::extra_log()
     {

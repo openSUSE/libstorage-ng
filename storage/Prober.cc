@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -41,6 +41,7 @@
 #include "storage/Devices/LvmLvImpl.h"
 #include "storage/Devices/PlainEncryptionImpl.h"
 #include "storage/Devices/LuksImpl.h"
+#include "storage/Devices/BitlockerV2Impl.h"
 #include "storage/Devices/BcacheImpl.h"
 #include "storage/Devices/BcacheCsetImpl.h"
 #include "storage/Devices/StrayBlkDeviceImpl.h"
@@ -49,6 +50,7 @@
 #include "storage/Filesystems/NfsImpl.h"
 #include "storage/Filesystems/TmpfsImpl.h"
 #include "storage/UsedFeatures.h"
+#include "storage/Utils/StorageTmpl.h"
 
 
 namespace storage
@@ -408,6 +410,21 @@ namespace storage
 	{
 	    // TRANSLATORS: error message
 	    handle(exception, _("Probing LUKS failed"), UF_LUKS);
+	}
+
+	message_callback(probe_callbacks, _("Probing BitLocker"));
+
+	try
+	{
+	    if (system_info.getBlkid().any_bitlocker())
+	    {
+		BitlockerV2::Impl::probe_bitlockers(*this);
+	    }
+	}
+	catch (const Exception& exception)
+	{
+	    // TRANSLATORS: error message
+	    handle(exception, _("Probing BitLocker failed"), UF_BITLOCKER);
 	}
 
 	// Pass 1e

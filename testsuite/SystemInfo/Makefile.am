@@ -10,7 +10,7 @@ check_PROGRAMS =								\
 	blkid.test btrfs-filesystem-df.test btrfs-filesystem-show.test		\
 	btrfs-subvolume-get-default.test btrfs-subvolume-list.test		\
 	btrfs-subvolume-show.test cryptsetup-status.test			\
-	cryptsetup-luks-dump.test dasdview.test 				\
+	cryptsetup-bitlk-dump.test cryptsetup-luks-dump.test dasdview.test	\
 	dir.test dmraid.test dumpe2fs.test resize2fs.test ntfsresize.test	\
 	dmsetup-info.test dmsetup-table.test lsattr.test lsscsi.test lvs.test	\
 	mdadm-detail.test mdadm-examine.test mdlinks.test			\

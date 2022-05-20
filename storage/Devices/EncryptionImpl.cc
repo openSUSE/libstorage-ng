@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -45,7 +45,8 @@ namespace storage
 
 
     const vector<string> EnumTraits<EncryptionType>::names({
-	"none", "twofish256", "twofish", "twofishSL92", "luks1", "unknown", "luks2", "plain"
+	"none", "twofish256", "twofish", "twofishSL92", "luks1", "unknown", "luks2", "plain",
+	"bitlocker"
     });
 
 

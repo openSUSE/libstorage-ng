@@ -712,7 +712,7 @@ namespace storage
 
 
     Encryption*
-    BlkDevice::Impl::create_encryption(const string& dm_name, EncryptionType type)
+    BlkDevice::Impl::create_encryption(const string& dm_table_name, EncryptionType type)
     {
 	map<EncryptionType, encryption_create_fnc>::const_iterator it = encryption_create_registry.find(type);
 	if (it == encryption_create_registry.end())
@@ -724,7 +724,7 @@ namespace storage
 
 	vector<Devicegraph::Impl::edge_descriptor> out_edges = devicegraph->get_impl().out_edges(get_vertex());
 
-	Encryption* encryption = it->second(devicegraph, dm_name);
+	Encryption* encryption = it->second(devicegraph, dm_table_name);
 	encryption->get_impl().Encryption::Impl::set_type(type);
 
 	Devicegraph::Impl::vertex_descriptor encryption_vertex = encryption->get_impl().get_vertex();

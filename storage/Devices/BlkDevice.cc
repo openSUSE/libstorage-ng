@@ -282,16 +282,16 @@ namespace storage
 
 
     Encryption*
-    BlkDevice::create_encryption(const std::string& dm_name)
+    BlkDevice::create_encryption(const std::string& dm_table_name)
     {
-	return get_impl().create_encryption(dm_name, EncryptionType::LUKS1);
+	return get_impl().create_encryption(dm_table_name, EncryptionType::LUKS1);
     }
 
 
     Encryption*
-    BlkDevice::create_encryption(const std::string& dm_name, EncryptionType type)
+    BlkDevice::create_encryption(const std::string& dm_table_name, EncryptionType type)
     {
-	return get_impl().create_encryption(dm_name, type);
+	return get_impl().create_encryption(dm_table_name, type);
     }
 
 

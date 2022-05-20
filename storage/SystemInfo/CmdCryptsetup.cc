@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2019-2021] SUSE LLC
+ * Copyright (c) [2019-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -48,8 +48,8 @@ namespace storage
     void
     CmdCryptsetupStatus::parse(const vector<string>& lines)
     {
-	string type, cipher, keysize;
-	string integrity;
+	string type, cipher, keysize, integrity;
+
 	for (const string& line : lines)
 	{
 	    string key = extractNthWord(0, line);
@@ -57,9 +57,9 @@ namespace storage
 		type = extractNthWord(1, line);
 	    else if (key == "cipher:")
 		cipher = extractNthWord(1, line);
-	    else if(key == "keysize:")
+	    else if (key == "keysize:")
 		keysize = extractNthWord(1, line);
-	    else if(key == "integrity:")
+	    else if (key == "integrity:")
 		integrity = extractNthWord(1, line);
 	}
 
@@ -67,6 +67,8 @@ namespace storage
 	    encryption_type = EncryptionType::LUKS1;
 	else if (type == "LUKS2")
 	    encryption_type = EncryptionType::LUKS2;
+	else if (type == "BITLK")
+	    encryption_type = EncryptionType::BITLOCKER;
 	else if (cipher == "twofish-cbc-plain")
 	    encryption_type = EncryptionType::TWOFISH;
 	else if (cipher == "twofish-cbc-null" && keysize == "192")
@@ -144,6 +146,8 @@ namespace storage
     void
     CmdCryptsetupLuksDump::parse_version1(const vector<string>& lines)
     {
+	static const regex uuid_regex("UUID:[ \t]*(" UUID_REGEX ")[ \t]*", regex::extended);
+
 	static const regex cipher_name_regex("Cipher name:[ \t]*([^ \t]+)[ \t]*", regex::extended);
 	static const regex cipher_mode_regex("Cipher mode:[ \t]*([^ \t]+)[ \t]*", regex::extended);
 	static const regex mk_bits_regex("MK bits:[ \t]*([0-9]+)[ \t]*", regex::extended);
@@ -154,6 +158,9 @@ namespace storage
 
 	for (const string& line : lines)
 	{
+	    if (regex_match(line, match, uuid_regex) && match.size() == 2)
+		uuid = match[1];
+
 	    if (regex_match(line, match, cipher_name_regex) && match.size() == 2)
 		cipher_name = match[1];
 
@@ -188,6 +195,8 @@ namespace storage
 	static const regex token_section_regex("Tokens:[ \t]*", regex::extended);
 	static const regex digest_section_regex("Digests:[ \t]*", regex::extended);
 
+	static const regex uuid_regex("UUID:[ \t]*(" UUID_REGEX ")[ \t]*", regex::extended);
+
 	static const regex cipher_regex("[ \t]*cipher:[ \t]*([^ \t]+)[ \t]*", regex::extended);
 
 	static const regex integrity_regex("[ \t]*integrity:[ \t]*([^ \t]+)[ \t]*", regex::extended);
@@ -196,7 +205,7 @@ namespace storage
 	static const regex key_regex("[ \t]*Key:[ \t]*([0-9]+) bits[ \t]*", regex::extended);
 	static const regex pbkdf_regex("[ \t]*PBKDF:[ \t]*([^ \t]+)[ \t]*", regex::extended);
 
-	enum { DATA_SECTION, KEYSLOT_SECTION, UNUSED_SECTION } section = UNUSED_SECTION;
+	enum { UNUSED_SECTION, HEADER_SECTION, DATA_SECTION, KEYSLOT_SECTION } section = HEADER_SECTION;
 
 	int keyslot_cnt = 0;
 
@@ -217,6 +226,13 @@ namespace storage
 
 	    switch (section)
 	    {
+		case HEADER_SECTION:
+		{
+		    if (regex_match(line, match, uuid_regex) && match.size() == 2)
+			uuid = match[1];
+		}
+		break;
+
 		case DATA_SECTION:
 		{
 		    if (regex_match(line, match, cipher_regex) && match.size() == 2)
@@ -259,16 +275,89 @@ namespace storage
     std::ostream&
     operator<<(std::ostream& s, const CmdCryptsetupLuksDump& cmd_cryptsetup_luks_dump)
     {
-	s << "name:" << cmd_cryptsetup_luks_dump.name << " encryption-type:"
-	  << toString(cmd_cryptsetup_luks_dump.encryption_type) << " cipher:"
-	  << cmd_cryptsetup_luks_dump.cipher << " key-size:"
-	  << cmd_cryptsetup_luks_dump.key_size;
+	s << "name:" << cmd_cryptsetup_luks_dump.name << " uuid:" << cmd_cryptsetup_luks_dump.uuid
+	  << " encryption-type:" << toString(cmd_cryptsetup_luks_dump.encryption_type) << " cipher:"
+	  << cmd_cryptsetup_luks_dump.cipher << " key-size:" << cmd_cryptsetup_luks_dump.key_size;
 
 	if (!cmd_cryptsetup_luks_dump.pbkdf.empty())
 	    s << " pbkdf:" << cmd_cryptsetup_luks_dump.pbkdf;
 
 	if (!cmd_cryptsetup_luks_dump.integrity.empty())
 	    s << " integrity:" << cmd_cryptsetup_luks_dump.integrity;
+
+	return s;
+    }
+
+
+    CmdCryptsetupBitlkDump::CmdCryptsetupBitlkDump(const string& name)
+	: name(name)
+    {
+	SystemCmd cmd(CRYPTSETUP_BIN " bitlkDump " + quote(name), SystemCmd::DoThrow);
+
+	parse(cmd.stdout());
+    }
+
+
+    void
+    CmdCryptsetupBitlkDump::parse(const vector<string>& lines)
+    {
+	static const regex uuid_regex("GUID:[ \t]*(" UUID_REGEX ")[ \t]*", regex::extended);
+
+	static const regex cipher_name_regex("Cipher name:[ \t]*([^ \t]+)[ \t]*", regex::extended);
+	static const regex cipher_mode_regex("Cipher mode:[ \t]*([^ \t]+)[ \t]*", regex::extended);
+	static const regex cipher_key_size_regex("Cipher key:[ \t]*([0-9]+) bits[ \t]*", regex::extended);
+
+	enum { UNUSED_SECTION, HEADER_SECTION } section = HEADER_SECTION;
+
+	string cipher_name, cipher_mode;
+
+	smatch match;
+
+	for (const string& line : lines)
+	{
+	    if (line.empty())
+		section = UNUSED_SECTION;
+
+	    switch (section)
+	    {
+		case HEADER_SECTION:
+		{
+		    if (regex_match(line, match, uuid_regex) && match.size() == 2)
+			uuid = match[1];
+
+		    if (regex_match(line, match, cipher_name_regex) && match.size() == 2)
+			cipher_name = match[1];
+
+		    if (regex_match(line, match, cipher_mode_regex) && match.size() == 2)
+			cipher_mode = match[1];
+
+		    if (regex_match(line, match, cipher_key_size_regex) && match.size() == 2)
+		    {
+			match[1] >> key_size;
+			key_size /= 8;
+		    }
+		}
+		break;
+
+		case UNUSED_SECTION:
+		    break;
+	    }
+	}
+
+	if (cipher_name.empty() || cipher_mode.empty())
+	    y2err("failed to parse cipher in cryptsetup output");
+	else
+	    cipher = cipher_name + "-" + cipher_mode;
+    }
+
+
+    std::ostream&
+    operator<<(std::ostream& s, const CmdCryptsetupBitlkDump& cmd_cryptsetup_bitlk_dump)
+    {
+	s << "name:" << cmd_cryptsetup_bitlk_dump.name << " uuid:"
+	  << cmd_cryptsetup_bitlk_dump.uuid << " cipher:"
+	  << cmd_cryptsetup_bitlk_dump.cipher << " key-size:"
+	  << cmd_cryptsetup_bitlk_dump.key_size;
 
 	return s;
     }

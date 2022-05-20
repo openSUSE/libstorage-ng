@@ -78,7 +78,7 @@ LUKS
 Implemented:
 
 * Probing, creating, deleting, resizing.
-* Activation during installation and upgrade.
+* Activation and deactivation.
 * Handling of /etc/crypttab.
 * LUKS1 and LUKS2.
 
@@ -90,6 +90,16 @@ Missing:
 
 * Handling different mount-by options.
 * Detached header.
+
+
+BitLocker
+---------
+
+Experimental:
+
+* Probing, deleting.
+* Activation and deactivation.
+* Handling of /etc/crypttab.
 
 
 MD RAID
@@ -156,5 +166,5 @@ Misc
 Implemented:
 
 * Loading and saving devicegraph in XML.
-* Remote probing.
+* Remote probing (with limitations).
 

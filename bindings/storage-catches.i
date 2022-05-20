@@ -44,6 +44,7 @@
 %catches(storage::NullPointerException) storage::is_bcache(const Device *device);
 %catches(storage::NullPointerException) storage::is_bcache_cset(const Device *device);
 %catches(storage::NullPointerException) storage::is_bitlocker(const Device *device);
+%catches(storage::NullPointerException) storage::is_bitlocker_v2(const Device *device);
 %catches(storage::NullPointerException) storage::is_blk_device(const Device *device);
 %catches(storage::NullPointerException) storage::is_blk_filesystem(const Device *device);
 %catches(storage::NullPointerException) storage::is_btrfs(const Device *device);
@@ -106,6 +107,8 @@
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_bcache_cset(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_bitlocker(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_bitlocker(const Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_bitlocker_v2(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_bitlocker_v2(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_blk_device(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_blk_device(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_blk_filesystem(Device *device);
@@ -404,6 +407,7 @@
 %catches(storage::Exception) storage::Storage::create_devicegraph(const std::string &name);
 %catches(storage::Exception) storage::Storage::create_pool(const std::string &name);
 %catches(storage::Exception) storage::Storage::deactivate() const;
+%catches(storage::Exception) storage::Storage::deactivate_v2() const;
 %catches(storage::Exception) storage::Storage::get_devicegraph(const std::string &name);
 %catches(storage::Exception) storage::Storage::get_devicegraph(const std::string &name) const;
 %catches(storage::Exception) storage::Storage::get_pool(const std::string &name);

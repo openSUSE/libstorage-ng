@@ -51,6 +51,8 @@ libdevices_la_SOURCES =					\
 	PlainEncryptionImpl.h	PlainEncryptionImpl.cc	\
 	Luks.h			Luks.cc			\
 	LuksImpl.h		LuksImpl.cc		\
+	BitlockerV2.h		BitlockerV2.cc		\
+	BitlockerV2Impl.h	BitlockerV2Impl.cc	\
 	Bcache.h		Bcache.cc		\
 	BcacheImpl.h		BcacheImpl.cc		\
 	BcacheCset.h		BcacheCset.cc		\
@@ -82,6 +84,7 @@ pkginclude_HEADERS =		\
 	Encryption.h		\
 	PlainEncryption.h	\
 	Luks.h			\
+	BitlockerV2.h		\
 	Bcache.h		\
 	BcacheCset.h
 

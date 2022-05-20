@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -34,6 +34,7 @@
 #include "storage/EtcCrypttab.h"
 #include "storage/Prober.h"
 #include "storage/Utils/Format.h"
+#include "storage/Utils/StorageTmpl.h"
 
 
 namespace storage
@@ -162,9 +163,7 @@ namespace storage
 	 */
 	struct LuksActivationInfo
 	{
-	    LuksActivationInfo() : canceled(false), password() {}
-
-	    bool canceled;
+	    bool canceled = false;
 	    string password;
 	};
 
@@ -188,28 +187,46 @@ namespace storage
     Luks::Impl::activate_luks(const ActivateCallbacks* activate_callbacks, SystemInfo::Impl& system_info,
 			      const string& name, const string& uuid, const string& label)
     {
+	LuksInfo luks_info;
+	luks_info.get_impl().device_name = name;
+	luks_info.get_impl().size = system_info.getCmdBlockdev(name).get_size();
+	luks_info.get_impl().uuid = uuid;
+	luks_info.get_impl().label = label;
+
+	dev_t majorminor = system_info.getCmdUdevadmInfo(name).get_majorminor();
+
+	const EtcCrypttab& etc_crypttab = system_info.getEtcCrypttab();
+	const CrypttabEntry* crypttab_entry = etc_crypttab.find_by_any_block_device(system_info, uuid,
+										    label, majorminor);
+
+	string dm_table_name;
+
+	if (crypttab_entry)
+	{
+	    dm_table_name = luks_info.get_impl().dm_table_name = crypttab_entry->get_crypt_device();
+	    luks_info.get_impl().is_dm_table_name_generated = false;
+	}
+	else
+	{
+	    dm_table_name = luks_info.get_impl().dm_table_name = next_free_cr_auto_name(system_info);
+	    luks_info.get_impl().is_dm_table_name_generated = true;
+	}
+
 	map<string, LuksActivationInfo>::const_iterator it = luks_activation_infos.find(uuid);
 
 	int attempt = 1;
-	string dm_name;
-	string password;
 
 	while (true)
 	{
+	    string password;
+
 	    if (it == luks_activation_infos.end())
 	    {
 		pair<bool, string> tmp;
 
 		if (dynamic_cast<const ActivateCallbacksLuks*>(activate_callbacks))
 		{
-		    LuksInfo info;
-
-		    info.get_impl().device_name = name;
-		    info.get_impl().size = system_info.getCmdBlockdev(name).get_size();
-		    info.get_impl().uuid = uuid;
-		    info.get_impl().label = label;
-
-		    tmp = dynamic_cast<const ActivateCallbacksLuks*>(activate_callbacks)->luks(info, attempt);
+		    tmp = dynamic_cast<const ActivateCallbacksLuks*>(activate_callbacks)->luks(luks_info, attempt);
 		}
 		else
 		{
@@ -243,22 +260,8 @@ namespace storage
 	    // TRANSLATORS: progress message
 	    message_callback(activate_callbacks, sformat(_("Activating LUKS %s"), uuid));
 
-	    if (attempt == 1)
-	    {
-		dev_t majorminor = system_info.getCmdUdevadmInfo(name).get_majorminor();
-
-		const EtcCrypttab& etc_crypttab = system_info.getEtcCrypttab();
-		const CrypttabEntry* crypttab_entry = etc_crypttab.find_by_any_block_device(system_info, uuid,
-											    label, majorminor);
-
-		if (crypttab_entry)
-		    dm_name = crypttab_entry->get_crypt_device();
-		else
-		    dm_name = next_free_cr_auto_name(system_info);
-	    }
-
-	    string cmd_line = CRYPTSETUP_BIN " --batch-mode luksOpen " + quote(name) + " " +
-		quote(dm_name) + " --tries 1 --key-file -";
+	    string cmd_line = CRYPTSETUP_BIN " --batch-mode open --type luks " + quote(name) + " " +
+		quote(dm_table_name) + " --tries 1 --key-file -";
 
 	    SystemCmd::Options cmd_options(cmd_line, SystemCmd::DoThrow);
 	    cmd_options.stdin_text = password;
@@ -709,7 +712,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = CRYPTSETUP_BIN " --batch-mode luksOpen " + quote(blk_device->get_name()) +
+	string cmd_line = CRYPTSETUP_BIN " --batch-mode open --type luks " + quote(blk_device->get_name()) +
 	    " " + quote(get_dm_table_name()) + " --tries 1 " + get_open_options();
 
 	add_key_file_option_and_execute(cmd_line);

@@ -43,6 +43,7 @@
 #include "storage/Devices/Encryption.h"
 #include "storage/Devices/PlainEncryption.h"
 #include "storage/Devices/Luks.h"
+#include "storage/Devices/BitlockerV2.h"
 #include "storage/Devices/Bcache.h"
 #include "storage/Devices/BcacheCset.h"
 #include "storage/Filesystems/Ext2.h"
@@ -82,6 +83,7 @@ namespace storage
 	{ "Bcache", &Bcache::load },
 	{ "BcacheCset", &BcacheCset::load },
 	{ "Bitlocker", &Bitlocker::load },
+	{ "BitlockerV2", &BitlockerV2::load },
 	{ "Btrfs", &Btrfs::load },
 	{ "BtrfsQgroup", &BtrfsQgroup::load },
 	{ "BtrfsSubvolume", &BtrfsSubvolume::load },

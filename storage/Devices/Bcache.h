@@ -67,12 +67,12 @@ namespace storage
 	 * Create a device of type Bcache. Usually this function is not called
 	 * directly. Instead BlkDevice::create_bcache() is called.
 	 */
-	static Bcache* create(Devicegraph* devicegraph, const std::string& dm_name);
+	static Bcache* create(Devicegraph* devicegraph, const std::string& name);
 
 	/**
 	 * @copydoc create(Devicegraph*, const std::string&)
 	 */
-	static Bcache* create(Devicegraph* devicegraph, const std::string& dm_name, BcacheType type);
+	static Bcache* create(Devicegraph* devicegraph, const std::string& name, BcacheType type);
 
 	static Bcache* load(Devicegraph* devicegraph, const xmlNode* node);
 
