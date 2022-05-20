@@ -46,6 +46,8 @@ namespace storage
 
 	string device_name;
 	unsigned long long size = 0;
+	string dm_table_name;
+	bool is_dm_table_name_generated = false;
 	string uuid;
 	string label;
 

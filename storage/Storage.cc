@@ -57,6 +57,20 @@ namespace storage
 
 
     const string&
+    LuksInfo::get_dm_table_name() const
+    {
+	return get_impl().dm_table_name;
+    }
+
+
+    bool
+    LuksInfo::is_dm_table_name_generated() const
+    {
+	return get_impl().is_dm_table_name_generated;
+    }
+
+
+    const string&
     LuksInfo::get_uuid() const
     {
 	return get_impl().uuid;

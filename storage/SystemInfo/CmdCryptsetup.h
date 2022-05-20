@@ -68,6 +68,8 @@ namespace storage
 
 	friend std::ostream& operator<<(std::ostream& s, const CmdCryptsetupLuksDump& cmd_cryptsetup_luks_dump);
 
+	const string& get_uuid() const { return uuid; }
+
 	EncryptionType get_encryption_type() const { return encryption_type; }
 	const string& get_cipher() const { return cipher; }
 	unsigned int get_key_size() const { return key_size; }
@@ -82,6 +84,8 @@ namespace storage
 	void parse_version2(const vector<string>& lines);
 
 	string name;
+
+	string uuid;
 
 	/**
 	 * Either UNKNOWN, LUKS1 or LUKS2

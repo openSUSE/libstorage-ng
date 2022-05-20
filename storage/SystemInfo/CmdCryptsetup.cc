@@ -144,6 +144,8 @@ namespace storage
     void
     CmdCryptsetupLuksDump::parse_version1(const vector<string>& lines)
     {
+	static const regex uuid_regex("UUID:[ \t]*(" UUID_REGEX ")[ \t]*", regex::extended);
+
 	static const regex cipher_name_regex("Cipher name:[ \t]*([^ \t]+)[ \t]*", regex::extended);
 	static const regex cipher_mode_regex("Cipher mode:[ \t]*([^ \t]+)[ \t]*", regex::extended);
 	static const regex mk_bits_regex("MK bits:[ \t]*([0-9]+)[ \t]*", regex::extended);
@@ -154,6 +156,9 @@ namespace storage
 
 	for (const string& line : lines)
 	{
+	    if (regex_match(line, match, uuid_regex) && match.size() == 2)
+		uuid = match[1];
+
 	    if (regex_match(line, match, cipher_name_regex) && match.size() == 2)
 		cipher_name = match[1];
 
@@ -188,6 +193,8 @@ namespace storage
 	static const regex token_section_regex("Tokens:[ \t]*", regex::extended);
 	static const regex digest_section_regex("Digests:[ \t]*", regex::extended);
 
+	static const regex uuid_regex("UUID:[ \t]*(" UUID_REGEX ")[ \t]*", regex::extended);
+
 	static const regex cipher_regex("[ \t]*cipher:[ \t]*([^ \t]+)[ \t]*", regex::extended);
 
 	static const regex integrity_regex("[ \t]*integrity:[ \t]*([^ \t]+)[ \t]*", regex::extended);
@@ -196,7 +203,7 @@ namespace storage
 	static const regex key_regex("[ \t]*Key:[ \t]*([0-9]+) bits[ \t]*", regex::extended);
 	static const regex pbkdf_regex("[ \t]*PBKDF:[ \t]*([^ \t]+)[ \t]*", regex::extended);
 
-	enum { DATA_SECTION, KEYSLOT_SECTION, UNUSED_SECTION } section = UNUSED_SECTION;
+	enum { UNUSED_SECTION, HEADER_SECTION, DATA_SECTION, KEYSLOT_SECTION } section = HEADER_SECTION;
 
 	int keyslot_cnt = 0;
 
@@ -217,6 +224,13 @@ namespace storage
 
 	    switch (section)
 	    {
+		case HEADER_SECTION:
+		{
+		    if (regex_match(line, match, uuid_regex) && match.size() == 2)
+			uuid = match[1];
+		}
+		break;
+
 		case DATA_SECTION:
 		{
 		    if (regex_match(line, match, cipher_regex) && match.size() == 2)
@@ -259,10 +273,9 @@ namespace storage
     std::ostream&
     operator<<(std::ostream& s, const CmdCryptsetupLuksDump& cmd_cryptsetup_luks_dump)
     {
-	s << "name:" << cmd_cryptsetup_luks_dump.name << " encryption-type:"
-	  << toString(cmd_cryptsetup_luks_dump.encryption_type) << " cipher:"
-	  << cmd_cryptsetup_luks_dump.cipher << " key-size:"
-	  << cmd_cryptsetup_luks_dump.key_size;
+	s << "name:" << cmd_cryptsetup_luks_dump.name << " uuid:" << cmd_cryptsetup_luks_dump.uuid
+	  << " encryption-type:" << toString(cmd_cryptsetup_luks_dump.encryption_type) << " cipher:"
+	  << cmd_cryptsetup_luks_dump.cipher << " key-size:" << cmd_cryptsetup_luks_dump.key_size;
 
 	if (!cmd_cryptsetup_luks_dump.pbkdf.empty())
 	    s << " pbkdf:" << cmd_cryptsetup_luks_dump.pbkdf;

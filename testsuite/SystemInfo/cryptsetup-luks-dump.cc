@@ -67,7 +67,7 @@ BOOST_AUTO_TEST_CASE(parse1)
     };
 
     vector<string> output = {
-	"name:/dev/sdc1 encryption-type:luks1 cipher:aes-xts-plain64 key-size:64"
+	"name:/dev/sdc1 uuid:f0b3c940-6bf1-4afa-8ba4-fa4d97b026b6 encryption-type:luks1 cipher:aes-xts-plain64 key-size:64"
     };
 
     check("/dev/sdc1", input, output);
@@ -123,7 +123,7 @@ BOOST_AUTO_TEST_CASE(parse2)
     };
 
     vector<string> output = {
-	"name:/dev/sdc1 encryption-type:luks2 cipher:aes-xts-plain64 key-size:64 pbkdf:argon2i"
+	"name:/dev/sdc1 uuid:c8338763-450d-4143-92b2-dff843aff1ac encryption-type:luks2 cipher:aes-xts-plain64 key-size:64 pbkdf:argon2i"
     };
 
     check("/dev/sdc1", input, output);
@@ -177,7 +177,7 @@ BOOST_AUTO_TEST_CASE(parse3_paes)
     };
 
     vector<string> output = {
-	"name:/dev/dasdb1 encryption-type:luks2 cipher:paes-xts-plain64 key-size:128 pbkdf:argon2i"
+	"name:/dev/dasdb1 uuid:22ff3407-ae5d-4bc6-b0cf-462b75e0b6a0 encryption-type:luks2 cipher:paes-xts-plain64 key-size:128 pbkdf:argon2i"
     };
 
     check("/dev/dasdb1", input, output);
@@ -249,7 +249,7 @@ BOOST_AUTO_TEST_CASE(parse4_two_keyslots)
     };
 
     vector<string> output = {
-	"name:/dev/ram0p1 encryption-type:luks2 cipher:aes-xts-plain64 key-size:64 pbkdf:argon2id"
+	"name:/dev/ram0p1 uuid:30c4e059-7c30-4913-9c89-2d18bb818c87 encryption-type:luks2 cipher:aes-xts-plain64 key-size:64 pbkdf:argon2id"
     };
 
     check("/dev/ram0p1", input, output);
@@ -306,7 +306,7 @@ BOOST_AUTO_TEST_CASE(parse5_aead)
     };
 
     vector<string> output = {
-	"name:/dev/sdc1 encryption-type:luks2 cipher:aegis128-random key-size:16 pbkdf:argon2id integrity:aead"
+	"name:/dev/sdc1 uuid:dfcefa36-2548-45b7-98f4-700bd80fa67a encryption-type:luks2 cipher:aegis128-random key-size:16 pbkdf:argon2id integrity:aead"
     };
 
     check("/dev/sdc1", input, output);
