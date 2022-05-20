@@ -314,7 +314,7 @@ namespace storage
     BtrfsSubvolume::Impl::default_mount_options() const
     {
 	// NOTE: This is used for both: fstab and mount command.
-	// In case of fstab, subvol path cannot be quoted, and the usage of scape
+	// In case of fstab, subvol path cannot be quoted, and the usage of escape
 	// commands like \040 and \011 is undefined (and probably not supported by
 	// the tools). Comma might be dangerous due to it is used as separator for
 	// mount options.

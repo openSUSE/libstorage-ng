@@ -31,9 +31,9 @@ namespace storage
 
 
     PlainEncryption*
-    PlainEncryption::create(Devicegraph* devicegraph, const string& name)
+    PlainEncryption::create(Devicegraph* devicegraph, const string& dm_table_name)
     {
-	PlainEncryption* ret = new PlainEncryption(new PlainEncryption::Impl(name));
+	PlainEncryption* ret = new PlainEncryption(new PlainEncryption::Impl(dm_table_name));
 	ret->Device::create(devicegraph);
 	return ret;
     }

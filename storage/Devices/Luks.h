@@ -45,7 +45,7 @@ namespace storage
 	 *
 	 * @see Device::create(Devicegraph*)
 	 */
-	static Luks* create(Devicegraph* devicegraph, const std::string& dm_name);
+	static Luks* create(Devicegraph* devicegraph, const std::string& dm_table_name);
 
 	static Luks* load(Devicegraph* devicegraph, const xmlNode* node);
 

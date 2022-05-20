@@ -63,7 +63,7 @@ namespace storage
     extern const map<FsType, blk_filesystem_create_fnc> blk_filesystem_create_registry;
 
 
-    typedef std::function<Encryption* (Devicegraph* devicegraph, const string& dm_name)> encryption_create_fnc;
+    typedef std::function<Encryption* (Devicegraph* devicegraph, const string& dm_table_name)> encryption_create_fnc;
 
     /**
      * Map with encryption type of all non-abstract encryptions and corresponding create

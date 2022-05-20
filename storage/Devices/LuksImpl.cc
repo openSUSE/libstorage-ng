@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -34,6 +34,7 @@
 #include "storage/EtcCrypttab.h"
 #include "storage/Prober.h"
 #include "storage/Utils/Format.h"
+#include "storage/Utils/StorageTmpl.h"
 
 
 namespace storage
@@ -162,9 +163,7 @@ namespace storage
 	 */
 	struct LuksActivationInfo
 	{
-	    LuksActivationInfo() : canceled(false), password() {}
-
-	    bool canceled;
+	    bool canceled = false;
 	    string password;
 	};
 

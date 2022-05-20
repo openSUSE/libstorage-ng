@@ -44,8 +44,8 @@ namespace storage
     {
     public:
 
-	Impl(const string& dm_name)
-	    : Encryption::Impl(dm_name) { set_type(EncryptionType::PLAIN); }
+	Impl(const string& dm_table_name)
+	    : Encryption::Impl(dm_table_name) { set_type(EncryptionType::PLAIN); }
 
 	Impl(const xmlNode* node);
 

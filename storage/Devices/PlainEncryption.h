@@ -47,7 +47,7 @@ namespace storage
 	 *
 	 * @see Device::create(Devicegraph*)
 	 */
-	static PlainEncryption* create(Devicegraph* devicegraph, const std::string& dm_name);
+	static PlainEncryption* create(Devicegraph* devicegraph, const std::string& dm_table_name);
 
 	static PlainEncryption* load(Devicegraph* devicegraph, const xmlNode* node);
 

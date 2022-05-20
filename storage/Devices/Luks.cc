@@ -31,9 +31,9 @@ namespace storage
 
 
     Luks*
-    Luks::create(Devicegraph* devicegraph, const string& name)
+    Luks::create(Devicegraph* devicegraph, const string& dm_table_name)
     {
-	Luks* ret = new Luks(new Luks::Impl(name));
+	Luks* ret = new Luks(new Luks::Impl(dm_table_name));
 	ret->Device::create(devicegraph);
 	return ret;
     }

@@ -167,7 +167,7 @@ namespace storage
 	 *
 	 * Parameter "info" contains all known information about the LUKS device.
 	 */
-	virtual std::pair<bool, std::string> luks(const LuksInfo& info, int attempt) const = 0;
+	virtual std::pair<bool, std::string> luks(const LuksInfo& luks_info, int attempt) const = 0;
 
     };
 

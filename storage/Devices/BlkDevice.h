@@ -277,7 +277,7 @@ namespace storage
 	 * It will also set the mount-by method of the encryption to the
 	 * storage default mount-by method.
 	 */
-	Encryption* create_encryption(const std::string& dm_name) ST_DEPRECATED;
+	Encryption* create_encryption(const std::string& dm_table_name) ST_DEPRECATED;
 
 	/**
 	 * Creates an encryption device on the blk device. If the blk device
@@ -291,7 +291,7 @@ namespace storage
 	 *
 	 * @see EncryptionType
 	 */
-	Encryption* create_encryption(const std::string& dm_name, EncryptionType type);
+	Encryption* create_encryption(const std::string& dm_table_name, EncryptionType type);
 
 	/**
 	 * Removes an encryption device on the blk device. If the encryption device

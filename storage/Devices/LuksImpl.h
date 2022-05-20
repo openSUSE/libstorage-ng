@@ -24,8 +24,6 @@
 #define STORAGE_LUKS_IMPL_H
 
 
-#include "storage/Utils/StorageTmpl.h"
-#include "storage/Utils/Enum.h"
 #include "storage/Utils/HumanString.h"
 #include "storage/Devices/Luks.h"
 #include "storage/Devices/EncryptionImpl.h"
@@ -46,8 +44,8 @@ namespace storage
     {
     public:
 
-	Impl(const string& dm_name)
-	    : Encryption::Impl(dm_name) {}
+	Impl(const string& dm_table_name)
+	    : Encryption::Impl(dm_table_name) {}
 
 	Impl(const xmlNode* node);
 
