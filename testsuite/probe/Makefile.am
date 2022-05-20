@@ -8,7 +8,7 @@ LDADD = ../../storage/libstorage-ng.la ../helpers/libhelpers.la			\
 	-lboost_unit_test_framework
 
 check_PROGRAMS =								\
-	disk.test disk-zoned1.test bitlocker1.test				\
+	disk.test disk-zoned1.test bitlocker1.test bitlocker2.test		\
 	multipath1.test multipath+luks1.test md1.test md2.test			\
 	md3.test lvm1.test lvm2.test lvm-cache1.test lvm-cache+thin1.test	\
 	lvm-raid1.test lvm-mirror1.test lvm-snapshot1.test			\
@@ -30,6 +30,7 @@ TESTS = $(check_PROGRAMS)
 EXTRA_DIST = disk-mockup.xml disk-devicegraph.xml				\
 	disk-zoned1-mockup.xml disk-zoned1-devicegraph.xml			\
 	bitlocker1-mockup.xml bitlocker1-devicegraph.xml			\
+	bitlocker2-mockup.xml bitlocker2-devicegraph.xml			\
 	multi-mount-point-mockup1.xml multi-mount-point-devicegraph1.xml	\
 	multi-mount-point-mockup2.xml						\
 	multi-mount-point-mockup3.xml						\

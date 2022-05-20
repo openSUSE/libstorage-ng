@@ -20,10 +20,10 @@ BOOST_AUTO_TEST_CASE(probe)
 {
     set_logger(get_stdout_logger());
 
-    setenv("LIBSTORAGE_CRYPTSETUP_FOR_BITLOCKER", "no", 1);
+    setenv("LIBSTORAGE_CRYPTSETUP_FOR_BITLOCKER", "yes", 1);
 
     Environment environment(true, ProbeMode::READ_MOCKUP, TargetMode::DIRECT);
-    environment.set_mockup_filename("bitlocker1-mockup.xml");
+    environment.set_mockup_filename("bitlocker2-mockup.xml");
 
     Storage storage(environment);
     storage.probe();
@@ -32,12 +32,12 @@ BOOST_AUTO_TEST_CASE(probe)
     probed->check();
 
     Devicegraph* staging = storage.get_staging();
-    staging->load("bitlocker1-devicegraph.xml");
+    staging->load("bitlocker2-devicegraph.xml");
     staging->check();
 
     TsCmpDevicegraph cmp(*probed, *staging);
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
 
-    BOOST_CHECK_EQUAL(required_features(probed), "");
-    BOOST_CHECK_EQUAL(suggested_features(probed), "bitlocker ntfs");
+    BOOST_CHECK_EQUAL(required_features(probed), "bitlocker");
+    BOOST_CHECK_EQUAL(suggested_features(probed), "bitlocker ntfs vfat");
 }
