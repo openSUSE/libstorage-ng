@@ -123,14 +123,12 @@ namespace storage
 	id = entry.id;
 	boot = entry.boot;
 	legacy_boot = entry.legacy_boot;
+	label = entry.name;
 
 	if (!is_active())
 	    return;
 
 	const CmdUdevadmInfo& cmd_udevadm_info = system_info.getCmdUdevadmInfo(get_name());
-
-	if (!cmd_udevadm_info.get_by_part_label_links().empty())
-	    label = cmd_udevadm_info.get_by_part_label_links().front();
 
 	// Use partition UUID only on GPT. On MS-DOS it is also
 	// available but includes the partition number, so updating it

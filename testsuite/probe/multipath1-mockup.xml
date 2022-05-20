@@ -24,7 +24,7 @@
       <stdout>/dev/sdc2: UUID="c2175017-5377-4468-9c9b-67ac2e7c7270" TYPE="ext4"</stdout>
       <stdout>/dev/mapper/36005076305ffc73a00000000000013b4: PTUUID="b2036acb-5a2c-4cf7-b886-00df28e4e8af" PTTYPE="gpt"</stdout>
       <stdout>/dev/mapper/36005076305ffc73a00000000000013b5: UUID="816c28fd-d679-48d3-9ded-0b15c1602bc0" TYPE="ext4"</stdout>
-      <stdout>/dev/mapper/36005076305ffc73a00000000000013b4-part1: UUID="d53b34b1-1ca5-463b-939c-f01759c86a50" SEC_TYPE="ext2" TYPE="ext3" PARTLABEL="primary" PARTUUID="8d6b64a6-0d78-4d95-a9d7-27465bd600bd"</stdout>
+      <stdout>/dev/mapper/36005076305ffc73a00000000000013b4-part1: UUID="d53b34b1-1ca5-463b-939c-f01759c86a50" SEC_TYPE="ext2" TYPE="ext3" PARTUUID="8d6b64a6-0d78-4d95-a9d7-27465bd600bd"</stdout>
     </Command>
     <Command>
       <name>/sbin/dasdview --extended '/dev/dasdb'</name>
@@ -310,7 +310,6 @@
       <stdout>E: ID_FS_UUID_ENC=d53b34b1-1ca5-463b-939c-f01759c86a50</stdout>
       <stdout>E: ID_FS_VERSION=1.0</stdout>
       <stdout>E: ID_PART_ENTRY_DISK=254:0</stdout>
-      <stdout>E: ID_PART_ENTRY_NAME=primary</stdout>
       <stdout>E: ID_PART_ENTRY_NUMBER=1</stdout>
       <stdout>E: ID_PART_ENTRY_OFFSET=2048</stdout>
       <stdout>E: ID_PART_ENTRY_SCHEME=gpt</stdout>
@@ -663,7 +662,7 @@
       <name>/usr/sbin/parted --script --machine '/dev/mapper/36005076305ffc73a00000000000013b4' unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/mapper/36005076305ffc73a00000000000013b4:2097152s:dm:512:512:gpt:Linux device-mapper (multipath):;</stdout>
-      <stdout>1:2048s:1050623s:1048576s:ext3:primary:raid;</stdout>
+      <stdout>1:2048s:1050623s:1048576s:ext3::raid;</stdout>
     </Command>
     <Command>
       <name>/usr/sbin/parted --script --machine '/dev/mapper/36005076305ffc73a00000000000013b5' unit s print</name>
