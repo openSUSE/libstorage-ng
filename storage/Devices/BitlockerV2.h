@@ -35,6 +35,9 @@ namespace storage
      *
      * Uses cryptsetup. Generated during probing if
      * LIBSTORAGE_CRYPTSETUP_FOR_BITLOCKER=yes.
+     *
+     * The block device is likely only usable by the NTFS that is already on it since the
+     * device-mapper table contains or may contain "zero" mappings.
      */
     class BitlockerV2 : public Encryption
     {
