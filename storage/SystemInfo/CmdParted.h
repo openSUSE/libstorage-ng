@@ -212,8 +212,8 @@ namespace storage
     {
     public:
 
-	static bool supports_json();
-	static bool supports_type_id();
+	static bool supports_json_option();
+	static bool supports_type_command();
 
     private:
 
