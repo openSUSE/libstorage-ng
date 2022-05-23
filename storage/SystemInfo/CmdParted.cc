@@ -44,10 +44,10 @@ namespace storage
 	: device(device)
     {
 	SystemCmd::Options options(PARTED_BIN " --script " +
-				   string(PartedVersion::supports_json() ? "--json " : "--machine ") +
+				   string(PartedVersion::supports_json_option() ? "--json " : "--machine ") +
 				   quote(device) + " unit s print", SystemCmd::DoThrow);
 	options.verify = [](int) { return true; };
-	if (!PartedVersion::supports_json())
+	if (!PartedVersion::supports_json_option())
 	    options.env.push_back("PARTED_PRINT_NUMBER_OF_PARTITION_SLOTS=1");
 
 	SystemCmd cmd(options);
@@ -91,7 +91,7 @@ namespace storage
 	gpt_pmbr_boot = false;
 	entries.clear();
 
-	if (PartedVersion::supports_json())
+	if (PartedVersion::supports_json_option())
 	{
 	    JsonFile json_file(stdout);
 
@@ -642,7 +642,7 @@ namespace storage
 
 
     bool
-    PartedVersion::supports_json()
+    PartedVersion::supports_json_option()
     {
 	query_version();
 
@@ -651,9 +651,11 @@ namespace storage
 
 
     bool
-    PartedVersion::supports_type_id()
+    PartedVersion::supports_type_command()
     {
 	query_version();
+
+	// For upstream with 3.6.
 
 	return major >= 4 || (major == 3 && minor >= 5);
     }

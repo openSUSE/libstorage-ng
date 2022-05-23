@@ -1101,8 +1101,8 @@ namespace storage
 	}
 	else if (is_msdos(partition_table))
 	{
-	    if (PartedVersion::supports_type_id())
-		cmd_line += " type-id " + to_string(get_number()) + " " + sformat("0x%02x", get_id());
+	    if (PartedVersion::supports_type_command())
+		cmd_line += " type " + to_string(get_number()) + " " + sformat("0x%02x", get_id());
 	    else
 		cmd_line += " set " + to_string(get_number()) + " type " + to_string(get_id());
 	}
@@ -1112,7 +1112,7 @@ namespace storage
 	    {
 		case ID_LINUX:
 		    // This is tricky but parted has no clearer way - it also fails if the
-		    // partition has a swap signature. TODO Use type-id and type-uuid.
+		    // partition has a swap signature. TODO Use new upstream type command.
 		    cmd_line += " set " + to_string(get_number()) + " lvm on set " +
 			to_string(get_number()) + " lvm off";
 		    break;
