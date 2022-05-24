@@ -24,6 +24,8 @@
 #define STORAGE_CALLBACKS_IMPL_H
 
 
+#include <stdint.h>
+
 #include "storage/Utils/Callbacks.h"
 
 
