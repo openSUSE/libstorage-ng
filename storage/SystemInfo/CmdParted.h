@@ -139,6 +139,11 @@ namespace storage
 	 */
 	static const map<unsigned int, const char*> id_to_name;
 
+	/**
+	 * Mapping from partition ids to GPT partition type UUIDs.
+	 */
+	static const map<unsigned int, const char*> id_to_uuid;
+
     private:
 
 	typedef vector<Entry>::const_iterator const_iterator;

@@ -1090,9 +1090,11 @@ namespace storage
 
 	string cmd_line = PARTED_BIN " --script " + quote(partitionable->get_name());
 
-	// Note: Neither the 'type' option nor the "type-id" command are available in
-	// upstream parted (2022-04-22). 'swap' is not available for MS-DOS in upstream
-	// parted (2021-07-26). 'swap' for DASD is SUSE specific (2021-10-07).
+	// Note: The 'type' command is now available in upstream parted
+	// (2022-05-24). 'swap' is not available for MS-DOS in upstream parted
+	// (2021-07-26). 'swap' for DASD is SUSE specific (2021-10-07). In parted 3.6
+	// 'swap' should work for all partition table types (2022-05-24). In SLE15 'swap'
+	// is not available for all partition table types.
 
 	map<unsigned int, const char*>::const_iterator it = Parted::id_to_name.find(get_id());
 	if (it != Parted::id_to_name.end() && it->first != ID_SWAP)
@@ -1106,13 +1108,22 @@ namespace storage
 	    else
 		cmd_line += " set " + to_string(get_number()) + " type " + to_string(get_id());
 	}
+	else if (is_gpt(partition_table) && PartedVersion::supports_type_command())
+	{
+	    map<unsigned int, const char*>::const_iterator it2 = Parted::id_to_uuid.find(get_id());
+	    if (it2 != Parted::id_to_uuid.end())
+		cmd_line += " type " + to_string(get_number()) + " " + it2->second;
+	    else
+		ST_THROW(Exception("impossible to set partition id"));
+	}
 	else
 	{
 	    switch (get_id())
 	    {
 		case ID_LINUX:
 		    // This is tricky but parted has no clearer way - it also fails if the
-		    // partition has a swap signature. TODO Use new upstream type command.
+		    // partition has a swap signature. For MS-DOS and GPT the new 'type'
+		    // command is used if available.
 		    cmd_line += " set " + to_string(get_number()) + " lvm on set " +
 			to_string(get_number()) + " lvm off";
 		    break;
@@ -1551,6 +1562,10 @@ namespace storage
 
 	switch (id)
 	{
+	    case ID_UNKNOWN:
+		// TRANSLATORS: name of partition type
+		return _("Unknown");
+
 	    case ID_DOS12:
 		// TRANSLATORS: name of partition type
 		return _("DOS12 Partition");
@@ -1618,6 +1633,10 @@ namespace storage
 	    case ID_LINUX_HOME:
 		// TRANSLATORS: name of partition type
 		return _("Linux Home");
+
+	    case ID_LINUX_SERVER_DATA:
+		// TRANSLATORS: name of partition type
+		return _("Linux Server Data");
 	}
 
 	return Text();

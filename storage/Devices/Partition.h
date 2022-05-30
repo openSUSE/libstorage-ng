@@ -128,16 +128,19 @@ namespace storage
 
 	/** BIOS boot partition (https://en.wikipedia.org/wiki/BIOS_boot_partition),
 	    only for GPT. */
-	ID_BIOS_BOOT = 0x101,
+	ID_BIOS_BOOT,
 
 	/** Windows basic data partition, only for GPT. */
-	ID_WINDOWS_BASIC_DATA = 0x102,
+	ID_WINDOWS_BASIC_DATA,
 
 	/** Microsoft reserved partition, only for GPT. */
-	ID_MICROSOFT_RESERVED = 0x103,
+	ID_MICROSOFT_RESERVED,
 
-	/** Linux home, only for GPT. */
-	ID_LINUX_HOME = 0x104,
+	/** Linux Home, only for GPT. Required parted 3.5 or higher. */
+	ID_LINUX_HOME,
+
+	/** Linux Server Data, only for GPT. Required SUSE parted 3.5 or higher. */
+	ID_LINUX_SERVER_DATA,
 
     };
 
