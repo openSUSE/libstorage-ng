@@ -224,12 +224,30 @@ namespace storage
 
 	if (label == PtType::MSDOS)
 	{
-	    // the "type-id" entry is SUSE specific (2022-04-22).
+	    // The "type-id" entry is SUSE specific (2022-04-22). Meanwhile included
+	    // upstream (2022-05-24).
+
 	    if (get_child_value(node, "type-id", tmp))
 	    {
 		std::istringstream data(tmp);
 		classic(data);
 		data >> std::hex >> entry.id;
+	    }
+	}
+
+	if (label == PtType::GPT)
+	{
+	    // ID_LINUX is the default and thus also the value for unknown types. In that
+	    // case look for the type UUID. The "type-uuid" is meanwhile included upstream
+	    // (2022-05-24).
+
+	    if (entry.id == ID_LINUX && get_child_value(node, "type-uuid", tmp))
+	    {
+		map<unsigned int, const char*>::const_iterator it =
+		    find_if(id_to_uuid.begin(), id_to_uuid.end(),
+			    [&tmp](const auto& v) { return v.second == tmp; });
+
+		entry.id = it != id_to_uuid.end() ? it->first : ID_UNKNOWN;
 	    }
 	}
 
@@ -589,6 +607,13 @@ namespace storage
 	{ ID_RAID, "raid" },
 	{ ID_SWAP, "swap" },
 	{ ID_WINDOWS_BASIC_DATA, "msftdata" },
+    };
+
+
+    const map<unsigned int, const char*> Parted::id_to_uuid = {
+	{ ID_LINUX, "0fc63daf-8483-4772-8e79-3d69d8477de4" },
+	{ ID_LINUX_SERVER_DATA, "3b8f8425-20e0-4f3b-907f-1a25a76f98e8" },
+	{ ID_SWAP, "0657fd6d-a4ab-43c4-84e5-0933c84b4f4f" },
     };
 
 

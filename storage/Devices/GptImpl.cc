@@ -212,7 +212,8 @@ namespace storage
     {
 	static const vector<unsigned int> supported_ids = {
 	    ID_UNKNOWN, ID_LINUX, ID_SWAP, ID_LVM, ID_RAID, ID_IRST, ID_ESP, ID_BIOS_BOOT, ID_PREP,
-	    ID_WINDOWS_BASIC_DATA, ID_MICROSOFT_RESERVED, ID_DIAG, ID_LINUX_HOME
+	    ID_WINDOWS_BASIC_DATA, ID_MICROSOFT_RESERVED, ID_DIAG, ID_LINUX_HOME,
+	    ID_LINUX_SERVER_DATA
 	};
 
 	return contains(supported_ids, id);
