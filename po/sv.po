@@ -10,16 +10,16 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-20 12:10+0100\n"
-"PO-Revision-Date: 2020-05-14 17:08+0000\n"
-"Last-Translator: Luna Jernberg <droidbittin@gmail.com>\n"
-"Language-Team: Swedish <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/sv/>\n"
+"PO-Revision-Date: 2022-05-31 17:12+0000\n"
+"Last-Translator: Luna  Jernberg <bittin@opensuse.org>\n"
+"Language-Team: Swedish <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.6.1\n"
+"X-Generator: Weblate 4.9.1\n"
 
 msgid ""
 "\n"
@@ -82,9 +82,9 @@ msgstr "Aktivera krypterad enhet på %1$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the device name (e.g. /dev/loop0),
 #. %2$s is replaced by the size (e.g. 20.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Activate hard disk %1$s (%2$s)"
-msgstr "Skapa hårddisk %1$s (%2$s)"
+msgstr "Aktivera hårddisk %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -138,9 +138,9 @@ msgstr "Aktiverar krypterad enhet på %1$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/loop0),
 #. %2$s is replaced by the size (e.g. 20.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Activating hard disk %1$s (%2$s)"
-msgstr "Skapar hårddisk %1$s (%2$s)"
+msgstr "Aktiverar hårddisk %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -280,9 +280,9 @@ msgstr ""
 #. %2$s is replaced by the btrfs qgroup id (e.g. 2/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Assign qgroup %1$s to qgroup %2$s on %3$s"
-msgstr "Krymp partition %1$s från %2$s till %3$s"
+msgstr "Tilldela qgroup %1$s till qgroup %2$s på %3$s"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
@@ -290,18 +290,18 @@ msgstr "Krymp partition %1$s från %2$s till %3$s"
 #. %2$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Assign qgroup of subvolume %1$s to qgroup %2$s on %3$s"
-msgstr "Avmontera delvolym %1$s på %2$s i %3$s"
+msgstr "Tilldela qgroup av undervolym %1$s till qgroup %2$s på %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by the btrfs qgroup id (e.g. 2/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Assigning qgroup %1$s to qgroup %2$s on %3$s"
-msgstr "Krymper partition %1$s från %2$s till %3$s"
+msgstr "Tilldelar qgroup %1$s till qgroup %2$s på %3$s"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
@@ -309,9 +309,9 @@ msgstr "Krymper partition %1$s från %2$s till %3$s"
 #. %2$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Assigning qgroup of subvolume %1$s to qgroup %2$s on %3$s"
-msgstr "Monterar delvolym %1$s på %2$s på %3$s"
+msgstr "Tilldelar qgroup av undervolym %1$s till qgroup %2$s på %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -356,7 +356,7 @@ msgstr "Btrfs"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs Qgroup"
-msgstr ""
+msgstr "Btrfs Qgroup"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs Subvolume"
@@ -373,16 +373,16 @@ msgstr "Ta bort bootflagga för partitionen %1$s"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
 #. /dev/sdb2 (1.00 GiB)),
-#, fuzzy, c-format
+#, c-format
 msgid "Clear label of %1$s on %2$s"
-msgstr "Ange etiketten för %1$s på %2$s till %3$s"
+msgstr "Rensa etiketten för %1$s på %2$s"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#, fuzzy, c-format
+#, c-format
 msgid "Clear label of partition %1$s"
-msgstr "Ta bort bootflagga för partitionen %1$s"
+msgstr "Rensa etikett för partition %1$s"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
@@ -417,16 +417,16 @@ msgstr "Tar bort bootflagga för partitionen %1$s"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
 #. /dev/sdb2 (1.00 GiB)),
-#, fuzzy, c-format
+#, c-format
 msgid "Clearing label of %1$s on %2$s"
-msgstr "Anger etiketten på %1$s som %2$s"
+msgstr "Rensar etiketten av %1$s på %2$s"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#, fuzzy, c-format
+#, c-format
 msgid "Clearing label of partition %1$s"
-msgstr "Tar bort bootflagga för partitionen %1$s"
+msgstr "Rensar etikett för partition %1$s"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
@@ -984,9 +984,9 @@ msgstr "Skapa primär partition %1$s (%2$s)"
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Create qgroup %1$s on %2$s"
-msgstr "Skapa %1$s på %2$s"
+msgstr "Skapar qgroup %1$s på %2$s"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
@@ -1180,9 +1180,9 @@ msgstr "Skapar primär partition %1$s (%2$s)"
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Creating qgroup %1$s on %2$s"
-msgstr "Skapar %1$s på %2$s"
+msgstr "Skapar qgroup %1$s på %2$s"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
@@ -1733,35 +1733,35 @@ msgstr ""
 #. %1$s is replaced by the filesystem type (e.g. ext4),
 #. %2$s is replaced by the partition table type (e.g. GPT),
 #. %3$s is replaced by the device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Detected a %1$s file system next to a partition table of type %2$s on the\n"
 "device %3$s. The file system will be ignored."
 msgstr ""
-"Ett filsystem hittades bredvid en partitionstabell på\n"
-"enheten %1$s. Filsystemet kommer att ignoreras."
+"Upptäckte ett %1$s filsystem bredvid en partitionstabell av typen %2$s på\n"
+"enhet %3$s. Filsystemet kommer att ignoreras."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the partition table type (e.g. GPT),
 #. %2$s is replaced by the device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Detected a LUKS device next to a partition table of type %1$s on the\n"
 "device %2$s. The LUKS device will be ignored."
 msgstr ""
-"En LUKS-enhet hittades bredvid en partitionstabell på\n"
-"enheten %1$s. LUKS-enheten kommer att ignoreras."
+"Upptäckte en LUKS-enhet bredvid en partitionstabell av typen %1$s på\n"
+"enhet %2$s. LUKS-enheten kommer att ignoreras."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the partition table type (e.g. GPT),
 #. %2$s is replaced by the device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Detected a LVM logical volume next to a partition table of type %1$s on the\n"
 "device %2$s. The LVM logical volume will be ignored as good as possible."
 msgstr ""
-"En logisk LVM-volym hittades bredvid en partitionstabell på\n"
-"enheten %1$s. Den logiska LVM-volymen kommer att ignoreras."
+"Upptäckte en logisk LVM-volym bredvid en partitionstabell av typen %1$s på\n"
+"enhet %2$s. Den logiska LVM-volymen kommer att ignoreras så bra som möjligt."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the filesystem type (e.g. minix),
@@ -1771,6 +1771,8 @@ msgid ""
 "Detected an unsupported file system of type %1$s on the\n"
 "device %2$s."
 msgstr ""
+"Upptäckte ett filsystem av typen %1$s som inte stöds på\n"
+"enhet %2$s."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the partition table type (e.g. BSD),
@@ -1780,6 +1782,8 @@ msgid ""
 "Detected an unsupported partition table of type %1$s on the\n"
 "device %2$s."
 msgstr ""
+"Upptäckte en partitionstabell av typen %1$s som inte stöds på\n"
+"enhet %2$s."
 
 #. TRANSLATORS: name of partition type
 msgid "Diagnostics Partition"
@@ -1788,16 +1792,16 @@ msgstr "Diagnostikpartition"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Disable quota on %1$s"
-msgstr "Tar bort GPT på %1$s"
+msgstr "Inaktivera kvot på %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Disabling quota on %1$s"
-msgstr "Tar bort GPT på %1$s"
+msgstr "Inaktiverar kvot på %1$s"
 
 #. TRANSLATORS: name of object
 msgid "Disk"
@@ -1827,14 +1831,14 @@ msgstr "EiB"
 #. and /dev/sdb2 (2.00 GiB))
 #, c-format
 msgid "Enable quota on %1$s"
-msgstr ""
+msgstr "Aktivera kvot på %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
 #, c-format
 msgid "Enabling quota %1$s"
-msgstr ""
+msgstr "Aktiverar kvot %1$s"
 
 # SLE12
 #. TRANSLATORS:
@@ -1964,9 +1968,8 @@ msgid "Ext4"
 msgstr "Ext4"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Extended Partition"
-msgstr "EFI-systempartition"
+msgstr "Utökad partition"
 
 #. TRANSLATORS: name of object
 msgid "F2FS"
@@ -2269,9 +2272,8 @@ msgid "Linux"
 msgstr "Linux"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Linux Home"
-msgstr "Linux"
+msgstr "Linux hem"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux LVM"
@@ -2314,18 +2316,18 @@ msgstr "Microsoft-reserverad partition"
 #. TRANSLATORS:
 #. %1$s is replaced with the names of the devices with sizes (e.g. /dev/sda1
 #. (10.00 GiB) and /dev/sda2 (10.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Modify btrfs qgroups on %1$s"
-msgstr "Tar bort %1$s från %2$s"
+msgstr "Modifera btrfs qgroups på %1$s"
 
 # SLE12
 #. TRANSLATORS:
 #. %1$s is replaced with the subvolume path (e.g. var/log),
 #. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
 #. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Modify subvolume %1$s on %2$s"
-msgstr "Skapar delvolym %1$s på %2$s"
+msgstr "Modifera undervolym %1$s på %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -2402,9 +2404,9 @@ msgstr "Montera delvolym %1$s på %2$s på %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the mount point (e.g. /tmp)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount tmpfs at %1$s"
-msgstr "Montera %1$s på %2$s"
+msgstr "Montera tmpfs på %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
@@ -2713,9 +2715,9 @@ msgstr "Ta bort monteringspunkt %1$s på delvolym %2$s på %3$s från /etc/fstab
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Remove qgroup %1$s on %2$s"
-msgstr "Ta bort %1$s från %2$s"
+msgstr "Ta bort qgroup %1$s på %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/sdc1),
@@ -2769,9 +2771,9 @@ msgstr "Tar bort monteringspunkt %1$s på delvolym %2$s på %3$s från /etc/fsta
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Removing qgroup %1$s on %2$s"
-msgstr "Tar bort %1$s från %2$s"
+msgstr "Tar bort qgroup %1$s på %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the old logical volume name (e.g. foo),
@@ -2889,9 +2891,9 @@ msgstr "Ange etiketten för %1$s på %2$s till %3$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition label (e.g. ROOT),
-#, fuzzy, c-format
+#, c-format
 msgid "Set label of partition %1$s to %2$s"
-msgstr "Ange id för partition %1$s som %2$s"
+msgstr "Ange etikett för partition %1$s till %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -2934,9 +2936,9 @@ msgstr "Ange skyddsbootflagga MBR för GPT på %1$s"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
 #. /dev/sdb2 (1.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Set tune options of %1$s on %2$s"
-msgstr "Ange justeringsalternativ för %1$s"
+msgstr "Ange justeringsalternativ för %1$s på %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
@@ -2998,16 +3000,16 @@ msgstr "Anger id för partitionen %1$s som 0x%2$02X"
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
 #. /dev/sdb2 (1.00 GiB)),
 #. %3$s is replaced by label (e.g. ROOT)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting label of %1$s on %2$s to %3$s"
-msgstr "Anger etiketten på %1$s som %2$s"
+msgstr "Anger etiketten av %1$s på %2$s till %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition label (e.g. ROOT),
-#, fuzzy, c-format
+#, c-format
 msgid "Setting label of partition %1$s to %2$s"
-msgstr "Anger id för partitionen %1$s som %2$s"
+msgstr "Anger etikett för partitionen %1$s till %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -3050,9 +3052,9 @@ msgstr "Anger skyddsbootflagga MBR  från GPT på %1$s"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
 #. /dev/sdb2 (1.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Setting tune options of %1$s on %2$s"
-msgstr "Anger justeringsalternativ för %1$s"
+msgstr "Anger justeringsalternativ för %1$s på %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -3300,9 +3302,9 @@ msgstr "Avmontera delvolym %1$s på %2$s i %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the mount point (e.g. /tmp)
-#, fuzzy, c-format
+#, c-format
 msgid "Unmount tmpfs at %1$s"
-msgstr "Avmontera %1$s vid %2$s"
+msgstr "Avmontera tmpfs vid %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
@@ -3365,7 +3367,7 @@ msgstr "kB"
 
 #. TRANSLATORS: name of object
 msgid "tmpfs"
-msgstr ""
+msgstr "tmpfs"
 
 # SLE12
 #, fuzzy, c-format
