@@ -15,16 +15,16 @@ msgstr ""
 "Project-Id-Version: libstorage.nl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-03 14:35+0200\n"
-"PO-Revision-Date: 2021-07-09 16:11+0000\n"
+"PO-Revision-Date: 2022-06-03 19:12+0000\n"
 "Last-Translator: Freek de Kruijf <freek@opensuse.org>\n"
-"Language-Team: Dutch <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/nl/>\n"
+"Language-Team: Dutch <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.6.2\n"
+"X-Generator: Weblate 4.9.1\n"
 
 msgid ""
 "\n"
@@ -115,14 +115,14 @@ msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "Logisch volume %1$s (%2$s) activeren op volumegroep %3$s"
 
 #. TRANSLATORS: progress message
-#, fuzzy, c-format
+#, c-format
 msgid "Activating BitLocker %s"
-msgstr "LUKS %s wordt geactiveerd"
+msgstr "Bitlocker %s wordt geactiveerd"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Activating BitLocker %s failed"
-msgstr "LUKS %s activeren is mislukt"
+msgstr "Bitlocker %s activeren is mislukt"
 
 #. TRANSLATORS: progress message
 #, c-format
@@ -380,15 +380,15 @@ msgstr "Bootvlag van partitie %1$s wissen"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
 #. /dev/sdb2 (1.00 GiB)),
-#, fuzzy, c-format
+#, c-format
 msgid "Clear label of %1$s on %2$s"
-msgstr "Label van %1$s op %2$s instellen naar %3$s"
+msgstr "Label van %1$s op %2$s wissen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#, fuzzy, c-format
+#, c-format
 msgid "Clear label of partition %1$s"
-msgstr "Bootvlag van partitie %1$s wissen"
+msgstr "Label van partitie %1$s wissen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -420,15 +420,15 @@ msgstr "Bootvlag van partitie %1$s wordt gewist"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
 #. /dev/sdb2 (1.00 GiB)),
-#, fuzzy, c-format
+#, c-format
 msgid "Clearing label of %1$s on %2$s"
-msgstr "Label van %1$s op %2$s wordt ingesteld naar %3$s"
+msgstr "Label van %1$s op %2$s wordt gewist"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#, fuzzy, c-format
+#, c-format
 msgid "Clearing label of partition %1$s"
-msgstr "Bootvlag van partitie %1$s wordt gewist"
+msgstr "Label van partitie %1$s wordt gewist"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -1674,35 +1674,39 @@ msgstr ""
 #. %1$s is replaced by the filesystem type (e.g. ext4),
 #. %2$s is replaced by the partition table type (e.g. GPT),
 #. %3$s is replaced by the device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Detected a %1$s file system next to a partition table of type %2$s on the\n"
 "device %3$s. The file system will be ignored."
 msgstr ""
-"Een bestandssysteem gedetecteerd naast een partitietabel op het\n"
-"apparaat %1$s. Het bestandssysteem zal genegeerd worden."
+"Een bestandssysteem %1$s gedetecteerd naast een partitietabel van het type "
+"%2$s\n"
+"op apparaat %3$s. Het bestandssysteem zal genegeerd worden."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the partition table type (e.g. GPT),
 #. %2$s is replaced by the device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Detected a LUKS device next to a partition table of type %1$s on the\n"
 "device %2$s. The LUKS device will be ignored."
 msgstr ""
-"Een LUKS apparaat gedetecteerd naast een partitietabel op het\n"
-"apparaat %1$s. Het LUKS apparaat zal genegeerd worden."
+"Een LUKS apparaat gedetecteerd naast een partitietabel van het type %1$s op "
+"het\n"
+"apparaat %2$s. Het LUKS apparaat zal genegeerd worden."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the partition table type (e.g. GPT),
 #. %2$s is replaced by the device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Detected a LVM logical volume next to a partition table of type %1$s on the\n"
 "device %2$s. The LVM logical volume will be ignored as good as possible."
 msgstr ""
-"Een LVM logisch volume gedetecteerd naast een partitietabel op het\n"
-"apparaat %1$s. Het LVM logische volume zal genegeerd worden."
+"Een LVM logisch volume gedetecteerd naast een partitietabel van het type %1$"
+"s op het\n"
+"apparaat %2$s. Het LVM logische volume zal zo goed al mogelijk is genegeerd "
+"worden."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the filesystem type (e.g. minix),
@@ -1712,6 +1716,8 @@ msgid ""
 "Detected an unsupported file system of type %1$s on the\n"
 "device %2$s."
 msgstr ""
+"Een niet-ondersteund bestandssysteem van het type %1$s op het\n"
+"apparaat %2$s gedetecteerd."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the partition table type (e.g. BSD),
@@ -1721,6 +1727,8 @@ msgid ""
 "Detected an unsupported partition table of type %1$s on the\n"
 "device %2$s."
 msgstr ""
+"Een niet-ondersteunde partitietabel van het type %1$s op het\n"
+"apparaat %2$s gedetecteerd."
 
 #. TRANSLATORS: name of partition type
 msgid "Diagnostics Partition"
@@ -2208,9 +2216,8 @@ msgid "Linux"
 msgstr "Linux"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Linux Home"
-msgstr "Linux"
+msgstr "Linux-home"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux LVM"
@@ -2222,7 +2229,7 @@ msgstr "Linux RAID"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Server Data"
-msgstr ""
+msgstr "Linux-servergegevens"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Swap"
@@ -2371,7 +2378,7 @@ msgstr "NFS"
 
 #. TRANSLATORS: name of object
 msgid "NILFS2"
-msgstr ""
+msgstr "NILFS2"
 
 #. TRANSLATORS: name of object
 msgid "NTFS"
@@ -2405,14 +2412,12 @@ msgstr "PiB"
 msgid "Plain Encryption"
 msgstr "Vlakke versleuteling"
 
-#, fuzzy
 msgid "Probing BitLocker"
-msgstr "BitLocker"
+msgstr "BitLocker aftasten"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing BitLocker failed"
-msgstr "Aftasten schijven is mislukt"
+msgstr "Aftasten van Bitlocker is mislukt"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -2832,9 +2837,9 @@ msgstr "Label van %1$s op %2$s instellen naar %3$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition label (e.g. ROOT),
-#, fuzzy, c-format
+#, c-format
 msgid "Set label of partition %1$s to %2$s"
-msgstr "Partitie-ID van %1$s instellen op %2$s"
+msgstr "Label van partitie %1$s instellen op %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -2946,9 +2951,9 @@ msgstr "Label van %1$s op %2$s wordt ingesteld naar %3$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition label (e.g. ROOT),
-#, fuzzy, c-format
+#, c-format
 msgid "Setting label of partition %1$s to %2$s"
-msgstr "Partitie-ID van %1$s instellen op %2$s"
+msgstr "Label van partitie %1$s instellen op %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -3212,7 +3217,7 @@ msgstr ""
 
 #. TRANSLATORS: name of partition type
 msgid "Unknown"
-msgstr ""
+msgstr "Onbekend"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
