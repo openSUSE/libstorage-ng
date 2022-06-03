@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-20 12:10+0100\n"
+"POT-Creation-Date: 2022-06-03 14:35+0200\n"
 "PO-Revision-Date: 2010-07-09 21:56+0700\n"
 "Last-Translator: Thanomsub Noppaburana <donga.nb@gmail.com>\n"
 "Language-Team: Thai <i18n@suse.de>\n"
@@ -102,6 +102,16 @@ msgstr "ทำการฟอร์แมตโวลุมลอจิคัล
 #, fuzzy, c-format
 msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "ทำการฟอร์แมตโวลุมลอจิคัล %1$s (ขนาด %2$s) ด้วยระบบแฟ้ม %3$s"
+
+#. TRANSLATORS: progress message
+#, fuzzy, c-format
+msgid "Activating BitLocker %s"
+msgstr "สร้างพาร์ทิชัน %1$s ของมัลติพาธ (ขนาด %2$s)"
+
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Activating BitLocker %s failed"
+msgstr "สร้างพาร์ทิชัน %1$s ของมัลติพาธ (ขนาด %2$s)"
 
 #. TRANSLATORS: progress message
 #, c-format
@@ -2156,6 +2166,10 @@ msgid "Linux RAID"
 msgstr ""
 
 #. TRANSLATORS: name of partition type
+msgid "Linux Server Data"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
 msgid "Linux Swap"
 msgstr ""
 
@@ -2302,6 +2316,10 @@ msgid "NFS"
 msgstr ""
 
 #. TRANSLATORS: name of object
+msgid "NILFS2"
+msgstr ""
+
+#. TRANSLATORS: name of object
 msgid "NTFS"
 msgstr ""
 
@@ -2334,6 +2352,15 @@ msgstr "เพตะไบต์"
 #. TRANSLATORS: name of object
 msgid "Plain Encryption"
 msgstr ""
+
+#, fuzzy
+msgid "Probing BitLocker"
+msgstr "สร้างพาร์ทิชัน %1$s (ขนาด %2$s)"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing BitLocker failed"
+msgstr "สร้างพาร์ทิชัน %1$s (ขนาด %2$s)"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -3128,6 +3155,10 @@ msgstr "ทำการลดขนาดพาร์ทิชัน %1$s เป
 #, fuzzy, c-format
 msgid "Unassigning qgroup of subvolume %1$s from qgroup %2$s on %3$s"
 msgstr "ทำการลบโวลุม %1$s ออก"
+
+#. TRANSLATORS: name of partition type
+msgid "Unknown"
+msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)

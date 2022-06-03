@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-20 12:10+0100\n"
+"POT-Creation-Date: 2022-06-03 14:35+0200\n"
 "PO-Revision-Date: 2022-02-18 06:12+0000\n"
 "Last-Translator: Grace Yu <grace.yu@excel-gits.com>\n"
 "Language-Team: Chinese (China) <https://l10n.opensuse.org/projects/"
@@ -108,6 +108,16 @@ msgstr "激活卷组 %3$s 上的逻辑卷 %1$s (%2$s)"
 #, c-format
 msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "激活卷组 %3$s 上的瘦池逻辑卷 %1$s (%2$s)"
+
+#. TRANSLATORS: progress message
+#, fuzzy, c-format
+msgid "Activating BitLocker %s"
+msgstr "正在激活 LUKS %s"
+
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Activating BitLocker %s failed"
+msgstr "激活 LUKS %s 失败"
 
 #. TRANSLATORS: progress message
 #, c-format
@@ -2180,6 +2190,10 @@ msgid "Linux RAID"
 msgstr "Linux RAID"
 
 #. TRANSLATORS: name of partition type
+msgid "Linux Server Data"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
 msgid "Linux Swap"
 msgstr "Linux Swap"
 
@@ -2325,6 +2339,10 @@ msgid "NFS"
 msgstr "NFS"
 
 #. TRANSLATORS: name of object
+msgid "NILFS2"
+msgstr ""
+
+#. TRANSLATORS: name of object
 msgid "NTFS"
 msgstr "NTFS"
 
@@ -2355,6 +2373,15 @@ msgstr "PiB"
 #. TRANSLATORS: name of object
 msgid "Plain Encryption"
 msgstr "纯文本加密"
+
+#, fuzzy
+msgid "Probing BitLocker"
+msgstr "BitLocker"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing BitLocker failed"
+msgstr "探测磁盘失败"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -3136,6 +3163,10 @@ msgstr "正在为 %3$s 上的 qgroup %2$s 取消指派 qgroup %1$s"
 #, c-format
 msgid "Unassigning qgroup of subvolume %1$s from qgroup %2$s on %3$s"
 msgstr "正在为 %3$s 上的 qgroup %2$s 取消指派子卷 %1$s 的 qgroup"
+
+#. TRANSLATORS: name of partition type
+msgid "Unknown"
+msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)

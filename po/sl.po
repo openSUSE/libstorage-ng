@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-20 12:10+0100\n"
+"POT-Creation-Date: 2022-06-03 14:35+0200\n"
 "PO-Revision-Date: 2001-10-18 11:02+0200\n"
 "Last-Translator: Janez Krek <janez.krek@euroteh.si>\n"
 "Language-Team: Slovenian\n"
@@ -104,6 +104,16 @@ msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 #, fuzzy, c-format
 msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
+
+#. TRANSLATORS: progress message
+#, fuzzy, c-format
+msgid "Activating BitLocker %s"
+msgstr "Kreiraj razširjeno particijo %2 (%3)"
+
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Activating BitLocker %s failed"
+msgstr "Kreiraj razširjeno particijo %2 (%3)"
 
 #. TRANSLATORS: progress message
 #, c-format
@@ -2161,6 +2171,10 @@ msgid "Linux RAID"
 msgstr ""
 
 #. TRANSLATORS: name of partition type
+msgid "Linux Server Data"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
 msgid "Linux Swap"
 msgstr ""
 
@@ -2308,6 +2322,10 @@ msgid "NFS"
 msgstr ""
 
 #. TRANSLATORS: name of object
+msgid "NILFS2"
+msgstr ""
+
+#. TRANSLATORS: name of object
 msgid "NTFS"
 msgstr ""
 
@@ -2342,6 +2360,15 @@ msgstr "KIB"
 #. TRANSLATORS: name of object
 msgid "Plain Encryption"
 msgstr ""
+
+#, fuzzy
+msgid "Probing BitLocker"
+msgstr "Kreiraj razširjeno particijo %2 (%3)"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing BitLocker failed"
+msgstr "Kreiraj razširjeno particijo %2 (%3)"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -3135,6 +3162,10 @@ msgstr "Priključevanje korenskega razdelka %1 na %2"
 #, fuzzy, c-format
 msgid "Unassigning qgroup of subvolume %1$s from qgroup %2$s on %3$s"
 msgstr "Odstranim logični nosilec %1?"
+
+#. TRANSLATORS: name of partition type
+msgid "Unknown"
+msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)

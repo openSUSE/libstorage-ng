@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.km\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-20 12:10+0100\n"
+"POT-Creation-Date: 2022-06-03 14:35+0200\n"
 "PO-Revision-Date: 2012-05-11 12:37+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
@@ -106,6 +106,16 @@ msgstr "កំពុង​ធ្វើ​ទ្រង់ទ្រាយ​ភា
 #, fuzzy, c-format
 msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "កំពុង​ធ្វើ​ទ្រង់ទ្រាយ​ភាគ​ថាស​ឡូជីខល %1$s (%2$s) ដោយ​ប្រើ %3$s​"
+
+#. TRANSLATORS: progress message
+#, fuzzy, c-format
+msgid "Activating BitLocker %s"
+msgstr "បង្កើត​ភាគ​ថាស​ផ្លូវ​ច្រើន %1$s (%2$s)​"
+
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Activating BitLocker %s failed"
+msgstr "បង្កើត​ភាគ​ថាស​ផ្លូវ​ច្រើន %1$s (%2$s)​"
 
 #. TRANSLATORS: progress message
 #, c-format
@@ -2156,6 +2166,10 @@ msgid "Linux RAID"
 msgstr ""
 
 #. TRANSLATORS: name of partition type
+msgid "Linux Server Data"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
 msgid "Linux Swap"
 msgstr ""
 
@@ -2302,6 +2316,10 @@ msgid "NFS"
 msgstr ""
 
 #. TRANSLATORS: name of object
+msgid "NILFS2"
+msgstr ""
+
+#. TRANSLATORS: name of object
 msgid "NTFS"
 msgstr ""
 
@@ -2333,6 +2351,15 @@ msgstr "PiB"
 #. TRANSLATORS: name of object
 msgid "Plain Encryption"
 msgstr ""
+
+#, fuzzy
+msgid "Probing BitLocker"
+msgstr "បង្កើត​ភាគ​ថាស RAID %1$s (%2$s)"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing BitLocker failed"
+msgstr "បង្កើត​ភាគ​ថាស RAID %1$s (%2$s)"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -3124,6 +3151,10 @@ msgstr "កំពុង​បង្រួញ​ភាគ​ថាស %1$s ទៅ
 #, fuzzy, c-format
 msgid "Unassigning qgroup of subvolume %1$s from qgroup %2$s on %3$s"
 msgstr "កំពុង​យក​ភាគ​ថាស​រង​ %1$s លើ​ឧបករណ៍​ %2$s ចេញ"
+
+#. TRANSLATORS: name of partition type
+msgid "Unknown"
+msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)

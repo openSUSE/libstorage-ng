@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-20 12:10+0100\n"
+"POT-Creation-Date: 2022-06-03 14:35+0200\n"
 "PO-Revision-Date: 2002-07-23 18:27+0200\n"
 "Last-Translator: Damir Bjelobradic <Nagual@lugbih.org>\n"
 "Language-Team: Bosnian <i18n@suse.de>\n"
@@ -104,6 +104,16 @@ msgstr "Napravite planove za particije"
 #. %3$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "Napravite planove za particije"
+
+#. TRANSLATORS: progress message
+#, fuzzy, c-format
+msgid "Activating BitLocker %s"
+msgstr "Napravite planove za particije"
+
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Activating BitLocker %s failed"
 msgstr "Napravite planove za particije"
 
 #. TRANSLATORS: progress message
@@ -2162,6 +2172,10 @@ msgid "Linux RAID"
 msgstr ""
 
 #. TRANSLATORS: name of partition type
+msgid "Linux Server Data"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
 msgid "Linux Swap"
 msgstr ""
 
@@ -2310,6 +2324,10 @@ msgid "NFS"
 msgstr ""
 
 #. TRANSLATORS: name of object
+msgid "NILFS2"
+msgstr ""
+
+#. TRANSLATORS: name of object
 msgid "NTFS"
 msgstr ""
 
@@ -2343,6 +2361,15 @@ msgstr "GB"
 #. TRANSLATORS: name of object
 msgid "Plain Encryption"
 msgstr ""
+
+#, fuzzy
+msgid "Probing BitLocker"
+msgstr "Napravite planove za particije"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing BitLocker failed"
+msgstr "Napravite planove za particije"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -3136,6 +3163,10 @@ msgstr "Napravite planove za particije"
 #, fuzzy, c-format
 msgid "Unassigning qgroup of subvolume %1$s from qgroup %2$s on %3$s"
 msgstr "Napravite planove za particije"
+
+#. TRANSLATORS: name of partition type
+msgid "Unknown"
+msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)

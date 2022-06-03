@@ -4,11 +4,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-20 12:10+0100\n"
+"POT-Creation-Date: 2022-06-03 14:35+0200\n"
 "PO-Revision-Date: 2022-04-16 00:12+0000\n"
 "Last-Translator: Michael <michaelbelachev@gmail.com>\n"
-"Language-Team: Russian <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/ru/>\n"
+"Language-Team: Russian <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -104,6 +104,16 @@ msgstr "Включить «тонкий» логический том %1$s (%2$s
 #, c-format
 msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "Включить логический том «тонкого» пула %1$s (%2$s) в группе томов %3$s"
+
+#. TRANSLATORS: progress message
+#, fuzzy, c-format
+msgid "Activating BitLocker %s"
+msgstr "Включение LUKS %s"
+
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Activating BitLocker %s failed"
+msgstr "Не удалось включить LUKS %s"
 
 #. TRANSLATORS: progress message
 #, c-format
@@ -2240,6 +2250,10 @@ msgid "Linux RAID"
 msgstr "Linux RАID"
 
 #. TRANSLATORS: name of partition type
+msgid "Linux Server Data"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
 msgid "Linux Swap"
 msgstr "Подкачка Linux"
 
@@ -2385,6 +2399,10 @@ msgid "NFS"
 msgstr "NFS"
 
 #. TRANSLATORS: name of object
+msgid "NILFS2"
+msgstr ""
+
+#. TRANSLATORS: name of object
 msgid "NTFS"
 msgstr "NTFS"
 
@@ -2415,6 +2433,15 @@ msgstr "ПиБ"
 #. TRANSLATORS: name of object
 msgid "Plain Encryption"
 msgstr "Простое шифрование"
+
+#, fuzzy
+msgid "Probing BitLocker"
+msgstr "BitLoсker"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing BitLocker failed"
+msgstr "Ошибка проверки дисков"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -3203,6 +3230,10 @@ msgstr "Исключение qgroup %1$s из qgroup %2$s на %3$s"
 #, c-format
 msgid "Unassigning qgroup of subvolume %1$s from qgroup %2$s on %3$s"
 msgstr "Исключение qgroup подтома %1$s из qgroup %2$s на %3$s"
+
+#. TRANSLATORS: name of partition type
+msgid "Unknown"
+msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)

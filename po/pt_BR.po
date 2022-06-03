@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-20 12:10+0100\n"
+"POT-Creation-Date: 2022-06-03 14:35+0200\n"
 "PO-Revision-Date: 2022-01-26 15:12+0000\n"
 "Last-Translator: Luiz Fernando Ranghetti <elchevive68@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.opensuse.org/projects/"
@@ -110,6 +110,16 @@ msgstr "Ativar volume lógico thin %1$s (%2$s) no grupo de volumes %3$s"
 #, c-format
 msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "Ativar volume lógico de pool thin %1$s (%2$s) no grupo de volumes %3$s"
+
+#. TRANSLATORS: progress message
+#, fuzzy, c-format
+msgid "Activating BitLocker %s"
+msgstr "Ativando LUKS %s"
+
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Activating BitLocker %s failed"
+msgstr "Falha ao ativar LUKS %s"
 
 #. TRANSLATORS: progress message
 #, c-format
@@ -1694,8 +1704,8 @@ msgid ""
 "Detected a LVM logical volume next to a partition table of type %1$s on the\n"
 "device %2$s. The LVM logical volume will be ignored as good as possible."
 msgstr ""
-"Detectou um volume lógico LVM ao lado de uma tabela de partições do tipo %1$"
-"s no\n"
+"Detectou um volume lógico LVM ao lado de uma tabela de partições do tipo "
+"%1$s no\n"
 "dispositivo %2$s. O volume lógico do LVM será ignorado da melhor forma "
 "possível."
 
@@ -2220,6 +2230,10 @@ msgid "Linux RAID"
 msgstr "RAID Linux"
 
 #. TRANSLATORS: name of partition type
+msgid "Linux Server Data"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
 msgid "Linux Swap"
 msgstr "Swap Linux"
 
@@ -2365,6 +2379,10 @@ msgid "NFS"
 msgstr "NFS"
 
 #. TRANSLATORS: name of object
+msgid "NILFS2"
+msgstr ""
+
+#. TRANSLATORS: name of object
 msgid "NTFS"
 msgstr "NTFS"
 
@@ -2395,6 +2413,15 @@ msgstr "PiB"
 #. TRANSLATORS: name of object
 msgid "Plain Encryption"
 msgstr "Criptografia Plana"
+
+#, fuzzy
+msgid "Probing BitLocker"
+msgstr "BitLocker"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing BitLocker failed"
+msgstr "Falha ao investigar discos"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -3191,6 +3218,10 @@ msgstr "Removendo a atribuição de qgroup %1$s de qgroup %2$s em %3$s"
 msgid "Unassigning qgroup of subvolume %1$s from qgroup %2$s on %3$s"
 msgstr ""
 "Removendo a atribuição de qgroup do subvolume %1$s de qgroup %2$s em %3$s"
+
+#. TRANSLATORS: name of partition type
+msgid "Unknown"
+msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
