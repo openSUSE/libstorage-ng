@@ -12,11 +12,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-20 12:10+0100\n"
+"POT-Creation-Date: 2022-06-03 14:35+0200\n"
 "PO-Revision-Date: 2022-02-21 12:12+0000\n"
 "Last-Translator: Davide Aiello <davide.aiello@novilingulists.com>\n"
-"Language-Team: Italian <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/it/>\n"
+"Language-Team: Italian <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -114,6 +114,16 @@ msgstr "Attiva volume logico thin %1$s (%2$s) sul gruppo di volumi %3$s"
 #, c-format
 msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "Attiva volume logico pool thin %1$s (%2$s) sul gruppo di volumi %3$s"
+
+#. TRANSLATORS: progress message
+#, fuzzy, c-format
+msgid "Activating BitLocker %s"
+msgstr "Attivazione di LUKS %s in corso"
+
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Activating BitLocker %s failed"
+msgstr "Attivazione di LUKS %s non riuscita"
 
 #. TRANSLATORS: progress message
 #, c-format
@@ -2431,6 +2441,10 @@ msgid "Linux RAID"
 msgstr "RAID Linux"
 
 #. TRANSLATORS: name of partition type
+msgid "Linux Server Data"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
 msgid "Linux Swap"
 msgstr "Swap Linux"
 
@@ -2589,6 +2603,10 @@ msgid "NFS"
 msgstr "NFS"
 
 #. TRANSLATORS: name of object
+msgid "NILFS2"
+msgstr ""
+
+#. TRANSLATORS: name of object
 msgid "NTFS"
 msgstr "NTFS"
 
@@ -2619,6 +2637,15 @@ msgstr "PiB"
 #. TRANSLATORS: name of object
 msgid "Plain Encryption"
 msgstr "Cifratura semplice"
+
+#, fuzzy
+msgid "Probing BitLocker"
+msgstr "BitLocker"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing BitLocker failed"
+msgstr "Rilevamento dei dischi non riuscito"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -3424,6 +3451,10 @@ msgid "Unassigning qgroup of subvolume %1$s from qgroup %2$s on %3$s"
 msgstr ""
 "Annullamento dell'assegnazione di qgroup del sottovolume %1$s da qgroup %2$s "
 "su %3$s"
+
+#. TRANSLATORS: name of partition type
+msgid "Unknown"
+msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-20 12:10+0100\n"
+"POT-Creation-Date: 2022-06-03 14:35+0200\n"
 "PO-Revision-Date: 2005-02-16 10:21+0100\n"
 "Last-Translator: Kanwaljeet Singh Brar <kanwaljeetbrar@yahoo.co.in>\n"
 "Language-Team: Punjabi <i18n@suse.de>\n"
@@ -103,6 +103,16 @@ msgstr "ਲਾਜ਼ੀਕਲ ਵਾਲੀਅਮ %1$s (%2$s) ਨੂੰ %3$s ਨ�
 #, fuzzy, c-format
 msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "ਲਾਜ਼ੀਕਲ ਵਾਲੀਅਮ %1$s (%2$s) ਨੂੰ %3$s ਨਾਲ ਫਾਰਮੈਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
+
+#. TRANSLATORS: progress message
+#, fuzzy, c-format
+msgid "Activating BitLocker %s"
+msgstr "ਮਲਟੀਪਾਥ ਪਾਰਟੀਸ਼ਨ %1$s (%2$s) ਬਣਾਓ"
+
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Activating BitLocker %s failed"
+msgstr "ਮਲਟੀਪਾਥ ਪਾਰਟੀਸ਼ਨ %1$s (%2$s) ਬਣਾਓ"
 
 #. TRANSLATORS: progress message
 #, c-format
@@ -2156,6 +2166,10 @@ msgid "Linux RAID"
 msgstr ""
 
 #. TRANSLATORS: name of partition type
+msgid "Linux Server Data"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
 msgid "Linux Swap"
 msgstr ""
 
@@ -2302,6 +2316,10 @@ msgid "NFS"
 msgstr ""
 
 #. TRANSLATORS: name of object
+msgid "NILFS2"
+msgstr ""
+
+#. TRANSLATORS: name of object
 msgid "NTFS"
 msgstr ""
 
@@ -2334,6 +2352,15 @@ msgstr "PB"
 #. TRANSLATORS: name of object
 msgid "Plain Encryption"
 msgstr ""
+
+#, fuzzy
+msgid "Probing BitLocker"
+msgstr "ਪਾਰਟੀਸ਼ਨ %1$s (%2$s) ਬਣਾਓ"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing BitLocker failed"
+msgstr "ਪਾਰਟੀਸ਼ਨ %1$s (%2$s) ਬਣਾਓ"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -3126,6 +3153,10 @@ msgstr "ਪਾਰਟੀਸ਼ਨ %1$s ਨੂੰ %2$s ਲਈ ਸਮੇਟਿਆ �
 #, fuzzy, c-format
 msgid "Unassigning qgroup of subvolume %1$s from qgroup %2$s on %3$s"
 msgstr "nfs ਵਾਲੀਅਮ %1$s ਹਟਾਇਆ ਜਾ ਰਿਹਾ ਹੈ"
+
+#. TRANSLATORS: name of partition type
+msgid "Unknown"
+msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)

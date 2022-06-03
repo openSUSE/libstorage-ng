@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-20 12:10+0100\n"
+"POT-Creation-Date: 2022-06-03 14:35+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -101,6 +101,16 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
+msgstr ""
+
+#. TRANSLATORS: progress message
+#, c-format
+msgid "Activating BitLocker %s"
+msgstr ""
+
+#. TRANSLATORS: error message
+#, c-format
+msgid "Activating BitLocker %s failed"
 msgstr ""
 
 #. TRANSLATORS: progress message
@@ -2146,6 +2156,10 @@ msgid "Linux RAID"
 msgstr ""
 
 #. TRANSLATORS: name of partition type
+msgid "Linux Server Data"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
 msgid "Linux Swap"
 msgstr ""
 
@@ -2291,6 +2305,10 @@ msgid "NFS"
 msgstr ""
 
 #. TRANSLATORS: name of object
+msgid "NILFS2"
+msgstr ""
+
+#. TRANSLATORS: name of object
 msgid "NTFS"
 msgstr ""
 
@@ -2320,6 +2338,13 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Plain Encryption"
+msgstr ""
+
+msgid "Probing BitLocker"
+msgstr ""
+
+#. TRANSLATORS: error message
+msgid "Probing BitLocker failed"
 msgstr ""
 
 #. TRANSLATORS: error message
@@ -3101,6 +3126,10 @@ msgstr ""
 #. and /dev/sdb2 (2.00 GiB))
 #, c-format
 msgid "Unassigning qgroup of subvolume %1$s from qgroup %2$s on %3$s"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Unknown"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,

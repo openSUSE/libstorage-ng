@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-20 12:10+0100\n"
+"POT-Creation-Date: 2022-06-03 14:35+0200\n"
 "PO-Revision-Date: 2021-05-18 04:59+0000\n"
 "Last-Translator: Stanislav Brabec <sbrabec@suse.com>\n"
 "Language-Team: Lithuanian <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -111,6 +111,16 @@ msgstr "Aktyvuojamas „%3$s“ tomų grupės loginis tomas „%1$s“ (%2$s)"
 #, fuzzy, c-format
 msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "Aktyvuojamas „%3$s“ tomų grupės loginis tomas „%1$s“ (%2$s)"
+
+#. TRANSLATORS: progress message
+#, fuzzy, c-format
+msgid "Activating BitLocker %s"
+msgstr "Sukurti multipath skaidinį %1$s (%2$s)"
+
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Activating BitLocker %s failed"
+msgstr "Nepavyko aktyvuoti multipath"
 
 #. TRANSLATORS: progress message
 #, c-format
@@ -2166,6 +2176,10 @@ msgid "Linux RAID"
 msgstr ""
 
 #. TRANSLATORS: name of partition type
+msgid "Linux Server Data"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
 msgid "Linux Swap"
 msgstr ""
 
@@ -2311,6 +2325,10 @@ msgid "NFS"
 msgstr "NFS"
 
 #. TRANSLATORS: name of object
+msgid "NILFS2"
+msgstr ""
+
+#. TRANSLATORS: name of object
 msgid "NTFS"
 msgstr "NTFS"
 
@@ -2342,6 +2360,15 @@ msgstr "PiB"
 #. TRANSLATORS: name of object
 msgid "Plain Encryption"
 msgstr "Paprastas šifravimas"
+
+#, fuzzy
+msgid "Probing BitLocker"
+msgstr "Tiriami diskai"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing BitLocker failed"
+msgstr "Kuriamas RAID skaidinys %1$s (%2$s)"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -3135,6 +3162,10 @@ msgstr "Sumažinamas skaidinys %1$s iki %2$s"
 #, fuzzy, c-format
 msgid "Unassigning qgroup of subvolume %1$s from qgroup %2$s on %3$s"
 msgstr "Šalinamas potomį %1$s įrenginyje %2$s"
+
+#. TRANSLATORS: name of partition type
+msgid "Unknown"
+msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)

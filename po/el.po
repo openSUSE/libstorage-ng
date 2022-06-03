@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Greek (libstorage)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-20 12:10+0100\n"
+"POT-Creation-Date: 2022-06-03 14:35+0200\n"
 "PO-Revision-Date: 2021-09-21 09:12+0000\n"
 "Last-Translator: Efstathios Iosifidis <eiosifidis@gmail.com>\n"
 "Language-Team: Greek <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -99,6 +99,16 @@ msgstr "Διαμόρφωση λογικού τόμου %1$s (%2$s) με %3$s"
 #, fuzzy, c-format
 msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "Διαμόρφωση λογικού τόμου %1$s (%2$s) με %3$s"
+
+#. TRANSLATORS: progress message
+#, fuzzy, c-format
+msgid "Activating BitLocker %s"
+msgstr "Ενεργοποίηση LUKS %s"
+
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Activating BitLocker %s failed"
+msgstr "Αποτυχία ενεργοποίησης LUKS %s"
 
 #. TRANSLATORS: progress message
 #, c-format
@@ -2148,6 +2158,10 @@ msgid "Linux RAID"
 msgstr "Linux RAID"
 
 #. TRANSLATORS: name of partition type
+msgid "Linux Server Data"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
 msgid "Linux Swap"
 msgstr "Linux Swap"
 
@@ -2293,6 +2307,10 @@ msgid "NFS"
 msgstr "NFS"
 
 #. TRANSLATORS: name of object
+msgid "NILFS2"
+msgstr ""
+
+#. TRANSLATORS: name of object
 msgid "NTFS"
 msgstr "NTFS"
 
@@ -2325,6 +2343,15 @@ msgstr "PiB"
 #, fuzzy
 msgid "Plain Encryption"
 msgstr "Κρυπτογράφιση"
+
+#, fuzzy
+msgid "Probing BitLocker"
+msgstr "BitLocker"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing BitLocker failed"
+msgstr "Δημιουργία κατάτμησης RAID %1$s (%2$s)"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -3116,6 +3143,10 @@ msgstr "Σύμπτυξη κατάτμησης %1$s στο %2$s"
 #, fuzzy, c-format
 msgid "Unassigning qgroup of subvolume %1$s from qgroup %2$s on %3$s"
 msgstr "Αφαίρεση του υπο-τόμου %1$s στην συσκευή %2$s"
+
+#. TRANSLATORS: name of partition type
+msgid "Unknown"
+msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-20 12:10+0100\n"
+"POT-Creation-Date: 2022-06-03 14:35+0200\n"
 "PO-Revision-Date: 2003-08-14 10:47+0200\n"
 "Last-Translator: xxx <yyy@example.org>\n"
 "Language-Team: Tamil <i18n@suse.de>\n"
@@ -101,6 +101,16 @@ msgstr "தருக்கரீதியான அளவு %1$s (%2$s) %3$s �
 #, fuzzy, c-format
 msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "தருக்கரீதியான அளவு %1$s (%2$s) %3$s உடன் வடிவமைக்கப்படுகிறது"
+
+#. TRANSLATORS: progress message
+#, fuzzy, c-format
+msgid "Activating BitLocker %s"
+msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவாக்கவும்"
+
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Activating BitLocker %s failed"
+msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவாக்கவும்"
 
 #. TRANSLATORS: progress message
 #, c-format
@@ -2157,6 +2167,10 @@ msgid "Linux RAID"
 msgstr ""
 
 #. TRANSLATORS: name of partition type
+msgid "Linux Server Data"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
 msgid "Linux Swap"
 msgstr ""
 
@@ -2304,6 +2318,10 @@ msgid "NFS"
 msgstr ""
 
 #. TRANSLATORS: name of object
+msgid "NILFS2"
+msgstr ""
+
+#. TRANSLATORS: name of object
 msgid "NTFS"
 msgstr ""
 
@@ -2338,6 +2356,15 @@ msgstr " கேஐபி"
 #. TRANSLATORS: name of object
 msgid "Plain Encryption"
 msgstr ""
+
+#, fuzzy
+msgid "Probing BitLocker"
+msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவாக்கவும்"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing BitLocker failed"
+msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவாக்கவும்"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -3131,6 +3158,10 @@ msgstr "பகுதி பிரிப்பு %1$s %2$sக்கு சுர
 #, fuzzy, c-format
 msgid "Unassigning qgroup of subvolume %1$s from qgroup %2$s on %3$s"
 msgstr "nfs ஒலியளவு %1$s நீக்கப்படுகிறது"
+
+#. TRANSLATORS: name of partition type
+msgid "Unknown"
+msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)

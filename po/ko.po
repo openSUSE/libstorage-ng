@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.ko\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-20 12:10+0100\n"
+"POT-Creation-Date: 2022-06-03 14:35+0200\n"
 "PO-Revision-Date: 2019-04-04 15:03+0000\n"
 "Last-Translator: Hwajin Kim <hwajin.kim@e4net.net>\n"
 "Language-Team: Korean <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -111,6 +111,16 @@ msgstr "볼륨 그룹 %3$s에서 씬 논리적 볼륨 %1$s(%2$s) 활성화 중"
 #, c-format
 msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "볼륨 그룹 %3$s에서 씬 풀 논리적 볼륨 %1$s(%2$s) 활성화"
+
+#. TRANSLATORS: progress message
+#, fuzzy, c-format
+msgid "Activating BitLocker %s"
+msgstr "LUKS %s 활성화 중"
+
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Activating BitLocker %s failed"
+msgstr "LUKS %s 활성화하지 못함"
 
 #. TRANSLATORS: progress message
 #, c-format
@@ -2313,6 +2323,10 @@ msgid "Linux RAID"
 msgstr "Linux RAID"
 
 #. TRANSLATORS: name of partition type
+msgid "Linux Server Data"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
 msgid "Linux Swap"
 msgstr "Linux 스왑"
 
@@ -2478,6 +2492,10 @@ msgid "NFS"
 msgstr "NFS"
 
 #. TRANSLATORS: name of object
+msgid "NILFS2"
+msgstr ""
+
+#. TRANSLATORS: name of object
 msgid "NTFS"
 msgstr "NTFS"
 
@@ -2513,6 +2531,15 @@ msgstr "PiB"
 #, fuzzy
 msgid "Plain Encryption"
 msgstr "암호화"
+
+#, fuzzy
+msgid "Probing BitLocker"
+msgstr "디스크 검색 중"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing BitLocker failed"
+msgstr "디스크 검색하지 못함"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -3317,6 +3344,10 @@ msgstr "%1$s 파티션을 %2$s에서 %3$s(으)로 축소 중"
 #, fuzzy, c-format
 msgid "Unassigning qgroup of subvolume %1$s from qgroup %2$s on %3$s"
 msgstr "%2$s에서 %1$s 하위 볼륨을 %3$s(으)로 탑재 해제"
+
+#. TRANSLATORS: name of partition type
+msgid "Unknown"
+msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)

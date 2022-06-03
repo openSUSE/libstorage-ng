@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-20 12:10+0100\n"
+"POT-Creation-Date: 2022-06-03 14:35+0200\n"
 "PO-Revision-Date: 2019-02-19 09:18+0000\n"
 "Last-Translator: Miguel Branco <mgl.branco@gmail.com>\n"
 "Language-Team: Galician <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -112,6 +112,16 @@ msgstr "Activar o volume lóxico reducido %1$s (%2$s) no grupo de volumes %3$s"
 msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr ""
 "Activar a área reducida de volume lóxico %1$s (%2$s) no grupo de volumes %3$s"
+
+#. TRANSLATORS: progress message
+#, fuzzy, c-format
+msgid "Activating BitLocker %s"
+msgstr "Activando LUKS %s"
+
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Activating BitLocker %s failed"
+msgstr "Fallou a activación de LUKS %s"
 
 #. TRANSLATORS: progress message
 #, c-format
@@ -2230,6 +2240,10 @@ msgid "Linux RAID"
 msgstr "Linux RAID"
 
 #. TRANSLATORS: name of partition type
+msgid "Linux Server Data"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
 msgid "Linux Swap"
 msgstr "Swap de Linux"
 
@@ -2376,6 +2390,10 @@ msgid "NFS"
 msgstr "NFS"
 
 #. TRANSLATORS: name of object
+msgid "NILFS2"
+msgstr ""
+
+#. TRANSLATORS: name of object
 msgid "NTFS"
 msgstr "NTFS"
 
@@ -2408,6 +2426,15 @@ msgstr "PiB"
 #, fuzzy
 msgid "Plain Encryption"
 msgstr "Cifrado"
+
+#, fuzzy
+msgid "Probing BitLocker"
+msgstr "Probando os discos"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing BitLocker failed"
+msgstr "Fallou a proba de discos"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -3211,6 +3238,10 @@ msgstr "Reducindo a partición %1$s de %2$s a %3$s"
 #, fuzzy, c-format
 msgid "Unassigning qgroup of subvolume %1$s from qgroup %2$s on %3$s"
 msgstr "Desmontar o subvolume %1$s en %2$s en %3$s"
+
+#. TRANSLATORS: name of partition type
+msgid "Unknown"
+msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
