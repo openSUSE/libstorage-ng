@@ -11,10 +11,10 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-03 14:35+0200\n"
-"PO-Revision-Date: 2021-12-22 05:13+0000\n"
+"PO-Revision-Date: 2022-06-04 00:13+0000\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
-"Language-Team: Japanese <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/ja/>\n"
+"Language-Team: Japanese <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -114,14 +114,14 @@ msgstr ""
 "化"
 
 #. TRANSLATORS: progress message
-#, fuzzy, c-format
+#, c-format
 msgid "Activating BitLocker %s"
-msgstr "LUKS %s を有効化しています"
+msgstr "BitLocker %s を有効化しています"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Activating BitLocker %s failed"
-msgstr "LUKS %s の有効化に失敗しました"
+msgstr "BitLocker %s の有効化に失敗しました"
 
 #. TRANSLATORS: progress message
 #, c-format
@@ -2251,7 +2251,7 @@ msgstr "Linux RAID"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Server Data"
-msgstr ""
+msgstr "Linux サーバデータ"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Swap"
@@ -2402,7 +2402,7 @@ msgstr "NFS"
 
 #. TRANSLATORS: name of object
 msgid "NILFS2"
-msgstr ""
+msgstr "NILFS2"
 
 #. TRANSLATORS: name of object
 msgid "NTFS"
@@ -2436,14 +2436,12 @@ msgstr "PiB"
 msgid "Plain Encryption"
 msgstr "純粋な暗号化"
 
-#, fuzzy
 msgid "Probing BitLocker"
-msgstr "BitLocker"
+msgstr "BitLocker を検出しています"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing BitLocker failed"
-msgstr "ディスクの検出に失敗しました"
+msgstr "BitLocker の検出に失敗しました"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -3254,7 +3252,7 @@ msgstr ""
 
 #. TRANSLATORS: name of partition type
 msgid "Unknown"
-msgstr ""
+msgstr "不明"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
