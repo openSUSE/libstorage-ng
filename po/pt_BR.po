@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-03 14:35+0200\n"
-"PO-Revision-Date: 2022-01-26 15:12+0000\n"
+"PO-Revision-Date: 2022-06-17 13:13+0000\n"
 "Last-Translator: Luiz Fernando Ranghetti <elchevive68@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.opensuse.org/projects/"
 "libstorage/ng-master/pt_BR/>\n"
@@ -112,14 +112,14 @@ msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "Ativar volume lógico de pool thin %1$s (%2$s) no grupo de volumes %3$s"
 
 #. TRANSLATORS: progress message
-#, fuzzy, c-format
+#, c-format
 msgid "Activating BitLocker %s"
-msgstr "Ativando LUKS %s"
+msgstr "Ativando BitLocker %s"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Activating BitLocker %s failed"
-msgstr "Falha ao ativar LUKS %s"
+msgstr "Falha ao ativar BitLocker %s"
 
 #. TRANSLATORS: progress message
 #, c-format
@@ -2231,7 +2231,7 @@ msgstr "RAID Linux"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Server Data"
-msgstr ""
+msgstr "Dados de servidor Linux"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Swap"
@@ -2380,7 +2380,7 @@ msgstr "NFS"
 
 #. TRANSLATORS: name of object
 msgid "NILFS2"
-msgstr ""
+msgstr "NILFS2"
 
 #. TRANSLATORS: name of object
 msgid "NTFS"
@@ -2414,14 +2414,12 @@ msgstr "PiB"
 msgid "Plain Encryption"
 msgstr "Criptografia Plana"
 
-#, fuzzy
 msgid "Probing BitLocker"
-msgstr "BitLocker"
+msgstr "Investigando BitLocker"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing BitLocker failed"
-msgstr "Falha ao investigar discos"
+msgstr "Falha ao investigar BitLocker"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -3221,7 +3219,7 @@ msgstr ""
 
 #. TRANSLATORS: name of partition type
 msgid "Unknown"
-msgstr ""
+msgstr "Desconhecido"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
