@@ -713,8 +713,7 @@ namespace storage
 	    else
 	    {
 		y2war("mount point for " << extended_fstab_entry.fstab_entry->get_spec() <<
-		      "only found in proc/mounts: " <<
-		      extended_fstab_entry.fstab_entry->get_mount_point());
+		      " only found in proc/mounts: " << extended_fstab_entry.fstab_entry->get_mount_point());
 
 		joint_entries.push_back(JointEntry(nullptr, extended_fstab_entry.fstab_entry));
 	    }

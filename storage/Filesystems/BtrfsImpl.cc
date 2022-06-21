@@ -126,9 +126,9 @@ namespace storage
     {
 	vector<const BlkDevice*> devices = get_blk_devices();
 
-	// For some number of devies more RAID levels work, e.g. RAID5 with two
-	// devices, but are not recommended (warning in mkfs.btrfs output) and
-	// are also not mentioned in the btrfs wiki
+	// For some number of devices more RAID levels work, e.g. RAID5 with two devices,
+	// but are not recommended (warning in mkfs.btrfs output) and are also not
+	// mentioned in the btrfs wiki
 	// (https://btrfs.wiki.kernel.org/index.php/Using_Btrfs_with_Multiple_Devices).
 
 	switch (devices.size())
