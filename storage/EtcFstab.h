@@ -430,8 +430,7 @@ namespace storage
      */
     struct ExtendedFstabEntry
     {
-	ExtendedFstabEntry(const FstabEntry* fstab_entry) : fstab_entry(fstab_entry), id(0) {}
-	ExtendedFstabEntry(const FstabEntry* fstab_entry, unsigned int id)
+	ExtendedFstabEntry(const FstabEntry* fstab_entry, unsigned int id = 0)
 	    : fstab_entry(fstab_entry), id(id) {}
 
 	const FstabEntry* fstab_entry;
@@ -444,10 +443,7 @@ namespace storage
      */
     struct JointEntry
     {
-	JointEntry(const FstabEntry* fstab_entry, const FstabEntry* mount_entry)
-	    : fstab_entry(fstab_entry), mount_entry(mount_entry), id(0) {}
-
-	JointEntry(const FstabEntry* fstab_entry, const FstabEntry* mount_entry, unsigned int id)
+	JointEntry(const FstabEntry* fstab_entry, const FstabEntry* mount_entry, unsigned int id = 0)
 	    : fstab_entry(fstab_entry), mount_entry(mount_entry), id(id) {}
 
 	string get_mount_point() const;
