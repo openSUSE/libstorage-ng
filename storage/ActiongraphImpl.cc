@@ -73,7 +73,7 @@ namespace storage
 	if (!etc_fstab)
 	{
 	    const Storage& storage = actiongraph.get_storage();
-	    string filename = storage.get_impl().prepend_rootprefix(ETC_FSTAB);
+	    string filename = storage.prepend_rootprefix(ETC_FSTAB);
 
 	    etc_fstab = make_unique<EtcFstab>(filename);
 	}
@@ -88,7 +88,7 @@ namespace storage
 	if (!etc_crypttab)
 	{
 	    const Storage& storage = actiongraph.get_storage();
-	    string filename = storage.get_impl().prepend_rootprefix(ETC_CRYPTTAB);
+	    string filename = storage.prepend_rootprefix(ETC_CRYPTTAB);
 
 	    etc_crypttab = make_unique<EtcCrypttab>(filename);
 	}
@@ -103,7 +103,7 @@ namespace storage
 	if (!etc_mdadm)
 	{
 	    const Storage& storage = actiongraph.get_storage();
-	    string filename = storage.get_impl().prepend_rootprefix(ETC_MDADM);
+	    string filename = storage.prepend_rootprefix(ETC_MDADM);
 
 	    etc_mdadm = make_unique<EtcMdadm>(filename);
 	}
@@ -772,6 +772,7 @@ namespace storage
 	y2mil("commit begin");
 
 	y2mil("used features: " << get_used_features_names(used_features()));
+	y2mil("rootprefix: " << storage.get_rootprefix());
 
 	CommitData commit_data(*this, Tense::PRESENT_CONTINUOUS);
 

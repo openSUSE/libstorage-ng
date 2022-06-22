@@ -38,6 +38,13 @@ namespace storage
 
 
     void
+    Environment::Impl::set_rootprefix(const string& rootprefix)
+    {
+	Impl::rootprefix = rootprefix;
+    }
+
+
+    void
     Environment::Impl::set_devicegraph_filename(const string& devicegraph_filename)
     {
 	Impl::devicegraph_filename = devicegraph_filename;
@@ -83,7 +90,8 @@ namespace storage
     {
 	return out << "read-only:" << environment.read_only << " probe-mode:"
 		   << toString(environment.probe_mode) << " target-mode:"
-		   << toString(environment.target_mode);
+		   << toString(environment.target_mode) << " rootprefix:"
+		   << environment.rootprefix;
     }
 
 

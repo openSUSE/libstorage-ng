@@ -747,13 +747,10 @@
   </Commands>
   <Files>
     <File>
-      <name>/etc/crypttab</name>
+      <name>/mnt/etc/crypttab</name>
     </File>
     <File>
-      <name>/etc/fstab</name>
-      <content>proc  /proc         proc  defaults 0 0</content>
-      <content>sysfs /sys          sysfs  noauto  0 0</content>
-      <content>usbfs /proc/bus/usb usbfs  noauto  0 0</content>
+      <name>/mnt/etc/fstab</name>
     </File>
     <File>
       <name>/proc/mounts</name>

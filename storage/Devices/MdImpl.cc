@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -489,16 +489,19 @@ namespace storage
     {
 	Partitionable::Impl::probe_pass_1a(prober);
 
-	const ProcMdstat::Entry& entry = prober.get_system_info().getProcMdstat().get_entry(get_sysfs_name());
+	SystemInfo::Impl& system_info = prober.get_system_info();
+
+	const ProcMdstat::Entry& entry = system_info.getProcMdstat().get_entry(get_sysfs_name());
 	md_parity = entry.md_parity;
 	chunk_size = entry.chunk_size;
 
-	const MdadmDetail& mdadm_detail = prober.get_system_info().getMdadmDetail(get_name());
+	const MdadmDetail& mdadm_detail = system_info.getMdadmDetail(get_name());
 	uuid = mdadm_detail.uuid;
 	metadata = mdadm_detail.metadata;
 	md_level = mdadm_detail.level;
 
-	const EtcMdadm& etc_mdadm = prober.get_system_info().getEtcMdadm();
+	const Storage& storage = prober.get_storage();
+	const EtcMdadm& etc_mdadm = system_info.getEtcMdadm(storage.prepend_rootprefix(ETC_MDADM));
 	in_etc_mdadm = etc_mdadm.has_entry(uuid);
     }
 

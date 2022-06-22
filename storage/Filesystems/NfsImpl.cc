@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2020] SUSE LLC
+ * Copyright (c) [2017-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -116,6 +116,8 @@ namespace storage
 	// TODO the old library filters the mount options
 
 	SystemInfo::Impl& system_info = prober.get_system_info();
+	const Storage& storage = prober.get_storage();
+	const EtcFstab& etc_fstab = system_info.getEtcFstab(storage.prepend_rootprefix(ETC_FSTAB));
 
 	/*
 	 * The key of the map is a pair of server and path of the NFS mounts.
@@ -126,7 +128,6 @@ namespace storage
 
 	entries_t entries;
 
-	const EtcFstab& etc_fstab = system_info.getEtcFstab();
 	for (int i = 0; i < etc_fstab.get_entry_count(); ++i)
 	{
 	    const FstabEntry* fstab_entry = etc_fstab.get_entry(i);

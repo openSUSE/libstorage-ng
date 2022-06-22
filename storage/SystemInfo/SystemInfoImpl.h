@@ -77,9 +77,9 @@ namespace storage
 	Impl();
 	~Impl();
 
-	const EtcFstab& getEtcFstab() { return etc_fstab.get(); }
-	const EtcCrypttab& getEtcCrypttab() { return etc_crypttab.get(); }
-	const EtcMdadm& getEtcMdadm() { return etc_mdadm.get(); }
+	const EtcFstab& getEtcFstab(const string& path) { return etc_fstab.get(path); }
+	const EtcCrypttab& getEtcCrypttab(const string& path) { return etc_crypttab.get(path); }
+	const EtcMdadm& getEtcMdadm(const string& path) { return etc_mdadm.get(path); }
 
 	const Arch& getArch() { return arch.get(); }
 	const Dir& getDir(const string& path) { return dirs.get(path); }
@@ -232,9 +232,9 @@ namespace storage
 
 	};
 
-	LazyObject<EtcFstab> etc_fstab;
-	LazyObject<EtcCrypttab> etc_crypttab;
-	LazyObject<EtcMdadm> etc_mdadm;
+	LazyObjects<EtcFstab> etc_fstab;
+	LazyObjects<EtcCrypttab> etc_crypttab;
+	LazyObjects<EtcMdadm> etc_mdadm;
 
 	LazyObject<Arch> arch;
 	LazyObjects<Dir> dirs;

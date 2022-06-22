@@ -46,6 +46,9 @@ namespace storage
 
 	TargetMode get_target_mode() const { return target_mode; }
 
+	const string& get_rootprefix() const { return rootprefix; }
+	void set_rootprefix(const string& rootprefix);
+
 	const string& get_devicegraph_filename() const { return devicegraph_filename; }
 	void set_devicegraph_filename(const string& devicegraph_filename);
 
@@ -69,6 +72,7 @@ namespace storage
 	const ProbeMode probe_mode;
 	const TargetMode target_mode;
 
+	string rootprefix;
 	string devicegraph_filename;
 	string arch_filename;
 	string mockup_filename;

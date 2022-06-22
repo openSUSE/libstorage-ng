@@ -712,7 +712,7 @@ namespace storage
     vector<ExtendedFstabEntry>
     BlkFilesystem::Impl::find_etc_fstab_entries_unfiltered(SystemInfo::Impl& system_info) const
     {
-	const EtcFstab& etc_fstab = system_info.getEtcFstab();
+	const EtcFstab& etc_fstab = system_info.getEtcFstab(get_storage()->prepend_rootprefix(ETC_FSTAB));
 
 	vector<ExtendedFstabEntry> ret;
 

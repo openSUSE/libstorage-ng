@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2021] SUSE LLC
+ * Copyright (c) [2017-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -302,7 +302,7 @@ namespace storage
     MountPoint::Impl::get_rootprefixed_path() const
     {
 	if (rootprefixed)
-	    return get_storage()->get_impl().prepend_rootprefix(path);
+	    return get_storage()->prepend_rootprefix(path);
 	else
 	    return path;
     }
