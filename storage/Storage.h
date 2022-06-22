@@ -546,8 +546,8 @@ namespace storage
 	 */
 	void set_default_mount_by(MountByType default_mount_by);
 
-	const std::string& get_rootprefix() const;
-	void set_rootprefix(const std::string& rootprefix);
+	const std::string& get_rootprefix() const ST_DEPRECATED;
+	void set_rootprefix(const std::string& rootprefix) ST_DEPRECATED;
 
 	/**
 	 * Prepends the root prefix to a mount point if necessary.

@@ -148,8 +148,8 @@ namespace storage
 
 
     bool
-    BitlockerV2::Impl::activate_bitlocker(const ActivateCallbacksV3* activate_callbacks, SystemInfo::Impl& system_info,
-					  const string& name, const string& uuid)
+    BitlockerV2::Impl::activate_bitlocker(const ActivateCallbacksV3* activate_callbacks, const Storage& storage,
+					  SystemInfo::Impl& system_info, const string& name, const string& uuid)
     {
 	BitlockerInfo bitlocker_info;
 	bitlocker_info.get_impl().device_name = name;
@@ -158,7 +158,7 @@ namespace storage
 
 	dev_t majorminor = system_info.getCmdUdevadmInfo(name).get_majorminor();
 
-	const EtcCrypttab& etc_crypttab = system_info.getEtcCrypttab();
+	const EtcCrypttab& etc_crypttab = system_info.getEtcCrypttab(storage.prepend_rootprefix(ETC_CRYPTTAB));
 	const CrypttabEntry* crypttab_entry = etc_crypttab.find_by_any_block_device(system_info, uuid,
 										    "", majorminor);
 
@@ -171,7 +171,7 @@ namespace storage
 	}
 	else
 	{
-	    dm_table_name = bitlocker_info.get_impl().dm_table_name = next_free_cr_auto_name(system_info);
+	    dm_table_name = bitlocker_info.get_impl().dm_table_name = next_free_cr_auto_name(storage, system_info);
 	    bitlocker_info.get_impl().is_dm_table_name_generated = true;
 	}
 
@@ -253,7 +253,7 @@ namespace storage
 
 
     bool
-    BitlockerV2::Impl::activate_bitlockers(const ActivateCallbacksV3* activate_callbacks)
+    BitlockerV2::Impl::activate_bitlockers(const ActivateCallbacksV3* activate_callbacks, const Storage& storage)
     {
 	y2mil("activate_bitlockers");
 
@@ -284,7 +284,7 @@ namespace storage
 
 		y2mil("inactive bitlocker name:" << key_value1.first << " uuid:" << uuid);
 
-		if (activate_bitlocker(activate_callbacks, system_info, key_value1.first, uuid))
+		if (activate_bitlocker(activate_callbacks, storage, system_info, key_value1.first, uuid))
 		    ret = true;
 	    }
 
@@ -340,8 +340,9 @@ namespace storage
     BitlockerV2::Impl::probe_bitlockers(Prober& prober)
     {
 	SystemInfo::Impl& system_info = prober.get_system_info();
+	const Storage& storage = prober.get_storage();
 	const CmdDmsetupTable& cmd_dmsetup_table = system_info.getCmdDmsetupTable();
-	const EtcCrypttab& etc_crypttab = system_info.getEtcCrypttab();
+	const EtcCrypttab& etc_crypttab = system_info.getEtcCrypttab(storage.prepend_rootprefix(ETC_CRYPTTAB));
 	const Blkid& blkid = system_info.getBlkid();
 
 	/*
@@ -387,7 +388,7 @@ namespace storage
 	    else if (crypttab_entry)
 		dm_table_name = crypttab_entry->get_crypt_device();
 	    else
-		dm_table_name = next_free_cr_auto_name(system_info);
+		dm_table_name = next_free_cr_auto_name(storage, system_info);
 
 	    BitlockerV2* bitlocker = BitlockerV2::create(prober.get_system(), dm_table_name);
 	    bitlocker->get_impl().uuid = uuid;

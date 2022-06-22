@@ -20,11 +20,11 @@ BOOST_AUTO_TEST_CASE(probe)
 {
     set_logger(get_stdout_logger());
 
-    Environment environment(true, ProbeMode::READ_MOCKUP, TargetMode::DIRECT);
+    Environment environment(true, ProbeMode::READ_MOCKUP, TargetMode::CHROOT);
+    environment.set_rootprefix("/mnt");
     environment.set_mockup_filename("prefixed-mockup.xml");
 
     Storage storage(environment);
-    storage.set_rootprefix("/mnt");
     storage.probe();
 
     const Devicegraph* probed = storage.get_probed();

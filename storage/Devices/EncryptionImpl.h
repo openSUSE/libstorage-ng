@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -160,7 +160,7 @@ namespace storage
 	 * exist in the system and that the same name is never
 	 * returned twice.
 	 */
-	static string next_free_cr_auto_name(SystemInfo::Impl& system_info);
+	static string next_free_cr_auto_name(const Storage& storage, SystemInfo::Impl& system_info);
 
 	void add_key_file_option_and_execute(const string& cmd_line) const;
 

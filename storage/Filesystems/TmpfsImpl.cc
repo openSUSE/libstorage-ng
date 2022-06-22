@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 SUSE LLC
+ * Copyright (c) [2020-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -69,9 +69,10 @@ namespace storage
     Tmpfs::Impl::probe_tmpfses(Prober& prober)
     {
 	SystemInfo::Impl& system_info = prober.get_system_info();
+	const Storage& storage = prober.get_storage();
+	const EtcFstab& etc_fstab = system_info.getEtcFstab(storage.prepend_rootprefix(ETC_FSTAB));
 
 	vector<ExtendedFstabEntry> fstab_entries;
-	const EtcFstab& etc_fstab = system_info.getEtcFstab();
 	for (int i = 0; i < etc_fstab.get_entry_count(); ++i)
 	{
 	    const FstabEntry* fstab_entry = etc_fstab.get_entry(i);

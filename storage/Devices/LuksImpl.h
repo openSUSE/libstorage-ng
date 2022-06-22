@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -53,11 +53,11 @@ namespace storage
 
 	virtual string get_pretty_classname() const override;
 
-	static bool activate_luks(const ActivateCallbacks* activate_callbacks,
+	static bool activate_luks(const ActivateCallbacks* activate_callbacks, const Storage& storage,
 				  SystemInfo::Impl& system_info, const string& name, const string& uuid,
 				  const string& label);
 
-	static bool activate_lukses(const ActivateCallbacks* activate_callbacks);
+	static bool activate_lukses(const ActivateCallbacks* activate_callbacks, const Storage& storage);
 
 	static bool deactivate_lukses();
 

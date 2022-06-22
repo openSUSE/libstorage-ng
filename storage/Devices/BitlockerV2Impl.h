@@ -51,10 +51,10 @@ namespace storage
 
 	virtual string get_pretty_classname() const override;
 
-	static bool activate_bitlocker(const ActivateCallbacksV3* activate_callbacks,
+	static bool activate_bitlocker(const ActivateCallbacksV3* activate_callbacks, const Storage& storage,
 				       SystemInfo::Impl& system_info, const string& name, const string& uuid);
 
-	static bool activate_bitlockers(const ActivateCallbacksV3* activate_callbacks);
+	static bool activate_bitlockers(const ActivateCallbacksV3* activate_callbacks, const Storage& storage);
 
 	static bool deactivate_bitlockers();
 

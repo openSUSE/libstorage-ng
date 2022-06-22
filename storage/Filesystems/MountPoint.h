@@ -194,6 +194,8 @@ namespace storage
 	 * during mount operations.
 	 *
 	 * The default value is true (for historic reasons).
+	 *
+	 * @see Environment::get_rootprefix()
 	 */
 	bool is_rootprefixed() const;
 

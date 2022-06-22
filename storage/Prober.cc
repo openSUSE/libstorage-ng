@@ -157,8 +157,9 @@ namespace storage
     }
 
 
-    Prober::Prober(const ProbeCallbacks* probe_callbacks, Devicegraph* system, SystemInfo::Impl& system_info)
-	: probe_callbacks(probe_callbacks), system(system), system_info(system_info)
+    Prober::Prober(const Storage& storage, const ProbeCallbacks* probe_callbacks, Devicegraph* system,
+		   SystemInfo::Impl& system_info)
+	: storage(storage), probe_callbacks(probe_callbacks), system(system), system_info(system_info)
     {
 	/**
 	 * Difficulties:

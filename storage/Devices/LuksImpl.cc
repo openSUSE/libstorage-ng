@@ -184,8 +184,9 @@ namespace storage
 
 
     bool
-    Luks::Impl::activate_luks(const ActivateCallbacks* activate_callbacks, SystemInfo::Impl& system_info,
-			      const string& name, const string& uuid, const string& label)
+    Luks::Impl::activate_luks(const ActivateCallbacks* activate_callbacks, const Storage& storage,
+			      SystemInfo::Impl& system_info, const string& name, const string& uuid,
+			      const string& label)
     {
 	LuksInfo luks_info;
 	luks_info.get_impl().device_name = name;
@@ -195,7 +196,7 @@ namespace storage
 
 	dev_t majorminor = system_info.getCmdUdevadmInfo(name).get_majorminor();
 
-	const EtcCrypttab& etc_crypttab = system_info.getEtcCrypttab();
+	const EtcCrypttab& etc_crypttab = system_info.getEtcCrypttab(storage.prepend_rootprefix(ETC_CRYPTTAB));
 	const CrypttabEntry* crypttab_entry = etc_crypttab.find_by_any_block_device(system_info, uuid,
 										    label, majorminor);
 
@@ -208,7 +209,7 @@ namespace storage
 	}
 	else
 	{
-	    dm_table_name = luks_info.get_impl().dm_table_name = next_free_cr_auto_name(system_info);
+	    dm_table_name = luks_info.get_impl().dm_table_name = next_free_cr_auto_name(storage, system_info);
 	    luks_info.get_impl().is_dm_table_name_generated = true;
 	}
 
@@ -298,7 +299,7 @@ namespace storage
 
 
     bool
-    Luks::Impl::activate_lukses(const ActivateCallbacks* activate_callbacks)
+    Luks::Impl::activate_lukses(const ActivateCallbacks* activate_callbacks, const Storage& storage)
     {
 	y2mil("activate_lukses");
 
@@ -325,7 +326,7 @@ namespace storage
 		y2mil("inactive luks name:" << key_value1.first << " uuid:" <<
 		      key_value1.second.luks_uuid << " label:" << key_value1.second.luks_label);
 
-		if (activate_luks(activate_callbacks, system_info, key_value1.first,
+		if (activate_luks(activate_callbacks, storage, system_info, key_value1.first,
 				  key_value1.second.luks_uuid, key_value1.second.luks_label))
 		    ret = true;
 	    }
@@ -382,8 +383,9 @@ namespace storage
     Luks::Impl::probe_lukses(Prober& prober)
     {
 	SystemInfo::Impl& system_info = prober.get_system_info();
+	const Storage& storage = prober.get_storage();
 	const CmdDmsetupTable& cmd_dmsetup_table = system_info.getCmdDmsetupTable();
-	const EtcCrypttab& etc_crypttab = system_info.getEtcCrypttab();
+	const EtcCrypttab& etc_crypttab = system_info.getEtcCrypttab(storage.prepend_rootprefix(ETC_CRYPTTAB));
 	const Blkid& blkid = system_info.getBlkid();
 
 	/*
@@ -452,7 +454,7 @@ namespace storage
 	    else if (crypttab_entry)
 		dm_table_name = crypttab_entry->get_crypt_device();
 	    else
-		dm_table_name = next_free_cr_auto_name(system_info);
+		dm_table_name = next_free_cr_auto_name(storage, system_info);
 
 	    Luks* luks = Luks::create(prober.get_system(), dm_table_name);
 	    luks->get_impl().uuid = uuid;

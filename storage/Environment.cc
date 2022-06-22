@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2020 SUSE LLC
+ * Copyright (c) [2020-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -71,6 +71,20 @@ namespace storage
     Environment::get_target_mode() const
     {
 	return get_impl().get_target_mode();
+    }
+
+
+    const std::string&
+    Environment::get_rootprefix() const
+    {
+	return get_impl().get_rootprefix();
+    }
+
+
+    void
+    Environment::set_rootprefix(const std::string& rootprefix)
+    {
+	get_impl().set_rootprefix(rootprefix);
     }
 
 

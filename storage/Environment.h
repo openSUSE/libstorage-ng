@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
+ * Copyright (c) 2022 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -88,6 +89,26 @@ namespace storage
 	 * @see TargetMode
 	 */
 	TargetMode get_target_mode() const;
+
+	/**
+	 * Query the rootprefix.
+	 *
+	 * The rootprefix is prepended to certain paths when accessing the system,
+	 * e.g. when opening files like /etc/fstab and when mounting filesystems (that
+	 * have rootprefixed set).
+	 *
+	 * The rootprefix is at least used for activate(), probe() and commit().
+	 */
+	const std::string& get_rootprefix() const;
+
+	/**
+	 * Set the rootprefix.
+	 *
+	 * If a rootprefix is not needed it has to be empty.
+	 *
+	 * @see get_rootprefix()
+	 */
+	void set_rootprefix(const std::string& rootprefix);
 
 	const std::string& get_devicegraph_filename() const;
 	void set_devicegraph_filename(const std::string& devicegraph_filename);

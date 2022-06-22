@@ -24,6 +24,7 @@ bool save_mockup = false;
 bool load_mockup = false;
 bool ignore_probe_errors = false;
 View view = View::ALL;
+string rootprefix;
 
 
 class MyProbeCallbacks : public ProbeCallbacks
@@ -60,7 +61,7 @@ doit()
 	probe_mode = ProbeMode::READ_MOCKUP;
 
     Environment environment(true, probe_mode, TargetMode::DIRECT);
-
+    environment.set_rootprefix(rootprefix);
     environment.set_mockup_filename("mockup.xml");
 
     MyProbeCallbacks my_probe_callbacks;
@@ -116,6 +117,7 @@ main(int argc, char **argv)
 	{ "load-mockup",		no_argument,		0,	4 },
 	{ "ignore-probe-errors",	no_argument,		0,	5 },
 	{ "view",			required_argument,	0,	6 },
+	{ "rootprefix",			required_argument,	0,	7 },
 	{ 0, 0, 0, 0 }
     };
 
@@ -163,6 +165,10 @@ main(int argc, char **argv)
 		    cerr << sformat("Unknown view '%s'.", optarg) << endl;
 		    usage();
 		}
+		break;
+
+	    case 7:
+		rootprefix = optarg;
 		break;
 
 	    default:

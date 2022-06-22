@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 SUSE LLC
+ * Copyright (c) [2019-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -30,6 +30,7 @@
 #include "storage/EtcCrypttab.h"
 #include "storage/Prober.h"
 #include "storage/Utils/Format.h"
+#include "storage/Storage.h"
 
 
 namespace storage
@@ -69,8 +70,9 @@ namespace storage
     PlainEncryption::Impl::probe_plain_encryptions(Prober& prober)
     {
 	SystemInfo::Impl& system_info = prober.get_system_info();
+	const Storage& storage = prober.get_storage();
 	const CmdDmsetupTable& cmd_dmsetup_table = system_info.getCmdDmsetupTable();
-	const EtcCrypttab& etc_crypttab = system_info.getEtcCrypttab();
+	const EtcCrypttab& etc_crypttab = system_info.getEtcCrypttab(storage.prepend_rootprefix(ETC_CRYPTTAB));
 	const Blkid& blkid = system_info.getBlkid();
 
 	/*

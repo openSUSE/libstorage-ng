@@ -52,7 +52,8 @@ namespace storage
     Storage::Impl::Impl(Storage& storage, const Environment& environment)
 	: storage(storage), environment(environment), arch(false),
 	  lock(environment.is_read_only(), !environment.get_impl().is_do_lock()),
-	  default_mount_by(MountByType::UUID), tmp_dir("libstorage-XXXXXX")
+	  default_mount_by(MountByType::UUID), rootprefix(environment.get_rootprefix()),
+	  tmp_dir("libstorage-XXXXXX")
     {
 	y2mil("constructed Storage with " << environment);
 	y2mil("libstorage-ng version " VERSION);
@@ -97,6 +98,8 @@ namespace storage
 
 	y2mil("activate begin");
 
+	y2mil("rootprefix: " << get_rootprefix());
+
 	const ActivateCallbacksV3* activate_callbacks_v3 = dynamic_cast<const ActivateCallbacksV3*>(activate_callbacks);
 
 	Multipath::Impl::activate_multipaths(activate_callbacks);
@@ -112,10 +115,10 @@ namespace storage
 	    if (LvmLv::Impl::activate_lvm_lvs(activate_callbacks))
 		again = true;
 
-	    if (Luks::Impl::activate_lukses(activate_callbacks))
+	    if (Luks::Impl::activate_lukses(activate_callbacks, storage))
 		again = true;
 
-	    if (activate_callbacks_v3 && BitlockerV2::Impl::activate_bitlockers(activate_callbacks_v3))
+	    if (activate_callbacks_v3 && BitlockerV2::Impl::activate_bitlockers(activate_callbacks_v3, storage))
 		again = true;
 
 	    if (!again)
@@ -176,6 +179,8 @@ namespace storage
     Storage::Impl::probe(const ProbeCallbacks* probe_callbacks)
     {
 	y2mil("probe begin");
+
+	y2mil("rootprefix: " << get_rootprefix());
 
 	CallbacksGuard callbacks_guard(probe_callbacks);
 
@@ -243,7 +248,7 @@ namespace storage
 
 	arch = system_info.getArch();
 
-	Prober prober(probe_callbacks, probed, system_info);
+	Prober prober(storage, probe_callbacks, probed, system_info);
     }
 
 
