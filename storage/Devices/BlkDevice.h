@@ -29,7 +29,6 @@
 #include "storage/Utils/Swig.h"
 #include "storage/Devices/Device.h"
 #include "storage/Filesystems/BlkFilesystem.h"
-#include "storage/SystemInfo/SystemInfo.h"
 
 
 namespace storage
@@ -42,6 +41,7 @@ namespace storage
     class Bcache;
     class BcacheCset;
     class RemoveInfo;
+    class SystemInfo;
 
 
     //! An abstract Block Device.

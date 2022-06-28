@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -1637,6 +1637,94 @@ namespace storage
 	    case ID_LINUX_SERVER_DATA:
 		// TRANSLATORS: name of partition type
 		return _("Linux Server Data");
+
+	    case ID_LINUX_ROOT_ARM:
+		// TRANSLATORS: name of partition type
+		return _("Linux Root Partition (ARM 32-bit)");
+
+	    case ID_LINUX_ROOT_AARCH64:
+		// TRANSLATORS: name of partition type
+		return _("Linux Root Partition (ARM 64-bit)");
+
+	    case ID_LINUX_ROOT_PPC32:
+		// TRANSLATORS: name of partition type
+		return _("Linux Root Partition (PPC 32-bit)");
+
+	    case ID_LINUX_ROOT_PPC64BE:
+		// TRANSLATORS: name of partition type
+		return _("Linux Root Partition (PPC 64-bit BE)");
+
+	    case ID_LINUX_ROOT_PPC64LE:
+		// TRANSLATORS: name of partition type
+		return _("Linux Root Partition (PPC 64-bit LE)");
+
+	    case ID_LINUX_ROOT_RISCV32:
+		// TRANSLATORS: name of partition type
+		return _("Linux Root Partition (RISC-V 32-bit)");
+
+	    case ID_LINUX_ROOT_RISCV64:
+		// TRANSLATORS: name of partition type
+		return _("Linux Root Partition (RISC-V 64-bit)");
+
+	    case ID_LINUX_ROOT_S390:
+		// TRANSLATORS: name of partition type
+		return _("Linux Root Partition (S/390 32-bit)");
+
+	    case ID_LINUX_ROOT_S390X:
+		// TRANSLATORS: name of partition type
+		return _("Linux Root Partition (S/390 64-bit)");
+
+	    case ID_LINUX_ROOT_X86:
+		// TRANSLATORS: name of partition type
+		return _("Linux Root Partition (x86 32-bit)");
+
+	    case ID_LINUX_ROOT_X86_64:
+		// TRANSLATORS: name of partition type
+		return _("Linux Root Partition (x86 64-bit)");
+
+	    case ID_LINUX_USR_ARM:
+		// TRANSLATORS: name of partition type
+		return _("Linux USR Partition (ARM 32-bit)");
+
+	    case ID_LINUX_USR_AARCH64:
+		// TRANSLATORS: name of partition type
+		return _("Linux USR Partition (ARM 64-bit)");
+
+	    case ID_LINUX_USR_PPC32:
+		// TRANSLATORS: name of partition type
+		return _("Linux USR Partition (PPC 32-bit)");
+
+	    case ID_LINUX_USR_PPC64BE:
+		// TRANSLATORS: name of partition type
+		return _("Linux USR Partition (PPC 64-bit BE)");
+
+	    case ID_LINUX_USR_PPC64LE:
+		// TRANSLATORS: name of partition type
+		return _("Linux USR Partition (PPC 64-bit LE)");
+
+	    case ID_LINUX_USR_RISCV32:
+		// TRANSLATORS: name of partition type
+		return _("Linux USR Partition (RISC-V 32-bit)");
+
+	    case ID_LINUX_USR_RISCV64:
+		// TRANSLATORS: name of partition type
+		return _("Linux USR Partition (RISC-V 64-bit)");
+
+	    case ID_LINUX_USR_S390:
+		// TRANSLATORS: name of partition type
+		return _("Linux USR Partition (S/390 32-bit)");
+
+	    case ID_LINUX_USR_S390X:
+		// TRANSLATORS: name of partition type
+		return _("Linux USR Partition (S/390 64-bit)");
+
+	    case ID_LINUX_USR_X86:
+		// TRANSLATORS: name of partition type
+		return _("Linux USR Partition (x86 32-bit)");
+
+	    case ID_LINUX_USR_X86_64:
+		// TRANSLATORS: name of partition type
+		return _("Linux USR Partition (x86 64-bit)");
 	}
 
 	return Text();
