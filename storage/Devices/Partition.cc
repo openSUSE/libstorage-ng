@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -24,9 +24,10 @@
 #include <boost/algorithm/string.hpp>
 
 #include "storage/Utils/StorageDefines.h"
+#include "storage/Utils/Format.h"
 #include "storage/Devices/PartitionImpl.h"
 #include "storage/Devicegraph.h"
-#include "storage/Action.h"
+#include "storage/SystemInfo/SystemInfoImpl.h"
 
 
 namespace storage
@@ -46,6 +47,30 @@ namespace storage
     get_partition_id_name(IdNum partition_id)
     {
 	return id_to_text(partition_id).translated;
+    }
+
+
+    IdNum
+    get_linux_partition_id(LinuxPartitionIdCategory linux_partition_id_category, SystemInfo& system_info)
+    {
+	static const map<string, vector<IdNum>> arch_to_ids = {
+	    { "aarch64", { ID_LINUX_ROOT_AARCH64, ID_LINUX_USR_AARCH64 } },
+	    { "i586", { ID_LINUX_ROOT_X86, ID_LINUX_USR_X86 } },
+	    { "ppc", { ID_LINUX_ROOT_PPC32,ID_LINUX_USR_PPC32 } },
+	    { "ppc64", { ID_LINUX_ROOT_PPC64BE, ID_LINUX_USR_PPC64BE } },
+	    { "ppc64le", { ID_LINUX_ROOT_PPC64LE, ID_LINUX_USR_PPC64LE } },
+	    { "riscv64", { ID_LINUX_ROOT_RISCV64, ID_LINUX_USR_RISCV64 } },
+	    { "s390", { ID_LINUX_ROOT_S390, ID_LINUX_USR_S390 } },
+	    { "s390x", { ID_LINUX_ROOT_S390X, ID_LINUX_USR_S390X } },
+	    { "x86_64", { ID_LINUX_ROOT_X86_64, ID_LINUX_USR_X86_64 } },
+	};
+
+	const string& arch = system_info.get_impl().getArch().get_arch();
+	const map<string, vector<IdNum>>::const_iterator it = arch_to_ids.find(arch);
+	if (it == arch_to_ids.end())
+	    ST_THROW(Exception(sformat("partition id unknown for architecture %s", arch)));
+
+	return it->second[(int)(linux_partition_id_category)];
     }
 
 

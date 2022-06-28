@@ -33,6 +33,7 @@ namespace storage
 
     class PartitionTable;
     class Partitionable;
+    class SystemInfo;
 
 
     /**
@@ -136,11 +137,77 @@ namespace storage
 	/** Microsoft reserved partition, only for GPT. */
 	ID_MICROSOFT_RESERVED,
 
-	/** Linux Home, only for GPT. Required parted 3.5 or higher. */
+	/** Linux Home, only for GPT. Requires parted 3.5 or higher. */
 	ID_LINUX_HOME,
 
-	/** Linux Server Data, only for GPT. Required SUSE parted 3.5 or higher. */
+	/** Linux Server Data, only for GPT. Requires SUSE parted 3.5 or higher. */
 	ID_LINUX_SERVER_DATA,
+
+	/** Linux Root Partition (arm), only for GPT. Requires SUSE parted 3.5 or higher. */
+	ID_LINUX_ROOT_ARM,
+
+	/** Linux Root Partition (aarch64), only for GPT. Requires SUSE parted 3.5 or higher. */
+	ID_LINUX_ROOT_AARCH64,
+
+	/** Linux Root Partition (ppc), only for GPT. Requires SUSE parted 3.5 or higher. */
+	ID_LINUX_ROOT_PPC32,
+
+	/** Linux Root Partition (ppc64be), only for GPT. Requires SUSE parted 3.5 or higher. */
+	ID_LINUX_ROOT_PPC64BE,
+
+	/** Linux Root Partition (ppc64le), only for GPT. Requires SUSE parted 3.5 or higher. */
+	ID_LINUX_ROOT_PPC64LE,
+
+	/** Linux Root Partition (riscv32, only for GPT. Requires SUSE parted 3.5 or higher. */
+	ID_LINUX_ROOT_RISCV32,
+
+	/** Linux Root Partition (riscv64), only for GPT. Requires SUSE parted 3.5 or higher. */
+	ID_LINUX_ROOT_RISCV64,
+
+	/** Linux Root Partition (s390), only for GPT. Requires SUSE parted 3.5 or higher. */
+	ID_LINUX_ROOT_S390,
+
+	/** Linux Root Partition (s390x), only for GPT. Requires SUSE parted 3.5 or higher. */
+	ID_LINUX_ROOT_S390X,
+
+	/** Linux Root Partition (x86), only for GPT. Requires SUSE parted 3.5 or higher. */
+	ID_LINUX_ROOT_X86,
+
+	/** Linux Root Partition (x86_64), only for GPT. Requires SUSE parted 3.5 or higher. */
+	ID_LINUX_ROOT_X86_64,
+
+	/** Linux USR Partition (arm), only for GPT. Requires SUSE parted 3.5 or higher. */
+	ID_LINUX_USR_ARM,
+
+	/** Linux USR Partition (aarch64), only for GPT. Requires SUSE parted 3.5 or higher. */
+	ID_LINUX_USR_AARCH64,
+
+	/** Linux USR Partition (ppc), only for GPT. Requires SUSE parted 3.5 or higher. */
+	ID_LINUX_USR_PPC32,
+
+	/** Linux USR Partition (ppc64be), only for GPT. Requires SUSE parted 3.5 or higher. */
+	ID_LINUX_USR_PPC64BE,
+
+	/** Linux USR Partition (ppc64le), only for GPT. Requires SUSE parted 3.5 or higher. */
+	ID_LINUX_USR_PPC64LE,
+
+	/** Linux USR Partition (riscv32), only for GPT. Requires SUSE parted 3.5 or higher. */
+	ID_LINUX_USR_RISCV32,
+
+	/** Linux USR Partition (riscv64), only for GPT. Requires SUSE parted 3.5 or higher. */
+	ID_LINUX_USR_RISCV64,
+
+	/** Linux USR Partition (s390), only for GPT. Requires SUSE parted 3.5 or higher. */
+	ID_LINUX_USR_S390,
+
+	/** Linux USR Partition (s390x), only for GPT. Requires SUSE parted 3.5 or higher. */
+	ID_LINUX_USR_S390X,
+
+	/** Linux USR Partition (x86), only for GPT. Requires SUSE parted 3.5 or higher. */
+	ID_LINUX_USR_X86,
+
+	/** Linux USR Partition (x86_64), only for GPT. Requires SUSE parted 3.5 or higher. */
+	ID_LINUX_USR_X86_64,
 
     };
 
@@ -153,6 +220,26 @@ namespace storage
      * @see IdNum
      */
     std::string get_partition_id_name(IdNum partition_id);
+
+
+    /**
+     * Enum with categories for Linux partitions.
+     */
+    enum class LinuxPartitionIdCategory
+    {
+	ROOT, USR
+    };
+
+
+    /**
+     * Get the partition id for the Linux partition of the given category (root, usr, ...)
+     * depending on the architecture.
+     *
+     * @see IdNum, LinuxPartitionIdCategory
+     *
+     * @throw Exception
+     */
+    IdNum get_linux_partition_id(LinuxPartitionIdCategory linux_partition_id_category, SystemInfo& system_info);
 
 
     /**
