@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2020 Arvin Schnell
- * Copyright (c) 2021 SUSE LLC
+ * Copyright (c) [2021-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -118,6 +118,12 @@ namespace storage
 	 * @throw Exception
 	 */
 	void remove_device(const Device* device);
+
+	/**
+	 * Check whether the pool has any devices in the devicegraph. It is no error if
+	 * devices are not available in the devicegraph.
+	 */
+	bool empty(const Devicegraph* devicegraph) const;
 
 	/**
 	 * Get the number of devices of the pool available in the devicegraph. It is no
