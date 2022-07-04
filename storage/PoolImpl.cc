@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2020 Arvin Schnell
- * Copyright (c) 2021 SUSE LLC
+ * Copyright (c) [2021-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -65,6 +65,17 @@ namespace storage
 	    ST_THROW(Exception("device not in pool"));
 
 	devices.erase(it);
+    }
+
+
+    bool
+    Pool::Impl::empty(const Devicegraph* devicegraph) const
+    {
+	ST_CHECK_PTR(devicegraph);
+
+	return none_of(devices.begin(), devices.end(), [devicegraph](sid_t sid)
+	    { return devicegraph->device_exists(sid); }
+	);
     }
 
 

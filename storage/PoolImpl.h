@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2020 Arvin Schnell
- * Copyright (c) 2021 SUSE LLC
+ * Copyright (c) [2021-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -51,6 +51,7 @@ namespace storage
 	void add_device(const Device* device);
 	void remove_device(const Device* device);
 
+	bool empty(const Devicegraph* devicegraph) const;
 	size_t size(const Devicegraph* devicegraph) const;
 
 	vector<Device*> get_devices(Devicegraph* devicegraph) const;

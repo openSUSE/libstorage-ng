@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2020 Arvin Schnell
- * Copyright (c) 2021 SUSE LLC
+ * Copyright (c) [2021-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -58,6 +58,13 @@ namespace storage
     Pool::set_userdata(const map<string, string>& userdata)
     {
 	get_impl().set_userdata(userdata);
+    }
+
+
+    bool
+    Pool::empty(const Devicegraph* devicegraph) const
+    {
+	return get_impl().empty(devicegraph);
     }
 
 

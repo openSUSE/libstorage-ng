@@ -90,7 +90,6 @@ namespace storage
 	const ProcMounts& getProcMounts() { return proc_mounts.get(); }
 	const ProcMdstat& getProcMdstat() { return proc_mdstat.get(); }
 	const MdadmDetail& getMdadmDetail(const string& device) { return mdadm_details.get(device); }
-	const MdadmExamine& getMdadmExamine(const vector<string>& devices) { return mdadm_examines.get(devices); }
 	const Blkid& getBlkid() { return blkid.get(); }
 	const Lsscsi& getLsscsi() { return lsscsi.get(); }
 	const Parted& getParted(const string& device) { return parteds.get(device); }
@@ -245,7 +244,6 @@ namespace storage
 	LazyObject<ProcMounts> proc_mounts;
 	LazyObject<ProcMdstat> proc_mdstat;
 	LazyObjects<MdadmDetail> mdadm_details;
-	LazyObjects<MdadmExamine, vector<string>> mdadm_examines;
 	LazyObject<Blkid> blkid;
 	LazyObject<Lsscsi> lsscsi;
 	LazyObjects<Parted> parteds;

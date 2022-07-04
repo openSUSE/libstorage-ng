@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2017-2020] SUSE LLC
+ * Copyright (c) [2017-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -62,26 +62,22 @@ namespace storage
 
 	struct Entry
 	{
-	    Entry() : md_level(MdLevel::UNKNOWN), md_parity(MdParity::DEFAULT), size(0),
-		      chunk_size(0), read_only(false), inactive(false), is_container(false),
-		      has_container(false) {}
-
-	    MdLevel md_level;
-	    MdParity md_parity;
+	    MdLevel md_level = MdLevel::UNKNOWN;
+	    MdParity md_parity = MdParity::DEFAULT;
 
 	    string super;
 
-	    unsigned long long size;
-	    unsigned long chunk_size;
+	    unsigned long long size = 0;
+	    unsigned long long chunk_size = 0;
 
-	    bool read_only;
-	    bool inactive;
+	    bool read_only = false;
+	    bool inactive = false;
 
 	    vector<Device> devices;
 
-	    bool is_container;
+	    bool is_container = false;
 
-	    bool has_container;
+	    bool has_container = false;
 	    string container_name;
 	    string container_member;
 	};
@@ -139,44 +135,6 @@ namespace storage
 	void parse(const vector<string>& lines);
 
 	string device;
-
-    };
-
-
-    class MdadmExamine
-    {
-    public:
-
-	MdadmExamine(const vector<string>& devices);
-
-	string metadata;
-	string uuid;
-
-	struct Entry
-	{
-	    Entry() : member(-1) {}
-
-	    int member;
-	    string uuid;
-	};
-
-	typedef map<string, Entry>::const_iterator const_iterator;
-
-	const_iterator begin() const { return data.begin(); }
-	const_iterator end() const { return data.end(); }
-
-	const_iterator find(const string& name) const { return data.find(name); }
-
-	friend std::ostream& operator<<(std::ostream& s, const MdadmExamine& mdadm_examine);
-	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
-
-    private:
-
-	void parse(const vector<string>& lines);
-
-	vector<string> devices;
-
-	map<string, Entry> data;
 
     };
 
