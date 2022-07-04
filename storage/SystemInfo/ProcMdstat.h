@@ -142,44 +142,6 @@ namespace storage
 
     };
 
-
-    class MdadmExamine
-    {
-    public:
-
-	MdadmExamine(const vector<string>& devices);
-
-	string metadata;
-	string uuid;
-
-	struct Entry
-	{
-	    Entry() : member(-1) {}
-
-	    int member;
-	    string uuid;
-	};
-
-	typedef map<string, Entry>::const_iterator const_iterator;
-
-	const_iterator begin() const { return data.begin(); }
-	const_iterator end() const { return data.end(); }
-
-	const_iterator find(const string& name) const { return data.find(name); }
-
-	friend std::ostream& operator<<(std::ostream& s, const MdadmExamine& mdadm_examine);
-	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
-
-    private:
-
-	void parse(const vector<string>& lines);
-
-	vector<string> devices;
-
-	map<string, Entry> data;
-
-    };
-
 }
 
 

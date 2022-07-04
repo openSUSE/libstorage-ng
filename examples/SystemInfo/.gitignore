@@ -25,7 +25,6 @@ test-dmraid
 test-lsattr
 test-lsscsi
 test-mdadm-detail
-test-mdadm-examine
 test-mdlinks
 test-multipath
 test-parted
