@@ -70,9 +70,16 @@ namespace storage
 	AlignType align_type;
 
 	Topology topology;
-	unsigned long extra_grain;
+	unsigned long extra_grain = 0;
 
     };
+
+
+    static_assert(std::is_move_constructible<Alignment>::value, "Alignment ought to be move-constructable");
+    static_assert(std::is_move_assignable<Alignment>::value, "Alignment ought to be move-assignable");
+
+    static_assert(std::is_move_constructible<Alignment::Impl>::value, "Alignment::Impl ought to be move-constructable");
+    static_assert(std::is_move_assignable<Alignment::Impl>::value, "Alignment::Impl ought to be move-assignable");
 
 }
 

@@ -65,11 +65,18 @@ namespace storage
 
 	static const unsigned long default_minimal_grain = 1 * MiB;
 
-	long alignment_offset;
-	unsigned long optimal_io_size;
-	unsigned long minimal_grain;
+	long alignment_offset = 0;
+	unsigned long optimal_io_size = 0;
+	unsigned long minimal_grain = default_minimal_grain;
 
     };
+
+
+    static_assert(std::is_move_constructible<Topology>::value, "Topology ought to be move-constructable");
+    static_assert(std::is_move_assignable<Topology>::value, "Topology ought to be move-assignable");
+
+    static_assert(std::is_move_constructible<Topology::Impl>::value, "Topology::Impl ought to be move-constructable");
+    static_assert(std::is_move_assignable<Topology::Impl>::value, "Topology::Impl ought to be move-assignable");
 
 }
 
