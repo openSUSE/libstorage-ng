@@ -92,6 +92,13 @@ namespace storage
 
     };
 
+
+    static_assert(std::is_move_constructible<Region>::value, "Region ought to be move-constructable");
+    static_assert(std::is_move_assignable<Region>::value, "Region ought to be move-assignable");
+
+    static_assert(std::is_move_constructible<Region::Impl>::value, "Region::Impl ought to be move-constructable");
+    static_assert(std::is_move_assignable<Region::Impl>::value, "Region::Impl ought to be move-assignable");
+
 }
 
 #endif

@@ -6,7 +6,8 @@ noinst_LTLIBRARIES = libhelpers.la
 
 libhelpers_la_SOURCES =						\
 	TsCmp.cc		TsCmp.h				\
-	CallbacksRecorder.cc	CallbacksRecorder.h
+	CallbacksRecorder.cc	CallbacksRecorder.h		\
+	output.h
 
 noinst_PROGRAMS =	\
 	echoargs	\

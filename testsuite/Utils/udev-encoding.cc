@@ -26,6 +26,10 @@ BOOST_AUTO_TEST_CASE(test_udev_encode)
     BOOST_CHECK_EQUAL(udev_encode("ending "), "ending\\x20");
 
     BOOST_CHECK_EQUAL(udev_encode("woody's"), "woody\\x27s");
+
+    BOOST_CHECK_EQUAL(udev_encode("A/B image"), "A\\x2fB\\x20image");
+
+    BOOST_CHECK_EQUAL(udev_encode("schön"), "schön");
 }
 
 

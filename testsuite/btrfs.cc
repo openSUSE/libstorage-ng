@@ -14,19 +14,11 @@
 #include "storage/Storage.h"
 #include "storage/Environment.h"
 
+#include "helpers/output.h"
+
 
 using namespace std;
 using namespace storage;
-
-
-namespace std
-{
-    ostream&
-    operator<<(ostream& s, MountByType mount_my)
-    {
-	return s << get_mount_by_name(mount_my);
-    }
-}
 
 
 BOOST_AUTO_TEST_CASE(btrfs1)

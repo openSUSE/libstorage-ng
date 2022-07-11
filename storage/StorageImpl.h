@@ -208,6 +208,16 @@ namespace storage
 
     };
 
+
+    // std::move for Storage would require updating various back-references. So check
+    // that no move-semantic is available.
+
+    static_assert(!std::is_move_constructible<Storage>::value, "Storage ought not to be move-constructable");
+    static_assert(!std::is_move_assignable<Storage>::value, "Storage ought not to be move-assignable");
+
+    static_assert(!std::is_move_constructible<Storage::Impl>::value, "Storage::Impl ought not to be move-constructable");
+    static_assert(!std::is_move_assignable<Storage::Impl>::value, "Storage::Impl ought not to be move-assignable");
+
 }
 
 #endif
