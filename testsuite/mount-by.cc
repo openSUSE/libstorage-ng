@@ -20,18 +20,10 @@
 #include "storage/Filesystems/Mountable.h"
 #include "storage/Filesystems/MountPoint.h"
 
+#include "helpers/output.h"
+
 
 using namespace storage;
-
-
-namespace std
-{
-    ostream&
-    operator<<(ostream& s, MountByType mount_my)
-    {
-	return s << get_mount_by_name(mount_my);
-    }
-}
 
 
 BOOST_AUTO_TEST_CASE(test_global)
