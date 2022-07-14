@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2017-2020] SUSE LLC
+ * Copyright (c) [2017-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -29,6 +29,7 @@
 #include <vector>
 
 #include "storage/Utils/ColumnConfigFile.h"
+#include "storage/Utils/MountPointPath.h"
 #include "storage/Filesystems/Filesystem.h"
 #include "storage/SystemInfo/SystemInfo.h"
 
@@ -425,14 +426,16 @@ namespace storage
 
 
     /**
-     * An extended fstab entry that contains an FstabEntry pointer and
+     * An extended fstab entry that contains a MountPointPath, an FstabEntry pointer and
      * FilesystemUser.id.
      */
     struct ExtendedFstabEntry
     {
-	ExtendedFstabEntry(const FstabEntry* fstab_entry, unsigned int id = 0)
-	    : fstab_entry(fstab_entry), id(id) {}
+	ExtendedFstabEntry(const MountPointPath& mount_point_path, const FstabEntry* fstab_entry,
+			   unsigned int id = 0)
+	    : mount_point_path(mount_point_path), fstab_entry(fstab_entry), id(id) {}
 
+	const MountPointPath mount_point_path;
 	const FstabEntry* fstab_entry;
 	const unsigned int id;
     };
@@ -443,10 +446,13 @@ namespace storage
      */
     struct JointEntry
     {
-	JointEntry(const FstabEntry* fstab_entry, const FstabEntry* mount_entry, unsigned int id = 0)
-	    : fstab_entry(fstab_entry), mount_entry(mount_entry), id(id) {}
+	JointEntry(const MountPointPath& mount_point_path, const FstabEntry* fstab_entry,
+		   const FstabEntry* mount_entry, unsigned int id = 0)
+	    : mount_point_path(mount_point_path), fstab_entry(fstab_entry), mount_entry(mount_entry), id(id) {}
 
-	string get_mount_point() const;
+	const string& get_mount_point() const { return mount_point_path.path; }
+	bool is_rootprefixed() const { return mount_point_path.rootprefixed; }
+
 	vector<string> get_mount_options() const;
 	MountByType get_mount_by() const;
 
@@ -457,6 +463,7 @@ namespace storage
 
 	MountPoint* add_to(Mountable* mountable) const;
 
+	const MountPointPath mount_point_path;
 	const FstabEntry* fstab_entry;
 	const FstabEntry* mount_entry;
 	const unsigned int id;
@@ -471,7 +478,7 @@ namespace storage
 
 
     /**
-     * Compare join entries by its mount point lenght
+     * Compare join entries by its mount point length.
      */
     bool compare_by_size(const JointEntry* a, const JointEntry* b);
 

@@ -87,6 +87,7 @@ namespace storage
        return fs_type == FsType::NFS || fs_type == FsType::NFS4 || fs_type == FsType::AUTO;
     }
 
+
     pair<string, string>
     Nfs::Impl::split_name(const string& name)
     {
@@ -117,6 +118,7 @@ namespace storage
 
 	SystemInfo::Impl& system_info = prober.get_system_info();
 	const Storage& storage = prober.get_storage();
+	const string& rootprefix = storage.get_rootprefix();
 	const EtcFstab& etc_fstab = system_info.getEtcFstab(storage.prepend_rootprefix(ETC_FSTAB));
 
 	/*
@@ -135,7 +137,10 @@ namespace storage
 	    FsType vfstype = fstab_entry->get_fs_type();
 
 	    if (is_valid_name(device) && is_valid_vfstype(vfstype))
-		entries[Nfs::Impl::split_name(device)].first.emplace_back(fstab_entry);
+	    {
+		MountPointPath mount_point_path(fstab_entry->get_mount_point(), true);
+		entries[Nfs::Impl::split_name(device)].first.emplace_back(mount_point_path, fstab_entry);
+	    }
 	}
 
 	vector<const FstabEntry*> mount_entries = system_info.getProcMounts().get_all_nfs();
@@ -144,7 +149,10 @@ namespace storage
 	    string device = mount_entry->get_spec();
 
 	    if (is_valid_name(device))
-		entries[Nfs::Impl::split_name(device)].second.emplace_back(mount_entry);
+	    {
+		MountPointPath mount_point_path(mount_entry->get_mount_point(), rootprefix);
+		entries[Nfs::Impl::split_name(device)].second.emplace_back(mount_point_path, mount_entry);
+	    }
 	}
 
 	// The code here works only with one mount point per
@@ -166,8 +174,6 @@ namespace storage
 		    const CmdDf& cmd_df = system_info.getCmdDf(mount_point->get_path());
 		    nfs->set_space_info(cmd_df.get_space_info());
 		}
-
-		mount_point->get_impl().strip_rootprefix();
 	    }
 	}
     }
@@ -290,6 +296,7 @@ namespace storage
     vector<ExtendedFstabEntry>
     Nfs::Impl::find_proc_mounts_entries_unfiltered(SystemInfo::Impl& system_info) const
     {
+	const string& rootprefix = get_storage()->get_rootprefix();
 	const ProcMounts& proc_mounts = system_info.getProcMounts();
 
 	vector<ExtendedFstabEntry> ret;
@@ -300,7 +307,10 @@ namespace storage
 	    pair<string, string> tmp = split_name(spec);
 
 	    if (tmp.first == server && tmp.second == path)
-		ret.emplace_back(mount_entry);
+	    {
+		MountPointPath mount_point_path(mount_entry->get_mount_point(), rootprefix);
+		ret.emplace_back(mount_point_path, mount_entry);
+	    }
 	}
 
 	return ret;

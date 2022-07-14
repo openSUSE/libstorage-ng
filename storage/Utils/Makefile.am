@@ -13,6 +13,7 @@ libutils_la_SOURCES =					\
 	Diff.cc			Diff.h			\
 	Text.cc			Text.h			\
 	Format.h					\
+	MountPointPath.h	MountPointPath.cc	\
 	Stopwatch.cc		Stopwatch.h		\
 	LinesIterator.cc	LinesIterator.h		\
 	Math.cc			Math.h			\

@@ -70,6 +70,7 @@ namespace storage
     {
 	SystemInfo::Impl& system_info = prober.get_system_info();
 	const Storage& storage = prober.get_storage();
+	const string& rootprefix = storage.get_rootprefix();
 	const EtcFstab& etc_fstab = system_info.getEtcFstab(storage.prepend_rootprefix(ETC_FSTAB));
 
 	vector<ExtendedFstabEntry> fstab_entries;
@@ -77,14 +78,18 @@ namespace storage
 	{
 	    const FstabEntry* fstab_entry = etc_fstab.get_entry(i);
 	    if (fstab_entry->get_fs_type() == FsType::TMPFS)
-		fstab_entries.emplace_back(fstab_entry);
+	    {
+		MountPointPath mount_point_path(fstab_entry->get_mount_point(), true);
+		fstab_entries.emplace_back(mount_point_path, fstab_entry);
+	    }
 	}
 
 	vector<ExtendedFstabEntry> mount_entries;
 	const ProcMounts& proc_mounts = system_info.getProcMounts();
 	for (const FstabEntry* mount_entry : proc_mounts.get_all_tmpfs())
 	{
-	    mount_entries.emplace_back(mount_entry);
+	    MountPointPath mount_point_path(mount_entry->get_mount_point(), rootprefix);
+	    mount_entries.emplace_back(mount_point_path, mount_entry);
 	}
 
 	vector<JointEntry> joint_entries = join_entries(fstab_entries, mount_entries);
@@ -102,8 +107,6 @@ namespace storage
 		const CmdDf& cmd_df = prober.get_system_info().getCmdDf(mount_point->get_path());
 		tmpfs->set_space_info(cmd_df.get_space_info());
 	    }
-
-	    mount_point->get_impl().strip_rootprefix();
 	}
     }
 
@@ -200,13 +203,15 @@ namespace storage
     vector<ExtendedFstabEntry>
     Tmpfs::Impl::find_proc_mounts_entries_unfiltered(SystemInfo::Impl& system_info) const
     {
+	const string& rootprefix = get_storage()->get_rootprefix();
 	const ProcMounts& proc_mounts = system_info.getProcMounts();
 
 	vector<ExtendedFstabEntry> ret;
 
 	for (const FstabEntry* mount_entry : proc_mounts.get_all_tmpfs())
 	{
-	    ret.emplace_back(mount_entry);
+	    MountPointPath mount_point_path(mount_entry->get_mount_point(), rootprefix);
+	    ret.emplace_back(mount_point_path, mount_entry);
 	}
 
 	return ret;

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -270,9 +270,7 @@ namespace storage
 	    // Select the shortest path to avoid problems during upgrade (bsc#1118865).
 	    const JointEntry* entry = *min_element(filtered_entries.begin(), filtered_entries.end(), compare_by_size);
 
-	    MountPoint* mount_point = entry->add_to(get_non_impl());
-
-	    mount_point->get_impl().strip_rootprefix();
+	    entry->add_to(get_non_impl());
 	}
     }
 

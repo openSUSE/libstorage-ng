@@ -102,7 +102,7 @@ void
 usage()
 {
     cerr << "probe [--display-devicegraph] [--save-devicegraph] [--save-mockup] [--load-mockup] "
-	"[--ignore-probe-errors] [--view view]\n";
+	"[--ignore-probe-errors] [--view view] [--rootprefix rootprefix]\n";
     exit(EXIT_FAILURE);
 }
 

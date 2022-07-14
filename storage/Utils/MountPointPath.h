@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) 2022 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -20,42 +20,41 @@
  */
 
 
-#ifndef STORAGE_ALGORITHM_H
-#define STORAGE_ALGORITHM_H
+#ifndef STORAGE_MOUNT_POINT_PATH_H
+#define STORAGE_MOUNT_POINT_PATH_H
 
 
-#include <vector>
+#include <string>
 
 
 namespace storage
 {
 
-    using std::vector;
+    using std::string;
 
 
     /**
-     * Return the first missing number of the numbers in the vector starting
-     * from start. The numbers of the vector must be sorted and unique. The
-     * objects of the vector must have a get_number() function.
+     * Just the path of a mount point and a rootprefixed flag.
      */
-    template<typename Type>
-    unsigned int
-    first_missing_number(const vector<Type>& values, unsigned int start)
+    class MountPointPath
     {
-	unsigned int number = start;
+    public:
 
-	for (const Type& value : values)
-	{
-	    if (number != value->get_number())
-		return number;
+	MountPointPath(const string& path, bool rootprefixed)
+	    : path(path), rootprefixed(rootprefixed) {}
 
-	    ++number;
-	}
+	MountPointPath(const string& fullpath, const string& rootprefix);
 
-	return number;
-    }
+	string path;
+	bool rootprefixed;
+
+	string fullpath(const string& rootprefix) const;
+
+	bool operator==(const MountPointPath& rhs) const;
+	bool operator!=(const MountPointPath& rhs) const { return !(*this == rhs); }
+
+    };
 
 }
-
 
 #endif

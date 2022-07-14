@@ -99,6 +99,9 @@ namespace storage
 	const string& get_path() const { return path; }
 	void set_path(const string& path);
 
+	bool is_rootprefixed() const { return rootprefixed; }
+	void set_rootprefixed(bool rootprefixed) { Impl::rootprefixed = rootprefixed; }
+
 	MountByType get_mount_by() const { return mount_by; }
 	void set_mount_by(MountByType mount_by) { Impl::mount_by = mount_by; }
 
@@ -122,9 +125,6 @@ namespace storage
 	bool is_in_etc_fstab() const { return in_etc_fstab; }
 	void set_in_etc_fstab(bool in_etc_fstab) { Impl::in_etc_fstab = in_etc_fstab; }
 
-	bool is_rootprefixed() const { return rootprefixed; }
-	void set_rootprefixed(bool rootprefixed) { Impl::rootprefixed = rootprefixed; }
-
 	bool is_active() const { return active; }
 	void set_active(bool active) { Impl::active = active; }
 
@@ -146,8 +146,6 @@ namespace storage
 	void set_default_mount_type();
 
 	string get_rootprefixed_path() const;
-
-	void strip_rootprefix();
 
 	virtual uf_t used_features(UsedFeaturesDependencyType used_features_dependency_type) const override;
 
@@ -203,6 +201,7 @@ namespace storage
     private:
 
 	string path;
+	bool rootprefixed = true;
 
 	MountByType mount_by = MountByType::DEVICE;
 
@@ -217,8 +216,6 @@ namespace storage
 	bool active = true;
 
 	bool in_etc_fstab = true;
-
-	bool rootprefixed = true;
 
 	FstabAnchor fstab_anchor;
 

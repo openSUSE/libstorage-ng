@@ -28,9 +28,9 @@ def create_partition(gpt, size):
 set_logger(get_logfile_logger())
 
 environment = Environment(False, ProbeMode_NONE, TargetMode_IMAGE)
+environment.set_rootprefix("/mnt")
 
 storage = Storage(environment)
-storage.set_rootprefix("/mnt")
 
 staging = storage.get_staging()
 

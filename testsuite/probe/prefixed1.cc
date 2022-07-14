@@ -22,7 +22,7 @@ BOOST_AUTO_TEST_CASE(probe)
 
     Environment environment(true, ProbeMode::READ_MOCKUP, TargetMode::CHROOT);
     environment.set_rootprefix("/mnt");
-    environment.set_mockup_filename("prefixed-mockup.xml");
+    environment.set_mockup_filename("prefixed1-mockup.xml");
 
     Storage storage(environment);
     storage.probe();
@@ -31,7 +31,7 @@ BOOST_AUTO_TEST_CASE(probe)
     probed->check();
 
     Devicegraph* staging = storage.get_staging();
-    staging->load("prefixed-devicegraph.xml");
+    staging->load("prefixed1-devicegraph.xml");
     staging->check();
 
     TsCmpDevicegraph cmp(*probed, *staging);

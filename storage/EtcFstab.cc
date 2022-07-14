@@ -610,19 +610,6 @@ namespace storage
     }
 
 
-    string
-    JointEntry::get_mount_point() const
-    {
-	if (mount_entry)
-	    return mount_entry->get_mount_point();
-
-	if (fstab_entry)
-	    return fstab_entry->get_mount_point();
-
-	ST_THROW(Exception("neither fstab nor mount entry set"));
-    }
-
-
     vector<string>
     JointEntry::get_mount_options() const
     {
@@ -663,6 +650,7 @@ namespace storage
     JointEntry::add_to(Mountable* mountable) const
     {
 	MountPoint* mount_point = mountable->create_mount_point(get_mount_point());
+	mount_point->set_rootprefixed(is_rootprefixed());
 
 	if (is_in_etc_fstab())
 	    mount_point->get_impl().set_fstab_anchor(FstabAnchor(fstab_entry->get_spec(), id,
@@ -692,17 +680,18 @@ namespace storage
 	for (const ExtendedFstabEntry& extended_fstab_entry : fstab_entries)
 	{
 	    joint_entries.push_back(
-		JointEntry(extended_fstab_entry.fstab_entry, nullptr, extended_fstab_entry.id));
+		JointEntry(extended_fstab_entry.mount_point_path, extended_fstab_entry.fstab_entry, nullptr,
+			   extended_fstab_entry.id));
 	}
 
 	for (const ExtendedFstabEntry& extended_fstab_entry : mount_entries)
 	{
-	    string path = extended_fstab_entry.fstab_entry->get_mount_point();
+	    const MountPointPath& mount_point_path = extended_fstab_entry.mount_point_path;
 
 	    vector<JointEntry>::iterator it = find_if(joint_entries.begin(), joint_entries.end(),
-		[&path](const JointEntry& joint_entry) {
+		[&mount_point_path](const JointEntry& joint_entry) {
 		    return joint_entry.is_in_etc_fstab() &&
-			   joint_entry.fstab_entry->get_mount_point() == path;
+			   joint_entry.mount_point_path == mount_point_path;
 		}
 	    );
 
@@ -715,7 +704,8 @@ namespace storage
 		y2war("mount point for " << extended_fstab_entry.fstab_entry->get_spec() <<
 		      " only found in proc/mounts: " << extended_fstab_entry.fstab_entry->get_mount_point());
 
-		joint_entries.push_back(JointEntry(nullptr, extended_fstab_entry.fstab_entry));
+		joint_entries.push_back(JointEntry(extended_fstab_entry.mount_point_path, nullptr,
+						   extended_fstab_entry.fstab_entry));
 	    }
 	}
 
