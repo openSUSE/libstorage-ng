@@ -44,7 +44,7 @@ namespace storage
     {
 	unsigned int number = start;
 
-	for (const Type value : values)
+	for (const Type& value : values)
 	{
 	    if (number != value->get_number())
 		return number;

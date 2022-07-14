@@ -75,6 +75,20 @@ namespace storage
     }
 
 
+    bool
+    MountPoint::is_rootprefixed() const
+    {
+	return get_impl().is_rootprefixed();
+    }
+
+
+    void
+    MountPoint::set_rootprefixed(bool rootprefixed)
+    {
+	get_impl().set_rootprefixed(rootprefixed);
+    }
+
+
     // Notes
     //
     // - boost::filesystem::path::canonical() is not what we want as this
@@ -223,20 +237,6 @@ namespace storage
     MountPoint::set_in_etc_fstab(bool in_etc_fstab)
     {
 	get_impl().set_in_etc_fstab(in_etc_fstab);
-    }
-
-
-    bool
-    MountPoint::is_rootprefixed() const
-    {
-	return get_impl().is_rootprefixed();
-    }
-
-
-    void
-    MountPoint::set_rootprefixed(bool rootprefixed)
-    {
-	get_impl().set_rootprefixed(rootprefixed);
     }
 
 

@@ -74,6 +74,23 @@ namespace storage
 	void set_path(const std::string& path);
 
 	/**
+	 * Return whether the path of the mount point will be prefixed with the rootprefix
+	 * during mount operations.
+	 *
+	 * The default value is true (for historic reasons).
+	 *
+	 * @see Environment::get_rootprefix()
+	 */
+	bool is_rootprefixed() const;
+
+	/**
+	 * Sets whether the path is rootprefixed.
+	 *
+	 * @see is_rootprefixed()
+	 */
+	void set_rootprefixed(bool rootprefixed);
+
+	/**
 	 * Return normalized form of path.
 	 */
 	static std::string normalize_path(const std::string& path);
@@ -188,23 +205,6 @@ namespace storage
 	 * Set whether the mount point will be present in /etc/fstab.
 	 */
 	void set_in_etc_fstab(bool in_etc_fstab);
-
-	/**
-	 * Return whether the path of the mount point will be prefixed with the rootprefix
-	 * during mount operations.
-	 *
-	 * The default value is true (for historic reasons).
-	 *
-	 * @see Environment::get_rootprefix()
-	 */
-	bool is_rootprefixed() const;
-
-	/**
-	 * Sets whether the path is rootprefixed.
-	 *
-	 * @see is_rootprefixed()
-	 */
-	void set_rootprefixed(bool rootprefixed);
 
 	/**
 	 * Checks whether the mount point has a mountable. This is usally true
