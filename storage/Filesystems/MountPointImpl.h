@@ -147,8 +147,6 @@ namespace storage
 
 	string get_rootprefixed_path() const;
 
-	void strip_rootprefix();
-
 	virtual uf_t used_features(UsedFeaturesDependencyType used_features_dependency_type) const override;
 
 	virtual MountPoint* get_non_impl() override { return to_mount_point(Device::Impl::get_non_impl()); }

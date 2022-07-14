@@ -21,7 +21,8 @@ check_PROGRAMS =								\
 	dasd1.test dasd2.test dasd3.test external-journal.test			\
 	dmraid1.test md-imsm1.test md-ddf1.test nfs1.test ntfs1.test xen1.test	\
 	ambiguous1.test ambiguous2.test md+lvm1.test plain-encryption1.test	\
-	missing1.test error1.test prefixed.test unsupported1.test
+	missing1.test error1.test prefixed1.test prefixed2.test			\
+	unsupported1.test
 
 AM_DEFAULT_SOURCE_EXT = .cc
 
@@ -77,7 +78,8 @@ EXTRA_DIST = disk-mockup.xml disk-devicegraph.xml				\
 	ambiguous1-mockup.xml ambiguous1-devicegraph.xml			\
 	ambiguous2-mockup.xml ambiguous2-devicegraph.xml			\
 	md+lvm1-mockup.xml md+lvm1-devicegraph.xml				\
-	prefixed-mockup.xml prefixed-devicegraph.xml				\
+	prefixed1-mockup.xml prefixed1-devicegraph.xml				\
+	prefixed2-mockup.xml prefixed2-devicegraph.xml				\
 	missing1-mockup.xml							\
 	error1-mockup.xml							\
 	unsupported1-mockup.xml unsupported1-devicegraph.xml

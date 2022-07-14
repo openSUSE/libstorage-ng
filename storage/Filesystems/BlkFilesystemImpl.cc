@@ -718,7 +718,8 @@ namespace storage
 
 	for (const FstabEntry* fstab_entry : etc_fstab.find_all_by_uuid_or_label(get_uuid(), get_label()))
 	{
-	    ret.emplace_back(fstab_entry);
+	    MountPointPath mount_point_path(fstab_entry->get_mount_point(), true);
+	    ret.emplace_back(mount_point_path, fstab_entry);
 	}
 
 	for (const BlkDevice* blk_device : get_blk_devices())
@@ -733,7 +734,8 @@ namespace storage
 		const FilesystemUser* filesystem_user =
 		    to_filesystem_user(get_devicegraph()->find_holder(blk_device->get_sid(), get_sid()));
 
-                ret.emplace_back(fstab_entry, filesystem_user->get_impl().get_id());
+		MountPointPath mount_point_path(fstab_entry->get_mount_point(), true);
+		ret.emplace_back(mount_point_path, fstab_entry, filesystem_user->get_impl().get_id());
 	    }
         }
 
@@ -744,6 +746,7 @@ namespace storage
     vector<ExtendedFstabEntry>
     BlkFilesystem::Impl::find_proc_mounts_entries_unfiltered(SystemInfo::Impl& system_info) const
     {
+	const string& rootprefix = get_storage()->get_rootprefix();
 	const ProcMounts& proc_mounts = system_info.getProcMounts();
 
 	vector<ExtendedFstabEntry> ret;
@@ -756,7 +759,8 @@ namespace storage
 		if (fstab_entry->get_fs_type() == FsType::TMPFS)
 		    continue;
 
-		ret.emplace_back(fstab_entry);
+		MountPointPath mount_point_path(fstab_entry->get_mount_point(), rootprefix);
+		ret.emplace_back(mount_point_path, fstab_entry);
 	    }
 	}
 

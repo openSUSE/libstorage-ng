@@ -301,31 +301,7 @@ namespace storage
     string
     MountPoint::Impl::get_rootprefixed_path() const
     {
-	if (rootprefixed)
-	    return get_storage()->prepend_rootprefix(path);
-	else
-	    return path;
-    }
-
-
-    void
-    MountPoint::Impl::strip_rootprefix()
-    {
-	if (path == "swap")
-	    return;
-
-	const string& rootprefix = get_storage()->get_rootprefix();
-	if (rootprefix.empty() || rootprefix == "/")
-	    return;
-
-	rootprefixed = boost::starts_with(path, rootprefix);
-
-	if (rootprefixed)
-	{
-	    path.erase(0, rootprefix.size());
-	    if (path.empty())
-		path = "/";
-	}
+	return MountPointPath(path, rootprefixed).fullpath(get_storage()->get_rootprefix());
     }
 
 
@@ -434,7 +410,8 @@ namespace storage
 	// A unmount action could be required when the device is set as unmounted in the target system
 	// or when some of its mount properties have changed (e.g., path, mount type). But the unmount
 	// action only makes sense if the device is currently mounted in the system.
-	if (lhs.active && (!active || lhs.path != path || lhs.mount_type != mount_type))
+	if (lhs.active && (!active || lhs.path != path || lhs.rootprefixed != rootprefixed ||
+			   lhs.mount_type != mount_type))
 	{
 	    actions.push_back(make_shared<Action::Unmount>(get_sid()));
 	}
@@ -443,7 +420,7 @@ namespace storage
 	{
 	    if (lhs.mount_by != mount_by || lhs.mount_options != mount_options ||
 		lhs.freq != freq || lhs.passno != passno || lhs.path != path ||
-		lhs.mount_type != mount_type)
+		lhs.rootprefixed != rootprefixed || lhs.mount_type != mount_type)
 	    {
 		actions.push_back(make_shared<Action::UpdateInEtcFstab>(get_sid()));
 	    }
@@ -452,7 +429,8 @@ namespace storage
 	// A mount action could be required when the device is currently unmounted in the system or when
 	// when some of its mount properties have changed (e.g., path, mount type). But the mount action
 	// only makes sense if the device is set as mounted in the target system.
-	if (active && (!lhs.active || lhs.path != path || lhs.mount_type != mount_type))
+	if (active && (!lhs.active || lhs.path != path || lhs.rootprefixed != rootprefixed ||
+		       lhs.mount_type != mount_type))
 	{
 	    actions.push_back(make_shared<Action::Mount>(get_sid()));
 	}
