@@ -58,9 +58,9 @@ class MyCommitCallbacks(CommitCallbacks):
 set_logger(get_logfile_logger())
 
 environment = Environment(False)
+environment.set_rootprefix("/mnt")
 
 storage = Storage(environment)
-storage.set_rootprefix("/mnt")
 storage.probe()                 # TODO error handling
 
 staging = storage.get_staging()
