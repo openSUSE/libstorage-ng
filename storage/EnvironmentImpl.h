@@ -49,6 +49,9 @@ namespace storage
 	const string& get_rootprefix() const { return rootprefix; }
 	void set_rootprefix(const string& rootprefix);
 
+	const string& get_lockfile_root() const { return lockfile_root; }
+	void set_lockfile_root(const string& lock_dir_root) { Impl::lockfile_root = lockfile_root; }
+
 	const string& get_devicegraph_filename() const { return devicegraph_filename; }
 	void set_devicegraph_filename(const string& devicegraph_filename);
 
@@ -73,6 +76,7 @@ namespace storage
 	const TargetMode target_mode;
 
 	string rootprefix;
+	string lockfile_root;
 	string devicegraph_filename;
 	string arch_filename;
 	string mockup_filename;

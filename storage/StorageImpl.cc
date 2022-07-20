@@ -51,7 +51,8 @@ namespace storage
 
     Storage::Impl::Impl(Storage& storage, const Environment& environment)
 	: storage(storage), environment(environment), arch(false),
-	  lock(environment.is_read_only(), !environment.get_impl().is_do_lock()),
+	  lock(environment.is_read_only(), !environment.get_impl().is_do_lock(),
+	       environment.get_impl().get_lockfile_root()),
 	  default_mount_by(MountByType::UUID), rootprefix(environment.get_rootprefix()),
 	  tmp_dir("libstorage-XXXXXX")
     {

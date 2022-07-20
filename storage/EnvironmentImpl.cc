@@ -34,6 +34,9 @@ namespace storage
     Environment::Impl::Impl(bool read_only, ProbeMode probe_mode, TargetMode target_mode)
 	: read_only(read_only), probe_mode(probe_mode), target_mode(target_mode)
     {
+	const char* p = getenv("LIBSTORAGE_LOCKFILE_ROOT");
+	if (p)
+	    lockfile_root = p;
     }
 
 
@@ -92,6 +95,11 @@ namespace storage
 		   << toString(environment.probe_mode) << " target-mode:"
 		   << toString(environment.target_mode) << " rootprefix:"
 		   << environment.rootprefix;
+
+	if (!environment.lockfile_root.empty())
+	    out << " lockfile-root:" << environment.lockfile_root;
+
+	return out;
     }
 
 
@@ -170,6 +178,7 @@ namespace storage
 	    "LIBSTORAGE_PFSOEMS",
 	    "LIBSTORAGE_BTRFS_SNAPSHOT_RELATIONS",
 	    "LIBSTORAGE_DEVELOPER_MODE",
+	    "LIBSTORAGE_LOCKFILE_ROOT",
 	};
 
 	for (const char* env_var : env_vars)
