@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2009] Novell, Inc.
- * Copyright (c) 2018 SUSE LLC
+ * Copyright (c) [2018-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -34,9 +34,7 @@
 #include "storage/Utils/LockImpl.h"
 #include "storage/Utils/ExceptionImpl.h"
 #include "storage/Utils/StorageTmpl.h"
-
-
-#define LOCK_DIR "/run/libstorage-ng"
+#include "storage/Utils/StorageDefines.h"
 
 
 namespace storage
@@ -48,7 +46,7 @@ namespace storage
     int Lock::fd = -1;
 
 
-    Lock::Lock(bool read_only, bool disable)
+    Lock::Lock(bool read_only, bool disable, const string& lockfile_root)
 	: read_only(read_only), disabled(disable)
     {
 	if (disabled)
@@ -61,12 +59,15 @@ namespace storage
 	    // If there are no locks within the same process try to take the
 	    // system-wide lock.
 
-	    if (mkdir(LOCK_DIR, 0755) == -1 && errno != EEXIST)
+	    string lockfile_dir = lockfile_root + LOCKFILE_DIR;
+	    y2mil("lockfile-dir:" << lockfile_dir);
+
+	    if (mkdir(lockfile_dir.c_str(), 0755) == -1 && errno != EEXIST)
 	    {
 		y2err("creating directory for lock-file failed: " << stringerror(errno));
 	    }
 
-	    fd = open(LOCK_DIR "/lock", (read_only ? O_RDONLY : O_WRONLY) | O_CREAT | O_CLOEXEC, 0600);
+	    fd = open((lockfile_dir + "/lock").c_str(), (read_only ? O_RDONLY : O_WRONLY) | O_CREAT | O_CLOEXEC, 0600);
 	    if (fd < 0)
 	    {
 		// Opening lock-file failed.

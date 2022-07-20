@@ -41,6 +41,8 @@
 
 #define EFIVARS_DIR SYSFS_DIR "/firmware/efi/efivars"
 
+#define LOCKFILE_DIR "/run/libstorage-ng"
+
 
 // files
 

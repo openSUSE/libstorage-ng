@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2009] Novell, Inc.
- * Copyright (c) 2018 SUSE LLC
+ * Copyright (c) [2018-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -52,7 +52,7 @@ namespace storage
 
     public:
 
-	Lock(bool read_only, bool disable = false);
+	Lock(bool read_only, bool disable = false, const string& lockfile_root = "");
 
 	~Lock() noexcept;
 

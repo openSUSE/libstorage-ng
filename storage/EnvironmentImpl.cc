@@ -34,34 +34,9 @@ namespace storage
     Environment::Impl::Impl(bool read_only, ProbeMode probe_mode, TargetMode target_mode)
 	: read_only(read_only), probe_mode(probe_mode), target_mode(target_mode)
     {
-    }
-
-
-    void
-    Environment::Impl::set_rootprefix(const string& rootprefix)
-    {
-	Impl::rootprefix = rootprefix;
-    }
-
-
-    void
-    Environment::Impl::set_devicegraph_filename(const string& devicegraph_filename)
-    {
-	Impl::devicegraph_filename = devicegraph_filename;
-    }
-
-
-    void
-    Environment::Impl::set_arch_filename(const string& arch_filename)
-    {
-	Impl::arch_filename = arch_filename;
-    }
-
-
-    void
-    Environment::Impl::set_mockup_filename(const string& mockup_filename)
-    {
-	Impl::mockup_filename = mockup_filename;
+	const char* p = getenv("LIBSTORAGE_LOCKFILE_ROOT");
+	if (p)
+	    lockfile_root = p;
     }
 
 
@@ -88,10 +63,17 @@ namespace storage
     std::ostream&
     operator<<(std::ostream& out, const Environment::Impl& environment)
     {
-	return out << "read-only:" << environment.read_only << " probe-mode:"
-		   << toString(environment.probe_mode) << " target-mode:"
-		   << toString(environment.target_mode) << " rootprefix:"
-		   << environment.rootprefix;
+	out << "read-only:" << environment.read_only << " probe-mode:"
+	    << toString(environment.probe_mode) << " target-mode:"
+	    << toString(environment.target_mode);
+
+	if (!environment.rootprefix.empty())
+	    out << " rootprefix:" << environment.rootprefix;
+
+	if (!environment.lockfile_root.empty())
+	    out << " lockfile-root:" << environment.lockfile_root;
+
+	return out;
     }
 
 
@@ -170,6 +152,7 @@ namespace storage
 	    "LIBSTORAGE_PFSOEMS",
 	    "LIBSTORAGE_BTRFS_SNAPSHOT_RELATIONS",
 	    "LIBSTORAGE_DEVELOPER_MODE",
+	    "LIBSTORAGE_LOCKFILE_ROOT",
 	};
 
 	for (const char* env_var : env_vars)
