@@ -47,19 +47,20 @@ namespace storage
 	TargetMode get_target_mode() const { return target_mode; }
 
 	const string& get_rootprefix() const { return rootprefix; }
-	void set_rootprefix(const string& rootprefix);
+	void set_rootprefix(const string& rootprefix) { Impl::rootprefix = rootprefix; }
 
 	const string& get_lockfile_root() const { return lockfile_root; }
 	void set_lockfile_root(const string& lock_dir_root) { Impl::lockfile_root = lockfile_root; }
 
 	const string& get_devicegraph_filename() const { return devicegraph_filename; }
-	void set_devicegraph_filename(const string& devicegraph_filename);
+	void set_devicegraph_filename(const string& devicegraph_filename)
+	    { Impl::devicegraph_filename = devicegraph_filename; }
 
 	const string& get_arch_filename() const { return arch_filename; }
-	void set_arch_filename(const string& arch_filename);
+	void set_arch_filename(const string& arch_filename) { Impl::arch_filename = arch_filename; }
 
 	const string& get_mockup_filename() const { return mockup_filename; }
-	void set_mockup_filename(const string& mockup_filename);
+	void set_mockup_filename(const string& mockup_filename) { Impl::mockup_filename = mockup_filename; }
 
 	bool is_debug_credentials() const { return false; }
 

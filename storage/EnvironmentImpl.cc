@@ -40,34 +40,6 @@ namespace storage
     }
 
 
-    void
-    Environment::Impl::set_rootprefix(const string& rootprefix)
-    {
-	Impl::rootprefix = rootprefix;
-    }
-
-
-    void
-    Environment::Impl::set_devicegraph_filename(const string& devicegraph_filename)
-    {
-	Impl::devicegraph_filename = devicegraph_filename;
-    }
-
-
-    void
-    Environment::Impl::set_arch_filename(const string& arch_filename)
-    {
-	Impl::arch_filename = arch_filename;
-    }
-
-
-    void
-    Environment::Impl::set_mockup_filename(const string& mockup_filename)
-    {
-	Impl::mockup_filename = mockup_filename;
-    }
-
-
     bool
     Environment::Impl::is_do_lock() const
     {
@@ -91,10 +63,12 @@ namespace storage
     std::ostream&
     operator<<(std::ostream& out, const Environment::Impl& environment)
     {
-	return out << "read-only:" << environment.read_only << " probe-mode:"
-		   << toString(environment.probe_mode) << " target-mode:"
-		   << toString(environment.target_mode) << " rootprefix:"
-		   << environment.rootprefix;
+	out << "read-only:" << environment.read_only << " probe-mode:"
+	    << toString(environment.probe_mode) << " target-mode:"
+	    << toString(environment.target_mode);
+
+	if (!environment.rootprefix.empty())
+	    out << " rootprefix:" << environment.rootprefix;
 
 	if (!environment.lockfile_root.empty())
 	    out << " lockfile-root:" << environment.lockfile_root;
