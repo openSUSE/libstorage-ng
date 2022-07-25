@@ -48,7 +48,7 @@ BOOST_AUTO_TEST_CASE(test_check2)
     const Devicegraph* probed = storage.get_probed();
 
     {
-	// A luks with very small metadata header of with no header at all is
+	// A luks with very small metadata header or with no header at all is
 	// acceptable (regression test for bsc#1120070 and bsc#1101870)
 	BOOST_CHECK_NO_THROW(probed->check());
     }
