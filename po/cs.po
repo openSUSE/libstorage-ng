@@ -13,10 +13,10 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-03 14:35+0200\n"
-"PO-Revision-Date: 2022-04-06 23:12+0000\n"
-"Last-Translator: Jan Papež <honyczek@centrum.cz>\n"
-"Language-Team: Czech <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/cs/>\n"
+"PO-Revision-Date: 2022-07-28 19:12+0000\n"
+"Last-Translator: Aleš Kastner <alkas@volny.cz>\n"
+"Language-Team: Czech <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -115,14 +115,14 @@ msgstr ""
 "%3$s"
 
 #. TRANSLATORS: progress message
-#, fuzzy, c-format
+#, c-format
 msgid "Activating BitLocker %s"
-msgstr "Aktivuji LUKS %s"
+msgstr "Aktivuje se Bitlocker %s"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Activating BitLocker %s failed"
-msgstr "Aktivace LUKS %s selhala"
+msgstr "Aktivace Bitlocker %s selhala"
 
 #. TRANSLATORS: progress message
 #, c-format
@@ -2241,7 +2241,7 @@ msgstr "Linux RAID"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Server Data"
-msgstr ""
+msgstr "Data serveru Linux"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Swap"
@@ -2392,7 +2392,7 @@ msgstr "NFS"
 
 #. TRANSLATORS: name of object
 msgid "NILFS2"
-msgstr ""
+msgstr "NILFS2"
 
 #. TRANSLATORS: name of object
 msgid "NTFS"
@@ -2426,14 +2426,12 @@ msgstr "PiB"
 msgid "Plain Encryption"
 msgstr "Prosté šifrování"
 
-#, fuzzy
 msgid "Probing BitLocker"
-msgstr "BitLocker"
+msgstr "Kontrola BitLocker"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing BitLocker failed"
-msgstr "Testování disků selhalo"
+msgstr "Kontrola BitLocker selhala"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -3228,7 +3226,7 @@ msgstr "Odpojuji qgroup podsvazku %1$s od qgroup %2$s na %3$s"
 
 #. TRANSLATORS: name of partition type
 msgid "Unknown"
-msgstr ""
+msgstr "Neznámé"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
