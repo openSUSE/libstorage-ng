@@ -341,7 +341,7 @@ namespace storage
 	 * Get the partition label. Can be empty. Only available for partitions on GPT.
 	 *
 	 * In the UEFI spec this is called name instead of label. But many tools,
-	 * e.g. udev and blkid, use label.
+	 * e.g. udev and blkid, use label. Also in fstab PARTLABEL= is used.
 	 */
 	const std::string& get_label() const;
 
@@ -353,7 +353,7 @@ namespace storage
 	void set_label(const std::string& label);
 
 	/**
-	 * Get the partition UUID. Only available for partitions on GPT.
+	 * Get the partition UUID. Only available for partitions on GPT. Experimental.
 	 */
 	const std::string& get_uuid() const;
 

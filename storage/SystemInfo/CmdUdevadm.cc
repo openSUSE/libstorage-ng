@@ -72,8 +72,8 @@ namespace storage
 	const Link links[] = {
 	    { "S: disk/by-path/", by_path_links },
 	    { "S: disk/by-id/", by_id_links },
-	    { "S: disk/by-partlabel/", by_part_label_links },
-	    { "S: disk/by-partuuid/", by_part_uuid_links }
+	    { "S: disk/by-partlabel/", by_partlabel_links },
+	    { "S: disk/by-partuuid/", by_partuuid_links }
 	};
 
 	for (const string& line : stdout)
@@ -127,11 +127,11 @@ namespace storage
 	if (!cmd_udevadm_info.by_id_links.empty())
 	    s << " by-id-links:" << cmd_udevadm_info.by_id_links;
 
-	if (!cmd_udevadm_info.by_part_label_links.empty())
-	    s << " by-part-label-links:" << cmd_udevadm_info.by_part_label_links;
+	if (!cmd_udevadm_info.by_partlabel_links.empty())
+	    s << " by-partlabel-links:" << cmd_udevadm_info.by_partlabel_links;
 
-	if (!cmd_udevadm_info.by_part_uuid_links.empty())
-	    s << " by-part-uuid-links:" << cmd_udevadm_info.by_part_uuid_links;
+	if (!cmd_udevadm_info.by_partuuid_links.empty())
+	    s << " by-partuuid-links:" << cmd_udevadm_info.by_partuuid_links;
 
 	s << '\n';
 

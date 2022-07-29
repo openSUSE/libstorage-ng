@@ -100,7 +100,7 @@ namespace storage
 		if (!uuid.empty())
 		    ret = "UUID=" + uuid;
 		else
-		    y2war("no uuid defined, using fallback");
+		    y2war("no bitlocker uuid defined, using fallback");
 		break;
 
 	    case MountByType::LABEL:

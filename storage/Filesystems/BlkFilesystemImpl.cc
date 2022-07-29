@@ -669,18 +669,18 @@ namespace storage
 	{
 	    case MountByType::UUID:
 		if (!is_permanent())
-		    y2war("no uuid possible for non-permanent filesystem, using fallback mount-by");
+		    y2war("no filesystem uuid possible for non-permanent filesystem, using fallback mount-by");
 		else if (uuid.empty())
-		    y2war("no uuid defined, using fallback mount-by");
+		    y2war("no filesystem uuid defined, using fallback mount-by");
 		else
 		    ret = "UUID=" + uuid;
 		break;
 
 	    case MountByType::LABEL:
 		if (!is_permanent())
-		    y2war("no label possible for non-permanent filesystem, using fallback mount-by");
+		    y2war("no filesystem label possible for non-permanent filesystem, using fallback mount-by");
 		else if (label.empty())
-		    y2war("no label defined, using fallback mount-by");
+		    y2war("no filesystem label defined, using fallback mount-by");
 		else
 		    ret = "LABEL=" + label;
 		break;
@@ -752,7 +752,7 @@ namespace storage
 	vector<ExtendedFstabEntry> ret;
 
 	for (const BlkDevice* blk_device : get_blk_devices())
-        {
+	{
 	    for (const FstabEntry* fstab_entry : proc_mounts.get_by_name(blk_device->get_name(), system_info))
 	    {
 		// See find_etc_fstab_entries_unfiltered().
