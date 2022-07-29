@@ -29,6 +29,7 @@
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/CallbacksImpl.h"
 #include "storage/Utils/SystemCmd.h"
+#include "storage/Utils/Format.h"
 #include "storage/StorageImpl.h"
 #include "storage/DevicegraphImpl.h"
 #include "storage/Devices/DiskImpl.h"
@@ -538,6 +539,8 @@ namespace storage
     void
     Prober::flush_pending_holders()
     {
+	y2mil("flushing " << pending_holders.size() << " pending holders");
+
 	for (const pending_holder_t& pending_holder : pending_holders)
 	{
 	    try
@@ -552,7 +555,10 @@ namespace storage
 		y2err("failed to find " << pending_holder.name << " for "
 		      << pending_holder.b->get_displayname());
 
-		ST_RETHROW(exception);
+		// TRANSLATORS: error message
+		Text message = sformat(_("Failed to find device %s"), pending_holder.name);
+
+		error_callback(probe_callbacks, message, exception);
 	    }
 	}
 

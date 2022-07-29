@@ -59,8 +59,7 @@ namespace storage
 
 	const vector<string>& get_by_path_links() const { return by_path_links; }
 	const vector<string>& get_by_id_links() const { return by_id_links; }
-	const vector<string>& get_by_part_label_links() const { return by_part_label_links; }
-	const vector<string>& get_by_part_uuid_links() const { return by_part_uuid_links; }
+	const vector<string>& get_by_partuuid_links() const { return by_partuuid_links; }
 
 	friend std::ostream& operator<<(std::ostream& s, const CmdUdevadmInfo& cmd_udevadm_info);
 
@@ -79,8 +78,8 @@ namespace storage
 
 	vector<string> by_path_links;
 	vector<string> by_id_links;
-	vector<string> by_part_label_links;
-	vector<string> by_part_uuid_links;
+	vector<string> by_partlabel_links;
+	vector<string> by_partuuid_links;
 
     };
 

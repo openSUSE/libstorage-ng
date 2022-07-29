@@ -130,14 +130,14 @@ namespace storage
 		if (!uuid.empty())
 		    ret = "UUID=" + uuid;
 		else
-		    y2war("no uuid defined, using fallback");
+		    y2war("no luks uuid defined, using fallback");
 		break;
 
 	    case MountByType::LABEL:
 		if (!label.empty())
 		    ret = "LABEL=" + label;
 		else
-		    y2war("no label defined, using fallback");
+		    y2war("no luks label defined, using fallback");
 		break;
 
 	    case MountByType::ID:

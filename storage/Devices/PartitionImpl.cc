@@ -135,8 +135,8 @@ namespace storage
 	// would be required (even in fstab) when a logical partition
 	// gets renumbered. For UUIDs a rather odd behaviour.
 
-	if (!cmd_udevadm_info.get_by_part_uuid_links().empty() && is_gpt(partition_table))
-	    uuid = cmd_udevadm_info.get_by_part_uuid_links().front();
+	if (!cmd_udevadm_info.get_by_partuuid_links().empty() && is_gpt(partition_table))
+	    uuid = cmd_udevadm_info.get_by_partuuid_links().front();
 
 	probe_topology(prober);
     }
