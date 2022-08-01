@@ -335,6 +335,8 @@ namespace storage
 
 	    case 1:
 		lvm_pv = blk_device->get_impl().get_single_child_of_type<LvmPv>();
+		if (lvm_pv->has_children())
+		    ST_THROW(WrongNumberOfChildren(blk_device->num_children(), 0));
 		break;
 
 	    default:
