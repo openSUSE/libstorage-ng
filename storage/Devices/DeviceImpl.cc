@@ -210,7 +210,7 @@ namespace storage
     bool
     Device::Impl::has_children(View view) const
     {
-	return devicegraph->get_impl().num_children(vertex, view) > 0;
+	return devicegraph->get_impl().num_children(vertex, view) != 0;
     }
 
 
@@ -224,7 +224,7 @@ namespace storage
     bool
     Device::Impl::has_parents(View view) const
     {
-	return devicegraph->get_impl().num_parents(vertex, view) > 0;
+	return devicegraph->get_impl().num_parents(vertex, view) != 0;
     }
 
 

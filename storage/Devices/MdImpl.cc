@@ -686,7 +686,7 @@ namespace storage
     {
 	ST_CHECK_PTR(blk_device);
 
-	if (blk_device->num_children() != 0)
+	if (blk_device->has_children())
 	    ST_THROW(WrongNumberOfChildren(blk_device->num_children(), 0));
 
 	MdUser* md_user = MdUser::create(get_devicegraph(), blk_device, get_non_impl());

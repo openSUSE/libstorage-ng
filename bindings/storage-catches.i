@@ -40,6 +40,7 @@
 %exceptionclass storage::WrongNumberOfHolders;
 %exceptionclass storage::WrongNumberOfParents;
 
+%catches(storage::Exception) storage::get_linux_partition_id(LinuxPartitionIdCategory linux_partition_id_category, SystemInfo &system_info);
 %catches(storage::ParseException, storage::OverflowException) storage::humanstring_to_byte(const std::string &str, bool classic);
 %catches(storage::NullPointerException) storage::is_bcache(const Device *device);
 %catches(storage::NullPointerException) storage::is_bcache_cset(const Device *device);
@@ -319,9 +320,11 @@
 %catches(storage::Exception) storage::LvmPv::get_lvm_vg();
 %catches(storage::Exception) storage::LvmPv::get_lvm_vg() const;
 %catches(storage::Exception) storage::LvmPv::get_usable_size() const;
+%catches(storage::Exception) storage::LvmVg::add_lvm_pv(BlkDevice *blk_device);
 %catches(storage::LvmVgNotFoundByVgName) storage::LvmVg::find_by_vg_name(Devicegraph *devicegraph, const std::string &vg_name);
 %catches(storage::LvmVgNotFoundByVgName) storage::LvmVg::find_by_vg_name(const Devicegraph *devicegraph, const std::string &vg_name);
 %catches(storage::Exception) storage::LvmVg::get_lvm_lv(const std::string &lv_name);
+%catches(storage::Exception) storage::LvmVg::remove_lvm_pv(BlkDevice *blk_device);
 %catches(storage::InvalidExtentSize, storage::Exception) storage::LvmVg::set_extent_size(unsigned long long extent_size);
 %catches(storage::WrongNumberOfChildren) storage::Md::add_device(BlkDevice *blk_device);
 %catches(storage::Exception) storage::Md::calculate_underlying_size(MdLevel md_level, unsigned int number_of_devices, unsigned long long size);

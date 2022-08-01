@@ -154,12 +154,16 @@ namespace storage
 	 * Adds a block device as a physical volume to the volume group. If
 	 * there is not a physical volume on the block device it will be
 	 * created.
+	 *
+	 * @throw Exception
 	 */
 	LvmPv* add_lvm_pv(BlkDevice* blk_device);
 
 	/**
 	 * Removes a block device from the volume group. The physical volume
 	 * on the block device will the deleted.
+	 *
+	 * @throw Exception
 	 */
 	void remove_lvm_pv(BlkDevice* blk_device);
 
