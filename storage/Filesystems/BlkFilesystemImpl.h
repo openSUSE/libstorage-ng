@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -123,6 +123,8 @@ namespace storage
 
 	virtual string get_mount_name() const override;
 	virtual string get_mount_by_name(const MountPoint* mount_point) const override;
+
+	bool spec_match(const string& spec) const;
 
 	/**
 	 * Returns the blk device used in /etc/fstab (based on the

@@ -158,7 +158,7 @@ namespace storage
 
 
     string
-    Encryption::Impl::get_mount_by_name(MountByType mount_by_type) const
+    Encryption::Impl::get_crypttab_spec(MountByType mount_by_type) const
     {
 	string ret;
 
@@ -174,6 +174,8 @@ namespace storage
 
 	    case MountByType::ID:
 	    case MountByType::PATH:
+	    case MountByType::PARTUUID:
+	    case MountByType::PARTLABEL:
 	    case MountByType::DEVICE:
 		break;
 	}
@@ -182,7 +184,10 @@ namespace storage
 	{
 	    const BlkDevice* blk_device = get_blk_device();
 
-	    ret = blk_device->get_impl().get_mount_by_name(mount_by_type);
+	    // This might not work in general. E.g. fstab accepts PARTLABEL= (documented)
+	    // while crypttab might not accept it (not documented but seems to work).
+
+	    ret = blk_device->get_impl().get_fstab_spec(mount_by_type);
 	}
 
 	return ret;
@@ -574,7 +579,7 @@ namespace storage
 
 	CrypttabEntry* entry = new CrypttabEntry();
 	entry->set_crypt_device(get_dm_table_name());
-	entry->set_block_device(get_mount_by_name(get_mount_by()));
+	entry->set_block_device(get_crypttab_spec(get_mount_by()));
 	if (!key_file.empty())
 	    entry->set_password(get_key_file());
 	entry->set_crypt_opts(get_crypt_options());
@@ -614,7 +619,7 @@ namespace storage
 	CrypttabEntry* entry = etc_crypttab.find_block_device(get_crypttab_blk_device_name());
 	if (entry)
 	{
-	    entry->set_block_device(get_mount_by_name(get_mount_by()));
+	    entry->set_block_device(get_crypttab_spec(get_mount_by()));
 	    etc_crypttab.log();
 	    etc_crypttab.write();
 	}

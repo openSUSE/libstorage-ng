@@ -271,7 +271,7 @@ namespace storage
 
     private:
 
-	string	  spec;		// including UUID= or LABEL=
+	string	  spec;		// including UUID=, LABEL=, PARTUUID=, ...
 	string	  mount_point;	// always use set_mount_point()
 	FsType	  fs_type;	// see Filesystems/Filesystem.h
 	MountOpts mount_opts;
@@ -296,19 +296,6 @@ namespace storage
 	 * Find all entries where the 'spec' and 'mount_point' match.
 	 */
 	vector<FstabEntry*> find_all_by_spec_and_mount_point(const string& spec, const string& mount_point);
-
-	/**
-	 * Return all entries where the block device matches the uuid
-	 * or label.
-	 */
-	vector<const FstabEntry*> find_all_by_uuid_or_label(const string& uuid, const string& label) const;
-
-	/*
-	 * Return the all entries where the block device matches the
-	 * name. Aliases, e.g. udev symlinks, are handled by the
-	 * function.
-	 */
-	vector<const FstabEntry*> find_all_by_any_name(SystemInfo::Impl& system_info, const string& name) const;
 
 	/**
 	 * Return the first entry for mount point 'mount_point' or 0 if there

@@ -33,7 +33,6 @@
 #include "storage/Utils/LoggerImpl.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/StorageDefines.h"
-#include "storage/SystemInfo/SystemInfoImpl.h"
 
 
 #define FSTAB_COLUMN_COUNT	6
@@ -342,70 +341,6 @@ namespace storage
     }
 
 
-    vector<const FstabEntry*>
-    EtcFstab::find_all_by_uuid_or_label(const string& uuid, const string& label) const
-    {
-	vector<const FstabEntry*> ret;
-
-	for (int i = 0; i < get_entry_count(); ++i)
-	{
-	    const FstabEntry* entry = get_entry(i);
-
-	    string blk_device = entry->get_spec();
-
-	    if (!uuid.empty())
-	    {
-		if ((blk_device == "UUID=" + uuid) ||
-		    (blk_device == DEV_DISK_BY_UUID_DIR "/" + uuid))
-		    ret.push_back(entry);
-	    }
-
-	    if (!label.empty())
-	    {
-		if ((blk_device == "LABEL=" + label) ||
-		    (blk_device == DEV_DISK_BY_LABEL_DIR "/" + udev_encode(label)))
-		    ret.push_back(entry);
-	    }
-	}
-
-	return ret;
-    }
-
-
-    vector<const FstabEntry*>
-    EtcFstab::find_all_by_any_name(SystemInfo::Impl& system_info, const string& name) const
-    {
-	dev_t majorminor = system_info.getCmdUdevadmInfo(name).get_majorminor();
-
-	vector<const FstabEntry*> ret;
-
-	for (int i = 0; i < get_entry_count(); ++i)
-	{
-	    const FstabEntry* entry = get_entry(i);
-
-	    string blk_device = entry->get_spec();
-
-	    if (boost::starts_with(blk_device, DEV_DIR "/"))
-	    {
-		try
-		{
-		    if (system_info.getCmdUdevadmInfo(blk_device).get_majorminor() == majorminor)
-			ret.push_back(entry);
-		}
-		catch (const Exception& exception)
-		{
-		    // The block device for the fstab entry may not be available right
-		    // now so the exception is not necessarily an error. Likely the noauto
-		    // option is present but even that is not required.
-		    ST_CAUGHT(exception);
-		}
-	    }
-	}
-
-	return ret;
-    }
-
-
     FstabEntry * EtcFstab::find_mount_point( const string & mount_point, int & index_ret ) const
     {
 	for ( int i=0; i < get_entry_count(); ++i )
@@ -429,21 +364,25 @@ namespace storage
     {
 	if (boost::starts_with(spec, "UUID=") ||
 	    boost::starts_with(spec, DEV_DISK_BY_UUID_DIR "/"))
-	{
 	    return MountByType::UUID;
-	}
 
 	if (boost::starts_with(spec, "LABEL=") ||
 	    boost::starts_with(spec, DEV_DISK_BY_LABEL_DIR "/"))
-	{
 	    return MountByType::LABEL;
-	}
 
 	if (boost::starts_with(spec, DEV_DISK_BY_ID_DIR "/"))
 	    return MountByType::ID;
 
 	if (boost::starts_with(spec, DEV_DISK_BY_PATH_DIR "/"))
 	    return MountByType::PATH;
+
+	if (boost::starts_with(spec, "PARTUUID=") ||
+	    boost::starts_with(spec, DEV_DISK_BY_PARTUUID_DIR "/"))
+	    return MountByType::PARTUUID;
+
+	if (boost::starts_with(spec, "PARTLABEL=") ||
+	    boost::starts_with(spec, DEV_DISK_BY_PARTLABEL_DIR "/"))
+	    return MountByType::PARTLABEL;
 
 	return MountByType::DEVICE;
     }

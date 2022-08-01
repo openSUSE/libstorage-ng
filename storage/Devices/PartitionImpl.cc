@@ -128,15 +128,18 @@ namespace storage
 	if (!is_active())
 	    return;
 
-	const CmdUdevadmInfo& cmd_udevadm_info = system_info.getCmdUdevadmInfo(get_name());
+	if (is_gpt(partition_table))
+	{
+	    // Use partition UUID only on GPT. On MS-DOS it is also
+	    // available but includes the partition number, so updating it
+	    // would be required (even in fstab) when a logical partition
+	    // gets renumbered. For UUIDs a rather odd behaviour.
 
-	// Use partition UUID only on GPT. On MS-DOS it is also
-	// available but includes the partition number, so updating it
-	// would be required (even in fstab) when a logical partition
-	// gets renumbered. For UUIDs a rather odd behaviour.
+	    const CmdUdevadmInfo& cmd_udevadm_info = system_info.getCmdUdevadmInfo(get_name());
 
-	if (!cmd_udevadm_info.get_by_partuuid_links().empty() && is_gpt(partition_table))
-	    uuid = cmd_udevadm_info.get_by_partuuid_links().front();
+	    if (!cmd_udevadm_info.get_by_partuuid_links().empty())
+		uuid = cmd_udevadm_info.get_by_partuuid_links().front();
+	}
 
 	probe_topology(prober);
     }
@@ -157,6 +160,16 @@ namespace storage
 	unsigned long long optimal_io_size = optimal_io_size_file.get<int>();
 
 	set_topology(Topology(alignment_offset, optimal_io_size));
+    }
+
+
+    void
+    Partition::Impl::probe_uuid()
+    {
+	const CmdUdevadmInfo& cmd_udevadm_info = CmdUdevadmInfo(get_name());
+
+	if (!cmd_udevadm_info.get_by_partuuid_links().empty())
+	    uuid = cmd_udevadm_info.get_by_partuuid_links().front();
     }
 
 
@@ -188,7 +201,74 @@ namespace storage
     vector<MountByType>
     Partition::Impl::possible_mount_bys() const
     {
-	return get_partitionable()->get_impl().possible_mount_bys();
+	vector<MountByType> ret = get_partitionable()->get_impl().possible_mount_bys();
+
+	if (is_gpt(get_partition_table()))
+	{
+	    ret.push_back(MountByType::PARTUUID);
+	    ret.push_back(MountByType::PARTLABEL);
+	}
+
+	return ret;
+    }
+
+
+    string
+    Partition::Impl::get_fstab_spec(MountByType mount_by_type) const
+    {
+	string ret;
+
+	switch (mount_by_type)
+	{
+	    case MountByType::PARTUUID:
+		if (!uuid.empty())
+		    ret = "PARTUUID=" + uuid;
+		else
+		    y2war("no partition uuid defined, using fallback");
+		break;
+
+	    case MountByType::PARTLABEL:
+		if (!label.empty())
+		    ret = "PARTLABEL=" + label;
+		else
+		    y2war("no partition label defined, using fallback");
+		break;
+
+	    case MountByType::DEVICE:
+	    case MountByType::ID:
+	    case MountByType::PATH:
+	    case MountByType::UUID:
+	    case MountByType::LABEL:
+		break;
+	}
+
+	if (ret.empty())
+	{
+	    ret = BlkDevice::Impl::get_fstab_spec(mount_by_type);
+	}
+
+	return ret;
+    }
+
+
+    bool
+    Partition::Impl::spec_match(SystemInfo::Impl& system_info, const string& spec) const
+    {
+	if (!uuid.empty())
+	{
+	    if ((spec == "PARTUUID=" + uuid) ||
+		(spec == DEV_DISK_BY_PARTUUID_DIR "/" + uuid))
+		return true;
+	}
+
+	if (!label.empty())
+	{
+	    if ((spec == "PARTLABEL=" + label) ||
+		(spec == DEV_DISK_BY_PARTLABEL_DIR "/" + udev_encode(label)))
+		return true;
+	}
+
+	return BlkDevice::Impl::spec_match(system_info, spec);
     }
 
 
@@ -892,6 +972,11 @@ namespace storage
 	if (get_type() == PartitionType::PRIMARY || get_type() == PartitionType::LOGICAL)
 	{
 	    discard_device();
+	}
+
+	if (is_gpt(partition_table))
+	{
+	    probe_uuid();
 	}
     }
 

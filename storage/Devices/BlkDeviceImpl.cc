@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -261,7 +261,7 @@ namespace storage
 
 
     string
-    BlkDevice::Impl::get_mount_by_name(MountByType mount_by_type) const
+    BlkDevice::Impl::get_fstab_spec(MountByType mount_by_type) const
     {
 	string ret;
 
@@ -291,6 +291,11 @@ namespace storage
 
 	    case MountByType::DEVICE:
 		break;
+
+	    case MountByType::PARTUUID:
+	    case MountByType::PARTLABEL:
+		// handled in Partition::Impl::get_fstab_spec()
+		break;
 	}
 
 	if (ret.empty())
@@ -299,6 +304,33 @@ namespace storage
 	}
 
 	return ret;
+    }
+
+
+    bool
+    BlkDevice::Impl::spec_match(SystemInfo::Impl& system_info, const string& spec) const
+    {
+	if (spec == name)
+	    return true;
+
+	if (boost::starts_with(spec, DEV_DIR "/"))
+	{
+	    try
+	    {
+		if (system_info.getCmdUdevadmInfo(name).get_majorminor() ==
+		    system_info.getCmdUdevadmInfo(spec).get_majorminor())
+		    return true;
+	    }
+	    catch (const Exception& exception)
+	    {
+		// The block device for the fstab entry may not be available right
+		// now so the exception is not necessarily an error. Likely the noauto
+		// option is present but even that is not required.
+		ST_CAUGHT(exception);
+	    }
+	}
+
+	return false;
     }
 
 

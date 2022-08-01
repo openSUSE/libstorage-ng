@@ -376,6 +376,8 @@ namespace storage
 
 	/**
 	 * Returns the possible mount-by methods to reference the block device.
+	 *
+	 * PARTLABEL is included even if the partition label is not set.
 	 */
 	std::vector<MountByType> possible_mount_bys() const;
 

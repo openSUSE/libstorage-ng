@@ -5,6 +5,12 @@
       <name>/usr/bin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
+      <name>/usr/bin/udevadm info '/dev/sdb1'</name>
+      <!-- most of stdout missing -->
+      <stdout>P: /devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.3/1-1.3:1.0/host6/target6:0:0/6:0:0:0/block/sdb1</stdout>
+      <stdout>N: sdb1</stdout>
+    </Command>
+    <Command>
       <name>/usr/bin/echo -e -n 'Fix\n' | /usr/sbin/parted ---pretend-input-tty '/dev/sdb' print</name>
       <!-- stdout missing -->
     </Command>

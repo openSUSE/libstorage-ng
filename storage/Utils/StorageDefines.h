@@ -35,6 +35,8 @@
 #define DEV_DISK_BY_PATH_DIR DEV_DIR "/disk/by-path"
 #define DEV_DISK_BY_UUID_DIR DEV_DIR "/disk/by-uuid"
 #define DEV_DISK_BY_LABEL_DIR DEV_DIR "/disk/by-label"
+#define DEV_DISK_BY_PARTUUID_DIR DEV_DIR "/disk/by-partuuid"
+#define DEV_DISK_BY_PARTLABEL_DIR DEV_DIR "/disk/by-partlabel"
 
 #define SYSFS_DIR "/sys"
 #define PROC_DIR "/proc"

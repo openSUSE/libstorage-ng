@@ -64,7 +64,7 @@ namespace storage
 
 
     const vector<string> EnumTraits<MountByType>::names({
-	"device", "uuid", "label", "id", "path"
+	"device", "uuid", "label", "id", "path", "partuuid", "partlabel"
     });
 
 
@@ -72,7 +72,8 @@ namespace storage
     mount_by_references_blk_device(MountByType mount_by)
     {
 	return mount_by == MountByType::DEVICE || mount_by == MountByType::ID ||
-	    mount_by == MountByType::PATH;
+	    mount_by == MountByType::PATH || mount_by == MountByType::PARTUUID ||
+	    mount_by == MountByType::PARTLABEL;
     }
 
 

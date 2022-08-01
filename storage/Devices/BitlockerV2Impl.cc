@@ -90,7 +90,7 @@ namespace storage
 
 
     string
-    BitlockerV2::Impl::get_mount_by_name(MountByType mount_by_type) const
+    BitlockerV2::Impl::get_crypttab_spec(MountByType mount_by_type) const
     {
 	string ret;
 
@@ -107,12 +107,14 @@ namespace storage
 	    case MountByType::ID:
 	    case MountByType::PATH:
 	    case MountByType::DEVICE:
+	    case MountByType::PARTUUID:
+	    case MountByType::PARTLABEL:
 		break;
 	}
 
 	if (ret.empty())
 	{
-	    ret = Encryption::Impl::get_mount_by_name(mount_by_type);
+	    ret = Encryption::Impl::get_crypttab_spec(mount_by_type);
 	}
 
 	return ret;

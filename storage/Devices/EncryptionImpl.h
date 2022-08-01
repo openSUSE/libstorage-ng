@@ -94,7 +94,11 @@ namespace storage
 
 	void set_default_mount_by();
 
-	virtual string get_mount_by_name(MountByType mount_by_type) const;
+	/**
+	 * Value for the second field in /etc/crypttab (which we simply call spec in
+	 * analogy to /etc/fstab).
+	 */
+	virtual string get_crypttab_spec(MountByType mount_by_type) const;
 
 	const CryptOpts& get_crypt_options() const { return crypt_options; }
 	void set_crypt_options(const CryptOpts& crypt_options);
