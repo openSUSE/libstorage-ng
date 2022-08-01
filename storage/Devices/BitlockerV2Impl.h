@@ -66,7 +66,7 @@ namespace storage
 
 	virtual void check(const CheckCallbacks* check_callbacks) const override;
 
-	virtual string get_mount_by_name(MountByType mount_by_type) const override;
+	virtual string get_crypttab_spec(MountByType mount_by_type) const override;
 
 	const string& get_uuid() const { return uuid; }
 

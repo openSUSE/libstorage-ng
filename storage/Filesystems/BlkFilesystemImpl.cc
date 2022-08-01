@@ -688,6 +688,8 @@ namespace storage
 	    case MountByType::ID:
 	    case MountByType::PATH:
 	    case MountByType::DEVICE:
+	    case MountByType::PARTUUID:
+	    case MountByType::PARTLABEL:
 		break;
 	}
 
@@ -695,10 +697,31 @@ namespace storage
 	{
 	    const BlkDevice* blk_device = get_etc_fstab_blk_device(mount_point);
 
-	    ret = blk_device->get_impl().get_mount_by_name(mount_point->get_mount_by());
+	    ret = blk_device->get_impl().get_fstab_spec(mount_point->get_mount_by());
 	}
 
 	return ret;
+    }
+
+
+    bool
+    BlkFilesystem::Impl::spec_match(const string& spec) const
+    {
+	if (!uuid.empty())
+	{
+	    if ((spec == "UUID=" + uuid) ||
+		(spec == DEV_DISK_BY_UUID_DIR "/" + uuid))
+		return true;
+	}
+
+	if (!label.empty())
+	{
+	    if ((spec == "LABEL=" + label) ||
+		(spec == DEV_DISK_BY_LABEL_DIR "/" + udev_encode(label)))
+		return true;
+	}
+
+	return false;
     }
 
 
@@ -716,28 +739,33 @@ namespace storage
 
 	vector<ExtendedFstabEntry> ret;
 
-	for (const FstabEntry* fstab_entry : etc_fstab.find_all_by_uuid_or_label(get_uuid(), get_label()))
+	for (int i = 0; i < etc_fstab.get_entry_count(); ++i)
 	{
-	    MountPointPath mount_point_path(fstab_entry->get_mount_point(), true);
-	    ret.emplace_back(mount_point_path, fstab_entry);
-	}
+	    const FstabEntry* fstab_entry = etc_fstab.get_entry(i);
+	    const string& spec = fstab_entry->get_spec();
 
-	for (const BlkDevice* blk_device : get_blk_devices())
-        {
-            for (const FstabEntry* fstab_entry : etc_fstab.find_all_by_any_name(system_info,
-										blk_device->get_name()))
-            {
-		// For tmpfs, proc the spec can be anything (including a valid block device).
-		if (fstab_entry->get_fs_type() == FsType::TMPFS)
-		    continue;
-
-		const FilesystemUser* filesystem_user =
-		    to_filesystem_user(get_devicegraph()->find_holder(blk_device->get_sid(), get_sid()));
-
+	    if (spec_match(spec))
+	    {
 		MountPointPath mount_point_path(fstab_entry->get_mount_point(), true);
-		ret.emplace_back(mount_point_path, fstab_entry, filesystem_user->get_impl().get_id());
+		ret.emplace_back(mount_point_path, fstab_entry);
 	    }
-        }
+
+	    for (const BlkDevice* blk_device : get_blk_devices())
+	    {
+		if (blk_device->get_impl().spec_match(system_info, spec))
+		{
+		    // For tmpfs, proc the spec can be anything (including a valid block device).
+		    if (fstab_entry->get_fs_type() == FsType::TMPFS)
+			continue;
+
+		    const FilesystemUser* filesystem_user =
+			to_filesystem_user(get_devicegraph()->find_holder(blk_device->get_sid(), get_sid()));
+
+		    MountPointPath mount_point_path(fstab_entry->get_mount_point(), true);
+		    ret.emplace_back(mount_point_path, fstab_entry, filesystem_user->get_impl().get_id());
+		}
+	    }
+	}
 
 	return ret;
     }

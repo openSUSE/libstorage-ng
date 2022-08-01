@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
-# requirements: blk filesystem mounted at /test
+# requirements: blk filesystem mounted at /test, best with filesystem
+# label and partition label
 
 
 from storage import *
@@ -22,16 +23,24 @@ mount_points = MountPoint.find_by_path(staging, "/test")
 
 mount_point = mount_points[0]
 
-print(MountByType_DEVICE, MountByType_UUID, MountByType_LABEL)
+possible_mount_bys = []
 
-print(mount_point.get_mount_by())
+for possible_mount_by in mount_point.possible_mount_bys():
+    possible_mount_bys.append(possible_mount_by)
+possible_mount_bys.sort()
 
-if mount_point.get_mount_by() == MountByType_UUID:
-    mount_point.set_mount_by(MountByType_DEVICE)
-else:
-    mount_point.set_mount_by(MountByType_UUID)
+print(possible_mount_bys)
 
-print(mount_point.get_mount_by())
+mount_by = mount_point.get_mount_by()
+print(mount_by, get_mount_by_name(mount_by))
+
+idx = possible_mount_bys.index(mount_by)
+idx = (idx + 1) % len(possible_mount_bys)
+
+mount_by = possible_mount_bys[idx]
+print(mount_by, get_mount_by_name(mount_by))
+
+mount_point.set_mount_by(mount_by)
 
 print(staging)
 

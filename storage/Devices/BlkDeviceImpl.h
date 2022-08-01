@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -106,7 +106,14 @@ namespace storage
 	const vector<string>& get_udev_ids() const { return udev_ids; }
 	void set_udev_ids(const vector<string>& udev_ids) { Impl::udev_ids = udev_ids; }
 
-	string get_mount_by_name(MountByType mount_by_type) const;
+	virtual string get_fstab_spec(MountByType mount_by_type) const;
+
+	/**
+	 * Checks whether spec (from fstab) matches the blk device. PARTUUID and PARTLABEL
+	 * are supported. UUID and LABEL are not supported since those are a property of
+	 * the filesystem.
+	 */
+	virtual bool spec_match(SystemInfo::Impl& system_info, const string& spec) const;
 
 	const string& get_dm_table_name() const { return dm_table_name; }
 	virtual void set_dm_table_name(const string& dm_table_name) { Impl::dm_table_name = dm_table_name; }

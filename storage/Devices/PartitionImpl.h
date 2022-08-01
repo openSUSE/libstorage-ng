@@ -76,6 +76,10 @@ namespace storage
 
 	virtual vector<MountByType> possible_mount_bys() const override;
 
+	virtual string get_fstab_spec(MountByType mount_by_type) const override;
+
+	virtual bool spec_match(SystemInfo::Impl& system_info, const string& spec) const override;
+
 	unsigned int get_number() const;
 	void set_number(unsigned int number);
 
@@ -171,6 +175,8 @@ namespace storage
 	vector<unsigned int> do_create_calc_hack() const;
 	void do_create_pre_hack(const vector<unsigned int>& tmps);
 	void do_create_post_hack(const vector<unsigned int>& tmps);
+
+	void probe_uuid();
 
     };
 
