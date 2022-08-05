@@ -14,11 +14,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.nl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-03 14:35+0200\n"
+"POT-Creation-Date: 2022-08-05 08:30+0200\n"
 "PO-Revision-Date: 2022-06-03 19:12+0000\n"
 "Last-Translator: Freek de Kruijf <freek@opensuse.org>\n"
-"Language-Team: Dutch <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/nl/>\n"
+"Language-Team: Dutch <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1703,8 +1703,8 @@ msgid ""
 "Detected a LVM logical volume next to a partition table of type %1$s on the\n"
 "device %2$s. The LVM logical volume will be ignored as good as possible."
 msgstr ""
-"Een LVM logisch volume gedetecteerd naast een partitietabel van het type %1$"
-"s op het\n"
+"Een LVM logisch volume gedetecteerd naast een partitietabel van het type "
+"%1$s op het\n"
 "apparaat %2$s. Het LVM logische volume zal zo goed al mogelijk is genegeerd "
 "worden."
 
@@ -1915,6 +1915,11 @@ msgstr "Uitgebreide partitie"
 #. TRANSLATORS: name of object
 msgid "F2FS"
 msgstr "F2FS"
+
+#. TRANSLATORS: error message
+#, c-format
+msgid "Failed to find device %s"
+msgstr ""
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -2228,12 +2233,100 @@ msgid "Linux RAID"
 msgstr "Linux RAID"
 
 #. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (ARM 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (ARM 64-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (PPC 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (PPC 64-bit BE)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (PPC 64-bit LE)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (RISC-V 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (RISC-V 64-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (S/390 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (S/390 64-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (x86 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (x86 64-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
 msgid "Linux Server Data"
 msgstr "Linux-servergegevens"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Swap"
 msgstr "Linux Swap"
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (ARM 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (ARM 64-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (PPC 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (PPC 64-bit BE)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (PPC 64-bit LE)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (RISC-V 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (RISC-V 64-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (S/390 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (S/390 64-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (x86 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (x86 64-bit)"
+msgstr ""
 
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
 msgid "M"
