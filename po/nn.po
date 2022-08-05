@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-03 14:35+0200\n"
+"POT-Creation-Date: 2022-08-05 08:30+0200\n"
 "PO-Revision-Date: 2005-08-11 20:37+0200\n"
 "Last-Translator: nynorsk <i18n@suse.de>\n"
 "Language-Team:  nn <i18n@suse.de>\n"
@@ -1856,6 +1856,11 @@ msgstr ""
 msgid "F2FS"
 msgstr ""
 
+#. TRANSLATORS: error message
+#, c-format
+msgid "Failed to find device %s"
+msgstr ""
+
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
@@ -2158,11 +2163,99 @@ msgid "Linux RAID"
 msgstr ""
 
 #. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (ARM 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (ARM 64-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (PPC 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (PPC 64-bit BE)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (PPC 64-bit LE)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (RISC-V 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (RISC-V 64-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (S/390 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (S/390 64-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (x86 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (x86 64-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
 msgid "Linux Server Data"
 msgstr ""
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Swap"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (ARM 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (ARM 64-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (PPC 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (PPC 64-bit BE)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (PPC 64-bit LE)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (RISC-V 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (RISC-V 64-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (S/390 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (S/390 64-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (x86 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (x86 64-bit)"
 msgstr ""
 
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-03 14:35+0200\n"
+"POT-Creation-Date: 2022-08-05 08:30+0200\n"
 "PO-Revision-Date: 2022-02-23 19:12+0000\n"
 "Last-Translator: Sophie Leroy <sophie@stoquart.com>\n"
 "Language-Team: French <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -2095,6 +2095,11 @@ msgstr "Partition étendue"
 msgid "F2FS"
 msgstr "F2FS"
 
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Failed to find device %s"
+msgstr "Effacement du périphérique %1$s basé sur un fichier"
+
 # TLABEL partitioning_2002_03_14_2340__121
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -2441,12 +2446,100 @@ msgid "Linux RAID"
 msgstr "RAID Linux"
 
 #. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (ARM 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (ARM 64-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (PPC 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (PPC 64-bit BE)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (PPC 64-bit LE)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (RISC-V 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (RISC-V 64-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (S/390 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (S/390 64-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (x86 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (x86 64-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
 msgid "Linux Server Data"
 msgstr ""
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Swap"
 msgstr "Swap Linux"
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (ARM 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (ARM 64-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (PPC 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (PPC 64-bit BE)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (PPC 64-bit LE)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (RISC-V 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (RISC-V 64-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (S/390 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (S/390 64-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (x86 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (x86 64-bit)"
+msgstr ""
 
 # TLABEL partitioning_2002_01_04_0147__116
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
@@ -3883,9 +3976,6 @@ msgstr "tmpfs"
 # TLABEL packages_2002_01_04_0147__198
 #~ msgid "Deleting device mapper volume %1$s"
 #~ msgstr "Effacement du volume d'assignation de périphérique %1$s"
-
-#~ msgid "Deleting file-based device %1$s"
-#~ msgstr "Effacement du périphérique %1$s basé sur un fichier"
 
 # TLABEL partitioning_2002_01_04_0147__162
 #~ msgid "Deleting logical volume %1$s"

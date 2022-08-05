@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-03 14:35+0200\n"
+"POT-Creation-Date: 2022-08-05 08:30+0200\n"
 "PO-Revision-Date: 2019-04-04 15:03+0000\n"
 "Last-Translator: Robert Taisz <robert.taisz@emerald.hu>\n"
 "Language-Team: Hungarian <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -2069,6 +2069,11 @@ msgstr "EFI rendszerpartíció"
 msgid "F2FS"
 msgstr "F2FS"
 
+#. TRANSLATORS: error message
+#, c-format
+msgid "Failed to find device %s"
+msgstr ""
+
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -2426,12 +2431,100 @@ msgid "Linux RAID"
 msgstr "Linux RAID"
 
 #. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (ARM 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (ARM 64-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (PPC 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (PPC 64-bit BE)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (PPC 64-bit LE)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (RISC-V 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (RISC-V 64-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (S/390 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (S/390 64-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (x86 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Root Partition (x86 64-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
 msgid "Linux Server Data"
 msgstr ""
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Swap"
 msgstr "Linux lapozófájl"
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (ARM 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (ARM 64-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (PPC 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (PPC 64-bit BE)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (PPC 64-bit LE)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (RISC-V 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (RISC-V 64-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (S/390 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (S/390 64-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (x86 32-bit)"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux USR Partition (x86 64-bit)"
+msgstr ""
 
 # /usr/lib/YaST2/clients/sw_single.ycp:36
 # include/installation_ui.ycp:390
