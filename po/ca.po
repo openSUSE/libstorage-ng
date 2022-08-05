@@ -9,10 +9,10 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-05 08:30+0200\n"
-"PO-Revision-Date: 2022-06-03 19:12+0000\n"
+"PO-Revision-Date: 2022-08-05 18:13+0000\n"
 "Last-Translator: David Medina <medipas@gmail.com>\n"
-"Language-Team: Catalan <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/ca/>\n"
+"Language-Team: Catalan <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/ca/>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1920,7 +1920,7 @@ msgstr "F2FS"
 #. TRANSLATORS: error message
 #, c-format
 msgid "Failed to find device %s"
-msgstr ""
+msgstr "Ha fallat trobar el dispositiu %s."
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -2234,11 +2234,11 @@ msgstr "RAID de Linux"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (ARM 32-bit)"
-msgstr ""
+msgstr "Partició d'arrel de Linux (ARM 32 bits)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (ARM 64-bit)"
-msgstr ""
+msgstr "Partició d'arrel de Linux (ARM 64 bits)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (PPC 32-bit)"
