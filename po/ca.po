@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-05 08:30+0200\n"
-"PO-Revision-Date: 2022-08-05 18:13+0000\n"
+"PO-Revision-Date: 2022-08-08 11:13+0000\n"
 "Last-Translator: David Medina <medipas@gmail.com>\n"
 "Language-Team: Catalan <https://l10n.opensuse.org/projects/libstorage/"
 "ng-master/ca/>\n"
@@ -2242,39 +2242,39 @@ msgstr "Partició d'arrel de Linux (ARM 64 bits)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (PPC 32-bit)"
-msgstr ""
+msgstr "Partició d'arrel de Linux (PPC de 32 bits)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (PPC 64-bit BE)"
-msgstr ""
+msgstr "Partició d'arrel de Linux (PPC de 64 bits BE)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (PPC 64-bit LE)"
-msgstr ""
+msgstr "Partició d'arrel de Linux (PPC de 64 bits LE)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (RISC-V 32-bit)"
-msgstr ""
+msgstr "Partició d'arrel de Linux (RISC-V de 32 bits)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (RISC-V 64-bit)"
-msgstr ""
+msgstr "Partició d'arrel de Linux (RISC-V de 64 bits)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (S/390 32-bit)"
-msgstr ""
+msgstr "Partició d'arrel de Linux (S/390 de 32 bits)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (S/390 64-bit)"
-msgstr ""
+msgstr "Partició d'arrel de Linux (S/390 de 64 bits)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (x86 32-bit)"
-msgstr ""
+msgstr "Partició d'arrel de Linux (x86 de 32 bits)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (x86 64-bit)"
-msgstr ""
+msgstr "Partició d'arrel de Linux (x86 de 64 bits)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Server Data"
@@ -2286,47 +2286,47 @@ msgstr "Intercanvi de Linux"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (ARM 32-bit)"
-msgstr ""
+msgstr "Partició USR de Linux (ARM de 32 bits)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (ARM 64-bit)"
-msgstr ""
+msgstr "Partició USR de Linux (ARM de 64 bits)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (PPC 32-bit)"
-msgstr ""
+msgstr "Partició USR de Linux (PPC de 32 bits)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (PPC 64-bit BE)"
-msgstr ""
+msgstr "Partició USR de Linux (PPC de 64 bits BE)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (PPC 64-bit LE)"
-msgstr ""
+msgstr "Partició USR de Linux (PPC de 64 bits LE)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (RISC-V 32-bit)"
-msgstr ""
+msgstr "Partició USR de Linux (RISC-V de 32 bits)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (RISC-V 64-bit)"
-msgstr ""
+msgstr "Partició USR de Linux (RISC-V de 64 bits)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (S/390 32-bit)"
-msgstr ""
+msgstr "Partició USR de Linux (S/390 de 32 bits)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (S/390 64-bit)"
-msgstr ""
+msgstr "Partició USR de Linux (S/390 de 64 bits)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (x86 32-bit)"
-msgstr ""
+msgstr "Partició USR de Linux (x86 de 32 bits)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (x86 64-bit)"
-msgstr ""
+msgstr "Partició USR de Linux (x86 de 64 bits)"
 
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
 msgid "M"
