@@ -10,10 +10,10 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-05 08:30+0200\n"
-"PO-Revision-Date: 2022-05-31 17:12+0000\n"
+"PO-Revision-Date: 2022-08-12 10:13+0000\n"
 "Last-Translator: Luna  Jernberg <bittin@opensuse.org>\n"
-"Language-Team: Swedish <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/sv/>\n"
+"Language-Team: Swedish <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -111,14 +111,14 @@ msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "Aktiverar den logiska volymen %1$s (%2$s) i volymgruppen %3$s"
 
 #. TRANSLATORS: progress message
-#, fuzzy, c-format
+#, c-format
 msgid "Activating BitLocker %s"
-msgstr "Aktiverar LUKS %s"
+msgstr "Aktiverar BitLocker %s"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Activating BitLocker %s failed"
-msgstr "Aktivering av LUKS %s misslyckades"
+msgstr "Aktivering av BitLocker %s misslyckades"
 
 #. TRANSLATORS: progress message
 #, c-format
@@ -1988,7 +1988,7 @@ msgstr "F2FS"
 #. TRANSLATORS: error message
 #, c-format
 msgid "Failed to find device %s"
-msgstr ""
+msgstr "Det gick inte att hitta enhet %s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -2300,51 +2300,51 @@ msgstr "Linux RAID"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (ARM 32-bit)"
-msgstr ""
+msgstr "Linux Root Partition (ARM 32-bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (ARM 64-bit)"
-msgstr ""
+msgstr "Linux Root Partition (ARM 64-bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (PPC 32-bit)"
-msgstr ""
+msgstr "Linux Root Partition (PPC 32-bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (PPC 64-bit BE)"
-msgstr ""
+msgstr "Linux Root Partition (PPC 64-bit BE)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (PPC 64-bit LE)"
-msgstr ""
+msgstr "Linux Root Partition (PPC 64-bit LE)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (RISC-V 32-bit)"
-msgstr ""
+msgstr "Linux Root Partition (RISC-V 32-bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (RISC-V 64-bit)"
-msgstr ""
+msgstr "Linux Root Partition (RISC-V 64-bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (S/390 32-bit)"
-msgstr ""
+msgstr "Linux Root Partition (S/390 32-bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (S/390 64-bit)"
-msgstr ""
+msgstr "Linux Root Partition (S/390 64-bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (x86 32-bit)"
-msgstr ""
+msgstr "Linux Root Partition (x86 32-bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (x86 64-bit)"
-msgstr ""
+msgstr "Linux Root Partition (x86 64-bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Server Data"
-msgstr ""
+msgstr "Linux Server Data"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Swap"
@@ -2352,47 +2352,47 @@ msgstr "Linux Swap"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (ARM 32-bit)"
-msgstr ""
+msgstr "Linux USR Partition (ARM 32-bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (ARM 64-bit)"
-msgstr ""
+msgstr "Linux USR Partition (ARM 64-bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (PPC 32-bit)"
-msgstr ""
+msgstr "Linux USR Partition (PPC 32-bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (PPC 64-bit BE)"
-msgstr ""
+msgstr "Linux USR Partition (PPC 64-bit BE)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (PPC 64-bit LE)"
-msgstr ""
+msgstr "Linux USR Partition (PPC 64-bit LE)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (RISC-V 32-bit)"
-msgstr ""
+msgstr "Linux USR Partition (RISC-V 32-bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (RISC-V 64-bit)"
-msgstr ""
+msgstr "Linux USR Partition (RISC-V 64-bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (S/390 32-bit)"
-msgstr ""
+msgstr "Linux USR Partition (S/390 32-bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (S/390 64-bit)"
-msgstr ""
+msgstr "Linux USR Partition (S/390 64-bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (x86 32-bit)"
-msgstr ""
+msgstr "Linux USR Partition (x86 32-bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (x86 64-bit)"
-msgstr ""
+msgstr "Linux USR Partition (x86 64-bit)"
 
 # SLE12
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
@@ -2543,7 +2543,7 @@ msgstr "NFS"
 
 #. TRANSLATORS: name of object
 msgid "NILFS2"
-msgstr ""
+msgstr "NILFS2"
 
 #. TRANSLATORS: name of object
 msgid "NTFS"
@@ -2580,14 +2580,12 @@ msgstr "PiB"
 msgid "Plain Encryption"
 msgstr "Kryptering"
 
-#, fuzzy
 msgid "Probing BitLocker"
-msgstr "BitLocker"
+msgstr "Undersöker BitLocker"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing BitLocker failed"
-msgstr "Det gick inte att söka diskar"
+msgstr "Det gick inte att undersöka BitLocker"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -2699,9 +2697,9 @@ msgid "Probing file system on %s failed"
 msgstr "Det gick inte att söka filsystemet på %s"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing file system with UUID %s failed"
-msgstr "Det gick inte att söka filsystemet på %s"
+msgstr "Undersökning av filsystem med UUID %s misslyckades"
 
 #. TRANSLATORS: progress message
 msgid "Probing file systems"
@@ -2735,14 +2733,12 @@ msgstr "Sökning av partitioner på %s misslyckades"
 
 # SLE12
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing plain encryptions"
-msgstr "Testar partition"
+msgstr "Undersöker vanliga krypteringar"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing plain encryptions failed"
-msgstr "Det gick inte att söka partitionerna"
+msgstr "Det gick inte att undersöka vanliga krypteringar"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -2758,14 +2754,12 @@ msgid "Probing stray block devices failed"
 msgstr "Avsökning av enstaka blockenheter misslyckades"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing tmpfs"
-msgstr "Söker DASD:er"
+msgstr "Undersöker tmpfs"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing tmpfs failed"
-msgstr "Sökning misslyckades"
+msgstr "Undersökning av tmpfs misslyckades"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)
@@ -3025,18 +3019,18 @@ msgstr "Ange föråldrad bootflagga för partition %1$s"
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Set limits for qgroup %1$s on %2$s"
-msgstr "Ange justeringsalternativ för %1$s"
+msgstr "Ställ in gränser för qgroup %1$s av %2$s"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Set limits for qgroup of subvolume %1$s on %2$s"
-msgstr "Ange förinställd delvolym som delvolym %1$s på %2$s"
+msgstr "Ställ in gränser för qgroup på undervolym %1$s av %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -3141,18 +3135,18 @@ msgstr "Anger föråldrad bootflagga för partitionen %1$s"
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Setting limits for qgroup %1$s on %2$s"
-msgstr "Anger justeringsalternativ för %1$s"
+msgstr "Ställer in gränser för qgroup %1$s av %2$s"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Setting limits for qgroup of subvolume %1$s on %2$s"
-msgstr "Anger förinställd delvolym som delvolym %1$s på %2$s"
+msgstr "Ställer in gränser för qgroup av undervolym %1$s av %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -3354,9 +3348,9 @@ msgstr "UDF"
 #. %2$s is replaced by the btrfs qgroup id (e.g. 2/0),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Unassign qgroup %1$s from qgroup %2$s on %3$s"
-msgstr "Krymper partition %1$s från %2$s till %3$s"
+msgstr "Ta bort tilldelningen av qgroup %1$s från qgroup %2$s av %3$s"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
@@ -3389,7 +3383,7 @@ msgstr "Avmonterar delvolym %1$s på %2$s i %3$s"
 
 #. TRANSLATORS: name of partition type
 msgid "Unknown"
-msgstr ""
+msgstr "Okänd"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
