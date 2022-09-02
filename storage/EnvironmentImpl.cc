@@ -142,6 +142,14 @@ namespace storage
     }
 
 
+    int
+    mdadm_activate_method()
+    {
+	const char* p = getenv("LIBSTORAGE_MDADM_ACTIVATE_METHOD");
+	return p ? atoi(p) : 0;
+    }
+
+
     void
     Environment::Impl::extra_log()
     {
@@ -152,12 +160,13 @@ namespace storage
 	    "LD_LIBRARY_PATH",
 	    "LD_PRELOAD",
 	    "LIBSTORAGE_BTRFS_QGROUPS",
-	    "LIBSTORAGE_MULTIPLE_DEVICES_BTRFS",
-	    "LIBSTORAGE_PFSOEMS",
 	    "LIBSTORAGE_BTRFS_SNAPSHOT_RELATIONS",
 	    "LIBSTORAGE_DEVELOPER_MODE",
-	    "LIBSTORAGE_ROOTPREFIX",
 	    "LIBSTORAGE_LOCKFILE_ROOT",
+	    "LIBSTORAGE_MDADM_ACTIVATE_METHOD",
+	    "LIBSTORAGE_MULTIPLE_DEVICES_BTRFS",
+	    "LIBSTORAGE_PFSOEMS",
+	    "LIBSTORAGE_ROOTPREFIX",
 	};
 
 	for (const char* env_var : env_vars)
