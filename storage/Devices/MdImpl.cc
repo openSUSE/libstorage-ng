@@ -32,7 +32,7 @@
 #include "storage/Action.h"
 #include "storage/Storage.h"
 #include "storage/Prober.h"
-#include "storage/Environment.h"
+#include "storage/EnvironmentImpl.h"
 #include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/Exception.h"
@@ -370,7 +370,6 @@ namespace storage
     }
 
 
-
     bool
     Md::Impl::is_valid_sysfs_name(const string& name)
     {
@@ -396,22 +395,41 @@ namespace storage
 	// digit string). Using 'mdadm --assemble --scan --config=partitions'
 	// the members of containers are not started at all.
 
-	string filename = tmp_dir.get_fullname() + "/mdadm.conf";
+	// But using the additional step with --examine causes problems with duplicate MD
+	// device names (see bsc #1199307).
 
-	string cmd_line1 = MDADM_BIN " --examine --scan > " + quote(filename);
+	switch (mdadm_activate_method())
+	{
+	    case 0:
+	    {
+		SystemCmd cmd(MDADM_BIN " --assemble --scan");
 
-	SystemCmd cmd1(cmd_line1);
+		if (cmd.retcode() == 0)
+		    SystemCmd(UDEVADM_BIN_SETTLE);
 
-	string cmd_line2 = MDADM_BIN " --assemble --scan --config=" + quote(filename);
+		return cmd.retcode() == 0;
+	    }
 
-	SystemCmd cmd2(cmd_line2);
+	    case 1:
+	    {
+		string filename = tmp_dir.get_fullname() + "/mdadm.conf";
 
-	if (cmd2.retcode() == 0)
-	    SystemCmd(UDEVADM_BIN_SETTLE);
+		string cmd_line1 = MDADM_BIN " --examine --scan > " + quote(filename);
+		SystemCmd cmd1(cmd_line1);
 
-	unlink(filename.c_str());
+		string cmd_line2 = MDADM_BIN " --assemble --scan --config=" + quote(filename);
+		SystemCmd cmd2(cmd_line2);
 
-	return cmd2.retcode() == 0;
+		if (cmd2.retcode() == 0)
+		    SystemCmd(UDEVADM_BIN_SETTLE);
+
+		unlink(filename.c_str());
+
+		return cmd2.retcode() == 0;
+	    }
+	}
+
+	return false;
     }
 
 

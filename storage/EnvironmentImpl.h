@@ -121,6 +121,11 @@ namespace storage
      */
     bool cryptsetup_for_bitlocker();
 
+    /**
+     * There are several methods to use mdadm for activation.
+     */
+    int mdadm_activate_method();
+
 }
 
 #endif
