@@ -537,9 +537,9 @@ namespace storage
     void
     Luks::Impl::calculate_region_and_topology()
     {
-	// We return early for the same reason that we did in
-	// Md::Impl::calculate_region_and_topology()
-	if (exists_in_system())
+	// During probing the underlying block device might not be known yet. Not a
+	// problem since the size is probed anyway.
+	if (!has_parents())
 	    return;
 
 	const BlkDevice* blk_device = get_blk_device();
@@ -554,7 +554,8 @@ namespace storage
 	else
 	    size = 0 * B;
 
-	// If we use integrity, calculate a pesimistic size
+	// If we use integrity, calculate a pessimistic size. This is a problem for
+	// potential resizing.
 	if (!get_integrity().empty())
 	    size *= 0.85;
 
@@ -626,6 +627,10 @@ namespace storage
 	// TODO Strictly speaking "empty" does not mean "unknown".
 	if (do_resize_needs_password() && get_password().empty())
 	    return ResizeInfo(false, RB_PASSWORD_REQUIRED);
+
+	// AFAIS not supported by cryptsetup any time soon.
+	if (!get_integrity().empty())
+	    return ResizeInfo(false, RB_RESIZE_NOT_SUPPORTED_BY_DEVICE);
 
 	ResizeInfo resize_info = BlkDevice::Impl::detect_resize_info(get_non_impl());
 
