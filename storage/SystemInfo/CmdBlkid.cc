@@ -21,8 +21,8 @@
  */
 
 
-#include <algorithm>
 #include <ctype.h>
+#include <algorithm>
 #include <boost/algorithm/string.hpp>
 
 #include "storage/Utils/AppUtil.h"
@@ -41,7 +41,12 @@ namespace storage
 
     Blkid::Blkid()
     {
-	SystemCmd cmd(BLKID_BIN " -c '" DEV_NULL_FILE "'", SystemCmd::DoThrow);
+	SystemCmd::Options options(BLKID_BIN " -c '" DEV_NULL_FILE "'", SystemCmd::DoThrow);
+
+	// If blkid does not find anything it returns 2 (see bsc #1203285).
+	options.verify = [](int exit_code) { return exit_code == 0 || exit_code == 2; };
+
+	SystemCmd cmd(options);
 
 	parse(cmd.stdout());
     }
@@ -49,7 +54,10 @@ namespace storage
 
     Blkid::Blkid(const string& device)
     {
-	SystemCmd cmd(BLKID_BIN " -c '" DEV_NULL_FILE "' " + quote(device), SystemCmd::DoThrow);
+	SystemCmd::Options options(BLKID_BIN " -c '" DEV_NULL_FILE "' " + quote(device), SystemCmd::DoThrow);
+	options.verify = [](int exit_code) { return exit_code == 0 || exit_code == 2; };
+
+	SystemCmd cmd(options);
 
 	parse(cmd.stdout());
     }
@@ -60,14 +68,14 @@ namespace storage
     {
 	data.clear();
 
-	for (vector<string>::const_iterator it = lines.begin(); it != lines.end(); ++it)
+	for (const string& line : lines)
 	{
-	    string::size_type pos = it->find(": ");
+	    string::size_type pos = line.find(": ");
 	    if (pos == string::npos)
 		continue;
 
-	    string device = string(*it, 0, pos);
-	    list<string> l = split_line(string(*it, pos + 1));
+	    string device = string(line, 0, pos);
+	    list<string> l = split_line(string(line, pos + 1));
 
 	    Entry entry;
 
