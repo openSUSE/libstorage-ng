@@ -126,6 +126,21 @@ namespace storage
      */
     int mdadm_activate_method();
 
+    /**
+     * Operating system flavour.
+     */
+    enum class OsFlavour
+    {
+	LINUX, SUSE, REDHAT
+    };
+
+    template <> struct EnumTraits<OsFlavour> { static const vector<string> names; };
+
+    /**
+     * Get the operating system flavour.
+     */
+    OsFlavour os_flavour();
+
 }
 
 #endif

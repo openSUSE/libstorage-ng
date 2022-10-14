@@ -335,9 +335,8 @@ namespace storage
     string
     Partitionable::Impl::partition_name(int number) const
     {
-	// Note: Seems as if other distros use "p" instead of "-part".
-
-	if (boost::starts_with(get_name(), DEV_MAPPER_DIR "/"))
+	if (boost::starts_with(get_name(), DEV_MAPPER_DIR "/") &&
+	    os_flavour() == OsFlavour::SUSE)
 	    return get_name() + "-part" + to_string(number);
 	else if (isdigit(get_name().back()))
 	    return get_name() + "p" + to_string(number);

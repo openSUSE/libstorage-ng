@@ -916,10 +916,12 @@ namespace storage
 
 	do_create_pre_hack(tmps);
 
-	// Note: --wipesignatures is not available in upstream parted (2021-07-26).
+	string cmd_line = PARTED_BIN " --script ";
 
-	string cmd_line = PARTED_BIN " --script --wipesignatures " + quote(partitionable->get_name()) +
-	    " unit s mkpart ";
+	if (PartedVersion::supports_wipe_signatures())
+	    cmd_line += "--wipesignatures ";
+
+	cmd_line += quote(partitionable->get_name()) + " unit s mkpart ";
 
 	if (is_msdos(partition_table))
 	    cmd_line += toString(get_type()) + " ";
@@ -971,6 +973,12 @@ namespace storage
 
 	if (get_type() == PartitionType::PRIMARY || get_type() == PartitionType::LOGICAL)
 	{
+	    if (!PartedVersion::supports_wipe_signatures())
+	    {
+		SystemCmd(UDEVADM_BIN_SETTLE);
+		wipe_device();
+	    }
+
 	    discard_device();
 	}
 
@@ -1040,8 +1048,12 @@ namespace storage
 
 	for (unsigned int i = 0; i < tmps.size(); ++i)
 	{
-	    string cmd_line = PARTED_BIN " --script --wipesignatures " + quote(partitionable->get_name()) +
-		" unit s mkpart ";
+	    string cmd_line = PARTED_BIN " --script ";
+
+	    if (PartedVersion::supports_wipe_signatures())
+		cmd_line += "--wipesignatures ";
+
+	    cmd_line += quote(partitionable->get_name()) + " unit s mkpart ";
 
 	    if (is_msdos(partition_table))
 		cmd_line += "primary ";
@@ -1518,10 +1530,12 @@ namespace storage
 	const Partition* partition_rhs = to_partition(action->get_device(commit_data.actiongraph, RHS));
 	const Partitionable* partitionable = get_partitionable();
 
-	// Note: --ignore-busy is not available in upstream parted (2021-07-26).
+	string cmd_line = PARTED_BIN " --script ";
 
-	string cmd_line = PARTED_BIN " --script --ignore-busy " + quote(partitionable->get_name()) +
-	    " unit s resizepart " + to_string(get_number()) + " ";
+	if (PartedVersion::supports_ignore_busy())
+	    cmd_line += "--ignore-busy ";
+
+	cmd_line += quote(partitionable->get_name()) + " unit s resizepart " + to_string(get_number()) + " ";
 
 	unsigned long long factor = parted_sector_adjustment_factor();
 

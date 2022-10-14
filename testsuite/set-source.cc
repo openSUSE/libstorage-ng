@@ -66,6 +66,8 @@ BOOST_AUTO_TEST_CASE(test1)
 
 BOOST_AUTO_TEST_CASE(test2)
 {
+    setenv("LIBSTORAGE_OS_FLAVOUR", "suse", 1);
+
     Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
 
     Storage storage(environment);

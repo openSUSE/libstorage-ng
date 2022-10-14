@@ -19,6 +19,8 @@ void
 check(const string& device, const vector<string>& stdout, const vector<string>& stderr,
       const vector<string>& result)
 {
+    setenv("LIBSTORAGE_OS_FLAVOUR", "suse", 1);
+
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
     Mockup::set_command(PARTED_BIN " --version", RemoteCommand({ "parted (GNU parted) 3.5" }, {}, 0));
     Mockup::set_command(PARTED_BIN " --script --json " + quote(device) + " unit s print",

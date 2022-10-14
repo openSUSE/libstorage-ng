@@ -219,6 +219,9 @@ namespace storage
 
 	static bool supports_json_option();
 	static bool supports_type_command();
+	static bool supports_wipe_signatures();
+	static bool supports_ignore_busy();
+	static bool print_triggers_udev();
 
     private:
 
