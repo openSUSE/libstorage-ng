@@ -25,6 +25,7 @@
 #include <string.h>
 #include <ostream>
 
+#include "config.h"
 #include "storage/EnvironmentImpl.h"
 
 
@@ -150,6 +151,29 @@ namespace storage
     }
 
 
+    const vector<string> EnumTraits<OsFlavour>::names({
+	"linux", "suse", "redhat"
+    });
+
+
+    OsFlavour
+    os_flavour()
+    {
+	const char* p = getenv("LIBSTORAGE_OS_FLAVOUR");
+
+	if (!p)
+	    p = OS_FLAVOUR;
+
+	if (strcmp(p, "suse") == 0)
+	    return OsFlavour::SUSE;
+
+	if (strcmp(p, "redhat") == 0)
+	    return OsFlavour::REDHAT;
+
+	return OsFlavour::LINUX;
+    }
+
+
     void
     Environment::Impl::extra_log()
     {
@@ -165,6 +189,7 @@ namespace storage
 	    "LIBSTORAGE_LOCKFILE_ROOT",
 	    "LIBSTORAGE_MDADM_ACTIVATE_METHOD",
 	    "LIBSTORAGE_MULTIPLE_DEVICES_BTRFS",
+	    "LIBSTORAGE_OS_FLAVOUR",
 	    "LIBSTORAGE_PFSOEMS",
 	    "LIBSTORAGE_ROOTPREFIX",
 	};

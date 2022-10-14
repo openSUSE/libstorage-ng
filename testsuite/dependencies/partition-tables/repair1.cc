@@ -13,6 +13,8 @@ using namespace storage;
 
 BOOST_AUTO_TEST_CASE(dependencies)
 {
+    setenv("LIBSTORAGE_OS_FLAVOUR", "suse", 1);
+
     set_logger(get_stdout_logger());
 
     TsCmpActiongraph cmp("repair1", true);

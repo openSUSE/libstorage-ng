@@ -88,6 +88,9 @@ AC_SUBST(RUBY_SHARED_LIB)
 RUBY_ARCH_NAME=$(RBCONFIG(arch))
 AC_SUBST(RUBY_ARCH_NAME)
 
+AC_MSG_RESULT(checking for OS_FLAVOUR... $build_vendor)
+AC_DEFINE_UNQUOTED([OS_FLAVOUR], ["$build_vendor"], [Operating system flavour.])
+
 AC_CONFIG_FILES([
 	Makefile
 	storage/Makefile

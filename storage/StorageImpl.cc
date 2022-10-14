@@ -58,6 +58,7 @@ namespace storage
     {
 	y2mil("constructed Storage with " << environment);
 	y2mil("libstorage-ng version " VERSION);
+	y2mil("os-flavour " << toString(os_flavour()));
 	y2mil("timestamp " << timestamp());
 
 	Environment::Impl::extra_log();

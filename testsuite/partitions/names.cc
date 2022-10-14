@@ -69,6 +69,8 @@ BOOST_AUTO_TEST_CASE(test_dasd1)
 
 BOOST_AUTO_TEST_CASE(test_multipath1)
 {
+    setenv("LIBSTORAGE_OS_FLAVOUR", "suse", 1);
+
     set_logger(get_stdout_logger());
 
     Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
@@ -85,6 +87,8 @@ BOOST_AUTO_TEST_CASE(test_multipath1)
 
 BOOST_AUTO_TEST_CASE(test_multipath2)
 {
+    setenv("LIBSTORAGE_OS_FLAVOUR", "suse", 1);
+
     set_logger(get_stdout_logger());
 
     Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
@@ -96,4 +100,40 @@ BOOST_AUTO_TEST_CASE(test_multipath2)
     Multipath* multipath = Multipath::create(devicegraph, "/dev/mapper/some-alias", Region(0, 1000000, 512));
 
     BOOST_CHECK_EQUAL(multipath->get_impl().partition_name(1), "/dev/mapper/some-alias-part1");
+}
+
+
+BOOST_AUTO_TEST_CASE(test_multipath3_suse)
+{
+    setenv("LIBSTORAGE_OS_FLAVOUR", "suse", 1);
+
+    set_logger(get_stdout_logger());
+
+    Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
+
+    Storage storage(environment);
+
+    Devicegraph* devicegraph = storage.get_staging();
+
+    Multipath* multipath = Multipath::create(devicegraph, "/dev/mapper/mpathb", Region(0, 1000000, 512));
+
+    BOOST_CHECK_EQUAL(multipath->get_impl().partition_name(1), "/dev/mapper/mpathb-part1");
+}
+
+
+BOOST_AUTO_TEST_CASE(test_multipath3_fedora)
+{
+    setenv("LIBSTORAGE_OS_FLAVOUR", "redhat", 1);
+
+    set_logger(get_stdout_logger());
+
+    Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
+
+    Storage storage(environment);
+
+    Devicegraph* devicegraph = storage.get_staging();
+
+    Multipath* multipath = Multipath::create(devicegraph, "/dev/mapper/mpathb", Region(0, 1000000, 512));
+
+    BOOST_CHECK_EQUAL(multipath->get_impl().partition_name(1), "/dev/mapper/mpathb1");
 }

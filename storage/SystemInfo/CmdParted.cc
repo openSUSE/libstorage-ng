@@ -33,6 +33,7 @@
 #include "storage/Utils/StorageTypes.h"
 #include "storage/Devices/PartitionTable.h"
 #include "storage/Utils/Format.h"
+#include "storage/EnvironmentImpl.h"
 
 
 namespace storage
@@ -78,6 +79,9 @@ namespace storage
 	}
 
 	parse(cmd.stdout(), cmd.stderr());
+
+	if (PartedVersion::print_triggers_udev())
+	    SystemCmd(UDEVADM_BIN_SETTLE);
     }
 
 
@@ -702,9 +706,37 @@ namespace storage
     {
 	query_version();
 
-	// For upstream with 3.6.
+	if (os_flavour() == OsFlavour::SUSE)
+	    return major >= 4 || (major == 3 && minor >= 5);
 
-	return major >= 4 || (major == 3 && minor >= 5);
+	return major >= 4 || (major == 3 && minor >= 6);
+    }
+
+
+    bool
+    PartedVersion::supports_wipe_signatures()
+    {
+	// Option --wipesignatures is not available in upstream parted (2021-07-26).
+
+	return os_flavour() == OsFlavour::SUSE;
+    }
+
+
+    bool
+    PartedVersion::supports_ignore_busy()
+    {
+	// Option --ignore-busy is not available in upstream parted (2021-07-26).
+
+	return os_flavour() == OsFlavour::SUSE;
+    }
+
+
+    bool
+    PartedVersion::print_triggers_udev()
+    {
+	// SUSE has a patch to open the device read-only if only e.g. print is executed.
+
+	return os_flavour() != OsFlavour::SUSE;
     }
 
 
