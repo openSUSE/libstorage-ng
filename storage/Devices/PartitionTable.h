@@ -211,6 +211,9 @@ namespace storage
 	 * This function does not consider the partition type (primary, extended or
 	 * logical) so further restriction may apply, e.g. ID_EXTENDED is not allowed for
 	 * primary partitions.
+	 *
+	 * Starting with libstorage-ng version 4.5.47 this function depends on the parted
+	 * version and operating system flavour.
 	 */
 	bool is_partition_id_supported(unsigned int id) const;
 

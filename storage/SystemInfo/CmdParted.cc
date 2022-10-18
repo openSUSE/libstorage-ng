@@ -664,23 +664,28 @@ namespace storage
     void
     PartedVersion::query_version()
     {
-	static bool did_query_version = false;
-
-	if (did_query_version)
+	if (did_set_version)
 	    return;
 
 	SystemCmd cmd(PARTED_BIN " --version", SystemCmd::DoThrow);
 	if (cmd.stdout().empty())
 	    ST_THROW(SystemCmdException(&cmd, "failed to query parted version"));
 
+	parse_version(cmd.stdout()[0]);
+    }
+
+
+    void
+    PartedVersion::parse_version(const string& version)
+    {
 	// example versions: "3.4", "3.5", "3.5.1", "3.5.1-cec5"
 	const regex version_rx("parted \\(GNU parted\\) ([0-9]+)\\.([0-9]+)(\\.([0-9]+)(-([0-9a-z]+))?)?",
 			       regex::extended);
 
 	smatch match;
 
-	if (!regex_match(cmd.stdout()[0], match, version_rx))
-	    ST_THROW(SystemCmdException(&cmd, "failed to parse parted version"));
+	if (!regex_match(version, match, version_rx))
+	    ST_THROW(Exception("failed to parse parted version"));
 
 	major = stoi(match[1]);
 	minor = stoi(match[2]);
@@ -688,7 +693,7 @@ namespace storage
 
 	y2mil("major:" << major << " minor:" << minor << " patchlevel:" << patchlevel);
 
-	did_query_version = true;
+	did_set_version = true;
     }
 
 
@@ -710,6 +715,15 @@ namespace storage
 	    return major >= 4 || (major == 3 && minor >= 5);
 
 	return major >= 4 || (major == 3 && minor >= 6);
+    }
+
+
+    bool
+    PartedVersion::supports_old_type_flag()
+    {
+	query_version();
+
+	return (major == 3 && minor < 5) && os_flavour() == OsFlavour::SUSE;
     }
 
 
@@ -739,6 +753,8 @@ namespace storage
 	return os_flavour() != OsFlavour::SUSE;
     }
 
+
+    bool PartedVersion::did_set_version = false;
 
     int PartedVersion::major = 0;
     int PartedVersion::minor = 0;
