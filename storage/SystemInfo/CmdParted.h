@@ -217,15 +217,19 @@ namespace storage
     {
     public:
 
+	static void query_version();
+	static void parse_version(const string& version);
+
 	static bool supports_json_option();
 	static bool supports_type_command();
+	static bool supports_old_type_flag();
 	static bool supports_wipe_signatures();
 	static bool supports_ignore_busy();
 	static bool print_triggers_udev();
 
     private:
 
-	static void query_version();
+	static bool did_set_version;
 
 	static int major;
 	static int minor;

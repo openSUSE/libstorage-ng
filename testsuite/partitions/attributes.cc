@@ -13,6 +13,7 @@
 #include "storage/Storage.h"
 #include "storage/Environment.h"
 #include "storage/Utils/Region.h"
+#include "storage/SystemInfo/CmdParted.h"
 
 
 using namespace std;
@@ -21,6 +22,8 @@ using namespace storage;
 
 BOOST_AUTO_TEST_CASE(test_attributes_on_msdos)
 {
+    PartedVersion::parse_version("parted (GNU parted) 3.5");
+
     Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
 
     Storage storage(environment);
@@ -49,6 +52,8 @@ BOOST_AUTO_TEST_CASE(test_attributes_on_msdos)
 
 BOOST_AUTO_TEST_CASE(test_attributes_on_gpt)
 {
+    PartedVersion::parse_version("parted (GNU parted) 3.5");
+
     Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
 
     Storage storage(environment);
@@ -74,4 +79,26 @@ BOOST_AUTO_TEST_CASE(test_attributes_on_gpt)
 
     sda1->set_legacy_boot(true);
     BOOST_CHECK(sda1->is_legacy_boot());
+}
+
+
+BOOST_AUTO_TEST_CASE(test_id_on_gpt_old_parted)
+{
+    PartedVersion::parse_version("parted (GNU parted) 3.4");
+
+    Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
+
+    Storage storage(environment);
+
+    Devicegraph* devicegraph = storage.get_staging();
+
+    Disk* sda = Disk::create(devicegraph, "/dev/sda", Region(0, 100000, 512));
+
+    PartitionTable* gpt = sda->create_partition_table(PtType::GPT);
+
+    Partition* sda1 = gpt->create_partition("/dev/sda1", Region(1, 0, 512), PartitionType::PRIMARY);
+
+    sda1->set_id(ID_SWAP);
+
+    BOOST_CHECK_THROW(sda1->set_id(ID_LINUX_HOME), Exception);
 }

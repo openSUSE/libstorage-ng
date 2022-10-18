@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -33,6 +33,7 @@
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/Format.h"
+#include "storage/SystemInfo/CmdParted.h"
 
 
 namespace storage
@@ -160,6 +161,20 @@ namespace storage
     bool
     Msdos::Impl::is_partition_id_supported(unsigned int id) const
     {
+	static const vector<unsigned int> supported_ids = {
+	    ID_UNKNOWN, ID_LINUX, ID_SWAP, ID_LVM, ID_RAID, ID_IRST, ID_ESP, ID_PREP,
+	    ID_DIAG
+	};
+
+	if (contains(supported_ids, id))
+	    return true;
+
+	// For more ids the type command of parted 3.6 or the old suse specific type flag
+	// is needed.
+
+	if (!PartedVersion::supports_type_command() && !PartedVersion::supports_old_type_flag())
+	    return false;
+
 	return id > 0 && id <= 255;
     }
 
