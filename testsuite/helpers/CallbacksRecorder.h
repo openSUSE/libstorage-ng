@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "storage/Storage.h"
+#include "storage/UsedFeatures.h"
 
 
 namespace storage
@@ -26,7 +27,7 @@ namespace storage
 	virtual bool error(const string& message, const std::string& what) const override;
 
 	virtual bool missing_command(const string& message, const string& what,
-				     const string& command, uint64_t used_features) const override;
+				     const string& command, uf_t used_features) const override;
 
 	virtual bool ambiguity_partition_table_and_filesystem(const string& message, const string& what,
 							      const string& name, PtType pt_type,

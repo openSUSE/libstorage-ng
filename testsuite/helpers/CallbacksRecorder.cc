@@ -35,7 +35,7 @@ namespace storage
 
     bool
     ProbeCallbacksRecorder::missing_command(const string& message, const string& what,
-					    const string& command, uint64_t used_features) const
+					    const string& command, uf_t used_features) const
     {
 	messages.push_back("missing-command: message = '" + message + "', what = '" + what + "', "
 			   "command = '" + command + "', used-features = " + to_string(used_features));

@@ -50,6 +50,14 @@ namespace storage
 
 
     /**
+     * Convert the UsedFeaturesDependencyType used_features_dependency_type to a string.
+     *
+     * @see UsedFeaturesDependencyType
+     */
+    std::string get_used_features_dependency_type_name(UsedFeaturesDependencyType used_features_dependency_type);
+
+
+    /**
      * Type for used features.
      */
     using uf_t = uint64_t;
@@ -90,7 +98,9 @@ namespace storage
 	UF_PMEM = 1 << 29,
 	UF_NVME = 1 << 28,
 
+	/** Quota for ext4 or xfs. Not for btrfs. */
 	UF_QUOTA = 1 << 21,
+
 	UF_SNAPSHOTS = 1 << 22
     };
 

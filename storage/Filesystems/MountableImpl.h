@@ -206,6 +206,7 @@ namespace storage
 	virtual uf_t used_features(UsedFeaturesDependencyType used_features_dependency_type) const override;
 
 	virtual uf_t used_features_pure() const = 0;
+	virtual uf_t used_features_pure(const MountPoint* mount_point) const { return 0; }
 
 	virtual uf_t do_create_used_features() const override { return used_features_pure(); }
 	virtual uf_t do_resize_used_features() const override { return used_features_pure(); }
