@@ -37,6 +37,7 @@
 #include "storage/Holders/Holder.h"
 #include "storage/StorageImpl.h"
 #include "storage/Utils/Format.h"
+#include "storage/Utils/LoggerImpl.h"
 #include "storage/GraphvizImpl.h"
 #include "storage/Registries.h"
 
@@ -258,6 +259,9 @@ namespace storage
 	    const Device* device = graph[vertex].get();
 	    ret |= device->get_impl().used_features(used_features_dependency_type);
 	}
+
+	y2mil("used-features " << get_used_features_dependency_type_name(used_features_dependency_type) <<
+	      " " << get_used_features_names(ret));
 
 	return ret;
     }

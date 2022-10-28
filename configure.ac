@@ -133,6 +133,7 @@ AC_CONFIG_FILES([
 	testsuite/Devices/Makefile
 	testsuite/freeinfo/Makefile
 	testsuite/performance/Makefile
+	testsuite/used-features/Makefile
 	testsuite/commented-config-file/Makefile
 	testsuite/CompoundAction/Makefile
 	integration-tests/Makefile

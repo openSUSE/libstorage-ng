@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -57,6 +57,8 @@ namespace storage
 
 	virtual bool supports_uuid() const override { return true; }
 	virtual bool supports_modify_uuid() const override { return true; }
+
+	virtual uf_t used_features_pure(const MountPoint* mount_point) const override;
 
 	virtual void probe_pass_2b(Prober& prober) override;
 

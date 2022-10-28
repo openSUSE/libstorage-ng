@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -27,6 +27,7 @@
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Holders/FilesystemUser.h"
 #include "storage/Filesystems/ExtImpl.h"
+#include "storage/Filesystems/MountPoint.h"
 #include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/SystemInfo/CmdDumpe2fs.h"
 #include "storage/SystemInfo/CmdResize2fs.h"
@@ -45,6 +46,22 @@ namespace storage
     Ext::Impl::Impl(const xmlNode* node)
 	: BlkFilesystem::Impl(node)
     {
+    }
+
+
+    uf_t
+    Ext::Impl::used_features_pure(const MountPoint* mount_point) const
+    {
+	static const regex rx1("(usr||grp|prj)quota", regex::extended);
+	static const regex rx2("(usr|grp)jquota=.+", regex::extended);
+
+	for (const string& mount_option : mount_point->get_mount_options())
+	{
+	    if (regex_match(mount_option, rx1) || regex_match(mount_option, rx2))
+		return UF_QUOTA;
+	}
+
+	return 0;
     }
 
 

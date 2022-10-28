@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -24,6 +24,7 @@
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Holders/FilesystemUser.h"
 #include "storage/Filesystems/XfsImpl.h"
+#include "storage/Filesystems/MountPoint.h"
 #include "storage/Devicegraph.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
@@ -44,6 +45,22 @@ namespace storage
     Xfs::Impl::Impl(const xmlNode* node)
 	: BlkFilesystem::Impl(node)
     {
+    }
+
+
+    uf_t
+    Xfs::Impl::used_features_pure(const MountPoint* mount_point) const
+    {
+	static const regex rx1("(u|usr||g|grp|p|prj)quota", regex::extended);
+	static const regex rx2("(u||g|p)qnoenforce", regex::extended);
+
+	for (const string& mount_option : mount_point->get_mount_options())
+	{
+	    if (regex_match(mount_option, rx1) || regex_match(mount_option, rx2))
+		return UF_QUOTA;
+	}
+
+	return 0;
     }
 
 

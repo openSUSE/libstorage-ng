@@ -115,7 +115,7 @@
       <path>/</path>
       <mount-by>uuid</mount-by>
       <mount-type>ext4</mount-type>
-      <mount-options>acl,user_xattr</mount-options>
+      <mount-options>usrquota,grpquota</mount-options>
       <in-etc-fstab>true</in-etc-fstab>
       <freq>0</freq>
       <passno>0</passno>

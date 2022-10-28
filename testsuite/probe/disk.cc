@@ -36,8 +36,8 @@ BOOST_AUTO_TEST_CASE(probe)
     TsCmpDevicegraph cmp(*probed, *staging);
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
 
-    BOOST_CHECK_EQUAL(required_features(probed), "ext4 swap");
-    BOOST_CHECK_EQUAL(suggested_features(probed), "ext4 swap");
+    BOOST_CHECK_EQUAL(required_features(probed), "ext4 quota swap");
+    BOOST_CHECK_EQUAL(suggested_features(probed), "ext4 quota swap");
 
     BOOST_CHECK_EQUAL(pools(&storage), "HDDs (512 B) [1], SSDs (512 B) [1]");
 }

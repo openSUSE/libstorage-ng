@@ -440,7 +440,7 @@
     <File>
       <name>/etc/fstab</name>
       <content>UUID=86b64dbc-0530-4a4b-bca7-72e2c8b4e317 swap                 swap       defaults              0 0</content>
-      <content>UUID=9f0f12c5-4d18-494b-b234-7342c953e99a /                    ext4       acl,user_xattr        1 1</content>
+      <content>UUID=9f0f12c5-4d18-494b-b234-7342c953e99a /                    ext4       usrquota,grpquota     1 1</content>
       <content>LABEL=HOME /home ext4 defaults 0 0</content>
     </File>
     <File>

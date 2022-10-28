@@ -25,12 +25,27 @@
 #include <boost/algorithm/string.hpp>
 
 #include "storage/UsedFeatures.h"
+#include "storage/Utils/Enum.h"
 
 
 namespace storage
 {
 
     using namespace std;
+
+
+    template <> struct EnumTraits<UsedFeaturesDependencyType> { static const vector<string> names; };
+
+    const vector<string> EnumTraits<UsedFeaturesDependencyType>::names({
+	"REQUIRED", "SUGGESTED"
+    });
+
+
+    string
+    get_used_features_dependency_type_name(UsedFeaturesDependencyType used_features_dependency_type)
+    {
+	return toString(used_features_dependency_type);
+    }
 
 
     string

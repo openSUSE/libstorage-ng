@@ -313,6 +313,8 @@ namespace storage
 	if (active || in_etc_fstab)
 	    ret |= get_mountable()->get_impl().used_features_pure();
 
+	ret |= get_mountable()->get_impl().used_features_pure(get_non_impl());
+
 	return ret;
     }
 
