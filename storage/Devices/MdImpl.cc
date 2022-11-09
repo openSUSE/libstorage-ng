@@ -1136,7 +1136,8 @@ namespace storage
 	     md_level == MdLevel::RAID10) && journals.empty())
 	    cmd_line += " --bitmap=internal";
 
-	if (chunk_size > 0)
+	// mdadm 3.2 bails out if a chunk size is provided for RAID1 (bsc#1205172)
+	if (md_level != MdLevel::RAID1 && chunk_size > 0)
 	    cmd_line += " --chunk=" + to_string(chunk_size / KiB);
 
 	if (md_parity != MdParity::DEFAULT)
