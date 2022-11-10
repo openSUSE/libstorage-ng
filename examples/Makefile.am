@@ -8,7 +8,7 @@ AM_CPPFLAGS = -I$(top_srcdir)
 
 LDADD = ../storage/libstorage-ng.la
 
-noinst_PROGRAMS = compound_actions create1
+noinst_PROGRAMS = compound_actions create1 simple-fstab simple-crypttab
 
 AM_DEFAULT_SOURCE_EXT = .cc
 

@@ -6,4 +6,6 @@
 .libs
 create1
 compound_actions
+simple-fstab
+simple-crypttab
 !data/*
