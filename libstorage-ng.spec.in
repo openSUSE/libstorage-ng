@@ -149,6 +149,7 @@ This package contains utils for libstorage-ng.
 Summary:        Integration tests for libstorage-ng
 Group:          Development/Tools/Other
 Requires:       libstorage-ng-python3
+BuildArch:      noarch
 
 %description integration-tests
 This package contains integration tests for libstorage-ng.
