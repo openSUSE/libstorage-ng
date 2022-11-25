@@ -374,7 +374,7 @@ namespace storage
 
 	if (mount_point->get_path() == "/")
 	{
-	    string path = get_storage()->prepend_rootprefix("/etc");
+	    string path = get_storage()->prepend_rootprefix(ETC_DIR);
 	    if (access(path.c_str(), R_OK) != 0)
 		createPath(path);
 	}
