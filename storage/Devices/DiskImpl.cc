@@ -335,34 +335,16 @@ namespace storage
 
 
     void
-    Disk::Impl::process_udev_paths(vector<string>& udev_paths) const
+    Disk::Impl::process_udev_paths(vector<string>& udev_paths, const UdevFilters& udev_filters) const
     {
-	// See doc/udev.md.
-
-	static const vector<string> allowed_prefixes = { "scsi-", "pci-", "ccw-", "platform-" };
-
-	erase_if(udev_paths, [](const string& udev_path) {
-	    return none_of(allowed_prefixes.begin(), allowed_prefixes.end(), [&udev_path](const string& prefix)
-			   { return boost::starts_with(udev_path, prefix); });
-	});
+	udev_filter(udev_paths, udev_filters.disk.allowed_path_patterns);
     }
 
 
     void
-    Disk::Impl::process_udev_ids(vector<string>& udev_ids) const
+    Disk::Impl::process_udev_ids(vector<string>& udev_ids, const UdevFilters& udev_filters) const
     {
-	// See doc/udev.md.
-
-	// pmem- yet not listed here due to bsc #1140630
-
-	static const vector<string> allowed_prefixes = { "ata-", "scsi-", "usb-", "wwn-", "nvme-", "mmc-" };
-
-	erase_if(udev_ids, [](const string& udev_id) {
-	    return none_of(allowed_prefixes.begin(), allowed_prefixes.end(), [&udev_id](const string& prefix)
-			   { return boost::starts_with(udev_id, prefix); });
-	});
-
-	stable_partition(udev_ids.begin(), udev_ids.end(), string_starts_with("ata-"));
+	udev_filter(udev_ids, udev_filters.disk.allowed_id_patterns);
     }
 
 

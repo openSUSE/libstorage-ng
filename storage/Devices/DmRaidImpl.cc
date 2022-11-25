@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2021] SUSE LLC
+ * Copyright (c) [2017-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -271,13 +271,16 @@ namespace storage
 
 
     void
-    DmRaid::Impl::process_udev_ids(vector<string>& udev_ids) const
+    DmRaid::Impl::process_udev_paths(vector<string>& udev_paths, const UdevFilters& udev_filters) const
     {
-	// See doc/udev.md.
+	udev_filter(udev_paths, udev_filters.dm_raid.allowed_path_patterns);
+    }
 
-	erase_if(udev_ids, [](const string& udev_id) {
-	    return !boost::starts_with(udev_id, "raid-");
-	});
+
+    void
+    DmRaid::Impl::process_udev_ids(vector<string>& udev_ids, const UdevFilters& udev_filters) const
+    {
+	udev_filter(udev_ids, udev_filters.dm_raid.allowed_id_patterns);
     }
 
 }

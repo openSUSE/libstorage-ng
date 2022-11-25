@@ -29,6 +29,7 @@
 #include <functional>
 
 #include "storage/SystemInfo/SystemInfo.h"
+#include "storage/Utils/UdevFilters.h"
 
 
 namespace storage
@@ -84,6 +85,8 @@ namespace storage
 
 	const ProbeCallbacks* get_probe_callbacks() const { return probe_callbacks; }
 
+	const UdevFilters& get_udev_filters() const { return udev_filters; }
+
 	Devicegraph* get_system() { return system; }
 
 	SystemInfo::Impl& get_system_info() { return system_info; }
@@ -112,6 +115,8 @@ namespace storage
 	const Storage& storage;
 
 	const ProbeCallbacks* probe_callbacks;
+
+	const UdevFilters udev_filters;
 
 	Devicegraph* system;
 

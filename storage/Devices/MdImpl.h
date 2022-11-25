@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -142,7 +142,8 @@ namespace storage
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
 	virtual void print(std::ostream& out) const override;
 
-	virtual void process_udev_ids(vector<string>& udev_ids) const override;
+	virtual void process_udev_paths(vector<string>& udev_paths, const UdevFilters& udev_filters) const override;
+	virtual void process_udev_ids(vector<string>& udev_ids, const UdevFilters& udev_filters) const override;
 
 	virtual uf_t used_features(UsedFeaturesDependencyType used_features_dependency_type) const override;
 

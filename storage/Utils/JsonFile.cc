@@ -20,6 +20,8 @@
  */
 
 
+#include <stdio.h>
+#include <sys/stat.h>
 #include <functional>
 #include <memory>
 #include <sstream>
@@ -27,6 +29,7 @@
 #include "storage/Utils/JsonFile.h"
 #include "storage/Utils/ExceptionImpl.h"
 #include "storage/Utils/AppUtil.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage
@@ -56,6 +59,53 @@ namespace storage
 	}
 
 	ST_THROW(Exception("json parser failed"));
+    }
+
+
+    JsonFile::JsonFile(const string& filename)
+    {
+	FILE* fp = fopen(filename.c_str(), "r");
+	if (!fp)
+	    ST_THROW(IOException(sformat("open for json file '%s' failed", filename)));
+
+	struct stat st;
+	if (fstat(fileno(fp), &st) != 0)
+	{
+	    fclose(fp);
+	    ST_THROW(IOException(sformat("stat for json file '%s' failed", filename)));
+	}
+
+	vector<char> data(st.st_size);
+	if (fread(data.data(), 1, st.st_size, fp) != (size_t)(st.st_size))
+	{
+	    fclose(fp);
+	    ST_THROW(Exception(sformat("read for json file '%s' failed", filename)));
+	}
+
+	if (fclose(fp) != 0)
+	{
+	    ST_THROW(Exception(sformat("close for json file '%s' failed", filename)));
+	}
+
+	json_tokener* tokener = json_tokener_new();
+
+	root = json_tokener_parse_ex(tokener, data.data(), st.st_size);
+
+	if (json_tokener_get_error(tokener) != json_tokener_success)
+	{
+	    json_tokener_free(tokener);
+	    json_object_put(root);
+	    ST_THROW(Exception(sformat("parsing json file '%s' failed", filename)));
+	}
+
+	if (tokener->char_offset != st.st_size)
+	{
+	    json_tokener_free(tokener);
+	    json_object_put(root);
+	    ST_THROW(Exception(sformat("excessive content in json file '%s'", filename)));
+	}
+
+	json_tokener_free(tokener);
     }
 
 
