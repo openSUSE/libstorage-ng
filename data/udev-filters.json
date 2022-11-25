@@ -1,7 +1,8 @@
 {
     "Disk" : {
 	"allowed-path-patterns" : [ "ccw-*", "scsi-*", "pci-*", "platform-*" ],
-	"allowed-id-patterns" : [ "ata-*", "scsi-*", "wwn-*", "nvme-*",
+	"allowed-id-patterns" : [ "ata-*", "scsi-*", "wwn-*",
+				  "nvme-uuid.*", "nvme-eui.*", "nvme-nvme.*",
 				  "usb-*", "mmc-*" ]
     },
     "Dasd" : {
