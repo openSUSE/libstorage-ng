@@ -107,6 +107,7 @@ AC_CONFIG_FILES([
 	doc/autodocs/html/Makefile
 	doc/autodocs/xml/Makefile
 	po/Makefile
+	data/Makefile
 	utils/Makefile
 	examples/Makefile
 	examples/SystemInfo/Makefile

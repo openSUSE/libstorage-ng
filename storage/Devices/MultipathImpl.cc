@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2021] SUSE LLC
+ * Copyright (c) [2017-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -326,19 +326,16 @@ namespace storage
 
 
     void
-    Multipath::Impl::process_udev_ids(vector<string>& udev_ids) const
+    Multipath::Impl::process_udev_paths(vector<string>& udev_paths, const UdevFilters& udev_filters) const
     {
-	// See doc/udev.md.
+	udev_filter(udev_paths, udev_filters.multipath.allowed_path_patterns);
+    }
 
-	static const vector<string> allowed_prefixes = { "scsi-", "wwn-", "dm-name-", "dm-uuid-" };
 
-	erase_if(udev_ids, [](const string& udev_id) {
-	    return none_of(allowed_prefixes.begin(), allowed_prefixes.end(), [&udev_id](const string& prefix)
-			   { return boost::starts_with(udev_id, prefix); });
-	});
-
-	stable_partition(udev_ids.begin(), udev_ids.end(), string_starts_with("wwn-"));
-	stable_partition(udev_ids.begin(), udev_ids.end(), string_starts_with("scsi-"));
+    void
+    Multipath::Impl::process_udev_ids(vector<string>& udev_ids, const UdevFilters& udev_filters) const
+    {
+	udev_filter(udev_ids, udev_filters.multipath.allowed_id_patterns);
     }
 
 

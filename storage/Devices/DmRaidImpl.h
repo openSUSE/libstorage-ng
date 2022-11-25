@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2021] SUSE LLC
+ * Copyright (c) [2017-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -90,7 +90,8 @@ namespace storage
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
 	virtual void print(std::ostream& out) const override;
 
-	virtual void process_udev_ids(vector<string>& udev_ids) const override;
+	virtual void process_udev_paths(vector<string>& udev_paths, const UdevFilters& udev_filters) const override;
+	virtual void process_udev_ids(vector<string>& udev_ids, const UdevFilters& udev_filters) const override;
 
     private:
 

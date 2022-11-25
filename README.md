@@ -60,7 +60,7 @@ Running Unit Tests
 
 ```sh
 make -j$(nproc) install DESTDIR=/tmp/scratch
-make -j$(nproc) check LOCALEDIR=/tmp/scratch/usr/share/locale
+make -j$(nproc) check LIBSTORAGE_LOCALEDIR=/tmp/scratch/usr/share/locale LIBSTORAGE_CONFDIR=/tmp/scratch/usr/share/libstorage
 ```
 
 

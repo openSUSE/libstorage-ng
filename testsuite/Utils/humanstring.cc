@@ -26,7 +26,7 @@ public:
 
     Fixture()
     {
-	const char* localedir = getenv("LOCALEDIR");
+	const char* localedir = getenv("LIBSTORAGE_LOCALEDIR");
 	if (localedir)
 	    bindtextdomain("libstorage-ng", localedir);
     }

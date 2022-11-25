@@ -11,6 +11,7 @@ libutils_la_SOURCES =					\
 	CommentedConfigFile.cc  CommentedConfigFile.h	\
 	ColumnConfigFile.cc	ColumnConfigFile.h	\
 	Diff.cc			Diff.h			\
+	UdevFilters.cc		UdevFilters.h		\
 	Text.cc			Text.h			\
 	Format.h					\
 	MountPointPath.h	MountPointPath.cc	\

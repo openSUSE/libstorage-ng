@@ -110,13 +110,13 @@ namespace storage
 	    if (!cmd_udevadm_info.get_by_path_links().empty())
 	    {
 		udev_paths = cmd_udevadm_info.get_by_path_links();
-		process_udev_paths(udev_paths);
+		process_udev_paths(udev_paths, prober.get_udev_filters());
 	    }
 
 	    if (!cmd_udevadm_info.get_by_id_links().empty())
 	    {
 		udev_ids = cmd_udevadm_info.get_by_id_links();
-		process_udev_ids(udev_ids);
+		process_udev_ids(udev_ids, prober.get_udev_filters());
 	    }
 	}
     }

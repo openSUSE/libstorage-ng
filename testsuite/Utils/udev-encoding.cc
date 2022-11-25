@@ -4,9 +4,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include <stdlib.h>
 #include <iostream>
-#include <locale>
 
 #include "storage/Utils/AppUtil.h"
 

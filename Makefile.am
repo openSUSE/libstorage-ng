@@ -4,7 +4,7 @@
 
 VERSION = $(shell utils/git2log --version VERSION ; cat VERSION)
 
-SUBDIRS = storage doc po utils examples testsuite bindings integration-tests
+SUBDIRS = storage doc po data utils examples testsuite bindings integration-tests
 
 AUTOMAKE_OPTIONS = foreign dist-xz no-dist-gzip subdir-objects
 

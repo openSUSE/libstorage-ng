@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -320,24 +320,16 @@ namespace storage
 
 
     void
-    Dasd::Impl::process_udev_paths(vector<string>& udev_paths) const
+    Dasd::Impl::process_udev_paths(vector<string>& udev_paths, const UdevFilters& udev_filters) const
     {
-	// See doc/udev.md.
-
-	erase_if(udev_paths, [](const string& udev_path) {
-	    return !boost::starts_with(udev_path, "ccw-");
-	});
+	udev_filter(udev_paths, udev_filters.dasd.allowed_path_patterns);
     }
 
 
     void
-    Dasd::Impl::process_udev_ids(vector<string>& udev_ids) const
+    Dasd::Impl::process_udev_ids(vector<string>& udev_ids, const UdevFilters& udev_filters) const
     {
-	// See doc/udev.md.
-
-	erase_if(udev_ids, [](const string& udev_id) {
-	    return !boost::starts_with(udev_id, "ccw-");
-	});
+	udev_filter(udev_ids, udev_filters.dasd.allowed_id_patterns);
     }
 
 }

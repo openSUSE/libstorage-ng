@@ -38,8 +38,12 @@
 #define DEV_DISK_BY_PARTUUID_DIR DEV_DIR "/disk/by-partuuid"
 #define DEV_DISK_BY_PARTLABEL_DIR DEV_DIR "/disk/by-partlabel"
 
+#define ETC_DIR "/etc"
 #define SYSFS_DIR "/sys"
 #define PROC_DIR "/proc"
+
+#define ETC_LIBSTORAGE_DIR ETC_DIR "/libstorage"
+#define USR_SHARE_LIBSTORAGE_DIR "/usr/share/libstorage"
 
 #define EFIVARS_DIR SYSFS_DIR "/firmware/efi/efivars"
 
@@ -51,6 +55,10 @@
 #define DEV_NULL_FILE DEV_DIR "/null"
 #define DEV_ZERO_FILE DEV_DIR "/zero"
 #define DEV_URANDOM_FILE DEV_DIR "/urandom"
+
+#define UDEV_FILTERS_FILE "udev-filters.json"
+#define ETC_LIBSTORAGE_UDEV_FILTERS_FILE ETC_LIBSTORAGE_DIR "/" UDEV_FILTERS_FILE
+#define USR_SHARE_LIBSTORAGE_UDEV_FILTERS_FILE USR_SHARE_LIBSTORAGE_DIR "/" UDEV_FILTERS_FILE
 
 
 // commands

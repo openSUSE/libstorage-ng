@@ -534,20 +534,20 @@ namespace storage
 
 
     void
-    Partition::Impl::process_udev_paths(vector<string>& udev_paths) const
+    Partition::Impl::process_udev_paths(vector<string>& udev_paths, const UdevFilters& udev_filters) const
     {
 	const Partitionable* partitionable = get_partitionable();
 
-	partitionable->get_impl().process_udev_paths(udev_paths);
+	partitionable->get_impl().process_udev_paths(udev_paths, udev_filters);
     }
 
 
     void
-    Partition::Impl::process_udev_ids(vector<string>& udev_ids) const
+    Partition::Impl::process_udev_ids(vector<string>& udev_ids, const UdevFilters& udev_filters) const
     {
 	const Partitionable* partitionable = get_partitionable();
 
-	partitionable->get_impl().process_udev_ids(udev_ids);
+	partitionable->get_impl().process_udev_ids(udev_ids, udev_filters);
     }
 
 

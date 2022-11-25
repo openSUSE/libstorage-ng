@@ -30,6 +30,7 @@
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Devices/DeviceImpl.h"
 #include "storage/FreeInfo.h"
+#include "storage/Utils/UdevFilters.h"
 
 
 namespace storage
@@ -186,8 +187,8 @@ namespace storage
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override = 0;
 	virtual void print(std::ostream& out) const override = 0;
 
-	virtual void process_udev_paths(vector<string>& udev_paths) const { udev_paths.clear(); }
-	virtual void process_udev_ids(vector<string>& udev_ids) const { udev_ids.clear(); }
+	virtual void process_udev_paths(vector<string>& udev_paths, const UdevFilters& udev_filters) const { udev_paths.clear(); }
+	virtual void process_udev_ids(vector<string>& udev_ids, const UdevFilters& udev_filters) const { udev_ids.clear(); }
 
 	void wipe_device() const;
 	void discard_device() const;

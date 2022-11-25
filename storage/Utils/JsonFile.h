@@ -49,6 +49,8 @@ namespace storage
 
 	JsonFile(const vector<string>& lines);
 
+	JsonFile(const string& filename);
+
 	~JsonFile();
 
 	json_object* get_root() { return root; }

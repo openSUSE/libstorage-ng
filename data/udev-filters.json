@@ -1,0 +1,21 @@
+{
+    "Disk" : {
+	"allowed-path-patterns" : [ "ccw-*", "scsi-*", "pci-*", "platform-*" ],
+	"allowed-id-patterns" : [ "ata-*", "scsi-*", "wwn-*",
+				  "nvme-uuid.*", "nvme-eui.*", "nvme-nvme.*",
+				  "usb-*", "mmc-*" ]
+    },
+    "Dasd" : {
+	"allowed-path-patterns" : [ "ccw-*" ],
+	"allowed-id-patterns" : [ "ccw-*" ]
+    },
+    "Md" : {
+	"allowed-id-patterns" : [ "md-uuid-*" ]
+    },
+    "DmRaid" : {
+	"allowed-id-patterns" : [ "raid-*" ]
+    },
+    "Multipath" : {
+	"allowed-id-patterns" : [ "scsi-*", "wwn-*", "dm-name-*", "dm-uuid-*" ]
+    }
+}
