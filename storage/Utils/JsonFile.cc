@@ -83,29 +83,25 @@ namespace storage
 	}
 
 	if (fclose(fp) != 0)
-	{
 	    ST_THROW(Exception(sformat("close for json file '%s' failed", filename)));
-	}
 
-	json_tokener* tokener = json_tokener_new();
+	std::unique_ptr<json_tokener, std::function<void(json_tokener*)>> tokener(
+	    json_tokener_new(), [](json_tokener* p) { json_tokener_free(p); }
+	);
 
-	root = json_tokener_parse_ex(tokener, data.data(), st.st_size);
+	root = json_tokener_parse_ex(tokener.get(), data.data(), st.st_size);
 
-	if (json_tokener_get_error(tokener) != json_tokener_success)
+	if (json_tokener_get_error(tokener.get()) != json_tokener_success)
 	{
-	    json_tokener_free(tokener);
 	    json_object_put(root);
 	    ST_THROW(Exception(sformat("parsing json file '%s' failed", filename)));
 	}
 
 	if (tokener->char_offset != st.st_size)
 	{
-	    json_tokener_free(tokener);
 	    json_object_put(root);
 	    ST_THROW(Exception(sformat("excessive content in json file '%s'", filename)));
 	}
-
-	json_tokener_free(tokener);
     }
 
 
