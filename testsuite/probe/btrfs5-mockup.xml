@@ -25,7 +25,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/btrfs qgroup show -repc --raw (device:/dev/sdb1)</name>
+      <name>/sbin/btrfs qgroup show -rep --raw (device:/dev/sdb1)</name>
       <stdout>qgroupid         rfer         excl     max_rfer     max_excl parent  </stdout>
       <stdout>--------         ----         ----     --------     -------- ------  </stdout>
       <stdout>0/5             16384        16384         none         none ---     </stdout>
