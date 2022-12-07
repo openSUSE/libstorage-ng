@@ -18,7 +18,7 @@
       <stdout>GlobalReserve, single: total=3.25MiB, used=0.00B</stdout>
     </Command>
     <Command>
-      <name>/sbin/btrfs qgroup show -repc --raw (device:/dev/sdc)</name>
+      <name>/sbin/btrfs qgroup show -rep --raw (device:/dev/sdc)</name>
       <stderr>ERROR: can't list qgroups: quotas not enabled</stderr>
       <exit-code>1</exit-code>
     </Command>

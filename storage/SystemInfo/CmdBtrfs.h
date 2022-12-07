@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2017-2021] SUSE LLC
+ * Copyright (c) [2017-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -199,7 +199,7 @@ namespace storage
 
 	void parse(const vector<string>& lines);
 
-	long id;
+	long id = BtrfsSubvolume::Impl::unknown_id;
 
     };
 
@@ -226,8 +226,8 @@ namespace storage
 
 	void parse(const vector<string>& lines);
 
-	BtrfsRaidLevel metadata_raid_level;
-	BtrfsRaidLevel data_raid_level;
+	BtrfsRaidLevel metadata_raid_level = BtrfsRaidLevel::UNKNOWN;
+	BtrfsRaidLevel data_raid_level = BtrfsRaidLevel::UNKNOWN;
 
     };
 

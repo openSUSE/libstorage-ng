@@ -39,7 +39,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/sbin/btrfs qgroup show -repc --raw (device:/dev/sdb1)</name>
+      <name>/sbin/btrfs qgroup show -rep --raw (device:/dev/sdb1)</name>
       <stderr>ERROR: can't list qgroups: quotas not enabled</stderr>
       <exit-code>1</exit-code>
     </Command>

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2017-2020] SUSE LLC
+ * Copyright (c) [2017-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -317,7 +317,6 @@ namespace storage
 
 
     CmdBtrfsSubvolumeGetDefault::CmdBtrfsSubvolumeGetDefault(const key_t& key, const string& mount_point)
-	: id(BtrfsSubvolume::Impl::unknown_id)
     {
 	SystemCmd::Options cmd_options(BTRFS_BIN " subvolume get-default " + quote(mount_point),
 				       SystemCmd::DoThrow);
@@ -359,7 +358,6 @@ namespace storage
 
 
     CmdBtrfsFilesystemDf::CmdBtrfsFilesystemDf(const key_t& key, const string& mount_point)
-	: metadata_raid_level(BtrfsRaidLevel::UNKNOWN), data_raid_level(BtrfsRaidLevel::UNKNOWN)
     {
 	SystemCmd::Options cmd_options(BTRFS_BIN " filesystem df " + quote(mount_point),
 				       SystemCmd::DoThrow);
@@ -425,7 +423,7 @@ namespace storage
 
 	SystemCmd::Options cmd_options(BTRFS_BIN " qgroup show -rep --raw " + quote(mount_point),
 				       SystemCmd::DoThrow);
-	cmd_options.mockup_key = BTRFS_BIN " qgroup show -repc --raw (device:" + key + ")";
+	cmd_options.mockup_key = BTRFS_BIN " qgroup show -rep --raw (device:" + key + ")";
 	cmd_options.verify = [](int exit_code) { return exit_code == 0 || exit_code == 1; };
 
 	SystemCmd cmd(cmd_options);
@@ -440,15 +438,19 @@ namespace storage
     void
     CmdBtrfsQgroupShow::parse(const vector<string>& lines)
     {
+	// Output changed slightly between btrfsprogs 6.0.0 and 6.0.2. Handle both.
+
 	for (const string& line : lines)
 	{
-	    vector<string> columns;
-	    boost::split(columns, line, boost::is_any_of("\t "), boost::token_compress_on);
+	    const string line_trimmed = boost::trim_copy(line);
 
-	    if (columns.size() != 7)
+	    vector<string> columns;
+	    boost::split(columns, line_trimmed, boost::is_any_of("\t "), boost::token_compress_on);
+
+	    if (columns.size() < 6)
 		ST_THROW(Exception("failed to parse qgroup output"));
 
-	    if (columns[0] == "qgroupid" || columns[0] == "--------")
+	    if (columns[0] == "qgroupid" || columns[0] == "Qgroupid" || columns[0] == "--------")
 		continue;
 
 	    Entry entry;
@@ -472,7 +474,7 @@ namespace storage
 		entry.exclusive_limit = tmp;
 	    }
 
-	    if (columns[5] != "---")
+	    if (columns[5] != "---" && columns[5] != "-")
 	    {
 		vector<string> tmp;
 		boost::split(tmp, columns[5], boost::is_any_of(","), boost::token_compress_on);
