@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: base\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-05 08:30+0200\n"
-"PO-Revision-Date: 2022-12-03 12:13+0000\n"
+"PO-Revision-Date: 2022-12-20 06:49+0000\n"
 "Last-Translator: Kristijan Fremen Velkovski <me@krisfremen.com>\n"
 "Language-Team: Macedonian <https://l10n.opensuse.org/projects/libstorage/"
 "ng-master/mk/>\n"
@@ -975,9 +975,9 @@ msgstr "&Креирај"
 #. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
 #. /dev/sdb2 (1.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Create volume group %1$s (%2$s) from %3$s"
-msgstr "&Креирај"
+msgstr "Создади група за волумен %1$s (%2$s) од %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced with the volume group name (e.g. system),
@@ -1143,9 +1143,9 @@ msgstr "&Креирај"
 #. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
 #. /dev/sdb2 (1.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Creating volume group %1$s (%2$s) from %3$s"
-msgstr "&Креирај"
+msgstr "Создавање група за волумен %1$s (%2$s) од %3$s"
 
 #. TRANSLATORS: name of object
 msgid "DASD"
@@ -1411,9 +1411,9 @@ msgstr ""
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete partition %1$s (%2$s)"
-msgstr "&Креирај"
+msgstr "Избриши партиција %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
