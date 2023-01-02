@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2017-2022] SUSE LLC
+ * Copyright (c) [2017-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -225,6 +225,7 @@ namespace storage
     private:
 
 	void parse(const vector<string>& lines);
+	void parse_json(const vector<string>& lines);
 
 	BtrfsRaidLevel metadata_raid_level = BtrfsRaidLevel::UNKNOWN;
 	BtrfsRaidLevel data_raid_level = BtrfsRaidLevel::UNKNOWN;
@@ -270,10 +271,32 @@ namespace storage
     private:
 
 	void parse(const vector<string>& lines);
+	void parse_json(const vector<string>& lines);
 
 	bool quota = false;
 
 	vector<Entry> data;
+
+    };
+
+
+    class BtrfsVersion
+    {
+    public:
+
+	static void query_version();
+	static void parse_version(const string& version);
+
+	static bool supports_json_option_for_filesystem_df();
+	static bool supports_json_option_for_qgroup_show();
+
+    private:
+
+	static bool did_set_version;
+
+	static int major;
+	static int minor;
+	static int patchlevel;
 
     };
 

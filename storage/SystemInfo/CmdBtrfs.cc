@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2017-2022] SUSE LLC
+ * Copyright (c) [2017-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -29,6 +29,7 @@
 #include "storage/Utils/LoggerImpl.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/ExceptionImpl.h"
+#include "storage/Utils/JsonFile.h"
 #include "storage/SystemInfo/CmdBtrfs.h"
 #include "storage/Filesystems/BtrfsImpl.h"
 
@@ -48,10 +49,8 @@ namespace storage
 	if ( cmd.retcode() == 0 && !cmd.stdout().empty() )
 	    parse( cmd.stdout() );
 	else if ( ! cmd.stderr().empty() )
-	{
 	    ST_THROW( SystemCmdException( &cmd, "'btrfs filesystem show' complains: "
 					  + cmd.stderr().front() ) );
-	}
 
 	// Intentionally not throwing an exception here if retcode != 0 since
 	// this command might return 1 if no btrfs at all was found -- which is
@@ -161,16 +160,12 @@ namespace storage
 
     CmdBtrfsSubvolumeList::CmdBtrfsSubvolumeList(const key_t& key, const string& mount_point)
     {
-	SystemCmd::Options cmd_options(BTRFS_BIN " subvolume list -a -puq " + quote(mount_point),
-				       SystemCmd::DoThrow);
-	cmd_options.mockup_key = BTRFS_BIN " subvolume list -a -puq (device:" + key + ")";
+	const string tmp = BTRFS_BIN " subvolume list -a -puq ";
+	SystemCmd::Options cmd_options(tmp + quote(mount_point), SystemCmd::DoThrow);
+	cmd_options.mockup_key = tmp + "(device:" + key + ")";
 
 	SystemCmd cmd(cmd_options);
-	if (cmd.retcode() == 0)
-	    parse(cmd.stdout());
-	else
-	    ST_THROW(SystemCmdException(&cmd, "'btrfs subvolume list' failed, ret: " +
-					to_string(cmd.retcode())));
+	parse(cmd.stdout());
     }
 
 
@@ -261,11 +256,10 @@ namespace storage
 
 
     CmdBtrfsSubvolumeShow::CmdBtrfsSubvolumeShow(const key_t& key, const string& mount_point)
-       : uuid()
     {
-	SystemCmd::Options cmd_options(BTRFS_BIN " subvolume show " + quote(mount_point),
-				       SystemCmd::DoThrow);
-	cmd_options.mockup_key = BTRFS_BIN " subvolume show (device:" + key + ")";
+	const string tmp = BTRFS_BIN " subvolume show ";
+	SystemCmd::Options cmd_options(tmp + quote(mount_point), SystemCmd::DoThrow);
+	cmd_options.mockup_key = tmp + "(device:" + key + ")";
 
 	SystemCmd cmd(cmd_options);
 	parse(cmd.stdout());
@@ -318,16 +312,12 @@ namespace storage
 
     CmdBtrfsSubvolumeGetDefault::CmdBtrfsSubvolumeGetDefault(const key_t& key, const string& mount_point)
     {
-	SystemCmd::Options cmd_options(BTRFS_BIN " subvolume get-default " + quote(mount_point),
-				       SystemCmd::DoThrow);
-	cmd_options.mockup_key = BTRFS_BIN " subvolume get-default (device:" + key + ")";
+	const string tmp = BTRFS_BIN " subvolume get-default ";
+	SystemCmd::Options cmd_options(tmp + quote(mount_point), SystemCmd::DoThrow);
+	cmd_options.mockup_key = tmp + "(device:" + key + ")";
 
 	SystemCmd cmd(cmd_options);
-	if (cmd.retcode() == 0)
-	    parse(cmd.stdout());
-	else
-	    ST_THROW(SystemCmdException(&cmd, "'btrfs subvolume get-default' failed, ret: " +
-					to_string(cmd.retcode())));
+	parse(cmd.stdout());
     }
 
 
@@ -359,16 +349,17 @@ namespace storage
 
     CmdBtrfsFilesystemDf::CmdBtrfsFilesystemDf(const key_t& key, const string& mount_point)
     {
-	SystemCmd::Options cmd_options(BTRFS_BIN " filesystem df " + quote(mount_point),
-				       SystemCmd::DoThrow);
-	cmd_options.mockup_key = BTRFS_BIN " filesystem df (device:" + key + ")";
+	const bool json = BtrfsVersion::supports_json_option_for_filesystem_df();
+
+	const string tmp = BTRFS_BIN " " + string(json ? "--format json " : "") + "filesystem df ";
+	SystemCmd::Options cmd_options(tmp + quote(mount_point), SystemCmd::DoThrow);
+	cmd_options.mockup_key = tmp + "(device:" + key + ")";
 
 	SystemCmd cmd(cmd_options);
-	if (cmd.retcode() == 0)
-	    parse(cmd.stdout());
+	if (json)
+	    parse_json(cmd.stdout());
 	else
-	    ST_THROW(SystemCmdException(&cmd, "'btrfs filesystem df' failed, ret: " +
-					to_string(cmd.retcode())));
+	    parse(cmd.stdout());
     }
 
 
@@ -406,6 +397,39 @@ namespace storage
     }
 
 
+    void
+    CmdBtrfsFilesystemDf::parse_json(const vector<string>& lines)
+    {
+	JsonFile json_file(lines);
+
+	vector<json_object*> tmp1;
+	if (!get_child_nodes(json_file.get_root(), "filesystem-df", tmp1))
+	    ST_THROW(Exception("\"filesystem-df\" not found in json output of 'btrfs filesystem df'"));
+
+	for (json_object* tmp2 : tmp1)
+	{
+	    string tmp3, tmp4;
+
+	    if (!get_child_value(tmp2, "bg-type", tmp3))
+		ST_THROW(Exception("\"bg-type\" not found"));
+
+	    if (!get_child_value(tmp2, "bg-profile", tmp4))
+		ST_THROW(Exception("\"bg-profile\" not found"));
+
+	    boost::to_upper(tmp4, locale::classic());
+
+	    if (tmp3 == "Metadata")
+		metadata_raid_level = toValueWithFallback(tmp4, BtrfsRaidLevel::UNKNOWN);
+	    else if (tmp3 == "Data")
+		data_raid_level = toValueWithFallback(tmp4, BtrfsRaidLevel::UNKNOWN);
+	    else if (tmp3 == "Data+Metadata")
+		metadata_raid_level = data_raid_level = toValueWithFallback(tmp4, BtrfsRaidLevel::UNKNOWN);
+	}
+
+	y2mil(*this);
+    }
+
+
     std::ostream&
     operator<<(std::ostream& s, const CmdBtrfsFilesystemDf& cmd_btrfs_filesystem_df)
     {
@@ -421,16 +445,22 @@ namespace storage
 	// There is no btrfs command line way to just query if quota is enabled. So we
 	// assume it is enabled if 'btrfs qgroup show' does not report an error.
 
-	SystemCmd::Options cmd_options(BTRFS_BIN " qgroup show -rep --raw " + quote(mount_point),
-				       SystemCmd::DoThrow);
-	cmd_options.mockup_key = BTRFS_BIN " qgroup show -rep --raw (device:" + key + ")";
+	const bool json = BtrfsVersion::supports_json_option_for_qgroup_show();
+
+	const string tmp = BTRFS_BIN " " + string(json ? "--format json " : "") + "qgroup show -rep --raw ";
+	SystemCmd::Options cmd_options(tmp + quote(mount_point), SystemCmd::DoThrow);
+	cmd_options.mockup_key = tmp + "(device:" + key + ")";
 	cmd_options.verify = [](int exit_code) { return exit_code == 0 || exit_code == 1; };
 
 	SystemCmd cmd(cmd_options);
 	if (cmd.retcode() == 0)
 	{
 	    quota = true;
-	    parse(cmd.stdout());
+
+	    if (json)
+		parse_json(cmd.stdout());
+	    else
+		parse(cmd.stdout());
 	}
     }
 
@@ -438,7 +468,7 @@ namespace storage
     void
     CmdBtrfsQgroupShow::parse(const vector<string>& lines)
     {
-	// Output changed slightly between btrfsprogs 6.0.0 and 6.0.2. Handle both.
+	// Output changed slightly between btrfsprogs 6.0 and 6.0.2. Handle both.
 
 	for (const string& line : lines)
 	{
@@ -490,6 +520,62 @@ namespace storage
     }
 
 
+    void
+    CmdBtrfsQgroupShow::parse_json(const vector<string>& lines)
+    {
+	JsonFile json_file(lines);
+
+	vector<json_object*> tmp1;
+	if (!get_child_nodes(json_file.get_root(), "qgroup-show", tmp1))
+	    ST_THROW(Exception("\"qgroup-show\" not found in json output of 'btrfs qgroup show'"));
+
+	for (json_object* tmp2 : tmp1)
+	{
+	    Entry entry;
+
+	    string tmp3;
+
+	    if (!get_child_value(tmp2, "qgroupid", tmp3))
+		ST_THROW(Exception("\"qgroupid\" not found"));
+
+	    entry.id = BtrfsQgroup::Impl::parse_id(tmp3);
+
+	    if (!get_child_value(tmp2, "referenced", tmp3))
+		ST_THROW(Exception("\"referenced\" not found"));
+
+	    tmp3 >> entry.referenced;
+
+	    if (!get_child_value(tmp2, "exclusive", tmp3))
+		ST_THROW(Exception("\"exclusive\" not found"));
+
+	    tmp3 >> entry.exclusive;
+
+	    if (!get_child_value(tmp2, "max_referenced", tmp3))
+		ST_THROW(Exception("\"max_referenced\" not found"));
+
+	    if (tmp3 != "none")
+		tmp3 >> entry.referenced_limit;
+
+	    if (!get_child_value(tmp2, "max_exclusive", tmp3))
+		ST_THROW(Exception("\"max_exclusive\" not found"));
+
+	    if (tmp3 != "none")
+		tmp3 >> entry.exclusive_limit;
+
+	    vector<json_object*> tmp4;
+	    if (!get_child_nodes(tmp2, "parents", tmp4))
+		ST_THROW(Exception("\"parents\" not found"));
+
+	    for (json_object* tmp5 : tmp4)
+		entry.parents_id.push_back(BtrfsQgroup::Impl::parse_id(json_object_get_string(tmp5)));
+
+	    data.push_back(entry);
+	}
+
+	y2mil(*this);
+    }
+
+
     std::ostream&
     operator<<(std::ostream& s, const CmdBtrfsQgroupShow& cmd_btrfs_qgroups_show)
     {
@@ -529,5 +615,66 @@ namespace storage
 
 	return s << '\n';
     }
+
+
+    void
+    BtrfsVersion::query_version()
+    {
+	if (did_set_version)
+	    return;
+
+	SystemCmd cmd(BTRFS_BIN " --version", SystemCmd::DoThrow);
+	if (cmd.stdout().empty())
+	    ST_THROW(SystemCmdException(&cmd, "failed to query btrfs version"));
+
+	parse_version(cmd.stdout()[0]);
+    }
+
+
+    void
+    BtrfsVersion::parse_version(const string& version)
+    {
+	// example versions: "6.0", "6.0.2"
+	const regex version_rx("btrfs-progs v([0-9]+)\\.([0-9]+)(\\.([0-9]+)?)?", regex::extended);
+
+	smatch match;
+
+	if (!regex_match(version, match, version_rx))
+	    ST_THROW(Exception("failed to parse btrfs version"));
+
+	major = stoi(match[1]);
+	minor = stoi(match[2]);
+	patchlevel = match[4].length() == 0 ? 0 : stoi(match[4]);
+
+	y2mil("major:" << major << " minor:" << minor << " patchlevel:" << patchlevel);
+
+	did_set_version = true;
+    }
+
+
+    bool
+    BtrfsVersion::supports_json_option_for_filesystem_df()
+    {
+	query_version();
+
+	return major >= 7 || (major == 6 && minor >= 1);
+    }
+
+
+    bool
+    BtrfsVersion::supports_json_option_for_qgroup_show()
+    {
+	query_version();
+
+	// buggy in 6.1, reported, assume fixed in 6.1.1 (2023-01-02)
+	return major >= 7 || (major == 6 && minor >= 2) || (major == 6 && minor == 1 && patchlevel >= 1);
+    }
+
+
+    bool BtrfsVersion::did_set_version = false;
+
+    int BtrfsVersion::major = 0;
+    int BtrfsVersion::minor = 0;
+    int BtrfsVersion::patchlevel = 0;
 
 }

@@ -44,11 +44,12 @@ namespace storage
     Parted::Parted(const string& device)
 	: device(device)
     {
-	SystemCmd::Options options(PARTED_BIN " --script " +
-				   string(PartedVersion::supports_json_option() ? "--json " : "--machine ") +
-				   quote(device) + " unit s print", SystemCmd::DoThrow);
+	const bool json = PartedVersion::supports_json_option();
+
+	SystemCmd::Options options(PARTED_BIN " --script " + string(json ? "--json " : "--machine ") + quote(device) +
+				   " unit s print", SystemCmd::DoThrow);
 	options.verify = [](int) { return true; };
-	if (!PartedVersion::supports_json_option())
+	if (!json)
 	    options.env.push_back("PARTED_PRINT_NUMBER_OF_PARTITION_SLOTS=1");
 
 	SystemCmd cmd(options);
@@ -101,7 +102,7 @@ namespace storage
 
 	    json_object* tmp1;
 	    if (!get_child_node(json_file.get_root(), "disk", tmp1))
-		ST_THROW(Exception("\"disk\" not found in json output of parted"));
+		ST_THROW(Exception("\"disk\" not found in json output of 'parted'"));
 
 	    scan_device(tmp1);
 
@@ -109,7 +110,7 @@ namespace storage
 	    {
 		vector<json_object*> tmp2;
 		if (!get_child_nodes(tmp1, "partitions", tmp2))
-		    ST_THROW(Exception("\"partitions\" not found in json output of parted"));
+		    ST_THROW(Exception("\"partitions\" not found in json output of 'parted'"));
 
 		for (json_object* tmp3 : tmp2)
 		    scan_entry(tmp3);

@@ -34,6 +34,11 @@
       <stdout>/dev/mapper/crypto: UUID="737d1600-e45a-4084-883d-a0b239399e8e" UUID_SUB="b5ad0172-3a45-403e-a71e-7bf79ad17028" BLOCK_SIZE="4096" TYPE="btrfs"</stdout>
     </Command>
     <Command>
+      <!-- output faked -->
+      <name>/sbin/btrfs --version</name>
+      <stdout>btrfs-progs v6.0</stdout>
+    </Command>
+    <Command>
       <name>/sbin/btrfs filesystem df (device:/dev/mapper/crypto)</name>
       <stdout>Data, single: total=8.00MiB, used=0.00B</stdout>
       <stdout>System, DUP: total=8.00MiB, used=16.00KiB</stdout>
