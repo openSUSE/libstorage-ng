@@ -19,6 +19,7 @@ void
 check(const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
+    Mockup::set_command(BTRFS_BIN " --version", RemoteCommand({ "btrfs-progs v6.0" }, {}, 0));
     Mockup::set_command(BTRFS_BIN " filesystem df (device:/dev/system/btrfs)", input);
 
     CmdBtrfsFilesystemDf cmd_btrfs_filesystem_get_default(
@@ -57,8 +58,7 @@ BOOST_AUTO_TEST_CASE(parse1)
 
 
 /*
- * In mixed mode metadata and data are identical and reported
- * together.
+ * In mixed mode metadata and data are identical and reported together.
  */
 BOOST_AUTO_TEST_CASE(parse2)
 {
@@ -77,10 +77,9 @@ BOOST_AUTO_TEST_CASE(parse2)
 
 
 /*
- * During a balance job to convert the RAID level several RAID levels
- * can be reported. Since this is only an interim state is not handle
- * it all its beauty. Instead just the last reported RAID level is
- * used.
+ * During a balance job to convert the RAID level several RAID levels can be
+ * reported. Since this is only an interim state it is not handle in all its
+ * beauty. Instead just the last reported RAID level is used.
  */
 BOOST_AUTO_TEST_CASE(parse3)
 {

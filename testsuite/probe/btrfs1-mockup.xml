@@ -16,6 +16,11 @@
       <stdout>/dev/sr0: BLOCK_SIZE="2048" UUID="2020-05-04-12-32-55-98" LABEL="openSUSE-Tumbleweed-DVD-x86_6422" TYPE="iso9660" PTUUID="0af58e48" PTTYPE="dos"</stdout>
     </Command>
     <Command>
+      <!-- output faked -->
+      <name>/sbin/btrfs --version</name>
+      <stdout>btrfs-progs v6.0</stdout>
+    </Command>
+    <Command>
       <name>/sbin/btrfs filesystem df (device:/dev/sda2)</name>
       <stdout>Data, single: total=3.01GiB, used=2.89GiB</stdout>
       <stdout>System, DUP: total=8.00MiB, used=16.00KiB</stdout>

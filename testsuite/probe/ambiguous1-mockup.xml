@@ -11,6 +11,11 @@
       <stdout>/dev/sdc: UUID="d090269c-1a57-4bd3-a182-5a300b818a72" UUID_SUB="ac4735ad-3176-4f88-a9d8-7744f9c56548" BLOCK_SIZE="4096" TYPE="btrfs" PTUUID="401f8ba4" PTTYPE="dos"</stdout>
     </Command>
     <Command>
+      <!-- output faked -->
+      <name>/sbin/btrfs --version</name>
+      <stdout>btrfs-progs v6.0</stdout>
+    </Command>
+    <Command>
       <name>/sbin/btrfs filesystem df (device:/dev/sdc)</name>
       <stdout>Data, single: total=8.00MiB, used=0.00B</stdout>
       <stdout>System, DUP: total=8.00MiB, used=16.00KiB</stdout>

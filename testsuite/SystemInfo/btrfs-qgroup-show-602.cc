@@ -19,6 +19,7 @@ void
 check(const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
+    Mockup::set_command(BTRFS_BIN " --version", RemoteCommand({ "btrfs-progs v6.0.2" }, {}, 0));
     Mockup::set_command(BTRFS_BIN " qgroup show -rep --raw (device:/dev/system/btrfs)", input);
 
     CmdBtrfsQgroupShow cmd_btrfs_qgroup_show(
@@ -37,32 +38,10 @@ check(const vector<string>& input, const vector<string>& output)
 }
 
 
-BOOST_AUTO_TEST_CASE(parse_btrfsprogs_6_0_0)
+BOOST_AUTO_TEST_CASE(parse)
 {
-    vector<string> input = {
-	"qgroupid         rfer         excl     max_rfer     max_excl parent  ",
-	"--------         ----         ----     --------     -------- ------  ",
-	"0/5             16384        16384         none         none ---     ",
-	"0/256           16384        16384         none         none 1/0     ",
-	"0/257           16384        16384         none         none ---     ",
-	"1/0             32768        32768         none   2147483648 ---     ",
-	"2/0                 0            0   1073741824         none ---     "
-    };
+    set_logger(get_stdout_logger());
 
-    vector<string> output = {
-	"id:0/5 referenced:16384 exclusive:16384",
-	"id:0/256 referenced:16384 exclusive:16384 parents:1/0",
-	"id:0/257 referenced:16384 exclusive:16384",
-	"id:1/0 referenced:32768 exclusive:32768 exclusive-limit:2147483648",
-	"id:2/0 referenced:0 exclusive:0 referenced-limit:1073741824"
-    };
-
-    check(input, output);
-}
-
-
-BOOST_AUTO_TEST_CASE(parse_btrfsprogs_6_0_2)
-{
     vector<string> input = {
 	"Qgroupid    Referenced    Exclusive  Max referenced  Max exclusive Parent     Path ",
 	"--------    ----------    ---------  --------------  ------------- ------     ---- ",

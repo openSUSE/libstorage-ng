@@ -22,6 +22,11 @@
       <stdout>/dev/sr0: UUID="2019-03-14-20-45-41-74" LABEL="SLE-15-SP1-Installer-DVD-x86.001" TYPE="iso9660" PTUUID="196d0a60" PTTYPE="dos"</stdout>
     </Command>
     <Command>
+      <!-- output faked -->
+      <name>/sbin/btrfs --version</name>
+      <stdout>btrfs-progs v6.0</stdout>
+    </Command>
+    <Command>
       <name>/sbin/btrfs filesystem df (device:/dev/sdb1)</name>
       <stdout>Data, RAID0: total=818.25MiB, used=256.00KiB</stdout>
       <stdout>System, RAID1: total=8.00MiB, used=16.00KiB</stdout>
