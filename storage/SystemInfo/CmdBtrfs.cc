@@ -491,18 +491,10 @@ namespace storage
 	    columns[2] >> entry.exclusive;
 
 	    if (columns[3] != "none")
-	    {
-		unsigned long long tmp;
-		columns[3] >> tmp;
-		entry.referenced_limit = tmp;
-	    }
+		columns[3] >> entry.referenced_limit;
 
 	    if (columns[4] != "none")
-	    {
-		unsigned long long tmp;
-		columns[4] >> tmp;
-		entry.exclusive_limit = tmp;
-	    }
+		columns[4] >> entry.exclusive_limit;
 
 	    if (columns[5] != "---" && columns[5] != "-")
 	    {
