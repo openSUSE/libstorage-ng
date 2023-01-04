@@ -11,7 +11,7 @@ check_PROGRAMS =								\
 	btrfs-filesystem-show.test 						\
 	btrfs-subvolume-get-default.test btrfs-subvolume-list.test		\
 	btrfs-subvolume-show.test btrfs-qgroup-show-60.test 			\
-	btrfs-qgroup-show-602.test btrfs-qgroup-show-611.test			\
+	btrfs-qgroup-show-602.test btrfs-qgroup-show-62.test			\
 	cryptsetup-status.test 							\
 	cryptsetup-bitlk-dump.test cryptsetup-luks-dump.test dasdview.test	\
 	dir.test dmraid.test dumpe2fs.test resize2fs.test ntfsresize.test	\

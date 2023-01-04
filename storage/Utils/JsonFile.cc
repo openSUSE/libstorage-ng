@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2022] SUSE LLC
+ * Copyright (c) [2017-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -35,11 +35,33 @@
 namespace storage
 {
 
+    class JsonTokener
+    {
+    public:
+
+	JsonTokener()
+	    : p(json_tokener_new())
+	{
+	    ST_CHECK_NEW(p);
+	}
+
+	~JsonTokener()
+	{
+	    json_tokener_free(p);
+	}
+
+	json_tokener* get() { return p; }
+
+    private:
+
+	json_tokener* p;
+
+    };
+
+
     JsonFile::JsonFile(const vector<string>& lines)
     {
-	std::unique_ptr<json_tokener, std::function<void(json_tokener*)>> tokener(
-	    json_tokener_new(), [](json_tokener* p) { json_tokener_free(p); }
-	);
+	JsonTokener tokener;
 
 	for (const string& line : lines)
 	{
@@ -85,9 +107,7 @@ namespace storage
 	if (fclose(fp) != 0)
 	    ST_THROW(Exception(sformat("close for json file '%s' failed", filename)));
 
-	std::unique_ptr<json_tokener, std::function<void(json_tokener*)>> tokener(
-	    json_tokener_new(), [](json_tokener* p) { json_tokener_free(p); }
-	);
+	JsonTokener tokener;
 
 	root = json_tokener_parse_ex(tokener.get(), data.data(), st.st_size);
 
@@ -97,7 +117,7 @@ namespace storage
 	    ST_THROW(Exception(sformat("parsing json file '%s' failed", filename)));
 	}
 
-	if (tokener->char_offset != st.st_size)
+	if (tokener.get()->char_offset != st.st_size)
 	{
 	    json_object_put(root);
 	    ST_THROW(Exception(sformat("excessive content in json file '%s'", filename)));
