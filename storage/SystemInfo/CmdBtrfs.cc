@@ -658,8 +658,8 @@ namespace storage
     {
 	query_version();
 
-	// buggy in 6.1, reported, assume fixed in 6.1.1 (2023-01-02)
-	return major >= 7 || (major == 6 && minor >= 2) || (major == 6 && minor == 1 && patchlevel >= 1);
+	// buggy in 6.1, reported, assume fixed in 6.2 (2023-01-04)
+	return major >= 7 || (major == 6 && minor >= 2);
     }
 
 

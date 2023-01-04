@@ -19,7 +19,7 @@ void
 check(const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command(BTRFS_BIN " --version", RemoteCommand({ "btrfs-progs v6.1.1" }, {}, 0));
+    Mockup::set_command(BTRFS_BIN " --version", RemoteCommand({ "btrfs-progs v6.2" }, {}, 0));
     Mockup::set_command(BTRFS_BIN " --format json qgroup show -rep --raw (device:/dev/system/btrfs)", input);
 
     CmdBtrfsQgroupShow cmd_btrfs_qgroup_show(
