@@ -129,7 +129,7 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_mounting)
     auto partition = Partition::find_by_name(staging, "/dev/sda3");
 
     auto fs = partition->get_blk_filesystem();
-    fs->create_mount_point("/home");
+    fs->create_mount_point("/test2");
 
     const Actiongraph* actiongraph = storage->calculate_actiongraph();
 
@@ -137,7 +137,7 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_mounting)
 
     BOOST_REQUIRE(compound_action);
 
-    BOOST_CHECK_EQUAL(compound_action->sentence(), "Mount partition /dev/sda3 (42.27 GiB) at /home");
+    BOOST_CHECK_EQUAL(compound_action->sentence(), "Mount partition /dev/sda3 (42.27 GiB) at /test2");
 }
 
 
