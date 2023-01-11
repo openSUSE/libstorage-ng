@@ -28,9 +28,6 @@
 #include <vector>
 #include <boost/algorithm/string.hpp>
 
-#include "storage/Utils/AppUtil.h"
-#include "storage/Utils/StorageTmpl.h"
-
 
 namespace storage
 {

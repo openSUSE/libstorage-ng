@@ -43,19 +43,19 @@ main()
 
 	cout << "Number of commit actions:" << actiongraph->get_commit_actions().size() << endl;
 
-	for(auto text : actiongraph->get_commit_actions_as_strings())
+	for (const string& text : actiongraph->get_commit_actions_as_strings())
 	    cout << text << endl;
 
-	auto compound_actions = actiongraph->get_compound_actions(); 
+	const vector<const CompoundAction*> compound_actions = actiongraph->get_compound_actions();
 
 	cout << "Number of compound actions:" << compound_actions.size() << endl;
 
-	for (auto& compound_action : compound_actions)
+	for (const CompoundAction* compound_action : compound_actions)
 	{
 	    cout << "--> Compound action (" << compound_action->get_impl().get_commit_actions().size() << ")" << endl;
 	    cout << compound_action->sentence() << endl;
 	}
-	
+
 	return EXIT_SUCCESS;
     }
     catch (const exception& e)
@@ -65,4 +65,3 @@ main()
 	return EXIT_FAILURE;
     }
 }
-

@@ -24,6 +24,7 @@
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/LoggerImpl.h"
+#include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/StorageTypes.h"
 
 

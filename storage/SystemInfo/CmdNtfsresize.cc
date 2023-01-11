@@ -21,11 +21,14 @@
  */
 
 
+#include <boost/algorithm/string.hpp>
+
 #include "storage/SystemInfo/CmdNtfsresize.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/LoggerImpl.h"
-#include "storage/Utils/StorageTypes.h"
+#include "storage/Utils/StorageTmpl.h"
+#include "storage/Utils/ExceptionImpl.h"
 
 
 namespace storage

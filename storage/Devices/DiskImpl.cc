@@ -22,6 +22,7 @@
 
 
 #include <ctype.h>
+#include <boost/algorithm/string.hpp>
 
 #include "storage/Devices/DiskImpl.h"
 #include "storage/Devicegraph.h"
@@ -32,7 +33,6 @@
 #include "storage/Utils/Exception.h"
 #include "storage/Utils/Enum.h"
 #include "storage/Utils/StorageTmpl.h"
-#include "storage/Utils/StorageTypes.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/AppUtil.h"

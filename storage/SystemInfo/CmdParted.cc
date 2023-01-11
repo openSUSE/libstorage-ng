@@ -31,6 +31,7 @@
 #include "storage/Utils/Enum.h"
 #include "storage/Devices/PartitionImpl.h"
 #include "storage/Utils/StorageTypes.h"
+#include "storage/Utils/StorageTmpl.h"
 #include "storage/Devices/PartitionTable.h"
 #include "storage/Utils/Format.h"
 #include "storage/EnvironmentImpl.h"
@@ -458,10 +459,10 @@ namespace storage
     void
     Parted::scan_stderr(const vector<string>& stderr)
     {
-	gpt_undersized = find_if(stderr, string_contains("fix the GPT to use all")) != stderr.end();
+	gpt_undersized = contains_if(stderr, string_contains("fix the GPT to use all"));
 
-	gpt_backup_broken = find_if(stderr, string_contains("backup GPT table is corrupt, but the "
-							    "primary appears OK")) != stderr.end();
+	gpt_backup_broken = contains_if(stderr, string_contains("backup GPT table is corrupt, but the "
+								"primary appears OK"));
     }
 
 

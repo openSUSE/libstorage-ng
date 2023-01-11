@@ -126,14 +126,14 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_mounting)
 {
     initialize_with_devicegraph("devicegraph.xml");
 
-    auto partition = Partition::find_by_name(staging, "/dev/sda3");
+    Partition* partition = Partition::find_by_name(staging, "/dev/sda3");
 
-    auto fs = partition->get_blk_filesystem();
+    BlkFilesystem* fs = partition->get_blk_filesystem();
     fs->create_mount_point("/test2");
 
     const Actiongraph* actiongraph = storage->calculate_actiongraph();
 
-    auto compound_action = find_compound_action_by_target(actiongraph, partition);
+    const CompoundAction* compound_action = find_compound_action_by_target(actiongraph, partition);
 
     BOOST_REQUIRE(compound_action);
 
@@ -145,15 +145,15 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_deleting)
 {
     initialize_with_devicegraph("devicegraph.xml");
 
-    auto partition_name = "/dev/sda2";
+    string partition_name = "/dev/sda2";
 
     delete_partition(partition_name);
 
     const Actiongraph* actiongraph = storage->calculate_actiongraph();
 
-    auto deleted_partition = Partition::find_by_name(storage->get_system(), partition_name);
+    Partition* deleted_partition = Partition::find_by_name(storage->get_system(), partition_name);
 
-    auto compound_action = find_compound_action_by_target(actiongraph, deleted_partition);
+    const CompoundAction* compound_action = find_compound_action_by_target(actiongraph, deleted_partition);
 
     BOOST_REQUIRE(compound_action);
 

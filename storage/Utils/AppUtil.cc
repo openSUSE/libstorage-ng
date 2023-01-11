@@ -40,7 +40,6 @@
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/AppUtil.h"
-#include "storage/Utils/StorageTypes.h"
 #include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/Utils/LoggerImpl.h"
 #include "storage/Utils/Format.h"
