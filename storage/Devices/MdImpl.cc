@@ -23,6 +23,7 @@
 
 #include <ctype.h>
 #include <boost/integer/common_factor_rt.hpp>
+#include <boost/algorithm/string.hpp>
 
 #include "storage/Devices/MdImpl.h"
 #include "storage/Devices/MdContainerImpl.h"
@@ -38,7 +39,6 @@
 #include "storage/Utils/Exception.h"
 #include "storage/Utils/Enum.h"
 #include "storage/Utils/StorageTmpl.h"
-#include "storage/Utils/StorageTypes.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/StorageTmpl.h"

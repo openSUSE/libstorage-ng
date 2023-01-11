@@ -58,7 +58,7 @@ BOOST_AUTO_TEST_CASE(test_partitions)
 	Partition* sda1 = gpt->create_partition("/dev/sda1", Region(1 * 2048, 100 * 2048, 512), PartitionType::PRIMARY);
 	Ext4* ext4 = to_ext4(sda1->create_blk_filesystem(FsType::EXT4));
 
-	MountPoint* mount_point = ext4->create_mount_point("/test");
+	MountPoint* mount_point = ext4->create_mount_point("/test1");
 
 	BOOST_CHECK_EQUAL(mount_point->get_mount_by(), MountByType::UUID);
     }
@@ -69,7 +69,7 @@ BOOST_AUTO_TEST_CASE(test_partitions)
 	Partition* sda2 = gpt->create_partition("/dev/sda2", Region(1 * 2048, 100 * 2048, 512), PartitionType::PRIMARY);
 	Ext4* ext4 = to_ext4(sda2->create_blk_filesystem(FsType::EXT4));
 
-	MountPoint* mount_point = ext4->create_mount_point("/test");
+	MountPoint* mount_point = ext4->create_mount_point("/test2");
 
 	BOOST_CHECK_EQUAL(mount_point->get_mount_by(), MountByType::PATH);
     }
@@ -82,9 +82,9 @@ BOOST_AUTO_TEST_CASE(test_partitions)
 	BtrfsSubvolume* top_level = btrfs->get_top_level_btrfs_subvolume();
 	BtrfsSubvolume* subvolume = top_level->create_btrfs_subvolume("test");
 
-	MountPoint* mount_point1 = btrfs->create_mount_point("/test1");
-	MountPoint* mount_point2 = top_level->create_mount_point("/test2");
-	MountPoint* mount_point3 = subvolume->create_mount_point("/test3");
+	MountPoint* mount_point1 = btrfs->create_mount_point("/test3");
+	MountPoint* mount_point2 = top_level->create_mount_point("/test4");
+	MountPoint* mount_point3 = subvolume->create_mount_point("/test5");
 
 	BOOST_CHECK_EQUAL(mount_point1->get_mount_by(), MountByType::UUID);
 	BOOST_CHECK_EQUAL(mount_point2->get_mount_by(), MountByType::UUID);

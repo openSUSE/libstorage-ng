@@ -21,6 +21,8 @@
  */
 
 
+#include <boost/algorithm/string.hpp>
+
 #include "storage/Devices/DasdImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Storage.h"
@@ -28,7 +30,6 @@
 #include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/Utils/Exception.h"
 #include "storage/Utils/Enum.h"
-#include "storage/Utils/StorageTypes.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/HumanString.h"
@@ -37,6 +38,7 @@
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/CallbacksImpl.h"
 #include "storage/Utils/Format.h"
+#include "storage/Utils/StorageTmpl.h"
 
 
 namespace storage

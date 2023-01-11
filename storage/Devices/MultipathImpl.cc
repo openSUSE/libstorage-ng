@@ -20,6 +20,8 @@
  */
 
 
+#include <boost/algorithm/string.hpp>
+
 #include "storage/Devices/MultipathImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Storage.h"
@@ -27,13 +29,11 @@
 #include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/Utils/Exception.h"
 #include "storage/Utils/StorageTmpl.h"
-#include "storage/Utils/StorageTypes.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/UsedFeatures.h"
 #include "storage/Holders/User.h"
-#include "storage/Utils/StorageTypes.h"
 #include "storage/Utils/CallbacksImpl.h"
 #include "storage/Utils/Format.h"
 

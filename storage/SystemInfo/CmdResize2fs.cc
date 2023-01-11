@@ -25,6 +25,7 @@
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/LoggerImpl.h"
 #include "storage/Utils/StorageTypes.h"
+#include "storage/Utils/StorageTmpl.h"
 
 
 namespace storage

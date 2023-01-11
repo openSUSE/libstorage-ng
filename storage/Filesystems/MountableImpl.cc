@@ -22,7 +22,6 @@
 
 
 #include <algorithm>
-
 #include <boost/algorithm/string.hpp>
 
 #include "storage/Utils/XmlFile.h"

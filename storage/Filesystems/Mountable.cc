@@ -21,7 +21,6 @@
  */
 
 
-#include "storage/Utils/StorageTmpl.h"
 #include "storage/Filesystems/MountableImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Filesystems/MountPoint.h"
