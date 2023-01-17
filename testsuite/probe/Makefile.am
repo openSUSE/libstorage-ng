@@ -17,7 +17,7 @@ check_PROGRAMS =								\
 	multi-mount-point1.test multi-mount-point2.test				\
 	multi-mount-point3.test multi-mount-point4.test				\
 	bcache1.test bcache2.test btrfs1.test btrfs2.test btrfs3.test		\
-	btrfs4.test btrfs5.test tmpfs1.test					\
+	btrfs4.test btrfs5.test swap1.test tmpfs1.test				\
 	dasd1.test dasd2.test dasd3.test external-journal.test			\
 	dmraid1.test md-imsm1.test md-ddf1.test nfs1.test ntfs1.test xen1.test	\
 	ambiguous1.test ambiguous2.test md+lvm1.test plain-encryption1.test	\
@@ -63,6 +63,7 @@ EXTRA_DIST = disk-mockup.xml disk-devicegraph.xml				\
 	btrfs3-mockup.xml btrfs3-devicegraph.xml				\
 	btrfs4-mockup.xml btrfs4-devicegraph.xml				\
 	btrfs5-mockup.xml btrfs5-devicegraph.xml				\
+	swap1-mockup.xml swap1-devicegraph.xml					\
 	tmpfs1-mockup.xml tmpfs1-devicegraph.xml				\
 	dasd1-mockup.xml dasd1-devicegraph.xml					\
 	dasd2-mockup.xml dasd2-devicegraph.xml					\

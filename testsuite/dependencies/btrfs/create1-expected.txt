@@ -6,4 +6,3 @@
 2b - Set option 'no copy on write' for subvolume home on /dev/sdb1 (7.63 GiB) -> 2c
 2c - Mount subvolume home on /dev/sdb1 (7.63 GiB) at /home -> 2d
 2d - Add mount point /home of subvolume home on /dev/sdb1 (7.63 GiB) to /etc/fstab ->
-
