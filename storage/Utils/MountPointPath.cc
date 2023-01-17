@@ -31,7 +31,7 @@ namespace storage
     MountPointPath::MountPointPath(const string& fullpath, const string& rootprefix)
 	: path(fullpath), rootprefixed(true)
     {
-	if (path == "swap")
+	if (path == "swap" || path == "none")
 	    return;
 
 	if (rootprefix.empty() || rootprefix == "/")
@@ -61,7 +61,7 @@ namespace storage
 	if (!rootprefixed)
 	    return path;
 
-	if (path == "swap")
+	if (path == "swap" || path == "none")
 	    return path;
 
 	if (rootprefix.empty() || rootprefix == "/")

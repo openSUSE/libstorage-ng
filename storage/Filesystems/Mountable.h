@@ -134,6 +134,12 @@ namespace storage
 	bool supports_mount() const;
 
 	/**
+	 * Checks whether the path is valid. For FsType::UNKNOWN and FsType::AUTO the
+	 * result is always false.
+	 */
+	static bool is_valid_path(FsType fs_type, const std::string& path);
+
+	/**
 	 * Create a new mount point for the mountable with path. It will also
 	 * set the default mount-by method to the storage default mount-by
 	 * method and the default mount options.

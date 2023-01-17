@@ -21,6 +21,8 @@
  */
 
 
+#include <boost/algorithm/string.hpp>
+
 #include "storage/Filesystems/MountableImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Filesystems/MountPoint.h"
@@ -43,6 +45,24 @@ namespace storage
     get_mount_by_name(MountByType mount_by_type)
     {
 	return toString(mount_by_type);
+    }
+
+
+    bool
+    Mountable::is_valid_path(FsType fs_type, const std::string& path)
+    {
+	switch (fs_type)
+	{
+	    case FsType::UNKNOWN:
+	    case FsType::AUTO:
+		return false;
+
+	    case FsType::SWAP:
+		return path == "swap" || path == "none";
+
+	    default:
+		return boost::starts_with(path, "/");
+	}
     }
 
 

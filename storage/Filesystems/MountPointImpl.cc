@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2022] SUSE LLC
+ * Copyright (c) [2017-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -144,13 +144,6 @@ namespace storage
 #endif
 
 	Impl::path = normalize_path(path);
-    }
-
-
-    bool
-    MountPoint::Impl::valid_path(const string& path)
-    {
-	return path == "swap" || boost::starts_with(path, "/");
     }
 
 
@@ -648,6 +641,14 @@ namespace storage
 	}
 
 
+	FsType
+	Mount::get_fs_type(const Actiongraph::Impl& actiongraph) const
+	{
+	    const MountPoint* mount_point = to_mount_point(get_device(actiongraph));
+	    return mount_point->get_mount_type();
+	}
+
+
 	const string&
 	Mount::get_path(const Actiongraph::Impl& actiongraph) const
 	{
@@ -695,6 +696,14 @@ namespace storage
 	}
 
 
+	FsType
+	Unmount::get_fs_type(const Actiongraph::Impl& actiongraph) const
+	{
+	    const MountPoint* mount_point = to_mount_point(get_device(actiongraph));
+	    return mount_point->get_mount_type();
+	}
+
+
 	const string&
 	Unmount::get_path(const Actiongraph::Impl& actiongraph) const
 	{
@@ -727,6 +736,14 @@ namespace storage
 	}
 
 
+	FsType
+	AddToEtcFstab::get_fs_type(const Actiongraph::Impl& actiongraph) const
+	{
+	    const MountPoint* mount_point = to_mount_point(get_device(actiongraph, RHS));
+	    return mount_point->get_mount_type();
+	}
+
+
 	const string&
 	AddToEtcFstab::get_path(const Actiongraph::Impl& actiongraph) const
 	{
@@ -739,7 +756,9 @@ namespace storage
 	AddToEtcFstab::add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
 					Actiongraph::Impl& actiongraph) const
 	{
-	    if (get_path(actiongraph) == "swap")
+	    // For non swap the dependency from mount-of-root to add-to-fstab is redundant.
+
+	    if (get_fs_type(actiongraph) == FsType::SWAP)
 		if (actiongraph.mount_root_filesystem != actiongraph.vertices().end())
 		    actiongraph.add_edge(*actiongraph.mount_root_filesystem, vertex);
 	}

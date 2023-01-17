@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2021] SUSE LLC
+ * Copyright (c) [2017-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -93,8 +93,6 @@ namespace storage
 	virtual Impl* clone() const override { return new Impl(*this); }
 
 	virtual ResizeInfo detect_resize_info(const BlkDevice* blk_device = nullptr) const override;
-
-	static bool valid_path(const string& path);
 
 	const string& get_path() const { return path; }
 	void set_path(const string& path);
@@ -235,6 +233,8 @@ namespace storage
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
 	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const override;
 
+	    FsType get_fs_type(const Actiongraph::Impl& actiongraph) const;
+
 	    const string& get_path(const Actiongraph::Impl& actiongraph) const;
 	    string get_rootprefixed_path(const Actiongraph::Impl& actiongraph) const;
 
@@ -252,6 +252,8 @@ namespace storage
 	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
 
+	    FsType get_fs_type(const Actiongraph::Impl& actiongraph) const;
+
 	    const string& get_path(const Actiongraph::Impl& actiongraph) const;
 	    string get_rootprefixed_path(const Actiongraph::Impl& actiongraph) const;
 
@@ -266,6 +268,8 @@ namespace storage
 
 	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
+
+	    FsType get_fs_type(const Actiongraph::Impl& actiongraph) const;
 
 	    const string& get_path(const Actiongraph::Impl& actiongraph) const;
 

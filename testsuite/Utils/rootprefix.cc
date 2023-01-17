@@ -85,3 +85,43 @@ BOOST_AUTO_TEST_CASE(fullpath4)
     BOOST_CHECK_EQUAL(mount_point_path.fullpath("/"), "/test");
     BOOST_CHECK_EQUAL(mount_point_path.fullpath("/mnt"), "/mnt/test");
 }
+
+
+BOOST_AUTO_TEST_CASE(swap1)
+{
+    MountPointPath mount_point_path("swap", false);
+
+    BOOST_CHECK_EQUAL(mount_point_path.fullpath(""), "swap");
+    BOOST_CHECK_EQUAL(mount_point_path.fullpath("/"), "swap");
+    BOOST_CHECK_EQUAL(mount_point_path.fullpath("/mnt"), "swap");
+}
+
+
+BOOST_AUTO_TEST_CASE(swap2)
+{
+    MountPointPath mount_point_path("swap", true);
+
+    BOOST_CHECK_EQUAL(mount_point_path.fullpath(""), "swap");
+    BOOST_CHECK_EQUAL(mount_point_path.fullpath("/"), "swap");
+    BOOST_CHECK_EQUAL(mount_point_path.fullpath("/mnt"), "swap");
+}
+
+
+BOOST_AUTO_TEST_CASE(swap3)
+{
+    MountPointPath mount_point_path("none", false);
+
+    BOOST_CHECK_EQUAL(mount_point_path.fullpath(""), "none");
+    BOOST_CHECK_EQUAL(mount_point_path.fullpath("/"), "none");
+    BOOST_CHECK_EQUAL(mount_point_path.fullpath("/mnt"), "none");
+}
+
+
+BOOST_AUTO_TEST_CASE(swap4)
+{
+    MountPointPath mount_point_path("none", true);
+
+    BOOST_CHECK_EQUAL(mount_point_path.fullpath(""), "none");
+    BOOST_CHECK_EQUAL(mount_point_path.fullpath("/"), "none");
+    BOOST_CHECK_EQUAL(mount_point_path.fullpath("/mnt"), "none");
+}

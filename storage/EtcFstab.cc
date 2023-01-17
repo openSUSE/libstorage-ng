@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2017-2022] SUSE LLC
+ * Copyright (c) [2017-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -628,9 +628,15 @@ namespace storage
 	    const MountPointPath& mount_point_path = extended_fstab_entry.mount_point_path;
 
 	    vector<JointEntry>::iterator it = find_if(joint_entries.begin(), joint_entries.end(),
-		[&mount_point_path](const JointEntry& joint_entry) {
-		    return joint_entry.is_in_etc_fstab() &&
-			   joint_entry.mount_point_path == mount_point_path;
+		[&mount_point_path, &extended_fstab_entry](const JointEntry& joint_entry) {
+		    if (!joint_entry.is_in_etc_fstab())
+			return false;
+
+		    if (joint_entry.fstab_entry->get_fs_type() == FsType::SWAP &&
+			extended_fstab_entry.fstab_entry->get_fs_type() == FsType::SWAP)
+			return true;
+
+		    return joint_entry.mount_point_path == mount_point_path;
 		}
 	    );
 
