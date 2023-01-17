@@ -33,6 +33,8 @@ namespace storage
 
     /**
      * Class to represent a swap filesystem in the devicegraph.
+     *
+     * The mount point path of a Swap must be "swap" or "none".
      */
     class Swap : public BlkFilesystem
     {

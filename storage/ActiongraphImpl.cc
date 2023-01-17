@@ -619,11 +619,11 @@ namespace storage
 	    const Action::Base* action = graph[vertex].get();
 
 	    const Action::Mount* mount = dynamic_cast<const Action::Mount*>(action);
-	    if (mount && mount->get_path(*this) != "swap")
+	    if (mount && mount->get_fs_type(*this) != FsType::SWAP)
 		mounts[mount->get_rootprefixed_path(*this)] = vertex;
 
 	    const Action::Unmount* unmount = dynamic_cast<const Action::Unmount*>(action);
-	    if (unmount && unmount->get_path(*this) != "swap")
+	    if (unmount && unmount->get_fs_type(*this) != FsType::SWAP)
 		unmounts[unmount->get_rootprefixed_path(*this)] = vertex;
 	}
 

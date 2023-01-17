@@ -69,6 +69,7 @@
       <sid>1000</sid>
       <path>swap</path>
       <mount-by>device</mount-by>
+      <mount-type>swap</mount-type>
     </MountPoint>
     <MountPoint>
       <sid>1001</sid>

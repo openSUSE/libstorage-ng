@@ -97,6 +97,7 @@
       <sid>141</sid>
       <path>swap</path>
       <mount-by>uuid</mount-by>
+      <mount-type>swap</mount-type>
       <in-etc-fstab>true</in-etc-fstab>
       <freq>0</freq>
       <passno>0</passno>
