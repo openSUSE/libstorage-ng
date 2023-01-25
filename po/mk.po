@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: base\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-05 08:30+0200\n"
-"PO-Revision-Date: 2023-01-07 22:13+0000\n"
+"PO-Revision-Date: 2023-01-25 07:14+0000\n"
 "Last-Translator: Kristijan Fremen Velkovski <me@krisfremen.com>\n"
 "Language-Team: Macedonian <https://l10n.opensuse.org/projects/libstorage/"
 "ng-master/mk/>\n"
@@ -92,22 +92,22 @@ msgstr ""
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activate thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "&Креирај"
+msgstr "Вклучи тенок логичен том %1$s (%2$s) на томна група %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "&Креирај"
+msgstr "Вклучи тенок логичен том %1$s (%2$s) на томна група %3$s"
 
 #. TRANSLATORS: progress message
-#, fuzzy, c-format
+#, c-format
 msgid "Activating BitLocker %s"
-msgstr "&Креирај"
+msgstr "Вклучување на BitLocker %s"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -141,9 +141,9 @@ msgstr ""
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/loop0),
 #. %2$s is replaced by the size (e.g. 20.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Activating hard disk %1$s (%2$s)"
-msgstr "&Креирај"
+msgstr "Вклучување на хард диск %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
