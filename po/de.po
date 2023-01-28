@@ -14,10 +14,10 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-05 08:30+0200\n"
-"PO-Revision-Date: 2022-02-22 11:12+0000\n"
-"Last-Translator: Gemineo <vistatec@gemineo.de>\n"
-"Language-Team: German <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/de/>\n"
+"PO-Revision-Date: 2023-01-28 15:11+0000\n"
+"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
+"Language-Team: German <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -115,14 +115,14 @@ msgstr ""
 "Logisches Thin Pool Volume %1$s (%2$s) in Volume-Gruppe %3$s aktivieren"
 
 #. TRANSLATORS: progress message
-#, fuzzy, c-format
+#, c-format
 msgid "Activating BitLocker %s"
-msgstr "Aktivierung von LUKS %s"
+msgstr "Aktivierung von BitLocker %s"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Activating BitLocker %s failed"
-msgstr "Aktivierung von LUKS %s fehlgeschlagen"
+msgstr "Aktivierung von BitLocker %s fehlgeschlagen"
 
 #. TRANSLATORS: progress message
 #, c-format
@@ -2245,51 +2245,51 @@ msgstr "Linux RAID"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (ARM 32-bit)"
-msgstr ""
+msgstr "Linux-Wurzelpartition (ARM 32-Bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (ARM 64-bit)"
-msgstr ""
+msgstr "Linux-Wurzelpartition (ARM 64-Bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (PPC 32-bit)"
-msgstr ""
+msgstr "Linux-Wurzelpartition (PPC 32-Bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (PPC 64-bit BE)"
-msgstr ""
+msgstr "Linux-Wurzelpartition (PPC 64-Bit BE)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (PPC 64-bit LE)"
-msgstr ""
+msgstr "Linux-Wurzelpartition (PPC 64-Bit LE)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (RISC-V 32-bit)"
-msgstr ""
+msgstr "Linux-Wurzelpartition (RISC-V 32-Bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (RISC-V 64-bit)"
-msgstr ""
+msgstr "Linux-Wurzelpartition (RISC-V 64-Bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (S/390 32-bit)"
-msgstr ""
+msgstr "Linux-Wurzelpartition (S/390 32-Bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (S/390 64-bit)"
-msgstr ""
+msgstr "Linux-Wurzelpartition (S/390 64-Bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (x86 32-bit)"
-msgstr ""
+msgstr "Linux-Wurzelpartition (x86 32-Bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (x86 64-bit)"
-msgstr ""
+msgstr "Linux-Wurzelpartition (x86 64-Bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Server Data"
-msgstr ""
+msgstr "Linux-Server-Daten"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Swap"
