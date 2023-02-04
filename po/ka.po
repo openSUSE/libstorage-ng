@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2023-02-02 11:20+0000\n"
+"PO-Revision-Date: 2023-02-04 20:14+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://l10n.opensuse.org/projects/libstorage/"
 "ng-sle-15-sp1/ka/>\n"
@@ -23,13 +23,15 @@ msgid ""
 "\n"
 "are you serious?!"
 msgstr ""
+"\n"
+"მართლა?!"
 
 #. TRANSLATORS: appended after list of value to indicate that some
 #. values have been omitted
 #. %1$d is replaced by the number of elements omitted
 #, c-format
 msgid "%1$d more"
-msgstr ""
+msgstr "კიდევ %1$d"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the device name (e.g. /dev/sdc1),
@@ -44,7 +46,7 @@ msgstr "%1$s (%2$s)"
 #. %2$s is replaced by the number of elements omitted
 #, c-format
 msgid "%1$s and %2$d more"
-msgstr ""
+msgstr "%1$s და კიდევ %2$d"
 
 #. TRANSLATORS: used to construct list of values
 #. %1$s is replaced by first value
@@ -248,7 +250,7 @@ msgstr ""
 
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 msgid "B"
-msgstr "ბ"
+msgstr "სი"
 
 #. TRANSLATORS: name of partition type
 msgid "BIOS Boot Partition"
@@ -256,7 +258,7 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Bcache"
-msgstr ""
+msgstr "Bcache"
 
 #. TRANSLATORS: name of object
 msgid "Bcache Cache Set"
@@ -264,7 +266,7 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Btrfs"
-msgstr ""
+msgstr "Btrfs"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs Subvolume"
@@ -1015,7 +1017,7 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "DASD"
-msgstr ""
+msgstr "DASD"
 
 #. TRANSLATORS: name of object
 #, fuzzy
@@ -1509,25 +1511,23 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Disk"
-msgstr ""
+msgstr "დისკი"
 
 #. TRANSLATORS: symbol for "exa" (best keep untranslated)
 msgid "E"
-msgstr ""
+msgstr "E"
 
 #. TRANSLATORS: symbol for "exa bytes" (best keep untranslated)
-#, fuzzy
 msgid "EB"
-msgstr "ბ"
+msgstr "ებ"
 
 #. TRANSLATORS: name of partition type
 msgid "EFI System Partition"
-msgstr ""
+msgstr "EFI-ის სისტემური დანაყოფი"
 
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
-#, fuzzy
 msgid "EiB"
-msgstr "კბტ"
+msgstr "ეიბ"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -1638,23 +1638,23 @@ msgstr "%1 დანაყოფის შემოწმება"
 
 #. TRANSLATORS: name of object
 msgid "Encryption"
-msgstr ""
+msgstr "დაშიფვრა"
 
 #. TRANSLATORS: name of object
 msgid "Ext2"
-msgstr ""
+msgstr "Ext2"
 
 #. TRANSLATORS: name of object
 msgid "Ext3"
-msgstr ""
+msgstr "Ext3"
 
 #. TRANSLATORS: name of object
 msgid "Ext4"
-msgstr ""
+msgstr "Ext4"
 
 #. TRANSLATORS: name of object
 msgid "F2FS"
-msgstr ""
+msgstr "F2FS"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -1746,9 +1746,8 @@ msgid "Format partition %1$s (%2$s) with %3$s"
 msgstr "%1 დანაყოფის შემოწმება"
 
 #. TRANSLATORS: symbol for "giga" (best keep untranslated)
-#, fuzzy
 msgid "G"
-msgstr "გბ"
+msgstr "სოლ"
 
 #. TRANSLATORS: symbol for "giga bytes" (best keep untranslated)
 msgid "GB"
@@ -1756,12 +1755,11 @@ msgstr "გბ"
 
 #. TRANSLATORS: name of object
 msgid "GPT"
-msgstr ""
+msgstr "GPT"
 
 #. TRANSLATORS: symbol for "gibi bytes" (best keep untranslated)
-#, fuzzy
 msgid "GiB"
-msgstr "გბ"
+msgstr "გიბ"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -1887,7 +1885,7 @@ msgstr "%1 დანაყოფის შემოწმება"
 
 #. TRANSLATORS: name of object
 msgid "ISO 9660"
-msgstr ""
+msgstr "ISO 9660"
 
 #. TRANSLATORS: name of object
 msgid "Implicit Partition Table"
@@ -1895,52 +1893,51 @@ msgstr ""
 
 #. TRANSLATORS: name of partition type
 msgid "Intel RST"
-msgstr ""
+msgstr "Intel RST"
 
 #. TRANSLATORS: name of object
 msgid "JFS"
-msgstr ""
+msgstr "JFS"
 
 #. TRANSLATORS: symbol for "kibi bytes" (best keep untranslated)
 msgid "KiB"
-msgstr "კბ"
+msgstr "კიბ"
 
 #. TRANSLATORS: name of object
 msgid "LUKS"
-msgstr ""
+msgstr "LUKS"
 
 #. TRANSLATORS: name of object
 msgid "LVM Logical Volume"
-msgstr ""
+msgstr "LVM -ის ლოგიკური ტომი"
 
 #. TRANSLATORS: name of object
 msgid "LVM Physical Volume"
-msgstr ""
+msgstr "LVM -ის ფიზიკური ტომი"
 
 #. TRANSLATORS: name of object
 msgid "LVM Volume Group"
-msgstr ""
+msgstr "LVM ტომების ჯგუფი"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux"
-msgstr ""
+msgstr "Linux"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux LVM"
-msgstr ""
+msgstr "Linux LVM"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux RAID"
-msgstr ""
+msgstr "Linux RAID"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Swap"
-msgstr ""
+msgstr "Linux Swap"
 
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
-#, fuzzy
 msgid "M"
-msgstr "მბ"
+msgstr "ო"
 
 #. TRANSLATORS: symbol for "mega bytes" (best keep untranslated)
 msgid "MB"
@@ -1948,7 +1945,7 @@ msgstr "მბ"
 
 #. TRANSLATORS: name of object
 msgid "MD RAID"
-msgstr ""
+msgstr "MD RAID"
 
 #. TRANSLATORS: name of object
 #, fuzzy
@@ -1997,7 +1994,7 @@ msgstr "მონაცემებიდან ამოღება"
 
 #. TRANSLATORS: name of object
 msgid "Mount Point"
-msgstr ""
+msgstr "მიმაგრების წერტილი"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -2052,34 +2049,31 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "NFS"
-msgstr ""
+msgstr "NFS"
 
 #. TRANSLATORS: name of object
 msgid "NTFS"
-msgstr ""
+msgstr "NTFS"
 
 #. TRANSLATORS: symbol for "peta" (best keep untranslated)
-#, fuzzy
 msgid "P"
-msgstr "IP"
+msgstr "პ"
 
 #. TRANSLATORS: symbol for "peta bytes" (best keep untranslated)
-#, fuzzy
 msgid "PB"
-msgstr "ბ"
+msgstr "პბ"
 
 #. TRANSLATORS: name of partition type
 msgid "PReP Boot Partition"
-msgstr ""
+msgstr "PReP-ის ჩამტვირთავი დანაყოფი"
 
 #. TRANSLATORS: name of object
 msgid "Partition"
-msgstr ""
+msgstr "დანაყოფი"
 
 #. TRANSLATORS: symbol for "pebi bytes" (best keep untranslated)
-#, fuzzy
 msgid "PiB"
-msgstr "კბტ"
+msgstr "პიბ"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -2679,25 +2673,23 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Swap"
-msgstr ""
+msgstr "სვაპი"
 
 #. TRANSLATORS: symbol for "tera" (best keep untranslated)
-#, fuzzy
 msgid "T"
-msgstr "ტბ"
+msgstr "ტერა"
 
 #. TRANSLATORS: symbol for "tera bytes" (best keep untranslated)
 msgid "TB"
 msgstr "ტბ"
 
 #. TRANSLATORS: symbol for "tebi bytes" (best keep untranslated)
-#, fuzzy
 msgid "TiB"
-msgstr "ტბ"
+msgstr "ტიბ"
 
 #. TRANSLATORS: name of object
 msgid "UDF"
-msgstr ""
+msgstr "UDF"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -2759,7 +2751,7 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "VFAT"
-msgstr ""
+msgstr "VFAT"
 
 #. TRANSLATORS: name of partition type
 msgid "Windows Data Partition"
@@ -2767,16 +2759,15 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "XFS"
-msgstr ""
+msgstr "XFS"
 
 #. TRANSLATORS: name of a filesystem object in the storage devicegraph
 msgid "exFAT"
-msgstr ""
+msgstr "exFAT"
 
 #. TRANSLATORS: symbol for "kilo" (best keep untranslated)
-#, fuzzy
 msgid "k"
-msgstr "კბ"
+msgstr "k"
 
 #. TRANSLATORS: symbol for "kilo bytes" (best keep untranslated)
 msgid "kB"
