@@ -13,10 +13,10 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-05 08:30+0200\n"
-"PO-Revision-Date: 2022-02-21 12:12+0000\n"
+"PO-Revision-Date: 2023-02-07 14:14+0000\n"
 "Last-Translator: Davide Aiello <davide.aiello@novilingulists.com>\n"
-"Language-Team: Italian <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/it/>\n"
+"Language-Team: Italian <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -116,14 +116,14 @@ msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "Attiva volume logico pool thin %1$s (%2$s) sul gruppo di volumi %3$s"
 
 #. TRANSLATORS: progress message
-#, fuzzy, c-format
+#, c-format
 msgid "Activating BitLocker %s"
-msgstr "Attivazione di LUKS %s in corso"
+msgstr "Attivazione di BitLocker %s"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Activating BitLocker %s failed"
-msgstr "Attivazione di LUKS %s non riuscita"
+msgstr "Attivazione di BitLocker %s non riuscita"
 
 #. TRANSLATORS: progress message
 #, c-format
@@ -2083,7 +2083,7 @@ msgstr "F2FS"
 #. TRANSLATORS: error message
 #, c-format
 msgid "Failed to find device %s"
-msgstr ""
+msgstr "Ricerca del dispositivo %s non riuscita"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2474
@@ -2447,51 +2447,51 @@ msgstr "RAID Linux"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (ARM 32-bit)"
-msgstr ""
+msgstr "Partizione root Linux (ARM 32 bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (ARM 64-bit)"
-msgstr ""
+msgstr "Partizione root Linux (ARM 64 bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (PPC 32-bit)"
-msgstr ""
+msgstr "Partizione root Linux (PPC 32 bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (PPC 64-bit BE)"
-msgstr ""
+msgstr "Partizione root Linux (PPC 64 bit BE)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (PPC 64-bit LE)"
-msgstr ""
+msgstr "Partizione root Linux (PPC 64 bit LE)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (RISC-V 32-bit)"
-msgstr ""
+msgstr "Partizione root Linux (RISC-V 32 bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (RISC-V 64-bit)"
-msgstr ""
+msgstr "Partizione root Linux (RISC-V 64 bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (S/390 32-bit)"
-msgstr ""
+msgstr "Partizione root Linux (S/390 32 bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (S/390 64-bit)"
-msgstr ""
+msgstr "Partizione root Linux (S/390 64 bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (x86 32-bit)"
-msgstr ""
+msgstr "Partizione root Linux (x86 32 bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (x86 64-bit)"
-msgstr ""
+msgstr "Partizione root Linux (x86 64 bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Server Data"
-msgstr ""
+msgstr "Dati server Linux"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Swap"
@@ -2499,47 +2499,47 @@ msgstr "Swap Linux"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (ARM 32-bit)"
-msgstr ""
+msgstr "Partizione USR Linux (ARM 32 bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (ARM 64-bit)"
-msgstr ""
+msgstr "Partizione USR Linux (ARM 64 bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (PPC 32-bit)"
-msgstr ""
+msgstr "Partizione USR Linux (PPC 32 bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (PPC 64-bit BE)"
-msgstr ""
+msgstr "Partizione USR Linux (PPC 64 bit BE)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (PPC 64-bit LE)"
-msgstr ""
+msgstr "Partizione USR Linux (PPC 64 bit LE)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (RISC-V 32-bit)"
-msgstr ""
+msgstr "Partizione USR Linux (RISC-V 32 bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (RISC-V 64-bit)"
-msgstr ""
+msgstr "Partizione USR Linux (RISC-V 64 bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (S/390 32-bit)"
-msgstr ""
+msgstr "Partizione USR Linux (S/390 32 bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (S/390 64-bit)"
-msgstr ""
+msgstr "Partizione USR Linux (S/390 64 bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (x86 32-bit)"
-msgstr ""
+msgstr "Partizione USR Linux (x86 32 bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (x86 64-bit)"
-msgstr ""
+msgstr "Partizione USR Linux (x86 64 bit)"
 
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
 msgid "M"
@@ -2697,7 +2697,7 @@ msgstr "NFS"
 
 #. TRANSLATORS: name of object
 msgid "NILFS2"
-msgstr ""
+msgstr "NILFS2"
 
 #. TRANSLATORS: name of object
 msgid "NTFS"
@@ -2731,14 +2731,12 @@ msgstr "PiB"
 msgid "Plain Encryption"
 msgstr "Cifratura semplice"
 
-#, fuzzy
 msgid "Probing BitLocker"
-msgstr "BitLocker"
+msgstr "Rilevamento di BitLocker"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing BitLocker failed"
-msgstr "Rilevamento dei dischi non riuscito"
+msgstr "Rilevamento di BitLocker non riuscito"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -3547,7 +3545,7 @@ msgstr ""
 
 #. TRANSLATORS: name of partition type
 msgid "Unknown"
-msgstr ""
+msgstr "Sconosciuto"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
