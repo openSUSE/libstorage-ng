@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-05 08:30+0200\n"
-"PO-Revision-Date: 2022-02-18 11:12+0000\n"
+"PO-Revision-Date: 2023-02-08 09:14+0000\n"
 "Last-Translator: Grace Yu <grace.yu@excel-gits.com>\n"
 "Language-Team: Chinese (Taiwan) <https://l10n.opensuse.org/projects/"
 "libstorage/ng-master/zh_TW/>\n"
@@ -112,14 +112,14 @@ msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "啟用磁碟區群組 %3$s 上的簡易池邏輯磁碟區 %1$s (%2$s)"
 
 #. TRANSLATORS: progress message
-#, fuzzy, c-format
+#, c-format
 msgid "Activating BitLocker %s"
-msgstr "正在啟用 LUKS %s"
+msgstr "正在啟用 BitLocker %s"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Activating BitLocker %s failed"
-msgstr "啟用 LUKS %s 失敗"
+msgstr "啟用 BitLocker %s 失敗"
 
 #. TRANSLATORS: progress message
 #, c-format
@@ -1902,7 +1902,7 @@ msgstr "F2FS"
 #. TRANSLATORS: error message
 #, c-format
 msgid "Failed to find device %s"
-msgstr ""
+msgstr "找不到裝置 %s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -2209,51 +2209,51 @@ msgstr "Linux RAID"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (ARM 32-bit)"
-msgstr ""
+msgstr "Linux 根分割區 (ARM 32 位元)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (ARM 64-bit)"
-msgstr ""
+msgstr "Linux 根分割區 (ARM 64 位元)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (PPC 32-bit)"
-msgstr ""
+msgstr "Linux 根分割區 (PPC 32 位元)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (PPC 64-bit BE)"
-msgstr ""
+msgstr "Linux 根分割區 (PPC 64 位元 BE)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (PPC 64-bit LE)"
-msgstr ""
+msgstr "Linux 根分割區 (PPC 64 位元 LE)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (RISC-V 32-bit)"
-msgstr ""
+msgstr "Linux 根分割區 (RISC-V 32 位元)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (RISC-V 64-bit)"
-msgstr ""
+msgstr "Linux 根分割區 (RISC-V 64 位元)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (S/390 32-bit)"
-msgstr ""
+msgstr "Linux 根分割區 (S/390 32 位元)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (S/390 64-bit)"
-msgstr ""
+msgstr "Linux 根分割區 (S/390 64 位元)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (x86 32-bit)"
-msgstr ""
+msgstr "Linux 根分割區 (x86 32 位元)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (x86 64-bit)"
-msgstr ""
+msgstr "Linux 根分割區 (x86 64 位元)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Server Data"
-msgstr ""
+msgstr "Linux 伺服器資料"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Swap"
@@ -2261,47 +2261,47 @@ msgstr "Linux 交換"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (ARM 32-bit)"
-msgstr ""
+msgstr "Linux USR 分割區 (ARM 32 位元)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (ARM 64-bit)"
-msgstr ""
+msgstr "Linux USR 分割區 (ARM 64 位元)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (PPC 32-bit)"
-msgstr ""
+msgstr "Linux USR 分割區 (PPC 32 位元)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (PPC 64-bit BE)"
-msgstr ""
+msgstr "Linux USR 分割區 (PPC 64 位元 BE)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (PPC 64-bit LE)"
-msgstr ""
+msgstr "Linux USR 分割區 (PPC 64 位元 LE)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (RISC-V 32-bit)"
-msgstr ""
+msgstr "Linux USR 分割區 (RISC-V 32 位元)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (RISC-V 64-bit)"
-msgstr ""
+msgstr "Linux USR 分割區 (RISC-V 64 位元)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (S/390 32-bit)"
-msgstr ""
+msgstr "Linux USR 分割區 (S/390 32 位元)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (S/390 64-bit)"
-msgstr ""
+msgstr "Linux USR 分割區 (S/390 64 位元)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (x86 32-bit)"
-msgstr ""
+msgstr "Linux USR 分割區 (x86 32 位元)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (x86 64-bit)"
-msgstr ""
+msgstr "Linux USR 分割區 (x86 64 位元)"
 
 # SLE12
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
@@ -2447,7 +2447,7 @@ msgstr "NFS"
 
 #. TRANSLATORS: name of object
 msgid "NILFS2"
-msgstr ""
+msgstr "NILFS2"
 
 #. TRANSLATORS: name of object
 msgid "NTFS"
@@ -2484,14 +2484,12 @@ msgstr "PiB"
 msgid "Plain Encryption"
 msgstr "明文加密"
 
-#, fuzzy
 msgid "Probing BitLocker"
-msgstr "BitLocker"
+msgstr "正在查探 BitLocker"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing BitLocker failed"
-msgstr "查探磁碟失敗"
+msgstr "查探 BitLocker 失敗"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -3280,7 +3278,7 @@ msgstr "正在為 %3$s 上的 qgroup %2$s 取消指定子磁碟區 %1$s 的 qgro
 
 #. TRANSLATORS: name of partition type
 msgid "Unknown"
-msgstr ""
+msgstr "未知"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
