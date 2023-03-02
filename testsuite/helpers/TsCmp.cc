@@ -8,7 +8,7 @@
 #include "storage/DevicegraphImpl.h"
 #include "storage/Environment.h"
 #include "storage/Storage.h"
-#include "storage/Action.h"
+#include "storage/Actions/Base.h"
 #include "storage/Pool.h"
 #include "storage/Devices/DeviceImpl.h"
 #include "storage/Devices/BlkDevice.h"

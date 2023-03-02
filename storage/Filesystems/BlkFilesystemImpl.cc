@@ -46,6 +46,10 @@
 #include "storage/Redirect.h"
 #include "storage/Utils/Format.h"
 #include "storage/EnvironmentImpl.h"
+#include "storage/Actions/SetUuid.h"
+#include "storage/Actions/SetLabel.h"
+#include "storage/Actions/SetTuneOptions.h"
+#include "storage/Actions/Create.h"
 
 
 namespace storage
@@ -1054,83 +1058,6 @@ namespace storage
 	{
 	    blk_device->get_impl().wipe_device();
 	}
-    }
-
-
-    namespace Action
-    {
-
-	Text
-	SetLabel::text(const CommitData& commit_data) const
-	{
-	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(commit_data.actiongraph, RHS));
-	    return blk_filesystem->get_impl().do_set_label_text(commit_data.tense);
-	}
-
-
-	void
-	SetLabel::commit(CommitData& commit_data, const CommitOptions& commit_options) const
-	{
-	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(commit_data.actiongraph, RHS));
-	    blk_filesystem->get_impl().do_set_label();
-	}
-
-
-	uf_t
-	SetLabel::used_features(const Actiongraph::Impl& actiongraph) const
-	{
-	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(actiongraph, RHS));
-	    return blk_filesystem->get_impl().do_set_label_used_features();
-	}
-
-
-	Text
-	SetUuid::text(const CommitData& commit_data) const
-	{
-	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(commit_data.actiongraph, RHS));
-	    return blk_filesystem->get_impl().do_set_uuid_text(commit_data.tense);
-	}
-
-
-	void
-	SetUuid::commit(CommitData& commit_data, const CommitOptions& commit_options) const
-	{
-	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(commit_data.actiongraph, RHS));
-	    blk_filesystem->get_impl().do_set_uuid();
-	}
-
-
-	uf_t
-	SetUuid::used_features(const Actiongraph::Impl& actiongraph) const
-	{
-	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(actiongraph, RHS));
-	    return blk_filesystem->get_impl().do_set_uuid_used_features();
-	}
-
-
-	Text
-	SetTuneOptions::text(const CommitData& commit_data) const
-	{
-	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(commit_data.actiongraph, RHS));
-	    return blk_filesystem->get_impl().do_set_tune_options_text(commit_data.tense);
-	}
-
-
-	void
-	SetTuneOptions::commit(CommitData& commit_data, const CommitOptions& commit_options) const
-	{
-	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(commit_data.actiongraph, RHS));
-	    blk_filesystem->get_impl().do_set_tune_options();
-	}
-
-
-	uf_t
-	SetTuneOptions::used_features(const Actiongraph::Impl& actiongraph) const
-	{
-	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(actiongraph, RHS));
-	    return blk_filesystem->get_impl().do_set_tune_options_used_features();
-	}
-
     }
 
 }

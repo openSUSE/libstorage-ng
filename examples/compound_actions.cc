@@ -5,7 +5,6 @@
 #include "storage/Storage.h"
 #include "storage/Devicegraph.h"
 #include "storage/ActiongraphImpl.h"
-#include "storage/Action.h"
 #include "storage/CompoundAction.h"
 #include "storage/CompoundActionImpl.h"
 #include "storage/UsedFeatures.h"

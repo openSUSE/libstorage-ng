@@ -37,11 +37,12 @@
 #include "storage/FreeInfo.h"
 #include "storage/Holders/User.h"
 #include "storage/Devicegraph.h"
-#include "storage/Action.h"
 #include "storage/FindBy.h"
 #include "storage/Prober.h"
 #include "storage/Redirect.h"
 #include "storage/Utils/Format.h"
+#include "storage/Actions/Resize.h"
+#include "storage/Actions/Rename.h"
 
 
 using namespace std;
@@ -1413,36 +1414,6 @@ namespace storage
 	string cmd_line = LVCHANGE_BIN " --activate n -- " + quote(lvm_vg->get_vg_name() + "/" + lv_name);
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
-    }
-
-
-    namespace Action
-    {
-
-	Text
-	Rename::text(const CommitData& commit_data) const
-	{
-	    const LvmLv* lhs_lvm_lv = to_lvm_lv(get_device(commit_data.actiongraph, LHS));
-	    const LvmLv* rhs_lvm_lv = to_lvm_lv(get_device(commit_data.actiongraph, RHS));
-	    return rhs_lvm_lv->get_impl().do_rename_text(lhs_lvm_lv->get_impl(), commit_data.tense);
-	}
-
-	void
-	Rename::commit(CommitData& commit_data, const CommitOptions& commit_options) const
-	{
-	    const LvmLv* lhs_lvm_lv = to_lvm_lv(get_device(commit_data.actiongraph, LHS));
-	    const LvmLv* rhs_lvm_lv = to_lvm_lv(get_device(commit_data.actiongraph, RHS));
-	    return rhs_lvm_lv->get_impl().do_rename(lhs_lvm_lv->get_impl());
-	}
-
-
-	uf_t
-	Rename::used_features(const Actiongraph::Impl& actiongraph) const
-	{
-	    const LvmLv* lvm_lv = to_lvm_lv(get_device(actiongraph, RHS));
-	    return lvm_lv->get_impl().do_rename_used_features();
-	}
-
     }
 
 

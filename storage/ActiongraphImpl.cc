@@ -39,7 +39,6 @@
 #include "storage/Filesystems/MountPointImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Utils/GraphUtils.h"
-#include "storage/Action.h"
 #include "storage/Actiongraph.h"
 #include "storage/StorageImpl.h"
 #include "storage/Utils/StorageTmpl.h"
@@ -51,6 +50,9 @@
 #include "storage/Utils/Format.h"
 #include "storage/GraphvizImpl.h"
 #include "storage/Redirect.h"
+#include "storage/Actions/SetQuota.h"
+#include "storage/Actions/Mount.h"
+#include "storage/Actions/Unmount.h"
 
 
 namespace storage

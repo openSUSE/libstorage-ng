@@ -26,7 +26,6 @@
 
 #include "storage/Devices/DiskImpl.h"
 #include "storage/Devicegraph.h"
-#include "storage/Action.h"
 #include "storage/Storage.h"
 #include "storage/Environment.h"
 #include "storage/SystemInfo/SystemInfoImpl.h"
@@ -41,6 +40,8 @@
 #include "storage/Prober.h"
 #include "storage/Utils/Format.h"
 #include "storage/Utils/SystemCmd.h"
+#include "storage/Actions/Activate.h"
+#include "storage/Actions/Create.h"
 
 
 namespace storage

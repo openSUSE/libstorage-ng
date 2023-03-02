@@ -100,6 +100,7 @@ AC_CONFIG_FILES([
 	storage/Devices/Makefile
 	storage/Filesystems/Makefile
 	storage/Holders/Makefile
+	storage/Actions/Makefile
 	storage/Utils/Makefile
 	storage/SystemInfo/Makefile
 	doc/Makefile

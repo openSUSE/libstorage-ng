@@ -27,7 +27,6 @@
 #include "storage/Devices/LvmLv.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Utils/Enum.h"
-#include "storage/Action.h"
 
 
 namespace storage
@@ -201,24 +200,6 @@ namespace storage
 	unsigned long long chunk_size;
 
     };
-
-
-    namespace Action
-    {
-
-	class Rename : public Modify
-	{
-	public:
-
-	    Rename(sid_t sid) : Modify(sid) {}
-
-	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
-	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const override;
-
-	};
-
-    }
 
 }
 

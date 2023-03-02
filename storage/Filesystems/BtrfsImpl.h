@@ -29,7 +29,6 @@
 #include "storage/Filesystems/BtrfsQgroupImpl.h"
 #include "storage/Filesystems/BlkFilesystemImpl.h"
 #include "storage/Utils/SnapperConfig.h"
-#include "storage/Action.h"
 #include "storage/Utils/HumanString.h"
 
 
@@ -202,24 +201,6 @@ namespace storage
 	mutable CDgD<ResizeInfo> multi_device_resize_info;
 
     };
-
-
-    namespace Action
-    {
-
-	class SetQuota : public Modify
-	{
-	public:
-
-	    SetQuota(sid_t sid) : Modify(sid) {}
-
-	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
-	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const override { return UF_BTRFS; }
-
-	};
-
-    }
 
 }
 

@@ -26,10 +26,11 @@
 #include "storage/Filesystems/BtrfsSubvolumeImpl.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/Format.h"
-#include "storage/Action.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/StorageTmpl.h"
+#include "storage/Actions/Create.h"
+#include "storage/Actions/Delete.h"
 
 
 namespace storage

@@ -25,7 +25,6 @@
 #include "storage/Devices/GptImpl.h"
 #include "storage/Devices/PartitionableImpl.h"
 #include "storage/Devicegraph.h"
-#include "storage/Action.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/SystemInfo/SystemInfoImpl.h"
@@ -33,6 +32,9 @@
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Prober.h"
 #include "storage/Utils/Format.h"
+#include "storage/Actions/SetPmbrBoot.h"
+#include "storage/Actions/Repair.h"
+#include "storage/Actions/Create.h"
 
 
 namespace storage
@@ -375,43 +377,6 @@ namespace storage
 			   _("Deleting GPT on %1$s"));
 
 	return sformat(text, partitionable->get_displayname());
-    }
-
-
-    namespace Action
-    {
-
-	Text
-	Repair::text(const CommitData& commit_data) const
-	{
-	    const Gpt* gpt = to_gpt(get_device(commit_data.actiongraph, RHS));
-	    return gpt->get_impl().do_repair_text(commit_data.tense);
-	}
-
-
-	void
-	Repair::commit(CommitData& commit_data, const CommitOptions& commit_options) const
-	{
-	    const Gpt* gpt = to_gpt(get_device(commit_data.actiongraph, RHS));
-	    gpt->get_impl().do_repair();
-	}
-
-
-	Text
-	SetPmbrBoot::text(const CommitData& commit_data) const
-	{
-	    const Gpt* gpt = to_gpt(get_device(commit_data.actiongraph, RHS));
-	    return gpt->get_impl().do_set_pmbr_boot_text(commit_data.tense);
-	}
-
-
-	void
-	SetPmbrBoot::commit(CommitData& commit_data, const CommitOptions& commit_options) const
-	{
-	    const Gpt* gpt = to_gpt(get_device(commit_data.actiongraph, RHS));
-	    gpt->get_impl().do_set_pmbr_boot();
-	}
-
     }
 
 }

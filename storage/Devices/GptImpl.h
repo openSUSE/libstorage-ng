@@ -123,35 +123,6 @@ namespace storage
 
     };
 
-
-    namespace Action
-    {
-
-	class Repair : public Modify
-	{
-	public:
-
-	    Repair(sid_t sid) : Modify(sid) {}
-
-	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
-
-	};
-
-
-	class SetPmbrBoot : public Modify
-	{
-	public:
-
-	    SetPmbrBoot(sid_t sid) : Modify(sid) {}
-
-	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
-
-	};
-
-    }
-
 }
 
 #endif

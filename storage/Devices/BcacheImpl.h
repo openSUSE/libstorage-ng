@@ -171,54 +171,6 @@ namespace storage
 
     };
 
-    namespace Action
-    {
-
-	class AttachBcacheCset : public Modify
-	{
-	public:
-
-	    AttachBcacheCset(sid_t sid)
-		: Modify(sid) {}
-
-	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
-
-	};
-
-
-	class DetachBcacheCset : public Modify
-	{
-	public:
-
-	    DetachBcacheCset(sid_t sid, const BcacheCset* bcache_cset)
-		: Modify(sid), bcache_cset(bcache_cset) {}
-
-	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
-
-	    const BcacheCset* get_bcache_cset() const { return bcache_cset; }
-
-	private:
-
-	    const BcacheCset* bcache_cset;
-	};
-
-
-	class UpdateCacheMode : public Modify
-	{
-	public:
-
-	    UpdateCacheMode(sid_t sid)
-		: Modify(sid) {}
-
-	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
-
-	};
-
-    }
-
 }
 
 #endif

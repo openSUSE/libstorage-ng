@@ -33,6 +33,8 @@
 #include "storage/Holders/BtrfsQgroupRelation.h"
 #include "storage/Storage.h"
 #include "storage/Redirect.h"
+#include "storage/Actions/Create.h"
+#include "storage/Actions/Delete.h"
 
 
 namespace storage
@@ -524,27 +526,6 @@ namespace storage
     BtrfsQgroup::Impl::format_id(const id_t& id)
     {
 	return to_string(id.first) + "/" + to_string(id.second);
-    }
-
-
-    namespace Action
-    {
-
-	Text
-	SetLimits::text(const CommitData& commit_data) const
-	{
-	    const BtrfsQgroup* btrfs_qgroup = to_btrfs_qgroup(get_device(commit_data.actiongraph, RHS));
-	    return btrfs_qgroup->get_impl().do_set_limits_text(commit_data, this);
-	}
-
-
-	void
-	SetLimits::commit(CommitData& commit_data, const CommitOptions& commit_options) const
-	{
-	    BtrfsQgroup* btrfs_qgroup = to_btrfs_qgroup(get_device(commit_data.actiongraph, RHS));
-	    return btrfs_qgroup->get_impl().do_set_limits(commit_data, this);
-	}
-
     }
 
 }

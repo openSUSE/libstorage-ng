@@ -38,6 +38,11 @@
 #include "storage/FindBy.h"
 #include "storage/Prober.h"
 #include "storage/Utils/Format.h"
+#include "storage/Actions/Reallot.h"
+#include "storage/Actions/Resize.h"
+#include "storage/Actions/Create.h"
+#include "storage/Actions/Delete.h"
+#include "storage/Actions/ReduceMissing.h"
 
 
 namespace storage
@@ -841,27 +846,6 @@ namespace storage
 	    return false;
 
 	return lvm_lv->get_lvm_vg()->get_sid() == get_sid();
-    }
-
-
-    namespace Action
-    {
-
-	Text
-	ReduceMissing::text(const CommitData& commit_data) const
-	{
-	    const LvmVg* lvm_vg = to_lvm_vg(get_device(commit_data.actiongraph, LHS));
-	    return lvm_vg->get_impl().do_reduce_missing_text(commit_data.tense);
-	}
-
-
-	void
-	ReduceMissing::commit(CommitData& commit_data, const CommitOptions& commit_options) const
-	{
-	    const LvmVg* lvm_vg = to_lvm_vg(get_device(commit_data.actiongraph, LHS));
-	    lvm_vg->get_impl().do_reduce_missing();
-	}
-
     }
 
 }

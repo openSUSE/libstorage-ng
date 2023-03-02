@@ -33,6 +33,8 @@
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/AlignmentImpl.h"
 #include "storage/Utils/Format.h"
+#include "storage/Actions/Create.h"
+#include "storage/Actions/Delete.h"
 
 
 namespace storage

@@ -41,6 +41,12 @@
 #include "storage/Utils/Format.h"
 #include "storage/Utils/ExceptionImpl.h"
 #include "storage/Utils/StorageTmpl.h"
+#include "storage/Actions/Deactivate.h"
+#include "storage/Actions/Create.h"
+#include "storage/Actions/Delete.h"
+#include "storage/Actions/AttachBcacheCset.h"
+#include "storage/Actions/DetachBcacheCset.h"
+#include "storage/Actions/UpdateCacheMode.h"
 
 
 namespace storage
@@ -889,59 +895,6 @@ namespace storage
 	    return false;
 
 	return to_bcache_cset(device)->get_sid() == get_bcache_cset()->get_sid();
-    }
-
-
-    namespace Action
-    {
-
-	Text
-	AttachBcacheCset::text(const CommitData& commit_data) const
-	{
-	    const Bcache* bcache = to_bcache(get_device(commit_data.actiongraph, RHS));
-	    return bcache->get_impl().do_attach_bcache_cset_text(commit_data.tense);
-	}
-
-
-	void
-	AttachBcacheCset::commit(CommitData& commit_data, const CommitOptions& commit_options) const
-	{
-	    const Bcache* bcache = to_bcache(get_device(commit_data.actiongraph, RHS));
-	    bcache->get_impl().do_attach_bcache_cset();
-	}
-
-
-	Text
-	DetachBcacheCset::text(const CommitData& commit_data) const
-	{
-	    const Bcache* bcache = to_bcache(get_device(commit_data.actiongraph, RHS));
-	    return bcache->get_impl().do_detach_bcache_cset_text(commit_data.tense, get_bcache_cset());
-	}
-
-
-	void
-	DetachBcacheCset::commit(CommitData& commit_data, const CommitOptions& commit_options) const
-	{
-	    const Bcache* bcache = to_bcache(get_device(commit_data.actiongraph, RHS));
-	    bcache->get_impl().do_detach_bcache_cset();
-	}
-
-
-	Text
-	UpdateCacheMode::text(const CommitData& commit_data) const
-	{
-	    const Bcache* bcache = to_bcache(get_device(commit_data.actiongraph, RHS));
-	    return bcache->get_impl().do_update_cache_mode_text(commit_data.tense);
-	}
-
-
-	void
-	UpdateCacheMode::commit(CommitData& commit_data, const CommitOptions& commit_options) const
-	{
-	    const Bcache* bcache = to_bcache(get_device(commit_data.actiongraph, RHS));
-	    bcache->get_impl().do_update_cache_mode();
-	}
-
     }
 
 }

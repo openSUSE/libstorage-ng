@@ -30,6 +30,7 @@
 #include "storage/Filesystems/BlkFilesystem.h"
 #include "storage/Filesystems/FilesystemImpl.h"
 #include "storage/FreeInfo.h"
+#include "storage/Actions/Resize.h"
 
 
 namespace storage
@@ -207,50 +208,6 @@ namespace storage
 
     static_assert(std::is_abstract<BlkFilesystem>(), "BlkFilesystem ought to be abstract.");
     static_assert(std::is_abstract<BlkFilesystem::Impl>(), "BlkFilesystem::Impl ought to be abstract.");
-
-
-    namespace Action
-    {
-
-	class SetLabel : public Modify
-	{
-	public:
-
-	    SetLabel(sid_t sid) : Modify(sid) {}
-
-	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
-	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const override;
-
-	};
-
-
-	class SetUuid : public Modify
-	{
-	public:
-
-	    SetUuid(sid_t sid) : Modify(sid) {}
-
-	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
-	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const override;
-
-	};
-
-
-	class SetTuneOptions : public Modify
-	{
-	public:
-
-	    SetTuneOptions(sid_t sid) : Modify(sid) {}
-
-	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
-	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const override;
-
-	};
-
-    }
 
 }
 
