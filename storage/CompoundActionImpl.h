@@ -27,8 +27,10 @@
 #include <vector>
 
 #include "storage/CompoundAction.h"
-#include "storage/Action.h"
 #include "storage/Devices/Device.h"
+#include "storage/Actions/Create.h"
+#include "storage/Actions/Modify.h"
+#include "storage/Actions/Delete.h"
 
 
 namespace storage

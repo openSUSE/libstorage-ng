@@ -207,23 +207,6 @@ namespace storage
 
     };
 
-
-    namespace Action
-    {
-
-	class ReduceMissing : public Modify
-	{
-	public:
-
-	    ReduceMissing(sid_t sid) : Modify(sid) {}
-
-	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
-
-	};
-
-    }
-
 }
 
 #endif

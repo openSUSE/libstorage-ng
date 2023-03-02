@@ -28,8 +28,8 @@
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Devices/Encryption.h"
 #include "storage/Devices/BlkDeviceImpl.h"
-#include "storage/Action.h"
 #include "storage/EtcCrypttab.h"
+#include "storage/Actions/RenameIn.h"
 
 
 namespace storage
@@ -197,50 +197,6 @@ namespace storage
 	string open_options;
 
     };
-
-
-    namespace Action
-    {
-
-	class AddToEtcCrypttab : public Modify
-	{
-	public:
-
-	    AddToEtcCrypttab(sid_t sid) : Modify(sid) {}
-
-	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
-
-	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
-					  Actiongraph::Impl& actiongraph) const override;
-
-	};
-
-
-	class RenameInEtcCrypttab : public RenameIn
-	{
-	public:
-
-	    RenameInEtcCrypttab(sid_t sid, const BlkDevice* blk_device) : RenameIn(sid, blk_device) {}
-
-	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
-
-	};
-
-
-	class RemoveFromEtcCrypttab : public Modify
-	{
-	public:
-
-	    RemoveFromEtcCrypttab(sid_t sid) : Modify(sid) {}
-
-	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
-
-	};
-
-    }
 
 }
 

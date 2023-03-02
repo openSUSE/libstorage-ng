@@ -21,10 +21,9 @@
  */
 
 
-#include "storage/Action.h"
-#include "storage/DevicegraphImpl.h"
+#include "storage/Actions/Create.h"
+#include "storage/Actions/Delete.h"
 #include "storage/Devices/DeviceImpl.h"
-#include "storage/Devices/BlkDevice.h"
 
 
 namespace storage
@@ -32,50 +31,6 @@ namespace storage
 
     namespace Action
     {
-
-	string
-	Base::details() const
-	{
-	    string ret;
-
-	    switch (affect)
-	    {
-		case Affect::DEVICE:
-		    ret = "sid:" + to_string(sid);
-		    break;
-
-		case Affect::HOLDER:
-		    ret = "source-sid:" + to_string(sid_pair.first) + ", target-sid:" + to_string(sid_pair.second);
-		    break;
-	    }
-
-	    if (first)
-		ret += ", first";
-
-	    if (last)
-		ret += ", last";
-
-	    if (only_sync)
-		ret += ", only-sync";
-
-	    if (nop)
-		ret += ", nop";
-
-	    return ret;
-	}
-
-
-	string
-	Base::debug_text(const CommitData& commit_data) const
-	{
-	    string ret = text(commit_data).native;
-
-	    if (nop)
-		ret += " [nop]";
-
-	    return ret;
-	}
-
 
 	Text
 	Create::text(const CommitData& commit_data) const
@@ -160,90 +115,6 @@ namespace storage
 	}
 
 
-	Device*
-	Modify::get_device(const Actiongraph::Impl& actiongraph, Side side) const
-	{
-	    if (!affects_device())
-		ST_THROW(Exception("requested device for action not affecting device, " + details()));
-
-	    return actiongraph.get_devicegraph(side)->find_device(sid);
-	}
-
-
-	Text
-	Delete::text(const CommitData& commit_data) const
-	{
-	    switch (affect)
-	    {
-		case Affect::DEVICE:
-		    return get_device(commit_data.actiongraph)->get_impl().do_delete_text(commit_data.tense);
-
-		case Affect::HOLDER:
-		    return get_holder(commit_data.actiongraph)->get_impl().do_delete_text(commit_data.tense);
-	    }
-
-	    ST_THROW(LogicException("unknown Action::Affect"));
-	}
-
-
-	void
-	Delete::commit(CommitData& commit_data, const CommitOptions& commit_options) const
-	{
-	    switch (affect)
-	    {
-		case Affect::DEVICE:
-		    get_device(commit_data.actiongraph)->get_impl().do_delete();
-		    break;
-
-		case Affect::HOLDER:
-		    get_holder(commit_data.actiongraph)->get_impl().do_delete();
-		    break;
-	    }
-	}
-
-
-	uf_t
-	Delete::used_features(const Actiongraph::Impl& actiongraph) const
-	{
-	    switch (affect)
-	    {
-		case Affect::DEVICE:
-		{
-		    const Device* device = get_device(actiongraph);
-		    return device->get_impl().do_delete_used_features();
-		}
-
-		case Affect::HOLDER:
-		{
-		    const Holder* holder = get_holder(actiongraph);
-		    return holder->get_impl().do_delete_used_features();
-		}
-	    }
-
-	    ST_THROW(LogicException("unknown Action::Affect"));
-	}
-
-
-	Device*
-	Delete::get_device(const Actiongraph::Impl& actiongraph) const
-	{
-	    if (!affects_device())
-		ST_THROW(Exception("requested device for action not affecting device, " + details()));
-
-	    return actiongraph.get_devicegraph(LHS)->find_device(sid);
-	}
-
-
-	Holder*
-	Delete::get_holder(const Actiongraph::Impl& actiongraph) const
-	{
-	    if (!affects_holder())
-		ST_THROW(Exception("requested holder for action not affecting holder, " + details()));
-
-	    return actiongraph.get_devicegraph(LHS)->find_holder(sid_pair.first, sid_pair.second);
-	}
-
-
 	void
 	Create::add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
 				 Actiongraph::Impl& actiongraph) const
@@ -314,57 +185,6 @@ namespace storage
 					Actiongraph::Impl& actiongraph) const
 	{
 	    get_holder(actiongraph)->get_impl().add_dependencies(vertex, actiongraph);
-	}
-
-
-	void
-	Delete::add_dependencies(Actiongraph::Impl::vertex_descriptor vertex, Actiongraph::Impl& actiongraph) const
-	{
-	    switch (affect)
-	    {
-		case Affect::DEVICE:
-		    add_device_dependencies(vertex, actiongraph);
-		    break;
-
-		case Affect::HOLDER:
-		    add_holder_dependencies(vertex, actiongraph);
-		    break;
-	    }
-	}
-
-
-	void
-	Delete::add_device_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
-					Actiongraph::Impl& actiongraph) const
-	{
-	    // all children must be deleted before parents
-
-	    sid_t sid = actiongraph[vertex]->sid;
-
-	    const Device* device = actiongraph.find_device(sid, LHS);
-
-	    for (const Device* parent : device->get_parents(View::REMOVE))
-	    {
-		sid_t parent_sid = parent->get_sid();
-
-		for (Actiongraph::Impl::vertex_descriptor tmp : actiongraph.actions_with_sid(parent_sid, ONLY_FIRST))
-		    actiongraph.add_edge(vertex, tmp);
-	    }
-	}
-
-
-	void
-	Delete::add_holder_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
-					Actiongraph::Impl& actiongraph) const
-	{
-	    get_holder(actiongraph)->get_impl().add_dependencies(vertex, actiongraph);
-	}
-
-
-	const BlkDevice*
-	RenameIn::get_renamed_blk_device(const Actiongraph::Impl& actiongraph, Side side) const
-	{
-	    return to_blk_device(actiongraph.get_devicegraph(side)->find_device(blk_device->get_sid()));
 	}
 
     }

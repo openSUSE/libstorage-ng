@@ -42,6 +42,9 @@
 #include "storage/Prober.h"
 #include "storage/Utils/Format.h"
 #include "storage/Registries.h"
+#include "storage/Actions/Activate.h"
+#include "storage/Actions/Resize.h"
+#include "storage/Actions/Deactivate.h"
 
 
 namespace storage

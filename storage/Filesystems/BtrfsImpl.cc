@@ -46,6 +46,10 @@
 #include "storage/Utils/Mockup.h"
 #include "storage/Prober.h"
 #include "storage/Redirect.h"
+#include "storage/Actions/Reallot.h"
+#include "storage/Actions/SetLabel.h"
+#include "storage/Actions/SetQuota.h"
+#include "storage/Actions/Create.h"
 
 
 namespace storage
@@ -1257,27 +1261,6 @@ namespace storage
 	// So far only actions that increase the overall size of a
 	// multiple devices btrfs are supported. Thus no actions need
 	// to be ordered here.
-    }
-
-
-    namespace Action
-    {
-
-	Text
-	SetQuota::text(const CommitData& commit_data) const
-	{
-	    const Btrfs* btrfs = to_btrfs(get_device(commit_data.actiongraph, RHS));
-	    return btrfs->get_impl().do_set_quota_text(commit_data, this);
-	}
-
-
-	void
-	SetQuota::commit(CommitData& commit_data, const CommitOptions& commit_options) const
-	{
-	    const Btrfs* btrfs = to_btrfs(get_device(commit_data.actiongraph, RHS));
-	    btrfs->get_impl().do_set_quota(commit_data, this);
-	}
-
     }
 
 }

@@ -22,7 +22,7 @@
 
 
 #include "storage/ActiongraphImpl.h"
-#include "storage/Action.h"
+#include "storage/Actions/Base.h"
 #include "storage/GraphvizImpl.h"
 
 

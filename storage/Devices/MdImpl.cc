@@ -30,7 +30,6 @@
 #include "storage/Devices/MdMemberImpl.h"
 #include "storage/Holders/MdUserImpl.h"
 #include "storage/Devicegraph.h"
-#include "storage/Action.h"
 #include "storage/Storage.h"
 #include "storage/Prober.h"
 #include "storage/EnvironmentImpl.h"
@@ -50,6 +49,12 @@
 #include "storage/EtcMdadm.h"
 #include "storage/Utils/CallbacksImpl.h"
 #include "storage/Utils/Format.h"
+#include "storage/Actions/Deactivate.h"
+#include "storage/Actions/Reallot.h"
+#include "storage/Actions/Create.h"
+#include "storage/Actions/Delete.h"
+#include "storage/Actions/AddToEtcMdadm.h"
+#include "storage/Actions/RemoveFromEtcMdadm.h"
 
 
 namespace storage
@@ -1386,54 +1391,6 @@ namespace storage
 	string cmd_line = MDADM_BIN " --stop " + quote(get_name());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
-    }
-
-
-    namespace Action
-    {
-
-	Text
-	AddToEtcMdadm::text(const CommitData& commit_data) const
-	{
-	    const Md* md = to_md(get_device(commit_data.actiongraph, RHS));
-	    return md->get_impl().do_add_to_etc_mdadm_text(commit_data.tense);
-	}
-
-
-	void
-	AddToEtcMdadm::commit(CommitData& commit_data, const CommitOptions& commit_options) const
-	{
-	    const Md* md = to_md(get_device(commit_data.actiongraph, RHS));
-	    md->get_impl().do_add_to_etc_mdadm(commit_data);
-	}
-
-
-	void
-	AddToEtcMdadm::add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
-					Actiongraph::Impl& actiongraph) const
-	{
-	    Modify::add_dependencies(vertex, actiongraph);
-
-	    if (actiongraph.mount_root_filesystem != actiongraph.vertices().end())
-		actiongraph.add_edge(*actiongraph.mount_root_filesystem, vertex);
-	}
-
-
-	Text
-	RemoveFromEtcMdadm::text(const CommitData& commit_data) const
-	{
-	    const Md* md = to_md(get_device(commit_data.actiongraph, LHS));
-	    return md->get_impl().do_remove_from_etc_mdadm_text(commit_data.tense);
-	}
-
-
-	void
-	RemoveFromEtcMdadm::commit(CommitData& commit_data, const CommitOptions& commit_options) const
-	{
-	    const Md* md = to_md(get_device(commit_data.actiongraph, LHS));
-	    md->get_impl().do_remove_from_etc_mdadm(commit_data);
-	}
-
     }
 
 }

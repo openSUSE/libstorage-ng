@@ -40,6 +40,10 @@
 #include "storage/Holders/Snapshot.h"
 #include "storage/Prober.h"
 #include "storage/Utils/Format.h"
+#include "storage/Actions/Create.h"
+#include "storage/Actions/Delete.h"
+#include "storage/Actions/SetNocow.h"
+#include "storage/Actions/SetDefaultBtrfsSubvolume.h"
 
 
 namespace storage
@@ -796,59 +800,6 @@ namespace storage
     BtrfsSubvolume::Impl::do_pre_mount() const
     {
 	get_btrfs()->get_impl().do_pre_mount();
-    }
-
-
-    namespace Action
-    {
-
-	Text
-	SetNocow::text(const CommitData& commit_data) const
-	{
-	    const BtrfsSubvolume* btrfs_subvolume = to_btrfs_subvolume(get_device(commit_data.actiongraph, RHS));
-	    return btrfs_subvolume->get_impl().do_set_nocow_text(commit_data.tense);
-	}
-
-
-	void
-	SetNocow::commit(CommitData& commit_data, const CommitOptions& commit_options) const
-	{
-	    const BtrfsSubvolume* btrfs_subvolume = to_btrfs_subvolume(get_device(commit_data.actiongraph, RHS));
-	    btrfs_subvolume->get_impl().do_set_nocow();
-	}
-
-
-	uf_t
-	SetNocow::used_features(const Actiongraph::Impl& actiongraph) const
-	{
-	    const BtrfsSubvolume* btrfs_subvolume = to_btrfs_subvolume(get_device(actiongraph, RHS));
-	    return btrfs_subvolume->get_impl().do_set_nocow_used_features();
-	}
-
-
-	Text
-	SetDefaultBtrfsSubvolume::text(const CommitData& commit_data) const
-	{
-	    const BtrfsSubvolume* btrfs_subvolume = to_btrfs_subvolume(get_device(commit_data.actiongraph, RHS));
-	    return btrfs_subvolume->get_impl().do_set_default_btrfs_subvolume_text(commit_data.tense);
-	}
-
-
-	void
-	SetDefaultBtrfsSubvolume::commit(CommitData& commit_data, const CommitOptions& commit_options) const
-	{
-	    const BtrfsSubvolume* btrfs_subvolume = to_btrfs_subvolume(get_device(commit_data.actiongraph, RHS));
-	    btrfs_subvolume->get_impl().do_set_default_btrfs_subvolume();
-	}
-
-
-	uf_t
-	SetDefaultBtrfsSubvolume::used_features(const Actiongraph::Impl& actiongraph) const
-	{
-	    const BtrfsSubvolume* btrfs_subvolume = to_btrfs_subvolume(get_device(actiongraph, RHS));
-	    return btrfs_subvolume->get_impl().do_set_default_btrfs_subvolume_used_features();
-	}
-
     }
 
 }

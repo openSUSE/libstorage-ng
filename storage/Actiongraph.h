@@ -129,7 +129,8 @@ namespace storage
 			    GraphvizFlags tooltip_flags = GraphvizFlags::NONE) const;
 
 	/**
-	 * Sorted according to dependencies among actions.
+	 * Sorted according to dependencies among actions. So there can be some random in
+	 * the sorting.
 	 */
 	std::vector<const Action::Base*> get_commit_actions() const;
 

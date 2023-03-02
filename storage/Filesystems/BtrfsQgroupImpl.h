@@ -26,6 +26,7 @@
 
 #include "storage/Filesystems/BtrfsQgroup.h"
 #include "storage/Devices/DeviceImpl.h"
+#include "storage/Actions/SetLimits.h"
 
 
 namespace storage
@@ -35,11 +36,6 @@ namespace storage
 
 
     class BtrfsSubvolume;
-
-    namespace Action
-    {
-	class SetLimits;
-    }
 
 
     template <> struct DeviceTraits<BtrfsQgroup> { static const char* classname; };
@@ -144,24 +140,6 @@ namespace storage
 	std::optional<unsigned long long> exclusive_limit;
 
     };
-
-
-    namespace Action
-    {
-
-	class SetLimits : public Modify
-	{
-	public:
-
-	    SetLimits(sid_t sid) : Modify(sid) {}
-
-	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
-	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const override { return UF_BTRFS; }
-
-	};
-
-    }
 
 }
 

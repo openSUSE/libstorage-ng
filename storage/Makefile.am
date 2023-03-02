@@ -2,7 +2,8 @@
 # Makefile.am for libstorage/storage
 #
 
-SUBDIRS = CompoundAction Devices Filesystems Holders SystemInfo Utils
+SUBDIRS = CompoundAction Devices Filesystems Holders Actions SystemInfo	\
+	Utils
 
 lib_LTLIBRARIES = libstorage-ng.la
 
@@ -14,7 +15,6 @@ libstorage_ng_la_SOURCES =						\
 	Devicegraph.h			Devicegraph.cc			\
 	DevicegraphImpl.h		DevicegraphImpl.cc		\
 	Registries.h			Registries.cc			\
-	Action.h			Action.cc			\
 	Actiongraph.h			Actiongraph.cc			\
 	ActiongraphImpl.h		ActiongraphImpl.cc		\
 	Pool.h				Pool.cc				\
@@ -45,6 +45,7 @@ libstorage_ng_la_LIBADD =				\
 	Devices/libdevices.la			        \
 	Filesystems/libfilesystems.la		        \
 	Holders/libholders.la			        \
+	Actions/libactions.la			        \
 	Utils/libutils.la			        \
 	SystemInfo/libsystem-info.la		        \
 	$(XML_LIBS)				        \

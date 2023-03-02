@@ -29,7 +29,6 @@
 #include "storage/Utils/Enum.h"
 #include "storage/Devices/Partition.h"
 #include "storage/Devices/BlkDeviceImpl.h"
-#include "storage/Action.h"
 
 
 namespace storage
@@ -179,59 +178,6 @@ namespace storage
 	void probe_uuid();
 
     };
-
-
-    namespace Action
-    {
-
-	class SetPartitionId : public Modify
-	{
-	public:
-
-	    SetPartitionId(sid_t sid) : Modify(sid) {}
-
-	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
-
-	};
-
-
-	class SetPartitionLabel : public Modify
-	{
-	public:
-
-	    SetPartitionLabel(sid_t sid) : Modify(sid) {}
-
-	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
-
-	};
-
-
-	class SetBoot : public Modify
-	{
-	public:
-
-	    SetBoot(sid_t sid) : Modify(sid) {}
-
-	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
-
-	};
-
-
-	class SetLegacyBoot : public Modify
-	{
-	public:
-
-	    SetLegacyBoot(sid_t sid) : Modify(sid) {}
-
-	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
-
-	};
-
-    }
 
 
     Text id_to_text(unsigned int id);

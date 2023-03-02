@@ -24,13 +24,15 @@
 #include "storage/Devices/DeviceImpl.h"
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Devicegraph.h"
-#include "storage/Action.h"
 #include "storage/Filesystems/MountPoint.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/FreeInfo.h"
 #include "storage/StorageImpl.h"
 #include "storage/Utils/Format.h"
+#include "storage/Actions/Create.h"
+#include "storage/Actions/Reallot.h"
+#include "storage/Actions/Delete.h"
 
 
 namespace storage
@@ -449,210 +451,6 @@ namespace storage
     Device::Impl::do_reallot(const CommitData& commit_data, const Action::Reallot* action) const
     {
 	ST_THROW(LogicException("stub Device::Impl::do_reallot called"));
-    }
-
-
-    namespace Action
-    {
-
-	Text
-	Activate::text(const CommitData& commit_data) const
-	{
-	    const Device* device = get_device(commit_data.actiongraph, RHS);
-	    return device->get_impl().do_activate_text(commit_data.tense);
-	}
-
-
-	void
-	Activate::commit(CommitData& commit_data, const CommitOptions& commit_options) const
-	{
-	    const Device* device = get_device(commit_data.actiongraph, RHS);
-	    device->get_impl().do_activate();
-	}
-
-
-	uf_t
-	Activate::used_features(const Actiongraph::Impl& actiongraph) const
-	{
-	    const Device* device = get_device(actiongraph, RHS);
-	    return device->get_impl().do_activate_used_features();
-	}
-
-
-	Text
-	Deactivate::text(const CommitData& commit_data) const
-	{
-	    const Device* device = get_device(commit_data.actiongraph, LHS);
-	    return device->get_impl().do_deactivate_text(commit_data.tense);
-	}
-
-
-	void
-	Deactivate::commit(CommitData& commit_data, const CommitOptions& commit_options) const
-	{
-	    const Device* device = get_device(commit_data.actiongraph, LHS);
-	    device->get_impl().do_deactivate();
-	}
-
-
-	uf_t
-	Deactivate::used_features(const Actiongraph::Impl& actiongraph) const
-	{
-	    const Device* device = get_device(actiongraph, LHS);
-	    return device->get_impl().do_deactivate_used_features();
-	}
-
-
-	Text
-	Resize::text(const CommitData& commit_data) const
-	{
-	    const Device* device = get_device(commit_data.actiongraph, get_side());
-	    return device->get_impl().do_resize_text(commit_data, this);
-	}
-
-
-	void
-	Resize::commit(CommitData& commit_data, const CommitOptions& commit_options) const
-	{
-	    const Device* device = get_device(commit_data.actiongraph, get_side());
-	    device->get_impl().do_resize(commit_data, this);
-	}
-
-
-	uf_t
-	Resize::used_features(const Actiongraph::Impl& actiongraph) const
-	{
-	    const Device* device = get_device(actiongraph, get_side());
-	    return device->get_impl().do_resize_used_features();
-	}
-
-
-	void
-	Resize::add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
-				 Actiongraph::Impl& actiongraph) const
-	{
-	    Modify::add_dependencies(vertex, actiongraph);
-
-	    if (!actiongraph[vertex]->affects_device())
-		return;
-
-	    // The disabled dependencies are already created in
-	    // Action.cc. TODO Should be more consistent.
-
-	    /*
-	    const Devicegraph* devicegraph_lhs = actiongraph.get_devicegraph(LHS);
-	    const Device* device_lhs = devicegraph_lhs->find_device(actiongraph[vertex]->sid);
-	    */
-
-	    const Devicegraph* devicegraph_rhs = actiongraph.get_devicegraph(RHS);
-	    const Device* device_rhs = devicegraph_rhs->find_device(actiongraph[vertex]->sid);
-
-	    for (Actiongraph::Impl::vertex_descriptor tmp : actiongraph.vertices())
-	    {
-		Action::Base* action = actiongraph[tmp];
-
-		if (!action->affects_device())
-		    continue;
-
-		if (is_create(action) && is_child(device_rhs, action->sid))
-		    actiongraph.add_edge(vertex, tmp);
-
-		/*
-		if (is_delete(action) && is_child(device_lhs, action->sid))
-		    actiongraph.add_edge(tmp, vertex);
-		*/
-	    }
-	}
-
-
-	const BlkDevice*
-	Resize::get_resized_blk_device(const Actiongraph::Impl& actiongraph, Side side) const
-	{
-	    return to_blk_device(actiongraph.get_devicegraph(side)->find_device(blk_device->get_sid()));
-	}
-
-
-	bool
-	Resize::is_child(const Device* device, sid_t sid) const
-	{
-	    vector<const Device*> children = device->get_impl().get_children_of_type<const Device>();
-
-	    return any_of(children.begin(), children.end(), [sid](const Device* child) {
-		return child->get_sid() == sid;
-	    });
-	}
-
-
-	Text
-	Reallot::text(const CommitData& commit_data) const
-	{
-	    const Device* device_lhs = get_device(commit_data.actiongraph, LHS);
-	    return device_lhs->get_impl().do_reallot_text(commit_data, this);
-	}
-
-
-	void
-	Reallot::commit(CommitData& commit_data, const CommitOptions& commit_options) const
-	{
-	    const Device* device_rhs = get_device(commit_data.actiongraph, RHS);
-	    device_rhs->get_impl().do_reallot(commit_data, this);
-	}
-
-
-	uf_t
-	Reallot::used_features(const Actiongraph::Impl& actiongraph) const
-	{
-	    const Device* device = get_device(actiongraph, RHS);
-	    return device->get_impl().do_reallot_used_features();
-	}
-
-
-	void
-	Reallot::add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
-				  Actiongraph::Impl& actiongraph) const
-	{
-	    Modify::add_dependencies(vertex, actiongraph);
-
-	    if (reallot_mode == ReallotMode::REDUCE)
-	    {
-		// Make sure the device (PV) is removed before being destroyed
-		for (Actiongraph::Impl::vertex_descriptor tmp :
-			 actiongraph.actions_with_sid(device->get_sid(), ONLY_FIRST))
-		    actiongraph.add_edge(vertex, tmp);
-	    }
-	    else
-	    {
-		// Make sure the device is created before being added
-		for (Actiongraph::Impl::vertex_descriptor tmp :
-			 actiongraph.actions_with_sid(device->get_sid(), ONLY_LAST))
-		    actiongraph.add_edge(tmp, vertex);
-
-		// If the device was assigned elsewhere, make sure it's removed
-		// from there before being re-assigned
-		for (Actiongraph::Impl::vertex_descriptor tmp : actiongraph.vertices())
-		    if (action_removes_device(actiongraph[tmp]))
-		    {
-			actiongraph.add_edge(tmp, vertex);
-			break;
-		    }
-	    }
-	}
-
-
-	bool
-	Reallot::action_removes_device(const Action::Base* action) const
-	{
-	    const Action::Reallot* reallot = dynamic_cast<const Action::Reallot*>(action);
-
-	    if (!reallot)
-		return false;
-
-	    if (reallot->reallot_mode != ReallotMode::REDUCE)
-		return false;
-
-	    return reallot->device->get_sid() == device->get_sid();
-	}
-
     }
 
 }

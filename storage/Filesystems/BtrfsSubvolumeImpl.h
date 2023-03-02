@@ -189,37 +189,6 @@ namespace storage
 
     };
 
-
-    namespace Action
-    {
-
-	class SetNocow : public Modify
-	{
-	public:
-
-	    SetNocow(sid_t sid) : Modify(sid) {}
-
-	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
-	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const override;
-
-	};
-
-
-	class SetDefaultBtrfsSubvolume : public Modify
-	{
-	public:
-
-	    SetDefaultBtrfsSubvolume(sid_t sid) : Modify(sid) {}
-
-	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
-	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const override;
-
-	};
-
-    }
-
 }
 
 #endif

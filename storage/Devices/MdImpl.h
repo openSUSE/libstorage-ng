@@ -30,7 +30,6 @@
 #include "storage/Devices/Md.h"
 #include "storage/Devices/PartitionableImpl.h"
 #include "storage/Utils/Enum.h"
-#include "storage/Action.h"
 
 
 namespace storage
@@ -203,40 +202,6 @@ namespace storage
 	bool in_etc_mdadm = true;
 
     };
-
-
-    namespace Action
-    {
-
-	class AddToEtcMdadm : public Modify
-	{
-	public:
-
-	    AddToEtcMdadm(sid_t sid)
-		: Modify(sid) {}
-
-	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
-
-	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
-					  Actiongraph::Impl& actiongraph) const override;
-
-	};
-
-
-	class RemoveFromEtcMdadm : public Modify
-	{
-	public:
-
-	    RemoveFromEtcMdadm(sid_t sid)
-		: Modify(sid) {}
-
-	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
-
-	};
-
-    }
 
 }
 

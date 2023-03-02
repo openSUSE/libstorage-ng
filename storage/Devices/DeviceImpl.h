@@ -35,7 +35,6 @@
 #include "storage/Devicegraph.h"
 #include "storage/ActiongraphImpl.h"
 #include "storage/DevicegraphImpl.h"
-#include "storage/Action.h"
 
 
 namespace storage
@@ -45,6 +44,7 @@ namespace storage
 
 
     class Prober;
+    class BlkDevice;
 
     namespace Action
     {
@@ -61,26 +61,6 @@ namespace storage
     template <typename Type> bool is_device_of_type(const Device* device);
     template <typename Type> Type* to_device_of_type(Device* device);
     template <typename Type> const Type* to_device_of_type(const Device* device);
-
-
-    /**
-     * We use the term "resize" for chaning the size of a non-container block
-     * device, e.g. change the size of a partition or LVM logical volume.
-     */
-    enum class ResizeMode
-    {
-	SHRINK, GROW
-    };
-
-
-    /**
-     * We use the term "reallot" for reducing or extending a container, e.g. a
-     * LVM volume group, a MD RAID, or a btrfs.
-     */
-    enum class ReallotMode
-    {
-	REDUCE, EXTEND
-    };
 
 
     // abstract class
@@ -436,111 +416,6 @@ namespace storage
 
     static_assert(std::is_abstract<Device>(), "Device ought to be abstract.");
     static_assert(std::is_abstract<Device::Impl>(), "Device::Impl ought to be abstract.");
-
-
-    namespace Action
-    {
-
-	class Activate : public Modify
-	{
-	public:
-
-	    Activate(sid_t sid) : Modify(sid) {}
-
-	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
-	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const override;
-
-	};
-
-
-	class Deactivate : public Modify
-	{
-
-	public:
-
-	    Deactivate(sid_t sid) : Modify(sid) {}
-
-	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
-	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const override;
-
-	};
-
-
-	class Resize : public Modify
-	{
-	public:
-
-	    Resize(sid_t sid, ResizeMode resize_mode, const BlkDevice* blk_device)
-		: Modify(sid), resize_mode(resize_mode), blk_device(blk_device) {}
-
-	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
-	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const override;
-
-	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
-					  Actiongraph::Impl& actiongraph) const override;
-
-	    Side get_side() const { return resize_mode == ResizeMode::GROW ? RHS : LHS; }
-
-	    const ResizeMode resize_mode;
-
-	    /**
-	     * The underlying blk device being resized. Only allowed
-	     * if blk_device is not nullptr, see below.
-	     */
-	    const BlkDevice* get_resized_blk_device(const Actiongraph::Impl& actiongraph,
-						    Side side) const;
-
-	    /**
-	     * The underlying blk device being resized. nullptr for
-	     * Partitions, LvmLvs and Nfs. Esp. important for Btrfs
-	     * which can have multiple underlying blk devices.
-	     *
-	     * TODO on what side?
-	     */
-	    const BlkDevice* blk_device;
-
-	private:
-
-	    bool is_child(const Device* device, sid_t sid) const;
-
-	};
-
-
-	class Reallot : public Modify
-	{
-	public:
-
-	    Reallot(sid_t sid, ReallotMode reallot_mode, const Device* device)
-		: Modify(sid), reallot_mode(reallot_mode), device(device) {}
-
-	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
-	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const override;
-
-	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
-					  Actiongraph::Impl& actiongraph) const override;
-
-	    const ReallotMode reallot_mode;
-
-	    /**
-	     * The device for addition or removal.
-	     */
-	    const Device* device;
-
-	private:
-
-	    /**
-	     * Checks if the given action is a Reallot::REDUCE performed on the
-	     * same device (PV) than this action.
-	     */
-	    bool action_removes_device(const Action::Base* action) const;
-
-	};
-
-    }
 
 
     template <typename Type>

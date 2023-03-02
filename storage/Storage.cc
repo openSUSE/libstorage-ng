@@ -21,13 +21,12 @@
  */
 
 
-#include <vector>
-
 #include "storage/StorageImpl.h"
 
 
 namespace storage
 {
+
     using std::vector;
 
 
