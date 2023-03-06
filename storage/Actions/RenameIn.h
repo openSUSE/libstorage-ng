@@ -36,8 +36,8 @@ namespace storage
     {
 
 	/**
-	 * Base class for renaming a blk device in some file, e.g. /etc/fstab
-	 * or /etc/crypttab.
+	 * Abstract class for renaming a blk device in some file, e.g. /etc/fstab or
+	 * /etc/crypttab.
 	 */
 	class RenameIn : public Modify
 	{
@@ -59,6 +59,9 @@ namespace storage
 	};
 
     }
+
+
+    static_assert(std::is_abstract<Action::RenameIn>(), "RenameIn ought to be abstract.");
 
 }
 

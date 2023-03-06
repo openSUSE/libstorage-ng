@@ -39,8 +39,8 @@ namespace storage
     {
 
 	/**
-	 * An action can either affect a device or a holder. Thus either sid or sid_pair
-	 * is valid.
+	 * Abstract base class for actions. An action can either affect a device or a
+	 * holder. Thus either sid or sid_pair is valid.
 	 */
 	class Base : private boost::noncopyable
 	{
@@ -113,6 +113,9 @@ namespace storage
 
 	return dynamic_cast<const Type*>(action);
     }
+
+
+    static_assert(std::is_abstract<Action::Base>(), "Base ought to be abstract.");
 
 }
 

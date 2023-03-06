@@ -82,6 +82,9 @@ namespace storage
 	return is_action_of_type<const Action::Create>(action);
     }
 
+
+    static_assert(!std::is_abstract<Action::Create>(), "Create ought not to be abstract.");
+
 }
 
 #endif
