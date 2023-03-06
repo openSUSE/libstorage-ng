@@ -138,11 +138,12 @@ namespace storage
 	virtual void do_create() override;
 	virtual void do_create_post_verify() const override;
 
-	virtual Text do_set_id_text(Tense tense) const;
-	virtual void do_set_id() const;
+	virtual Text do_set_type_id_text(Tense tense) const;
+	virtual void do_set_type_id() const;
 
 	virtual Text do_set_label_text(Tense tense) const;
 	virtual void do_set_label() const;
+	virtual uf_t do_set_label_used_features() const { return 0; }
 
 	virtual Text do_set_boot_text(Tense tense) const;
 	virtual void do_set_boot() const;

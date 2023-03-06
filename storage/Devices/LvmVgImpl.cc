@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -523,6 +523,22 @@ namespace storage
 
 
     void
+    LvmVg::Impl::add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs_base) const
+    {
+	Device::Impl::add_modify_actions(actiongraph, lhs_base);
+
+	const Impl& lhs = dynamic_cast<const Impl&>(lhs_base->get_impl());
+
+	if (get_vg_name() != lhs.get_vg_name())
+	{
+	    shared_ptr<Action::Base> action = make_shared<Action::Rename>(get_sid());
+	    actiongraph.add_vertex(action);
+	    action->first = action->last = true;
+	}
+    }
+
+
+    void
     LvmVg::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
     {
 	vector<shared_ptr<Action::Base>> actions;
@@ -583,6 +599,34 @@ namespace storage
 	    "vg_extent_count --units b -- " + quote(vg_name);
 
 	SystemCmd cmd(cmd_line, SystemCmd::NoThrow);
+    }
+
+
+    Text
+    LvmVg::Impl::do_rename_text(const CommitData& commit_data, const Action::Rename* action) const
+    {
+	const LvmVg* lvm_vg_lhs = to_lvm_vg(action->get_device(commit_data.actiongraph, LHS));
+	const LvmVg* lvm_vg_rhs = to_lvm_vg(action->get_device(commit_data.actiongraph, RHS));
+
+	// TRANSLATORS:
+	// %1$s is replaced with the old volume group name (e.g. foo),
+	// %2$s is replaced with the new volume group name (e.g. bar)
+	Text text = _("Rename volume group %1$s to %2$s");
+
+	return sformat(text, lvm_vg_lhs->get_displayname(), lvm_vg_rhs->get_displayname());
+    }
+
+
+    void
+    LvmVg::Impl::do_rename(const CommitData& commit_data, const Action::Rename* action) const
+    {
+	const LvmVg* lvm_vg_lhs = to_lvm_vg(action->get_device(commit_data.actiongraph, LHS));
+	const LvmVg* lvm_vg_rhs = to_lvm_vg(action->get_device(commit_data.actiongraph, RHS));
+
+	string cmd_line = VGRENAME_BIN " " + quote(lvm_vg_lhs->get_vg_name()) + " " +
+	    quote(lvm_vg_rhs->get_vg_name());
+
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 

@@ -27,6 +27,7 @@
 #include "storage/Devices/LvmLv.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Utils/Enum.h"
+#include "storage/Actions/Rename.h"
 
 
 namespace storage
@@ -148,8 +149,8 @@ namespace storage
 	virtual void do_create_post_verify() const override;
 	virtual uf_t do_create_used_features() const override { return UF_LVM; }
 
-	virtual Text do_rename_text(const Impl& lhs, Tense tense) const;
-	virtual void do_rename(const Impl& lhs) const;
+	virtual Text do_rename_text(const CommitData& commit_data, const Action::Rename* action) const;
+	virtual void do_rename(const CommitData& commit_data, const Action::Rename* action) const;
 	virtual uf_t do_rename_used_features() const { return UF_LVM; }
 
 	virtual Text do_resize_text(const CommitData& commit_data, const Action::Resize* action) const override;
@@ -192,12 +193,12 @@ namespace storage
 	 *
 	 * TODO For RAIDs and mirrors the value is incorrect.
 	 */
-	unsigned long long used_extents;
+	unsigned long long used_extents = 0;
 
-	unsigned int stripes;
-	unsigned long long stripe_size;
+	unsigned int stripes = 0;
+	unsigned long long stripe_size = 0;
 
-	unsigned long long chunk_size;
+	unsigned long long chunk_size = 0;
 
     };
 

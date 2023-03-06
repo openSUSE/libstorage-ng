@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -29,6 +29,7 @@
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Devices/LvmVg.h"
 #include "storage/Devices/DeviceImpl.h"
+#include "storage/Actions/Rename.h"
 
 
 namespace storage
@@ -131,12 +132,17 @@ namespace storage
 	 */
 	bool is_partial() const;
 
+	virtual void add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs_base) const override;
 	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;
 
 	virtual Text do_create_text(Tense tense) const override;
 	virtual void do_create() override;
 	virtual void do_create_post_verify() const override;
 	virtual uf_t do_create_used_features() const override { return UF_LVM; }
+
+	virtual Text do_rename_text(const CommitData& commit_data, const Action::Rename* action) const;
+	virtual void do_rename(const CommitData& commit_data, const Action::Rename* action) const;
+	virtual uf_t do_rename_used_features() const { return UF_LVM; }
 
 	virtual Text do_delete_text(Tense tense) const override;
 	virtual void do_delete() const override;

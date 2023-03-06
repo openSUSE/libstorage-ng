@@ -21,8 +21,11 @@
  */
 
 
-#include "storage/Actions/SetPartitionId.h"
-#include "storage/Devices/PartitionImpl.h"
+#ifndef STORAGE_ACTION_SET_TYPE_ID_H
+#define STORAGE_ACTION_SET_TYPE_ID_H
+
+
+#include "storage/Actions/Modify.h"
 
 
 namespace storage
@@ -31,21 +34,19 @@ namespace storage
     namespace Action
     {
 
-	Text
-	SetPartitionId::text(const CommitData& commit_data) const
+	class SetTypeId : public Modify
 	{
-	    const Partition* partition = to_partition(get_device(commit_data.actiongraph, RHS));
-	    return partition->get_impl().do_set_id_text(commit_data.tense);
-	}
+	public:
 
+	    SetTypeId(sid_t sid) : Modify(sid) {}
 
-	void
-	SetPartitionId::commit(CommitData& commit_data, const CommitOptions& commit_options) const
-	{
-	    const Partition* partition = to_partition(get_device(commit_data.actiongraph, RHS));
-	    partition->get_impl().do_set_id();
-	}
+	    virtual Text text(const CommitData& commit_data) const override;
+	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
+
+	};
 
     }
 
 }
+
+#endif

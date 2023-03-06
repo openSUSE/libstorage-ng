@@ -34,11 +34,10 @@ libactions_la_SOURCES =							\
 	SetLegacyBoot.h			SetLegacyBoot.cc		\
 	SetLimits.h			SetLimits.cc			\
 	SetNocow.h			SetNocow.cc			\
-	SetPartitionId.h 		SetPartitionId.cc		\
-	SetPartitionLabel.h 		SetPartitionLabel.cc		\
 	SetPmbrBoot.h			SetPmbrBoot.cc			\
 	SetQuota.h			SetQuota.cc			\
 	SetTuneOptions.h		SetTuneOptions.cc		\
+	SetTypeId.h 			SetTypeId.cc			\
 	SetUuid.h			SetUuid.cc			\
 	Unmount.h 			Unmount.cc			\
 	UpdateCacheMode.h		UpdateCacheMode.cc		\

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -62,8 +62,7 @@ namespace storage
 
     LvmLv::Impl::Impl(const string& vg_name, const string& lv_name, LvType lv_type)
 	: BlkDevice::Impl(make_name(vg_name, lv_name)), lv_name(lv_name), lv_type(lv_type),
-	  uuid(), used_extents(0), stripes(lv_type == LvType::THIN ? 0 : 1), stripe_size(0),
-	  chunk_size(0)
+	  stripes(lv_type == LvType::THIN ? 0 : 1)
     {
 	set_active(lv_type != LvType::THIN_POOL && lv_type != LvType::CACHE_POOL);
 
@@ -72,8 +71,7 @@ namespace storage
 
 
     LvmLv::Impl::Impl(const xmlNode* node)
-	: BlkDevice::Impl(node), lv_name(), lv_type(LvType::NORMAL), uuid(), used_extents(0),
-	  stripes(0), stripe_size(0), chunk_size(0)
+	: BlkDevice::Impl(node), lv_type(LvType::NORMAL)
     {
 	string tmp;
 
@@ -884,7 +882,7 @@ namespace storage
 
 	const Impl& lhs = dynamic_cast<const Impl&>(lhs_base->get_impl());
 
-	if (get_name() != lhs.get_name())
+	if (get_lv_name() != lhs.get_lv_name())
 	{
 	    shared_ptr<Action::Base> action = make_shared<Action::Rename>(get_sid());
 	    actiongraph.add_vertex(action);
@@ -1050,20 +1048,35 @@ namespace storage
 
 
     Text
-    LvmLv::Impl::do_rename_text(const Impl& lhs, Tense tense) const
+    LvmLv::Impl::do_rename_text(const CommitData& commit_data, const Action::Rename* action) const
     {
+	const LvmVg* lvm_vg = get_lvm_vg();
+
+	const LvmLv* lvm_lv_lhs = to_lvm_lv(action->get_device(commit_data.actiongraph, LHS));
+	const LvmLv* lvm_lv_rhs = to_lvm_lv(action->get_device(commit_data.actiongraph, RHS));
+
 	// TRANSLATORS:
 	// %1$s is replaced with the old logical volume name (e.g. foo),
-	// %2$s is replaced with the new logical volume name (e.g. bar)
-	Text text = _("Rename %1$s to %2$s");
+	// %2$s is replaced with the new logical volume name (e.g. bar),
+	// %3$s is replaced with the volume group name (e.g. system)
+	Text text = _("Rename logical volume %1$s to %2$s on volume group %3$s");
 
-	return sformat(text, lhs.get_displayname(), get_displayname());
+	return sformat(text, lvm_lv_lhs->get_displayname(), lvm_lv_rhs->get_displayname(), lvm_vg->get_vg_name());
     }
 
 
     void
-    LvmLv::Impl::do_rename(const Impl& lhs) const
+    LvmLv::Impl::do_rename(const CommitData& commit_data, const Action::Rename* action) const
     {
+	const LvmVg* lvm_vg = get_lvm_vg();
+
+	const LvmLv* lvm_lv_lhs = to_lvm_lv(action->get_device(commit_data.actiongraph, LHS));
+	const LvmLv* lvm_lv_rhs = to_lvm_lv(action->get_device(commit_data.actiongraph, RHS));
+
+	string cmd_line = LVRENAME_BIN " " + quote(lvm_vg->get_vg_name()) + " " +
+	    quote(lvm_lv_lhs->get_lv_name()) + " " + quote(lvm_lv_rhs->get_lv_name());
+
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 

@@ -22,6 +22,7 @@
 
 
 #include "storage/Actions/Reallot.h"
+#include "storage/Devices/DeviceImpl.h"
 
 
 namespace storage

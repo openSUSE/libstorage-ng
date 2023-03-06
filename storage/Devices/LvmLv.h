@@ -180,7 +180,8 @@ namespace storage
 	const std::string& get_lv_name() const;
 
 	/**
-	 * Set the logical volume name.
+	 * Set the logical volume name. The library does not support to rename logical
+	 * volumes on disk.
 	 *
 	 * @see get_lv_name()
 	 */
