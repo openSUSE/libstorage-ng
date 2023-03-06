@@ -26,7 +26,7 @@
 
 
 #include "storage/Actions/Modify.h"
-#include "storage/Devices/DeviceImpl.h"
+#include "storage/Devices/BlkDevice.h"
 
 
 namespace storage

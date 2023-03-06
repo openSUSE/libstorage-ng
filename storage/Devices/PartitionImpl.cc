@@ -45,8 +45,8 @@
 #include "storage/Prober.h"
 #include "storage/Utils/Format.h"
 #include "storage/Actions/Resize.h"
-#include "storage/Actions/SetPartitionId.h"
-#include "storage/Actions/SetPartitionLabel.h"
+#include "storage/Actions/SetTypeId.h"
+#include "storage/Actions/SetLabel.h"
 #include "storage/Actions/SetBoot.h"
 #include "storage/Actions/SetLegacyBoot.h"
 #include "storage/Actions/Create.h"
@@ -416,11 +416,11 @@ namespace storage
 	    };
 
 	    if (!contains(skip_ids, id))
-		actions.push_back(make_shared<Action::SetPartitionId>(get_sid()));
+		actions.push_back(make_shared<Action::SetTypeId>(get_sid()));
 	}
 
 	if (!label.empty())
-	    actions.push_back(make_shared<Action::SetPartitionLabel>(get_sid()));
+	    actions.push_back(make_shared<Action::SetLabel>(get_sid()));
 
 	if (boot)
 	    actions.push_back(make_shared<Action::SetBoot>(get_sid()));
@@ -451,13 +451,13 @@ namespace storage
 
 	if (get_id() != lhs.get_id())
 	{
-	    shared_ptr<Action::Base> action = make_shared<Action::SetPartitionId>(get_sid());
+	    shared_ptr<Action::Base> action = make_shared<Action::SetTypeId>(get_sid());
 	    actiongraph.add_vertex(action);
 	}
 
 	if (label != lhs.label)
 	{
-	    shared_ptr<Action::Base> action = make_shared<Action::SetPartitionLabel>(get_sid());
+	    shared_ptr<Action::Base> action = make_shared<Action::SetLabel>(get_sid());
 	    actiongraph.add_vertex(action);
 	}
 
@@ -1129,7 +1129,7 @@ namespace storage
 
 
     Text
-    Partition::Impl::do_set_id_text(Tense tense) const
+    Partition::Impl::do_set_type_id_text(Tense tense) const
     {
 	const PartitionTable* partition_table = get_partition_table();
 
@@ -1187,7 +1187,7 @@ namespace storage
 
 
     void
-    Partition::Impl::do_set_id() const
+    Partition::Impl::do_set_type_id() const
     {
 	const PartitionTable* partition_table = get_partition_table();
 	const Partitionable* partitionable = partition_table->get_partitionable();

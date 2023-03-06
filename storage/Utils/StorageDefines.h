@@ -82,12 +82,14 @@
 
 #define LVCREATE_BIN "/sbin/lvcreate"
 #define LVREMOVE_BIN "/sbin/lvremove"
+#define LVRENAME_BIN "/sbin/lvrename"
 #define LVRESIZE_BIN "/sbin/lvresize"
 #define LVCHANGE_BIN "/sbin/lvchange"
 #define LVS_BIN "/sbin/lvs"
 
 #define VGCREATE_BIN "/sbin/vgcreate"
 #define VGREMOVE_BIN "/sbin/vgremove"
+#define VGRENAME_BIN "/sbin/vgrename"
 #define VGEXTEND_BIN "/sbin/vgextend"
 #define VGREDUCE_BIN "/sbin/vgreduce"
 #define VGS_BIN "/sbin/vgs"

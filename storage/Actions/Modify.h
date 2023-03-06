@@ -57,6 +57,9 @@ namespace storage
 	return is_action_of_type<const Action::Modify>(action);
     }
 
+
+    static_assert(std::is_abstract<Action::Modify>(), "Modify ought to be abstract.");
+
 }
 
 #endif

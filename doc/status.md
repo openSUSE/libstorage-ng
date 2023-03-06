@@ -56,6 +56,7 @@ Implemented:
 
 Not planned:
 
+* Renaming volume groups or logical volumes.
 * Cluster support.
 
 

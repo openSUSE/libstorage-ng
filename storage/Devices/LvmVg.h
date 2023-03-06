@@ -76,8 +76,8 @@ namespace storage
 	const std::string& get_vg_name() const;
 
 	/**
-	 * Set the volume group name. The library does not support to
-	 * rename volume groups on disk.
+	 * Set the volume group name. The library does not support to rename volume groups
+	 * on disk.
 	 *
 	 * @see get_vg_name()
 	 */

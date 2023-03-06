@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -22,6 +22,7 @@
 
 
 #include "storage/Actions/SetLabel.h"
+#include "storage/Devices/PartitionImpl.h"
 #include "storage/Filesystems/BlkFilesystemImpl.h"
 
 
@@ -34,24 +35,63 @@ namespace storage
 	Text
 	SetLabel::text(const CommitData& commit_data) const
 	{
-	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(commit_data.actiongraph, RHS));
-	    return blk_filesystem->get_impl().do_set_label_text(commit_data.tense);
+	    const Device* device = get_device(commit_data.actiongraph, RHS);
+
+	    if (is_partition(device))
+	    {
+		const Partition* partition = to_partition(device);
+		return partition->get_impl().do_set_label_text(commit_data.tense);
+	    }
+
+	    if (is_blk_filesystem(device))
+	    {
+		const BlkFilesystem* blk_filesystem = to_blk_filesystem(device);
+		return blk_filesystem->get_impl().do_set_label_text(commit_data.tense);
+	    }
+
+	    ST_THROW(LogicException("SetLabel called for unsupported object"));
 	}
 
 
 	void
 	SetLabel::commit(CommitData& commit_data, const CommitOptions& commit_options) const
 	{
-	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(commit_data.actiongraph, RHS));
-	    blk_filesystem->get_impl().do_set_label();
+	    const Device* device = get_device(commit_data.actiongraph, RHS);
+
+	    if (is_partition(device))
+	    {
+		const Partition* partition = to_partition(device);
+		return partition->get_impl().do_set_label();
+	    }
+
+	    if (is_blk_filesystem(device))
+	    {
+		const BlkFilesystem* blk_filesystem = to_blk_filesystem(device);
+		return blk_filesystem->get_impl().do_set_label();
+	    }
+
+	    ST_THROW(LogicException("SetLabel called for unsupported object"));
 	}
 
 
 	uf_t
 	SetLabel::used_features(const Actiongraph::Impl& actiongraph) const
 	{
-	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(actiongraph, RHS));
-	    return blk_filesystem->get_impl().do_set_label_used_features();
+	    const Device* device = get_device(actiongraph, RHS);
+
+	    if (is_partition(device))
+	    {
+		const Partition* partition = to_partition(device);
+		return partition->get_impl().do_set_label_used_features();
+	    }
+
+	    if (is_blk_filesystem(device))
+	    {
+		const BlkFilesystem* blk_filesystem = to_blk_filesystem(device);
+		return blk_filesystem->get_impl().do_set_label_used_features();
+	    }
+
+	    ST_THROW(LogicException("SetLabel called for unsupported object"));
 	}
 
     }

@@ -82,6 +82,9 @@ namespace storage
 	return is_action_of_type<const Action::Delete>(action);
     }
 
+
+    static_assert(!std::is_abstract<Action::Delete>(), "Delete ought not to be abstract.");
+
 }
 
 #endif

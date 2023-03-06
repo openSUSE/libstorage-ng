@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -22,6 +22,7 @@
 
 #include "storage/Actions/Rename.h"
 #include "storage/Devices/LvmLvImpl.h"
+#include "storage/Devices/LvmVgImpl.h"
 
 
 namespace storage
@@ -33,25 +34,63 @@ namespace storage
 	Text
 	Rename::text(const CommitData& commit_data) const
 	{
-	    const LvmLv* lhs_lvm_lv = to_lvm_lv(get_device(commit_data.actiongraph, LHS));
-	    const LvmLv* rhs_lvm_lv = to_lvm_lv(get_device(commit_data.actiongraph, RHS));
-	    return rhs_lvm_lv->get_impl().do_rename_text(lhs_lvm_lv->get_impl(), commit_data.tense);
+	    const Device* device_rhs = get_device(commit_data.actiongraph, RHS);
+
+	    if (is_lvm_lv(device_rhs))
+	    {
+		const LvmLv* rhs_lvm_lv = to_lvm_lv(device_rhs);
+		return rhs_lvm_lv->get_impl().do_rename_text(commit_data, this);
+	    }
+
+	    if (is_lvm_vg(device_rhs))
+	    {
+		const LvmVg* rhs_lvm_vg = to_lvm_vg(device_rhs);
+		return rhs_lvm_vg->get_impl().do_rename_text(commit_data, this);
+	    }
+
+	    ST_THROW(LogicException("Rename called for unsupported object"));
 	}
+
 
 	void
 	Rename::commit(CommitData& commit_data, const CommitOptions& commit_options) const
 	{
-	    const LvmLv* lhs_lvm_lv = to_lvm_lv(get_device(commit_data.actiongraph, LHS));
-	    const LvmLv* rhs_lvm_lv = to_lvm_lv(get_device(commit_data.actiongraph, RHS));
-	    return rhs_lvm_lv->get_impl().do_rename(lhs_lvm_lv->get_impl());
+	    const Device* device_rhs = get_device(commit_data.actiongraph, RHS);
+
+	    if (is_lvm_lv(device_rhs))
+	    {
+		const LvmLv* rhs_lvm_lv = to_lvm_lv(device_rhs);
+		return rhs_lvm_lv->get_impl().do_rename(commit_data, this);
+	    }
+
+	    if (is_lvm_vg(device_rhs))
+	    {
+		const LvmVg* rhs_lvm_vg = to_lvm_vg(device_rhs);
+		return rhs_lvm_vg->get_impl().do_rename(commit_data, this);
+	    }
+
+	    ST_THROW(LogicException("Rename called for unsupported object"));
 	}
 
 
 	uf_t
 	Rename::used_features(const Actiongraph::Impl& actiongraph) const
 	{
-	    const LvmLv* lvm_lv = to_lvm_lv(get_device(actiongraph, RHS));
-	    return lvm_lv->get_impl().do_rename_used_features();
+	    const Device* device = get_device(actiongraph, RHS);
+
+	    if (is_lvm_lv(device))
+	    {
+		const LvmLv* lvm_lv = to_lvm_lv(device);
+		return lvm_lv->get_impl().do_rename_used_features();
+	    }
+
+	    if (is_lvm_vg(device))
+	    {
+		const LvmVg* lvm_vg = to_lvm_vg(device);
+		return lvm_vg->get_impl().do_rename_used_features();
+	    }
+
+	    ST_THROW(LogicException("Rename called for unsupported object"));
 	}
 
     }
