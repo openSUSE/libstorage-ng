@@ -26,6 +26,7 @@
 
 
 #include "storage/Actions/BaseImpl.h"
+#include "storage/Actions/Delete.h"
 
 
 namespace storage
@@ -73,13 +74,6 @@ namespace storage
 
 	};
 
-    }
-
-
-    inline bool
-    is_delete(const Action::Base* action)
-    {
-	return is_action_of_type<const Action::Delete>(action);
     }
 
 

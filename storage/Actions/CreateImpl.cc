@@ -22,7 +22,7 @@
 
 
 #include "storage/Actions/CreateImpl.h"
-#include "storage/Actions/DeleteImpl.h"
+#include "storage/Actions/Delete.h"
 #include "storage/Devices/DeviceImpl.h"
 
 

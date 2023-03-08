@@ -21,8 +21,8 @@
  */
 
 
-#ifndef STORAGE_ACTIONS_BASE_IMPL_H
-#define STORAGE_ACTIONS_BASE_IMPL_H
+#ifndef STORAGE_ACTION_BASE_IMPL_H
+#define STORAGE_ACTION_BASE_IMPL_H
 
 
 #include "storage/Utils/ExceptionImpl.h"

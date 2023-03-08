@@ -10,11 +10,15 @@ libactions_la_SOURCES =							\
 	AddToEtcFstabImpl.h		AddToEtcFstabImpl.cc		\
 	AddToEtcMdadmImpl.h		AddToEtcMdadmImpl.cc		\
 	AttachBcacheCsetImpl.h 		AttachBcacheCsetImpl.cc		\
+	Base.h				Base.cc				\
 	BaseImpl.h			BaseImpl.cc			\
+	Create.h			Create.cc			\
 	CreateImpl.h			CreateImpl.cc			\
 	DeactivateImpl.h		DeactivateImpl.cc		\
+	Delete.h			Delete.cc			\
 	DeleteImpl.h			DeleteImpl.cc			\
 	DetachBcacheCsetImpl.h		DetachBcacheCsetImpl.cc		\
+	Modify.h			Modify.cc			\
 	ModifyImpl.h			ModifyImpl.cc			\
 	MountImpl.h 			MountImpl.cc			\
 	ReallotImpl.h			ReallotImpl.cc			\
@@ -42,3 +46,11 @@ libactions_la_SOURCES =							\
 	UnmountImpl.h 			UnmountImpl.cc			\
 	UpdateCacheModeImpl.h		UpdateCacheModeImpl.cc		\
 	UpdateInEtcFstabImpl.h		UpdateInEtcFstabImpl.cc
+
+pkgincludedir = $(includedir)/storage/Actions
+
+pkginclude_HEADERS =			\
+	Base.h				\
+	Create.h			\
+	Delete.h			\
+	Modify.h

@@ -1,6 +1,5 @@
 /*
- * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) 2023 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,39 +20,16 @@
  */
 
 
-#ifndef STORAGE_ACTION_MODIFY_IMPL_H
-#define STORAGE_ACTION_MODIFY_IMPL_H
-
-
-#include "storage/Actions/BaseImpl.h"
-#include "storage/Actions/Modify.h"
+#include "storage/Actions/ModifyImpl.h"
 
 
 namespace storage
 {
 
-    namespace Action
+    bool
+    is_modify(const Action::Base* action)
     {
-
-	class Modify : public Base
-	{
-	public:
-
-	    Modify(sid_t sid, bool only_sync = false) : Base(sid, only_sync) {}
-
-	    /**
-	     * Returns the device of the action on the LHS or RHS devicegraph. Only valid
-	     * for actions affecting a device. May not exist.
-	     */
-	    Device* get_device(const Actiongraph::Impl& actiongraph, Side side) const;
-
-	};
-
+	return is_action_of_type<const Action::Modify>(action);
     }
 
-
-    static_assert(std::is_abstract<Action::Modify>(), "Modify ought to be abstract.");
-
 }
-
-#endif

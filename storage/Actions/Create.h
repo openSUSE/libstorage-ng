@@ -1,6 +1,5 @@
 /*
- * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) 2023 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,38 +20,23 @@
  */
 
 
-#ifndef STORAGE_ACTION_MODIFY_IMPL_H
-#define STORAGE_ACTION_MODIFY_IMPL_H
+#ifndef STORAGE_ACTION_CREATE_H
+#define STORAGE_ACTION_CREATE_H
 
 
-#include "storage/Actions/BaseImpl.h"
-#include "storage/Actions/Modify.h"
+#include "storage/Actions/Base.h"
 
 
 namespace storage
 {
 
-    namespace Action
-    {
-
-	class Modify : public Base
-	{
-	public:
-
-	    Modify(sid_t sid, bool only_sync = false) : Base(sid, only_sync) {}
-
-	    /**
-	     * Returns the device of the action on the LHS or RHS devicegraph. Only valid
-	     * for actions affecting a device. May not exist.
-	     */
-	    Device* get_device(const Actiongraph::Impl& actiongraph, Side side) const;
-
-	};
-
-    }
-
-
-    static_assert(std::is_abstract<Action::Modify>(), "Modify ought to be abstract.");
+    /**
+     * Checks whether action points to an Action::Create.
+     *
+     * @throw NullPointerException
+     */
+    bool
+    is_create(const Action::Base* action);
 
 }
 
