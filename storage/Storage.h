@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -33,6 +33,7 @@
 #include <boost/noncopyable.hpp>
 
 #include "storage/CommitOptions.h"
+#include "storage/Actions/Base.h"
 #include "storage/Utils/Callbacks.h"
 #include "storage/Utils/Swig.h"
 
@@ -407,6 +408,19 @@ namespace storage
 
     };
 
+
+    class CommitCallbacksV2 : public CommitCallbacks
+    {
+    public:
+
+	/** unused in CommitCallbacksV2 */
+	virtual void message(const std::string& message) const override {}
+
+	virtual void message(const std::string& message, const Action::Base* action) const = 0;
+
+	virtual ~CommitCallbacksV2() {}
+
+    };
 
     //! The main entry point to libstorage.
     class Storage : private boost::noncopyable

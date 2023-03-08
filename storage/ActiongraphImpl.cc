@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -788,7 +788,7 @@ namespace storage
 
 	    y2mil("Commit Action \"" << text.native << "\" [" << action->details() << "]");
 
-	    message_callback(commit_callbacks, text);
+	    message_callback(commit_callbacks, text, action);
 
 	    if (action->nop)
 		continue;
