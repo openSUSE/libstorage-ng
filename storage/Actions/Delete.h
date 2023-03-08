@@ -1,6 +1,5 @@
 /*
- * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) 2023 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -31,59 +30,13 @@
 namespace storage
 {
 
-    namespace Action
-    {
-
-	class Delete : public Base
-	{
-	public:
-
-	    Delete(sid_t sid, bool only_sync = false, bool nop = false)
-		: Base(sid, only_sync, nop) {}
-
-	    Delete(sid_pair_t sid_pair, bool only_sync = false, bool nop = false)
-		: Base(sid_pair, only_sync, nop) {}
-
-	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
-	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const override;
-
-	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
-					  Actiongraph::Impl& actiongraph) const override;
-
-	    /**
-	     * Returns the device of the action on the LHS devicegraph. Only valid for
-	     * actions affecting a device.
-	     */
-	    Device* get_device(const Actiongraph::Impl& actiongraph) const;
-
-	    /**
-	     * Returns the holder of the action on the LHS devicegraph. Only valid for
-	     * actions affecting a holder.
-	     */
-	    Holder* get_holder(const Actiongraph::Impl& actiongraph) const;
-
-	private:
-
-	    void add_device_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
-					 Actiongraph::Impl& actiongraph) const;
-
-	    void add_holder_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
-					 Actiongraph::Impl& actiongraph) const;
-
-	};
-
-    }
-
-
-    inline bool
-    is_delete(const Action::Base* action)
-    {
-	return is_action_of_type<const Action::Delete>(action);
-    }
-
-
-    static_assert(!std::is_abstract<Action::Delete>(), "Delete ought not to be abstract.");
+    /**
+     * Checks whether action points to an Action::Delete.
+     *
+     * @throw NullPointerException
+     */
+    bool
+    is_delete(const Action::Base* action);
 
 }
 

@@ -29,7 +29,7 @@
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Devices/LvmVg.h"
 #include "storage/Devices/DeviceImpl.h"
-#include "storage/Actions/Rename.h"
+#include "storage/Actions/RenameImpl.h"
 
 
 namespace storage

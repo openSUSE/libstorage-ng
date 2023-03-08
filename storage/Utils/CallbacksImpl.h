@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2018-2021] SUSE LLC
+ * Copyright (c) [2018-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -27,6 +27,7 @@
 #include <stdint.h>
 
 #include "storage/Utils/Callbacks.h"
+#include "storage/Actions/Base.h"
 
 
 namespace storage
@@ -36,6 +37,8 @@ namespace storage
     class Exception;
     class ProbeCallbacks;
     class ProbeCallbacksV2;
+    class CommitCallbacks;
+
     enum class PtType;
     enum class FsType;
 
@@ -64,6 +67,12 @@ namespace storage
     void
     message_callback(const Callbacks* callbacks, const Text& message);
 
+    /**
+     * Depending on the dynamic type of commit_callbacks, either call the message callback
+     * with or without the action parameter.
+     */
+    void
+    message_callback(const CommitCallbacks* commit_callbacks, const Text& message, const Action::Base* action);
 
     /**
      * Call the error callback of callbacks and handle return value.

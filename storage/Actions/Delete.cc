@@ -1,6 +1,5 @@
 /*
- * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) 2023 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,133 +20,16 @@
  */
 
 
-#include "storage/Actions/Delete.h"
-#include "storage/Devices/DeviceImpl.h"
+#include "storage/Actions/DeleteImpl.h"
 
 
 namespace storage
 {
 
-    namespace Action
+    bool
+    is_delete(const Action::Base* action)
     {
-
-	Text
-	Delete::text(const CommitData& commit_data) const
-	{
-	    switch (affect)
-	    {
-		case Affect::DEVICE:
-		    return get_device(commit_data.actiongraph)->get_impl().do_delete_text(commit_data.tense);
-
-		case Affect::HOLDER:
-		    return get_holder(commit_data.actiongraph)->get_impl().do_delete_text(commit_data.tense);
-	    }
-
-	    ST_THROW(LogicException("unknown Action::Affect"));
-	}
-
-
-	void
-	Delete::commit(CommitData& commit_data, const CommitOptions& commit_options) const
-	{
-	    switch (affect)
-	    {
-		case Affect::DEVICE:
-		    get_device(commit_data.actiongraph)->get_impl().do_delete();
-		    break;
-
-		case Affect::HOLDER:
-		    get_holder(commit_data.actiongraph)->get_impl().do_delete();
-		    break;
-	    }
-	}
-
-
-	uf_t
-	Delete::used_features(const Actiongraph::Impl& actiongraph) const
-	{
-	    switch (affect)
-	    {
-		case Affect::DEVICE:
-		{
-		    const Device* device = get_device(actiongraph);
-		    return device->get_impl().do_delete_used_features();
-		}
-
-		case Affect::HOLDER:
-		{
-		    const Holder* holder = get_holder(actiongraph);
-		    return holder->get_impl().do_delete_used_features();
-		}
-	    }
-
-	    ST_THROW(LogicException("unknown Action::Affect"));
-	}
-
-
-	Device*
-	Delete::get_device(const Actiongraph::Impl& actiongraph) const
-	{
-	    if (!affects_device())
-		ST_THROW(Exception("requested device for action not affecting device, " + details()));
-
-	    return actiongraph.get_devicegraph(LHS)->find_device(sid);
-	}
-
-
-	Holder*
-	Delete::get_holder(const Actiongraph::Impl& actiongraph) const
-	{
-	    if (!affects_holder())
-		ST_THROW(Exception("requested holder for action not affecting holder, " + details()));
-
-	    return actiongraph.get_devicegraph(LHS)->find_holder(sid_pair.first, sid_pair.second);
-	}
-
-
-	void
-	Delete::add_dependencies(Actiongraph::Impl::vertex_descriptor vertex, Actiongraph::Impl& actiongraph) const
-	{
-	    switch (affect)
-	    {
-		case Affect::DEVICE:
-		    add_device_dependencies(vertex, actiongraph);
-		    break;
-
-		case Affect::HOLDER:
-		    add_holder_dependencies(vertex, actiongraph);
-		    break;
-	    }
-	}
-
-
-	void
-	Delete::add_device_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
-					Actiongraph::Impl& actiongraph) const
-	{
-	    // all children must be deleted before parents
-
-	    sid_t sid = actiongraph[vertex]->sid;
-
-	    const Device* device = actiongraph.find_device(sid, LHS);
-
-	    for (const Device* parent : device->get_parents(View::REMOVE))
-	    {
-		sid_t parent_sid = parent->get_sid();
-
-		for (Actiongraph::Impl::vertex_descriptor tmp : actiongraph.actions_with_sid(parent_sid, ONLY_FIRST))
-		    actiongraph.add_edge(vertex, tmp);
-	    }
-	}
-
-
-	void
-	Delete::add_holder_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
-					Actiongraph::Impl& actiongraph) const
-	{
-	    get_holder(actiongraph)->get_impl().add_dependencies(vertex, actiongraph);
-	}
-
+	return is_action_of_type<const Action::Delete>(action);
     }
 
 }

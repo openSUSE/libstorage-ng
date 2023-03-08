@@ -49,12 +49,12 @@
 #include "storage/EtcMdadm.h"
 #include "storage/Utils/CallbacksImpl.h"
 #include "storage/Utils/Format.h"
-#include "storage/Actions/Deactivate.h"
-#include "storage/Actions/Reallot.h"
-#include "storage/Actions/Create.h"
-#include "storage/Actions/Delete.h"
-#include "storage/Actions/AddToEtcMdadm.h"
-#include "storage/Actions/RemoveFromEtcMdadm.h"
+#include "storage/Actions/DeactivateImpl.h"
+#include "storage/Actions/ReallotImpl.h"
+#include "storage/Actions/CreateImpl.h"
+#include "storage/Actions/DeleteImpl.h"
+#include "storage/Actions/AddToEtcMdadmImpl.h"
+#include "storage/Actions/RemoveFromEtcMdadmImpl.h"
 
 
 namespace storage

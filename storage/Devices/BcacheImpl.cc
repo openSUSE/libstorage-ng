@@ -41,12 +41,12 @@
 #include "storage/Utils/Format.h"
 #include "storage/Utils/ExceptionImpl.h"
 #include "storage/Utils/StorageTmpl.h"
-#include "storage/Actions/Deactivate.h"
-#include "storage/Actions/Create.h"
-#include "storage/Actions/Delete.h"
-#include "storage/Actions/AttachBcacheCset.h"
-#include "storage/Actions/DetachBcacheCset.h"
-#include "storage/Actions/UpdateCacheMode.h"
+#include "storage/Actions/DeactivateImpl.h"
+#include "storage/Actions/CreateImpl.h"
+#include "storage/Actions/DeleteImpl.h"
+#include "storage/Actions/AttachBcacheCsetImpl.h"
+#include "storage/Actions/DetachBcacheCsetImpl.h"
+#include "storage/Actions/UpdateCacheModeImpl.h"
 
 
 namespace storage

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2018-2022] SUSE LLC
+ * Copyright (c) [2018-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -61,6 +61,22 @@ namespace storage
 	if (callbacks)
 	{
 	    callbacks->message(message.translated);
+	}
+    }
+
+
+    void
+    message_callback(const CommitCallbacks* commit_callbacks, const Text& message, const Action::Base* action)
+    {
+	const CommitCallbacksV2* commit_callbacks_v2 = dynamic_cast<const CommitCallbacksV2*>(commit_callbacks);
+
+	if (commit_callbacks_v2)
+	{
+	    commit_callbacks_v2->message(message.translated, action);
+	}
+	else
+	{
+	    message_callback(commit_callbacks, message);
 	}
     }
 

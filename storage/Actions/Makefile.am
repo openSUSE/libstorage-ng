@@ -5,40 +5,52 @@
 noinst_LTLIBRARIES = libactions.la
 
 libactions_la_SOURCES =							\
-	Activate.h			Activate.cc			\
-	AddToEtcCrypttab.h		AddToEtcCrypttab.cc		\
-	AddToEtcFstab.h			AddToEtcFstab.cc		\
-	AddToEtcMdadm.h			AddToEtcMdadm.cc		\
-	AttachBcacheCset.h 		AttachBcacheCset.cc		\
+	ActivateImpl.h			ActivateImpl.cc			\
+	AddToEtcCrypttabImpl.h		AddToEtcCrypttabImpl.cc		\
+	AddToEtcFstabImpl.h		AddToEtcFstabImpl.cc		\
+	AddToEtcMdadmImpl.h		AddToEtcMdadmImpl.cc		\
+	AttachBcacheCsetImpl.h 		AttachBcacheCsetImpl.cc		\
 	Base.h				Base.cc				\
+	BaseImpl.h			BaseImpl.cc			\
 	Create.h			Create.cc			\
-	Deactivate.h			Deactivate.cc			\
+	CreateImpl.h			CreateImpl.cc			\
+	DeactivateImpl.h		DeactivateImpl.cc		\
 	Delete.h			Delete.cc			\
-	DetachBcacheCset.h		DetachBcacheCset.cc		\
+	DeleteImpl.h			DeleteImpl.cc			\
+	DetachBcacheCsetImpl.h		DetachBcacheCsetImpl.cc		\
 	Modify.h			Modify.cc			\
-	Mount.h 			Mount.cc			\
-	Reallot.h			Reallot.cc			\
-	ReduceMissing.h			ReduceMissing.cc		\
-	RemoveFromEtcCrypttab.h		RemoveFromEtcCrypttab.cc	\
-	RemoveFromEtcFstab.h		RemoveFromEtcFstab.cc		\
-	RemoveFromEtcMdadm.h		RemoveFromEtcMdadm.cc		\
-	Rename.h			Rename.cc			\
-	RenameIn.h			RenameIn.cc			\
-	RenameInEtcCrypttab.h		RenameInEtcCrypttab.cc		\
-	RenameInEtcFstab.h		RenameInEtcFstab.cc		\
-	Repair.h			Repair.cc			\
-	Resize.h			Resize.cc			\
-	SetBoot.h 			SetBoot.cc			\
-	SetDefaultBtrfsSubvolume.h	SetDefaultBtrfsSubvolume.cc	\
-	SetLabel.h			SetLabel.cc			\
-	SetLegacyBoot.h			SetLegacyBoot.cc		\
-	SetLimits.h			SetLimits.cc			\
-	SetNocow.h			SetNocow.cc			\
-	SetPmbrBoot.h			SetPmbrBoot.cc			\
-	SetQuota.h			SetQuota.cc			\
-	SetTuneOptions.h		SetTuneOptions.cc		\
-	SetTypeId.h 			SetTypeId.cc			\
-	SetUuid.h			SetUuid.cc			\
-	Unmount.h 			Unmount.cc			\
-	UpdateCacheMode.h		UpdateCacheMode.cc		\
-	UpdateInEtcFstab.h		UpdateInEtcFstab.cc
+	ModifyImpl.h			ModifyImpl.cc			\
+	MountImpl.h 			MountImpl.cc			\
+	ReallotImpl.h			ReallotImpl.cc			\
+	ReduceMissingImpl.h		ReduceMissingImpl.cc		\
+	RemoveFromEtcCrypttabImpl.h	RemoveFromEtcCrypttabImpl.cc	\
+	RemoveFromEtcFstabImpl.h	RemoveFromEtcFstabImpl.cc	\
+	RemoveFromEtcMdadmImpl.h	RemoveFromEtcMdadmImpl.cc	\
+	RenameImpl.h			RenameImpl.cc			\
+	RenameInImpl.h			RenameInImpl.cc			\
+	RenameInEtcCrypttabImpl.h	RenameInEtcCrypttabImpl.cc	\
+	RenameInEtcFstabImpl.h		RenameInEtcFstabImpl.cc		\
+	RepairImpl.h			RepairImpl.cc			\
+	ResizeImpl.h			ResizeImpl.cc			\
+	SetBootImpl.h 			SetBootImpl.cc			\
+	SetDefaultBtrfsSubvolumeImpl.h	SetDefaultBtrfsSubvolumeImpl.cc	\
+	SetLabelImpl.h			SetLabelImpl.cc			\
+	SetLegacyBootImpl.h		SetLegacyBootImpl.cc		\
+	SetLimitsImpl.h			SetLimitsImpl.cc		\
+	SetNocowImpl.h			SetNocowImpl.cc			\
+	SetPmbrBootImpl.h		SetPmbrBootImpl.cc		\
+	SetQuotaImpl.h			SetQuotaImpl.cc			\
+	SetTuneOptionsImpl.h		SetTuneOptionsImpl.cc		\
+	SetTypeIdImpl.h 		SetTypeIdImpl.cc		\
+	SetUuidImpl.h			SetUuidImpl.cc			\
+	UnmountImpl.h 			UnmountImpl.cc			\
+	UpdateCacheModeImpl.h		UpdateCacheModeImpl.cc		\
+	UpdateInEtcFstabImpl.h		UpdateInEtcFstabImpl.cc
+
+pkgincludedir = $(includedir)/storage/Actions
+
+pkginclude_HEADERS =			\
+	Base.h				\
+	Create.h			\
+	Delete.h			\
+	Modify.h

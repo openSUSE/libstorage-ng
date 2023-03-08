@@ -32,14 +32,14 @@
 #include "storage/Utils/Format.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Prober.h"
-#include "storage/Actions/Activate.h"
-#include "storage/Actions/Deactivate.h"
-#include "storage/Actions/Resize.h"
-#include "storage/Actions/Create.h"
-#include "storage/Actions/Delete.h"
-#include "storage/Actions/AddToEtcCrypttab.h"
-#include "storage/Actions/RenameInEtcCrypttab.h"
-#include "storage/Actions/RemoveFromEtcCrypttab.h"
+#include "storage/Actions/ActivateImpl.h"
+#include "storage/Actions/DeactivateImpl.h"
+#include "storage/Actions/ResizeImpl.h"
+#include "storage/Actions/CreateImpl.h"
+#include "storage/Actions/DeleteImpl.h"
+#include "storage/Actions/AddToEtcCrypttabImpl.h"
+#include "storage/Actions/RenameInEtcCrypttabImpl.h"
+#include "storage/Actions/RemoveFromEtcCrypttabImpl.h"
 
 
 namespace storage

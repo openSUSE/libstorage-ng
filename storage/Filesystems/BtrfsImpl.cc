@@ -46,10 +46,10 @@
 #include "storage/Utils/Mockup.h"
 #include "storage/Prober.h"
 #include "storage/Redirect.h"
-#include "storage/Actions/Reallot.h"
-#include "storage/Actions/SetLabel.h"
-#include "storage/Actions/SetQuota.h"
-#include "storage/Actions/Create.h"
+#include "storage/Actions/ReallotImpl.h"
+#include "storage/Actions/SetLabelImpl.h"
+#include "storage/Actions/SetQuotaImpl.h"
+#include "storage/Actions/CreateImpl.h"
 
 
 namespace storage

@@ -41,8 +41,8 @@
 #include "storage/Prober.h"
 #include "storage/Redirect.h"
 #include "storage/Utils/Format.h"
-#include "storage/Actions/Resize.h"
-#include "storage/Actions/Rename.h"
+#include "storage/Actions/ResizeImpl.h"
+#include "storage/Actions/RenameImpl.h"
 
 
 using namespace std;

@@ -26,7 +26,7 @@
 
 #include "storage/Filesystems/BtrfsQgroup.h"
 #include "storage/Devices/DeviceImpl.h"
-#include "storage/Actions/SetLimits.h"
+#include "storage/Actions/SetLimitsImpl.h"
 
 
 namespace storage

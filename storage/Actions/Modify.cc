@@ -1,6 +1,5 @@
 /*
- * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) 2023 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,24 +20,16 @@
  */
 
 
-#include "storage/Actions/Modify.h"
+#include "storage/Actions/ModifyImpl.h"
 
 
 namespace storage
 {
 
-    namespace Action
+    bool
+    is_modify(const Action::Base* action)
     {
-
-	Device*
-	Modify::get_device(const Actiongraph::Impl& actiongraph, Side side) const
-	{
-	    if (!affects_device())
-		ST_THROW(Exception("requested device for action not affecting device, " + details()));
-
-	    return actiongraph.get_devicegraph(side)->find_device(sid);
-	}
-
+	return is_action_of_type<const Action::Modify>(action);
     }
 
 }

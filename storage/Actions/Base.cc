@@ -1,6 +1,5 @@
 /*
- * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) 2023 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,58 +20,22 @@
  */
 
 
-#include "storage/Actions/Base.h"
+#include "storage/Actions/BaseImpl.h"
+#include "storage/ActiongraphImpl.h"
 
 
 namespace storage
 {
 
-    namespace Action
+    using namespace std;
+
+
+    string
+    get_string(const Actiongraph* actiongraph, const Action::Base* action)
     {
+	const CommitData commit_data(actiongraph->get_impl(), Tense::SIMPLE_PRESENT);
 
-	string
-	Base::details() const
-	{
-	    string ret;
-
-	    switch (affect)
-	    {
-		case Affect::DEVICE:
-		    ret = "sid:" + to_string(sid);
-		    break;
-
-		case Affect::HOLDER:
-		    ret = "source-sid:" + to_string(sid_pair.first) + ", target-sid:" + to_string(sid_pair.second);
-		    break;
-	    }
-
-	    if (first)
-		ret += ", first";
-
-	    if (last)
-		ret += ", last";
-
-	    if (only_sync)
-		ret += ", only-sync";
-
-	    if (nop)
-		ret += ", nop";
-
-	    return ret;
-	}
-
-
-	string
-	Base::debug_text(const CommitData& commit_data) const
-	{
-	    string ret = text(commit_data).native;
-
-	    if (nop)
-		ret += " [nop]";
-
-	    return ret;
-	}
-
+	return action->text(commit_data).translated;
     }
 
 }

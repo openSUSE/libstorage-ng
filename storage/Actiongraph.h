@@ -33,6 +33,7 @@
 #include "storage/Graphviz.h"
 #include "storage/CompoundAction.h"
 #include "storage/UsedFeatures.h"
+#include "storage/Utils/Swig.h"
 
 
 namespace storage
@@ -134,8 +135,7 @@ namespace storage
 	 */
 	std::vector<const Action::Base*> get_commit_actions() const;
 
-	// TODO add Action to the public interface and use get_commit_actions instead
-	std::vector<std::string> get_commit_actions_as_strings() const;
+	std::vector<std::string> get_commit_actions_as_strings() const ST_DEPRECATED;
 
 	void generate_compound_actions();
 	std::vector<const CompoundAction*> get_compound_actions() const;

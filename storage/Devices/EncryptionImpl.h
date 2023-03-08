@@ -29,7 +29,7 @@
 #include "storage/Devices/Encryption.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/EtcCrypttab.h"
-#include "storage/Actions/RenameIn.h"
+#include "storage/Actions/RenameInImpl.h"
 
 
 namespace storage

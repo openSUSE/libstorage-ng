@@ -37,8 +37,8 @@
 #include "storage/Utils/Format.h"
 #include "storage/Devicegraph.h"
 #include "storage/Utils/ExceptionImpl.h"
-#include "storage/Actions/Deactivate.h"
-#include "storage/Actions/Delete.h"
+#include "storage/Actions/DeactivateImpl.h"
+#include "storage/Actions/DeleteImpl.h"
 
 
 namespace storage

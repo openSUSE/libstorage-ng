@@ -47,9 +47,9 @@ namespace storage
     /**
      * Style callbacks used by Actiongraph::write_graphviz().
      *
-     * Note: It would be nice to have this class available in the API
-     * but since Action::Base is not available in the API it is a lot
-     * of work to make it useful.
+     * Note: It would be nice to have this class available in the API but since
+     * Action::Base is not available in the API in all details it is a lot of work to make
+     * it useful. Also CommitData it not in the API.
      */
     class ActiongraphStyleCallbacks : public GraphStyleCallbacks
     {
