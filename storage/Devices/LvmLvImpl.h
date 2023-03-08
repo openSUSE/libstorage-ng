@@ -27,7 +27,7 @@
 #include "storage/Devices/LvmLv.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Utils/Enum.h"
-#include "storage/Actions/Rename.h"
+#include "storage/Actions/RenameImpl.h"
 
 
 namespace storage

@@ -40,8 +40,8 @@
 #include "storage/Prober.h"
 #include "storage/Utils/Format.h"
 #include "storage/Utils/SystemCmd.h"
-#include "storage/Actions/Activate.h"
-#include "storage/Actions/Create.h"
+#include "storage/Actions/ActivateImpl.h"
+#include "storage/Actions/CreateImpl.h"
 
 
 namespace storage

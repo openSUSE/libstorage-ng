@@ -40,10 +40,10 @@
 #include "storage/Holders/Snapshot.h"
 #include "storage/Prober.h"
 #include "storage/Utils/Format.h"
-#include "storage/Actions/Create.h"
-#include "storage/Actions/Delete.h"
-#include "storage/Actions/SetNocow.h"
-#include "storage/Actions/SetDefaultBtrfsSubvolume.h"
+#include "storage/Actions/CreateImpl.h"
+#include "storage/Actions/DeleteImpl.h"
+#include "storage/Actions/SetNocowImpl.h"
+#include "storage/Actions/SetDefaultBtrfsSubvolumeImpl.h"
 
 
 namespace storage

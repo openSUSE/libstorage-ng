@@ -33,8 +33,8 @@
 #include "storage/Holders/BtrfsQgroupRelation.h"
 #include "storage/Storage.h"
 #include "storage/Redirect.h"
-#include "storage/Actions/Create.h"
-#include "storage/Actions/Delete.h"
+#include "storage/Actions/CreateImpl.h"
+#include "storage/Actions/DeleteImpl.h"
 
 
 namespace storage

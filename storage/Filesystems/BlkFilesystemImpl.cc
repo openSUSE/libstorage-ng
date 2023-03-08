@@ -46,10 +46,10 @@
 #include "storage/Redirect.h"
 #include "storage/Utils/Format.h"
 #include "storage/EnvironmentImpl.h"
-#include "storage/Actions/SetUuid.h"
-#include "storage/Actions/SetLabel.h"
-#include "storage/Actions/SetTuneOptions.h"
-#include "storage/Actions/Create.h"
+#include "storage/Actions/SetUuidImpl.h"
+#include "storage/Actions/SetLabelImpl.h"
+#include "storage/Actions/SetTuneOptionsImpl.h"
+#include "storage/Actions/CreateImpl.h"
 
 
 namespace storage

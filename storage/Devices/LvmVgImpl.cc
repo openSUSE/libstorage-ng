@@ -38,11 +38,11 @@
 #include "storage/FindBy.h"
 #include "storage/Prober.h"
 #include "storage/Utils/Format.h"
-#include "storage/Actions/Reallot.h"
-#include "storage/Actions/Resize.h"
-#include "storage/Actions/Create.h"
-#include "storage/Actions/Delete.h"
-#include "storage/Actions/ReduceMissing.h"
+#include "storage/Actions/ReallotImpl.h"
+#include "storage/Actions/ResizeImpl.h"
+#include "storage/Actions/CreateImpl.h"
+#include "storage/Actions/DeleteImpl.h"
+#include "storage/Actions/ReduceMissingImpl.h"
 
 
 namespace storage

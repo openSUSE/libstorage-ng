@@ -30,7 +30,7 @@
 #include "storage/Filesystems/BlkFilesystem.h"
 #include "storage/Filesystems/FilesystemImpl.h"
 #include "storage/FreeInfo.h"
-#include "storage/Actions/Resize.h"
+#include "storage/Actions/ResizeImpl.h"
 
 
 namespace storage

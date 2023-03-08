@@ -39,12 +39,12 @@
 #include "storage/Holders/Subdevice.h"
 #include "storage/Redirect.h"
 #include "storage/Utils/Format.h"
-#include "storage/Actions/Mount.h"
-#include "storage/Actions/Unmount.h"
-#include "storage/Actions/AddToEtcFstab.h"
-#include "storage/Actions/UpdateInEtcFstab.h"
-#include "storage/Actions/RenameInEtcFstab.h"
-#include "storage/Actions/RemoveFromEtcFstab.h"
+#include "storage/Actions/MountImpl.h"
+#include "storage/Actions/UnmountImpl.h"
+#include "storage/Actions/AddToEtcFstabImpl.h"
+#include "storage/Actions/UpdateInEtcFstabImpl.h"
+#include "storage/Actions/RenameInEtcFstabImpl.h"
+#include "storage/Actions/RemoveFromEtcFstabImpl.h"
 
 
 namespace storage

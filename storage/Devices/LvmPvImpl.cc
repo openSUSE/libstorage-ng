@@ -36,7 +36,7 @@
 #include "storage/UsedFeatures.h"
 #include "storage/Storage.h"
 #include "storage/Utils/Format.h"
-#include "storage/Actions/Resize.h"
+#include "storage/Actions/ResizeImpl.h"
 
 
 namespace storage

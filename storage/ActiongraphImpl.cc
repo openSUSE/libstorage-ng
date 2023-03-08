@@ -50,9 +50,9 @@
 #include "storage/Utils/Format.h"
 #include "storage/GraphvizImpl.h"
 #include "storage/Redirect.h"
-#include "storage/Actions/SetQuota.h"
-#include "storage/Actions/Mount.h"
-#include "storage/Actions/Unmount.h"
+#include "storage/Actions/SetQuotaImpl.h"
+#include "storage/Actions/MountImpl.h"
+#include "storage/Actions/UnmountImpl.h"
 
 
 namespace storage

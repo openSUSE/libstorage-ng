@@ -44,13 +44,13 @@
 #include "storage/Utils/XmlFile.h"
 #include "storage/Prober.h"
 #include "storage/Utils/Format.h"
-#include "storage/Actions/Resize.h"
-#include "storage/Actions/SetTypeId.h"
-#include "storage/Actions/SetLabel.h"
-#include "storage/Actions/SetBoot.h"
-#include "storage/Actions/SetLegacyBoot.h"
-#include "storage/Actions/Create.h"
-#include "storage/Actions/Delete.h"
+#include "storage/Actions/ResizeImpl.h"
+#include "storage/Actions/SetTypeIdImpl.h"
+#include "storage/Actions/SetLabelImpl.h"
+#include "storage/Actions/SetBootImpl.h"
+#include "storage/Actions/SetLegacyBootImpl.h"
+#include "storage/Actions/CreateImpl.h"
+#include "storage/Actions/DeleteImpl.h"
 
 
 namespace storage

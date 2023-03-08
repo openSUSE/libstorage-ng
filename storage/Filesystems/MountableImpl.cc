@@ -41,8 +41,8 @@
 #include "storage/Redirect.h"
 #include "storage/Utils/Format.h"
 #include "storage/Prober.h"
-#include "storage/Actions/Mount.h"
-#include "storage/Actions/Unmount.h"
+#include "storage/Actions/MountImpl.h"
+#include "storage/Actions/UnmountImpl.h"
 
 
 namespace storage

@@ -32,9 +32,9 @@
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Prober.h"
 #include "storage/Utils/Format.h"
-#include "storage/Actions/SetPmbrBoot.h"
-#include "storage/Actions/Repair.h"
-#include "storage/Actions/Create.h"
+#include "storage/Actions/SetPmbrBootImpl.h"
+#include "storage/Actions/RepairImpl.h"
+#include "storage/Actions/CreateImpl.h"
 
 
 namespace storage

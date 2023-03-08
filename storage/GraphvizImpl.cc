@@ -49,9 +49,9 @@
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/HumanString.h"
 #include "storage/EnvironmentImpl.h"
-#include "storage/Actions/Create.h"
-#include "storage/Actions/Modify.h"
-#include "storage/Actions/Delete.h"
+#include "storage/Actions/CreateImpl.h"
+#include "storage/Actions/ModifyImpl.h"
+#include "storage/Actions/DeleteImpl.h"
 
 
 namespace storage

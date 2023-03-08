@@ -29,7 +29,7 @@
 #include "storage/Filesystems/BtrfsQgroupImpl.h"
 #include "storage/Holders/BtrfsQgroupRelationImpl.h"
 #include "storage/Redirect.h"
-#include "storage/Actions/SetQuota.h"
+#include "storage/Actions/SetQuotaImpl.h"
 
 
 namespace storage
