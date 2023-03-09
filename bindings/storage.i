@@ -37,6 +37,7 @@ use_ostream(storage::PartitionSlot);
 %feature("director") storage::ProbeCallbacksV4;
 %feature("director") storage::CheckCallbacks;
 %feature("director") storage::CommitCallbacks;
+%feature("director") storage::CommitCallbacksV2;
 %feature("director") storage::RemoteCallbacks;
 %feature("director") storage::DevicegraphStyleCallbacks;
 %feature("director") storage::Logger;
@@ -126,6 +127,11 @@ use_ostream(storage::PartitionSlot);
 #include "storage/Holders/FilesystemUser.h"
 #include "storage/Holders/Snapshot.h"
 #include "storage/Holders/BtrfsQgroupRelation.h"
+
+#include "storage/Actions/Base.h"
+#include "storage/Actions/Create.h"
+#include "storage/Actions/Modify.h"
+#include "storage/Actions/Delete.h"
 
 #include "storage/Graphviz.h"
 #include "storage/SimpleEtcFstab.h"
@@ -225,6 +231,11 @@ use_ostream(storage::PartitionSlot);
 %include "../../storage/Holders/FilesystemUser.h"
 %include "../../storage/Holders/Snapshot.h"
 %include "../../storage/Holders/BtrfsQgroupRelation.h"
+
+%include "../../storage/Actions/Base.h"
+%include "../../storage/Actions/Create.h"
+%include "../../storage/Actions/Modify.h"
+%include "../../storage/Actions/Delete.h"
 
 %include "../../storage/Graphviz.h"
 %include "../../storage/SimpleEtcFstab.h"

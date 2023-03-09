@@ -23,13 +23,38 @@ def check(storage):
     storage.check(my_check_callbacks)
 
 
-class MyCommitCallbacks(CommitCallbacks):
+def red(s):
+    return "\033[0;31m" + s + "\033[00m"
+
+def green(s):
+    return "\033[0;32m" + s + "\033[00m"
+
+
+def colorize_action(message, action):
+    if is_delete(action):
+        return red(message)
+    return message
+
+
+def colorize_compound_action(message, compound_action):
+    if compound_action.is_delete():
+        return red(message)
+    return message
+
+
+class MyCommitCallbacks(CommitCallbacksV2):
 
     def __init__(self):
         super(MyCommitCallbacks, self).__init__()
 
+    def begin_action(self, action):
+        self.action = action
+
+    def end_action(self, action):
+        self.action = None
+
     def message(self, message):
-        print("message '%s'" % message)
+        print("message '%s'" % colorize_action(message, self.action))
 
     def error(self, message, what):
         print("error '%s' '%s'" % (message, what))
@@ -78,12 +103,14 @@ def commit(storage, skip_save_graphs = True, skip_print_actiongraph = True,
         actiongraph.print_graph()
 
     print("Detailed:")
-    actiongraph.print_order()
+    for action in actiongraph.get_commit_actions():
+        print(colorize_action(get_string(actiongraph, action), action))
+    print()
 
     print("Condensed:")
     actiongraph.generate_compound_actions()
-    for s in actiongraph.get_compound_actions():
-        print(s.sentence())
+    for compound_action in actiongraph.get_compound_actions():
+        print(colorize_compound_action(compound_action.sentence(), compound_action))
     print()
 
     if not skip_save_graphs:

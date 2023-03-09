@@ -10,11 +10,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-05 08:30+0200\n"
+"POT-Creation-Date: 2023-03-09 09:55+0100\n"
 "PO-Revision-Date: 2022-08-05 13:13+0000\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
-"Language-Team: Japanese <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/ja/>\n"
+"Language-Team: Japanese <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2841,13 +2841,6 @@ msgstr ""
 msgid "Removing qgroup %1$s on %2$s"
 msgstr "qgroup %1$s を %2$s から削除しています"
 
-#. TRANSLATORS:
-#. %1$s is replaced with the old logical volume name (e.g. foo),
-#. %2$s is replaced with the new logical volume name (e.g. bar)
-#, c-format
-msgid "Rename %1$s to %2$s"
-msgstr "%1$s に対する %2$s への名称変更"
-
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
 #. %2$s is replaced by device name (e.g. /dev/sda5)
@@ -2855,6 +2848,14 @@ msgstr "%1$s に対する %2$s への名称変更"
 msgid "Rename encryption layer device from %1$s to %2$s in /etc/crypttab"
 msgstr ""
 "暗号化レイヤデバイス %1$s に対する /etc/crypttab 内での %2$s への名称変更"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the old logical volume name (e.g. foo),
+#. %2$s is replaced with the new logical volume name (e.g. bar),
+#. %3$s is replaced with the volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Rename logical volume %1$s to %2$s on volume group %3$s"
+msgstr "ボリュームグループ %3$s に対する論理ボリューム %1$s (%2$s) の作成"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -2864,6 +2865,13 @@ msgstr ""
 msgid "Rename mount point %1$s from %2$s to %3$s in /etc/fstab"
 msgstr ""
 "マウントポイント %1$s に対する /etc/fstab 内での %2$s から %3$s への名称変更"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the old volume group name (e.g. foo),
+#. %2$s is replaced with the new volume group name (e.g. bar)
+#, fuzzy, c-format
+msgid "Rename volume group %1$s to %2$s"
+msgstr "ボリュームグループ %1$s (%2$s) の作成"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
@@ -3445,6 +3453,10 @@ msgstr "kB"
 #. TRANSLATORS: name of object
 msgid "tmpfs"
 msgstr "tmpfs"
+
+#, c-format
+#~ msgid "Rename %1$s to %2$s"
+#~ msgstr "%1$s に対する %2$s への名称変更"
 
 #, fuzzy, c-format
 #~ msgid "Create subvolume %1$s on %2$s with limits for qgroup"

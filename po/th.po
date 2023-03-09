@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-05 08:30+0200\n"
+"POT-Creation-Date: 2023-03-09 09:55+0100\n"
 "PO-Revision-Date: 2010-07-09 21:56+0700\n"
 "Last-Translator: Thanomsub Noppaburana <donga.nb@gmail.com>\n"
 "Language-Team: Thai <i18n@suse.de>\n"
@@ -2765,19 +2765,20 @@ msgstr "ทำการลบรายการของจุดเมานท
 msgid "Removing qgroup %1$s on %2$s"
 msgstr "ลบ %1$s ออกจาก %2$s"
 
-#. TRANSLATORS:
-#. %1$s is replaced with the old logical volume name (e.g. foo),
-#. %2$s is replaced with the new logical volume name (e.g. bar)
-#, fuzzy, c-format
-msgid "Rename %1$s to %2$s"
-msgstr "ลบ %1$s ออกจาก %2$s"
-
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
 #. %2$s is replaced by device name (e.g. /dev/sda5)
 #, c-format
 msgid "Rename encryption layer device from %1$s to %2$s in /etc/crypttab"
 msgstr ""
+
+#. TRANSLATORS:
+#. %1$s is replaced with the old logical volume name (e.g. foo),
+#. %2$s is replaced with the new logical volume name (e.g. bar),
+#. %3$s is replaced with the volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Rename logical volume %1$s to %2$s on volume group %3$s"
+msgstr "สร้างโวลุมลอจิคัล %1$s (ขนาด %2$s) สำหรับเมานท์ที่ %4$s ด้วยระบบแฟ้ม %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -2786,6 +2787,13 @@ msgstr ""
 #, fuzzy, c-format
 msgid "Rename mount point %1$s from %2$s to %3$s in /etc/fstab"
 msgstr "ลบรายการของจุดเมานท์ %1$s ออกจากแฟ้ม %2$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the old volume group name (e.g. foo),
+#. %2$s is replaced with the new volume group name (e.g. bar)
+#, fuzzy, c-format
+msgid "Rename volume group %1$s to %2$s"
+msgstr "สร้างโวลุม %1$s (ขนาด %2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
@@ -3351,6 +3359,10 @@ msgstr "กิโลไบต์"
 #. TRANSLATORS: name of object
 msgid "tmpfs"
 msgstr ""
+
+#, fuzzy, c-format
+#~ msgid "Rename %1$s to %2$s"
+#~ msgstr "ลบ %1$s ออกจาก %2$s"
 
 #, fuzzy, c-format
 #~ msgid "Create subvolume %1$s on %2$s with limits for qgroup"

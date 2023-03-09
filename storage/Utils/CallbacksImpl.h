@@ -62,17 +62,29 @@ namespace storage
 
 
     /**
+     * Calls the begin_action() and end_action() functions of the callbacks in the
+     * constructor respectively destructor.
+     */
+    class ActionCallbacksGuard
+    {
+    public:
+
+	ActionCallbacksGuard(const CommitCallbacks* commit_callbacks, const Action::Base* action);
+	~ActionCallbacksGuard();
+
+    private:
+
+	const CommitCallbacks* commit_callbacks;
+	const Action::Base* action;
+
+    };
+
+
+    /**
      * Call the message callback of callbacks.
      */
     void
     message_callback(const Callbacks* callbacks, const Text& message);
-
-    /**
-     * Depending on the dynamic type of commit_callbacks, either call the message callback
-     * with or without the action parameter.
-     */
-    void
-    message_callback(const CommitCallbacks* commit_callbacks, const Text& message, const Action::Base* action);
 
     /**
      * Call the error callback of callbacks and handle return value.

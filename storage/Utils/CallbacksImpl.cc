@@ -40,6 +40,10 @@ namespace storage
 	const ActivateCallbacksV3* activate_callbacks_v3 = dynamic_cast<const ActivateCallbacksV3*>(callbacks);
 	if (activate_callbacks_v3)
 	    activate_callbacks_v3->begin();
+
+	const CommitCallbacksV2* commit_callbacks_v2 = dynamic_cast<const CommitCallbacksV2*>(callbacks);
+	if (commit_callbacks_v2)
+	    commit_callbacks_v2->begin();
     }
 
 
@@ -52,6 +56,27 @@ namespace storage
 	const ActivateCallbacksV3* activate_callbacks_v3 = dynamic_cast<const ActivateCallbacksV3*>(callbacks);
 	if (activate_callbacks_v3)
 	    activate_callbacks_v3->end();
+
+	const CommitCallbacksV2* commit_callbacks_v2 = dynamic_cast<const CommitCallbacksV2*>(callbacks);
+	if (commit_callbacks_v2)
+	    commit_callbacks_v2->end();
+    }
+
+
+    ActionCallbacksGuard::ActionCallbacksGuard(const CommitCallbacks* commit_callbacks, const Action::Base* action)
+	: commit_callbacks(commit_callbacks), action(action)
+    {
+	const CommitCallbacksV2* commit_callbacks_v2 = dynamic_cast<const CommitCallbacksV2*>(commit_callbacks);
+	if (commit_callbacks_v2)
+	    commit_callbacks_v2->begin_action(action);
+    }
+
+
+    ActionCallbacksGuard::~ActionCallbacksGuard()
+    {
+	const CommitCallbacksV2* commit_callbacks_v2 = dynamic_cast<const CommitCallbacksV2*>(commit_callbacks);
+	if (commit_callbacks_v2)
+	    commit_callbacks_v2->end_action(action);
     }
 
 
@@ -61,22 +86,6 @@ namespace storage
 	if (callbacks)
 	{
 	    callbacks->message(message.translated);
-	}
-    }
-
-
-    void
-    message_callback(const CommitCallbacks* commit_callbacks, const Text& message, const Action::Base* action)
-    {
-	const CommitCallbacksV2* commit_callbacks_v2 = dynamic_cast<const CommitCallbacksV2*>(commit_callbacks);
-
-	if (commit_callbacks_v2)
-	{
-	    commit_callbacks_v2->message(message.translated, action);
-	}
-	else
-	{
-	    message_callback(commit_callbacks, message);
 	}
     }
 
