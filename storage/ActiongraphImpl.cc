@@ -773,6 +773,8 @@ namespace storage
     void
     Actiongraph::Impl::commit(const CommitOptions& commit_options, const CommitCallbacks* commit_callbacks) const
     {
+	CallbacksGuard callbacks_guard(commit_callbacks);
+
 	y2mil("commit begin");
 
 	y2mil("used features: " << get_used_features_names(used_features()));
@@ -784,11 +786,13 @@ namespace storage
 	{
 	    const Action::Base* action = graph[vertex].get();
 
+	    ActionCallbacksGuard action_callbacks_guard(commit_callbacks, action);
+
 	    Text text = action->text(commit_data);
 
 	    y2mil("Commit Action \"" << text.native << "\" [" << action->details() << "]");
 
-	    message_callback(commit_callbacks, text, action);
+	    message_callback(commit_callbacks, text);
 
 	    if (action->nop)
 		continue;

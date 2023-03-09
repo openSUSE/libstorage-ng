@@ -413,10 +413,25 @@ namespace storage
     {
     public:
 
-	/** unused in CommitCallbacksV2 */
-	virtual void message(const std::string& message) const override {}
+	/**
+	 * Called at the begin of commit.
+	 */
+	virtual void begin() const {}
 
-	virtual void message(const std::string& message, const Action::Base* action) const = 0;
+	/**
+	 * Called at the end of commit.
+	 */
+	virtual void end() const {}
+
+	/**
+	 * Called at the begin of commit of a single action.
+	 */
+	virtual void begin_action(const Action::Base* action) const {}
+
+	/**
+	 * Called at the end of commit of a single action.
+	 */
+	virtual void end_action(const Action::Base* action) const {}
 
 	virtual ~CommitCallbacksV2() {}
 

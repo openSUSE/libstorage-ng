@@ -5,7 +5,8 @@
 
 %template(BtrfsQgroupId) std::pair<unsigned int, unsigned long long>;
 
-%template(VectorCompoundActionPtr) std::vector<CompoundAction*>;
+%template(VectorConstActionBasePtr) std::vector<const Action::Base*>;
+
 %template(VectorConstCompoundActionPtr) std::vector<const CompoundAction*>;
 
 %template(VectorDevicePtr) std::vector<Device*>;
