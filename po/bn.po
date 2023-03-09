@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-05 08:30+0200\n"
+"POT-Creation-Date: 2023-03-09 09:55+0100\n"
 "PO-Revision-Date: 2004-08-09 10:24+0200\n"
 "Last-Translator: xxx <yyy@example.org>\n"
 "Language-Team: Bengali <i18n@suse.de>\n"
@@ -2769,19 +2769,20 @@ msgstr " %2$-গুলি থেকে মাউন্ট পয়েন্ট ল
 msgid "Removing qgroup %1$s on %2$s"
 msgstr "%1$গুলিকে %2$গুলি থেকে অপসারণ করুন"
 
-#. TRANSLATORS:
-#. %1$s is replaced with the old logical volume name (e.g. foo),
-#. %2$s is replaced with the new logical volume name (e.g. bar)
-#, fuzzy, c-format
-msgid "Rename %1$s to %2$s"
-msgstr "%1$গুলিকে %2$গুলি থেকে অপসারণ করুন"
-
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
 #. %2$s is replaced by device name (e.g. /dev/sda5)
 #, c-format
 msgid "Rename encryption layer device from %1$s to %2$s in /etc/crypttab"
 msgstr ""
+
+#. TRANSLATORS:
+#. %1$s is replaced with the old logical volume name (e.g. foo),
+#. %2$s is replaced with the new logical volume name (e.g. bar),
+#. %3$s is replaced with the volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Rename logical volume %1$s to %2$s on volume group %3$s"
+msgstr "%4$-গুলির জন্য 3%$-গুলির সঙ্গে %1$(2%$গুলি)গুলির লজিক্যাল ভলিউম সৃষ্টি করুন"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -2790,6 +2791,13 @@ msgstr ""
 #, fuzzy, c-format
 msgid "Rename mount point %1$s from %2$s to %3$s in /etc/fstab"
 msgstr " %2$-গুলি থেকে মাউন্ট পয়েন্ট লিপিব্ধকরণ %1$-গুলিকে অপসারণ করুন "
+
+#. TRANSLATORS:
+#. %1$s is replaced with the old volume group name (e.g. foo),
+#. %2$s is replaced with the new volume group name (e.g. bar)
+#, fuzzy, c-format
+msgid "Rename volume group %1$s to %2$s"
+msgstr "লজিক্যাল ভলিউম %1$-গুলি(2%$গুলি) সৃষ্টি করুন"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
@@ -3355,6 +3363,10 @@ msgstr "kB"
 #. TRANSLATORS: name of object
 msgid "tmpfs"
 msgstr ""
+
+#, fuzzy, c-format
+#~ msgid "Rename %1$s to %2$s"
+#~ msgstr "%1$গুলিকে %2$গুলি থেকে অপসারণ করুন"
 
 #, fuzzy, c-format
 #~ msgid "Create subvolume %1$s on %2$s with limits for qgroup"

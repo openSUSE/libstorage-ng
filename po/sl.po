@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-05 08:30+0200\n"
+"POT-Creation-Date: 2023-03-09 09:55+0100\n"
 "PO-Revision-Date: 2001-10-18 11:02+0200\n"
 "Last-Translator: Janez Krek <janez.krek@euroteh.si>\n"
 "Language-Team: Slovenian\n"
@@ -16,8 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
-"%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
 
 msgid ""
 "\n"
@@ -2773,19 +2773,20 @@ msgstr "Nastavi priključno točko %1 v %2"
 msgid "Removing qgroup %1$s on %2$s"
 msgstr "Odmakni napravo %1 iz /etc/fstab"
 
-#. TRANSLATORS:
-#. %1$s is replaced with the old logical volume name (e.g. foo),
-#. %2$s is replaced with the new logical volume name (e.g. bar)
-#, fuzzy, c-format
-msgid "Rename %1$s to %2$s"
-msgstr "Odmakni napravo %1 iz /etc/fstab"
-
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
 #. %2$s is replaced by device name (e.g. /dev/sda5)
 #, c-format
 msgid "Rename encryption layer device from %1$s to %2$s in /etc/crypttab"
 msgstr ""
+
+#. TRANSLATORS:
+#. %1$s is replaced with the old logical volume name (e.g. foo),
+#. %2$s is replaced with the new logical volume name (e.g. bar),
+#. %3$s is replaced with the volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Rename logical volume %1$s to %2$s on volume group %3$s"
+msgstr "Ustvari  %5 %1 %2 (za %3 z %4)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -2794,6 +2795,13 @@ msgstr ""
 #, fuzzy, c-format
 msgid "Rename mount point %1$s from %2$s to %3$s in /etc/fstab"
 msgstr "Nastavi priključno točko %1 v %2"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the old volume group name (e.g. foo),
+#. %2$s is replaced with the new volume group name (e.g. bar)
+#, fuzzy, c-format
+msgid "Rename volume group %1$s to %2$s"
+msgstr "Ustvari logični nosilec"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
@@ -3359,6 +3367,10 @@ msgstr "kB"
 #. TRANSLATORS: name of object
 msgid "tmpfs"
 msgstr ""
+
+#, fuzzy, c-format
+#~ msgid "Rename %1$s to %2$s"
+#~ msgstr "Odmakni napravo %1 iz /etc/fstab"
 
 #, fuzzy, c-format
 #~ msgid "Create subvolume %1$s on %2$s with limits for qgroup"

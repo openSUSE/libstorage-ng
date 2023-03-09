@@ -8,11 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-05 08:30+0200\n"
+"POT-Creation-Date: 2023-03-09 09:55+0100\n"
 "PO-Revision-Date: 2022-08-08 11:13+0000\n"
 "Last-Translator: David Medina <medipas@gmail.com>\n"
-"Language-Team: Catalan <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/ca/>\n"
+"Language-Team: Catalan <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/ca/>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2815,13 +2815,6 @@ msgstr ""
 msgid "Removing qgroup %1$s on %2$s"
 msgstr "Suprimint el qgrup %1$s de %2$s"
 
-#. TRANSLATORS:
-#. %1$s is replaced with the old logical volume name (e.g. foo),
-#. %2$s is replaced with the new logical volume name (e.g. bar)
-#, c-format
-msgid "Rename %1$s to %2$s"
-msgstr "Canvia el nom de %1$s a %2$s"
-
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
 #. %2$s is replaced by device name (e.g. /dev/sda5)
@@ -2831,6 +2824,14 @@ msgstr ""
 "Canvia el nom del dispositiu de capa d'encriptació de %1$s a %2$s a /etc/"
 "crypttab"
 
+#. TRANSLATORS:
+#. %1$s is replaced with the old logical volume name (e.g. foo),
+#. %2$s is replaced with the new logical volume name (e.g. bar),
+#. %3$s is replaced with the volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Rename logical volume %1$s to %2$s on volume group %3$s"
+msgstr "Crea el volum lògic %1$s (%2$s) al grup de volums %3$s"
+
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda6),
@@ -2838,6 +2839,13 @@ msgstr ""
 #, c-format
 msgid "Rename mount point %1$s from %2$s to %3$s in /etc/fstab"
 msgstr "Canvia el nom del punt de muntatge %1$s de %2$s a %3$s a /etc/fstab"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the old volume group name (e.g. foo),
+#. %2$s is replaced with the new volume group name (e.g. bar)
+#, fuzzy, c-format
+msgid "Rename volume group %1$s to %2$s"
+msgstr "Crea el grup de volums %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
@@ -3412,6 +3420,10 @@ msgstr "kB"
 #. TRANSLATORS: name of object
 msgid "tmpfs"
 msgstr "fitxers temporals"
+
+#, c-format
+#~ msgid "Rename %1$s to %2$s"
+#~ msgstr "Canvia el nom de %1$s a %2$s"
 
 #, fuzzy, c-format
 #~ msgid "Create subvolume %1$s on %2$s with limits for qgroup"

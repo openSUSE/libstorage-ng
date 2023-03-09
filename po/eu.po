@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-05 08:30+0200\n"
+"POT-Creation-Date: 2023-03-09 09:55+0100\n"
 "PO-Revision-Date: 2003-02-12 10:23+0100\n"
 "Last-Translator: i18n@suse.de\n"
 "Language-Team: Basque <i18n@suse.de>\n"
@@ -2738,18 +2738,19 @@ msgstr ""
 msgid "Removing qgroup %1$s on %2$s"
 msgstr ""
 
-#. TRANSLATORS:
-#. %1$s is replaced with the old logical volume name (e.g. foo),
-#. %2$s is replaced with the new logical volume name (e.g. bar)
-#, c-format
-msgid "Rename %1$s to %2$s"
-msgstr ""
-
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
 #. %2$s is replaced by device name (e.g. /dev/sda5)
 #, c-format
 msgid "Rename encryption layer device from %1$s to %2$s in /etc/crypttab"
+msgstr ""
+
+#. TRANSLATORS:
+#. %1$s is replaced with the old logical volume name (e.g. foo),
+#. %2$s is replaced with the new logical volume name (e.g. bar),
+#. %3$s is replaced with the volume group name (e.g. system)
+#, c-format
+msgid "Rename logical volume %1$s to %2$s on volume group %3$s"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
@@ -2758,6 +2759,13 @@ msgstr ""
 #. %3$s is replaced by device name (e.g. /dev/sda5)
 #, c-format
 msgid "Rename mount point %1$s from %2$s to %3$s in /etc/fstab"
+msgstr ""
+
+#. TRANSLATORS:
+#. %1$s is replaced with the old volume group name (e.g. foo),
+#. %2$s is replaced with the new volume group name (e.g. bar)
+#, c-format
+msgid "Rename volume group %1$s to %2$s"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,

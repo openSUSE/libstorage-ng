@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-05 08:30+0200\n"
+"POT-Creation-Date: 2023-03-09 09:55+0100\n"
 "PO-Revision-Date: 2019-04-04 15:03+0000\n"
 "Last-Translator: Ewelina Michalowska <ewelina.michalowska@stgambit.com>\n"
 "Language-Team: Polish <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -2901,13 +2901,6 @@ msgstr ""
 msgid "Removing qgroup %1$s on %2$s"
 msgstr "Usuwanie urządzenia %1$s z urządzenia %2$s"
 
-#. TRANSLATORS:
-#. %1$s is replaced with the old logical volume name (e.g. foo),
-#. %2$s is replaced with the new logical volume name (e.g. bar)
-#, c-format
-msgid "Rename %1$s to %2$s"
-msgstr "Zmień nazwę %1$s na %2$s"
-
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
 #. %2$s is replaced by device name (e.g. /dev/sda5)
@@ -2916,6 +2909,14 @@ msgid "Rename encryption layer device from %1$s to %2$s in /etc/crypttab"
 msgstr ""
 "Zmień nazwę urządzenia warstwy szyfrowania z %1$s na %2$s w /etc/crypttab"
 
+#. TRANSLATORS:
+#. %1$s is replaced with the old logical volume name (e.g. foo),
+#. %2$s is replaced with the new logical volume name (e.g. bar),
+#. %3$s is replaced with the volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Rename logical volume %1$s to %2$s on volume group %3$s"
+msgstr "Utwórz wolumen logiczny %1$s (%2$s) w grupie wolumenów %3$s"
+
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda6),
@@ -2923,6 +2924,13 @@ msgstr ""
 #, c-format
 msgid "Rename mount point %1$s from %2$s to %3$s in /etc/fstab"
 msgstr "Zmień nazwę punktu montowania %1$s z %2$s na %3$s w /etc/fstab"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the old volume group name (e.g. foo),
+#. %2$s is replaced with the new volume group name (e.g. bar)
+#, fuzzy, c-format
+msgid "Rename volume group %1$s to %2$s"
+msgstr "Utwórz grupę woluminów %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
@@ -3513,6 +3521,10 @@ msgstr "kB"
 #. TRANSLATORS: name of object
 msgid "tmpfs"
 msgstr ""
+
+#, c-format
+#~ msgid "Rename %1$s to %2$s"
+#~ msgstr "Zmień nazwę %1$s na %2$s"
 
 #, fuzzy, c-format
 #~ msgid "Create subvolume %1$s on %2$s with limits for qgroup"

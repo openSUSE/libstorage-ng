@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-05 08:30+0200\n"
+"POT-Creation-Date: 2023-03-09 09:55+0100\n"
 "PO-Revision-Date: 2023-02-08 09:14+0000\n"
 "Last-Translator: Grace Yu <grace.yu@excel-gits.com>\n"
 "Language-Team: Chinese (Taiwan) <https://l10n.opensuse.org/projects/"
@@ -2791,19 +2791,20 @@ msgstr "正在從 /etc/fstab 移除 %3$s 上子磁碟區 %2$s 的裝載點 %1$s"
 msgid "Removing qgroup %1$s on %2$s"
 msgstr "正在移除 %2$s 上的 qgroup %1$s"
 
-#. TRANSLATORS:
-#. %1$s is replaced with the old logical volume name (e.g. foo),
-#. %2$s is replaced with the new logical volume name (e.g. bar)
-#, c-format
-msgid "Rename %1$s to %2$s"
-msgstr "將 %1$s 重新命名為 %2$s"
-
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
 #. %2$s is replaced by device name (e.g. /dev/sda5)
 #, c-format
 msgid "Rename encryption layer device from %1$s to %2$s in /etc/crypttab"
 msgstr "在 /etc/crypttab 中將加密層裝置從 %1$s 重新命名為 %2$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the old logical volume name (e.g. foo),
+#. %2$s is replaced with the new logical volume name (e.g. bar),
+#. %3$s is replaced with the volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Rename logical volume %1$s to %2$s on volume group %3$s"
+msgstr "在磁碟區群組 %3$s 上建立邏輯磁碟區 %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -2812,6 +2813,13 @@ msgstr "在 /etc/crypttab 中將加密層裝置從 %1$s 重新命名為 %2$s"
 #, c-format
 msgid "Rename mount point %1$s from %2$s to %3$s in /etc/fstab"
 msgstr "在 /etc/fstab 中將裝載點 %1$s 從 %2$s 重新命名為 %3$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the old volume group name (e.g. foo),
+#. %2$s is replaced with the new volume group name (e.g. bar)
+#, fuzzy, c-format
+msgid "Rename volume group %1$s to %2$s"
+msgstr "建立磁碟區群組 %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
@@ -3379,6 +3387,10 @@ msgstr "kB"
 #. TRANSLATORS: name of object
 msgid "tmpfs"
 msgstr "tmpfs"
+
+#, c-format
+#~ msgid "Rename %1$s to %2$s"
+#~ msgstr "將 %1$s 重新命名為 %2$s"
 
 #, c-format
 #~ msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"

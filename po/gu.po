@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-05 08:30+0200\n"
+"POT-Creation-Date: 2023-03-09 09:55+0100\n"
 "PO-Revision-Date: 2005-07-29 15:37+0530\n"
 "Last-Translator: i18n@suse.de\n"
 "Language-Team: Gujarati <i18n@suse.de>\n"
@@ -2768,19 +2768,20 @@ msgstr " માઉન્ટ પોઇન્ટ %1$s માટેની એન્
 msgid "Removing qgroup %1$s on %2$s"
 msgstr " %1$s ને %2$s માંથી દૂર કરો "
 
-#. TRANSLATORS:
-#. %1$s is replaced with the old logical volume name (e.g. foo),
-#. %2$s is replaced with the new logical volume name (e.g. bar)
-#, fuzzy, c-format
-msgid "Rename %1$s to %2$s"
-msgstr " %1$s ને %2$s માંથી દૂર કરો "
-
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
 #. %2$s is replaced by device name (e.g. /dev/sda5)
 #, c-format
 msgid "Rename encryption layer device from %1$s to %2$s in /etc/crypttab"
 msgstr ""
+
+#. TRANSLATORS:
+#. %1$s is replaced with the old logical volume name (e.g. foo),
+#. %2$s is replaced with the new logical volume name (e.g. bar),
+#. %3$s is replaced with the volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Rename logical volume %1$s to %2$s on volume group %3$s"
+msgstr " લોજિકલ વોલ્યૂમ %1$s (%2$s) ને %4$s માટે %3$s દ્વારા બનાવો "
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -2789,6 +2790,13 @@ msgstr ""
 #, fuzzy, c-format
 msgid "Rename mount point %1$s from %2$s to %3$s in /etc/fstab"
 msgstr " માઉન્ટ પોઇન્ટ %1$s માટેની એન્ટ્રી %2$s પર દૂર કરો "
+
+#. TRANSLATORS:
+#. %1$s is replaced with the old volume group name (e.g. foo),
+#. %2$s is replaced with the new volume group name (e.g. bar)
+#, fuzzy, c-format
+msgid "Rename volume group %1$s to %2$s"
+msgstr " લોજિકલ વોલ્યૂમ %1$s (%2$s) બનાવો "
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
@@ -3354,6 +3362,10 @@ msgstr "kB"
 #. TRANSLATORS: name of object
 msgid "tmpfs"
 msgstr ""
+
+#, fuzzy, c-format
+#~ msgid "Rename %1$s to %2$s"
+#~ msgstr " %1$s ને %2$s માંથી દૂર કરો "
 
 #, fuzzy, c-format
 #~ msgid "Create subvolume %1$s on %2$s with limits for qgroup"
