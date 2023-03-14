@@ -687,7 +687,7 @@ namespace storage
 	smatch match;
 
 	if (!regex_match(version, match, version_rx))
-	    ST_THROW(Exception("failed to parse parted version"));
+	    ST_THROW(Exception("failed to parse parted version " + version));
 
 	major = stoi(match[1]);
 	minor = stoi(match[2]);
