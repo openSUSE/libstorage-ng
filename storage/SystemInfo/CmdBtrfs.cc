@@ -626,13 +626,13 @@ namespace storage
     void
     BtrfsVersion::parse_version(const string& version)
     {
-	// example versions: "6.0", "6.0.2"
-	const regex version_rx("btrfs-progs v([0-9]+)\\.([0-9]+)(\\.([0-9]+))?", regex::extended);
+	// example versions: "5.14 " (yes, with a trailing space), "6.0", "6.0.2"
+	const regex version_rx("btrfs-progs v([0-9]+)\\.([0-9]+)(\\.([0-9]+))?( )*", regex::extended);
 
 	smatch match;
 
 	if (!regex_match(version, match, version_rx))
-	    ST_THROW(Exception("failed to parse btrfs version " + version));
+	    ST_THROW(Exception("failed to parse btrfs version '" + version + "'"));
 
 	major = stoi(match[1]);
 	minor = stoi(match[2]);
