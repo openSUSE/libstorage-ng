@@ -42,7 +42,7 @@ namespace storage
 
 	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
-	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const override { return UF_BTRFS; }
+	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const override;
 
 	};
 

@@ -121,6 +121,7 @@ namespace storage
 
 	virtual Text do_set_limits_text(const CommitData& commit_data, const Action::SetLimits* action) const;
 	virtual void do_set_limits(CommitData& commit_data, const Action::SetLimits* action);
+	virtual uf_t do_set_limits_used_features() const { return UF_BTRFS; }
 
 	virtual Text do_delete_text(Tense tense) const override;
 	virtual void do_delete() const override;
