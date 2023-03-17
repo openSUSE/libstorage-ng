@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2020-2021] SUSE LLC
+ * Copyright (c) [2020-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -43,6 +43,14 @@ namespace storage
 	{
 	    BtrfsQgroup* btrfs_qgroup = to_btrfs_qgroup(get_device(commit_data.actiongraph, RHS));
 	    return btrfs_qgroup->get_impl().do_set_limits(commit_data, this);
+	}
+
+
+	uf_t
+	SetLimits::used_features(const Actiongraph::Impl& actiongraph) const
+	{
+	    const BtrfsQgroup* btrfs_qgroup = to_btrfs_qgroup(get_device(actiongraph, RHS));
+	    return btrfs_qgroup->get_impl().do_set_limits_used_features();
 	}
 
     }

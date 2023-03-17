@@ -175,6 +175,7 @@ namespace storage
 
 	virtual Text do_set_quota_text(const CommitData& commit_data, const Action::SetQuota* action) const;
 	virtual void do_set_quota(const CommitData& commit_data, const Action::SetQuota* action) const;
+	virtual uf_t do_set_quota_used_features() const { return UF_BTRFS; }
 
 	void parse_mkfs_output(const vector<string>& stdout);
 

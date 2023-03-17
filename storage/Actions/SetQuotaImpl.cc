@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -44,6 +44,14 @@ namespace storage
 	{
 	    const Btrfs* btrfs = to_btrfs(get_device(commit_data.actiongraph, RHS));
 	    btrfs->get_impl().do_set_quota(commit_data, this);
+	}
+
+
+	uf_t
+	SetQuota::used_features(const Actiongraph::Impl& actiongraph) const
+	{
+	    const Btrfs* btrfs = to_btrfs(get_device(actiongraph, RHS));
+	    return btrfs->get_impl().do_set_quota_used_features();
 	}
 
     }
