@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -62,14 +62,14 @@ namespace storage
          * configuration file for the root filesystem. Then create a first
          * single snapshot and set this to the default snapshot.
          **/
-        void pre_mount();
+        void pre_mount() const;
 
         /**
          * Hook to be called after the Btrfs root filesystem is mounted.
          * This executes installation-helper step 2:
          * Mount the @/.snapshots or .snapshots subvolume.
          **/
-        void post_mount();
+        void post_mount() const;
 
         /**
          * Hook to be called after the Btrfs root filesystem is added to
@@ -77,45 +77,21 @@ namespace storage
          *
          * This adds @/.snapshots or .snapshots to /etc/fstab.
          **/
-        void post_add_to_etc_fstab( EtcFstab & etc_fstab );
+        void post_add_to_etc_fstab(EtcFstab& etc_fstab) const;
 
-        /**
-         * Return the Btrfs filesystem this object works on.
-         **/
-	const Btrfs* get_btrfs() const { return btrfs; }
-
-        /**
-         * Enable or disable actually executing the external commands.  By
-         * default, they are enabled. Disable this for test suites and check
-         * what command would have been executed with get_last_command_line().
-         **/
-        void set_do_exec( bool exec ) { do_exec = exec; }
-
-        /**
-         * Return the current value of enabling or disabling executing external
-         * commands.
-         **/
-        bool get_do_exec() const { return do_exec; }
-
-        /**
-         * Return the last executed command line.
-         **/
-        const string & get_last_command_line() const { return command_line; }
-
-    protected:
+    private:
 
         /**
          * Call the external installation-helper program with arguments.
-         * Return true if success, false if error.
+	 * Throws in case of errors.
          **/
-        bool installation_helper( const vector<string> & args );
+        void installation_helper(const vector<string>& args) const;
 
         /**
          * Build a command line from a command and its arguments.
          * Wrap all arguments that don't start with '--' in single quotes.
          **/
-        string build_command_line( const string & command,
-                                   const vector<string> & args ) const;
+        string build_command_line(const string& command, const vector<string>& args) const;
 
         /**
          * Check if snapper can and should be configured for this btrfs.
@@ -154,11 +130,9 @@ namespace storage
     private:
 
 	const Btrfs* btrfs = nullptr;
-	bool do_exec = true;
-        string command_line;
 
     };
 }
 
 
-#endif // STORAGE_SNAPPER_CONFIG_H
+#endif
