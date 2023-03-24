@@ -23,10 +23,8 @@
 #include <boost/algorithm/string.hpp>
 
 #include "storage/Utils/SnapperConfig.h"
-
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Devices/DeviceImpl.h"
-#include "storage/Filesystems/Btrfs.h"
 #include "storage/Filesystems/BtrfsImpl.h"
 #include "storage/Filesystems/BtrfsSubvolume.h"
 #include "storage/Filesystems/MountPoint.h"
@@ -35,7 +33,6 @@
 #include "storage/Utils/ExceptionImpl.h"
 #include "storage/Utils/LoggerImpl.h"
 #include "storage/Utils/SystemCmd.h"
-#include "storage/Utils/Text.h"
 
 #define INSTALLATION_HELPER_BIN "/usr/lib/snapper/installation-helper"
 #define SNAPSHOTS_DIR ".snapshots"
