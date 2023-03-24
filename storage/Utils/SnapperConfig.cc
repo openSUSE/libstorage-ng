@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2018] SUSE LLC
+ * Copyright (c) [2017-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -52,7 +52,7 @@ SnapperConfig::SnapperConfig(const Btrfs* btrfs)
 
 
 void
-SnapperConfig::pre_mount()
+SnapperConfig::pre_mount() const
 {
     if ( ! sanity_check() )
         return;
@@ -72,7 +72,7 @@ SnapperConfig::pre_mount()
 
 
 void
-SnapperConfig::post_mount()
+SnapperConfig::post_mount() const
 {
     if ( ! sanity_check() )
         return;
@@ -89,7 +89,7 @@ SnapperConfig::post_mount()
 
 
 void
-SnapperConfig::post_add_to_etc_fstab( EtcFstab & etc_fstab )
+SnapperConfig::post_add_to_etc_fstab(EtcFstab& etc_fstab) const
 {
     if ( ! sanity_check() )
         return;
@@ -123,29 +123,15 @@ SnapperConfig::post_add_to_etc_fstab( EtcFstab & etc_fstab )
 }
 
 
-bool
-SnapperConfig::installation_helper( const vector<string> & args )
+void
+SnapperConfig::installation_helper(const vector<string>& args) const
 {
-    command_line = build_command_line( INSTALLATION_HELPER_BIN, args );
-
-    if ( do_exec )
-    {
-        SystemCmd cmd( command_line, SystemCmd::NoThrow );
-
-        return cmd.retcode() == 0;
-    }
-    else
-    {
-        y2mil( "NOT executing command: " << command_line );
-
-        return true;
-    }
+    SystemCmd cmd(build_command_line(INSTALLATION_HELPER_BIN, args), SystemCmd::DoThrow);
 }
 
 
 string
-SnapperConfig::build_command_line( const string & command,
-                                   const vector<string> & args ) const
+SnapperConfig::build_command_line(const string& command, const vector<string>& args) const
 {
     string command_line = command;
 
