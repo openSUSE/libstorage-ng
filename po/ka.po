@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-09 09:55+0100\n"
-"PO-Revision-Date: 2023-02-04 20:14+0000\n"
+"PO-Revision-Date: 2023-03-30 07:14+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
-"Language-Team: Georgian <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/ka/>\n"
+"Language-Team: Georgian <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/ka/>\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -79,17 +79,17 @@ msgstr ""
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the device name (e.g. /dev/loop0),
 #. %2$s is replaced by the size (e.g. 20.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Activate hard disk %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s (%2$s) დისკის აქტივაცია"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activate logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "ლოგიკური ტომის %1$s (%2$s) აქტივაცია ტომების ჯგუფზე %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
