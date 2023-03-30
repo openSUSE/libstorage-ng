@@ -21,6 +21,7 @@
  */
 
 
+#include <cctype>
 #include <boost/algorithm/string.hpp>
 
 #include "storage/Devices/PartitionableImpl.h"

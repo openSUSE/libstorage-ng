@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,6 +21,7 @@
  */
 
 
+#include <cctype>
 #include <boost/algorithm/string.hpp>
 
 #include "storage/Utils/AppUtil.h"
@@ -630,11 +631,17 @@ namespace storage
     {
 	const Partitionable* partitionable = get_partitionable();
 
-	if ((!partitionable->get_sysfs_name().empty() && !partitionable->get_sysfs_path().empty()) &&
-	    partitionable->get_dm_table_name().empty())
+	const string& sysfs_name = partitionable->get_sysfs_name();
+	const string& sysfs_path = partitionable->get_sysfs_path();
+
+	if ((!sysfs_name.empty() && !sysfs_path.empty()) && partitionable->get_dm_table_name().empty())
 	{
-	    set_sysfs_name(partitionable->get_sysfs_name() + to_string(get_number()));
-	    set_sysfs_path(partitionable->get_sysfs_path() + "/" + get_sysfs_name());
+	    if (isdigit(sysfs_name.back()))
+		set_sysfs_name(sysfs_name + "p" + to_string(get_number()));
+	    else
+		set_sysfs_name(sysfs_name + to_string(get_number()));
+
+	    set_sysfs_path(sysfs_path + "/" + get_sysfs_name());
 	}
 	else
 	{
