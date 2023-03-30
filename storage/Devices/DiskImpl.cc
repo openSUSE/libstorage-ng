@@ -21,7 +21,7 @@
  */
 
 
-#include <ctype.h>
+#include <cctype>
 #include <boost/algorithm/string.hpp>
 
 #include "storage/Devices/DiskImpl.h"
@@ -54,7 +54,7 @@ namespace storage
 
 
     const vector<string> EnumTraits<Transport>::names({
-	"UNKNOWN", "SBP", "ATA", "FC", "iSCSI", "SAS", "SATA", "SPI", "USB", "FCoE"
+	"UNKNOWN", "SBP", "ATA", "FC", "iSCSI", "SAS", "SATA", "SPI", "USB", "FCoE", "PCIe"
     });
 
 
@@ -211,7 +211,7 @@ namespace storage
 	dax = dax_file.get<bool>();
 
 	Lsscsi::Entry entry;
-	if (system_info.getLsscsi().getEntry(get_name(), entry))
+	if (system_info.getLsscsi().get_entry(get_name(), entry))
 	    transport = entry.transport;
 
 	const File& zoned_file = get_sysfs_file(system_info, "queue/zoned");

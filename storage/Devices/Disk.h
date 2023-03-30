@@ -35,7 +35,7 @@ namespace storage
      * Data Transport Layer
      */
     enum class Transport {
-	UNKNOWN, SBP, ATA, FC, ISCSI, SAS, SATA, SPI, USB, FCOE
+	UNKNOWN, SBP, ATA, FC, ISCSI, SAS, SATA, SPI, USB, FCOE, PCIE
     };
 
 
