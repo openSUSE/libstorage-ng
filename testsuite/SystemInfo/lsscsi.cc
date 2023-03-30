@@ -110,3 +110,17 @@ BOOST_AUTO_TEST_CASE(parse5)
 
     check(input, output);
 }
+
+
+BOOST_AUTO_TEST_CASE(parse6)
+{
+    vector<string> input = {
+	"[N:0:0:1]    disk    pcie 0x1d4c:0x03e2              /dev/nvme0n1"
+    };
+
+    vector<string> output = {
+	"data[/dev/nvme0n1] -> transport:PCIe"
+    };
+
+    check(input, output);
+}

@@ -52,7 +52,7 @@ namespace storage
 	friend std::ostream& operator<<(std::ostream& s, const Lsscsi& lsscsi);
 	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
 
-	bool getEntry(const string& device, Entry& entry) const;
+	bool get_entry(const string& device, Entry& entry) const;
 
     private:
 

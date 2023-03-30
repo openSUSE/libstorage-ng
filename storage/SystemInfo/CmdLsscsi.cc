@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2010-2020] Novell, Inc.
+ * Copyright (c) 2023 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -48,16 +49,19 @@ namespace storage
     {
 	data.clear();
 
-	for (vector<string>::const_iterator it = lines.begin(); it != lines.end(); ++it)
+	for (const string& line : lines)
 	{
-	    string line = boost::replace_all_copy(*it, " usb: ", " usb:");
-
 	    string type = extractNthWord(1, line);
 	    if (type != "disk")
 		continue;
 
-	    string transport = extractNthWord(2, line);
-	    string device = extractNthWord(3, line);
+	    string tmp = line;
+
+	    boost::replace_all(tmp, " usb: ", " usb:");
+	    boost::replace_all(tmp, " pcie 0x", " pcie:0x");
+
+	    string transport = extractNthWord(2, tmp);
+	    string device = extractNthWord(3, tmp);
 	    if (boost::starts_with(transport, "/dev/"))
 	    {
 		device = transport;
@@ -87,6 +91,8 @@ namespace storage
 		entry.transport = Transport::SPI;
 	    else if (boost::starts_with(transport, "usb:"))
 		entry.transport = Transport::USB;
+	    else if (boost::starts_with(transport, "pcie:"))
+		entry.transport = Transport::PCIE;
 
 	    data[device] = entry;
 	}
@@ -96,13 +102,13 @@ namespace storage
 
 
     bool
-    Lsscsi::getEntry(const string& device, Entry& entry) const
+    Lsscsi::get_entry(const string& device, Entry& entry) const
     {
-	const_iterator i = data.find(device);
-	if (i == data.end())
+	const_iterator it = data.find(device);
+	if (it == data.end())
 	    return false;
 
-	entry = i->second;
+	entry = it->second;
 	return true;
     }
 
