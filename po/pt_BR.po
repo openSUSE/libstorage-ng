@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-09 09:55+0100\n"
-"PO-Revision-Date: 2022-08-08 14:13+0000\n"
+"PO-Revision-Date: 2023-03-31 20:14+0000\n"
 "Last-Translator: Luiz Fernando Ranghetti <elchevive68@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.opensuse.org/projects/"
 "libstorage/ng-master/pt_BR/>\n"
@@ -2829,9 +2829,9 @@ msgstr ""
 #. %1$s is replaced with the old logical volume name (e.g. foo),
 #. %2$s is replaced with the new logical volume name (e.g. bar),
 #. %3$s is replaced with the volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Rename logical volume %1$s to %2$s on volume group %3$s"
-msgstr "Criar volume lógico %1$s (%2$s) no grupo de volume %3$s"
+msgstr "Renomear volume lógico %1$s para %2$s no grupo de volume %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -2844,9 +2844,9 @@ msgstr "Renomear ponto de montagem %1$s de %2$s para %3$s no /etc/fstab"
 #. TRANSLATORS:
 #. %1$s is replaced with the old volume group name (e.g. foo),
 #. %2$s is replaced with the new volume group name (e.g. bar)
-#, fuzzy, c-format
+#, c-format
 msgid "Rename volume group %1$s to %2$s"
-msgstr "Criar grupo de volume %1$s (%2$s)"
+msgstr "Renomear grupo de volume %1$s para %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
