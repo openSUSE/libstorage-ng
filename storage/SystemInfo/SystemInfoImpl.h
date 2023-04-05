@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -45,6 +45,7 @@
 #include "storage/SystemInfo/CmdCryptsetup.h"
 #include "storage/SystemInfo/CmdDmraid.h"
 #include "storage/SystemInfo/CmdMultipath.h"
+#include "storage/SystemInfo/CmdNvme.h"
 #include "storage/SystemInfo/CmdBtrfs.h"
 #include "storage/SystemInfo/CmdLvm.h"
 #include "storage/SystemInfo/CmdUdevadm.h"
@@ -92,6 +93,7 @@ namespace storage
 	const MdadmDetail& getMdadmDetail(const string& device) { return mdadm_details.get(device); }
 	const Blkid& getBlkid() { return blkid.get(); }
 	const Lsscsi& getLsscsi() { return lsscsi.get(); }
+	const CmdNvmeList& getCmdNvmeList() { return cmd_nvme_list.get(); }
 	const Parted& getParted(const string& device) { return parteds.get(device); }
 	const Dasdview& getDasdview(const string& device) { return dasdviews.get(device); }
 	const CmdDmsetupInfo& getCmdDmsetupInfo() { return cmd_dmsetup_info.get(); }
@@ -246,6 +248,7 @@ namespace storage
 	LazyObjects<MdadmDetail> mdadm_details;
 	LazyObject<Blkid> blkid;
 	LazyObject<Lsscsi> lsscsi;
+	LazyObject<CmdNvmeList> cmd_nvme_list;
 	LazyObjects<Parted> parteds;
 	LazyObjects<Dasdview> dasdviews;
 	LazyObject<CmdDmsetupInfo> cmd_dmsetup_info;

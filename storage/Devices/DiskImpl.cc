@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -54,7 +54,8 @@ namespace storage
 
 
     const vector<string> EnumTraits<Transport>::names({
-	"UNKNOWN", "SBP", "ATA", "FC", "iSCSI", "SAS", "SATA", "SPI", "USB", "FCoE", "PCIe"
+	"UNKNOWN", "SBP", "ATA", "FC", "iSCSI", "SAS", "SATA", "SPI", "USB", "FCoE", "PCIe",
+	"TCP", "RDMA", "Loop"
     });
 
 
@@ -152,6 +153,20 @@ namespace storage
     }
 
 
+    string
+    Disk::Impl::get_nvme_controller() const
+    {
+	static const regex nvme_name_rx(DEV_DIR "/nvme([0-9]+)n([0-9]+)", regex::extended);
+
+	smatch match;
+
+	if (!regex_match(get_name(), match, nvme_name_rx))
+	    ST_THROW(Exception("failed to extract nvme controller"));
+
+	return "nvme" + match[1].str();
+    }
+
+
     bool
     Disk::Impl::is_brd() const
     {
@@ -210,9 +225,37 @@ namespace storage
 	const File& dax_file = get_sysfs_file(system_info, "queue/dax");
 	dax = dax_file.get<bool>();
 
-	Lsscsi::Entry entry;
-	if (system_info.getLsscsi().get_entry(get_name(), entry))
-	    transport = entry.transport;
+	if (is_nvme())
+	{
+	    system_info.getCmdNvmeList();	// so far just for logging
+
+	    const File& transport_file = system_info.getFile(SYSFS_DIR "/class/nvme/" + get_nvme_controller() +
+							     "/transport");
+	    string tmp = transport_file.get<string>();
+
+	    if (tmp == "pcie")
+		transport = Transport::PCIE;
+	    else if (tmp == "fc")
+		transport = Transport::FC;
+	    else if (tmp == "tcp")
+		transport = Transport::TCP;
+	    else if (tmp == "rdma")
+		transport = Transport::RDMA;
+	    else if (tmp == "loop")
+		transport = Transport::LOOP;
+	    else
+		y2err("unknown NVMe transport");
+	}
+	else if (is_pmem() || is_brd())
+	{
+	    // no proper transport
+	}
+	else
+	{
+	    Lsscsi::Entry entry;
+	    if (system_info.getLsscsi().get_entry(get_name(), entry))
+		transport = entry.transport;
+	}
 
 	const File& zoned_file = get_sysfs_file(system_info, "queue/zoned");
 	zone_model = toValueWithFallback(zoned_file.get<string>(), ZoneModel::NONE);

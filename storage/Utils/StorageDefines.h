@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -123,6 +123,8 @@
 #define BLOCKDEV_BIN "/usr/sbin/blockdev"
 
 #define LOSETUP_BIN "/sbin/losetup"
+
+#define NVME_BIN "/usr/sbin/nvme"
 
 #define LSATTR_BIN "/usr/bin/lsattr"
 #define CHATTR_BIN "/usr/bin/chattr"

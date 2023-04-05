@@ -89,7 +89,10 @@ namespace storage
 	void set_zone_model(ZoneModel zone_model) { Impl::zone_model = zone_model; }
 
 	bool is_pmem() const;
+
 	bool is_nvme() const;
+	string get_nvme_controller() const;
+
 	bool is_brd() const;
 
 	const string& get_image_filename() const { return image_filename; }
