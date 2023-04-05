@@ -21,6 +21,7 @@ libsystem_info_la_SOURCES =				\
 	CmdLvm.cc		CmdLvm.h		\
 	CmdMultipath.cc		CmdMultipath.h		\
 	CmdNtfsresize.cc	CmdNtfsresize.h		\
+	CmdNvme.cc		CmdNvme.h		\
 	CmdParted.cc		CmdParted.h		\
 	CmdResize2fs.cc		CmdResize2fs.h		\
 	CmdStat.cc		CmdStat.h		\
