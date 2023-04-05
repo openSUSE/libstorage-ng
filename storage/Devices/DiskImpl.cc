@@ -229,6 +229,7 @@ namespace storage
 	{
 	    system_info.getCmdNvmeList();	// so far just for logging
 
+#if 0
 	    const File& transport_file = system_info.getFile(SYSFS_DIR "/class/nvme/" + get_nvme_controller() +
 							     "/transport");
 	    string tmp = transport_file.get<string>();
@@ -245,6 +246,7 @@ namespace storage
 		transport = Transport::LOOP;
 	    else
 		y2err("unknown NVMe transport");
+#endif
 	}
 	else if (is_pmem() || is_brd())
 	{
