@@ -8,18 +8,6 @@
       <stdout>sda</stdout>
     </Command>
     <Command>
-      <name>/bin/mount --read-only '/dev/sda2' '/tmp/libstorage-yGprO1/tmp-mount-MZzLIM' -o subvol=/</name>
-    </Command>
-    <Command>
-      <name>/bin/mount --read-only '/dev/sda2' '/tmp/libstorage-yGprO1/tmp-mount-WrafXM' -o subvol=/</name>
-    </Command>
-    <Command>
-      <name>/bin/umount '/tmp/libstorage-yGprO1/tmp-mount-MZzLIM'</name>
-    </Command>
-    <Command>
-      <name>/bin/umount '/tmp/libstorage-yGprO1/tmp-mount-WrafXM'</name>
-    </Command>
-    <Command>
       <name>/sbin/blkid -c '/dev/null'</name>
       <stdout>/dev/sr0: BLOCK_SIZE="2048" UUID="2023-01-16-00-17-36-48" LABEL="openSUSE-Tumbleweed-DVD-x86_64" TYPE="iso9660" PTUUID="7923e922" PTTYPE="dos"</stdout>
       <stdout>/dev/sda4: UUID="cfaace10-22a9-4598-8468-a50b52dd5914" TYPE="swap" PARTUUID="aaf1bcfc-b925-431b-a007-af6a6581cb8b"</stdout>

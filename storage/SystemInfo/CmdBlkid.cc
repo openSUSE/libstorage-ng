@@ -21,15 +21,15 @@
  */
 
 
-#include <ctype.h>
+#include <cctype>
 #include <algorithm>
 #include <boost/algorithm/string.hpp>
 
+#include "storage/SystemInfo/CmdBlkid.h"
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/SystemInfo/SystemInfoImpl.h"
-#include "storage/SystemInfo/CmdBlkid.h"
 #include "storage/Filesystems/FilesystemImpl.h"
 #include "storage/EnvironmentImpl.h"
 
