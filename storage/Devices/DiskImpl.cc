@@ -153,20 +153,6 @@ namespace storage
     }
 
 
-    string
-    Disk::Impl::get_nvme_controller() const
-    {
-	static const regex nvme_name_rx(DEV_DIR "/nvme([0-9]+)n([0-9]+)", regex::extended);
-
-	smatch match;
-
-	if (!regex_match(get_name(), match, nvme_name_rx))
-	    ST_THROW(Exception("failed to extract nvme controller"));
-
-	return "nvme" + match[1].str();
-    }
-
-
     bool
     Disk::Impl::is_brd() const
     {
@@ -228,25 +214,9 @@ namespace storage
 	if (is_nvme())
 	{
 	    system_info.getCmdNvmeList();	// so far just for logging
+	    const CmdNvmeListSubsys& cmd_nvme_list_subsys = system_info.getCmdNvmeListSubsys();
 
-#if 0
-	    const File& transport_file = system_info.getFile(SYSFS_DIR "/class/nvme/" + get_nvme_controller() +
-							     "/transport");
-	    string tmp = transport_file.get<string>();
-
-	    if (tmp == "pcie")
-		transport = Transport::PCIE;
-	    else if (tmp == "fc")
-		transport = Transport::FC;
-	    else if (tmp == "tcp")
-		transport = Transport::TCP;
-	    else if (tmp == "rdma")
-		transport = Transport::RDMA;
-	    else if (tmp == "loop")
-		transport = Transport::LOOP;
-	    else
-		y2err("unknown NVMe transport");
-#endif
+	    transport = cmd_nvme_list_subsys.get_transport(get_name(), system_info);
 	}
 	else if (is_pmem() || is_brd())
 	{

@@ -94,6 +94,7 @@ namespace storage
 	const Blkid& getBlkid() { return blkid.get(); }
 	const Lsscsi& getLsscsi() { return lsscsi.get(); }
 	const CmdNvmeList& getCmdNvmeList() { return cmd_nvme_list.get(); }
+	const CmdNvmeListSubsys& getCmdNvmeListSubsys() { return cmd_nvme_list_subsys.get(); }
 	const Parted& getParted(const string& device) { return parteds.get(device); }
 	const Dasdview& getDasdview(const string& device) { return dasdviews.get(device); }
 	const CmdDmsetupInfo& getCmdDmsetupInfo() { return cmd_dmsetup_info.get(); }
@@ -249,6 +250,7 @@ namespace storage
 	LazyObject<Blkid> blkid;
 	LazyObject<Lsscsi> lsscsi;
 	LazyObject<CmdNvmeList> cmd_nvme_list;
+	LazyObject<CmdNvmeListSubsys> cmd_nvme_list_subsys;
 	LazyObjects<Parted> parteds;
 	LazyObjects<Dasdview> dasdviews;
 	LazyObject<CmdDmsetupInfo> cmd_dmsetup_info;

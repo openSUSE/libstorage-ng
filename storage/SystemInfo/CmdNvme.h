@@ -27,6 +27,9 @@
 #include <string>
 #include <vector>
 
+#include "storage/Devices/Disk.h"
+#include "storage/SystemInfo/SystemInfo.h"
+
 
 namespace storage
 {
@@ -47,7 +50,62 @@ namespace storage
 
     private:
 
-        void parse(const vector<string>& lines);
+	void parse(const vector<string>& lines);
+
+    };
+
+
+    /**
+     * Class to run the command "nvme list-subsys".
+     */
+    class CmdNvmeListSubsys
+    {
+
+    public:
+
+	CmdNvmeListSubsys();
+
+	struct Path
+	{
+	    string name;
+	    Transport transport;
+	};
+
+	struct Subsystem
+	{
+	    string name;
+	    string nqn;
+	    vector<Path> paths;
+	};
+
+	struct Something
+	{
+	    string host_nqn;
+	    string host_id;
+	    vector<Subsystem> subsystems;
+	};
+
+	/**
+	 * Get the transport for a device. Checks whether the system is using native or
+	 * non-native NVMe multipath.
+	 */
+	Transport get_transport(const string& device, SystemInfo::Impl& system_info) const;
+
+	friend std::ostream& operator<<(std::ostream& s, const CmdNvmeListSubsys& cmd_nvme_list_subsys);
+	friend std::ostream& operator<<(std::ostream& s, const Path& path);
+	friend std::ostream& operator<<(std::ostream& s, const Subsystem& subsystem);
+	friend std::ostream& operator<<(std::ostream& s, const Something& somethings);
+
+    private:
+
+	void parse(const vector<string>& lines);
+
+	bool is_native_multipath(SystemInfo::Impl& system_info) const;
+
+	const Subsystem& find_subsystem_by_name(const string& name) const;
+	const Path& find_path_by_name(const string& name) const;
+
+	vector<Something> somethings;
 
     };
 

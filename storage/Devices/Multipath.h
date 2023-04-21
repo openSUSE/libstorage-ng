@@ -32,7 +32,7 @@ namespace storage
 
 
     /**
-     * A multipath device. Not for NVMe multipath.
+     * A multipath device. Not for native NVMe multipath.
      */
     class Multipath : public Partitionable
     {
