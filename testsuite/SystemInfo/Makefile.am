@@ -19,7 +19,8 @@ check_PROGRAMS =								\
 	mdadm-detail.test mdlinks.test						\
 	parted-34.test parted-35.test						\
 	proc-mdstat.test proc-mounts.test pvs.test systeminfo.test		\
-	udevadm-info.test vgs.test multipath.test
+	udevadm-info.test vgs.test multipath.test nvme-list.test		\
+	nvme-list-subsys.test
 
 AM_DEFAULT_SOURCE_EXT = .cc
 
