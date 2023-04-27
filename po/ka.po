@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2023-04-18 07:14+0000\n"
+"PO-Revision-Date: 2023-04-27 08:14+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://l10n.opensuse.org/projects/libstorage/"
 "ng-sle-15-sp1/ka/>\n"
@@ -61,7 +61,7 @@ msgstr "%1$s და %2$s"
 #. (e.g. "/dev/sdb1 (64 GiB), /dev/sdc1 (160 GiB)")
 #, c-format
 msgid "%1$s is cached by %2$s"
-msgstr ""
+msgstr "%1$s დაკეშილია %2$s-ის მიერ"
 
 #. TRANSLATORS: used to construct list of values
 #. %1$s is replaced by first value
@@ -74,7 +74,7 @@ msgstr "%1$s, %2$s"
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Activate encryption layer device on %1$s"
-msgstr ""
+msgstr "დაშიფვრის ფენის მოწყობილობის აქტივაცია %1$s-ზე"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -103,20 +103,20 @@ msgstr "თხელი პულის ლოგიკური ტომის
 #. TRANSLATORS: progress message
 #, c-format
 msgid "Activating LUKS %s"
-msgstr ""
+msgstr "LUKS %s-ის აქტივაცია"
 
 #. TRANSLATORS: error message
 #, c-format
 msgid "Activating LUKS %s failed"
-msgstr ""
+msgstr "LUKS %s-ის აქტივაციის შეცდომა"
 
 #. TRANSLATORS: progress message
 msgid "Activating LVM"
-msgstr ""
+msgstr "LVM-ის აქტივაცია"
 
 #. TRANSLATORS: error message
 msgid "Activating LVM failed"
-msgstr ""
+msgstr "LVM-ის აქტივაციის შეცდომა"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -133,14 +133,12 @@ msgid "Activating logical volume %1$s (%2$s) on volume group %3$s"
 msgstr ""
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Activating multipath"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "მრავალბილიკიანი დისკების მხარდაჭერის აქტივაცია"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Activating multipath failed"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "მრავალბილიკიანი დისკების მხარდაჭერის აქტივაციის შეცდომა"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
