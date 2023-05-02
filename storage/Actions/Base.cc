@@ -38,4 +38,11 @@ namespace storage
 	return action->text(commit_data).translated;
     }
 
+
+    Color
+    get_color(const Actiongraph* actiongraph, const Action::Base* action)
+    {
+	return action->color();
+    }
+
 }

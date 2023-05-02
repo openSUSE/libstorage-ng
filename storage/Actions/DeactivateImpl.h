@@ -41,6 +41,7 @@ namespace storage
 	    Deactivate(sid_t sid) : Modify(sid) {}
 
 	    virtual Text text(const CommitData& commit_data) const override;
+	    virtual Color color() const override { return Color::RED; }
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
 	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const override;
 

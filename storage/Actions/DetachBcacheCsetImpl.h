@@ -42,6 +42,7 @@ namespace storage
 		: Modify(sid), bcache_cset(bcache_cset) {}
 
 	    virtual Text text(const CommitData& commit_data) const override;
+	    virtual Color color() const override { return Color::RED; }
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
 
 	    const BcacheCset* get_bcache_cset() const { return bcache_cset; }

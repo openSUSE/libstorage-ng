@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -30,6 +30,7 @@
 #include "storage/ActiongraphImpl.h"
 #include "storage/DevicegraphImpl.h"
 #include "storage/CommitOptions.h"
+#include "storage/Actions/Base.h"
 
 
 namespace storage
@@ -57,6 +58,7 @@ namespace storage
 	    virtual ~Base() {}
 
 	    virtual Text text(const CommitData& commit_data) const = 0;
+	    virtual Color color() const { return Color::BLACK; }
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const = 0;
 	    virtual uf_t used_features(const Actiongraph::Impl& actiongraph) const { return 0; }
 
