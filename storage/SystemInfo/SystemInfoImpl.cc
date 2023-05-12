@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2010] Novell, Inc.
+ * Copyright (c) 2023 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -35,6 +36,24 @@ namespace storage
     SystemInfo::Impl::~Impl()
     {
 	y2deb("destructed SystemInfo::Impl");
+    }
+
+
+    const CmdUdevadmInfo&
+    SystemInfo::Impl::getCmdUdevadmInfo(const string& file)
+    {
+	for (const auto& tmp : cmd_udevadm_infos.get_data())
+	{
+	    // does not have an object iff the constructor throwed
+	    if (!tmp.second.has_object())
+		continue;
+
+	    const CmdUdevadmInfo& cmd_udevadm_info = tmp.second.get_object();
+	    if (cmd_udevadm_info.is_alias_of(file))
+		return cmd_udevadm_info;
+	}
+
+	return cmd_udevadm_infos.get(file);
     }
 
 }

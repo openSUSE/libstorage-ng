@@ -317,38 +317,6 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/mapper/my_vg-bcache2'</name>
-      <stdout>P: /devices/virtual/block/dm-0</stdout>
-      <stdout>N: dm-0</stdout>
-      <stdout>S: disk/by-id/dm-name-my_vg-bcache2</stdout>
-      <stdout>S: disk/by-id/dm-uuid-LVM-kMp8DS5tQ9piycRrhFRq4wLfiLGEMW7l4zAUmA3FL3de79DkMhjpPcZmrBAoqhN0</stdout>
-      <stdout>S: disk/by-uuid/e68fc8f1-06c0-4f46-9a3d-83bcff0a1af5</stdout>
-      <stdout>S: mapper/my_vg-bcache2</stdout>
-      <stdout>S: my_vg/bcache2</stdout>
-      <stdout>E: DEVLINKS=/dev/disk/by-id/dm-uuid-LVM-kMp8DS5tQ9piycRrhFRq4wLfiLGEMW7l4zAUmA3FL3de79DkMhjpPcZmrBAoqhN0 /dev/mapper/my_vg-bcache2 /dev/disk/by-uuid/e68fc8f1-06c0-4f46-9a3d-83bcff0a1af5 /dev/disk/by-id/dm-name-my_vg-bcache2 /dev/my_vg/bcache2</stdout>
-      <stdout>E: DEVNAME=/dev/dm-0</stdout>
-      <stdout>E: DEVPATH=/devices/virtual/block/dm-0</stdout>
-      <stdout>E: DEVTYPE=disk</stdout>
-      <stdout>E: DM_LV_NAME=bcache2</stdout>
-      <stdout>E: DM_NAME=my_vg-bcache2</stdout>
-      <stdout>E: DM_SUSPENDED=0</stdout>
-      <stdout>E: DM_UDEV_DISABLE_LIBRARY_FALLBACK_FLAG=1</stdout>
-      <stdout>E: DM_UDEV_PRIMARY_SOURCE_FLAG=1</stdout>
-      <stdout>E: DM_UDEV_RULES_VSN=2</stdout>
-      <stdout>E: DM_UUID=LVM-kMp8DS5tQ9piycRrhFRq4wLfiLGEMW7l4zAUmA3FL3de79DkMhjpPcZmrBAoqhN0</stdout>
-      <stdout>E: DM_VG_NAME=my_vg</stdout>
-      <stdout>E: ID_FS_TYPE=bcache</stdout>
-      <stdout>E: ID_FS_USAGE=other</stdout>
-      <stdout>E: ID_FS_UUID=e68fc8f1-06c0-4f46-9a3d-83bcff0a1af5</stdout>
-      <stdout>E: ID_FS_UUID_ENC=e68fc8f1-06c0-4f46-9a3d-83bcff0a1af5</stdout>
-      <stdout>E: MAJOR=252</stdout>
-      <stdout>E: MINOR=0</stdout>
-      <stdout>E: SUBSYSTEM=block</stdout>
-      <stdout>E: TAGS=:systemd:</stdout>
-      <stdout>E: USEC_INITIALIZED=4860894231</stdout>
-      <stdout></stdout>
-    </Command>
-    <Command>
       <name>/usr/bin/udevadm info '/dev/my_vg/bcache2'</name>
       <stdout>P: /devices/virtual/block/dm-0</stdout>
       <stdout>N: dm-0</stdout>

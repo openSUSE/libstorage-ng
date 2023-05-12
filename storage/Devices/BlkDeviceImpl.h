@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -153,13 +153,18 @@ namespace storage
 	virtual const BlkDevice* get_non_impl() const override { return to_blk_device(Device::Impl::get_non_impl()); }
 
 	/**
+	 * Check if name is an alias for the blk device by looking at the udev links. By
+	 * far not all aliases are known.
+	 */
+	bool is_alias_of(const string& name) const;
+
+	/**
 	 * This is a invasive version of BlkDevice::find_by_name(). If no
 	 * block device is found via the name a second search via the sysfs
 	 * path is done. This requires system lookups and is also the reason
 	 * the function needs an SystemInfo object and must be used on the
 	 * probed devicegraph.
 	 *
-
 	 * Using the sysfs path is simpler compared to using the major:minor
 	 * numbers since the latter are not included in the devicegraph. This
 	 * is esp. relevant when not used during probing (where the system

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) [2018-2020] SUSE LLC
+ * Copyright (c) [2018-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -73,7 +73,8 @@ namespace storage
 	    { "S: disk/by-path/", by_path_links },
 	    { "S: disk/by-id/", by_id_links },
 	    { "S: disk/by-partlabel/", by_partlabel_links },
-	    { "S: disk/by-partuuid/", by_partuuid_links }
+	    { "S: disk/by-partuuid/", by_partuuid_links },
+	    { "S: mapper/", mapper_links },
 	};
 
 	for (const string& line : stdout)
@@ -94,8 +95,13 @@ namespace storage
 		device_type = toValueWithFallback(line.substr(strlen("E: DEVTYPE=")), DeviceType::UNKNOWN);
 
 	    for (const Link& link : links)
+	    {
 		if (boost::starts_with(line, link.name))
+		{
 		    link.variable.push_back(line.substr(strlen(link.name)));
+		    break;
+		}
+	    }
 	}
 
 	if (path.empty())
@@ -110,6 +116,32 @@ namespace storage
 	    sort(link.variable.begin(), link.variable.end());
 
 	y2mil(*this);
+    }
+
+
+    bool
+    CmdUdevadmInfo::is_alias_of(const string& file) const
+    {
+	struct Link
+	{
+	    const char* prefix;
+	    const vector<string>& variable;
+	};
+
+	const Link links[] = {
+	    { DEV_DISK_BY_PATH_DIR "/", by_path_links },
+	    { DEV_DISK_BY_ID_DIR "/", by_id_links },
+	    { DEV_DISK_BY_PARTLABEL_DIR "/", by_partlabel_links },
+	    { DEV_DISK_BY_PARTUUID_DIR "/", by_partuuid_links },
+	    { DEV_MAPPER_DIR "/", mapper_links },
+	};
+
+	for (const Link& link : links)
+	    for (const string& tmp : link.variable)
+		if (link.prefix + tmp == file)
+		    return true;
+
+	return false;
     }
 
 
@@ -132,6 +164,9 @@ namespace storage
 
 	if (!cmd_udevadm_info.by_partuuid_links.empty())
 	    s << " by-partuuid-links:" << cmd_udevadm_info.by_partuuid_links;
+
+	if (!cmd_udevadm_info.mapper_links.empty())
+	    s << " mapper-links:" << cmd_udevadm_info.mapper_links;
 
 	s << '\n';
 

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) [2018-2020] SUSE LLC
+ * Copyright (c) [2018-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -61,6 +61,8 @@ namespace storage
 	const vector<string>& get_by_id_links() const { return by_id_links; }
 	const vector<string>& get_by_partuuid_links() const { return by_partuuid_links; }
 
+	bool is_alias_of(const string& file) const;
+
 	friend std::ostream& operator<<(std::ostream& s, const CmdUdevadmInfo& cmd_udevadm_info);
 
     private:
@@ -80,6 +82,7 @@ namespace storage
 	vector<string> by_id_links;
 	vector<string> by_partlabel_links;
 	vector<string> by_partuuid_links;
+	vector<string> mapper_links;
 
     };
 

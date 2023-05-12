@@ -130,7 +130,11 @@ namespace storage
 	const CmdVgs& getCmdVgs() { return cmd_vgs.get(); }
 	const CmdLvs& getCmdLvs() { return cmd_lvs.get(); }
 
-	const CmdUdevadmInfo& getCmdUdevadmInfo(const string& file) { return cmd_udevadm_infos.get(file); }
+	/**
+	 * This function is special in that it checks for some aliases.
+	 */
+	const CmdUdevadmInfo& getCmdUdevadmInfo(const string& file);
+
 	const CmdDf& getCmdDf(const string& mount_point) { return cmd_dfs.get(mount_point); }
 
 	// The device is only used for the cache-key.
@@ -169,6 +173,9 @@ namespace storage
 		return *object;
 	    }
 
+	    bool has_object() const { return (bool)(object); }
+	    const Object& get_object() const { return *object; }
+
 	private:
 
 	    std::shared_ptr<Object> object;
@@ -197,6 +204,8 @@ namespace storage
 		    pos = data.insert(pos, typename map<Arg, Helper>::value_type(arg, Helper()));
 		return pos->second.get(arg);
 	    }
+
+	    const map<Arg, Helper>& get_data() const { return data; }
 
 	private:
 
@@ -233,6 +242,7 @@ namespace storage
 	    map<Key, Helper> data;
 
 	};
+
 
 	LazyObjects<EtcFstab> etc_fstab;
 	LazyObjects<EtcCrypttab> etc_crypttab;

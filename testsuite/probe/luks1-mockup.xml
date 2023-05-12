@@ -311,14 +311,6 @@
       <stdout>E: USEC_INITIALIZED=5360379</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/disk/by-id/ata-VBOX_HARDDISK_VB56faa9ee-37629d93-part2'</name>
-      <!-- output faked and incomplete -->
-      <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda2</stdout>
-      <stdout>N: sda2</stdout>
-      <stdout>E: MAJOR=8</stdout>
-      <stdout>E: MINOR=2</stdout>
-    </Command>
-    <Command>
       <name>/usr/bin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
