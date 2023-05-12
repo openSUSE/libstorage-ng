@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -350,6 +350,29 @@ namespace storage
 
 
     bool
+    BlkDevice::Impl::is_alias_of(const string& name) const
+    {
+	struct Link
+	{
+	    const char* prefix;
+	    const vector<string>& variable;
+	};
+
+	const Link links[] = {
+	    { DEV_DISK_BY_PATH_DIR "/", udev_paths },
+	    { DEV_DISK_BY_ID_DIR "/", udev_ids },
+	};
+
+	for (const Link& link : links)
+	    for (const string& tmp : link.variable)
+		if (link.prefix + tmp == name)
+		    return true;
+
+	return false;
+    }
+
+
+    bool
     BlkDevice::Impl::exists_by_any_name(const Devicegraph* devicegraph, const string& name,
 					SystemInfo::Impl& system_info)
     {
@@ -361,7 +384,7 @@ namespace storage
 	    const BlkDevice* blk_device = dynamic_cast<const BlkDevice*>(devicegraph->get_impl()[vertex]);
 	    if (blk_device)
 	    {
-		if (blk_device->get_name() == name)
+		if (blk_device->get_name() == name || blk_device->get_impl().is_alias_of(name))
 		    return true;
 	    }
 	}
@@ -401,7 +424,7 @@ namespace storage
 	    BlkDevice* blk_device = dynamic_cast<BlkDevice*>(devicegraph->get_impl()[vertex]);
 	    if (blk_device)
 	    {
-		if (blk_device->get_name() == name)
+		if (blk_device->get_name() == name || blk_device->get_impl().is_alias_of(name))
 		    return blk_device;
 	    }
 	}
@@ -441,7 +464,7 @@ namespace storage
 	    const BlkDevice* blk_device = dynamic_cast<const BlkDevice*>(devicegraph->get_impl()[vertex]);
 	    if (blk_device)
 	    {
-		if (blk_device->get_name() == name)
+		if (blk_device->get_name() == name || blk_device->get_impl().is_alias_of(name))
 		    return blk_device;
 	    }
 	}
