@@ -22,6 +22,16 @@ check(const vector<string>& input, const vector<string>& output)
     Mockup::set_command(NVME_BIN " list --verbose --output json", input);
 
     CmdNvmeList cmd_nvme_list;
+
+    ostringstream parsed;
+    parsed.setf(std::ios::boolalpha);
+    parsed << cmd_nvme_list;
+
+    string lhs = parsed.str();
+    string rhs = accumulate(output.begin(), output.end(), ""s,
+			    [](auto a, auto b) { return a + b + "\n"; });
+
+    BOOST_CHECK_EQUAL(lhs, rhs);
 }
 
 

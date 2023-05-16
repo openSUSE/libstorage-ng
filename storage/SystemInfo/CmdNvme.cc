@@ -51,6 +51,13 @@ namespace storage
     }
 
 
+    std::ostream&
+    operator<<(std::ostream& s, const CmdNvmeList& cmd_nvme_list)
+    {
+	return s;
+    }
+
+
     CmdNvmeListSubsys::CmdNvmeListSubsys()
     {
 	SystemCmd cmd(NVME_BIN " list-subsys --verbose --output json", SystemCmd::DoThrow);
