@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -220,7 +220,12 @@ namespace storage
 	if (!joint_entries.empty())
 	{
 	    if (joint_entries.size() > 1)
+	    {
 		y2war("more than one mount point for " << (*this->get_non_impl()));
+
+		for (const JointEntry& tmp : joint_entries)
+		    y2war(tmp.mount_point_path.fullpath(get_storage()->get_rootprefix()));
+	    }
 
 	    // Selecting the most reasonable mount point:
 	    //

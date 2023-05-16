@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -62,8 +62,7 @@ namespace storage
 
 
     BlkFilesystem::Impl::Impl(const xmlNode* node)
-	: Filesystem::Impl(node), label(), uuid(), mkfs_options(), tune_options(), resize_info(),
-	  content_info()
+	: Filesystem::Impl(node)
     {
 	getChildValue(node, "label", label);
 	getChildValue(node, "uuid", uuid);
@@ -753,20 +752,22 @@ namespace storage
 		MountPointPath mount_point_path(fstab_entry->get_mount_point(), true);
 		ret.emplace_back(mount_point_path, fstab_entry);
 	    }
-
-	    for (const BlkDevice* blk_device : get_blk_devices())
+	    else
 	    {
-		if (blk_device->get_impl().spec_match(system_info, spec))
+		for (const BlkDevice* blk_device : get_blk_devices())
 		{
-		    // For tmpfs, proc the spec can be anything (including a valid block device).
-		    if (fstab_entry->get_fs_type() == FsType::TMPFS)
-			continue;
+		    if (blk_device->get_impl().spec_match(system_info, spec))
+		    {
+			// For tmpfs, proc the spec can be anything (including a valid block device).
+			if (fstab_entry->get_fs_type() == FsType::TMPFS)
+			    continue;
 
-		    const FilesystemUser* filesystem_user =
-			to_filesystem_user(get_devicegraph()->find_holder(blk_device->get_sid(), get_sid()));
+			const FilesystemUser* filesystem_user =
+			    to_filesystem_user(get_devicegraph()->find_holder(blk_device->get_sid(), get_sid()));
 
-		    MountPointPath mount_point_path(fstab_entry->get_mount_point(), true);
-		    ret.emplace_back(mount_point_path, fstab_entry, filesystem_user->get_impl().get_id());
+			MountPointPath mount_point_path(fstab_entry->get_mount_point(), true);
+			ret.emplace_back(mount_point_path, fstab_entry, filesystem_user->get_impl().get_id());
+		    }
 		}
 	    }
 	}
