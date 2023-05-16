@@ -14,6 +14,8 @@ test-cmd-dmsetup-table
 test-cmd-dumpe2fs
 test-cmd-lvs
 test-cmd-ntfsresize
+test-cmd-nvme-list
+test-cmd-nvme-list-subsys
 test-cmd-pvs
 test-cmd-resize2fs
 test-cmd-stat

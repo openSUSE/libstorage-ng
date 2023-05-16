@@ -48,6 +48,8 @@ namespace storage
 
 	CmdNvmeList();
 
+	friend std::ostream& operator<<(std::ostream& s, const CmdNvmeList& cmd_nvme_list);
+
     private:
 
 	void parse(const vector<string>& lines);
