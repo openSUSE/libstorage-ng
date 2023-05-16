@@ -679,11 +679,11 @@
   </Commands>
   <Files>
     <File>
+      <!-- looks broken since ccw-0.0.0150 is dasdb -->
       <name>/etc/fstab</name>
       <content>/dev/disk/by-path/ccw-0.0.0150-part2  swap        swap  defaults        0  0</content>
       <content>/dev/disk/by-path/ccw-0.0.0150-part3  /           ext4  acl,user_xattr  1  1</content>
       <content>/dev/disk/by-path/ccw-0.0.0150-part1  /boot/zipl  ext2  acl,user_xattr  1  2</content>
-      <content></content>
       <content></content>
       <content>/dev/dasdb2	/test2	ext4	defaults	0	0</content>
       <content>/dev/dasdb3	/test3	ext4	defaults	0	0</content>
