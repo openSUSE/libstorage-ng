@@ -198,7 +198,7 @@ BOOST_AUTO_TEST_CASE(parse2)
     };
 
     vector<string> output = {
-	"file:/dev/sda1 path:/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda1 name:sda1 majorminor:8:1 device-type:partition by-path-links:<pci-0000:00:1f.2-ata-1.0-part1> by-id-links:<ata-WDC_WD10EADS-00M2B0_WD-WCAV52321683-part1 scsi-0ATA_WDC_WD10EADS-00M_WD-WCAV52321683-part1 scsi-1ATA_WDC_WD10EADS-00M2B0_WD-WCAV52321683-part1 scsi-350014ee203733bb5-part1 scsi-SATA_WDC_WD10EADS-00M_WD-WCAV52321683-part1 scsi-SATA_WDC_WD10EADS-00_WD-WCAV52321683-part1 wwn-0x50014ee203733bb5-part1>"
+	"file:/dev/sda1 path:/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda1 name:sda1 majorminor:8:1 device-type:partition by-path-links:<pci-0000:00:1f.2-ata-1.0-part1> by-id-links:<ata-WDC_WD10EADS-00M2B0_WD-WCAV52321683-part1 scsi-0ATA_WDC_WD10EADS-00M_WD-WCAV52321683-part1 scsi-1ATA_WDC_WD10EADS-00M2B0_WD-WCAV52321683-part1 scsi-350014ee203733bb5-part1 scsi-SATA_WDC_WD10EADS-00M_WD-WCAV52321683-part1 scsi-SATA_WDC_WD10EADS-00_WD-WCAV52321683-part1 wwn-0x50014ee203733bb5-part1> by-label-links:<BOOT> by-uuid-links:<14875716-b8e3-4c83-ac86-48c20682b63a>"
     };
 
     check("/dev/sda1", input, output);
