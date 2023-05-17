@@ -80,6 +80,8 @@ namespace storage
 
 	vector<string> by_path_links;
 	vector<string> by_id_links;
+	vector<string> by_label_links;
+	vector<string> by_uuid_links;
 	vector<string> by_partlabel_links;
 	vector<string> by_partuuid_links;
 	vector<string> mapper_links;

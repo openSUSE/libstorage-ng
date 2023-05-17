@@ -72,6 +72,8 @@ namespace storage
 	const Link links[] = {
 	    { "S: disk/by-path/", by_path_links },
 	    { "S: disk/by-id/", by_id_links },
+	    { "S: disk/by-label/", by_label_links },
+	    { "S: disk/by-uuid/", by_uuid_links },
 	    { "S: disk/by-partlabel/", by_partlabel_links },
 	    { "S: disk/by-partuuid/", by_partuuid_links },
 	    { "S: mapper/", mapper_links },
@@ -131,6 +133,8 @@ namespace storage
 	const Link links[] = {
 	    { DEV_DISK_BY_PATH_DIR "/", by_path_links },
 	    { DEV_DISK_BY_ID_DIR "/", by_id_links },
+	    { DEV_DISK_BY_LABEL_DIR "/", by_label_links },
+	    { DEV_DISK_BY_UUID_DIR "/", by_uuid_links },
 	    { DEV_DISK_BY_PARTLABEL_DIR "/", by_partlabel_links },
 	    { DEV_DISK_BY_PARTUUID_DIR "/", by_partuuid_links },
 	    { DEV_MAPPER_DIR "/", mapper_links },
@@ -158,6 +162,12 @@ namespace storage
 
 	if (!cmd_udevadm_info.by_id_links.empty())
 	    s << " by-id-links:" << cmd_udevadm_info.by_id_links;
+
+	if (!cmd_udevadm_info.by_label_links.empty())
+	    s << " by-label-links:" << cmd_udevadm_info.by_label_links;
+
+	if (!cmd_udevadm_info.by_uuid_links.empty())
+	    s << " by-uuid-links:" << cmd_udevadm_info.by_uuid_links;
 
 	if (!cmd_udevadm_info.by_partlabel_links.empty())
 	    s << " by-partlabel-links:" << cmd_udevadm_info.by_partlabel_links;
