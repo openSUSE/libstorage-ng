@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-09 09:55+0100\n"
-"PO-Revision-Date: 2023-04-27 08:14+0000\n"
+"PO-Revision-Date: 2023-05-23 09:14+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://l10n.opensuse.org/projects/libstorage/"
 "ng-master/ka/>\n"
@@ -203,7 +203,7 @@ msgstr "%1$s-ის %2$s-სთვის დამატება"
 #. %1$s is replaced by md name (e.g. /dev/md0)
 #, c-format
 msgid "Add %1$s to /etc/mdadm.conf"
-msgstr ""
+msgstr "%1$s-ის ჩამატება /etc/mdadm.conf-ში"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -251,7 +251,7 @@ msgstr "%1$s-ის დამატება %2$s-სთვის"
 #. %1$s is replaced by md name (e.g. /dev/md0)
 #, c-format
 msgid "Adding %1$s to /etc/mdadm.conf"
-msgstr ""
+msgstr "%1$s-ის ჩამატება /etc/mdadm.conf-ში"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -334,7 +334,7 @@ msgstr "სი"
 
 #. TRANSLATORS: name of partition type
 msgid "BIOS Boot Partition"
-msgstr ""
+msgstr "BIOS-ის ჩამტვირთავი დანაყოფი"
 
 #. TRANSLATORS: name of object
 msgid "Bcache"
@@ -342,7 +342,7 @@ msgstr "Bcache"
 
 #. TRANSLATORS: name of object
 msgid "Bcache Cache Set"
-msgstr ""
+msgstr "Bcache-ის კეშის სეტი"
 
 #. TRANSLATORS: name of object
 msgid "BitLocker"
@@ -354,11 +354,11 @@ msgstr "Btrfs"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs Qgroup"
-msgstr ""
+msgstr "Btrfs Qgroup"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs Subvolume"
-msgstr ""
+msgstr "Btrfs-ის ქვეტომი"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -376,15 +376,15 @@ msgstr "%2$s-ზე %1$s-ის ჭდის გასუფთავება"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#, fuzzy, c-format
+#, c-format
 msgid "Clear label of partition %1$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "დანაყოფზე %1$s ჭდის გასუფთავება"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Clear legacy boot flag of partition %1$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "დანაყოფზე %1$s მოძველებული ჩატვირთვის ალმის გასუფთავება"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -509,9 +509,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Create GPT on %1$s"
-msgstr "შეიქმნა: %1"
+msgstr "%1$s-ზე GPT-ის შექმნა"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -589,9 +589,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "Bcache %1$s-ის შექმნა (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -768,9 +768,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted partition %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "დაშიფრული დანაყოფის %1$s (%2$s) შექმნა"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -812,9 +812,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create extended partition %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "გაფართოებული დანაყოფის (%1$s) შექმნა (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the names of the devices with sizes (e.g. /dev/sda1
@@ -834,9 +834,9 @@ msgstr ""
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the device name (e.g. /dev/loop0),
 #. %2$s is replaced by the size (e.g. 20.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create hard disk %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "მყარი დისკის (%1$s) შექმნა (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
@@ -854,9 +854,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create logical partition %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "ლოგიკური დანაყოფის (%1$s) შექმნა (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -872,9 +872,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create partition %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s დანაყოფის შექმნა (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -917,24 +917,24 @@ msgstr "%1 დანაყოფის შემოწმება"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Create physical volume on %1$s"
-msgstr "%1 რეპოზიტორიის შექმნა"
+msgstr "%1$s-ზე ფიზიკური ტომის შექმნა"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create primary partition %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "ძირითადი დანაყოფის (%1$s) შექმნა (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Create qgroup %1$s on %2$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "შეიქმნება qgroup %1$s %2$s-ზე"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -944,9 +944,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. %1$s is replaced with the subvolume path (e.g. var/log),
 #. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
 #. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Create subvolume %1$s on %2$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%2$s-ზე ქვეტომის (%1$s) შექმნა"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -967,9 +967,9 @@ msgstr "%1 რეპოზიტორიის შექმნა"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced with the volume group name (e.g. system),
 #. %2$s is replaced with the size (e.g. 2.00 GiB),
-#, fuzzy, c-format
+#, c-format
 msgid "Create volume group %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "ტომების ჯგუფის (%1$s) შექმნა (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -993,9 +993,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
 #. /dev/sdb2 (1.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Creating %1$s on %2$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s-ის შექმნა %2$s-ზე"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1005,9 +1005,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating GPT on %1$s"
-msgstr "%1-ის წაშლა"
+msgstr "%1$s-ზე GPT-ის შექმნა"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -1028,9 +1028,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating bcache %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "Bcache %1$s-ის შექმნა (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -1048,16 +1048,16 @@ msgstr ""
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating extended partition %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "გაფართოებული დანაყოფის (%1$s) შექმნა (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/loop0),
 #. %2$s is replaced by the size (e.g. 20.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating hard disk %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "მყარი დისკის %1$s (%2$s) შექმნა"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
@@ -1075,9 +1075,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating logical partition %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "ლოგიკური დანაყოფის (%1$s) შექმნა (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1090,38 +1090,38 @@ msgstr "%1 რეპოზიტორიის შექმნა"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating partition %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s დანაყოფის შექმნა (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating physical volume on %1$s"
-msgstr "%1 რეპოზიტორიის შექმნა"
+msgstr "%1$s-ზე ფიზიკური ტომის შექმნა"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating primary partition %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "ძირითადი დანაყოფის (%1$s) შექმნა (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Creating qgroup %1$s on %2$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "იქმნება qgroup %1$s %2$s-ზე"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Creating subvolume %1$s on %2$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%2$s-ზე ქვეტომის (%1$s) შექმნა"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1153,28 +1153,24 @@ msgid "DASD"
 msgstr "DASD"
 
 #. TRANSLATORS: name of object
-#, fuzzy
 msgid "DASD Partition Table"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "DASD-ის დანაყოფების ცხრილი"
 
 #. TRANSLATORS: name of object
 msgid "DM RAID"
 msgstr "DM RAID"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "DOS12 Partition"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "DOS12-ის დანაყოფი"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "DOS16 Partition"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "DOS16-ის დანაყოფი"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "DOS32 Partition"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "DOS32-ის დანაყოფი"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -1182,14 +1178,14 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. %3$s is replaced by size (e.g. 2.00 GiB)
 #, c-format
 msgid "Deactivate MD %1$s %2$s (%3$s)"
-msgstr ""
+msgstr "MD -ის დეაქტივაცია %1$s%2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate bcache %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "Bcache %1$s-ის დეაქტივაცია (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -1215,9 +1211,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by multipath name (e.g. /dev/mapper/36005076305ffc73a00000000000013b4),
 #. %2$s is replaced by size (e.g. 1.00 TiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate multipath %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "მრავალბილიკიანობის (%1$s) დეაქტივაცია (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1239,16 +1235,16 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating MD %1$s %2$s (%3$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "MD-ის დეაქტივაცია %1$s%2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating bcache %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "Bcache %1$s-ის დეაქტივაცია (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -1274,9 +1270,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by multipath name (e.g. /dev/mapper/36005076305ffc73a00000000000013b4),
 #. %2$s is replaced by size (e.g. 1.00 TiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating multipath %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "მრავალბილიკიანობის (%1$s) დეაქტივაცია (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1318,17 +1314,17 @@ msgstr "%1 დანაყოფის შემოწმება"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete GPT on %1$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s-ზე GPT-ის წაშლა"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete MD %1$s %2$s (%3$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "MD-ის წაშლა %1$s%2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1339,9 +1335,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete bcache %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "Bcache %1$s-ის წაშლა (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -1367,9 +1363,9 @@ msgstr ""
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete extended partition %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "გაფართოებული დანაყოფის %1$s (%2$s) წაშლა"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the names of the devices with sizes (e.g. /dev/sda1
@@ -1394,9 +1390,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete logical partition %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "ლოგიკური დანაყოფის %1$s (%2$s) წაშლა"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1414,20 +1410,20 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. %2$s is replaced with the size (e.g. 2.00 GiB)
 #, c-format
 msgid "Delete partition %1$s (%2$s)"
-msgstr ""
+msgstr "%1$s დანაყოფის წაშლა (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Delete physical volume on %1$s"
-msgstr ""
+msgstr "%1$s-ზე ფიზიკური ტომის წაშლა"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete primary partition %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "ძირითადი დანაყოფის %1$s (%2$s) წაშლა"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -1437,9 +1433,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. %1$s is replaced with the subvolume path (e.g. var/log),
 #. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
 #. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Delete subvolume %1$s on %2$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%2$s-ზე ქვეტომი %1$s-ის წაშლა"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1460,9 +1456,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete volume group %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "ტომების ჯგუფის (%1$s)წაშლა (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
@@ -1480,9 +1476,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting GPT on %1$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s-ზე GPT-ის წაშლა"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -1490,7 +1486,7 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. %3$s is replaced by size (e.g. 2.00 GiB)
 #, c-format
 msgid "Deleting MD %1$s %2$s (%3$s)"
-msgstr ""
+msgstr "MD-ის წაშლა %1$s%2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1501,9 +1497,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting bcache %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "Bcache %1$s-ის წაშლა (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -1521,9 +1517,9 @@ msgstr ""
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting extended partition %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "გაფართოებული დანაყოფის %1$s (%2$s) წაშლა"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
@@ -1541,9 +1537,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting logical partition %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "ლოგიკური დანაყოფის %1$s (%2$s) წაშლა"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1556,30 +1552,30 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting partition %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s დანაყოფის წაშლა (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting physical volume on %1$s"
-msgstr "%1 რეპოზიტორიის შექმნა"
+msgstr "%1$s-ზე ფიზიკური ტომის წაშლა"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting primary partition %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "ძირითადი დანაყოფის %1$s (%2$s) წაშლა"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting subvolume %1$s on %2$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%2$s-ზე ქვეტომის (%1$s) წაშლა"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1600,9 +1596,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting volume group %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "ტომების ჯგუფის %1$s წაშლა (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -1681,21 +1677,21 @@ msgstr ""
 
 #. TRANSLATORS: name of partition type
 msgid "Diagnostics Partition"
-msgstr ""
+msgstr "დიაგნოსტიკის დანაყოფი"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Disable quota on %1$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s-ზე კვოტის გამორთვა"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Disabling quota on %1$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s-ზე კვოტის გამორთვა"
 
 #. TRANSLATORS: name of object
 msgid "Disk"
@@ -1722,14 +1718,14 @@ msgstr "ეიბ"
 #. and /dev/sdb2 (2.00 GiB))
 #, c-format
 msgid "Enable quota on %1$s"
-msgstr ""
+msgstr "%1$s-ზე კვოტის ჩართვა"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
 #, c-format
 msgid "Enabling quota %1$s"
-msgstr ""
+msgstr "%1$s კვოტის ჩართვა"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -2122,7 +2118,7 @@ msgstr "ISO 9660"
 
 #. TRANSLATORS: name of object
 msgid "Implicit Partition Table"
-msgstr ""
+msgstr "გაურკვეველი დანაყოფების ცხრილი"
 
 #. TRANSLATORS: name of partition type
 msgid "Intel RST"
@@ -2158,7 +2154,7 @@ msgstr "Linux"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Home"
-msgstr ""
+msgstr "Linux Home"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux LVM"
@@ -2214,7 +2210,7 @@ msgstr ""
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Server Data"
-msgstr ""
+msgstr "Linux-ის სერვერის მონაცემები"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Swap"
@@ -2277,9 +2273,8 @@ msgid "MD RAID"
 msgstr "MD RAID"
 
 #. TRANSLATORS: name of object
-#, fuzzy
 msgid "MS-DOS Partition Table"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "MS-DOS-ის დანაყოფების ცხრილი"
 
 #. TRANSLATORS: symbol for "mebi bytes" (best keep untranslated)
 msgid "MiB"
@@ -2287,7 +2282,7 @@ msgstr "მიბ"
 
 #. TRANSLATORS: name of partition type
 msgid "Microsoft Reserved Partition"
-msgstr ""
+msgstr "Microsoft-ის დარეზერვებული დანაყოფი"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the names of the devices with sizes (e.g. /dev/sda1
@@ -2317,9 +2312,9 @@ msgstr "მონაცემებიდან ამოღება"
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB)),
 #. %2$s is replaced by the mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount %1$s at %2$s"
-msgstr "მონაცემებიდან ამოღება"
+msgstr "%1$s-ის მიმაგრება %2$s-ზე"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -2333,9 +2328,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. TRANSLATORS:
 #. %1$s is replaced with the nfs name (e.g. 99.99.00.00:path),
 #. %2$s is replaced with the mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount NFS %1$s on %2$s"
-msgstr "მონაცემებიდან ამოღება"
+msgstr "NFS-ის %1$s მიმაგრება %2$s-ზე"
 
 #. TRANSLATORS: name of object
 msgid "Mount Point"
@@ -2377,9 +2372,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the mount point (e.g. /tmp)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount tmpfs at %1$s"
-msgstr "მონაცემებიდან ამოღება"
+msgstr "Tmpfs-ის მიმაგრება %1$s-ზე"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
@@ -2400,7 +2395,7 @@ msgstr "%1 დანაყოფის შემოწმება"
 
 #. TRANSLATORS: name of object
 msgid "Multipath"
-msgstr ""
+msgstr "Multipath"
 
 #. TRANSLATORS: name of object
 msgid "NFS"
@@ -2440,123 +2435,118 @@ msgstr "პიბ"
 
 #. TRANSLATORS: name of object
 msgid "Plain Encryption"
-msgstr ""
+msgstr "უბრალო დაშიფვრა"
 
-#, fuzzy
 msgid "Probing BitLocker"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "BitLocker-ის აღმოჩენა"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing BitLocker failed"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "BitLocker-უს აღმოჩენის შეცდომა"
 
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing DASD %s failed"
-msgstr ""
+msgstr "DASD %s-ის აღმოჩენის შეცდომა"
 
 #. TRANSLATORS: progress message
 msgid "Probing DASDs"
-msgstr ""
+msgstr "DASD-ების აღმოჩენა"
 
 #. TRANSLATORS: error message
 msgid "Probing DASDs failed"
-msgstr ""
+msgstr "DASD-ების აღმოჩენის შეცდომა"
 
 #. TRANSLATORS: progress message
 msgid "Probing DM RAIDs"
-msgstr ""
+msgstr "DM RAID-იების აღმოჩენა"
 
 #. TRANSLATORS: error message
 msgid "Probing DM RAIDs failed"
-msgstr ""
+msgstr "DM RAID-ების აღმოჩენის შეცდომა"
 
 #. TRANSLATORS: progress message
 msgid "Probing LUKS"
-msgstr ""
+msgstr "LUKS-ის აღმოჩენა"
 
 #. TRANSLATORS: error message
 msgid "Probing LUKS failed"
-msgstr ""
+msgstr "LUKS-ის აღმოჩენის შეცდომა"
 
 #. TRANSLATORS: progress message
 msgid "Probing LVM"
-msgstr ""
+msgstr "LVM-ის აღმოჩენა"
 
 #. TRANSLATORS: error message
 msgid "Probing LVM failed"
-msgstr ""
+msgstr "LVM-ის აღმოჩენის შეცდომა"
 
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing MD RAID %s failed"
-msgstr ""
+msgstr "MD RAID %s აღმოჩენის შეცდომა"
 
 #. TRANSLATORS: progress message
 msgid "Probing MD RAIDs"
-msgstr ""
+msgstr "MD RAID-ების აღმოჩენა"
 
 #. TRANSLATORS: error message
 msgid "Probing MD RAIDs failed"
-msgstr ""
+msgstr "MD RAID-ების აღმოჩენის შეცდომა"
 
 #. TRANSLATORS: progress message
 msgid "Probing NFS"
-msgstr ""
+msgstr "NFS-ის აღმოჩენა"
 
 #. TRANSLATORS: error message
 msgid "Probing NFS failed"
-msgstr ""
+msgstr "NFS-ის აღმოჩენის შეცდომა"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing additional attributes"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "დამატებითი ატრიბუტების აღმოჩენა"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing additional attributes failed"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "დამატებითი ატრიბუტების აღმოჩენის შეცდომა"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
-msgstr ""
+msgstr "Bcache-ის აღმოჩენა"
 
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing bcache %s failed"
-msgstr ""
+msgstr "Bcache %s-ის აღმოჩენის შეცდომა"
 
 #. TRANSLATORS: error message
 msgid "Probing bcache failed"
-msgstr ""
+msgstr "Bcache-ის აღმოჩენის შეცდომა"
 
 #. TRANSLATORS: progress message
 msgid "Probing device relationships"
-msgstr ""
+msgstr "მოწყობილობების ურთიერთობების აღმოჩენა"
 
 #. TRANSLATORS: error message
 msgid "Probing device relationships failed"
-msgstr ""
+msgstr "მოწყობილობების ურთიერთობების აღმოჩენის შეცდომა"
 
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing disk %s failed"
-msgstr ""
+msgstr "%s დისკის აღმოჩენის შეცდომა"
 
 #. TRANSLATORS: progress message
 msgid "Probing disks"
-msgstr ""
+msgstr "დისკების აღმოჩენა"
 
 #. TRANSLATORS: error message
 msgid "Probing disks failed"
-msgstr ""
+msgstr "დისკების აღმოჩენის შეცდომა"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing failed"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "აღმოჩენის შეცდომა"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -2570,43 +2560,40 @@ msgstr "%1 დანაყოფის შემოწმება"
 
 #. TRANSLATORS: progress message
 msgid "Probing file systems"
-msgstr ""
+msgstr "ფაილური სისტემების აღმოჩენა"
 
 #. TRANSLATORS: error message
 msgid "Probing file systems failed"
-msgstr ""
+msgstr "ფაილური სისტემების აღმოჩენის შეცდომა"
 
 #. TRANSLATORS: progress message
 msgid "Probing multipath"
-msgstr ""
+msgstr "მრავალბილიკა დისკების აღმოჩენა"
 
 #. TRANSLATORS: error message
 msgid "Probing multipath failed"
-msgstr ""
+msgstr "მრავალბილიკა მოწყობილობების აღმოჩენის შეცდომა"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing partitions"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "დანაყოფების აღმოჩენა"
 
 #. TRANSLATORS: error message
 msgid "Probing partitions failed"
-msgstr ""
+msgstr "დანაყოფების აღმოჩენის შეცდომა"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing partitions on %s failed"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%s-ზე დანაყოფების აღმოჩენის შეცდომა"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing plain encryptions"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "უბრალოდ დაშიფვრების აღმოჩენა"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing plain encryptions failed"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "უბრალო დაშიფვრის აღმოჩენის შეცდომა"
 
 #. TRANSLATORS: error message
 #, fuzzy, c-format
@@ -2614,24 +2601,20 @@ msgid "Probing stray block device %s failed"
 msgstr "%1 დანაყოფის შემოწმება"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing stray block devices"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "უცხო ბლოკური მოწყობილობების აღმოჩენა"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing stray block devices failed"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "უცხო ბლოკური მოწყობილობების აღმოჩენის შეცდომა"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing tmpfs"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "Tmpfs-ის აღმოჩენა"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing tmpfs failed"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "Tmpfs-ის აღმოჩენის შეცდომა"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)
@@ -2647,7 +2630,7 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "ReiserFS"
-msgstr ""
+msgstr "ReiserFS"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the device name (e.g. /dev/sdc1),
@@ -2664,9 +2647,9 @@ msgstr "მონაცემებიდან ამოღება"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
 #. %2$s is replaced by device name (e.g. /dev/md0)
-#, fuzzy, c-format
+#, c-format
 msgid "Remove %1$s from %2$s"
-msgstr "მონაცემებიდან ამოღება"
+msgstr "%1$s-ის წაშლა %2$s-დან"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
@@ -2701,9 +2684,9 @@ msgstr ""
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Remove qgroup %1$s on %2$s"
-msgstr "მონაცემებიდან ამოღება"
+msgstr "წაიშლება qgroup %1$s %2$s-ზე"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/sdc1),
@@ -2728,7 +2711,7 @@ msgstr "%1$s-ის %2$s-დან წაშლა"
 #. %1$s is replaced by md name (e.g. /dev/md0)
 #, c-format
 msgid "Removing %1$s from /etc/mdadm.conf"
-msgstr ""
+msgstr "%1$s-ის წაშლა /etc/mdadm.conf-დან"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -2757,9 +2740,9 @@ msgstr ""
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
 #. and /dev/sdb2 (2.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Removing qgroup %1$s on %2$s"
-msgstr "მონაცემებიდან ამოღება"
+msgstr "იშლება qgroup %1$s %2$s-ზე"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
@@ -3192,7 +3175,7 @@ msgstr "%1 დანაყოფის შემოწმება"
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"
-msgstr ""
+msgstr "უცხო ბლოკური მოწყობილობა"
 
 #. TRANSLATORS: name of object
 msgid "Swap"
@@ -3265,9 +3248,9 @@ msgstr "%1$s-ის %2$s-დან მოხსნა"
 #. TRANSLATORS:
 #. %1$s is replaced with the nfs name (e.g. 99.99.00.00:path),
 #. %2$s is replaced with the mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Unmount NFS %1$s at %2$s"
-msgstr "მონაცემებიდან ამოღება"
+msgstr "NFS-ის (%1$s) მოხსნა %2$s-დან"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the names of the devices with sizes (e.g. /dev/sda1
@@ -3288,9 +3271,9 @@ msgstr ""
 
 #. TRANSLATORS:
 #. %1$s is replaced with the mount point (e.g. /tmp)
-#, fuzzy, c-format
+#, c-format
 msgid "Unmount tmpfs at %1$s"
-msgstr "მონაცემებიდან ამოღება"
+msgstr "Tmpfs-ის მოხსნა %1$s-დან"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
@@ -3331,7 +3314,7 @@ msgstr "VFAT"
 
 #. TRANSLATORS: name of partition type
 msgid "Windows Data Partition"
-msgstr ""
+msgstr "Windows-ის მონაცემების დანაყოფი"
 
 #. TRANSLATORS: name of object
 msgid "XFS"
