@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,6 +21,7 @@
  */
 
 
+#include <regex>
 #include <boost/algorithm/string.hpp>
 
 #include "storage/Utils/StorageDefines.h"
@@ -50,27 +51,81 @@ namespace storage
     }
 
 
+    struct IdInfo
+    {
+	IdInfo(IdNum id)
+	    : id(id), linux_partition_id_category((LinuxPartitionIdCategory)(-1)) {}
+	IdInfo(IdNum id, LinuxPartitionIdCategory linux_partition_id_category, const char* arch)
+	    : id(id), linux_partition_id_category(linux_partition_id_category), arch(arch, regex::extended) {}
+
+	IdNum id;
+	LinuxPartitionIdCategory linux_partition_id_category;
+	regex arch;
+    };
+
+
+    const vector<IdInfo> id_info_registry = {
+	{ ID_LINUX },
+	{ ID_LINUX_HOME },
+	{ ID_LINUX_ROOT_AARCH64, LinuxPartitionIdCategory::ROOT, "aarch64" },
+	{ ID_LINUX_ROOT_ARM,     LinuxPartitionIdCategory::ROOT, "arm.*" },
+	{ ID_LINUX_ROOT_PPC32,   LinuxPartitionIdCategory::ROOT, "ppc" },
+	{ ID_LINUX_ROOT_PPC64BE, LinuxPartitionIdCategory::ROOT, "ppc64" },
+	{ ID_LINUX_ROOT_PPC64LE, LinuxPartitionIdCategory::ROOT, "ppc64le" },
+	{ ID_LINUX_ROOT_RISCV32, LinuxPartitionIdCategory::ROOT, "riscv32" },
+	{ ID_LINUX_ROOT_RISCV64, LinuxPartitionIdCategory::ROOT, "riscv64" },
+	{ ID_LINUX_ROOT_S390,    LinuxPartitionIdCategory::ROOT, "s390" },
+	{ ID_LINUX_ROOT_S390X,   LinuxPartitionIdCategory::ROOT, "s390x" },
+	{ ID_LINUX_ROOT_X86,     LinuxPartitionIdCategory::ROOT, "i[5-7]86" },
+	{ ID_LINUX_ROOT_X86_64,  LinuxPartitionIdCategory::ROOT, "x86_64" },
+	{ ID_LINUX_SERVER_DATA },
+	{ ID_LINUX_USR_AARCH64,  LinuxPartitionIdCategory::USR,  "aarch64" },
+	{ ID_LINUX_USR_ARM,      LinuxPartitionIdCategory::USR,  "arm.*" },
+	{ ID_LINUX_USR_PPC32,    LinuxPartitionIdCategory::USR,  "ppc" },
+	{ ID_LINUX_USR_PPC64BE,  LinuxPartitionIdCategory::USR,  "ppc64" },
+	{ ID_LINUX_USR_PPC64LE,  LinuxPartitionIdCategory::USR,  "ppc64le" },
+	{ ID_LINUX_USR_RISCV32,  LinuxPartitionIdCategory::USR,  "riscv32" },
+	{ ID_LINUX_USR_RISCV64,  LinuxPartitionIdCategory::USR,  "riscv64" },
+	{ ID_LINUX_USR_S390,     LinuxPartitionIdCategory::USR,  "s390" },
+	{ ID_LINUX_USR_S390X,    LinuxPartitionIdCategory::USR,  "s390x" },
+	{ ID_LINUX_USR_X86,      LinuxPartitionIdCategory::USR,  "i[5-7]86" },
+	{ ID_LINUX_USR_X86_64,   LinuxPartitionIdCategory::USR,  "x86_64" },
+	{ ID_LVM },
+	{ ID_RAID },
+	{ ID_SWAP },
+    };
+
+
+    bool
+    is_linux_partition_id(IdNum id)
+    {
+	return any_of(id_info_registry.begin(), id_info_registry.end(), [id](const IdInfo& id_info) {
+	    return id_info.id == id;
+	});
+    }
+
+
+    bool
+    is_linux_partition_id(IdNum id, LinuxPartitionIdCategory linux_partition_id_category)
+    {
+	return any_of(id_info_registry.begin(), id_info_registry.end(), [id, linux_partition_id_category](const IdInfo& id_info) {
+	    return id_info.id == id && id_info.linux_partition_id_category == linux_partition_id_category;
+	});
+    }
+
+
     IdNum
     get_linux_partition_id(LinuxPartitionIdCategory linux_partition_id_category, SystemInfo& system_info)
     {
-	static const map<string, vector<IdNum>> arch_to_ids = {
-	    { "aarch64", { ID_LINUX_ROOT_AARCH64, ID_LINUX_USR_AARCH64 } },
-	    { "i586", { ID_LINUX_ROOT_X86, ID_LINUX_USR_X86 } },
-	    { "ppc", { ID_LINUX_ROOT_PPC32,ID_LINUX_USR_PPC32 } },
-	    { "ppc64", { ID_LINUX_ROOT_PPC64BE, ID_LINUX_USR_PPC64BE } },
-	    { "ppc64le", { ID_LINUX_ROOT_PPC64LE, ID_LINUX_USR_PPC64LE } },
-	    { "riscv64", { ID_LINUX_ROOT_RISCV64, ID_LINUX_USR_RISCV64 } },
-	    { "s390", { ID_LINUX_ROOT_S390, ID_LINUX_USR_S390 } },
-	    { "s390x", { ID_LINUX_ROOT_S390X, ID_LINUX_USR_S390X } },
-	    { "x86_64", { ID_LINUX_ROOT_X86_64, ID_LINUX_USR_X86_64 } },
-	};
-
 	const string& arch = system_info.get_impl().getArch().get_arch();
-	const map<string, vector<IdNum>>::const_iterator it = arch_to_ids.find(arch);
-	if (it == arch_to_ids.end())
-	    ST_THROW(Exception(sformat("partition id unknown for architecture %s", arch)));
 
-	return it->second[(int)(linux_partition_id_category)];
+	for (const IdInfo& id_info : id_info_registry)
+	{
+	    if (id_info.linux_partition_id_category == linux_partition_id_category && regex_match(arch, id_info.arch))
+		return id_info.id;
+	}
+
+	ST_THROW(Exception(sformat("partition id unknown for architecture %s", arch)));
     }
 
 

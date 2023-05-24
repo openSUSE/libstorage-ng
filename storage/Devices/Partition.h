@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -80,8 +80,9 @@ namespace storage
      * partition tables only those specified are possible.
      *
      * For details about the ids see e.g.
-     * https://en.wikipedia.org/wiki/Partition_type and
-     * https://en.wikipedia.org/wiki/GUID_Partition_Table.
+     * https://en.wikipedia.org/wiki/Partition_type,
+     * https://en.wikipedia.org/wiki/GUID_Partition_Table and
+     * https://uapi-group.org/specifications/specs/discoverable_partitions_specification/.
      */
     enum IdNum : unsigned int {
 
@@ -109,7 +110,8 @@ namespace storage
 	/** Swap partition, for MS-DOS, GPT and DASD. */
 	ID_SWAP = 0x82,
 
-	/** For MS-DOS, GPT, DASD and implicit. */
+	/** For MS-DOS, GPT, DASD and implicit. Unfortunately with old parted versions
+	    this is the fallback for unknown ids on GPT. */
 	ID_LINUX = 0x83,
 
 	/** Intel Rapid Start Technology, for MS-DOS and GPT. */
@@ -223,12 +225,30 @@ namespace storage
 
 
     /**
+     * Check whether the id is a Linux partition id. Thus true for e.g. ID_LINUX,
+     * ID_LINUX_HOME, ID_LINUX_ROOT_X86_64 and ID_RAID and false for e.g. ID_ESP and
+     * ID_PREP.
+     *
+     * @see IdNum
+     */
+    bool is_linux_partition_id(IdNum id);
+
+
+    /**
      * Enum with categories for Linux partitions.
      */
     enum class LinuxPartitionIdCategory
     {
 	ROOT, USR
     };
+
+
+    /**
+     * Check whether the id is a Linux partition id of the specified category.
+     *
+     * @see IdNum, LinuxPartitionIdCategory
+     */
+    bool is_linux_partition_id(IdNum id, LinuxPartitionIdCategory linux_partition_id_category);
 
 
     /**
