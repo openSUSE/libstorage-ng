@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2023-05-23 09:14+0000\n"
+"PO-Revision-Date: 2023-05-24 07:14+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://l10n.opensuse.org/projects/libstorage/"
 "ng-sle-15-sp1/ka/>\n"
@@ -122,7 +122,7 @@ msgstr "LVM-ის აქტივაციის შეცდომა"
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Activating encryption layer device on %1$s"
-msgstr ""
+msgstr "%1$s-ზე დაშიფვრის ფენის მოწყობილობის აქტივაცია"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -130,7 +130,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activating logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
+msgstr "%1$s (%2$s) ლოგიკური ტომის აქტივაცია ტომების ჯგუფზე %3$s"
 
 #. TRANSLATORS: progress message
 msgid "Activating multipath"
