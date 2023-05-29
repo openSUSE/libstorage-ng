@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-09 09:55+0100\n"
-"PO-Revision-Date: 2023-05-25 06:14+0000\n"
+"PO-Revision-Date: 2023-05-29 20:14+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://l10n.opensuse.org/projects/libstorage/"
 "ng-master/ka/>\n"
@@ -416,9 +416,9 @@ msgstr "%2$s-ზე %1$s-ის ჭდის გასუფთავება"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#, fuzzy, c-format
+#, c-format
 msgid "Clearing label of partition %1$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "დანაყოფის %1$s ჭდის გასუფთავება"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -841,9 +841,9 @@ msgstr "მყარი დისკის (%1$s) შექმნა (%2$s)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
 #. %2$s is replaced by size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create implicit partition %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "არაცხადი დანაყოფის შექმნა %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/dasda)
@@ -1062,9 +1062,9 @@ msgstr "მყარი დისკის %1$s (%2$s) შექმნა"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
 #. %2$s is replaced by size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating implicit partition %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "იქმნება არაცხადი დანაყოფი %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/dasda)
@@ -1377,9 +1377,9 @@ msgstr ""
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
 #. %2$s is replaced by size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete implicit partition %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "არაცხადი დანაყოფის %1$s (%2$s) წაშლა"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/dasda)
@@ -1524,9 +1524,9 @@ msgstr "გაფართოებული დანაყოფის %1$s (%
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
 #. %2$s is replaced by size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting implicit partition %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "იშლება არაცხადი დანაყოფი %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/dasda)
@@ -1861,7 +1861,7 @@ msgstr "F2FS"
 #. TRANSLATORS: error message
 #, c-format
 msgid "Failed to find device %s"
-msgstr ""
+msgstr "მოწყობილობა %s აღმოჩენილი არაა"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -2166,15 +2166,15 @@ msgstr "Linux RAID"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (ARM 32-bit)"
-msgstr ""
+msgstr "Linux-ის Root დანაყოფი (ARM 32-ბიტიანი)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (ARM 64-bit)"
-msgstr ""
+msgstr "Linux-ის Root დანაყოფი (ARM 64-ბიტიანი)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (PPC 32-bit)"
-msgstr ""
+msgstr "Linux-ის Root დანაყოფი (PPC 32-ბიტიანი)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (PPC 64-bit BE)"
@@ -2186,27 +2186,27 @@ msgstr ""
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (RISC-V 32-bit)"
-msgstr ""
+msgstr "Linux-ის Root დანაყოფი (RISC-V 32-ბიტიანი)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (RISC-V 64-bit)"
-msgstr ""
+msgstr "Linux-ის Root დანაყოფი (RISC-V 64-ბიტიანი)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (S/390 32-bit)"
-msgstr ""
+msgstr "Linux-ის Root დანაყოფი (S/390 32-ბიტიანი)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (S/390 64-bit)"
-msgstr ""
+msgstr "Linux-ის Root დანაყოფი (S/390 64-ბიტიანი)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (x86 32-bit)"
-msgstr ""
+msgstr "Linux-ის Root დანაყოფი (x86 32-ბიტიანი)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (x86 64-bit)"
-msgstr ""
+msgstr "Linux-ის Root დანაყოფი (x86 64-ბიტიანი)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Server Data"
@@ -2218,15 +2218,15 @@ msgstr "Linux Swap"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (ARM 32-bit)"
-msgstr ""
+msgstr "Linux-ის Root დანაყოფი (ARM 32-ბიტიანი)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (ARM 64-bit)"
-msgstr ""
+msgstr "Linux-ის Root დანაყოფი (ARM 64-ბიტიანი)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (PPC 32-bit)"
-msgstr ""
+msgstr "Linux-ის Root დანაყოფი (PPC 32-ბიტიანი)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (PPC 64-bit BE)"
@@ -2238,11 +2238,11 @@ msgstr ""
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (RISC-V 32-bit)"
-msgstr ""
+msgstr "Linux-ის Root დანაყოფი (RISC-V 32-ბიტიანი)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (RISC-V 64-bit)"
-msgstr ""
+msgstr "Linux-ის Root დანაყოფი (RISC-V 64-ბიტიანი)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (S/390 32-bit)"
@@ -2287,17 +2287,17 @@ msgstr "Microsoft-ის დარეზერვებული დანაყ
 #. TRANSLATORS:
 #. %1$s is replaced with the names of the devices with sizes (e.g. /dev/sda1
 #. (10.00 GiB) and /dev/sda2 (10.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Modify btrfs qgroups on %1$s"
-msgstr "მონაცემებიდან ამოღება"
+msgstr "%1$s-ზე btrfs qgroups-ის ჩასწორება"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the subvolume path (e.g. var/log),
 #. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
 #. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Modify subvolume %1$s on %2$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s (%2$s) ქვეტომის შეცვლა"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
