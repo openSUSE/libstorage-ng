@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2023-05-29 19:14+0000\n"
+"PO-Revision-Date: 2023-05-30 08:14+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://l10n.opensuse.org/projects/libstorage/"
 "ng-sle-15-sp1/ka/>\n"
@@ -272,9 +272,9 @@ msgstr "Btrfs-ის ქვეტომი"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Clear boot flag of partition %1$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "დანაყოფზე %1$s ჩატვრთვადობის ალმის გასუფთავება"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -297,9 +297,9 @@ msgstr ""
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Clearing boot flag of partition %1$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "დანაყოფის %1$s ჩატვირთვადობის ალმის გასუფთავება"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -397,9 +397,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Create DASD partition table on %1$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s-ზე DASD დანაყოფების ცხრილის შექმნა"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -476,9 +476,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Create MS-DOS partition table on %1$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s-ზე MSD-DOS-ის დანაყოფების ცხრილის შექმნა"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -685,9 +685,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encryption layer device on %1$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s-ზე დაშიფვრის ფენის მოწყობილობის შექმნა"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -887,9 +887,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating DASD partition table on %1$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s-ზე DASD დანაყოფების ცხრილის შექმნა"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -917,7 +917,7 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Creating encryption layer device on %1$s"
-msgstr ""
+msgstr "%1$s-ზე დაშიფვრის ფენის მოწყობილობის შექმნა"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1051,7 +1051,7 @@ msgstr "MD -ის დეაქტივაცია %1$s%2$s (%3$s)"
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Deactivate encryption layer device on %1$s"
-msgstr ""
+msgstr "%1$s-ზე დაშიფვრის ფენის მოწყობილობის დეაქტივაცია"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1110,7 +1110,7 @@ msgstr "MD-ის დეაქტივაცია %1$s%2$s (%3$s)"
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Deactivating encryption layer device on %1$s"
-msgstr ""
+msgstr "%1$s-ზე დაშიფვრის ფენის მოწყობილობის დეაქტივაცია"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1175,9 +1175,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete DASD partition table on %1$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s-ზე DASD დანაყოფების ცხრილის შექმნა"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1211,7 +1211,7 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Delete encryption layer device on %1$s"
-msgstr ""
+msgstr "%1$s-ზე დაშიფვრის ფენის მოწყობილობის წაშლა"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1334,9 +1334,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting DASD partition table on %1$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s-ზე DASD დანაყოფების ცხრილის წაშლა"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1362,7 +1362,7 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Deleting encryption layer device on %1$s"
-msgstr ""
+msgstr "იშლება დაშიფვრის ფენის მოწყობილობა %1$s-ზე"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -2372,9 +2372,9 @@ msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Set boot flag of partition %1$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s დანაყოფზე ჩატვირთვადობის ალმის დაყენება"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by cache mode (e.g. writeback),
@@ -2458,9 +2458,9 @@ msgstr ""
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting boot flag of partition %1$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s-ზე ჩატვირთვადობის ალმის დაყენება"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by cache mode (e.g. writeback),
