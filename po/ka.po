@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2023-05-30 08:14+0000\n"
+"PO-Revision-Date: 2023-06-03 07:14+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://l10n.opensuse.org/projects/libstorage/"
 "ng-sle-15-sp1/ka/>\n"
@@ -698,9 +698,9 @@ msgstr "გაფართოებული დანაყოფის (%1$s) 
 
 #. TRANSLATORS:
 #. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2)
-#, fuzzy, c-format
+#, c-format
 msgid "Create file system btrfs on %1$s"
-msgstr "%1 რეპოზიტორიის შექმნა"
+msgstr "%1$s-ზე btrfs ფაილური სისტემის შექმნა"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
@@ -725,9 +725,9 @@ msgstr "არაცხადი დანაყოფის შექმნა 
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/dasda)
-#, fuzzy, c-format
+#, c-format
 msgid "Create implicit partition table on %1$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s-ზე არაცხადი დანაყოფების სიის შექმნა"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -758,9 +758,9 @@ msgstr "%1$s დანაყოფის შექმნა (%2$s)"
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #. %3$s is replaced with the partition id string (e.g. Linux LVM)
-#, fuzzy, c-format
+#, c-format
 msgid "Create partition %1$s (%2$s) as %3$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s (%2$s) როგორც %3$s დანაყოფის შექმნა"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -781,17 +781,17 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create partition %1$s (%2$s) for swap"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "სვოპისთვის %1$s (%2$s) დანაყოფის შექმნა"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #. %3$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create partition %1$s (%2$s) with %3$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "დანაყოფის %1$s(%2$s) %3$s-ით შექმნა"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -909,9 +909,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating MS-DOS partition table on %1$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s-ზე MS-DOS დანაყოფების ცხრილის შექმნა"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -942,9 +942,9 @@ msgstr "იქმნება არაცხადი დანაყოფი 
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/dasda)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating implicit partition table on %1$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s-ზე არაცხადი დანაყოფების ცხრილის შექმნა"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1195,9 +1195,9 @@ msgstr "MD-ის წაშლა %1$s%2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete MS-DOS partition table on %1$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s-ზე MS-DOS-ის დანაყოფების ცხრილის წაშლა"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -1224,7 +1224,7 @@ msgstr "გაფართოებული დანაყოფის %1$s (%
 #. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2)
 #, c-format
 msgid "Delete file system btrfs on %1$s"
-msgstr ""
+msgstr "%1$s-ზე btrfs ფაილური სისტემის წაშლა"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
@@ -1235,9 +1235,9 @@ msgstr "არაცხადი დანაყოფის %1$s (%2$s) წა�
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/dasda)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete implicit partition table on %1$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s-ზე არაცხადი დანაყოფების ცხრილის წაშლა"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1354,9 +1354,9 @@ msgstr "MD-ის წაშლა %1$s%2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting MS-DOS partition table on %1$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s-ზე MS-DOS-ის დანაყოფების ცხრილის წაშლა"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1380,9 +1380,9 @@ msgstr "იშლება არაცხადი დანაყოფი %1$
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/dasda)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting implicit partition table on %1$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s-ზე არაცხადი დანაყოფების ცხრილის წაშლა"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1629,9 +1629,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #. %3$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt partition %1$s (%2$s) with %3$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s (%2$s) დანაყოფის დაშიფვრა %3$s-ით"
 
 #. TRANSLATORS: name of object
 msgid "Encryption"
@@ -1738,9 +1738,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #. %3$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format partition %1$s (%2$s) with %3$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s (%2$s) დანაყოფის %3$s-ით დაფორმატება"
 
 #. TRANSLATORS: symbol for "giga" (best keep untranslated)
 msgid "G"
@@ -2012,9 +2012,9 @@ msgstr "%1$s-ზე btrfs ფაილური სისტემის %2$s-�
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #. %3$s is replaced with the mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount partition %1$s (%2$s) at %3$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s (%2$s) დანაყოფის მიმაგრება %3$s-ზე"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. home),
@@ -2178,7 +2178,7 @@ msgstr "აღმოჩენის შეცდომა"
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing file system on %s failed"
-msgstr ""
+msgstr "%s-ზე ფაილური სისტემის მოსინჯვის შეცდომა"
 
 #. TRANSLATORS: progress message
 msgid "Probing file systems"
