@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2023-06-03 07:14+0000\n"
+"PO-Revision-Date: 2023-06-04 06:14+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://l10n.opensuse.org/projects/libstorage/"
 "ng-sle-15-sp1/ka/>\n"
@@ -355,9 +355,9 @@ msgstr ""
 #. %4$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create %1$s %2$s (%3$s) from %4$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%4$s-დან %1$s %2$s (%3$s) შექმნა"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
@@ -484,9 +484,9 @@ msgstr "%1$s-ზე MSD-DOS-ის დანაყოფების ცხრ�
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s on %2$s (%3$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%2$s-ზე (%3$s) %1$s bcache-ის შექმნა"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -700,7 +700,7 @@ msgstr "გაფართოებული დანაყოფის (%1$s) 
 #. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2)
 #, c-format
 msgid "Create file system btrfs on %1$s"
-msgstr "%1$s-ზე btrfs ფაილური სისტემის შექმნა"
+msgstr "%1$s-ზე btfs ფაილური სისტემის შექმნა"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
@@ -1203,9 +1203,9 @@ msgstr "%1$s-ზე MS-DOS-ის დანაყოფების ცხრი
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete bcache %1$s on %2$s (%3$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%2$s-ზე (%3$s) %1$s bcache-ის წაშლა"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1586,9 +1586,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt bcache %1$s on %2$s (%3$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%2$s-ზე (%3$s) bcache %1$s-ის დაშიფვრა"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -1668,9 +1668,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system type (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format %1$s %2$s (%3$s) with %4$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s %2$s-ის (%3$s) %4$s-ით დაფორმატება"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -1721,9 +1721,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Format partition %1$s (%2$s) as swap"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s-ის (%2$s) სვოპად დაფორმატება"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
