@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2023-06-04 06:14+0000\n"
+"PO-Revision-Date: 2023-06-06 07:15+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://l10n.opensuse.org/projects/libstorage/"
 "ng-sle-15-sp1/ka/>\n"
@@ -303,9 +303,9 @@ msgstr "დანაყოფის %1$s ჩატვირთვადობი
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Clearing legacy boot flag of partition %1$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "დანაყოფიდან %1$s ჩატვირთვადობის მოძველებული ალმის მოცილება"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -1549,9 +1549,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt %1$s %2$s (%3$s) with %4$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s %2$s-ის (%3$s) %4$s-ით დაშიფვრა"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -1788,9 +1788,9 @@ msgstr ""
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 1 GiB),
 #. %3$s is replaced by new size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Grow partition %1$s from %2$s to %3$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s დანაყოფის %2$s-დან %3$s-მდე გაზრდა"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
@@ -1849,9 +1849,9 @@ msgstr ""
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 1 GiB),
 #. %3$s is replaced by new size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Growing partition %1$s from %2$s to %3$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s დანაყოფის %2$s-დან %3$s-მდე გაზრდა"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
@@ -1961,9 +1961,9 @@ msgstr "Microsoft-ის დარეზერვებული დანაყ
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount %1$s %2$s (%3$s) at %4$s"
-msgstr "მონაცემებიდან ამოღება"
+msgstr "%1$s %2$s-ის (%3$s) %4$s-ზე მიმაგრება"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -2020,9 +2020,9 @@ msgstr "%1$s (%2$s) დანაყოფის მიმაგრება %3$s
 #. %1$s is replaced by subvolume path (e.g. home),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount subvolume %1$s on %2$s at %3$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "ქვეტომის %1$s მიმაგრება %2$s-ზე მისამართზე %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -2035,9 +2035,9 @@ msgstr "%1$s-ის მიმაგრება %2$s-ზე"
 #. %1$s is replaced by subvolume path (e.g. home),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mounting subvolume %1$s on %2$s at %3$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "ქვეტომის %1$s მიმაგრება %2$s-ზე მისამართზე %3$s"
 
 #. TRANSLATORS: name of object
 msgid "Multipath"
@@ -2210,9 +2210,9 @@ msgid "Probing partitions on %s failed"
 msgstr "%s-ზე დანაყოფების აღმოჩენის შეცდომა"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing stray block device %s failed"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "უცხო ბლოკური მოწყობილობის %s მოსინჯვის შეცდომა"
 
 #. TRANSLATORS: progress message
 msgid "Probing stray block devices"
@@ -2394,9 +2394,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM)
-#, fuzzy, c-format
+#, c-format
 msgid "Set id of partition %1$s to %2$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "დანაყოფის %1$s ID-ის დაყენება %2$s-ზე"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -2409,9 +2409,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. 0x%2$02X is replaced by partition id (e.g. 0x8E)
-#, fuzzy, c-format
+#, c-format
 msgid "Set id of partition %1$s to 0x%2$02X"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "დანაყოფის %1$s ID-ის დაყენება 0x%2$02X-ზე"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -2424,9 +2424,9 @@ msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Set legacy boot flag of partition %1$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "დანაყოფზე (%1$s) მოძველებული ჩატვირთვადობის ალმის დაყენება"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -2480,9 +2480,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting id of partition %1$s to %2$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s დანაყოფის ID-ის %2$s-ზე დაყენება"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
