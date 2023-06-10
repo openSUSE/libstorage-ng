@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-09 09:55+0100\n"
-"PO-Revision-Date: 2023-06-06 07:15+0000\n"
+"PO-Revision-Date: 2023-06-10 15:15+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://l10n.opensuse.org/projects/libstorage/"
 "ng-master/ka/>\n"
@@ -227,6 +227,7 @@ msgstr "%2$s-ის მიმაგრების წერტილის (%1$
 #, c-format
 msgid "Add mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
 msgstr ""
+"%3$s-ზე მდებარე ქვეტომის %2$s მიმაგრების წერტილის %1$s /etc/fstab-ში ჩამატება"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/sdc1),
@@ -257,7 +258,7 @@ msgstr "%1$s-ის ჩამატება /etc/mdadm.conf-ში"
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Adding encryption layer device on %1$s to /etc/crypttab"
-msgstr ""
+msgstr "%1$s-ზე არსებული დაშიფვრის ფენის მოწყობილობის /etc/crypttab-ში ჩამატება"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the mount point (e.g. /home),
@@ -265,7 +266,7 @@ msgstr ""
 #. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Adding mount point %1$s of %2$s to /etc/fstab"
-msgstr ""
+msgstr "%2$s-ის მიმაგრების წერტილის %1$s /etc/fstab-ში ჩამატება"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the mount point (e.g. /home),
@@ -275,6 +276,7 @@ msgstr ""
 #, c-format
 msgid "Adding mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
 msgstr ""
+"%3$s-ზე მდებარე ქვეტომის %2$s მიმაგრების წერტილის %1$s /etc/fstab-ში ჩამატება"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
