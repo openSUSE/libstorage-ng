@@ -104,6 +104,9 @@ namespace storage
 
 	string cmd_line = MKSWAP_BIN " -f " + quote(blk_device->get_name());
 
+	if (!get_mkfs_options().empty())
+	    cmd_line += " " + get_mkfs_options();
+
 	wait_for_devices();
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
