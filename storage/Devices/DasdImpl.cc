@@ -126,6 +126,9 @@ namespace storage
     bool
     Dasd::Impl::is_usable_as_partitionable() const
     {
+	if (!Partitionable::Impl::is_usable_as_partitionable())
+	    return false;
+
 	if (type == DasdType::ECKD && (format == DasdFormat::CDL || format == DasdFormat::LDL))
 	    return true;
 
@@ -139,6 +142,9 @@ namespace storage
     string
     Dasd::Impl::pool_name() const
     {
+	if (!is_usable_as_partitionable())
+	    return "";
+
 	if (get_type() == DasdType::ECKD)
 	{
 	    if (get_format() == DasdFormat::CDL)

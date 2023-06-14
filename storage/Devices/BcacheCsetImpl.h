@@ -45,8 +45,7 @@ namespace storage
     {
     public:
 
-	Impl()
-	    : Device::Impl(), uuid() {}
+	Impl() : Device::Impl() {}
 
 	Impl(const xmlNode* node);
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -45,11 +45,27 @@ namespace storage
 
 
     /**
+     * Convert the BcacheType bcache_type to a string.
+     *
+     * @see BcacheType
+     */
+    std::string get_bcache_type_name(BcacheType bcache_type);
+
+
+    /**
      * The Cache mode attribute.
      */
     enum class CacheMode {
 	WRITETHROUGH, WRITEBACK, WRITEAROUND, NONE
     };
+
+
+    /**
+     * Convert the CacheMode cache_mode to a string.
+     *
+     * @see CacheMode
+     */
+    std::string get_cache_mode_name(CacheMode cache_mode);
 
 
     /**

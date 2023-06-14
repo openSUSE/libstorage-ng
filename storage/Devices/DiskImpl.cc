@@ -124,6 +124,9 @@ namespace storage
     bool
     Disk::Impl::is_usable_as_partitionable() const
     {
+	if (!Partitionable::Impl::is_usable_as_partitionable())
+	    return false;
+
 	return zone_model != ZoneModel::HOST_MANAGED;
     }
 

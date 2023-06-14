@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -69,6 +69,7 @@ namespace storage
     const vector<string> EnumTraits<CacheMode>::names({
 	"writethrough", "writeback", "writearound", "none"
     });
+
 
     Bcache::Impl::Impl(const string& name, BcacheType type)
 	: Partitionable::Impl(name), cache_mode(CacheMode::NONE),
@@ -199,6 +200,16 @@ namespace storage
     }
 
 
+    string
+    Bcache::Impl::pool_name() const
+    {
+	if (!is_usable_as_partitionable())
+	    return "";
+
+	return "bcaches";
+    }
+
+
     static bool
     is_backed(Prober& prober, const string& short_name)
     {
@@ -258,7 +269,7 @@ namespace storage
 
 
     // mapping between human string of libstorage-ng and bcache sysfs sizes
-    static const map<std::string, unsigned long long> size_mapping = {
+    static const map<string, unsigned long long> size_mapping = {
 	{ "k", KiB },
 	{ "M", MiB },
 	{ "G", GiB }

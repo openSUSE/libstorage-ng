@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -28,6 +28,20 @@ namespace storage
 {
 
     using namespace std;
+
+
+    string
+    get_bcache_type_name(BcacheType bcache_type)
+    {
+	return toString(bcache_type);
+    }
+
+
+    string
+    get_cache_mode_name(CacheMode cache_mode)
+    {
+	return toString(cache_mode);
+    }
 
 
     Bcache*
