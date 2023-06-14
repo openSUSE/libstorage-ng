@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -96,7 +96,7 @@ namespace storage
 
 	BcacheType get_type() const { return type; }
 
-	virtual string pool_name() const override { return ""; }
+	virtual string pool_name() const override;
 
 	CacheMode get_cache_mode() const { return cache_mode; }
 	void set_cache_mode(CacheMode mode) { cache_mode = mode; }
