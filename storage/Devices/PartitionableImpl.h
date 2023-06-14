@@ -49,7 +49,7 @@ namespace storage
 	unsigned int get_range() const { return range; }
 	void set_range(unsigned int range) { Impl::range = range; }
 
-	virtual bool is_usable_as_partitionable() const { return true; }
+	virtual bool is_usable_as_partitionable() const { return range > 1; }
 
 	PtType get_default_partition_table_type() const;
 
@@ -74,6 +74,9 @@ namespace storage
 
 	virtual string partition_name(int number) const;
 
+	/**
+	 * Returns empty string iff no pool name applies.
+	 */
 	virtual string pool_name() const = 0;
 
 	virtual bool equal(const Device::Impl& rhs) const override;
