@@ -216,10 +216,18 @@ namespace storage
 
 	if (is_nvme())
 	{
-	    system_info.getCmdNvmeList();	// so far just for logging
-	    const CmdNvmeListSubsys& cmd_nvme_list_subsys = system_info.getCmdNvmeListSubsys();
+	    try
+	    {
+		system_info.getCmdNvmeList();	// so far just for logging
+		const CmdNvmeListSubsys& cmd_nvme_list_subsys = system_info.getCmdNvmeListSubsys();
 
-	    transport = cmd_nvme_list_subsys.get_transport(get_name(), system_info);
+		transport = cmd_nvme_list_subsys.get_transport(get_name(), system_info);
+	    }
+	    catch (const Exception& exception)
+	    {
+		// TRANSLATORS: error message
+		prober.handle(exception, sformat(_("Probing disk %s failed"), get_name()), UF_NVME);
+	    }
 	}
 	else if (is_pmem() || is_brd())
 	{
