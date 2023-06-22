@@ -32,7 +32,7 @@ namespace storage
 {
 
     CmdDumpe2fs::CmdDumpe2fs(const string& device)
-	: device(device), block_size(0), feature_64bit(false)
+	: device(device)
     {
 	SystemCmd cmd(DUMPE2FS_BIN " -h " + quote(device), SystemCmd::DoThrow);
 

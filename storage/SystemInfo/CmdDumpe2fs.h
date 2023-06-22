@@ -54,10 +54,10 @@ namespace storage
 
 	void parse(const vector<string>& lines);
 
-	string device;
+	const string device;
 
-	unsigned long block_size;
-	bool feature_64bit;
+	unsigned long block_size = 0;
+	bool feature_64bit = false;
 
     };
 
