@@ -149,9 +149,10 @@ Filesystem
 Implemented:
 
 * For btrfs, ext2, ext3, ext4, ReiserFS, NTFS, VFat, ExFat, XFS, JFS,
-  swap, F2FS, NILFS2 (excluding checkpoints), ISO9660, UDF, NFS and
-  tmpfs the most important operations (probing, creating, deleting,
-  resizing, mounting and unmounting).
+  swap, F2FS (excluding multiple devices), NILFS2 (excluding
+  checkpoints), ISO9660, UDF, NFS and tmpfs the most important
+  operations (probing, creating, deleting, resizing, mounting and
+  unmounting).
 * Handling of /etc/fstab.
 * Handling different mount-by options.
 * btrfs subvolumes, btrfs multiple-device, quota and qgroup support.
