@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2010-2014] Novell, Inc.
+ * Copyright (c) 2023 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -61,6 +62,25 @@ namespace storage
 	typedef map<string, Entry>::const_iterator const_iterator;
 
 	map<string, Entry> data;
+
+    };
+
+
+    class LsscsiVersion
+    {
+    public:
+
+	static void query_version();
+	static void parse_version(const string& version);
+
+	static bool supports_json_option();
+
+    private:
+
+	static bool did_set_version;
+
+	static int major;
+	static int minor;
 
     };
 

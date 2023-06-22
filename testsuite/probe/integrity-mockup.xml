@@ -161,6 +161,11 @@
       <stdout>[1:0:0:0]    cd/dvd  ata:ATA     QEMU DVD-ROM                            QM00003               /dev/sr0 </stdout>
     </Command>
     <Command>
+      <!-- output faked -->
+      <name>/usr/bin/lsscsi --version</name>
+      <stderr>release: 0.32  2021/05/05 [svn: r167]</stderr>
+    </Command>
+    <Command>
       <name>/usr/bin/stat --format '%f' '/dev/fd0'</name>
       <stdout>61b0</stdout>
     </Command>

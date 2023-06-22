@@ -915,6 +915,11 @@
       <stdout>[3:0:0:0]    disk    usb:1-2:1.0                     /dev/sdb </stdout>
     </Command>
     <Command>
+      <!-- output faked -->
+      <name>/usr/bin/lsscsi --version</name>
+      <stderr>release: 0.32  2021/05/05 [svn: r167]</stderr>
+    </Command>
+    <Command>
       <name>/usr/bin/stat --format '%f' '/dev/bcache0'</name>
       <stdout>61b0</stdout>
     </Command>

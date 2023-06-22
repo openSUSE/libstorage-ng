@@ -612,6 +612,11 @@
       <stdout>[0:0:1:1085620243] disk    fc:0x500507630510473a0x770e00   /dev/sdd </stdout>
     </Command>
     <Command>
+      <!-- output faked -->
+      <name>/usr/bin/lsscsi --version</name>
+      <stderr>release: 0.32  2021/05/05 [svn: r167]</stderr>
+    </Command>
+    <Command>
       <name>/usr/bin/stat --format '%f' '/dev/sda'</name>
       <stdout>61b0</stdout>
     </Command>
