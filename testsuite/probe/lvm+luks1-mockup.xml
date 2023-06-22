@@ -511,6 +511,11 @@
       <stdout>[4:0:0:0]    cd/dvd  ata:                            /dev/sr0</stdout>
     </Command>
     <Command>
+      <!-- output faked -->
+      <name>/usr/bin/lsscsi --version</name>
+      <stderr>release: 0.32  2021/05/05 [svn: r167]</stderr>
+    </Command>
+    <Command>
       <name>/usr/bin/stat --format '%f' '/dev/sda'</name>
       <stdout>61b0</stdout>
     </Command>

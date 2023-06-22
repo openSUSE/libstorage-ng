@@ -149,6 +149,7 @@ namespace storage
 	typedef vector<Entry>::const_iterator const_iterator;
 
 	const string device;
+
 	PtType label = PtType::UNKNOWN;
 	Region region;
 	int primary_slots = -1;

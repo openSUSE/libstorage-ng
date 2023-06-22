@@ -30,6 +30,11 @@
       <stdout>[2:0:0:0]    disk    sata:50000393a258296e           /dev/sdc </stdout>
     </Command>
     <Command>
+      <!-- output faked -->
+      <name>/usr/bin/lsscsi --version</name>
+      <stderr>release: 0.32  2021/05/05 [svn: r167]</stderr>
+    </Command>
+    <Command>
       <name>/usr/bin/stat --format '%f' '/dev/sdc'</name>
       <stdout>61b0</stdout>
     </Command>

@@ -189,6 +189,11 @@
       <stdout>[8:0:0:1]    enclosu usb:2-7:1.0                     -        </stdout>
     </Command>
     <Command>
+      <!-- output faked -->
+      <name>/usr/bin/lsscsi --version</name>
+      <stderr>release: 0.32  2021/05/05 [svn: r167]</stderr>
+    </Command>
+    <Command>
       <name>/usr/bin/stat --format '%f' '/dev/sdc'</name>
       <stdout>61b0</stdout>
     </Command>

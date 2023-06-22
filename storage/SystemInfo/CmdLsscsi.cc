@@ -38,6 +38,8 @@ namespace storage
 
     Lsscsi::Lsscsi()
     {
+	const bool json = LsscsiVersion::supports_json_option();
+
 	SystemCmd cmd(LSSCSI_BIN " --transport", SystemCmd::DoThrow);
 
 	parse(cmd.stdout());
@@ -126,5 +128,53 @@ namespace storage
     {
 	return s << "transport:" << toString(entry.transport);
     }
+
+
+    void
+    LsscsiVersion::query_version()
+    {
+	if (did_set_version)
+	    return;
+
+	SystemCmd cmd(LSSCSI_BIN " --version", SystemCmd::DoThrow);
+	if (cmd.stderr().empty())
+	    ST_THROW(SystemCmdException(&cmd, "failed to query lsscsi version"));
+
+	parse_version(cmd.stderr()[0]);
+    }
+
+
+    void
+    LsscsiVersion::parse_version(const string& version)
+    {
+	const regex version_rx("release: ([0-9]+)\\.([0-9]+)", regex::extended);
+
+	smatch match;
+
+	if (!regex_search(version, match, version_rx))
+	    ST_THROW(Exception("failed to parse lsscsi version '" + version + "'"));
+
+	major = stoi(match[1]);
+	minor = stoi(match[2]);
+
+	y2mil("major:" << major << " minor:" << minor);
+
+	did_set_version = true;
+    }
+
+
+    bool
+    LsscsiVersion::supports_json_option()
+    {
+	query_version();
+
+	return major >= 1 || (major == 0 && minor >= 33);
+    }
+
+
+    bool LsscsiVersion::did_set_version = false;
+
+    int LsscsiVersion::major = 0;
+    int LsscsiVersion::minor = 0;
 
 }
