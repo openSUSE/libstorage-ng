@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -111,6 +111,9 @@ namespace storage
 	typedef graph_t::inv_adjacency_iterator inv_adjacency_iterator;
 
 	typedef graph_t::vertices_size_type vertices_size_type;
+	typedef graph_t::degree_size_type degree_size_type;
+
+	typedef map<vertex_descriptor, vertices_size_type> vertex_index_map_t;
 
 	Impl(const Storage& storage, Devicegraph* lhs, Devicegraph* rhs);
 
@@ -201,6 +204,8 @@ namespace storage
 	void add_mount_dependencies();
 	void add_special_dasd_pt_dependencies();
 	void remove_only_syncs();
+	void set_priorities();
+	void set_priorities_upward(vertex_descriptor v1);
 	void calculate_order();
 
 	const Storage& storage;
@@ -211,6 +216,10 @@ namespace storage
 	typedef deque<vertex_descriptor> Order;
 
 	Order order;
+
+	class CompareByPriority;
+
+	Order prioritised_topological_sort(const boost::associative_property_map<vertex_index_map_t>& idx) const;
 
 	graph_t graph;
 

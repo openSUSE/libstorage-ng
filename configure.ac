@@ -129,6 +129,7 @@ AC_CONFIG_FILES([
 	testsuite/dependencies/resize/btrfs/Makefile
 	testsuite/dependencies/bcache/Makefile
 	testsuite/dependencies/rear/Makefile
+	testsuite/order/Makefile
 	testsuite/sorting/Makefile
 	testsuite/style/Makefile
 	testsuite/partitions/Makefile
