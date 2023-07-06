@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2018-2022] SUSE LLC
+ * Copyright (c) [2018-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -125,6 +125,11 @@ namespace storage
      * There are several methods to use mdadm for activation.
      */
     int mdadm_activate_method();
+
+    /**
+     * There are several methods for the topological sort of the actiongraph.
+     */
+    int topological_sort_method();
 
     /**
      * Operating system flavour.

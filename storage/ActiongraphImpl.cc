@@ -53,6 +53,7 @@
 #include "storage/Actions/SetQuotaImpl.h"
 #include "storage/Actions/MountImpl.h"
 #include "storage/Actions/UnmountImpl.h"
+#include "storage/EnvironmentImpl.h"
 
 
 namespace storage
@@ -151,6 +152,7 @@ namespace storage
 	set_special_actions();
 	add_dependencies();
 	remove_only_syncs();
+	set_priorities();
 
 	calculate_order();
 
@@ -723,19 +725,131 @@ namespace storage
 
 
     void
+    Actiongraph::Impl::set_priorities()
+    {
+	for (const vertex_descriptor v : vertices())
+	{
+	    Action::Base* action = graph[v].get();
+
+	    Action::Mount* mount = dynamic_cast<Action::Mount*>(action);
+	    if (mount && mount->get_fs_type(*this) == FsType::SWAP)
+	    {
+		mount->priority = 2;
+		set_priorities_upward(v);
+	    }
+	}
+    }
+
+
+    void
+    Actiongraph::Impl::set_priorities_upward(vertex_descriptor v1)
+    {
+	for (const vertex_descriptor v2 : parents(v1))
+	{
+	    Action::Base* action = graph[v2].get();
+
+	    if (action->priority < 1)
+	    {
+		action->priority = 1;
+		set_priorities_upward(v2);
+	    }
+	}
+    }
+
+
+    void
     Actiongraph::Impl::calculate_order()
     {
 	VertexIndexMapGenerator<graph_t> vertex_index_map_generator(graph);
 
-	try
+	switch (topological_sort_method())
 	{
-	    boost::topological_sort(graph, front_inserter(order),
-				    vertex_index_map(vertex_index_map_generator.get()));
+	    case 0:
+	    {
+		try
+		{
+		    boost::topological_sort(graph, front_inserter(order),
+					    vertex_index_map(vertex_index_map_generator.get()));
+		}
+		catch (const boost::not_a_dag&)
+		{
+		    ST_THROW(Exception("actiongraph not a DAG"));
+		}
+	    }
+	    break;
+
+	    case 1:
+	    {
+		order = prioritised_topological_sort(vertex_index_map_generator.get());
+	    }
+	    break;
+
+	    default:
+		ST_THROW(Exception("unknown topological sort method"));
 	}
-	catch (const boost::not_a_dag&)
+    }
+
+
+    class Actiongraph::Impl::CompareByPriority
+    {
+    public:
+
+	CompareByPriority(const graph_t& graph) : graph(graph) {}
+
+	bool operator()(const vertex_descriptor lhs, const vertex_descriptor rhs) const
 	{
+	    return graph[lhs].get()->priority < graph[rhs].get()->priority;
+	}
+
+    private:
+
+	const graph_t& graph;
+
+    };
+
+
+    Actiongraph::Impl::Order
+    Actiongraph::Impl::prioritised_topological_sort(const boost::associative_property_map<vertex_index_map_t>& idx) const
+    {
+	// Based on Kahn's algorithm.
+
+	vector<degree_size_type> in_degrees(num_actions());
+
+	// We use vector/deque instead of the obvious priority_queue since we have a few
+	// points below where we can tweak the result (to look more like the plain
+	// topological sort).
+	vector<vertex_descriptor> q;
+
+	for (const vertex_descriptor v : vertices())
+	{
+	    if ((in_degrees[idx[v]] = boost::in_degree(v, graph)) == 0)
+		q.push_back(v);						// arbitrary: push_front or push_back
+	}
+
+	const CompareByPriority compare_by_priority(graph);
+
+	Order order;
+
+	while (!q.empty())
+	{
+	    stable_sort(q.begin(), q.end(), compare_by_priority);	// arbitrary: stable_sort or sort
+
+	    const vertex_descriptor v = q.back();
+	    q.pop_back();
+
+	    order.push_back(v);
+
+	    for (const vertex_descriptor v2 : children(v))
+	    {
+		if (--in_degrees[idx[v2]] == 0)
+		    q.push_back(v2);					// arbitrary: push_front or push_back
+	    }
+	}
+
+	if (order.size() != num_actions())
 	    ST_THROW(Exception("actiongraph not a DAG"));
-	}
+
+	return order;
     }
 
 

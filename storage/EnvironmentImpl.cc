@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2018-2022] SUSE LLC
+ * Copyright (c) [2018-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -101,6 +101,14 @@ namespace storage
     }
 
 
+    static int
+    read_env_var(const char* name, int fallback)
+    {
+	const char* p = getenv(name);
+	return p ? atoi(p) : fallback;
+    }
+
+
     bool
     support_btrfs_multiple_devices()
     {
@@ -146,8 +154,14 @@ namespace storage
     int
     mdadm_activate_method()
     {
-	const char* p = getenv("LIBSTORAGE_MDADM_ACTIVATE_METHOD");
-	return p ? atoi(p) : 0;
+	return read_env_var("LIBSTORAGE_MDADM_ACTIVATE_METHOD", 0);
+    }
+
+
+    int
+    topological_sort_method()
+    {
+	return read_env_var("LIBSTORAGE_TOPOLOGICAL_SORT_METHOD", 1);
     }
 
 
@@ -194,6 +208,7 @@ namespace storage
 	    "LIBSTORAGE_OS_FLAVOUR",
 	    "LIBSTORAGE_PFSOEMS",
 	    "LIBSTORAGE_ROOTPREFIX",
+	    "LIBSTORAGE_TOPOLOGICAL_SORT_METHOD",
 	};
 
 	for (const char* env_var : env_vars)

@@ -100,6 +100,9 @@ namespace storage
 	    // Action is only used to inform user but does no operation.
 	    bool nop = false;
 
+	    // A priority. Used to activate swap ASAP.
+	    int priority = 0;
+
 	};
 
     }
