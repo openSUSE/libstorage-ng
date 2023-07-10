@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2023-06-10 15:14+0000\n"
+"PO-Revision-Date: 2023-07-10 20:15+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://l10n.opensuse.org/projects/libstorage/"
 "ng-sle-15-sp1/ka/>\n"
@@ -287,9 +287,10 @@ msgstr "დანაყოფზე %1$s მოძველებული ჩ�
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Clear option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr ""
+"%2$s-ზე მდებარე ქვეტომიდან %1$s 'no copy on write' პარამეტრის გასუფთავება"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -413,9 +414,9 @@ msgstr "%1$s-ზე GPT-ის შექმნა"
 #. %1$s is replaced with the logical volume name (e.g. root),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #. %3$s is replaced with the volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "ტომების ჯგუფზე %3$s LVM ლოგიკური ტომის %1$s (%2$s) შექმნა"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -423,48 +424,52 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. %3$s is replaced with the volume group name (e.g. system),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr ""
+"ტომები ჯგუფზე %3$s საქაღალდისთვის %4$s ფაილური სისტემით %5$s LVM ლოგიკური "
+"ტომის %1$s (%2$s) შექმნა"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #. %3$s is replaced with the volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "სვაპისთვის ტომების ჯგუფზე %3$s LVM ლოგიკური ტომის %1$s (%2$s) შექმნა"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #. %3$s is replaced with the volume group name (e.g. system),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr ""
+"ტომების ჯგუფზე %3$s ფაილური სისტემით %4$s LVM ლოგიკური ტომის %1$s (%2$s) "
+"შექმნა"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM physical volume over %1$s (%2$s)"
-msgstr "%1 რეპოზიტორიის შექმნა"
+msgstr "LVM ფიზიკური ტომის %1$s-ზე (%2$s) შექმნა"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM physical volume over encrypted %1$s (%2$s)"
-msgstr "%1 რეპოზიტორიის შექმნა"
+msgstr "LVM ფიზიკური ტომის შექმნა დაშიფრულ %1$s-ზე (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM volume device over %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s-ზე (%2$s) LVM ტომის მოწყობილობის შექმნა"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -472,9 +477,9 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. %3$s is replaced by size (e.g. 2 GiB),
 #. %4$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
 #. /dev/sdb2 (1 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Create MD %1$s %2$s (%3$s) from %4$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%4$s-დან MD %1$s %2$s-ის შექმნა (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -496,26 +501,26 @@ msgstr "%2$s-ზე (%3$s) %1$s bcache-ის შექმნა"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%2$s-ზე (%3$s) %4$s-სთვის %5$s-ით bcache %1$s-ის შექმნა"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s on %2$s (%3$s) for swap"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%2$s-ზე (%3$s) სვოპისთვის bcache %1$s-ის შექმნა"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s on %2$s (%3$s) with %4$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%2$s-ზე (%3$s) %4$s-ით bcache %1$s-ის შექმნა"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
@@ -576,9 +581,9 @@ msgstr ""
 #. %1$s is replaced with the logical volume name (e.g. root),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #. %3$s is replaced with the volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "ტომების ჯგუფზე %3$s დაშიფრული LVM ლოგიკური ტომის %1$s (%2$s) შექმნა"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -586,39 +591,43 @@ msgstr "%1 დანაყოფის შემოწმება"
 #. %3$s is replaced with the volume group name (e.g. system),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for "
 "%4$s with %5$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr ""
+"ტომების ჯგუფზე %3$s %4$s-სთვის %5$s-ით დაშიფრული LVM ლოგიკური ტომის %1$s "
+"(%2$s) შექმნა"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #. %3$s is replaced with the volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr ""
+"სვოპისთვის ტოების ჯგუფზე %3$s დაშიფრული LVM ლოგიკური ტომის %1$s (%2$s) შექმნა"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #. %3$s is replaced with the volume group name (e.g. system),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s with "
 "%4$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr ""
+"ტომების ჯგუფზე %3$s %4$s-ით დაშიფრული LVM ლოგიკური ტომის %1$s (%2$s) შექმნა"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%2$s-ზე (%3$s) დაშიფრული bcache %1$s-ის შექმნა"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
