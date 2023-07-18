@@ -2,6 +2,9 @@
 <Mockup>
   <Commands>
     <Command>
+      <name>/usr/bin/udevadm settle --timeout=20</name>
+    </Command>
+    <Command>
       <name>/sbin/mdadm --remove '/dev/md0' '/dev/sdd'</name>
       <!-- stdout missing -->
     </Command>
