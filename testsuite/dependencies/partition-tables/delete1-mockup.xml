@@ -2,6 +2,9 @@
 <Mockup>
   <Commands>
     <Command>
+      <name>/usr/bin/udevadm settle --timeout=20</name>
+    </Command>
+    <Command>
       <name>/sbin/wipefs --all '/dev/sda4'</name>
       <!-- stdout missing -->
     </Command>

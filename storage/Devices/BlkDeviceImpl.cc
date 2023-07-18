@@ -931,6 +931,8 @@ namespace storage
     void
     BlkDevice::Impl::wipe_device() const
     {
+	wait_for_devices({ get_non_impl() });
+
 	string cmd_line = WIPEFS_BIN " --all " + quote(get_name());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);

@@ -233,7 +233,7 @@ namespace storage
 	    ret |= action->used_features(*this);
 	}
 
-	y2mil("used-features " << get_used_features_names(ret));
+	y2mil("used-features: " << get_used_features_names(ret));
 
 	return ret;
     }
@@ -891,7 +891,7 @@ namespace storage
 
 	y2mil("commit begin");
 
-	y2mil("used features: " << get_used_features_names(used_features()));
+	y2mil("used-features: " << get_used_features_names(used_features()));
 	y2mil("rootprefix: " << storage.get_rootprefix());
 
 	CommitData commit_data(*this, Tense::PRESENT_CONTINUOUS);
