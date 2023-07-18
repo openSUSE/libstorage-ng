@@ -260,7 +260,7 @@ namespace storage
 	    ret |= device->get_impl().used_features(used_features_dependency_type);
 	}
 
-	y2mil("used-features " << get_used_features_dependency_type_name(used_features_dependency_type) <<
+	y2mil("used-features: " << get_used_features_dependency_type_name(used_features_dependency_type) <<
 	      " " << get_used_features_names(ret));
 
 	return ret;
