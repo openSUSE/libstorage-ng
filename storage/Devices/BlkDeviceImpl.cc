@@ -942,6 +942,8 @@ namespace storage
     void
     BlkDevice::Impl::discard_device() const
     {
+	wait_for_devices({ get_non_impl() });
+
 	string cmd_line = BLKDISCARD_BIN " " + quote(get_name());
 
 	SystemCmd cmd(cmd_line, SystemCmd::NoThrow);
