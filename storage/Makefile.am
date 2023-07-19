@@ -32,7 +32,7 @@ libstorage_ng_la_SOURCES =						\
 	FreeInfo.h			FreeInfo.cc			\
 	UsedFeatures.h			UsedFeatures.cc			\
 	View.h								\
-	Version.h							\
+	Version.h			Version.cc			\
 	CompoundAction.h		CompoundAction.cc		\
 	CompoundActionImpl.h		CompoundActionImpl.cc		\
 	CommitOptions.h

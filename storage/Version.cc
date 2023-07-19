@@ -1,6 +1,5 @@
 /*
- * Copyright (c) 2011 Novell, Inc.
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) 2023 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,31 +20,16 @@
  */
 
 
-#ifndef STORAGE_VERSION_H
-#define STORAGE_VERSION_H
-
-
-#define LIBSTORAGE_NG_VERSION_STRING "@LIBVERSION@"
-
-#define LIBSTORAGE_NG_VERSION_MAJOR @LIBVERSION_MAJOR@
-#define LIBSTORAGE_NG_VERSION_MINOR @LIBVERSION_MINOR@
-#define LIBSTORAGE_NG_VERSION_PATCHLEVEL @LIBVERSION_PATCHLEVEL@
-
-#define LIBSTORAGE_NG_VERSION_AT_LEAST(major, minor)						\
-    ((LIBSTORAGE_NG_VERSION_MAJOR > (major)) ||							\
-     (LIBSTORAGE_NG_VERSION_MAJOR == (major) && LIBSTORAGE_NG_VERSION_MINOR >= (minor)))
+#include "storage/Version.h"
 
 
 namespace storage
 {
 
-    /**
-     * Return LIBSTORAGE_NG_VERSION_STRING libstorage-ng was compiled with. May differ
-     * from the define (compile time vs. link time).
-     */
-    const char* get_version_string();
+    const char*
+    get_version_string()
+    {
+	return LIBSTORAGE_NG_VERSION_STRING;
+    }
 
 }
-
-
-#endif
