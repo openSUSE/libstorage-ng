@@ -21,8 +21,8 @@
  */
 
 
-#ifndef STORAGE_ACTION_SET_LEGACY_IMPL_H
-#define STORAGE_ACTION_SET_LEGACY_IMPL_H
+#ifndef STORAGE_ACTION_SET_LEGACY_BOOT_IMPL_H
+#define STORAGE_ACTION_SET_LEGACY_BOOT_IMPL_H
 
 
 #include "storage/Actions/ModifyImpl.h"
