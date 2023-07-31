@@ -50,6 +50,7 @@
 #include "storage/Actions/SetLabelImpl.h"
 #include "storage/Actions/SetBootImpl.h"
 #include "storage/Actions/SetLegacyBootImpl.h"
+#include "storage/Actions/SetNoAutomountImpl.h"
 #include "storage/Actions/CreateImpl.h"
 #include "storage/Actions/DeleteImpl.h"
 
@@ -85,6 +86,7 @@ namespace storage
 	getChildValue(node, "id", id);
 	getChildValue(node, "boot", boot);
 	getChildValue(node, "legacy-boot", legacy_boot);
+	getChildValue(node, "no-automount", no_automount);
 
 	getChildValue(node, "label", label);
 	getChildValue(node, "uuid", uuid);
@@ -131,6 +133,7 @@ namespace storage
 	id = entry.id;
 	boot = entry.boot;
 	legacy_boot = entry.legacy_boot;
+	no_automount = entry.no_automount;
 	label = entry.name;
 
 	if (!is_active())
@@ -190,6 +193,7 @@ namespace storage
 	setChildValueIf(node, "id", sformat("0x%02x", id), id != 0);
 	setChildValueIf(node, "boot", boot, boot);
 	setChildValueIf(node, "legacy-boot", legacy_boot, legacy_boot);
+	setChildValueIf(node, "no-automount", no_automount, no_automount);
 
 	setChildValueIf(node, "label", label, !label.empty());
 	setChildValueIf(node, "uuid", uuid, !uuid.empty());
@@ -429,6 +433,9 @@ namespace storage
 	if (legacy_boot)
 	    actions.push_back(make_shared<Action::SetLegacyBoot>(get_sid()));
 
+	if (no_automount)
+	    actions.push_back(make_shared<Action::SetNoAutomount>(get_sid()));
+
 	actiongraph.add_chain(actions);
     }
 
@@ -473,6 +480,12 @@ namespace storage
 	    shared_ptr<Action::Base> action = make_shared<Action::SetLegacyBoot>(get_sid());
 	    actiongraph.add_vertex(action);
 	}
+
+	if (no_automount != lhs.no_automount)
+	{
+	    shared_ptr<Action::Base> action = make_shared<Action::SetNoAutomount>(get_sid());
+	    actiongraph.add_vertex(action);
+	}
     }
 
 
@@ -498,7 +511,8 @@ namespace storage
 	    return false;
 
 	return type == rhs.type && id == rhs.id && boot == rhs.boot &&
-	    legacy_boot == rhs.legacy_boot && label == rhs.label && uuid == rhs.uuid;
+	    legacy_boot == rhs.legacy_boot && no_automount == rhs.no_automount &&
+	    label == rhs.label && uuid == rhs.uuid;
     }
 
 
@@ -513,6 +527,7 @@ namespace storage
 	storage::log_diff_hex(log, "id", id, rhs.id);
 	storage::log_diff(log, "boot", boot, rhs.boot);
 	storage::log_diff(log, "legacy-boot", legacy_boot, rhs.legacy_boot);
+	storage::log_diff(log, "no-automount", no_automount, rhs.no_automount);
 
 	storage::log_diff(log, "label", label, rhs.label);
 	storage::log_diff(log, "uuid", uuid, rhs.uuid);
@@ -532,6 +547,9 @@ namespace storage
 
 	if (legacy_boot)
 	    out << " legacy-boot";
+
+	if (no_automount)
+	    out << " no-automount";
 
 	if (!label.empty())
 	    out << " label:" << label;
@@ -614,6 +632,19 @@ namespace storage
 				       toString(partition_table->get_type()))));
 
 	Impl::legacy_boot = legacy_boot;
+    }
+
+
+    void
+    Partition::Impl::set_no_automount(bool no_automount)
+    {
+	const PartitionTable* partition_table = get_partition_table();
+
+	if (!partition_table->is_partition_no_automount_flag_supported())
+	    ST_THROW(Exception(sformat("set_no_automount not supported on %s",
+				       toString(partition_table->get_type()))));
+
+	Impl::no_automount = no_automount;
     }
 
 
@@ -1370,6 +1401,44 @@ namespace storage
 
 	string cmd_line = PARTED_BIN " --script " + quote(partitionable->get_name()) + " set " +
 	    to_string(get_number()) + " legacy_boot " + (is_legacy_boot() ? "on" : "off");
+
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+    }
+
+
+    Text
+    Partition::Impl::do_set_no_automount_text(Tense tense) const
+    {
+	Text text;
+
+	if (is_no_automount())
+	    text = tenser(tense,
+			  // TRANSLATORS: displayed before action,
+			  // %1$s is replaced by partition name (e.g. /dev/sda1)
+			  _("Set no-automount flag of partition %1$s"),
+			  // TRANSLATORS: displayed during action,
+			  // %1$s is replaced by partition name (e.g. /dev/sda1)
+			  _("Setting no-automount flag of partition %1$s"));
+	else
+	    text = tenser(tense,
+			  // TRANSLATORS: displayed before action,
+			  // %1$s is replaced by partition name (e.g. /dev/sda1)
+			  _("Clear no-automount flag of partition %1$s"),
+			  // TRANSLATORS: displayed during action,
+			  // %1$s is replaced by partition name (e.g. /dev/sda1)
+			  _("Clearing no-automount flag of partition %1$s"));
+
+	return sformat(text, get_name());
+    }
+
+
+    void
+    Partition::Impl::do_set_no_automount() const
+    {
+	const Partitionable* partitionable = get_partitionable();
+
+	string cmd_line = PARTED_BIN " --script " + quote(partitionable->get_name()) + " set " +
+	    to_string(get_number()) + " no_automount " + (is_no_automount() ? "on" : "off");
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }

@@ -37,6 +37,7 @@ libactions_la_SOURCES =							\
 	SetLabelImpl.h			SetLabelImpl.cc			\
 	SetLegacyBootImpl.h		SetLegacyBootImpl.cc		\
 	SetLimitsImpl.h			SetLimitsImpl.cc		\
+	SetNoAutomountImpl.h		SetNoAutomountImpl.cc		\
 	SetNocowImpl.h			SetNocowImpl.cc			\
 	SetPmbrBootImpl.h		SetPmbrBootImpl.cc		\
 	SetQuotaImpl.h			SetQuotaImpl.cc			\

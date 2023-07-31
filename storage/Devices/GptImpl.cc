@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -28,6 +28,7 @@
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/SystemInfo/SystemInfoImpl.h"
+#include "storage/SystemInfo/CmdParted.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Prober.h"
@@ -237,6 +238,13 @@ namespace storage
 	};
 
 	return contains(more_supported_ids, id);
+    }
+
+
+    bool
+    Gpt::Impl::is_partition_no_automount_flag_supported() const
+    {
+	return PartedVersion::supports_no_automount_flag();
     }
 
 

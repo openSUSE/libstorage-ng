@@ -240,6 +240,20 @@ namespace storage
     }
 
 
+    bool
+    Partition::is_no_automount() const
+    {
+	return get_impl().is_no_automount();
+    }
+
+
+    void
+    Partition::set_no_automount(bool no_automount)
+    {
+	get_impl().set_no_automount(no_automount);
+    }
+
+
     const string&
     Partition::get_label() const
     {

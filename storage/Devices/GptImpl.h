@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -72,6 +72,7 @@ namespace storage
 	virtual bool is_partition_type_supported(PartitionType type) const override;
 	virtual bool is_partition_id_supported(unsigned int id) const override;
 	virtual bool is_partition_legacy_boot_flag_supported() const override { return true; }
+	virtual bool is_partition_no_automount_flag_supported() const override;
 
 	virtual unsigned int max_primary() const override;
 

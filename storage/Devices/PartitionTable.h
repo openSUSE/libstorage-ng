@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2015-2021] SUSE LLC
+ * Copyright (c) [2015-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -204,6 +204,16 @@ namespace storage
 	 * the partition table.
 	 */
 	bool is_partition_legacy_boot_flag_supported() const;
+
+	/**
+	 * Returns whether the no-automount flag is supported on partitions on
+	 * the partition table. So far true for GPT if parted 3.6 is available.
+	 *
+	 * See PartitionTable::is_partition_no_automount_flag_supported()
+	 *
+	 * @throw Exception
+	 */
+	bool is_partition_no_automount_flag_supported() const;
 
 	/**
 	 * Returns whether the partition id is supported on the partition table.

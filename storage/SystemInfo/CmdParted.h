@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -74,6 +74,9 @@ namespace storage
 
 	    /** Legacy boot flag of the partition (only GPT) */
 	    bool legacy_boot = false;
+
+	    /** No automount flag of the partition (only GPT) */
+	    bool no_automount = false;
 
 	    /** Partition name (only GPT) */
 	    string name;
@@ -227,6 +230,7 @@ namespace storage
 	static bool supports_wipe_signatures();
 	static bool supports_ignore_busy();
 	static bool print_triggers_udev();
+	static bool supports_no_automount_flag();
 
     private:
 

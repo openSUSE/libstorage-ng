@@ -358,6 +358,24 @@ namespace storage
 	void set_legacy_boot(bool legacy_boot);
 
 	/**
+	 * Query the no-automount flag of the partition.
+	 */
+	bool is_no_automount() const;
+
+	/**
+	 * Set the no-automount flag of the partition. Only supported on GPT. Requires
+	 * parted 3.6.
+	 *
+	 * The flag is called "no_automount" by parted and "no-auto" by systemd, see
+	 * https://www.freedesktop.org/wiki/Specifications/DiscoverablePartitionsSpec/.
+	 *
+	 * @see PartitionTable::is_partition_no_automount_flag_supported()
+	 *
+	 * @throw Exception
+	 */
+	void set_no_automount(bool no_automount);
+
+	/**
 	 * Get the partition label. Can be empty. Only available for partitions on GPT.
 	 *
 	 * In the UEFI spec this is called name instead of label. But many tools,
