@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-09 09:55+0100\n"
+"POT-Creation-Date: 2023-07-31 13:28+0200\n"
 "PO-Revision-Date: 2001-10-18 10:13+0200\n"
 "Last-Translator: Görkem Çetin <gorkem@gelecek.com.tr>\n"
 "Language-Team: turkish <i18n@suse.de>\n"
@@ -436,6 +436,13 @@ msgstr "%1 sabit disk bölümü kontrol ediliyor"
 msgid "Clear legacy boot flag of partition %1$s"
 msgstr "%1 sabit disk bölümü kontrol ediliyor"
 
+# clients/inst_rootpart.ycp:129
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Clear no-automount flag of partition %1$s"
+msgstr "%1 sabit disk bölümü kontrol ediliyor"
+
 # include/partitioning/lvm_ui_dialogs.ycp:81
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -475,6 +482,12 @@ msgstr "%1 bölümünde takas alanı oluşturuluyor..."
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #, fuzzy, c-format
 msgid "Clearing legacy boot flag of partition %1$s"
+msgstr "%1 bölümünde takas alanı oluşturuluyor..."
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Clearing no-automount flag of partition %1$s"
 msgstr "%1 bölümünde takas alanı oluşturuluyor..."
 
 #. TRANSLATORS: displayed during action,
@@ -3389,6 +3402,13 @@ msgstr "%1 bölümünün boyutunu %2 olarak değiştir"
 msgid "Set limits for qgroup of subvolume %1$s on %2$s"
 msgstr "Mantıksal yığın oluştur"
 
+# clients/inst_do_resize.ycp:450
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Set no-automount flag of partition %1$s"
+msgstr "%1 bölümünün boyutunu %2 olarak değiştir"
+
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
@@ -3512,6 +3532,13 @@ msgstr "%1 root bölümü %2 noktasında sisteme bağlanıyor..."
 #, fuzzy, c-format
 msgid "Setting limits for qgroup of subvolume %1$s on %2$s"
 msgstr "Mantıksal yığın oluştur"
+
+# clients/inst_rootpart.ycp:401
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Setting no-automount flag of partition %1$s"
+msgstr "%1 root bölümü %2 noktasında sisteme bağlanıyor..."
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),

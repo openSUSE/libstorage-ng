@@ -14,11 +14,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.nl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-09 09:55+0100\n"
+"POT-Creation-Date: 2023-07-31 13:28+0200\n"
 "PO-Revision-Date: 2023-03-09 13:14+0000\n"
 "Last-Translator: Freek de Kruijf <freek@opensuse.org>\n"
-"Language-Team: Dutch <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/nl/>\n"
+"Language-Team: Dutch <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -397,6 +397,12 @@ msgid "Clear legacy boot flag of partition %1$s"
 msgstr "Verouderde bootvlag van partitie %1$s wissen"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Clear no-automount flag of partition %1$s"
+msgstr "Bootvlag van partitie %1$s wissen"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB))
@@ -435,6 +441,12 @@ msgstr "Label van partitie %1$s wordt gewist"
 #, c-format
 msgid "Clearing legacy boot flag of partition %1$s"
 msgstr "Verouderde bootvlag van partitie %1$s wordt gewist"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Clearing no-automount flag of partition %1$s"
+msgstr "Bootvlag van partitie %1$s wordt gewist"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -2965,6 +2977,12 @@ msgid "Set limits for qgroup of subvolume %1$s on %2$s"
 msgstr "Limieten voor qgroup van subvolume %1$s op %2$s instellen"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Set no-automount flag of partition %1$s"
+msgstr "Opstartvlag van partitie %1$s instellen"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB))
@@ -3077,6 +3095,12 @@ msgstr "Limieten voor qgroup %1$s op %2$s worden ingesteld"
 #, c-format
 msgid "Setting limits for qgroup of subvolume %1$s on %2$s"
 msgstr "Limieten voor qgroup van subvolume %1$s op %2$s worden ingesteld"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Setting no-automount flag of partition %1$s"
+msgstr "Opstartvlag van partitie %1$s instellen"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
