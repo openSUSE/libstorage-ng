@@ -1,6 +1,5 @@
 /*
- * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) 2023 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,8 +20,8 @@
  */
 
 
-#ifndef STORAGE_ACTION_SET_LEGACY_BOOT_IMPL_H
-#define STORAGE_ACTION_SET_LEGACY_BOOT_IMPL_H
+#ifndef STORAGE_ACTION_SET_NO_AUTOMOUNT_IMPL_H
+#define STORAGE_ACTION_SET_NO_AUTOMOUNT_IMPL_H
 
 
 #include "storage/Actions/ModifyImpl.h"
@@ -34,11 +33,11 @@ namespace storage
     namespace Action
     {
 
-	class SetLegacyBoot : public Modify
+	class SetNoAutomount : public Modify
 	{
 	public:
 
-	    SetLegacyBoot(sid_t sid) : Modify(sid) {}
+	    SetNoAutomount(sid_t sid) : Modify(sid) {}
 
 	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;

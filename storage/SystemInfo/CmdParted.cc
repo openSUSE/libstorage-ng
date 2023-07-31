@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -267,6 +267,7 @@ namespace storage
 	entry.id = ID_LINUX;
 	entry.boot = false;
 	entry.legacy_boot = false;
+	entry.no_automount = false;
 
 	vector<json_object*> nodes;
 	if (!get_child_nodes(node, "flags", nodes))
@@ -298,6 +299,8 @@ namespace storage
 		case PtType::GPT:
 		    if (flag == "legacy_boot")
 			entry.legacy_boot = true;
+		    else if (flag == "no_automount")
+			entry.no_automount = true;
 		    break;
 
 		default:
@@ -395,6 +398,7 @@ namespace storage
 
 	entry.boot = false;
 	entry.legacy_boot = false;
+	entry.no_automount = false;
 
 	vector<string> flags;
 	boost::split(flags, s, boost::is_any_of(", "), boost::token_compress_on);
@@ -594,6 +598,9 @@ namespace storage
 	if (entry.legacy_boot)
 	    s << " legacy-boot";
 
+	if (entry.no_automount)
+	    s << " no-automount";
+
 	if (!entry.name.empty())
 	    s << " name:" << entry.name;
 
@@ -753,6 +760,15 @@ namespace storage
 	// SUSE has a patch to open the device read-only if only e.g. print is executed.
 
 	return os_flavour() != OsFlavour::SUSE;
+    }
+
+
+    bool
+    PartedVersion::supports_no_automount_flag()
+    {
+	query_version();
+
+	return major >= 4 || (major == 3 && minor >= 6);
     }
 
 

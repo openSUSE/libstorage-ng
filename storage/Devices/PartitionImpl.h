@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -98,6 +98,9 @@ namespace storage
 	bool is_legacy_boot() const { return legacy_boot; }
 	void set_legacy_boot(bool legacy_boot);
 
+	bool is_no_automount() const { return no_automount; }
+	void set_no_automount(bool no_automount);
+
 	const string& get_label() const { return label; }
 	void set_label(const string& label) { Impl::label = label; }
 
@@ -151,6 +154,9 @@ namespace storage
 	virtual Text do_set_legacy_boot_text(Tense tense) const;
 	virtual void do_set_legacy_boot() const;
 
+	virtual Text do_set_no_automount_text(Tense tense) const;
+	virtual void do_set_no_automount() const;
+
 	virtual Text do_delete_text(Tense tense) const override;
 	virtual void do_delete() const override;
 
@@ -167,6 +173,7 @@ namespace storage
 	unsigned int id = ID_LINUX;
 	bool boot = false;
 	bool legacy_boot = false;
+	bool no_automount = false;
 	string label;
 	string uuid;
 

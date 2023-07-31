@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -107,6 +107,8 @@ namespace storage
 	virtual bool is_partition_boot_flag_supported() const { return false; }
 
 	virtual bool is_partition_legacy_boot_flag_supported() const { return false; }
+
+	virtual bool is_partition_no_automount_flag_supported() const { return false; }
 
 	virtual unsigned int max_primary() const = 0;
 	virtual bool extended_possible() const { return false; }

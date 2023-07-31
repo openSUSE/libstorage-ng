@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2015-2021] SUSE LLC
+ * Copyright (c) [2015-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -278,6 +278,13 @@ namespace storage
     PartitionTable::is_partition_legacy_boot_flag_supported() const
     {
 	return get_impl().is_partition_legacy_boot_flag_supported();
+    }
+
+
+    bool
+    PartitionTable::is_partition_no_automount_flag_supported() const
+    {
+	return get_impl().is_partition_no_automount_flag_supported();
     }
 
 

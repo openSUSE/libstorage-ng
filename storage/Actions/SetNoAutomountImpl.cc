@@ -1,6 +1,5 @@
 /*
- * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) 2023 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,11 +20,8 @@
  */
 
 
-#ifndef STORAGE_ACTION_SET_LEGACY_BOOT_IMPL_H
-#define STORAGE_ACTION_SET_LEGACY_BOOT_IMPL_H
-
-
-#include "storage/Actions/ModifyImpl.h"
+#include "storage/Actions/SetNoAutomountImpl.h"
+#include "storage/Devices/PartitionImpl.h"
 
 
 namespace storage
@@ -34,19 +30,21 @@ namespace storage
     namespace Action
     {
 
-	class SetLegacyBoot : public Modify
+	Text
+	SetNoAutomount::text(const CommitData& commit_data) const
 	{
-	public:
+	    const Partition* partition = to_partition(get_device(commit_data.actiongraph, RHS));
+	    return partition->get_impl().do_set_no_automount_text(commit_data.tense);
+	}
 
-	    SetLegacyBoot(sid_t sid) : Modify(sid) {}
 
-	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
-
-	};
+	void
+	SetNoAutomount::commit(CommitData& commit_data, const CommitOptions& commit_options) const
+	{
+	    const Partition* partition = to_partition(get_device(commit_data.actiongraph, RHS));
+	    partition->get_impl().do_set_no_automount();
+	}
 
     }
 
 }
-
-#endif

@@ -374,6 +374,7 @@
 %catches(storage::Exception) storage::Partition::set_boot(bool boot);
 %catches(storage::Exception) storage::Partition::set_id(unsigned int id);
 %catches(storage::Exception) storage::Partition::set_legacy_boot(bool legacy_boot);
+%catches(storage::Exception) storage::Partition::set_no_automount(bool no_automount);
 %catches(storage::Exception) storage::Partition::set_type(PartitionType type);
 %catches(storage::AlignError) storage::PartitionTable::align(const Region &region, AlignPolicy align_policy=AlignPolicy::ALIGN_START_AND_END, AlignType align_type=AlignType::OPTIMAL) const;
 %catches(storage::DifferentBlockSizes) storage::PartitionTable::create_partition(const std::string &name, const Region &region, PartitionType type);
@@ -382,6 +383,7 @@
 %catches(storage::Exception) storage::PartitionTable::get_partitionable();
 %catches(storage::Exception) storage::PartitionTable::get_partitionable() const;
 %catches(storage::Exception) storage::PartitionTable::get_unused_partition_slots(AlignPolicy align_policy=AlignPolicy::ALIGN_START_KEEP_END, AlignType align_type=AlignType::OPTIMAL) const;
+%catches(storage::Exception) storage::PartitionTable::is_partition_no_automount_flag_supported() const;
 %catches(storage::WrongNumberOfChildren, storage::UnsupportedException, storage::Exception) storage::Partitionable::create_partition_table(PtType pt_type);
 %catches(storage::Exception) storage::Partitionable::get_default_partition_table_type() const;
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Partitionable::get_partition_table();
