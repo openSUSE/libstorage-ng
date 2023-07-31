@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-09 09:55+0100\n"
+"POT-Creation-Date: 2023-07-31 13:28+0200\n"
 "PO-Revision-Date: 2019-04-04 15:03+0000\n"
 "Last-Translator: Robert Taisz <robert.taisz@emerald.hu>\n"
 "Language-Team: Hungarian <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -417,6 +417,12 @@ msgid "Clear legacy boot flag of partition %1$s"
 msgstr "%1$s partíció örökölt rendszerindítási jelzőjének törlése"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Clear no-automount flag of partition %1$s"
+msgstr "%1$s partíció rendszerindítási jelzőjének törlése"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB))
@@ -458,6 +464,12 @@ msgstr "%1$s partíció rendszerindítási jelzőjének létrehozása"
 #, c-format
 msgid "Clearing legacy boot flag of partition %1$s"
 msgstr "%1$s partíció örökölt rendszerindítási jelzőjének létrehozása"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Clearing no-automount flag of partition %1$s"
+msgstr "%1$s partíció rendszerindítási jelzőjének létrehozása"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -3214,6 +3226,12 @@ msgstr ""
 "A(z) %1$s alkötet beállítása alapértelmezett alkötetként a(z) %2$s eszközön"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Set no-automount flag of partition %1$s"
+msgstr "%1$s partíció rendszerindítási jelzőjének beállítása"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB))
@@ -3333,6 +3351,12 @@ msgstr "%1$s beállításainak megadása"
 msgid "Setting limits for qgroup of subvolume %1$s on %2$s"
 msgstr ""
 "A(z) %1$s alkötet beállítása alapértelmezett alkötetként a(z) %2$s eszközön"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Setting no-automount flag of partition %1$s"
+msgstr "A(z) %1$s partíció rendszerindítási jelzőjének beállítása"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),

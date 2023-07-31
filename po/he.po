@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-09 09:55+0100\n"
+"POT-Creation-Date: 2023-07-31 13:28+0200\n"
 "PO-Revision-Date: 2004-08-09 10:24+0200\n"
 "Last-Translator: xxx <yyy@example.org>\n"
 "Language-Team: Hebrew <i18n@suse.de>\n"
@@ -451,6 +451,13 @@ msgstr "צור %1 מחיצות %2 ב %3"
 msgid "Clear legacy boot flag of partition %1$s"
 msgstr "צור %1 מחיצות %2 ב %3"
 
+#  to translators: * Create swap partition 1.2 GB on hda1
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Clear no-automount flag of partition %1$s"
+msgstr "צור %1 מחיצות %2 ב %3"
+
 #  popup heading 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -494,6 +501,13 @@ msgstr "צור מיחוץ &מותאם אישית"
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #, fuzzy, c-format
 msgid "Clearing legacy boot flag of partition %1$s"
+msgstr "צור מיחוץ &מותאם אישית"
+
+#  Radiobutton for partition dialog
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Clearing no-automount flag of partition %1$s"
 msgstr "צור מיחוץ &מותאם אישית"
 
 #. TRANSLATORS: displayed during action,
@@ -3315,6 +3329,13 @@ msgstr "שנה גודל מחיצה %1 ל %2"
 msgid "Set limits for qgroup of subvolume %1$s on %2$s"
 msgstr "יצור כרך לוגי"
 
+#  to translators: * Resize partition hda1 to 1.8GB.
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Set no-automount flag of partition %1$s"
+msgstr "שנה גודל מחיצה %1 ל %2"
+
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
@@ -3440,6 +3461,13 @@ msgstr "שנה גודל מחיצה %1 ל %2"
 #, fuzzy, c-format
 msgid "Setting limits for qgroup of subvolume %1$s on %2$s"
 msgstr "יצור כרך לוגי"
+
+#  to translators: * Resize partition hda1 to 1.8GB.
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Setting no-automount flag of partition %1$s"
+msgstr "שנה גודל מחיצה %1 ל %2"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),

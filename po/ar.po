@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-09 09:55+0100\n"
+"POT-Creation-Date: 2023-07-31 13:28+0200\n"
 "PO-Revision-Date: 2019-04-04 15:03+0000\n"
 "Last-Translator: Iman Abd Elaziz <Iman.AbdelAziz@arabize.com>\n"
 "Language-Team: Arabic <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -400,6 +400,12 @@ msgid "Clear legacy boot flag of partition %1$s"
 msgstr "مسح علامة التشغيل القديمة للقسم %1$s"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Clear no-automount flag of partition %1$s"
+msgstr "مسح علامة تشغيل القسم %1$s"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB))
@@ -439,6 +445,12 @@ msgstr "يتم الآن مسح علامة تشغيل القسم %1$s"
 #, c-format
 msgid "Clearing legacy boot flag of partition %1$s"
 msgstr "يتم الآن مسح علامة التشغيل القديمة للقسم %1$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Clearing no-automount flag of partition %1$s"
+msgstr "يتم الآن مسح علامة تشغيل القسم %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -3021,6 +3033,12 @@ msgid "Set limits for qgroup of subvolume %1$s on %2$s"
 msgstr "تعيين وحدة التخزين الفرعية على زحدة التخزين الفرعية %1$s على %2$s"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Set no-automount flag of partition %1$s"
+msgstr "تعيين علامة تهيئة القسم %1$s"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB))
@@ -3137,6 +3155,12 @@ msgid "Setting limits for qgroup of subvolume %1$s on %2$s"
 msgstr ""
 "يتم الآن تعيين وحدة التخزين الفرعية الافتراضية على وحدة التخزين الفرعية %1$s "
 "على %2$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Setting no-automount flag of partition %1$s"
+msgstr "يتم الآن تعيين علامة تشغيل للقسم %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),

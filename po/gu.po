@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-09 09:55+0100\n"
+"POT-Creation-Date: 2023-07-31 13:28+0200\n"
 "PO-Revision-Date: 2005-07-29 15:37+0530\n"
 "Last-Translator: i18n@suse.de\n"
 "Language-Team: Gujarati <i18n@suse.de>\n"
@@ -384,6 +384,12 @@ msgid "Clear legacy boot flag of partition %1$s"
 msgstr " પાર્ટીશન %1$s ને બનાવી રહ્યા છીએ "
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Clear no-automount flag of partition %1$s"
+msgstr " પાર્ટીશન %1$s ને બનાવી રહ્યા છીએ "
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB))
@@ -421,6 +427,12 @@ msgstr " પાર્ટીશન %1$s ને બનાવી રહ્યા �
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #, fuzzy, c-format
 msgid "Clearing legacy boot flag of partition %1$s"
+msgstr " પાર્ટીશન %1$s ને બનાવી રહ્યા છીએ "
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Clearing no-automount flag of partition %1$s"
 msgstr " પાર્ટીશન %1$s ને બનાવી રહ્યા છીએ "
 
 #. TRANSLATORS: displayed during action,
@@ -2917,6 +2929,12 @@ msgid "Set limits for qgroup of subvolume %1$s on %2$s"
 msgstr " લોજિકલ વોલ્યૂમ %1$s (%2$s) બનાવો "
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Set no-automount flag of partition %1$s"
+msgstr " પાર્ટીશનના પ્રકાર %1$s ને %2$X પર સેટ કરો "
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB))
@@ -3028,6 +3046,12 @@ msgstr " પાર્ટીશનના પ્રકાર %1$s ને %2$X પ�
 #, fuzzy, c-format
 msgid "Setting limits for qgroup of subvolume %1$s on %2$s"
 msgstr " લોજિકલ વોલ્યૂમ %1$s (%2$s) બનાવો "
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Setting no-automount flag of partition %1$s"
+msgstr " પાર્ટીશનના પ્રકાર %1$s ને %2$X પર સેટ કરી રહ્યા છીએ "
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),

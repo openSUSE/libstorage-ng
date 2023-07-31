@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-09 09:55+0100\n"
+"POT-Creation-Date: 2023-07-31 13:28+0200\n"
 "PO-Revision-Date: 2021-05-18 04:59+0000\n"
 "Last-Translator: Stanislav Brabec <sbrabec@suse.com>\n"
 "Language-Team: Lithuanian <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -395,6 +395,12 @@ msgid "Clear legacy boot flag of partition %1$s"
 msgstr "Išvalyti %1$s skaidinio seną operacinės sistemos paleidimo žymę"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Clear no-automount flag of partition %1$s"
+msgstr "Išvalyti %1$s skaidinio operacinės sistemos paleidimo žymę"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB))
@@ -432,6 +438,12 @@ msgstr "Kuriamas multipath skaidinys %1$s"
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #, fuzzy, c-format
 msgid "Clearing legacy boot flag of partition %1$s"
+msgstr "Kuriamas multipath skaidinys %1$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Clearing no-automount flag of partition %1$s"
 msgstr "Kuriamas multipath skaidinys %1$s"
 
 #. TRANSLATORS: displayed during action,
@@ -2922,6 +2934,12 @@ msgid "Set limits for qgroup of subvolume %1$s on %2$s"
 msgstr "Sukurti potomį %1$s įrenginyje %2$s"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Set no-automount flag of partition %1$s"
+msgstr "Keisti skaidinio %1$s tipą į %2$X"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB))
@@ -3033,6 +3051,12 @@ msgstr "Keičiamas skaidinio %1$s tipas į %2$X"
 #, fuzzy, c-format
 msgid "Setting limits for qgroup of subvolume %1$s on %2$s"
 msgstr "Kuriamas potomis %1$s įrenginyje %2$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Setting no-automount flag of partition %1$s"
+msgstr "Keičiamas skaidinio %1$s tipas į %2$X"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),

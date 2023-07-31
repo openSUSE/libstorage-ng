@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.ko\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-09 09:55+0100\n"
+"POT-Creation-Date: 2023-07-31 13:28+0200\n"
 "PO-Revision-Date: 2019-04-04 15:03+0000\n"
 "Last-Translator: Hwajin Kim <hwajin.kim@e4net.net>\n"
 "Language-Team: Korean <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -402,6 +402,13 @@ msgstr "파티션 %1$s의 레거시 부트 플래그 지우기"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Clear no-automount flag of partition %1$s"
+msgstr "파티션 %1$s의 부트 플래그 지우기"
+
+# SLE12
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB))
@@ -440,6 +447,12 @@ msgstr "파티션 %1$s의 부트 플래그 지우는 중"
 #, c-format
 msgid "Clearing legacy boot flag of partition %1$s"
 msgstr "파티션 %1$s의 레거시 부트 플래그 지우는 중"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Clearing no-automount flag of partition %1$s"
+msgstr "파티션 %1$s의 부트 플래그 지우는 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -3096,6 +3109,12 @@ msgid "Set limits for qgroup of subvolume %1$s on %2$s"
 msgstr "%2$s에 %1$s 하위 볼륨에서 기본 하위 볼륨 설정"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Set no-automount flag of partition %1$s"
+msgstr "%1$s 파티션의 부트 플래그 설정"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB))
@@ -3210,6 +3229,12 @@ msgstr "%1$s의 조정 옵션 설정 중"
 #, fuzzy, c-format
 msgid "Setting limits for qgroup of subvolume %1$s on %2$s"
 msgstr "%2$s에 %1$s 하위 볼륨에서 기본 하위 볼륨 설정 중"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Setting no-automount flag of partition %1$s"
+msgstr "%1$s 파티션의 부트 플래그 설정 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),

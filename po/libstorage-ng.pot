@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-09 09:55+0100\n"
+"POT-Creation-Date: 2023-07-31 13:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -383,6 +383,12 @@ msgid "Clear legacy boot flag of partition %1$s"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, c-format
+msgid "Clear no-automount flag of partition %1$s"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB))
@@ -420,6 +426,12 @@ msgstr ""
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #, c-format
 msgid "Clearing legacy boot flag of partition %1$s"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, c-format
+msgid "Clearing no-automount flag of partition %1$s"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,
@@ -2889,6 +2901,12 @@ msgid "Set limits for qgroup of subvolume %1$s on %2$s"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, c-format
+msgid "Set no-automount flag of partition %1$s"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB))
@@ -2999,6 +3017,12 @@ msgstr ""
 #. and /dev/sdb2 (2.00 GiB))
 #, c-format
 msgid "Setting limits for qgroup of subvolume %1$s on %2$s"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, c-format
+msgid "Setting no-automount flag of partition %1$s"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,

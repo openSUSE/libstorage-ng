@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-09 09:55+0100\n"
+"POT-Creation-Date: 2023-07-31 13:28+0200\n"
 "PO-Revision-Date: 2002-07-18 14:04+0200\n"
 "Last-Translator: proofreader <i18n@suse.de>\n"
 "Language-Team: English <i18n@suse.de>\n"
@@ -383,6 +383,12 @@ msgid "Clear legacy boot flag of partition %1$s"
 msgstr "Deletion Notification"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Clear no-automount flag of partition %1$s"
+msgstr "Deletion Notification"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB))
@@ -420,6 +426,12 @@ msgstr "Deletion Notification"
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #, fuzzy, c-format
 msgid "Clearing legacy boot flag of partition %1$s"
+msgstr "Deletion Notification"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Clearing no-automount flag of partition %1$s"
 msgstr "Deletion Notification"
 
 #. TRANSLATORS: displayed during action,
@@ -2907,6 +2919,12 @@ msgid "Set limits for qgroup of subvolume %1$s on %2$s"
 msgstr "Create MD5 sums"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Set no-automount flag of partition %1$s"
+msgstr "Deletion Notification"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB))
@@ -3018,6 +3036,12 @@ msgstr "Deletion Notification"
 #, fuzzy, c-format
 msgid "Setting limits for qgroup of subvolume %1$s on %2$s"
 msgstr "Create MD5 sums"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Setting no-automount flag of partition %1$s"
+msgstr "Deletion Notification"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),

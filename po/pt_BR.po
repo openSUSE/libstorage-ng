@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-09 09:55+0100\n"
+"POT-Creation-Date: 2023-07-31 13:28+0200\n"
 "PO-Revision-Date: 2023-03-31 20:14+0000\n"
 "Last-Translator: Luiz Fernando Ranghetti <elchevive68@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.opensuse.org/projects/"
@@ -396,6 +396,12 @@ msgid "Clear legacy boot flag of partition %1$s"
 msgstr "Limpar indicador de inicialização antigo da partição %1$s"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Clear no-automount flag of partition %1$s"
+msgstr "Limpar indicador de inicialização da partição %1$s"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB))
@@ -434,6 +440,12 @@ msgstr "Limpando rótulo da partição %1$s"
 #, c-format
 msgid "Clearing legacy boot flag of partition %1$s"
 msgstr "Limpando indicador de inicialização antigo da partição %1$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Clearing no-automount flag of partition %1$s"
+msgstr "Limpando indicador de inicialização da partição %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -2969,6 +2981,12 @@ msgid "Set limits for qgroup of subvolume %1$s on %2$s"
 msgstr "Defina limites para qgrupo de subvolume %1$s em %2$s"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Set no-automount flag of partition %1$s"
+msgstr "Definir indicador de inicialização da partição %1$s"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB))
@@ -3080,6 +3098,12 @@ msgstr "Definindo limites para qgroup %1$s em %2$s"
 #, c-format
 msgid "Setting limits for qgroup of subvolume %1$s on %2$s"
 msgstr "Definindo limites para qgrupo de subvolume %1$s em %2$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Setting no-automount flag of partition %1$s"
+msgstr "Definindo indicador de inicialização da partição %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
