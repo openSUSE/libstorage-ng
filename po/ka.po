@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-31 13:28+0200\n"
-"PO-Revision-Date: 2023-07-15 23:15+0000\n"
+"PO-Revision-Date: 2023-08-06 17:15+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
-"Language-Team: Georgian <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/ka/>\n"
+"Language-Team: Georgian <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/ka/>\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -296,7 +296,7 @@ msgstr "'qgroup %1$s'-ის მინიჭება 'qgroup %2$s'-სთვი
 #. and /dev/sdb2 (2.00 GiB))
 #, c-format
 msgid "Assign qgroup of subvolume %1$s to qgroup %2$s on %3$s"
-msgstr ""
+msgstr "%3$s-ზე qgrup %2$s-ზე ქვეტომზე %1$s qgroup-ის მინიჭება"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
@@ -392,9 +392,9 @@ msgstr "დანაყოფზე %1$s მოძველებული ჩ�
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Clear no-automount flag of partition %1$s"
-msgstr "დანაყოფზე %1$s ჩატვრთვადობის ალმის გასუფთავება"
+msgstr "დანაყოფის %1$s no-automount ალმის გასუფთავება"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -409,7 +409,7 @@ msgstr ""
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Clear protective MBR boot flag of GPT on %1$s"
-msgstr ""
+msgstr "%1$s-ზე GPT-ის დამცავი ჩატვირთვის ალმის მოხსნა"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -439,9 +439,9 @@ msgstr "დანაყოფიდან %1$s ჩატვირთვადო
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Clearing no-automount flag of partition %1$s"
-msgstr "დანაყოფის %1$s ჩატვირთვადობის ალმის გასუფთავება"
+msgstr "დანაყოფის %1$s no-automount ალმის გასუფთავება"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -449,13 +449,13 @@ msgstr "დანაყოფის %1$s ჩატვირთვადობი
 #. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Clearing option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr ""
+msgstr "%2$s-ზე ქვეტომზე %1$s 'no copy on write' ალმის გასუფთავება"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Clearing protective MBR boot flag of GPT on %1$s"
-msgstr ""
+msgstr "%1$s-ზე GPT-ის დაცული MBR-ის ჩატვირთვადობის ალმის გასუფთავება"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -471,6 +471,8 @@ msgid ""
 "Create %1$s %2$s (%3$s) for %4$s with %5$s\n"
 "from %6$s"
 msgstr ""
+"შეიქმნება %1$s %2$s (%3$s) %4$s-სთვის %5$s-ით\n"
+"%6$s-სგან"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -484,6 +486,8 @@ msgid ""
 "Create %1$s %2$s (%3$s) for swap\n"
 "from %4$s"
 msgstr ""
+"შეიქმნება %1$s %2$s (%3$s) სვოპისთვის\n"
+"%4$s-სგან"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -509,6 +513,8 @@ msgid ""
 "Create %1$s %2$s (%3$s) with %4$s\n"
 "from %5$s"
 msgstr ""
+"შეიქმნება %1$s %2$s (%3$s) %4$s-ით\n"
+"%5$s-სგან"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
@@ -668,6 +674,8 @@ msgid ""
 "Create encrypted %1$s %2$s (%3$s)\n"
 "from %4$s"
 msgstr ""
+"შეიქმნება დაშიფრული %1$s %2$s (%3$s)\n"
+"%4$s-სგან"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
@@ -683,6 +691,8 @@ msgid ""
 "Create encrypted %1$s %2$s (%3$s) for %4$s with %5$s\n"
 "from %6$s"
 msgstr ""
+"შეიქმნება დაშიფრული %1$s %2$s (%3$s) %4$s-სთვის %5$s-ით\n"
+"%6$s-სგან"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -696,6 +706,8 @@ msgid ""
 "Create encrypted %1$s %2$s (%3$s) for swap\n"
 "from %4$s"
 msgstr ""
+"შეიქმნება დაშიფრული %1$s %2$s (%3$s) სვოპისთვის\n"
+"%4$s-სგან"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
@@ -710,6 +722,8 @@ msgid ""
 "Create encrypted %1$s %2$s (%3$s) with %4$s\n"
 "from %5$s"
 msgstr ""
+"შეიქმნება დაშიფრული %1$s %2$s (%3$s) %4$s-ით\n"
+"%5$s-სგან"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -857,7 +871,7 @@ msgstr "%1$s-ზე btfs ფაილური სისტემის შე�
 #. %2$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Create file system btrfs on %1$s and mount at %2$s"
-msgstr ""
+msgstr "შეიქმნება btrfs ფაილური სისტემა %1$s-ზე, მიმაგრებს წერტილით %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the device name (e.g. /dev/loop0),
@@ -1174,7 +1188,7 @@ msgstr "თხელი პულის ლოგიკური ტომის
 #. /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Creating volume group %1$s (%2$s) from %3$s"
-msgstr ""
+msgstr "შეიქმნება ტომების ჯგუფ %1$s (%2$s) %3$s-სგან"
 
 #. TRANSLATORS: name of object
 msgid "DASD"
@@ -1661,6 +1675,12 @@ msgid ""
 "These logical volumes are ignored. Operations on the\n"
 "correponding volume groups may fail."
 msgstr ""
+"აღმოჩენილია მხარდაუჭერელი ტიპის LVM-ის ლოგიკური ტომები:\n"
+"\n"
+"%1$s\n"
+"\n"
+"ეს ლოგიკური ტომები დაიგნორდა. ოპერაციები შესაბამის ტომის ჯგუფებზე\n"
+"შეიძლება, ავარიულად დასრულდეს."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the filesystem type (e.g. ext4),
@@ -1671,6 +1691,9 @@ msgid ""
 "Detected a %1$s file system next to a partition table of type %2$s on the\n"
 "device %3$s. The file system will be ignored."
 msgstr ""
+"მოწყობილობაზე %3$s %2$s ტიპის დანაყოფების ცხრილის შემდეგ აღმოჩენილია ფაილური "
+"სისტემა\n"
+"%1$s. ფაილური სისტემა გამოტოვებული იქნება."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the partition table type (e.g. GPT),
@@ -1680,6 +1703,8 @@ msgid ""
 "Detected a LUKS device next to a partition table of type %1$s on the\n"
 "device %2$s. The LUKS device will be ignored."
 msgstr ""
+"მწყობილობაზე %2$s აღმოჩენილია %1$s ტიპის დანაყოფის შემდეგ აღმოჩენილია\n"
+"LUKS მოწყობილობა. ის გამოტოვებული იქნება."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the partition table type (e.g. GPT),
@@ -1689,6 +1714,8 @@ msgid ""
 "Detected a LVM logical volume next to a partition table of type %1$s on the\n"
 "device %2$s. The LVM logical volume will be ignored as good as possible."
 msgstr ""
+"მოწყობილობაზე %2$s %1$s ტიპის დანაყოფების ცხრილის შემდეგ აღმოჩენილია\n"
+"LVM-ის ლოგიკურ ტომი. ის გამოტოვებული იქნება."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the filesystem type (e.g. minix),
@@ -1698,6 +1725,8 @@ msgid ""
 "Detected an unsupported file system of type %1$s on the\n"
 "device %2$s."
 msgstr ""
+"მოწყობილობაზე %2$s აღმოჩენილია %1$s ტიპის ფაილური სისტემა,\n"
+"რომელიც მხარდაჭერილი არაა."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the partition table type (e.g. BSD),
@@ -1707,6 +1736,8 @@ msgid ""
 "Detected an unsupported partition table of type %1$s on the\n"
 "device %2$s."
 msgstr ""
+"მოწყობილობაზე %2$s აღმოჩენილია დანაყოფების ცხრილი ტიპით %1$s,\n"
+"რომელიც მხარდაჭერილი არაა."
 
 #. TRANSLATORS: name of partition type
 msgid "Diagnostics Partition"
@@ -2044,6 +2075,7 @@ msgstr "%1$s-ზე დაშიფრულ ფენის მოწყობ�
 #, c-format
 msgid "Grow logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
+"ტომების ჯგუფზე %2$s არსებული ლოგიკური ტომის %1$s გაზრდა %3$s-დან %4$s-მდე"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -2117,6 +2149,8 @@ msgstr "%1$s-ზე მდებარე დაშიფრული ფენ�
 #, c-format
 msgid "Growing logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
+"მიმდინარებს ტომების ჯგუფზე %2$s არსებული ლოგიკური ტომის %1$s გაზრდა %3$s-დან "
+"%4$s-მდე"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -2667,13 +2701,15 @@ msgstr "Tmpfs-ის აღმოჩენის შეცდომა"
 #. %1$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Reduce volume group %1$s by missing physical volumes"
-msgstr ""
+msgstr "ტომების ჯგუფის %1$s შემცირება ნაკლული ფიზიკური ტომების გამოკლების გზით"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Reducing volume group %1$s by missing physical volumes"
 msgstr ""
+"მიმდინარეობს ტომების ჯგუფის %1$s შემცირება ნაკლული ფიზიკური ტომების "
+"გამოკლების გზით"
 
 #. TRANSLATORS: name of object
 msgid "ReiserFS"
@@ -2708,7 +2744,7 @@ msgstr "%1$s-ის /etc/mdadm.conf-დან წაშლა"
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Remove encryption layer device on %1$s from /etc/crypttab"
-msgstr ""
+msgstr "/etc/crypttab-დან დაშიფვრის ფენის მოწყობილობის %1$s წაშლა"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the mount point (e.g. /home),
@@ -2716,7 +2752,7 @@ msgstr ""
 #. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Remove mount point %1$s of %2$s from /etc/fstab"
-msgstr ""
+msgstr "/etc/fstab-დან %2$s-ის მიმაგრების წერტილის '%1$s' წაშლა"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the mount point (e.g. /home),
@@ -2725,7 +2761,7 @@ msgstr ""
 #. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Remove mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
-msgstr ""
+msgstr "/etc/fstab-დან %1$s-ზე მიმაგრებული %3$s-ზე მდებარე ქვეტომის %2$s წაშლა"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
@@ -2764,7 +2800,7 @@ msgstr "%1$s-ის წაშლა /etc/mdadm.conf-დან"
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Removing encryption layer device on %1$s from /etc/crypttab"
-msgstr ""
+msgstr "/etc/crypttab-დან %1$s-ზე მდებარე დაშიფვრის ფენის მოწყობილობის წაშლა"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by thr mount point (e.g. /home),
@@ -2772,7 +2808,7 @@ msgstr ""
 #. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Removing mount point %1$s of %2$s from /etc/fstab"
-msgstr ""
+msgstr "/etc/fstab-დან %2$s-ის მიმაგრების წერტილის %1$s წაშლა"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the mount point (e.g. /home),
@@ -2782,6 +2818,7 @@ msgstr ""
 #, c-format
 msgid "Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
 msgstr ""
+"/etc/fstab-დან %3$s-ზე მდებარე ქვეტომის %2$s მიმაგრების წერტილის %1$s წაშლა"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
@@ -2797,6 +2834,8 @@ msgstr "იშლება qgroup %1$s %2$s-ზე"
 #, c-format
 msgid "Rename encryption layer device from %1$s to %2$s in /etc/crypttab"
 msgstr ""
+"/etc/crypttab-ში დაშიფვრის ფენის მოწყობილობის სახელის %1$s-დან %2$s-ზე "
+"გადარქმევა"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the old logical volume name (e.g. foo),
@@ -2814,7 +2853,7 @@ msgstr ""
 #. %3$s is replaced by device name (e.g. /dev/sda5)
 #, c-format
 msgid "Rename mount point %1$s from %2$s to %3$s in /etc/fstab"
-msgstr ""
+msgstr "/etc/fstab-ში %1$s-ის მიმაგრების წერტილის %2$s-დან %3$s-ზე გადარქმევა"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the old volume group name (e.g. foo),
@@ -2829,6 +2868,7 @@ msgstr "ტომების ჯგუფის %1$s სახელის გ�
 #, c-format
 msgid "Renaming encryption layer device from %1$s to %2$s in /etc/crypttab"
 msgstr ""
+"/etc/crypttab-ში დაშიფვრის ფენის მოწყობილობის სახელის %1$s-დან %2$s-ზე შეცვლა"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -2836,7 +2876,7 @@ msgstr ""
 #. %3$s is replaced by device name (e.g. /dev/sda5)
 #, c-format
 msgid "Renaming mount point %1$s from %2$s to %3$s in /etc/fstab"
-msgstr ""
+msgstr "/etc/fstab-ში %1$s-ის მიმაგრების წერტილი %2$s-დან %3$s-ზე შეიცვლება"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -2943,9 +2983,9 @@ msgstr "%2$s-ზე მდებარე ქვეტომის %1$s qgroup-�
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Set no-automount flag of partition %1$s"
-msgstr "%1$s დანაყოფზე ჩატვირთვადობის ალმის დაყენება"
+msgstr "%1$s დანაყოფზე no-automount ალმის დაყენება"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -2953,13 +2993,13 @@ msgstr "%1$s დანაყოფზე ჩატვირთვადობი
 #. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Set option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr ""
+msgstr "%2$s-ზე მდებარე ქვეტომის %1$s 'no copy on write' პარამეტრს დაყენება"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Set protective MBR boot flag of GPT on %1$s"
-msgstr ""
+msgstr "%1$s-ზე GPT-ის დაცული MBR-ის ჩატვირთვადობის ალმის დაყენება"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
@@ -3063,9 +3103,9 @@ msgstr ""
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting no-automount flag of partition %1$s"
-msgstr "%1$s-ზე ჩატვირთვადობის ალმის დაყენება"
+msgstr "%1$s-ზე no-automount ალმის დაყენება"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -3073,13 +3113,13 @@ msgstr "%1$s-ზე ჩატვირთვადობის ალმის �
 #. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Setting option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr ""
+msgstr "%2$s-ზე მდებარე ქვეტომის %1$s 'no copy on write' ალმის დაყენება"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Setting protective MBR boot flag of GPT on %1$s"
-msgstr ""
+msgstr "%1$s-ზე GPT-is daculi MBR-ის ჩატვირთვადობის ალმის დაყენება"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
@@ -3116,6 +3156,8 @@ msgstr "%1$s-ის %2$s-ზე %3$s-დან %4$s-მდე შემცირ
 #, c-format
 msgid "Shrink encryption layer device on %1$s from %2$s to %3$s"
 msgstr ""
+"%1$s-ზე მდებარე დაშიფვრის ფენის მოწყობილობის ზომის შემცირება %2$s-დან "
+"%3$s-მდე"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -3125,6 +3167,8 @@ msgstr ""
 #, c-format
 msgid "Shrink logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
+"ტომების ჯგუფზე %2$s მდებარე ლოგიკური ტომის %1$s ზომის %3$s-დან %4$s-მდე "
+"შემცირება"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -3203,6 +3247,8 @@ msgstr ""
 #, c-format
 msgid "Shrinking logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
+"ტომების ჯგუფზე %2$s მდებარე ლოგიკური ტომის %1$s ზომის %3$s-დან %4$s-ზე "
+"შემცირება"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -3286,7 +3332,7 @@ msgstr "%3$s-ზე მდებარე qgroup %1$s-ის qgroup %2$s-ზე 
 #. and /dev/sdb2 (2.00 GiB))
 #, c-format
 msgid "Unassign qgroup of subvolume %1$s from qgroup %2$s on %3$s"
-msgstr ""
+msgstr "%1$s ქვეტომის qgroup-ის %3$s-ზე მდებარე %2$s qgroupდან მინიჭების მოხსნა"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
@@ -3305,6 +3351,7 @@ msgstr "%3$s-ზე მდებარე qgroup %1$s-ის qgroup %2$s-ზე 
 #, c-format
 msgid "Unassigning qgroup of subvolume %1$s from qgroup %2$s on %3$s"
 msgstr ""
+"ქვეტომის %1$s qgroup-ის %3$s-ზე მდებარე qgroup-იდან %2$s მინიჭების მოხსნა"
 
 #. TRANSLATORS: name of partition type
 msgid "Unknown"
@@ -3340,7 +3387,7 @@ msgstr "%1$s-ზე %2$s-დან btfs ფაილური სისტემ
 #. %3$s is replaced by the mount point (e.g. /home)
 #, c-format
 msgid "Unmount subvolume %1$s on %2$s at %3$s"
-msgstr ""
+msgstr "%2$s-ზე მდებარე ქვეტომის %1$s %3$s-დან მოხსნა"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the mount point (e.g. /tmp)
@@ -3363,7 +3410,7 @@ msgstr "%1$s-ის მოხსნა %2$s-დან"
 #. %3$s is replaced by the mount point (e.g. /home)
 #, c-format
 msgid "Unmounting subvolume %1$s on %2$s at %3$s"
-msgstr ""
+msgstr "%2$s-ზე მდებარე ქვეტომის %1$s %3$s-დან მოხსნა"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the mount point (e.g. /home),
@@ -3371,7 +3418,7 @@ msgstr ""
 #. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Update mount point %1$s of %2$s in /etc/fstab"
-msgstr ""
+msgstr "/etc/fstab-შ %2$s-ის მიმაგრების წერტილის %1$s-ზე განახლება"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the mount point (e.g. /home),
@@ -3379,7 +3426,7 @@ msgstr ""
 #. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Updating mount point %1$s of %2$s in /etc/fstab"
-msgstr ""
+msgstr "/etc/fstab-ში %2$s-ის მიმაგრების წერტილის %1$s-ზე განახლება"
 
 #. TRANSLATORS: name of object
 msgid "VFAT"
