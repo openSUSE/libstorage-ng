@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2023-08-06 20:15+0000\n"
+"PO-Revision-Date: 2023-08-07 06:15+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://l10n.opensuse.org/projects/libstorage/"
 "ng-sle-15-sp1/ka/>\n"
@@ -846,9 +846,9 @@ msgstr "%2$s-ზე ქვეტომის (%1$s) შექმნა"
 #. TRANSLATORS:
 #. %1$s is replaced with the subvolume path (e.g. var/log),
 #. %2$s is replaced with the block device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%2$s-ზე ქვეტომის %1$s შექმნა, ალმით 'no copy on write'"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -894,23 +894,23 @@ msgstr "ტომების ჯგუფის %1$s (%2$s) შექმნა 
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating %1$s on %2$s (%3$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s-ის შექმნა %2$s-ზე (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating Bcache %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "Bcache %1$s-ის (%2$s) შექმნა"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating Bcache cache set %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "Bcache კეშის სეტის %1$s (%2$s) შექმნა"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1055,16 +1055,16 @@ msgstr "DM RAID"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate Bcache %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "Bcache %1$s-ის (%2$s) დეაქტივაცია"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate Bcache cache set on %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "Bcache-ის კეშის სეტის დეაქტივაცია %1$s-ზე (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -1114,16 +1114,16 @@ msgstr "თხელი პულის ლოგიკური ტომის
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating Bcache %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "Bcache-ის კეშის სეტის დეაქტივაცია %1$s-ზე (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating Bcache cache set on %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "Bcache-ის კეშის სეტის დეაქტივაცია %1$s-ზე (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -1192,16 +1192,16 @@ msgstr "%1$s-ის წაშლა %2$s-ზე"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete Bcache %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "Bcache %1$s-ის (%2$s) წაშლა"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete Bcache cache set on %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "Bcache-ის კეშის სეტის %1$s-ის (%2$s) წაშლა"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1352,16 +1352,16 @@ msgstr "%1$s %2$s-ზე წაშლა"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting Bcache %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "Bcache %1$s-ის (%2$s) წაშლა"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting Bcache cache set on %1$s (%2$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "Bcache-ის კეშის სეტის %1$s-ზე (%2$s) წაშლა"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1485,17 +1485,17 @@ msgstr "ტომების ჯგუფის %1$s წაშლა (%2$s)"
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Detach Bcache cache set on %1$s from Bcache %2$s (%3$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "Bcache %2$s-დან (%3$s) Bcache-ის კეშს სეტის %1$s-დან მოხსნა"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Detaching Bcache cache set on %1$s from Bcache %2$s (%3$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "Bcache %2$s-დან (%3$s) Bcache-ის კეშს სეტის %1$s-დან მოხსნა"
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by a list of device names joined by newlines (e.g.
@@ -1523,6 +1523,8 @@ msgid ""
 "Detected a LUKS device next to a partition table on the\n"
 "device %1$s. The LUKS device will be ignored."
 msgstr ""
+"%1$s-ის დანაყოფებს ცხრილის შემდეგ აღმოჩენილია LUKS\n"
+"მოწყობილობა. ის გამოტოვებული იქნება."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -1531,6 +1533,8 @@ msgid ""
 "Detected a LVM logical volume next to a partition table on the\n"
 "device %1$s. The LVM logical volume will be ignored."
 msgstr ""
+"%1$s-ის დანაყოფებს ცხრილის შემდეგ აღმოჩენილია LVM-ის\n"
+"ლოგიკური ტომი. ის გამოტოვებული იქნება."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -1539,6 +1543,8 @@ msgid ""
 "Detected a file system next to a partition table on the\n"
 "device %1$s. The file system will be ignored."
 msgstr ""
+"მოწყობილობაზე %1$s დანაყოფების ცხრილის შემდეგ აღმოჩენილია\n"
+"ფაილური სისტემა. ის გამოტოვებული იქნება."
 
 #. TRANSLATORS: name of partition type
 msgid "Diagnostics Partition"
@@ -2293,7 +2299,7 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Reiserfs"
-msgstr ""
+msgstr "Reiserfs"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -2373,9 +2379,9 @@ msgstr ""
 #. TRANSLATORS:
 #. %1$s is replaced with the old logical volume name (e.g. foo),
 #. %2$s is replaced with the new logical volume name (e.g. bar)
-#, fuzzy, c-format
+#, c-format
 msgid "Rename %1$s to %2$s"
-msgstr "მონაცემებიდან ამოღება"
+msgstr "%1$s-ის სახელის %2$s-ზე გადარქმევა"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
@@ -2425,11 +2431,9 @@ msgstr "%1$s-ზე GPT-ის შეკეთება"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
-#, fuzzy, c-format
+#, c-format
 msgid "Set UUID of %1$s to %2$s"
-msgstr ""
-"\n"
-"'%1' ცვლადისთვის '%2'-ის მინიჭება: %3"
+msgstr "%1$s-ის UUID-ის %2$s-ზე დაყენება"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -2441,9 +2445,9 @@ msgstr "%1$s დანაყოფზე ჩატვირთვადობი
 #. %1$s is replaced by cache mode (e.g. writeback),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Set cache mode to %1$s for Bcache %2$s (%3$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "Bcache %2$s-ის (%3$s) კეშის რეჟიმის %1$s-ზე დაყენება"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -2477,11 +2481,9 @@ msgstr "დანაყოფის %1$s ID-ის დაყენება 0x%2
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by label (e.g. ROOT)
-#, fuzzy, c-format
+#, c-format
 msgid "Set label of %1$s to %2$s"
-msgstr ""
-"\n"
-"'%1' ცვლადისთვის '%2'-ის მინიჭება: %3"
+msgstr "%1$s-ის ჭდის %2$s-ზე დაყენება"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -2504,18 +2506,16 @@ msgstr "%1$s-ზე GPT-ის დაცული MBR-ის ჩატვირ�
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Set tune options of %1$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s-ის მორგების პარამეტრების დაყენება"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting UUID of %1$s to %2$s"
-msgstr ""
-"\n"
-"'%1' ცვლადისთვის '%2'-ის მინიჭება: %3"
+msgstr "მიმდინარეობს %1$s-ის UUID-ის %2$s-ზე დაყენება"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -2527,9 +2527,9 @@ msgstr "%1$s-ზე ჩატვირთვადობის ალმის �
 #. %1$s is replaced by cache mode (e.g. writeback),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting cache mode to %1$s for Bcache %2$s (%3$s)"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "Bcache %2$s-ის (%3$s) რეჟიმის %1$s-ზე დაყენება"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -2563,11 +2563,9 @@ msgstr "დანაყოფის %1$s ID-ის 0x%2$02X-ზე დაყე�
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by label (e.g. ROOT)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting label of %1$s to %2$s"
-msgstr ""
-"\n"
-"'%1' ცვლადისთვის '%2'-ის მინიჭება: %3"
+msgstr "%1$s-ის ჭდის %2$s-ზე დაყენება"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -2590,9 +2588,9 @@ msgstr "%1$s-ზე GPT-is daculi MBR-ის ჩატვირთვადო�
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting tune options of %1$s"
-msgstr "%1 დანაყოფის შემოწმება"
+msgstr "%1$s-ის მორგების პარამეტრების დაყენება"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system (e.g. ext4),
