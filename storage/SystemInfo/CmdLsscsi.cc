@@ -147,15 +147,15 @@ namespace storage
     void
     LsscsiVersion::parse_version(const string& version)
     {
-	const regex version_rx("release: ([0-9]+)\\.([0-9]+)", regex::extended);
+	const regex version_rx("(version|release): ([0-9]+)\\.([0-9]+)", regex::extended);
 
 	smatch match;
 
 	if (!regex_search(version, match, version_rx))
 	    ST_THROW(Exception("failed to parse lsscsi version '" + version + "'"));
 
-	major = stoi(match[1]);
-	minor = stoi(match[2]);
+	major = stoi(match[2]);
+	minor = stoi(match[3]);
 
 	y2mil("major:" << major << " minor:" << minor);
 
