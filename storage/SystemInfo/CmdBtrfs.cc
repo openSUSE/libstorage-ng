@@ -411,10 +411,10 @@ namespace storage
 	    string tmp3, tmp4;
 
 	    if (!get_child_value(tmp2, "bg-type", tmp3))
-		ST_THROW(Exception("\"bg-type\" not found"));
+		ST_THROW(Exception("\"bg-type\" not found or invalid"));
 
 	    if (!get_child_value(tmp2, "bg-profile", tmp4))
-		ST_THROW(Exception("\"bg-profile\" not found"));
+		ST_THROW(Exception("\"bg-profile\" not found or invalid"));
 
 	    boost::to_upper(tmp4, locale::classic());
 
@@ -528,19 +528,15 @@ namespace storage
 	    string tmp3;
 
 	    if (!get_child_value(tmp2, "qgroupid", tmp3))
-		ST_THROW(Exception("\"qgroupid\" not found"));
+		ST_THROW(Exception("\"qgroupid\" not found or invalid"));
 
 	    entry.id = BtrfsQgroup::Impl::parse_id(tmp3);
 
-	    if (!get_child_value(tmp2, "referenced", tmp3))
-		ST_THROW(Exception("\"referenced\" not found"));
+	    if (!get_child_value(tmp2, "referenced", entry.referenced))
+		ST_THROW(Exception("\"referenced\" not found or invalid"));
 
-	    tmp3 >> entry.referenced;
-
-	    if (!get_child_value(tmp2, "exclusive", tmp3))
-		ST_THROW(Exception("\"exclusive\" not found"));
-
-	    tmp3 >> entry.exclusive;
+	    if (!get_child_value(tmp2, "exclusive", entry.exclusive))
+		ST_THROW(Exception("\"exclusive\" not found or invalid"));
 
 	    if (!get_child_value(tmp2, "max_referenced", tmp3))
 		ST_THROW(Exception("\"max_referenced\" not found"));
@@ -556,7 +552,7 @@ namespace storage
 
 	    vector<json_object*> tmp4;
 	    if (!get_child_nodes(tmp2, "parents", tmp4))
-		ST_THROW(Exception("\"parents\" not found"));
+		ST_THROW(Exception("\"parents\" not found or invalid"));
 
 	    for (json_object* tmp5 : tmp4)
 		entry.parents_id.push_back(BtrfsQgroup::Impl::parse_id(json_object_get_string(tmp5)));

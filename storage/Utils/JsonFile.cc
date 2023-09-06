@@ -24,7 +24,6 @@
 #include <sys/stat.h>
 #include <functional>
 #include <memory>
-#include <sstream>
 
 #include "storage/Utils/JsonFile.h"
 #include "storage/Utils/ExceptionImpl.h"
@@ -149,16 +148,21 @@ namespace storage
     }
 
 
+    // json_object_get_int and json_object_get_int64 parse strings as integer.
+
+
     template<>
     bool
     get_child_value(json_object* parent, const char* name, int& value)
     {
+	static_assert(sizeof(int) <= 4, "int wider than 32 bit");
+
 	json_object* child;
 
 	if (!json_object_object_get_ex(parent, name, &child))
 	    return false;
 
-	if (!json_object_is_type(child, json_type_int))
+	if (!json_object_is_type(child, json_type_int) && !json_object_is_type(child, json_type_string))
 	    return false;
 
 	value = json_object_get_int(child);
@@ -171,12 +175,14 @@ namespace storage
     bool
     get_child_value(json_object* parent, const char* name, unsigned int& value)
     {
+	static_assert(sizeof(unsigned int) <= 4, "unsigned int wider than 32 bit");
+
 	json_object* child;
 
 	if (!json_object_object_get_ex(parent, name, &child))
 	    return false;
 
-	if (!json_object_is_type(child, json_type_int))
+	if (!json_object_is_type(child, json_type_int) && !json_object_is_type(child, json_type_string))
 	    return false;
 
 	value = json_object_get_int(child);
@@ -189,17 +195,17 @@ namespace storage
     bool
     get_child_value(json_object* parent, const char* name, unsigned long& value)
     {
+	static_assert(sizeof(unsigned long) <= 8, "unsigned long wider than 64 bit");
+
 	json_object* child;
 
 	if (!json_object_object_get_ex(parent, name, &child))
 	    return false;
 
-	if (!json_object_is_type(child, json_type_string))
+	if (!json_object_is_type(child, json_type_int) && !json_object_is_type(child, json_type_string))
 	    return false;
 
-	std::istringstream istr(json_object_get_string(child));
-	classic(istr);
-	istr >> value;
+	value = json_object_get_int64(child);
 
 	return true;
     }
@@ -209,17 +215,17 @@ namespace storage
     bool
     get_child_value(json_object* parent, const char* name, unsigned long long& value)
     {
+	static_assert(sizeof(unsigned long) <= 8, "unsigned long long wider than 64 bit");
+
 	json_object* child;
 
 	if (!json_object_object_get_ex(parent, name, &child))
 	    return false;
 
-	if (!json_object_is_type(child, json_type_string))
+	if (!json_object_is_type(child, json_type_int) && !json_object_is_type(child, json_type_string))
 	    return false;
 
-	std::istringstream istr(json_object_get_string(child));
-	classic(istr);
-	istr >> value;
+	value = json_object_get_int64(child);
 
 	return true;
     }
