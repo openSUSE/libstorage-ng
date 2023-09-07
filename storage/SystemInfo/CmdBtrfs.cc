@@ -512,6 +512,32 @@ namespace storage
     }
 
 
+    bool
+    CmdBtrfsQgroupShow::parse_limit(json_object* parent, const char* name,
+				    std::optional<unsigned long long>& value) const
+    {
+	// See JsonFile.cc for similar code.
+
+	json_object* child;
+
+	if (!json_object_object_get_ex(parent, name, &child))
+	    return true;
+
+	if (json_object_is_type(child, json_type_null))
+	    return true;
+
+	if (json_object_is_type(child, json_type_string) && strcmp(json_object_get_string(child), "none") == 0)
+	    return true;
+
+	if (!json_object_is_type(child, json_type_int) && !json_object_is_type(child, json_type_string))
+	    return false;
+
+	value = json_object_get_int64(child);
+
+	return true;
+    }
+
+
     void
     CmdBtrfsQgroupShow::parse_json(const vector<string>& lines)
     {
@@ -538,17 +564,11 @@ namespace storage
 	    if (!get_child_value(tmp2, "exclusive", entry.exclusive))
 		ST_THROW(Exception("\"exclusive\" not found or invalid"));
 
-	    if (!get_child_value(tmp2, "max_referenced", tmp3))
-		ST_THROW(Exception("\"max_referenced\" not found"));
+	    if (!parse_limit(tmp2, "max_referenced", entry.referenced_limit))
+		ST_THROW(Exception("\"max_referenced\" not found or invalid"));
 
-	    if (tmp3 != "none")
-		tmp3 >> entry.referenced_limit;
-
-	    if (!get_child_value(tmp2, "max_exclusive", tmp3))
-		ST_THROW(Exception("\"max_exclusive\" not found"));
-
-	    if (tmp3 != "none")
-		tmp3 >> entry.exclusive_limit;
+	    if (!parse_limit(tmp2, "max_exclusive", entry.exclusive_limit))
+		ST_THROW(Exception("\"max_exclusive\" not found or invalid"));
 
 	    vector<json_object*> tmp4;
 	    if (!get_child_nodes(tmp2, "parents", tmp4))

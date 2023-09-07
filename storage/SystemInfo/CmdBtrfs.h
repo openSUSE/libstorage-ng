@@ -32,6 +32,7 @@
 #include "storage/Filesystems/BtrfsSubvolumeImpl.h"
 #include "storage/Filesystems/Btrfs.h"
 #include "storage/Filesystems/BtrfsQgroupImpl.h"
+#include "storage/Utils/JsonFile.h"
 
 
 namespace storage
@@ -272,6 +273,8 @@ namespace storage
 
 	void parse(const vector<string>& lines);
 	void parse_json(const vector<string>& lines);
+
+	bool parse_limit(json_object* parent, const char* name, std::optional<unsigned long long>& value) const;
 
 	bool quota = false;
 
