@@ -10,10 +10,10 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-31 13:28+0200\n"
-"PO-Revision-Date: 2023-03-12 08:14+0000\n"
+"PO-Revision-Date: 2023-09-09 06:15+0000\n"
 "Last-Translator: Luna  Jernberg <bittin@opensuse.org>\n"
-"Language-Team: Swedish <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/sv/>\n"
+"Language-Team: Swedish <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -404,9 +404,9 @@ msgstr "Ta bort föråldrad bootflagga för partitionen %1$s"
 # SLE12
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Clear no-automount flag of partition %1$s"
-msgstr "Ta bort bootflagga för partitionen %1$s"
+msgstr "Ta bort ingen-automontering flagga för partition %1$s"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
@@ -455,9 +455,9 @@ msgstr "Tar bort föråldrad bootflagga för partitionen %1$s"
 # SLE12
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Clearing no-automount flag of partition %1$s"
-msgstr "Tar bort bootflagga för partitionen %1$s"
+msgstr "Tar bort ingen-automontering flagga för partition %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -3057,9 +3057,9 @@ msgstr "Ställ in gränser för qgroup på undervolym %1$s av %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Set no-automount flag of partition %1$s"
-msgstr "Ange bootflagga för partition %1$s"
+msgstr "Ställ in ingen-automontering flagga för partition %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -3179,9 +3179,9 @@ msgstr "Ställer in gränser för qgroup av undervolym %1$s av %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting no-automount flag of partition %1$s"
-msgstr "Anger bootflagga för partitionen %1$s"
+msgstr "Ställer in ingen-automontering flagga för partition %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
