@@ -27,6 +27,13 @@ namespace storage
 {
 
     const char*
+    get_libversion_string()
+    {
+	return LIBSTORAGE_NG_VERSION_STRING;
+    }
+
+
+    const char*
     get_version_string()
     {
 	return LIBSTORAGE_NG_VERSION_STRING;

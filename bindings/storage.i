@@ -48,7 +48,6 @@ use_ostream(storage::PartitionSlot);
 %{
 #include "storage/CompoundAction.h"
 
-#include "storage/Version.h"
 #include "storage/Utils/Swig.h"
 #include "storage/Utils/Logger.h"
 #include "storage/Utils/Exception.h"
@@ -63,6 +62,7 @@ use_ostream(storage::PartitionSlot);
 #include "storage/FreeInfo.h"
 #include "storage/UsedFeatures.h"
 #include "storage/View.h"
+#include "storage/Version.h"
 
 #include "storage/SystemInfo/Arch.h"
 #include "storage/SystemInfo/SystemInfo.h"
@@ -152,7 +152,6 @@ use_ostream(storage::PartitionSlot);
 
 %include "../../storage/CompoundAction.h"
 
-%include "../../storage/Version.h"
 %include "../../storage/Utils/Swig.h"
 %include "../../storage/Utils/Logger.h"
 %include "../../storage/Utils/Exception.h"
@@ -167,6 +166,7 @@ use_ostream(storage::PartitionSlot);
 %include "../../storage/FreeInfo.h"
 %include "../../storage/UsedFeatures.h"
 %include "../../storage/View.h"
+%include "../../storage/Version.h"
 
 %include "../../storage/SystemInfo/Arch.h"
 %include "../../storage/SystemInfo/SystemInfo.h"

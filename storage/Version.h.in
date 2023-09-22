@@ -25,6 +25,9 @@
 #define STORAGE_VERSION_H
 
 
+#include "storage/Utils/Swig.h"
+
+
 #define LIBSTORAGE_NG_VERSION_STRING "@LIBVERSION@"
 
 #define LIBSTORAGE_NG_VERSION_MAJOR @LIBVERSION_MAJOR@
@@ -43,7 +46,9 @@ namespace storage
      * Return LIBSTORAGE_NG_VERSION_STRING libstorage-ng was compiled with. May differ
      * from the define (compile time vs. link time).
      */
-    const char* get_version_string();
+    const char* get_libversion_string();
+
+    const char* get_version_string() ST_DEPRECATED;
 
 }
 
