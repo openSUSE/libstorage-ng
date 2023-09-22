@@ -21,7 +21,6 @@ BOOST_AUTO_TEST_CASE( container_operations )
     CommentedConfigFile::Entry * entry_c = new CommentedConfigFile::Entry();
     CommentedConfigFile::Entry * entry_d = new CommentedConfigFile::Entry();
     CommentedConfigFile::Entry * entry_e = new CommentedConfigFile::Entry();
-    CommentedConfigFile::Entry * entry   = 0;
 
     entry_a->set_content( "Entry A" );
     entry_b->set_content( "Entry B" );
@@ -65,10 +64,12 @@ BOOST_AUTO_TEST_CASE( container_operations )
     BOOST_CHECK_EQUAL( subject.get_entry(3), entry_d );
     BOOST_CHECK_EQUAL( subject.get_entry(4), entry_e );
 
-    entry = subject.take( 3 );
+    CommentedConfigFile::Entry * entry = subject.take( 3 );
 
     BOOST_CHECK_EQUAL( entry, entry_d );
     BOOST_CHECK_EQUAL( entry_d->get_parent(), (void *) 0);
+
+    delete entry;
 
     BOOST_CHECK_EQUAL( subject.get_entry_count(), 4 );
     BOOST_CHECK_EQUAL( subject.get_entry(0), entry_a );
@@ -76,8 +77,8 @@ BOOST_AUTO_TEST_CASE( container_operations )
     BOOST_CHECK_EQUAL( subject.get_entry(2), entry_c );
     BOOST_CHECK_EQUAL( subject.get_entry(3), entry_e );
 
-    BOOST_CHECK_EQUAL( subject.get_index_of( entry_c),  2 );
-    BOOST_CHECK_EQUAL( subject.get_index_of( entry_d), -1 );
+    BOOST_CHECK_EQUAL( subject.get_index_of( entry_c ),  2 );
+    BOOST_CHECK_EQUAL( subject.get_index_of( entry_d ), -1 );
     BOOST_CHECK_EQUAL( subject.take(9), (void *) 0 );
 
     subject.clear_entries();
