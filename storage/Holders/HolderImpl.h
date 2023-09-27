@@ -141,7 +141,23 @@ namespace storage
 
 	Impl(const xmlNode* node);
 
+    public:
+
+	/**
+	 * Create a holder between source and target in the devicegraph. Duplicate holders
+	 * of the same type are not allowed.
+	 *
+	 * The created holder is owned by the devicegraph.
+	 */
+	static void create(Devicegraph* devicegraph, const Device* source, const Device* target,
+			   shared_ptr<Holder> holder);
+
+	static void load(Devicegraph* devicegraph, const xmlNode* node, shared_ptr<Holder> holder);
+
     private:
+
+	static void add_to_devicegraph(Devicegraph* devicegraph, const Device* source,
+				       const Device* target, shared_ptr<Holder> holder);
 
 	Devicegraph* devicegraph = nullptr;
 	Devicegraph::Impl::edge_descriptor edge;

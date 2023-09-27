@@ -173,8 +173,6 @@ namespace storage
 
 	virtual Disk* clone() const override;
 
-    protected:
-
 	Disk(Impl* impl);
 
     };

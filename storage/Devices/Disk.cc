@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -50,36 +50,36 @@ namespace storage
     Disk*
     Disk::create(Devicegraph* devicegraph, const string& name)
     {
-	Disk* ret = new Disk(new Disk::Impl(name));
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<Disk> disk = make_shared<Disk>(new Disk::Impl(name));
+	Device::Impl::create(devicegraph, disk);
+	return disk.get();
     }
 
 
     Disk*
     Disk::create(Devicegraph* devicegraph, const string& name, const Region& region)
     {
-	Disk* ret = new Disk(new Disk::Impl(name, region));
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<Disk> disk = make_shared<Disk>(new Disk::Impl(name, region));
+	Device::Impl::create(devicegraph, disk);
+	return disk.get();
     }
 
 
     Disk*
     Disk::create(Devicegraph* devicegraph, const string& name, unsigned long long size)
     {
-	Disk* ret = new Disk(new Disk::Impl(name, Region(0, size / 512, 512)));
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<Disk> disk = make_shared<Disk>(new Disk::Impl(name, Region(0, size / 512, 512)));
+	Device::Impl::create(devicegraph, disk);
+	return disk.get();
     }
 
 
     Disk*
     Disk::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	Disk* ret = new Disk(new Disk::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
+	shared_ptr<Disk> disk = make_shared<Disk>(new Disk::Impl(node));
+	Device::Impl::load(devicegraph, disk);
+	return disk.get();
     }
 
 

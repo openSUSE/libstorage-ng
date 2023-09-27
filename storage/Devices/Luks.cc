@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -33,18 +33,18 @@ namespace storage
     Luks*
     Luks::create(Devicegraph* devicegraph, const string& dm_table_name)
     {
-	Luks* ret = new Luks(new Luks::Impl(dm_table_name));
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<Luks> luks = make_shared<Luks>(new Luks::Impl(dm_table_name));
+	Device::Impl::create(devicegraph, luks);
+	return luks.get();
     }
 
 
     Luks*
     Luks::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	Luks* ret = new Luks(new Luks::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
+	shared_ptr<Luks> luks = make_shared<Luks>(new Luks::Impl(node));
+	Device::Impl::load(devicegraph, luks);
+	return luks.get();
     }
 
 

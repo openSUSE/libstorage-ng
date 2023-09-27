@@ -59,8 +59,6 @@ namespace storage
 
 	virtual Udf* clone() const override;
 
-    protected:
-
 	Udf(Impl* impl);
 
     };

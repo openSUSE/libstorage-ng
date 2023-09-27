@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
+ * Copyright (c) 2023 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -33,18 +34,18 @@ namespace storage
     Ntfs*
     Ntfs::create(Devicegraph* devicegraph)
     {
-	Ntfs* ret = new Ntfs(new Ntfs::Impl());
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<Ntfs> ntfs = make_shared<Ntfs>(new Ntfs::Impl());
+	Device::Impl::create(devicegraph, ntfs);
+	return ntfs.get();
     }
 
 
     Ntfs*
     Ntfs::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	Ntfs* ret = new Ntfs(new Ntfs::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
+	shared_ptr<Ntfs> ntfs = make_shared<Ntfs>(new Ntfs::Impl(node));
+	Device::Impl::load(devicegraph, ntfs);
+	return ntfs.get();
     }
 
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 SUSE LLC
+ * Copyright (c) [2019-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -33,18 +33,18 @@ namespace storage
     PlainEncryption*
     PlainEncryption::create(Devicegraph* devicegraph, const string& dm_table_name)
     {
-	PlainEncryption* ret = new PlainEncryption(new PlainEncryption::Impl(dm_table_name));
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<PlainEncryption> plain_encryption = make_shared<PlainEncryption>(new PlainEncryption::Impl(dm_table_name));
+	Device::Impl::create(devicegraph, plain_encryption);
+	return plain_encryption.get();
     }
 
 
     PlainEncryption*
     PlainEncryption::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	PlainEncryption* ret = new PlainEncryption(new PlainEncryption::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
+	shared_ptr<PlainEncryption> plain_encryption = make_shared<PlainEncryption>(new PlainEncryption::Impl(node));
+	Device::Impl::load(devicegraph, plain_encryption);
+	return plain_encryption.get();
     }
 
 

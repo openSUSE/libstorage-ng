@@ -59,8 +59,6 @@ namespace storage
 
 	virtual Iso9660* clone() const override;
 
-    protected:
-
 	Iso9660(Impl* impl);
 
     };

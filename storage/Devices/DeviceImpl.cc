@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -76,12 +76,12 @@ namespace storage
 	if (exists_in_devicegraph(devicegraph))
 	    ST_THROW(Exception(sformat("device already exists, sid:%d", get_sid())));
 
-	Device* device = get_non_impl()->clone();
+	shared_ptr<Device> device = shared_ptr<Device>(get_non_impl()->clone());
 
-	Devicegraph::Impl::vertex_descriptor vertex = devicegraph->get_impl().add_vertex(device);
+	Devicegraph::Impl::vertex_descriptor vertex = devicegraph->get_impl().add_vertex_v2(device);
 	device->get_impl().set_devicegraph_and_vertex(devicegraph, vertex);
 
-	return device;
+	return device.get();
     }
 
 
@@ -451,6 +451,31 @@ namespace storage
     Device::Impl::do_reallot(const CommitData& commit_data, const Action::Reallot* action) const
     {
 	ST_THROW(LogicException("stub Device::Impl::do_reallot called"));
+    }
+
+
+    void
+    Device::Impl::create(Devicegraph* devicegraph, shared_ptr<Device> device)
+    {
+	add_to_devicegraph(devicegraph, device);
+    }
+
+
+    void
+    Device::Impl::load(Devicegraph* devicegraph, shared_ptr<Device> device)
+    {
+	add_to_devicegraph(devicegraph, device);
+    }
+
+
+    void
+    Device::Impl::add_to_devicegraph(Devicegraph* devicegraph, shared_ptr<Device> device)
+    {
+	ST_CHECK_PTR(devicegraph);
+
+	Devicegraph::Impl::vertex_descriptor vertex = devicegraph->get_impl().add_vertex_v2(device);
+
+	device->get_impl().set_devicegraph_and_vertex(devicegraph, vertex);
     }
 
 }

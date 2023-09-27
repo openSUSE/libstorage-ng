@@ -273,8 +273,6 @@ namespace storage
 
 	virtual MountPoint* clone() const override;
 
-    protected:
-
 	MountPoint(Impl* impl);
 
     };

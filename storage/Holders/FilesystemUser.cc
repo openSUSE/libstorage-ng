@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -30,18 +30,18 @@ namespace storage
     FilesystemUser*
     FilesystemUser::create(Devicegraph* devicegraph, const Device* source, const Device* target)
     {
-	FilesystemUser* ret = new FilesystemUser(new FilesystemUser::Impl());
-	ret->Holder::create(devicegraph, source, target);
-	return ret;
+	shared_ptr<FilesystemUser> filesystem_user = make_shared<FilesystemUser>(new FilesystemUser::Impl());
+	Holder::Impl::create(devicegraph, source, target, filesystem_user);
+	return filesystem_user.get();
     }
 
 
     FilesystemUser*
     FilesystemUser::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	FilesystemUser* ret = new FilesystemUser(new FilesystemUser::Impl(node));
-	ret->Holder::load(devicegraph, node);
-	return ret;
+	shared_ptr<FilesystemUser> filesystem_user = make_shared<FilesystemUser>(new FilesystemUser::Impl(node));
+	Holder::Impl::load(devicegraph, node, filesystem_user);
+	return filesystem_user.get();
     }
 
 

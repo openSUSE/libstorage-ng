@@ -57,8 +57,6 @@ namespace storage
 
 	virtual F2fs* clone() const override;
 
-    protected:
-
 	F2fs(Impl* impl);
 
     };

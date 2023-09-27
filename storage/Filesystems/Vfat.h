@@ -58,8 +58,6 @@ namespace storage
 
 	virtual Vfat* clone() const override;
 
-    protected:
-
 	Vfat(Impl* impl);
 
     };

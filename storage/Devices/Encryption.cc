@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -40,18 +40,18 @@ namespace storage
     Encryption*
     Encryption::create(Devicegraph* devicegraph, const string& name)
     {
-	Encryption* ret = new Encryption(new Encryption::Impl(name));
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<Encryption> encryption = make_shared<Encryption>(new Encryption::Impl(name));
+	Device::Impl::create(devicegraph, encryption);
+	return encryption.get();
     }
 
 
     Encryption*
     Encryption::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	Encryption* ret = new Encryption(new Encryption::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
+	shared_ptr<Encryption> encryption = make_shared<Encryption>(new Encryption::Impl(node));
+	Device::Impl::load(devicegraph, encryption);
+	return encryption.get();
     }
 
 

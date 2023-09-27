@@ -246,8 +246,6 @@ namespace storage
 
 	virtual Encryption* clone() const override;
 
-    protected:
-
 	Encryption(Impl* impl);
 
     };

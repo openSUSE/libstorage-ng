@@ -57,8 +57,6 @@ namespace storage
 
 	virtual Nilfs2* clone() const override;
 
-    protected:
-
 	Nilfs2(Impl* impl);
 
     };

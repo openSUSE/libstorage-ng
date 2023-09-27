@@ -455,8 +455,6 @@ namespace storage
 
 	virtual Partition* clone() const override;
 
-    protected:
-
 	Partition(Impl* impl);
 
     };

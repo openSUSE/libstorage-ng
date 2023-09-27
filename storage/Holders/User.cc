@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
+ * Copyright (c) 2023 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -30,18 +31,18 @@ namespace storage
     User*
     User::create(Devicegraph* devicegraph, const Device* source, const Device* target)
     {
-	User* ret = new User(new User::Impl());
-	ret->Holder::create(devicegraph, source, target);
-	return ret;
+	shared_ptr<User> user = make_shared<User>(new User::Impl());
+	Holder::Impl::create(devicegraph, source, target, user);
+	return user.get();
     }
 
 
     User*
     User::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	User* ret = new User(new User::Impl(node));
-	ret->Holder::load(devicegraph, node);
-	return ret;
+	shared_ptr<User> user = make_shared<User>(new User::Impl(node));
+	Holder::Impl::load(devicegraph, node, user);
+	return user.get();
     }
 
 

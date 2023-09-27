@@ -103,8 +103,6 @@ namespace storage
 
 	virtual StrayBlkDevice* clone() const override;
 
-    protected:
-
 	StrayBlkDevice(Impl* impl);
 
     };

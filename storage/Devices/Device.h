@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -311,13 +311,13 @@ namespace storage
 	 *
 	 * The created device is owned by the devicegraph.
 	 */
-	void create(Devicegraph* devicegraph);
+	void create(Devicegraph* devicegraph) ST_DEPRECATED;
 
-	void load(Devicegraph* devicegraph);
+	void load(Devicegraph* devicegraph) ST_DEPRECATED;
 
     private:
 
-	void add_to_devicegraph(Devicegraph* devicegraph);
+	void add_to_devicegraph(Devicegraph* devicegraph) ST_DEPRECATED;
 
 	const std::unique_ptr<Impl> impl;
 

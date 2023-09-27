@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
+ * Copyright (c) 2023 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -30,18 +31,18 @@ namespace storage
     Subdevice*
     Subdevice::create(Devicegraph* devicegraph, const Device* source, const Device* target)
     {
-	Subdevice* ret = new Subdevice(new Subdevice::Impl());
-	ret->Holder::create(devicegraph, source, target);
-	return ret;
+	shared_ptr<Subdevice> subdevice = make_shared<Subdevice>(new Subdevice::Impl());
+	Holder::Impl::create(devicegraph, source, target, subdevice);
+	return subdevice.get();
     }
 
 
     Subdevice*
     Subdevice::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	Subdevice* ret = new Subdevice(new Subdevice::Impl(node));
-	ret->Holder::load(devicegraph, node);
-	return ret;
+	shared_ptr<Subdevice> subdevice = make_shared<Subdevice>(new Subdevice::Impl(node));
+	Holder::Impl::load(devicegraph, node, subdevice);
+	return subdevice.get();
     }
 
 

@@ -240,8 +240,6 @@ namespace storage
 
 	virtual Bcache* clone() const override;
 
-    protected:
-
 	Bcache(Impl* impl);
 
     };

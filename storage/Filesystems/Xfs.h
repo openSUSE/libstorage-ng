@@ -58,8 +58,6 @@ namespace storage
 
 	virtual Xfs* clone() const override;
 
-    protected:
-
 	Xfs(Impl* impl);
 
     };

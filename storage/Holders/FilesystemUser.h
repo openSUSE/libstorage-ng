@@ -74,8 +74,6 @@ namespace storage
 	Impl& get_impl();
 	const Impl& get_impl() const;
 
-    protected:
-
 	FilesystemUser(Impl* impl);
 
     };

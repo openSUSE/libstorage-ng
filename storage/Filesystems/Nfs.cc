@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -40,18 +40,18 @@ namespace storage
     Nfs*
     Nfs::create(Devicegraph* devicegraph, const string& server, const string& path)
     {
-	Nfs* ret = new Nfs(new Nfs::Impl(server, path));
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<Nfs> nfs = make_shared<Nfs>(new Nfs::Impl(server, path));
+	Device::Impl::create(devicegraph, nfs);
+	return nfs.get();
     }
 
 
     Nfs*
     Nfs::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	Nfs* ret = new Nfs(new Nfs::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
+	shared_ptr<Nfs> nfs = make_shared<Nfs>(new Nfs::Impl(node));
+	Device::Impl::load(devicegraph, nfs);
+	return nfs.get();
     }
 
 

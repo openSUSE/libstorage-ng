@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 SUSE LLC
+ * Copyright (c) [2018-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -35,36 +35,36 @@ namespace storage
     StrayBlkDevice*
     StrayBlkDevice::create(Devicegraph* devicegraph, const string& name)
     {
-	StrayBlkDevice* ret = new StrayBlkDevice(new StrayBlkDevice::Impl(name));
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<StrayBlkDevice> stray_blk_device = make_shared<StrayBlkDevice>(new StrayBlkDevice::Impl(name));
+	Device::Impl::create(devicegraph, stray_blk_device);
+	return stray_blk_device.get();
     }
 
 
     StrayBlkDevice*
     StrayBlkDevice::create(Devicegraph* devicegraph, const string& name, const Region& region)
     {
-	StrayBlkDevice* ret = new StrayBlkDevice(new StrayBlkDevice::Impl(name, region));
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<StrayBlkDevice> stray_blk_device = make_shared<StrayBlkDevice>(new StrayBlkDevice::Impl(name, region));
+	Device::Impl::create(devicegraph, stray_blk_device);
+	return stray_blk_device.get();
     }
 
 
     StrayBlkDevice*
     StrayBlkDevice::create(Devicegraph* devicegraph, const string& name, unsigned long long size)
     {
-	StrayBlkDevice* ret = new StrayBlkDevice(new StrayBlkDevice::Impl(name, Region(0, size / 512, 512)));
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<StrayBlkDevice> stray_blk_device = make_shared<StrayBlkDevice>(new StrayBlkDevice::Impl(name, Region(0, size / 512, 512)));
+	Device::Impl::create(devicegraph, stray_blk_device);
+	return stray_blk_device.get();
     }
 
 
     StrayBlkDevice*
     StrayBlkDevice::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	StrayBlkDevice* ret = new StrayBlkDevice(new StrayBlkDevice::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
+	shared_ptr<StrayBlkDevice> stray_blk_device = make_shared<StrayBlkDevice>(new StrayBlkDevice::Impl(node));
+	Device::Impl::load(devicegraph, stray_blk_device);
+	return stray_blk_device.get();
     }
 
 

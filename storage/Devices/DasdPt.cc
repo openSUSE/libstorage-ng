@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -34,18 +34,18 @@ namespace storage
     DasdPt*
     DasdPt::create(Devicegraph* devicegraph)
     {
-	DasdPt* ret = new DasdPt(new DasdPt::Impl());
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<DasdPt> dasd_pt = make_shared<DasdPt>(new DasdPt::Impl());
+	Device::Impl::create(devicegraph, dasd_pt);
+	return dasd_pt.get();
     }
 
 
     DasdPt*
     DasdPt::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	DasdPt* ret = new DasdPt(new DasdPt::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
+	shared_ptr<DasdPt> dasd_pt = make_shared<DasdPt>(new DasdPt::Impl(node));
+	Device::Impl::load(devicegraph, dasd_pt);
+	return dasd_pt.get();
     }
 
 

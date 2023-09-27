@@ -214,8 +214,6 @@ namespace storage
 
 	virtual BtrfsSubvolume* clone() const override;
 
-    protected:
-
 	BtrfsSubvolume(Impl* impl);
 
     };

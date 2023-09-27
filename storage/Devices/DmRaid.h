@@ -109,8 +109,6 @@ namespace storage
 
 	virtual DmRaid* clone() const override;
 
-    protected:
-
 	DmRaid(Impl* impl);
 
     };

@@ -57,8 +57,6 @@ namespace storage
 
 	virtual Reiserfs* clone() const override;
 
-    protected:
-
 	Reiserfs(Impl* impl);
 
     };

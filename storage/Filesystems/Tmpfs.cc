@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 SUSE LLC
+ * Copyright (c) [2020-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -33,18 +33,18 @@ namespace storage
     Tmpfs*
     Tmpfs::create(Devicegraph* devicegraph)
     {
-	Tmpfs* ret = new Tmpfs(new Tmpfs::Impl());
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<Tmpfs> tmpfs = make_shared<Tmpfs>(new Tmpfs::Impl());
+	Device::Impl::create(devicegraph, tmpfs);
+	return tmpfs.get();
     }
 
 
     Tmpfs*
     Tmpfs::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	Tmpfs* ret = new Tmpfs(new Tmpfs::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
+	shared_ptr<Tmpfs> tmpfs = make_shared<Tmpfs>(new Tmpfs::Impl(node));
+	Device::Impl::load(devicegraph, tmpfs);
+	return tmpfs.get();
     }
 
 

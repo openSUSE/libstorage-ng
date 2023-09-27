@@ -51,18 +51,18 @@ namespace storage
     Md*
     Md::create(Devicegraph* devicegraph, const string& name)
     {
-	Md* ret = new Md(new Md::Impl(name));
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<Md> md = make_shared<Md>(new Md::Impl(name));
+	Device::Impl::create(devicegraph, md);
+	return md.get();
     }
 
 
     Md*
     Md::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	Md* ret = new Md(new Md::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
+	shared_ptr<Md> md = make_shared<Md>(new Md::Impl(node));
+	Device::Impl::load(devicegraph, md);
+	return md.get();
     }
 
 

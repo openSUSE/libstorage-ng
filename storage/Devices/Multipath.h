@@ -123,8 +123,6 @@ namespace storage
 
 	virtual Multipath* clone() const override;
 
-    protected:
-
 	Multipath(Impl* impl);
 
     };

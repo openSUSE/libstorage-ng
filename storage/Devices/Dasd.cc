@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -52,36 +52,36 @@ namespace storage
     Dasd*
     Dasd::create(Devicegraph* devicegraph, const string& name)
     {
-	Dasd* ret = new Dasd(new Dasd::Impl(name));
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<Dasd> dasd = make_shared<Dasd>(new Dasd::Impl(name));
+	Device::Impl::create(devicegraph, dasd);
+	return dasd.get();
     }
 
 
     Dasd*
     Dasd::create(Devicegraph* devicegraph, const string& name, const Region& region)
     {
-	Dasd* ret = new Dasd(new Dasd::Impl(name, region));
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<Dasd> dasd = make_shared<Dasd>(new Dasd::Impl(name, region));
+	Device::Impl::create(devicegraph, dasd);
+	return dasd.get();
     }
 
 
     Dasd*
     Dasd::create(Devicegraph* devicegraph, const string& name, unsigned long long size)
     {
-	Dasd* ret = new Dasd(new Dasd::Impl(name, Region(0, size / 512, 512)));
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<Dasd> dasd = make_shared<Dasd>(new Dasd::Impl(name, Region(0, size / 512, 512)));
+	Device::Impl::create(devicegraph, dasd);
+	return dasd.get();
     }
 
 
     Dasd*
     Dasd::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	Dasd* ret = new Dasd(new Dasd::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
+	shared_ptr<Dasd> dasd = make_shared<Dasd>(new Dasd::Impl(node));
+	Device::Impl::load(devicegraph, dasd);
+	return dasd.get();
     }
 
 

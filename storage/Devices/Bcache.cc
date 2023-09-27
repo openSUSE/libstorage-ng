@@ -54,18 +54,18 @@ namespace storage
     Bcache*
     Bcache::create(Devicegraph* devicegraph, const string& name, BcacheType type)
     {
-	Bcache* ret = new Bcache(new Bcache::Impl(name, type));
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<Bcache> bcache = make_shared<Bcache>(new Bcache::Impl(name, type));
+	Device::Impl::create(devicegraph, bcache);
+	return bcache.get();
     }
 
 
     Bcache*
     Bcache::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	Bcache* ret = new Bcache(new Bcache::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
+	shared_ptr<Bcache> bcache = make_shared<Bcache>(new Bcache::Impl(node));
+	Device::Impl::load(devicegraph, bcache);
+	return bcache.get();
     }
 
 

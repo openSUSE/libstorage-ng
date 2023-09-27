@@ -167,8 +167,6 @@ namespace storage
 
 	virtual BtrfsQgroup* clone() const override;
 
-    protected:
-
 	BtrfsQgroup(Impl* impl);
 
     };

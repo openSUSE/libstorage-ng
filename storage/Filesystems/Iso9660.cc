@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -33,18 +33,18 @@ namespace storage
     Iso9660*
     Iso9660::create(Devicegraph* devicegraph)
     {
-	Iso9660* ret = new Iso9660(new Iso9660::Impl());
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<Iso9660> iso9660 = make_shared<Iso9660>(new Iso9660::Impl());
+	Device::Impl::create(devicegraph, iso9660);
+	return iso9660.get();
     }
 
 
     Iso9660*
     Iso9660::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	Iso9660* ret = new Iso9660(new Iso9660::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
+	shared_ptr<Iso9660> iso9660 = make_shared<Iso9660>(new Iso9660::Impl(node));
+	Device::Impl::load(devicegraph, iso9660);
+	return iso9660.get();
     }
 
 

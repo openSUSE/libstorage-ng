@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -33,18 +33,18 @@ namespace storage
     BtrfsSubvolume*
     BtrfsSubvolume::create(Devicegraph* devicegraph, const string& path)
     {
-	BtrfsSubvolume* ret = new BtrfsSubvolume(new BtrfsSubvolume::Impl(path));
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<BtrfsSubvolume> btrfs_subvolume = make_shared<BtrfsSubvolume>(new BtrfsSubvolume::Impl(path));
+	Device::Impl::create(devicegraph, btrfs_subvolume);
+	return btrfs_subvolume.get();
     }
 
 
     BtrfsSubvolume*
     BtrfsSubvolume::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	BtrfsSubvolume* ret = new BtrfsSubvolume(new BtrfsSubvolume::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
+	shared_ptr<BtrfsSubvolume> btrfs_subvolume = make_shared<BtrfsSubvolume>(new BtrfsSubvolume::Impl(node));
+	Device::Impl::load(devicegraph, btrfs_subvolume);
+	return btrfs_subvolume.get();
     }
 
 
