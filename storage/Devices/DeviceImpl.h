@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -394,7 +394,20 @@ namespace storage
 
 	Impl(const xmlNode* node);
 
+    public:
+
+	/**
+	 * Create a device in the devicegraph.
+	 *
+	 * The created device is owned by the devicegraph.
+	 */
+	static void create(Devicegraph* devicegraph, shared_ptr<Device> device);
+
+	static void load(Devicegraph* devicegraph, shared_ptr<Device> device);
+
     private:
+
+	static void add_to_devicegraph(Devicegraph* devicegraph, shared_ptr<Device> device);
 
 	/**
 	 * Detect reallot and add Action::Reallot as needed.

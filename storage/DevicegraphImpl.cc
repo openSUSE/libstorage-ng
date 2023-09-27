@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -330,6 +330,13 @@ namespace storage
     }
 
 
+    Devicegraph::Impl::vertex_descriptor
+    Devicegraph::Impl::add_vertex_v2(shared_ptr<Device> device)
+    {
+	return boost::add_vertex(device, graph);
+    }
+
+
     Devicegraph::Impl::edge_descriptor
     Devicegraph::Impl::add_edge(vertex_descriptor source_vertex, vertex_descriptor target_vertex,
 				Holder* holder)
@@ -348,6 +355,37 @@ namespace storage
 
 	pair<Devicegraph::Impl::edge_descriptor, bool> tmp =
 	    boost::add_edge(source_vertex, target_vertex, shared_ptr<Holder>(holder), graph);
+
+	// Since parallel edges are allowed tmp.second must always be true.
+
+	if (!tmp.second)
+	    ST_THROW(LogicException("boost::add_edge behaved unexpectedly"));
+
+	// TODO should also set devicegraph and edge in holder but the
+	// devicegraph is not available here
+
+	return tmp.first;
+    }
+
+
+    Devicegraph::Impl::edge_descriptor
+    Devicegraph::Impl::add_edge_v2(vertex_descriptor source_vertex, vertex_descriptor target_vertex,
+				   shared_ptr<Holder> holder)
+    {
+	// Check that no holder of the same type exists.
+
+	sid_t source_sid = graph[source_vertex]->get_sid();
+	sid_t target_sid = graph[target_vertex]->get_sid();
+
+	for (edge_descriptor edge : find_edges(source_sid, target_sid))
+	{
+	    if (typeid(*graph[edge].get()) == typeid(*holder))
+		ST_THROW(HolderAlreadyExists(graph[source_vertex]->get_sid(),
+					     graph[target_vertex]->get_sid()));
+	}
+
+	pair<Devicegraph::Impl::edge_descriptor, bool> tmp =
+	    boost::add_edge(source_vertex, target_vertex, holder, graph);
 
 	// Since parallel edges are allowed tmp.second must always be true.
 
@@ -468,10 +506,10 @@ namespace storage
     {
 	vertex_descriptor target_vertex = boost::target(old_edge, graph);
 
-	Holder* new_holder = graph[old_edge].get()->clone();
+	shared_ptr<Holder> new_holder = shared_ptr<Holder>(graph[old_edge].get()->clone());
 
-	Devicegraph::Impl::edge_descriptor new_edge = add_edge(source_vertex, target_vertex,
-							       new_holder);
+	Devicegraph::Impl::edge_descriptor new_edge = add_edge_v2(source_vertex, target_vertex,
+								  new_holder);
 
 	// set back-reference
 	new_holder->get_impl().set_edge(new_edge);
@@ -490,10 +528,10 @@ namespace storage
     {
 	vertex_descriptor source_vertex = boost::source(old_edge, graph);
 
-	Holder* new_holder = graph[old_edge].get()->clone();
+	shared_ptr<Holder> new_holder = shared_ptr<Holder>(graph[old_edge].get()->clone());
 
-	Devicegraph::Impl::edge_descriptor new_edge = add_edge(source_vertex, target_vertex,
-							       new_holder);
+	Devicegraph::Impl::edge_descriptor new_edge = add_edge_v2(source_vertex, target_vertex,
+								  new_holder);
 
 	// set back-reference
 	new_holder->get_impl().set_edge(new_edge);

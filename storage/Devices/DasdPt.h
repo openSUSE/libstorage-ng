@@ -54,8 +54,6 @@ namespace storage
 
 	virtual DasdPt* clone() const override;
 
-    protected:
-
 	DasdPt(Impl* impl);
 
     };

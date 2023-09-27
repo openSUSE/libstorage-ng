@@ -69,8 +69,6 @@ namespace storage
 
 	virtual Swap* clone() const override;
 
-    protected:
-
 	Swap(Impl* impl);
 
     };

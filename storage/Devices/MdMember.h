@@ -66,8 +66,6 @@ namespace storage
 
 	virtual MdMember* clone() const override;
 
-    protected:
-
 	MdMember(Impl* impl);
 
     };

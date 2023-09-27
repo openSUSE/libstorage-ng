@@ -340,8 +340,6 @@ namespace storage
 
 	virtual LvmLv* clone() const override;
 
-    protected:
-
 	LvmLv(Impl* impl);
 
     };

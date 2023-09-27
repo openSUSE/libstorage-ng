@@ -69,8 +69,6 @@ namespace storage
 	Impl& get_impl();
 	const Impl& get_impl() const;
 
-    protected:
-
 	MdSubdevice(Impl* impl);
 
     };

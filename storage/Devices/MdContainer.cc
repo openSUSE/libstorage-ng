@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -33,18 +33,18 @@ namespace storage
     MdContainer*
     MdContainer::create(Devicegraph* devicegraph, const string& name)
     {
-	MdContainer* ret = new MdContainer(new MdContainer::Impl(name));
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<MdContainer> md_container = make_shared<MdContainer>(new MdContainer::Impl(name));
+	Device::Impl::create(devicegraph, md_container);
+	return md_container.get();
     }
 
 
     MdContainer*
     MdContainer::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	MdContainer* ret = new MdContainer(new MdContainer::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
+	shared_ptr<MdContainer> md_container = make_shared<MdContainer>(new MdContainer::Impl(node));
+	Device::Impl::load(devicegraph, md_container);
+	return md_container.get();
     }
 
 

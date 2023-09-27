@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -34,18 +34,18 @@ namespace storage
     Msdos*
     Msdos::create(Devicegraph* devicegraph)
     {
-	Msdos* ret = new Msdos(new Msdos::Impl());
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<Msdos> msdos = make_shared<Msdos>(new Msdos::Impl());
+	Device::Impl::create(devicegraph, msdos);
+	return msdos.get();
     }
 
 
     Msdos*
     Msdos::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	Msdos* ret = new Msdos(new Msdos::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
+	shared_ptr<Msdos> msdos = make_shared<Msdos>(new Msdos::Impl(node));
+	Device::Impl::load(devicegraph, msdos);
+	return msdos.get();
     }
 
 

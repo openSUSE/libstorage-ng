@@ -70,8 +70,6 @@ namespace storage
 	Impl& get_impl();
 	const Impl& get_impl() const;
 
-    protected:
-
 	BtrfsQgroupRelation(Impl* impl);
 
     };

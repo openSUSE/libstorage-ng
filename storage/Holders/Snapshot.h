@@ -63,8 +63,6 @@ namespace storage
 	Impl& get_impl();
 	const Impl& get_impl() const;
 
-    protected:
-
 	Snapshot(Impl* impl);
 
     };

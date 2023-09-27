@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -34,18 +34,18 @@ namespace storage
     ImplicitPt*
     ImplicitPt::create(Devicegraph* devicegraph)
     {
-	ImplicitPt* ret = new ImplicitPt(new ImplicitPt::Impl());
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<ImplicitPt> implicit_pt = make_shared<ImplicitPt>(new ImplicitPt::Impl());
+	Device::Impl::create(devicegraph, implicit_pt);
+	return implicit_pt.get();
     }
 
 
     ImplicitPt*
     ImplicitPt::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	ImplicitPt* ret = new ImplicitPt(new ImplicitPt::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
+	shared_ptr<ImplicitPt> implicit_pt = make_shared<ImplicitPt>(new ImplicitPt::Impl(node));
+	Device::Impl::load(devicegraph, implicit_pt);
+	return implicit_pt.get();
     }
 
 

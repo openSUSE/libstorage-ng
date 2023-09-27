@@ -70,8 +70,6 @@ namespace storage
 
 	virtual Tmpfs* clone() const override;
 
-    protected:
-
 	Tmpfs(Impl* impl);
 
     };

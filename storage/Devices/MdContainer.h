@@ -59,8 +59,6 @@ namespace storage
 
 	virtual MdContainer* clone() const override;
 
-    protected:
-
 	MdContainer(Impl* impl);
 
     };

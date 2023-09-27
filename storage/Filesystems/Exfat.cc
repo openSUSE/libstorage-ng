@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 SUSE LLC
+ * Copyright (c) [2018-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -33,18 +33,18 @@ namespace storage
     Exfat*
     Exfat::create(Devicegraph* devicegraph)
     {
-	Exfat* ret = new Exfat(new Exfat::Impl());
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<Exfat> exfat = make_shared<Exfat>(new Exfat::Impl());
+	Device::Impl::create(devicegraph, exfat);
+	return exfat.get();
     }
 
 
     Exfat*
     Exfat::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	Exfat* ret = new Exfat(new Exfat::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
+	shared_ptr<Exfat> exfat = make_shared<Exfat>(new Exfat::Impl(node));
+	Device::Impl::load(devicegraph, exfat);
+	return exfat.get();
     }
 
 

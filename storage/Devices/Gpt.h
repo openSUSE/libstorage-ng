@@ -74,8 +74,6 @@ namespace storage
 
 	virtual Gpt* clone() const override;
 
-    protected:
-
 	Gpt(Impl* impl);
 
     };

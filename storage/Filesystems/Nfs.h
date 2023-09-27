@@ -109,8 +109,6 @@ namespace storage
 
 	virtual Nfs* clone() const override;
 
-    protected:
-
 	Nfs(Impl* impl);
 
     };

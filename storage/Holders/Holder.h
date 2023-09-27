@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2017-2021] SUSE LLC
+ * Copyright (c) [2017-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -201,14 +201,14 @@ namespace storage
 	 *
 	 * @throw HolderAlreadyExists
 	 */
-	void create(Devicegraph* devicegraph, const Device* source, const Device* target);
+	void create(Devicegraph* devicegraph, const Device* source, const Device* target) ST_DEPRECATED;
 
-	void load(Devicegraph* devicegraph, const xmlNode* node);
+	void load(Devicegraph* devicegraph, const xmlNode* node) ST_DEPRECATED;
 
     private:
 
 	void add_to_devicegraph(Devicegraph* devicegraph, const Device* source,
-				const Device* target);
+				const Device* target) ST_DEPRECATED;
 
 	const std::unique_ptr<Impl> impl;
 

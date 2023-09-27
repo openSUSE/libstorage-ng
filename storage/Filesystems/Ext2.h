@@ -58,8 +58,6 @@ namespace storage
 
 	virtual Ext2* clone() const override;
 
-    protected:
-
 	Ext2(Impl* impl);
 
     };

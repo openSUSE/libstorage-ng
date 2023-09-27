@@ -180,8 +180,6 @@ namespace storage
 
 	virtual Dasd* clone() const override;
 
-    protected:
-
 	Dasd(Impl* impl);
 
     };

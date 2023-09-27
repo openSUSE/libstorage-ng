@@ -320,8 +320,6 @@ namespace storage
 
 	virtual Md* clone() const override;
 
-    protected:
-
 	Md(Impl* impl);
 
     };

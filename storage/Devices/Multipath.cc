@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2021] SUSE LLC
+ * Copyright (c) [2017-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -33,36 +33,36 @@ namespace storage
     Multipath*
     Multipath::create(Devicegraph* devicegraph, const string& name)
     {
-	Multipath* ret = new Multipath(new Multipath::Impl(name));
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<Multipath> multipath = make_shared<Multipath>(new Multipath::Impl(name));
+	Device::Impl::create(devicegraph, multipath);
+	return multipath.get();
     }
 
 
     Multipath*
     Multipath::create(Devicegraph* devicegraph, const string& name, const Region& region)
     {
-	Multipath* ret = new Multipath(new Multipath::Impl(name, region));
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<Multipath> multipath = make_shared<Multipath>(new Multipath::Impl(name, region));
+	Device::Impl::create(devicegraph, multipath);
+	return multipath.get();
     }
 
 
     Multipath*
     Multipath::create(Devicegraph* devicegraph, const string& name, unsigned long long size)
     {
-	Multipath* ret = new Multipath(new Multipath::Impl(name, Region(0, size / 512, 512)));
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<Multipath> multipath = make_shared<Multipath>(new Multipath::Impl(name, Region(0, size / 512, 512)));
+	Device::Impl::create(devicegraph, multipath);
+	return multipath.get();
     }
 
 
     Multipath*
     Multipath::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	Multipath* ret = new Multipath(new Multipath::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
+	shared_ptr<Multipath> multipath = make_shared<Multipath>(new Multipath::Impl(node));
+	Device::Impl::load(devicegraph, multipath);
+	return multipath.get();
     }
 
 

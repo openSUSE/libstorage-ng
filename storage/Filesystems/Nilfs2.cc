@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 SUSE LLC
+ * Copyright (c) [2022-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -33,18 +33,18 @@ namespace storage
     Nilfs2*
     Nilfs2::create(Devicegraph* devicegraph)
     {
-	Nilfs2* ret = new Nilfs2(new Nilfs2::Impl());
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<Nilfs2> nilfs2 = make_shared<Nilfs2>(new Nilfs2::Impl());
+	Device::Impl::create(devicegraph, nilfs2);
+	return nilfs2.get();
     }
 
 
     Nilfs2*
     Nilfs2::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	Nilfs2* ret = new Nilfs2(new Nilfs2::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
+	shared_ptr<Nilfs2> nilfs2 = make_shared<Nilfs2>(new Nilfs2::Impl(node));
+	Device::Impl::load(devicegraph, nilfs2);
+	return nilfs2.get();
     }
 
 

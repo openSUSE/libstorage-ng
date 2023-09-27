@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016,2018] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -34,18 +34,18 @@ namespace storage
     BcacheCset*
     BcacheCset::create(Devicegraph* devicegraph)
     {
-	BcacheCset* ret = new BcacheCset(new BcacheCset::Impl());
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<BcacheCset> bcache_cset = make_shared<BcacheCset>(new BcacheCset::Impl());
+	Device::Impl::create(devicegraph, bcache_cset);
+	return bcache_cset.get();
     }
 
 
     BcacheCset*
     BcacheCset::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	BcacheCset* ret = new BcacheCset(new BcacheCset::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
+	shared_ptr<BcacheCset> bcache_cset = make_shared<BcacheCset>(new BcacheCset::Impl(node));
+	Device::Impl::load(devicegraph, bcache_cset);
+	return bcache_cset.get();
     }
 
 

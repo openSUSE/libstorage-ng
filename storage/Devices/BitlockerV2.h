@@ -84,8 +84,6 @@ namespace storage
 
 	virtual BitlockerV2* clone() const override;
 
-    protected:
-
 	BitlockerV2(Impl* impl);
 
     };

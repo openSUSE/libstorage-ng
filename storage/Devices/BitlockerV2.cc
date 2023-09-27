@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 SUSE LLC
+ * Copyright (c) [2022-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -33,18 +33,18 @@ namespace storage
     BitlockerV2*
     BitlockerV2::create(Devicegraph* devicegraph, const string& dm_table_name)
     {
-	BitlockerV2* ret = new BitlockerV2(new BitlockerV2::Impl(dm_table_name));
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<BitlockerV2> bitlocker_v2 = make_shared<BitlockerV2>(new BitlockerV2::Impl(dm_table_name));
+	Device::Impl::create(devicegraph, bitlocker_v2);
+	return bitlocker_v2.get();
     }
 
 
     BitlockerV2*
     BitlockerV2::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	BitlockerV2* ret = new BitlockerV2(new BitlockerV2::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
+	shared_ptr<BitlockerV2> bitlocker_v2 = make_shared<BitlockerV2>(new BitlockerV2::Impl(node));
+	Device::Impl::load(devicegraph, bitlocker_v2);
+	return bitlocker_v2.get();
     }
 
 

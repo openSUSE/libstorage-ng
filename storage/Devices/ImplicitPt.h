@@ -69,8 +69,6 @@ namespace storage
 	 */
 	void create_implicit_partition();
 
-    protected:
-
 	ImplicitPt(Impl* impl);
 
     };

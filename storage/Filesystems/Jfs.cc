@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 SUSE LLC
+ * Copyright (c) [2018-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -33,18 +33,18 @@ namespace storage
     Jfs*
     Jfs::create(Devicegraph* devicegraph)
     {
-	Jfs* ret = new Jfs(new Jfs::Impl());
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<Jfs> jfs = make_shared<Jfs>(new Jfs::Impl());
+	Device::Impl::create(devicegraph, jfs);
+	return jfs.get();
     }
 
 
     Jfs*
     Jfs::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	Jfs* ret = new Jfs(new Jfs::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
+	shared_ptr<Jfs> jfs = make_shared<Jfs>(new Jfs::Impl(node));
+	Device::Impl::load(devicegraph, jfs);
+	return jfs.get();
     }
 
 

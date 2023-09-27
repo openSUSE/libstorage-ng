@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -33,18 +33,18 @@ namespace storage
     Reiserfs*
     Reiserfs::create(Devicegraph* devicegraph)
     {
-	Reiserfs* ret = new Reiserfs(new Reiserfs::Impl());
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<Reiserfs> reiserfs = make_shared<Reiserfs>(new Reiserfs::Impl());
+	Device::Impl::create(devicegraph, reiserfs);
+	return reiserfs.get();
     }
 
 
     Reiserfs*
     Reiserfs::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	Reiserfs* ret = new Reiserfs(new Reiserfs::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
+	shared_ptr<Reiserfs> reiserfs = make_shared<Reiserfs>(new Reiserfs::Impl(node));
+	Device::Impl::load(devicegraph, reiserfs);
+	return reiserfs.get();
     }
 
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2021] SUSE LLC
+ * Copyright (c) [2017-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -40,18 +40,18 @@ namespace storage
     MountPoint*
     MountPoint::create(Devicegraph* devicegraph, const string& path)
     {
-	MountPoint* ret = new MountPoint(new MountPoint::Impl(path));
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<MountPoint> mount_point = make_shared<MountPoint>(new MountPoint::Impl(path));
+	Device::Impl::create(devicegraph, mount_point);
+	return mount_point.get();
     }
 
 
     MountPoint*
     MountPoint::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	MountPoint* ret = new MountPoint(new MountPoint::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
+	shared_ptr<MountPoint> mount_point = make_shared<MountPoint>(new MountPoint::Impl(node));
+	Device::Impl::load(devicegraph, mount_point);
+	return mount_point.get();
     }
 
 

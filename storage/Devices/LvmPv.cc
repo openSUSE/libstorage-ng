@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -34,18 +34,18 @@ namespace storage
     LvmPv*
     LvmPv::create(Devicegraph* devicegraph)
     {
-	LvmPv* ret = new LvmPv(new LvmPv::Impl());
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<LvmPv> lvm_pv = make_shared<LvmPv>(new LvmPv::Impl());
+	Device::Impl::create(devicegraph, lvm_pv);
+	return lvm_pv.get();
     }
 
 
     LvmPv*
     LvmPv::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	LvmPv* ret = new LvmPv(new LvmPv::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
+	shared_ptr<LvmPv> lvm_pv = make_shared<LvmPv>(new LvmPv::Impl(node));
+	Device::Impl::load(devicegraph, lvm_pv);
+	return lvm_pv.get();
     }
 
 

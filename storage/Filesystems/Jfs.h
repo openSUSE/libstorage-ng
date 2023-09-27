@@ -58,8 +58,6 @@ namespace storage
 
 	virtual Jfs* clone() const override;
 
-    protected:
-
 	Jfs(Impl* impl);
 
     };

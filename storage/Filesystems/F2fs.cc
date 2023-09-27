@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 SUSE LLC
+ * Copyright (c) [2018-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -33,18 +33,18 @@ namespace storage
     F2fs*
     F2fs::create(Devicegraph* devicegraph)
     {
-	F2fs* ret = new F2fs(new F2fs::Impl());
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<F2fs> f2fs = make_shared<F2fs>(new F2fs::Impl());
+	Device::Impl::create(devicegraph, f2fs);
+	return f2fs.get();
     }
 
 
     F2fs*
     F2fs::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	F2fs* ret = new F2fs(new F2fs::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
+	shared_ptr<F2fs> f2fs = make_shared<F2fs>(new F2fs::Impl(node));
+	Device::Impl::load(devicegraph, f2fs);
+	return f2fs.get();
     }
 
 

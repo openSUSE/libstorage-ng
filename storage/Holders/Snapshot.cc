@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 SUSE LLC
+ * Copyright (c) [2020-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -30,18 +30,18 @@ namespace storage
     Snapshot*
     Snapshot::create(Devicegraph* devicegraph, const Device* source, const Device* target)
     {
-	Snapshot* ret = new Snapshot(new Snapshot::Impl());
-	ret->Holder::create(devicegraph, source, target);
-	return ret;
+	shared_ptr<Snapshot> snapshot = make_shared<Snapshot>(new Snapshot::Impl());
+	Holder::Impl::create(devicegraph, source, target, snapshot);
+	return snapshot.get();
     }
 
 
     Snapshot*
     Snapshot::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	Snapshot* ret = new Snapshot(new Snapshot::Impl(node));
-	ret->Holder::load(devicegraph, node);
-	return ret;
+	shared_ptr<Snapshot> snapshot = make_shared<Snapshot>(new Snapshot::Impl(node));
+	Holder::Impl::load(devicegraph, node, snapshot);
+	return snapshot.get();
     }
 
 

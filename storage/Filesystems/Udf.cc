@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -33,18 +33,18 @@ namespace storage
     Udf*
     Udf::create(Devicegraph* devicegraph)
     {
-	Udf* ret = new Udf(new Udf::Impl());
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<Udf> udf = make_shared<Udf>(new Udf::Impl());
+	Device::Impl::create(devicegraph, udf);
+	return udf.get();
     }
 
 
     Udf*
     Udf::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	Udf* ret = new Udf(new Udf::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
+	shared_ptr<Udf> udf = make_shared<Udf>(new Udf::Impl(node));
+	Device::Impl::load(devicegraph, udf);
+	return udf.get();
     }
 
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2020-2021] SUSE LLC
+ * Copyright (c) [2020-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -35,18 +35,18 @@ namespace storage
     BtrfsQgroup*
     BtrfsQgroup::create(Devicegraph* devicegraph, const id_t& id)
     {
-	BtrfsQgroup* ret = new BtrfsQgroup(new BtrfsQgroup::Impl(id));
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<BtrfsQgroup> btrfs_qgroup = make_shared<BtrfsQgroup>(new BtrfsQgroup::Impl(id));
+	Device::Impl::create(devicegraph, btrfs_qgroup);
+	return btrfs_qgroup.get();
     }
 
 
     BtrfsQgroup*
     BtrfsQgroup::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	BtrfsQgroup* ret = new BtrfsQgroup(new BtrfsQgroup::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
+	shared_ptr<BtrfsQgroup> btrfs_qgroup = make_shared<BtrfsQgroup>(new BtrfsQgroup::Impl(node));
+	Device::Impl::load(devicegraph, btrfs_qgroup);
+	return btrfs_qgroup.get();
     }
 
 

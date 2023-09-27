@@ -70,8 +70,6 @@ namespace storage
 
 	virtual PlainEncryption* clone() const override;
 
-    protected:
-
 	PlainEncryption(Impl* impl);
 
     };

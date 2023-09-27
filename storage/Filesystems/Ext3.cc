@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -34,18 +34,18 @@ namespace storage
     Ext3*
     Ext3::create(Devicegraph* devicegraph)
     {
-	Ext3* ret = new Ext3(new Ext3::Impl());
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<Ext3> ext3 = make_shared<Ext3>(new Ext3::Impl());
+	Device::Impl::create(devicegraph, ext3);
+	return ext3.get();
     }
 
 
     Ext3*
     Ext3::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	Ext3* ret = new Ext3(new Ext3::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
+	shared_ptr<Ext3> ext3 = make_shared<Ext3>(new Ext3::Impl(node));
+	Device::Impl::load(devicegraph, ext3);
+	return ext3.get();
     }
 
 

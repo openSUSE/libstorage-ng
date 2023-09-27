@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) [2017-2020] SUSE LLC
+ * Copyright (c) [2017-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -57,25 +57,25 @@ namespace storage
     Btrfs*
     Btrfs::create(Devicegraph* devicegraph)
     {
-	Btrfs* ret = new Btrfs(new Btrfs::Impl());
-	ret->Device::create(devicegraph);
+	shared_ptr<Btrfs> btrfs = make_shared<Btrfs>(new Btrfs::Impl());
+	Device::Impl::create(devicegraph, btrfs);
 
 	// create BtrfsSubvolume for the top-level subvolume
 	BtrfsSubvolume* top_level = BtrfsSubvolume::create(devicegraph, "");
-	Subdevice::create(devicegraph, ret, top_level);
+	Subdevice::create(devicegraph, btrfs.get(), top_level);
 	top_level->get_impl().set_id(BtrfsSubvolume::Impl::top_level_id);
 	top_level->set_default_btrfs_subvolume();
 
-	return ret;
+	return btrfs.get();
     }
 
 
     Btrfs*
     Btrfs::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	Btrfs* ret = new Btrfs(new Btrfs::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
+	shared_ptr<Btrfs> btrfs = make_shared<Btrfs>(new Btrfs::Impl(node));
+	Device::Impl::load(devicegraph, btrfs);
+	return btrfs.get();
     }
 
 

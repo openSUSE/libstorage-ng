@@ -135,18 +135,18 @@ namespace storage
 	if (!boost::starts_with(name, DEV_DIR "/"))
 	    ST_THROW(Exception("invalid partition name"));
 
-	Partition* ret = new Partition(new Partition::Impl(name, region, type));
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<Partition> partition = make_shared<Partition>(new Partition::Impl(name, region, type));
+	Device::Impl::create(devicegraph, partition);
+	return partition.get();
     }
 
 
     Partition*
     Partition::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	Partition* ret = new Partition(new Partition::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
+	shared_ptr<Partition> partition = make_shared<Partition>(new Partition::Impl(node));
+	Device::Impl::load(devicegraph, partition);
+	return partition.get();
     }
 
 

@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
+ * Copyright (c) 2023 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -33,18 +34,18 @@ namespace storage
     Swap*
     Swap::create(Devicegraph* devicegraph)
     {
-	Swap* ret = new Swap(new Swap::Impl());
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<Swap> swap = make_shared<Swap>(new Swap::Impl());
+	Device::Impl::create(devicegraph, swap);
+	return swap.get();
     }
 
 
     Swap*
     Swap::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	Swap* ret = new Swap(new Swap::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
+	shared_ptr<Swap> swap = make_shared<Swap>(new Swap::Impl(node));
+	Device::Impl::load(devicegraph, swap);
+	return swap.get();
     }
 
 

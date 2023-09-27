@@ -57,8 +57,6 @@ namespace storage
 
 	virtual Exfat* clone() const override;
 
-    protected:
-
 	Exfat(Impl* impl);
 
     };

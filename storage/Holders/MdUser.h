@@ -127,8 +127,6 @@ namespace storage
 	Impl& get_impl();
 	const Impl& get_impl() const;
 
-    protected:
-
 	MdUser(Impl* impl);
 
     };

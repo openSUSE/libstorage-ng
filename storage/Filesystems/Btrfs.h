@@ -282,8 +282,6 @@ namespace storage
 
 	virtual Btrfs* clone() const override;
 
-    protected:
-
 	Btrfs(Impl* impl);
 
     };

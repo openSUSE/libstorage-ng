@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -76,12 +76,12 @@ namespace storage
 	Devicegraph::Impl::vertex_descriptor source = devicegraph->get_impl().find_vertex(source_sid);
 	Devicegraph::Impl::vertex_descriptor target = devicegraph->get_impl().find_vertex(target_sid);
 
-	Holder* holder = get_non_impl()->clone();
+	shared_ptr<Holder> holder = shared_ptr<Holder>(get_non_impl()->clone());
 
-	Devicegraph::Impl::edge_descriptor edge = devicegraph->get_impl().add_edge(source, target, holder);
+	Devicegraph::Impl::edge_descriptor edge = devicegraph->get_impl().add_edge_v2(source, target, holder);
 	holder->get_impl().set_devicegraph_and_edge(devicegraph, edge);
 
-	return holder;
+	return holder.get();
     }
 
 
@@ -302,5 +302,55 @@ namespace storage
     {
 	ST_THROW(LogicException("stub Holder::Impl::do_delete called"));
     }
+
+
+    void
+    Holder::Impl::create(Devicegraph* devicegraph, const Device* source, const Device* target,
+			  std::shared_ptr<Holder> holder)
+    {
+	add_to_devicegraph(devicegraph, source, target, holder);
+    }
+
+
+    void
+    Holder::Impl::load(Devicegraph* devicegraph, const xmlNode* node, std::shared_ptr<Holder> holder)
+    {
+	sid_t source_sid = 0;
+	if (!getChildValue(node, "source-sid", source_sid))
+	    ST_THROW(Exception("no source-sid"));
+
+	sid_t target_sid = 0;
+	if (!getChildValue(node, "target-sid", target_sid))
+	    ST_THROW(Exception("no target-sid"));
+
+	const Device* source = devicegraph->find_device(source_sid);
+	const Device* target = devicegraph->find_device(target_sid);
+
+	add_to_devicegraph(devicegraph, source, target, holder);
+    }
+
+
+    void
+    Holder::Impl::add_to_devicegraph(Devicegraph* devicegraph, const Device* source,
+				     const Device* target, shared_ptr<Holder> holder)
+    {
+	ST_CHECK_PTR(devicegraph);
+	ST_CHECK_PTR(source);
+	ST_CHECK_PTR(target);
+
+	if (source->get_devicegraph() != devicegraph)
+	    ST_THROW(Exception("wrong graph in source"));
+
+	if (target->get_devicegraph() != devicegraph)
+	    ST_THROW(Exception("wrong graph in target"));
+
+	Devicegraph::Impl::vertex_descriptor source_vertex = source->get_impl().get_vertex();
+	Devicegraph::Impl::vertex_descriptor target_vertex = target->get_impl().get_vertex();
+
+	Devicegraph::Impl::edge_descriptor edge = devicegraph->get_impl().add_edge_v2(source_vertex, target_vertex, holder);
+
+	holder->get_impl().set_devicegraph_and_edge(devicegraph, edge);
+    }
+
 
 }

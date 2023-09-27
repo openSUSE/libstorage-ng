@@ -110,8 +110,6 @@ namespace storage
 
 	virtual BcacheCset* clone() const override;
 
-    protected:
-
 	BcacheCset(Impl* impl);
 
     };

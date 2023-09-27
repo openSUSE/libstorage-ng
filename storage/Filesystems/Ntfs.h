@@ -68,8 +68,6 @@ namespace storage
 
 	virtual Ntfs* clone() const override;
 
-    protected:
-
 	Ntfs(Impl* impl);
 
     };

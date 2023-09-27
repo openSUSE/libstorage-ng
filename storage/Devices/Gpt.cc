@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -34,18 +34,18 @@ namespace storage
     Gpt*
     Gpt::create(Devicegraph* devicegraph)
     {
-	Gpt* ret = new Gpt(new Gpt::Impl());
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<Gpt> gpt = make_shared<Gpt>(new Gpt::Impl());
+	Device::Impl::create(devicegraph, gpt);
+	return gpt.get();
     }
 
 
     Gpt*
     Gpt::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	Gpt* ret = new Gpt(new Gpt::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
+	shared_ptr<Gpt> gpt = make_shared<Gpt>(new Gpt::Impl(node));
+	Device::Impl::load(devicegraph, gpt);
+	return gpt.get();
     }
 
 

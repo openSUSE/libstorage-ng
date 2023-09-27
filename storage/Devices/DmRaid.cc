@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2021] SUSE LLC
+ * Copyright (c) [2017-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -33,36 +33,36 @@ namespace storage
     DmRaid*
     DmRaid::create(Devicegraph* devicegraph, const string& name)
     {
-	DmRaid* ret = new DmRaid(new DmRaid::Impl(name));
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<DmRaid> dm_raid = make_shared<DmRaid>(new DmRaid::Impl(name));
+	Device::Impl::create(devicegraph, dm_raid);
+	return dm_raid.get();
     }
 
 
     DmRaid*
     DmRaid::create(Devicegraph* devicegraph, const string& name, const Region& region)
     {
-	DmRaid* ret = new DmRaid(new DmRaid::Impl(name, region));
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<DmRaid> dm_raid = make_shared<DmRaid>(new DmRaid::Impl(name, region));
+	Device::Impl::create(devicegraph, dm_raid);
+	return dm_raid.get();
     }
 
 
     DmRaid*
     DmRaid::create(Devicegraph* devicegraph, const string& name, unsigned long long size)
     {
-	DmRaid* ret = new DmRaid(new DmRaid::Impl(name, Region(0, size / 512, 512)));
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<DmRaid> dm_raid = make_shared<DmRaid>(new DmRaid::Impl(name, Region(0, size / 512, 512)));
+	Device::Impl::create(devicegraph, dm_raid);
+	return dm_raid.get();
     }
 
 
     DmRaid*
     DmRaid::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	DmRaid* ret = new DmRaid(new DmRaid::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
+	shared_ptr<DmRaid> dm_raid = make_shared<DmRaid>(new DmRaid::Impl(node));
+	Device::Impl::load(devicegraph, dm_raid);
+	return dm_raid.get();
     }
 
 

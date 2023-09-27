@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Novell, Inc.
+ * Copyright (c) [2015-2023] Novell, Inc.
  *
  * All Rights Reserved.
  *
@@ -33,18 +33,18 @@ namespace storage
     Vfat*
     Vfat::create(Devicegraph* devicegraph)
     {
-	Vfat* ret = new Vfat(new Vfat::Impl());
-	ret->Device::create(devicegraph);
-	return ret;
+	shared_ptr<Vfat> vfat = make_shared<Vfat>(new Vfat::Impl());
+	Device::Impl::create(devicegraph, vfat);
+	return vfat.get();
     }
 
 
     Vfat*
     Vfat::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	Vfat* ret = new Vfat(new Vfat::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
+	shared_ptr<Vfat> vfat = make_shared<Vfat>(new Vfat::Impl(node));
+	Device::Impl::load(devicegraph, vfat);
+	return vfat.get();
     }
 
 

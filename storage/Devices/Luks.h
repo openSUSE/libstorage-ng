@@ -113,8 +113,6 @@ namespace storage
 
 	virtual Luks* clone() const override;
 
-    protected:
-
 	Luks(Impl* impl);
 
     };

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -119,9 +119,13 @@ namespace storage
 	set<sid_t> get_device_sids() const;
 	set<sid_pair_t> get_holder_sid_pairs() const;
 
-	vertex_descriptor add_vertex(Device* device);
+	vertex_descriptor add_vertex(Device* device) ST_DEPRECATED;
 	edge_descriptor add_edge(vertex_descriptor source_vertex, vertex_descriptor target_vertex,
-				 Holder* holder);
+				 Holder* holder) ST_DEPRECATED;
+
+	vertex_descriptor add_vertex_v2(std::shared_ptr<Device> device);
+	edge_descriptor add_edge_v2(vertex_descriptor source_vertex, vertex_descriptor target_vertex,
+				    std::shared_ptr<Holder> holder);
 
 	bool device_exists(sid_t sid) const;
 	bool holder_exists(sid_t source_sid, sid_t target_sid) const;
