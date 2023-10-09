@@ -103,6 +103,10 @@ namespace storage
     void
     Vfat::Impl::do_resize(const CommitData& commit_data, const Action::Resize* action) const
     {
+	// The code here needs fatresize as shipped by SUSE as part of parted. See
+	// https://bugzilla.suse.com/show_bug.cgi?id=1072479 for the problems with another
+	// fatresize.
+
 	const Vfat* vfat_rhs = to_vfat(action->get_device(commit_data.actiongraph, RHS));
 
 	const BlkDevice* blk_device_rhs = vfat_rhs->get_impl().get_blk_device();

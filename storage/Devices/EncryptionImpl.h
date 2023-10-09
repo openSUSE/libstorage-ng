@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -73,6 +73,9 @@ namespace storage
 
 	const string& get_key_file() const { return key_file; }
 	void set_key_file(const string& key_file) { Impl::key_file = key_file; }
+
+	bool is_use_key_file_in_commit() const { return use_key_file_in_commit; }
+	void set_use_key_file_in_commit(bool use_key_file_in_commit) { Impl::use_key_file_in_commit = use_key_file_in_commit; }
 
 	const string& get_open_options() const { return open_options; }
 	void set_open_options(const string& open_options) { Impl::open_options = open_options; }
@@ -180,6 +183,7 @@ namespace storage
 	string password;
 
 	string key_file;
+	bool use_key_file_in_commit = true;
 
 	string cipher;
 	unsigned int key_size = 0;
