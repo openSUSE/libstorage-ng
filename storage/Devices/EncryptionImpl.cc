@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -78,6 +78,7 @@ namespace storage
 	getChildValue(node, "password", password);
 
 	getChildValue(node, "key-file", key_file);
+	getChildValue(node, "use-key-file-in-commit", use_key_file_in_commit);
 
 	getChildValue(node, "cipher", cipher);
 	getChildValue(node, "key-size", key_size);
@@ -212,6 +213,7 @@ namespace storage
 	    setChildValue(node, "password", password);
 
 	setChildValueIf(node, "key-file", key_file, !key_file.empty());
+	setChildValueIf(node, "use-key-file-in-commit", use_key_file_in_commit, !use_key_file_in_commit);
 
 	setChildValueIf(node, "cipher", cipher, !cipher.empty());
 	setChildValueIf(node, "key-size", key_size, key_size != 0);
@@ -345,6 +347,7 @@ namespace storage
 	    return false;
 
 	return type == rhs.type && password == rhs.password && key_file == rhs.key_file &&
+	    use_key_file_in_commit == rhs.use_key_file_in_commit &&
 	    cipher == rhs.cipher && key_size == rhs.key_size && pbkdf == rhs.pbkdf &&
 	    integrity == rhs.integrity && mount_by == rhs.mount_by && crypt_options == rhs.crypt_options &&
 	    in_etc_crypttab == rhs.in_etc_crypttab && open_options == rhs.open_options;
@@ -364,6 +367,7 @@ namespace storage
 	    storage::log_diff(log, "password", password, rhs.password);
 
 	storage::log_diff(log, "key-file", key_file, rhs.key_file);
+	storage::log_diff(log, "use-key-file-in-commit", use_key_file_in_commit, rhs.use_key_file_in_commit);
 
 	storage::log_diff(log, "cipher", cipher, rhs.cipher);
 	storage::log_diff(log, "key-size", key_size, rhs.key_size);
@@ -392,6 +396,9 @@ namespace storage
 
 	if (!key_file.empty())
 	    out << " key-file:" << get_key_file();
+
+	if (use_key_file_in_commit)
+	    out << " use-key-file-in-commit";
 
 	if (!cipher.empty())
 	    out << " cipher:" << cipher;
@@ -424,7 +431,7 @@ namespace storage
 
 	SystemCmd::Options cmd_options(cmd_line, SystemCmd::DoThrow);
 
-	if (!get_key_file().empty())
+	if (!get_key_file().empty() && use_key_file_in_commit)
 	{
 	    cmd_options.command += " --key-file " + quote(get_key_file());
 	}

@@ -173,6 +173,20 @@ namespace storage
     }
 
 
+    bool
+    Encryption::is_use_key_file_in_commit() const
+    {
+	return get_impl().is_use_key_file_in_commit();
+    }
+
+
+    void
+    Encryption::set_use_key_file_in_commit(bool use_key_file_in_commit)
+    {
+	get_impl().set_use_key_file_in_commit(use_key_file_in_commit);
+    }
+
+
     const string&
     Encryption::get_cipher() const
     {

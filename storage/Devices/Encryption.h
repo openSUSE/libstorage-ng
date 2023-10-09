@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -95,9 +95,28 @@ namespace storage
 	/**
 	 * Set the key file.
 	 *
-	 * When accessing the key file the rootprefix is not used.
+	 * Usually the key file is inserted in /etc/crypttab and used in commit.
+	 *
+	 * When accessing the key file the rootprefix is not used. The key file is not
+	 * created by libstorage-ng. Thus the key file can be a special device,
+	 * e.g. /dev/urandom for swap.
+	 *
+	 * @see set_use_key_file_in_commit(bool)
 	 */
 	void set_key_file(const std::string& key_file);
+
+	/**
+	 * Get whether the key file is used in commit.
+	 */
+	bool is_use_key_file_in_commit() const;
+
+	/**
+	 * Set whether the key file is used in commit.
+	 *
+	 * Default is true. The key file must also be set to be used. If set to false the
+	 * password must be set.
+	 */
+	void set_use_key_file_in_commit(bool use_key_file_in_commit);
 
 	/**
 	 * Get the cipher.
