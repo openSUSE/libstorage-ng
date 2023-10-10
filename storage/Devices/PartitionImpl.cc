@@ -1010,7 +1010,7 @@ namespace storage
 	cmd_line += to_string(get_region().get_start() * factor) + " " +
 	    to_string((get_region().get_end() - tmps.size()) * factor + (factor - 1));
 
-	SystemCmd(UDEVADM_BIN_SETTLE);
+	SystemCmd({ UDEVADM_BIN_SETTLE });
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
@@ -1020,7 +1020,7 @@ namespace storage
 	{
 	    if (!PartedVersion::supports_wipe_signatures())
 	    {
-		SystemCmd(UDEVADM_BIN_SETTLE);
+		SystemCmd({ UDEVADM_BIN_SETTLE });
 		wipe_device();
 	    }
 
@@ -1110,7 +1110,7 @@ namespace storage
 
 	    cmd_line += to_string(get_region().get_end() - i) + " " + to_string(get_region().get_end() - i);
 
-	    SystemCmd(UDEVADM_BIN_SETTLE);
+	    SystemCmd({ UDEVADM_BIN_SETTLE });
 
 	    SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 	}
@@ -1134,7 +1134,7 @@ namespace storage
 	    string cmd_line = PARTED_BIN " --script " + quote(partitionable->get_name()) + " rm " +
 		to_string(i);
 
-	    SystemCmd(UDEVADM_BIN_SETTLE);
+	    SystemCmd({ UDEVADM_BIN_SETTLE });
 
 	    SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 	}
@@ -1142,7 +1142,7 @@ namespace storage
 	string cmd_line = PARTED_BIN " --script " + quote(partitionable->get_name()) +
 	    " unit s resizepart " + to_string(get_number()) + " " + to_string(get_region().get_end());
 
-	SystemCmd(UDEVADM_BIN_SETTLE);
+	SystemCmd({ UDEVADM_BIN_SETTLE });
 
 	wait_for_devices({ get_non_impl() });
 

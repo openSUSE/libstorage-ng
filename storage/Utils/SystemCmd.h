@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -26,11 +26,11 @@
 
 
 #include <sys/poll.h>
-#include <stdio.h>
-
+#include <cstdio>
 #include <string>
 #include <vector>
 #include <functional>
+#include <initializer_list>
 #include <boost/noncopyable.hpp>
 
 #include "storage/Utils/Exception.h"
@@ -45,9 +45,31 @@ namespace storage
     /**
      * Class to invoke a shell command and capture its exit value and output.
      */
-    class SystemCmd : private boost::noncopyable
+    class SystemCmd final : private boost::noncopyable
     {
     public:
+
+	/**
+	 * Class holding command with arguments.
+	 */
+	class Args
+	{
+	public:
+
+	    Args(std::initializer_list<string> init)
+		: values(init) {}
+
+	    const vector<string>& get_values() const { return values; }
+
+	    Args& operator<<(const char* arg) { values.push_back(arg); return *this; }
+	    Args& operator<<(const string& arg) { values.push_back(arg); return *this; }
+
+	private:
+
+	    vector<string> values;
+
+	};
+
 
 	enum ThrowBehaviour { DoThrow, NoThrow };
 
@@ -59,10 +81,19 @@ namespace storage
 	{
 	    Options(const string& command, ThrowBehaviour throw_behaviour = NoThrow);
 
+	    Options(const Args& args, ThrowBehaviour throw_behaviour = NoThrow);
+
+	    Options(std::initializer_list<string> init, ThrowBehaviour throw_behaviour = NoThrow);
+
 	    /**
-	     * The command to be executed.
+	     * The command to be executed. Either command or args must be empty.
 	     */
 	    string command;
+
+	    /**
+	     * The command with arguments to be executed. Either command or args must be empty.
+	     */
+	    vector<string> args;
 
 	    /**
 	     * Should exceptions be thrown or not?
@@ -97,26 +128,44 @@ namespace storage
 	     */
 	    vector<string> env;
 
+	private:
+
+	    void init_env();
+
 	};
 
+
 	/**
-	 * Constructor. The command is immediately executed with the options
-	 * in the Options object. Use 'retcode()' to get the commands exit
-	 * code and stdout() and stderr() to get the commands output.
+	 * Constructor. The command is immediately executed with the options in the
+	 * Options object. Use 'retcode()' to get the commands exit code and stdout() and
+	 * stderr() to get the commands output.
 	 */
 	SystemCmd(const Options& options);
 
 	/**
-	 * Convenience constructor where only the command and the throw
-	 * behaviour can be specified. Otherwise identical to 'SystemCmd(const
-	 * Options& options)'.
+	 * Convenience constructor where only the command and the throw behaviour can be
+	 * specified. Otherwise identical to 'SystemCmd(const Options& options)'.
 	 */
 	SystemCmd(const string& command, ThrowBehaviour throw_behaviour = NoThrow);
 
 	/**
+	 * Convenience constructor where only the command with arguments and the throw
+	 * behaviour can be specified. Otherwise identical to 'SystemCmd(const Options&
+	 * options)'.
+	 */
+	SystemCmd(const Args& args, ThrowBehaviour throw_behaviour = NoThrow);
+
+	/**
+	 * Convenience constructor where only the command with arguments and the throw
+	 * behaviour can be specified. Otherwise identical to 'SystemCmd(const Options&
+	 * options)'.
+	 */
+	SystemCmd(std::initializer_list<string> init, ThrowBehaviour throw_behaviour = NoThrow);
+
+	/**
 	 * Destructor.
 	 */
-	virtual ~SystemCmd();
+	~SystemCmd();
 
     private:
 
@@ -141,6 +190,16 @@ namespace storage
 	 * Return the command executed.
 	 */
 	const string& command() const { return options.command; }
+
+	/**
+	 * Return the command with arguments executed.
+	 */
+	const vector<string>& args() const { return options.args; }
+
+	/**
+	 * The command for displaying. Only for logging since quoting is gone.
+	 */
+	string display_command() const;
 
 	/**
 	 * Return the exit code of the command.
@@ -181,8 +240,7 @@ namespace storage
 
 	bool do_throw() const { return options.throw_behaviour == DoThrow; }
 
-	const string& mockup_key() const
-	    { return options.mockup_key.empty() ? options.command : options.mockup_key; }
+	string mockup_key() const;
 
 	Options options;
 
@@ -190,19 +248,46 @@ namespace storage
         FILE* _childStdin;
 	vector<string> _outputLines[2];
 	bool _newLineSeen[2];
-	int _cmdRet;
-	int _cmdPid;
+	int _cmdRet = 0;
+	int _cmdPid = 0;
 	struct pollfd _pfds[3];
 
+
 	/**
-	 * Constructs the environment for the child process.
+	 * Class to tempararily hold copies for execle() and execvpe().
+	 */
+	class TmpForExec
+	{
+	public:
+
+	    TmpForExec(const vector<char*>& values) : values(values) {}
+	    ~TmpForExec();
+
+	    char* const * get() const { return &values[0]; }
+
+	private:
+
+	    vector<char*> values;
+
+	};
+
+
+	/**
+	 * Constructs the args for the child process.
 	 *
 	 * Must not be called after exec since allocating the memory
 	 * for the vector is not allowed then (in a multithreaded
 	 * program), see fork(2) and signal-safety(7). So simply call
 	 * it right before fork.
 	 */
-	vector<const char*> make_env() const;
+	TmpForExec make_args() const;
+
+	/**
+	 * Constructs the environment for the child process.
+	 *
+	 * Same not as for make_args().
+	 */
+	TmpForExec make_env() const;
 
     };
 
@@ -225,7 +310,7 @@ namespace storage
 	    {
 		// Copy relevant information from sysCmd because it might go
 		// out of scope while this exception still exists.
-		_cmd = sysCmd->command();
+		_cmd = sysCmd->display_command();
 		setMsg( msg + ": \"" + _cmd + "\"" );
 		_cmdRet = sysCmd->retcode();
 		_stderr = sysCmd->stderr();

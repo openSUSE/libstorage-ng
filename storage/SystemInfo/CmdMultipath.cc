@@ -38,11 +38,11 @@ namespace storage
 
     CmdMultipath::CmdMultipath(bool test)
     {
-	string cmd_line = MULTIPATH_BIN " -d -v 2";
+	SystemCmd::Args cmd_args({ MULTIPATH_BIN, "-d", "-v", "2" });
 	if (!test)
-	    cmd_line += " -ll";
+	    cmd_args << "-ll";
 
-	SystemCmd cmd(cmd_line);
+	SystemCmd cmd(cmd_args);
 	if (cmd.retcode() != 0 || cmd.stdout().empty())
 	    return;
 

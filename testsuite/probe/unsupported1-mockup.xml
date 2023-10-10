@@ -7,7 +7,7 @@
       <stdout>sdd</stdout>
     </Command>
     <Command>
-      <name>/sbin/blkid -c '/dev/null'</name>
+      <name>/sbin/blkid -c /dev/null</name>
       <stdout>/dev/sdc1: BLOCK_SIZE="1024" TYPE="minix" PARTUUID="5d543afa-1d1c-4373-8565-1c417156e893"</stdout>
       <stdout>/dev/sdd: PTTYPE="PMBR"</stdout>
     </Command>

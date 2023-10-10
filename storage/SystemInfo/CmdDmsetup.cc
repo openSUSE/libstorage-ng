@@ -38,8 +38,8 @@ namespace storage
 
     CmdDmsetupInfo::CmdDmsetupInfo()
     {
-	SystemCmd cmd(DMSETUP_BIN " --columns --separator '/' --noheadings -o name,major,minor,"
-		      "segments,subsystem,uuid info", SystemCmd::DoThrow);
+	SystemCmd cmd({ DMSETUP_BIN, "--columns", "--separator", "/", "--noheadings", "-o", "name,major,minor,"
+		"segments,subsystem,uuid", "info" }, SystemCmd::DoThrow);
 
 	parse(cmd.stdout());
     }
@@ -105,9 +105,9 @@ namespace storage
 
     CmdDmsetupTable::CmdDmsetupTable()
     {
-	SystemCmd c(DMSETUP_BIN " table", SystemCmd::DoThrow);
+	SystemCmd cmd({ DMSETUP_BIN, "table" }, SystemCmd::DoThrow);
 
-	parse(c.stdout());
+	parse(cmd.stdout());
     }
 
 

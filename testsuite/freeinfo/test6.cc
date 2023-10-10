@@ -70,7 +70,7 @@ BOOST_AUTO_TEST_CASE(test_ext4)
 	"Estimated minimum size of the filesystem: 1000000"
     });
 
-    Mockup::set_command(UDEVADM_BIN_SETTLE, vector<string> {});
+    Mockup::set_command({ UDEVADM_BIN_SETTLE }, vector<string> {});
 
     // Check min and max size.
 
@@ -120,7 +120,7 @@ BOOST_AUTO_TEST_CASE(test_ntfs)
 	"You might resize at 10737418240 bytes or 10 GB (freeing 1014 GB)."
     });
 
-    Mockup::set_command(UDEVADM_BIN_SETTLE, vector<string> {});
+    Mockup::set_command({ UDEVADM_BIN_SETTLE }, vector<string> {});
 
     // Check min and max size.
 

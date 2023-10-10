@@ -21,6 +21,8 @@
  */
 
 
+#include <boost/algorithm/string.hpp>
+
 #include "storage/Utils/Mockup.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/ExceptionImpl.h"
@@ -194,6 +196,13 @@ namespace storage
     Mockup::set_command(const string& name, const Command& command)
     {
 	commands[name] = command;
+    }
+
+
+    void
+    Mockup::set_command(const vector<string>& name, const Command& command)
+    {
+	commands[boost::join(name, " ")] = command;
     }
 
 

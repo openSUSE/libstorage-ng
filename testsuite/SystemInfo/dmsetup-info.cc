@@ -19,7 +19,7 @@ void
 check(const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command(DMSETUP_BIN " --columns --separator '/' --noheadings -o name,major,minor,"
+    Mockup::set_command(DMSETUP_BIN " --columns --separator / --noheadings -o name,major,minor,"
 			"segments,subsystem,uuid info", input);
 
     CmdDmsetupInfo cmddmsetupinfo;

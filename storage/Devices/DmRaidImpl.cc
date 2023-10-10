@@ -107,7 +107,7 @@ namespace storage
 	SystemCmd cmd(cmd_line);
 
 	if (cmd.retcode() == 0)
-	    SystemCmd(UDEVADM_BIN_SETTLE);
+	    SystemCmd({ UDEVADM_BIN_SETTLE });
 
 	return cmd.retcode() == 0;
     }

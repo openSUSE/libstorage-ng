@@ -56,7 +56,7 @@ BOOST_AUTO_TEST_CASE(find_vertex)
 
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
 
-    Mockup::set_command(UDEVADM_BIN_SETTLE, vector<string>({}));
+    Mockup::set_command({ UDEVADM_BIN_SETTLE }, vector<string>({}));
 
     storage.remove_devicegraph("system");
     storage.copy_devicegraph("staging", "system");

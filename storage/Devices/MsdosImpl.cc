@@ -320,7 +320,7 @@ namespace storage
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
-	SystemCmd(UDEVADM_BIN_SETTLE);
+	SystemCmd({ UDEVADM_BIN_SETTLE });
     }
 
 

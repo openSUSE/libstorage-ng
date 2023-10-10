@@ -41,7 +41,7 @@ namespace storage
 
     CmdBtrfsFilesystemShow::CmdBtrfsFilesystemShow()
     {
-	SystemCmd::Options cmd_options(BTRFS_BIN " filesystem show", SystemCmd::DoThrow);
+	SystemCmd::Options cmd_options({ BTRFS_BIN, "filesystem", "show" }, SystemCmd::DoThrow);
 	cmd_options.verify = [](int) { return true; };
 
 	SystemCmd cmd(cmd_options);
@@ -631,7 +631,7 @@ namespace storage
 	if (did_set_version)
 	    return;
 
-	SystemCmd cmd(BTRFS_BIN " --version", SystemCmd::DoThrow);
+	SystemCmd cmd({ BTRFS_BIN, "--version" }, SystemCmd::DoThrow);
 	if (cmd.stdout().empty())
 	    ST_THROW(SystemCmdException(&cmd, "failed to query btrfs version"));
 

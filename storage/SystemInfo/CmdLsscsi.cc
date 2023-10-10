@@ -40,7 +40,7 @@ namespace storage
     {
 	const bool json = LsscsiVersion::supports_json_option();
 
-	SystemCmd cmd(LSSCSI_BIN " --transport", SystemCmd::DoThrow);
+	SystemCmd cmd({ LSSCSI_BIN, "--transport" }, SystemCmd::DoThrow);
 
 	parse(cmd.stdout());
     }
@@ -136,7 +136,7 @@ namespace storage
 	if (did_set_version)
 	    return;
 
-	SystemCmd cmd(LSSCSI_BIN " --version", SystemCmd::DoThrow);
+	SystemCmd cmd({ LSSCSI_BIN, "--version" }, SystemCmd::DoThrow);
 	if (cmd.stderr().empty())
 	    ST_THROW(SystemCmdException(&cmd, "failed to query lsscsi version"));
 

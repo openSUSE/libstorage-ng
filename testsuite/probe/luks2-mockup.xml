@@ -10,7 +10,7 @@
       <stdout>dm-6</stdout>
     </Command>
     <Command>
-      <name>/sbin/blkid -c '/dev/null'</name>
+      <name>/sbin/blkid -c /dev/null</name>
       <stdout>/dev/sdb1: UUID="109ae070-3bf4-452c-9680-93df9b01a368" TYPE="crypto_LUKS" PARTUUID="cfbfee80-68d6-458a-b40f-d3d88d93802d"</stdout>
       <stdout>/dev/sdb2: UUID="cf01696e-1c94-40be-8088-4ad33c8a539b" TYPE="crypto_LUKS" PARTUUID="85157169-6340-4077-9558-72c86feed83d"</stdout>
       <stdout>/dev/sdb3: UUID="aa68b93d-a5f9-4294-80a8-c4e660cc56dd" TYPE="crypto_LUKS" PARTUUID="06f9594b-16cd-4bf4-a6b8-657123af74c3"</stdout>
@@ -54,7 +54,7 @@
       <exit-code>1</exit-code>
     </Command>
     <Command>
-      <name>/sbin/dmsetup --columns --separator '/' --noheadings -o name,major,minor,segments,subsystem,uuid info</name>
+      <name>/sbin/dmsetup --columns --separator / --noheadings -o name,major,minor,segments,subsystem,uuid info</name>
       <stdout>cr-test3/254/8/1/CRYPT/CRYPT-LUKS1-aa68b93da5f9429480a8c4e660cc56dd-cr-test3</stdout>
       <stdout>cr-test1/254/6/1/CRYPT/CRYPT-LUKS1-109ae0703bf4452c968093df9b01a368-cr-test1</stdout>
     </Command>

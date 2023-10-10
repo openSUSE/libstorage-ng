@@ -21,7 +21,7 @@
  */
 
 
-#include <ctype.h>
+#include <cctype>
 #include <boost/integer/common_factor_rt.hpp>
 #include <boost/algorithm/string.hpp>
 
@@ -410,7 +410,7 @@ namespace storage
 		SystemCmd cmd(MDADM_BIN " --assemble --scan");
 
 		if (cmd.retcode() == 0)
-		    SystemCmd(UDEVADM_BIN_SETTLE);
+		    SystemCmd({ UDEVADM_BIN_SETTLE });
 
 		return cmd.retcode() == 0;
 	    }
@@ -426,7 +426,7 @@ namespace storage
 		SystemCmd cmd2(cmd_line2);
 
 		if (cmd2.retcode() == 0)
-		    SystemCmd(UDEVADM_BIN_SETTLE);
+		    SystemCmd({ UDEVADM_BIN_SETTLE });
 
 		unlink(filename.c_str());
 
