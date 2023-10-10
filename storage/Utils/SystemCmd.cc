@@ -259,7 +259,7 @@ namespace storage
 	}
 	else
 	{
-	    y2mil("SystemCmd Executing:\"" << command() << "\"");
+	    y2mil("SystemCmd Executing:\"" << display_command() << "\"");
 	    y2mil("timestamp " << timestamp());
 	    ret = doExecute();
 	}
@@ -276,7 +276,7 @@ namespace storage
     int
     SystemCmd::doExecute()
     {
-	y2deb("command:" << command());
+	y2deb("command:" << display_command());
 
 	Stopwatch stopwatch;
 
@@ -412,7 +412,7 @@ namespace storage
 		    }
 
 		    doWait( _cmdRet );
-		    y2mil("stopwatch " << stopwatch << " for \"" << command() << "\"");
+		    y2mil("stopwatch " << stopwatch << " for \"" << display_command() << "\"");
 
 		    break;
 	    }
@@ -423,7 +423,7 @@ namespace storage
 	}
 	if ( _cmdRet==-127 || _cmdRet==-1 )
 	{
-	    y2err("system (\"" << command() << "\") = " << _cmdRet);
+	    y2err("system (\"" << display_command() << "\") = " << _cmdRet);
 	}
 	checkOutput();
 	y2mil("system() Returns:" << _cmdRet);
