@@ -83,7 +83,7 @@ namespace storage
 	parse(cmd.stdout(), cmd.stderr());
 
 	if (PartedVersion::print_triggers_udev())
-	    SystemCmd(UDEVADM_BIN_SETTLE);
+	    SystemCmd({ UDEVADM_BIN_SETTLE });
     }
 
 
@@ -676,7 +676,7 @@ namespace storage
 	if (did_set_version)
 	    return;
 
-	SystemCmd cmd(PARTED_BIN " --version", SystemCmd::DoThrow);
+	SystemCmd cmd({ PARTED_BIN, "--version" }, SystemCmd::DoThrow);
 	if (cmd.stdout().empty())
 	    ST_THROW(SystemCmdException(&cmd, "failed to query parted version"));
 

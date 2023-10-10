@@ -7,7 +7,7 @@
       <stdout>sdd</stdout>
     </Command>
     <Command>
-      <name>/sbin/blkid -c '/dev/null'</name>
+      <name>/sbin/blkid -c /dev/null</name>
       <stdout>/dev/sdd1: UUID="048815b8-5bea-423d-a739-51c81c3eba2c" UUID_SUB="87592a17-fcab-4ebb-8e29-22b29480a75d" TYPE="btrfs" PARTUUID="db35c54e-4869-4976-90aa-f91eb380fc6d"</stdout>
     </Command>
     <Command>

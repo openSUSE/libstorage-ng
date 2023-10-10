@@ -7,7 +7,7 @@
       <stdout>vda</stdout>
     </Command>
     <Command>
-      <name>/sbin/blkid -c '/dev/null'</name>
+      <name>/sbin/blkid -c /dev/null</name>
     </Command>
     <Command>
       <name>/usr/bin/udevadm info '/dev/vda'</name>

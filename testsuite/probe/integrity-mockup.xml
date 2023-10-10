@@ -21,7 +21,7 @@
       <stdout>dm-3</stdout>
     </Command>
     <Command>
-      <name>/sbin/blkid -c '/dev/null'</name>
+      <name>/sbin/blkid -c /dev/null</name>
       <stdout>/dev/loop1: UUID="9da09aa7-eb1d-48ca-b39d-4211bf9b8419" BLOCK_SIZE="4096" TYPE="ext4"</stdout>
       <stdout>/dev/mapper/live-base: UUID="9da09aa7-eb1d-48ca-b39d-4211bf9b8419" BLOCK_SIZE="4096" TYPE="ext4"</stdout>
       <stdout>/dev/sr0: BLOCK_SIZE="2048" UUID="2022-04-26-02-02-29-00" LABEL="CDROM" TYPE="iso9660" PTTYPE="dos"</stdout>
@@ -133,7 +133,7 @@
       <exit-code>127</exit-code>
     </Command>
     <Command>
-      <name>/sbin/dmsetup --columns --separator '/' --noheadings -o name,major,minor,segments,subsystem,uuid info</name>
+      <name>/sbin/dmsetup --columns --separator / --noheadings -o name,major,minor,segments,subsystem,uuid info</name>
       <stdout>crypto/254/3/1/CRYPT/CRYPT-LUKS2-08b5a71487124c758ac004ff7d2912bb-crypto</stdout>
       <stdout>crypto_dif/254/2/1/CRYPT/CRYPT-INTEGRITY-08b5a71487124c758ac004ff7d2912bb-crypto_dif</stdout>
       <stdout>live-base/254/1/1//</stdout>

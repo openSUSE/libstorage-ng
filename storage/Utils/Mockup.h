@@ -26,6 +26,7 @@
 
 
 #include <string>
+#include <vector>
 #include <map>
 #include <set>
 
@@ -47,6 +48,7 @@
 namespace storage
 {
     using std::string;
+    using std::vector;
     using std::map;
     using std::set;
 
@@ -72,6 +74,7 @@ namespace storage
 	static bool has_command(const string& name);
 	static const Command& get_command(const string& name);
 	static void set_command(const string& name, const Command& command);
+	static void set_command(const vector<string>& name, const Command& command);
 	static void erase_command(const string& name);
 
 	static bool has_file(const string& name);

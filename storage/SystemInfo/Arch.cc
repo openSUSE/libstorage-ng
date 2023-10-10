@@ -72,7 +72,7 @@ namespace storage
     void
     Arch::probe()
     {
-	SystemCmd cmd1(UNAME_BIN " -m", SystemCmd::DoThrow);
+	SystemCmd cmd1({ UNAME_BIN, "-m" }, SystemCmd::DoThrow);
 
 	if (cmd1.stdout().size() == 1)
 	    arch = cmd1.stdout().front();
@@ -120,7 +120,7 @@ namespace storage
 	    efiboot = string(tenv) == "yes";
 	}
 
-	SystemCmd cmd2(GETCONF_BIN " PAGESIZE", SystemCmd::DoThrow);
+	SystemCmd cmd2({ GETCONF_BIN, "PAGESIZE" }, SystemCmd::DoThrow);
 
 	if (cmd2.stdout().size() == 1)
 	    cmd2.stdout().front() >> page_size;

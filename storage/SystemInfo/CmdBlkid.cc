@@ -41,7 +41,7 @@ namespace storage
 
     Blkid::Blkid()
     {
-	SystemCmd::Options options(BLKID_BIN " -c '" DEV_NULL_FILE "'", SystemCmd::DoThrow);
+	SystemCmd::Options options({ BLKID_BIN, "-c", DEV_NULL_FILE }, SystemCmd::DoThrow);
 
 	// If blkid does not find anything it returns 2 (see bsc #1203285).
 	options.verify = [](int exit_code) { return exit_code == 0 || exit_code == 2; };

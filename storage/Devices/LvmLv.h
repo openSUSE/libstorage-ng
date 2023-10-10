@@ -100,7 +100,7 @@ namespace storage
 
 	/**
 	 * A mirror volume. This is different from RAID1 in that it
-	 * has the mirror log on a seperate device.
+	 * has the mirror log on a separate device.
 	 *
 	 * Cannot be created by the library.
 	 */

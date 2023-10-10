@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,17 +21,15 @@
  */
 
 
-#include <stdlib.h>
+#include <cstdlib>
 #include <unistd.h>
-#include <errno.h>
+#include <cerrno>
 #include <fcntl.h>
 #include <langinfo.h>
 #include <sys/wait.h>
 #include <string>
 #include <sstream>
 #include <boost/algorithm/string.hpp>
-
-extern char **environ;
 
 #include "storage/Utils/ExceptionImpl.h"
 #include "storage/Utils/Stopwatch.h"
@@ -40,6 +38,7 @@ extern char **environ;
 #include "storage/Utils/Mockup.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/AppUtil.h"
+#include "storage/Utils/StorageTmpl.h"
 
 
 #define SYSCALL_FAILED( SYSCALL_MSG ) \
@@ -63,6 +62,27 @@ namespace storage
     SystemCmd::Options::Options(const string& command, ThrowBehaviour throw_behaviour)
 	: command(command), throw_behaviour(throw_behaviour)
     {
+	init_env();
+    }
+
+
+    SystemCmd::Options::Options(const Args& args, ThrowBehaviour throw_behaviour)
+	: args(args.get_values()), throw_behaviour(throw_behaviour)
+    {
+	init_env();
+    }
+
+
+    SystemCmd::Options::Options(std::initializer_list<string> init, ThrowBehaviour throw_behaviour)
+	: args(init), throw_behaviour(throw_behaviour)
+    {
+	init_env();
+    }
+
+
+    void
+    SystemCmd::Options::init_env()
+    {
 	// parted needs UTF-8 to decode partition names with non-ASCII characters. Might
 	// be the case for other programs as well. Running in non-UTF-8 is not really
 	// supported.
@@ -75,12 +95,19 @@ namespace storage
 
 
     SystemCmd::SystemCmd(const Options& options)
-	: options(options), _cmdRet(0), _cmdPid(0)
+	: options(options)
     {
-	y2mil("constructor SystemCmd(\"" << command() << "\")");
+	if (!command().empty())
+	    y2mil("constructor SystemCmd(\"" << command() << "\")");
 
-	if (command().empty())
-            ST_THROW(SystemCmdException(this, "No command specified"));
+	if (!args().empty())
+	    y2mil("constructor SystemCmd(" << args() << ")");
+
+	if (command().empty() && args().empty())
+            ST_THROW(SystemCmdException(this, "Neither command nor args specified"));
+
+	if (!command().empty() && !args().empty())
+            ST_THROW(SystemCmdException(this, "Both command and args specified"));
 
 	init();
 
@@ -97,7 +124,7 @@ namespace storage
 
 	if (do_throw() && !options.verify(_cmdRet))
 	{
-	    string s = "command '" + command() + "' failed:\n\n";
+	    string s = "command '" + display_command() + "' failed:\n\n";
 
 	    if (!stdout().empty())
 		s += "stdout:\n" + boost::join(stdout(), "\n") + "\n\n";
@@ -118,6 +145,25 @@ namespace storage
     }
 
 
+    SystemCmd::SystemCmd(const Args& args, ThrowBehaviour throw_behaviour)
+	: SystemCmd(SystemCmd::Options(args, throw_behaviour))
+    {
+    }
+
+
+    SystemCmd::SystemCmd(std::initializer_list<string> init, ThrowBehaviour throw_behaviour)
+	: SystemCmd(SystemCmd::Options(init, throw_behaviour))
+    {
+    }
+
+
+    string
+    SystemCmd::display_command() const
+    {
+	return command().empty() ? boost::join(args(), " ") : command();
+    }
+
+
     void
     SystemCmd::init()
     {
@@ -126,6 +172,19 @@ namespace storage
 	_pfds[0].events = POLLOUT; // stdin
 	_pfds[1].events = POLLIN;  // stdout
 	_pfds[2].events = POLLIN;  // stderr
+    }
+
+
+    string
+    SystemCmd::mockup_key() const
+    {
+	if (!options.mockup_key.empty())
+	    return options.mockup_key;
+
+	if (!options.args.empty())
+	    return boost::join(options.args, " ");
+	else
+	    return options.command;
     }
 
 
@@ -177,7 +236,7 @@ namespace storage
 
 	if (Mockup::get_mode() == Mockup::Mode::PLAYBACK)
 	{
-	    const Mockup::Command& mockup_command = Mockup::get_command(mockup_key());
+	    const Mockup::Command mockup_command = Mockup::get_command(mockup_key());
 	    _outputLines[IDX_STDOUT] = mockup_command.stdout;
 	    _outputLines[IDX_STDERR] = mockup_command.stderr;
 	    _cmdRet = mockup_command.exit_code;
@@ -262,7 +321,8 @@ namespace storage
 	    }
 	    y2deb("sout:" << _pfds[1].fd << " serr:" << _pfds[2].fd);
 
-	    const vector<const char*> env = make_env();
+	    const TmpForExec args_p(make_args());
+	    const TmpForExec env_p(make_env());
 
 	    switch( (_cmdPid=fork()) )
 	    {
@@ -292,8 +352,17 @@ namespace storage
 		    {
 			SYSCALL_FAILED_NOTHROW( "close( stderr ) failed in child process" );
 		    }
+
 		    closeOpenFds();
-		    _cmdRet = execle(SH_BIN, SH_BIN, "-c", command().c_str(), nullptr, &env[0]);
+
+		    if (args().empty())
+		    {
+			_cmdRet = execle(SH_BIN, SH_BIN, "-c", command().c_str(), nullptr, env_p.get());
+		    }
+		    else
+		    {
+			_cmdRet = execvpe(args()[0].c_str(), args_p.get(), env_p.get());
+		    }
 
 		    // execle() should not return. If we get here, it failed.
 		    // Throwing an exception here would not make any sense, however:
@@ -616,16 +685,39 @@ namespace storage
     }
 
 
-    vector<const char*>
+    SystemCmd::TmpForExec::~TmpForExec()
+    {
+	for (char* v : values)
+	    free(v);
+    }
+
+
+    SystemCmd::TmpForExec
+    SystemCmd::make_args() const
+    {
+	vector<char*> args;
+
+	for (const string& v : options.args)
+	{
+	    args.push_back(strdup(v.c_str()));
+	}
+
+	args.push_back(nullptr);
+
+	return args;
+    }
+
+
+    SystemCmd::TmpForExec
     SystemCmd::make_env() const
     {
 	// Environment variables should be present only once in the environment.
 	// https://pubs.opengroup.org/onlinepubs/009695399/basedefs/xbd_chap08.html
 
-	vector<const char*> env;
+	vector<char*> env;
 
 	for (char** v = environ; *v != NULL; ++v)
-	    env.push_back(*v);
+	    env.push_back(strdup(*v));
 
 	for (const string& v : options.env)
 	{
@@ -635,12 +727,12 @@ namespace storage
 
 	    string key = v.substr(0, pos + 1); // key including '=' sign
 
-	    vector<const char*>::iterator it = find_if(env.begin(), env.end(),
+	    vector<char*>::iterator it = find_if(env.begin(), env.end(),
 		[&key](const char* tmp) { return boost::starts_with(tmp, key); });
 	    if (it != env.end())
-		*it = v.c_str();
+		*it = strdup(v.c_str());
 	    else
-		env.push_back(v.c_str());
+		env.push_back(strdup(v.c_str()));
 	}
 
 	env.push_back(nullptr);

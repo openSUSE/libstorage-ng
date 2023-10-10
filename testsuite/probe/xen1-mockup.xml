@@ -73,7 +73,7 @@
       <stdout>loop53</stdout>
     </Command>
     <Command>
-      <name>/sbin/blkid -c '/dev/null'</name>
+      <name>/sbin/blkid -c /dev/null</name>
       <stdout>/dev/loop0: TYPE="squashfs"</stdout>
       <stdout>/dev/loop1: TYPE="squashfs"</stdout>
       <stdout>/dev/loop2: TYPE="squashfs"</stdout>
