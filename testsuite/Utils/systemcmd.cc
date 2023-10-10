@@ -41,7 +41,7 @@ public:
 BOOST_TEST_GLOBAL_FIXTURE(Fixture);
 
 
-BOOST_AUTO_TEST_CASE(hello_stdout)
+BOOST_AUTO_TEST_CASE(hello_stdout_cmd)
 {
     vector<string> stdout = {
 	"stdout #1: hello",
@@ -49,6 +49,21 @@ BOOST_AUTO_TEST_CASE(hello_stdout)
     };
 
     SystemCmd cmd("../helpers/echoargs hello stdout");
+
+    BOOST_CHECK_EQUAL(join(cmd.stdout()), join(stdout));
+    BOOST_CHECK(cmd.stderr().empty());
+    BOOST_CHECK(cmd.retcode() == 0);
+}
+
+
+BOOST_AUTO_TEST_CASE(hello_stdout_args)
+{
+    vector<string> stdout = {
+	"stdout #1: hello",
+	"stdout #2: stdout"
+    };
+
+    SystemCmd cmd({ "../helpers/echoargs", "hello", "stdout" });
 
     BOOST_CHECK_EQUAL(join(cmd.stdout()), join(stdout));
     BOOST_CHECK(cmd.stderr().empty());
