@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -194,6 +194,13 @@ namespace storage
     Md::get_allowed_md_parities() const
     {
 	return get_impl().get_allowed_md_parities();
+    }
+
+
+    bool
+    Md::is_chunk_size_meaningful() const
+    {
+	return get_impl().is_chunk_size_meaningful();
     }
 
 

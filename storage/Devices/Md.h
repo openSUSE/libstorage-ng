@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -40,7 +40,7 @@ namespace storage
      */
     enum class MdLevel
     {
-	UNKNOWN, RAID0, RAID1, RAID4, RAID5, RAID6, RAID10, CONTAINER
+	UNKNOWN, RAID0, RAID1, RAID4, RAID5, RAID6, RAID10, CONTAINER, LINEAR
     };
 
 
@@ -173,18 +173,29 @@ namespace storage
 	std::vector<MdParity> get_allowed_md_parities() const;
 
 	/**
-	 * Get the chunk size of the MD RAID. The chunk size is not meaningful for RAID1.
+	 * Is the chunk size meaningful for the RAID (so far only depends on RAID level)?
+	 */
+	bool is_chunk_size_meaningful() const;
+
+	/**
+	 * Get the chunk size of the MD RAID. The chunk size is not meaningful for LINEAR
+	 * nor RAID1.
+	 *
+	 * @see is_chunk_size_meaningful()
 	 */
 	unsigned long get_chunk_size() const;
 
 	/**
-	 * Set the chunk size of the MD RAID. The chunk size is not meaningful for RAID1.
+	 * Set the chunk size of the MD RAID. The chunk size is not meaningful for LINEAR
+	 * nor RAID1.
 	 *
 	 * The function does not make a complete check of the chunk size since that
 	 * depends on the RAID Level and the underlying devices. Use the
 	 * Devicegraph::check() function.
 	 *
 	 * Only for MD RAIDs not created on disk yet.
+	 *
+	 * @see is_chunk_size_meaningful()
 	 *
 	 * @throw InvalidChunkSize, Exception
 	 */

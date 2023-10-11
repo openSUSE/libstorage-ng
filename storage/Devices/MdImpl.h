@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -90,6 +90,8 @@ namespace storage
 	void set_md_parity(MdParity md_parity) { Impl::md_parity = md_parity; }
 
 	vector<MdParity> get_allowed_md_parities() const;
+
+	bool is_chunk_size_meaningful() const;
 
 	unsigned long get_chunk_size() const { return chunk_size; }
 	void set_chunk_size(unsigned long chunk_size);
