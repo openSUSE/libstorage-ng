@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -68,7 +68,7 @@ namespace storage
 
     // strings must match /proc/mdstat
     const vector<string> EnumTraits<MdLevel>::names({
-	"unknown", "RAID0", "RAID1", "RAID4", "RAID5", "RAID6", "RAID10", "CONTAINER"
+	"unknown", "RAID0", "RAID1", "RAID4", "RAID5", "RAID6", "RAID10", "CONTAINER", "LINEAR"
     });
 
 
@@ -178,6 +178,7 @@ namespace storage
 
 	switch (md_level)
 	{
+	    case MdLevel::LINEAR:
 	    case MdLevel::RAID0:
 		underlying_size = size / number_of_devices;
 		break;
@@ -307,6 +308,7 @@ namespace storage
 	    case MdLevel::UNKNOWN:
 		return { };
 
+	    case MdLevel::LINEAR:
 	    case MdLevel::RAID0:
 	    case MdLevel::RAID1:
 	    case MdLevel::RAID4:
@@ -335,6 +337,14 @@ namespace storage
 	}
 
 	return { };
+    }
+
+
+    bool
+    Md::Impl::is_chunk_size_meaningful() const
+    {
+	return md_level == MdLevel::RAID0 || md_level == MdLevel::RAID4 || md_level == MdLevel::RAID5 ||
+	    md_level == MdLevel::RAID6 || md_level == MdLevel::RAID10;
     }
 
 
@@ -850,6 +860,9 @@ namespace storage
     {
 	switch (md_level)
 	{
+	    case MdLevel::LINEAR:
+		return 2;
+
 	    case MdLevel::RAID0:
 		return 2;
 
@@ -884,6 +897,7 @@ namespace storage
     {
 	switch (md_level)
 	{
+	    case MdLevel::LINEAR:
 	    case MdLevel::RAID0:
 		return false;
 
@@ -905,6 +919,7 @@ namespace storage
     {
 	switch (md_level)
 	{
+	    case MdLevel::LINEAR:
 	    case MdLevel::RAID0:
 	    case MdLevel::RAID1:
 		return false;
@@ -1025,6 +1040,14 @@ namespace storage
 
 	switch (md_level)
 	{
+	    case MdLevel::LINEAR:
+		if (number >= 2)
+		{
+		    size = sum;
+		    optimal_io_size = 0;
+		}
+		break;
+
 	    case MdLevel::RAID0:
 		if (number >= 2)
 		{
@@ -1145,7 +1168,7 @@ namespace storage
 	    cmd_line += " --bitmap=internal";
 
 	// mdadm 4.2 bails out if a chunk size is provided for RAID1 (bsc#1205172)
-	if (md_level != MdLevel::RAID1 && chunk_size > 0)
+	if (is_chunk_size_meaningful() && chunk_size > 0)
 	    cmd_line += " --chunk=" + to_string(chunk_size / KiB);
 
 	if (md_parity != MdParity::DEFAULT)

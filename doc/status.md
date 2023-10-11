@@ -118,11 +118,15 @@ Missing:
 
 * Journal device (untested).
 
+Not planned:
+
+* RAID levels MULTIPATH and FAULTY.
+
 
 DM RAID
 -------
 
-Implemented.
+Implemented:
 
 * Probing.
 
@@ -130,7 +134,7 @@ Implemented.
 Multipath
 ---------
 
-Implemented.
+Implemented:
 
 * Probing.
 

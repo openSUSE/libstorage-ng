@@ -72,10 +72,11 @@ def doit(metadata, level, num_devices, chunk_size):
     if size_ok:
         results.write(", size %d" % (expected_size))
     else:
+        gap = 100.0 * abs(expected_size - seen_size) / seen_size
         if expected_size < seen_size:
-            results.write(", size %d < %d" % (expected_size, seen_size))
+            results.write(", size %d < %d (%.2f%%)" % (expected_size, seen_size, gap))
         else:
-            results.write(", size! %d > %d" % (expected_size, seen_size))
+            results.write(", size! %d > %d (%.2f%%)" % (expected_size, seen_size, gap))
     if io_size_ok:
         results.write(", io-size %d" % (expected_io_size))
     else:
@@ -95,6 +96,14 @@ def cleanup():
 
 max_devices = len(partitions)
 
+
+for num_devices in range(2, max_devices + 1):
+    for chunk_size in range(15, 20):
+        for metadata in ["1.0", "1.2"]:
+            doit(metadata, MdLevel_LINEAR, num_devices, 2**chunk_size)
+            cleanup()
+
+results.write("\n")
 
 for num_devices in range(2, max_devices + 1):
     for chunk_size in range(15, 20):

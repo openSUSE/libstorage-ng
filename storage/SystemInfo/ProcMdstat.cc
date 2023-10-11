@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2017-2020] SUSE LLC
+ * Copyright (c) [2017-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -102,7 +102,7 @@ namespace storage
 	boost::trim_left(line, locale::classic());
 
 	tmp = extractNthWord( 0, line );
-	if (boost::starts_with(tmp, "raid"))
+	if (boost::starts_with(tmp, "raid") || tmp == "linear")
 	{
 	    entry.md_level = toValueWithFallback(boost::to_upper_copy(tmp, locale::classic()), MdLevel::UNKNOWN);
 	    if (entry.md_level == MdLevel::UNKNOWN)
