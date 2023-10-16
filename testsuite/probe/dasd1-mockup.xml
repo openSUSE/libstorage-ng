@@ -3,7 +3,7 @@
 <Mockup>
   <Commands>
     <Command>
-      <name>/bin/ls -1 --sort=none '/sys/block'</name>
+      <name>/bin/ls -1 --sort=none /sys/block</name>
       <stdout>dasda</stdout>
     </Command>
     <Command>
@@ -13,7 +13,7 @@
       <stdout>/dev/dasda3: UUID="9bb4594e-8ffd-4aea-b137-a89c22815724" TYPE="ext4"</stdout>
     </Command>
     <Command>
-      <name>/sbin/dasdview --extended '/dev/dasda'</name>
+      <name>/sbin/dasdview --extended /dev/dasda</name>
       <stdout></stdout>
       <stdout>--- general DASD information --------------------------------------------------</stdout>
       <stdout>device node            : /dev/dasda</stdout>
@@ -68,7 +68,7 @@
       <stdout>                         000cc040 4fd356c0  02030000 0000a000</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/dasda'</name>
+      <name>/usr/bin/udevadm info /dev/dasda</name>
       <stdout>P: /devices/css0/0.0.0003/0.0.0150/block/dasda</stdout>
       <stdout>N: dasda</stdout>
       <stdout>S: disk/by-id/ccw-0X0150</stdout>
@@ -95,7 +95,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/dasda1'</name>
+      <name>/usr/bin/udevadm info /dev/dasda1</name>
       <stdout>P: /devices/css0/0.0.0003/0.0.0150/block/dasda/dasda1</stdout>
       <stdout>N: dasda1</stdout>
       <stdout>S: disk/by-id/ccw-0X0150-part1</stdout>
@@ -129,7 +129,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/dasda2'</name>
+      <name>/usr/bin/udevadm info /dev/dasda2</name>
       <stdout>P: /devices/css0/0.0.0003/0.0.0150/block/dasda/dasda2</stdout>
       <stdout>N: dasda2</stdout>
       <stdout>S: disk/by-id/ccw-0X0150-part2</stdout>
@@ -163,7 +163,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/dasda3'</name>
+      <name>/usr/bin/udevadm info /dev/dasda3</name>
       <stdout>P: /devices/css0/0.0.0003/0.0.0150/block/dasda/dasda3</stdout>
       <stdout>N: dasda3</stdout>
       <stdout>S: disk/by-id/ccw-0X0150-part3</stdout>
@@ -201,7 +201,7 @@
       <name>/usr/bin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
-      <name>/usr/bin/df --block-size=1 --output=size,used,avail,fstype '/suse/aschnell'</name>
+      <name>/usr/bin/df --block-size=1 --output=size,used,avail,fstype /suse/aschnell</name>
       <stdout>    1B-blocks          Used         Avail Type</stdout>
       <stdout>2858730233856 1857733844992 1000996388864 nfs</stdout>
     </Command>
@@ -210,7 +210,7 @@
       <stdout>4096</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/test -d '/sys/firmware/efi/efivars'</name>
+      <name>/usr/bin/test -d /sys/firmware/efi/efivars</name>
       <exit-code>1</exit-code>
     </Command>
     <Command>
@@ -222,7 +222,7 @@
       <stdout>parted (GNU parted) 3.4</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --machine '/dev/dasda' unit s print</name>
+      <name>/usr/sbin/parted --script --machine /dev/dasda unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/dasda:14424480s:dasd:512:4096:dasd:IBM S390 DASD drive:;</stdout>
       <stdout>1:192s:409727s:409536s:ext2::;</stdout>
@@ -242,7 +242,7 @@
       <name>/sbin/dmsetup table</name>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/dasda'</name>
+      <name>/usr/bin/stat --format %f /dev/dasda</name>
       <stdout>61b0</stdout>
     </Command>
   </Commands>

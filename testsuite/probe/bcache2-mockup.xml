@@ -3,7 +3,7 @@
 <Mockup>
   <Commands>
     <Command>
-      <name>/bin/ls -1 --sort=none '/sys/block'</name>
+      <name>/bin/ls -1 --sort=none /sys/block</name>
       <stdout>bcache0</stdout>
       <stdout>sdb</stdout>
       <stdout>sr0</stdout>
@@ -12,13 +12,13 @@
       <stdout>bcache2</stdout>
     </Command>
     <Command>
-      <name>/bin/ls -1 --sort=none '/sys/fs/bcache'</name>
+      <name>/bin/ls -1 --sort=none /sys/fs/bcache</name>
       <stdout>register_quiet</stdout>
       <stdout>register</stdout>
       <stdout>fd88a21b-6c1d-42a3-9154-049e6a78b143</stdout>
     </Command>
     <Command>
-      <name>/bin/ls -1 --sort=none '/sys/fs/bcache/fd88a21b-6c1d-42a3-9154-049e6a78b143'</name>
+      <name>/bin/ls -1 --sort=none /sys/fs/bcache/fd88a21b-6c1d-42a3-9154-049e6a78b143</name>
       <stdout>bdev3</stdout>
       <stdout>tree_depth</stdout>
       <stdout>congested_write_threshold_us</stdout>
@@ -78,8 +78,8 @@
       <exit-code>127</exit-code>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/bcache0'</name>
-      <name>/usr/bin/udevadm info '/dev/block/254:0'</name>
+      <name>/usr/bin/udevadm info /dev/bcache0</name>
+      <name>/usr/bin/udevadm info /dev/block/254:0</name>
       <stdout>P: /devices/virtual/block/bcache0</stdout>
       <stdout>N: bcache0</stdout>
       <stdout>S: disk/by-uuid/63edf5de-e0ed-4b2c-850b-7a8f2ebd6391</stdout>
@@ -100,8 +100,8 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/bcache1'</name>
-      <name>/usr/bin/udevadm info '/dev/block/254:128'</name>
+      <name>/usr/bin/udevadm info /dev/bcache1</name>
+      <name>/usr/bin/udevadm info /dev/block/254:128</name>
       <stdout>P: /devices/virtual/block/bcache1</stdout>
       <stdout>N: bcache1</stdout>
       <stdout>E: DEVNAME=/dev/bcache1</stdout>
@@ -117,7 +117,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/bcache1p1'</name>
+      <name>/usr/bin/udevadm info /dev/bcache1p1</name>
       <stdout>P: /devices/virtual/block/bcache1/bcache1p1</stdout>
       <stdout>N: bcache1p1</stdout>
       <stdout>S: disk/by-partuuid/495b0fc3-2188-3b40-b056-170d32ebd7f4</stdout>
@@ -150,7 +150,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/bcache1p2'</name>
+      <name>/usr/bin/udevadm info /dev/bcache1p2</name>
       <stdout>P: /devices/virtual/block/bcache1/bcache1p2</stdout>
       <stdout>N: bcache1p2</stdout>
       <stdout>S: disk/by-partuuid/b6e26781-5021-cb4d-bdd0-de47119068d4</stdout>
@@ -183,8 +183,8 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/bcache2'</name>
-      <name>/usr/bin/udevadm info '/dev/block/254:256'</name>
+      <name>/usr/bin/udevadm info /dev/bcache2</name>
+      <name>/usr/bin/udevadm info /dev/block/254:256</name>
       <stdout>P: /devices/virtual/block/bcache2</stdout>
       <stdout>N: bcache2</stdout>
       <stdout>S: disk/by-uuid/f995a0d1-ff12-4b0e-9190-0c1d39a6968c</stdout>
@@ -205,7 +205,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/block/8:17'</name>
+      <name>/usr/bin/udevadm info /dev/block/8:17</name>
       <stdout>P: /devices/pci0000:00/0000:00:06.0/usb1/1-2/1-2:1.0/host3/target3:0:0/3:0:0:0/block/sdb/sdb1</stdout>
       <stdout>N: sdb1</stdout>
       <stdout>S: disk/by-id/usb-Generic_Flash_Disk_11A43B87-0:0-part1</stdout>
@@ -267,7 +267,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/block/8:18'</name>
+      <name>/usr/bin/udevadm info /dev/block/8:18</name>
       <stdout>P: /devices/pci0000:00/0000:00:06.0/usb1/1-2/1-2:1.0/host3/target3:0:0/3:0:0:0/block/sdb/sdb2</stdout>
       <stdout>N: sdb2</stdout>
       <stdout>S: disk/by-id/usb-Generic_Flash_Disk_11A43B87-0:0-part2</stdout>
@@ -329,7 +329,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sda'</name>
+      <name>/usr/bin/udevadm info /dev/sda</name>
       <stdout>P: /devices/pci0000:00/0000:00:0d.0/ata1/host0/target0:0:0/0:0:0:0/block/sda</stdout>
       <stdout>N: sda</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VBe18006b0-58cecc64</stdout>
@@ -378,7 +378,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sda1'</name>
+      <name>/usr/bin/udevadm info /dev/sda1</name>
       <stdout>P: /devices/pci0000:00/0000:00:0d.0/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda1</stdout>
       <stdout>N: sda1</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VBe18006b0-58cecc64-part1</stdout>
@@ -442,7 +442,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sda2'</name>
+      <name>/usr/bin/udevadm info /dev/sda2</name>
       <stdout>P: /devices/pci0000:00/0000:00:0d.0/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda2</stdout>
       <stdout>N: sda2</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VBe18006b0-58cecc64-part2</stdout>
@@ -501,7 +501,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sda3'</name>
+      <name>/usr/bin/udevadm info /dev/sda3</name>
       <stdout>P: /devices/pci0000:00/0000:00:0d.0/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda3</stdout>
       <stdout>N: sda3</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VBe18006b0-58cecc64-part3</stdout>
@@ -565,7 +565,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdb'</name>
+      <name>/usr/bin/udevadm info /dev/sdb</name>
       <stdout>P: /devices/pci0000:00/0000:00:06.0/usb1/1-2/1-2:1.0/host3/target3:0:0/3:0:0:0/block/sdb</stdout>
       <stdout>N: sdb</stdout>
       <stdout>S: disk/by-id/usb-Generic_Flash_Disk_11A43B87-0:0</stdout>
@@ -612,7 +612,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdb1'</name>
+      <name>/usr/bin/udevadm info /dev/sdb1</name>
       <stdout>P: /devices/pci0000:00/0000:00:06.0/usb1/1-2/1-2:1.0/host3/target3:0:0/3:0:0:0/block/sdb/sdb1</stdout>
       <stdout>N: sdb1</stdout>
       <stdout>S: disk/by-id/usb-Generic_Flash_Disk_11A43B87-0:0-part1</stdout>
@@ -674,7 +674,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdb2'</name>
+      <name>/usr/bin/udevadm info /dev/sdb2</name>
       <stdout>P: /devices/pci0000:00/0000:00:06.0/usb1/1-2/1-2:1.0/host3/target3:0:0/3:0:0:0/block/sdb/sdb2</stdout>
       <stdout>N: sdb2</stdout>
       <stdout>S: disk/by-id/usb-Generic_Flash_Disk_11A43B87-0:0-part2</stdout>
@@ -736,7 +736,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdb3'</name>
+      <name>/usr/bin/udevadm info /dev/sdb3</name>
       <stdout>P: /devices/pci0000:00/0000:00:06.0/usb1/1-2/1-2:1.0/host3/target3:0:0/3:0:0:0/block/sdb/sdb3</stdout>
       <stdout>N: sdb3</stdout>
       <stdout>S: disk/by-id/usb-Generic_Flash_Disk_11A43B87-0:0-part3</stdout>
@@ -793,7 +793,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdb4'</name>
+      <name>/usr/bin/udevadm info /dev/sdb4</name>
       <stdout>P: /devices/pci0000:00/0000:00:06.0/usb1/1-2/1-2:1.0/host3/target3:0:0/3:0:0:0/block/sdb/sdb4</stdout>
       <stdout>N: sdb4</stdout>
       <stdout>S: disk/by-id/usb-Generic_Flash_Disk_11A43B87-0:0-part4</stdout>
@@ -850,7 +850,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sr0'</name>
+      <name>/usr/bin/udevadm info /dev/sr0</name>
       <stdout>P: /devices/pci0000:00/0000:00:01.1/ata3/host2/target2:0:0/2:0:0:0/block/sr0</stdout>
       <stdout>N: sr0</stdout>
       <stdout>L: -100</stdout>
@@ -900,7 +900,7 @@
       <name>/usr/bin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
-      <name>/usr/bin/df --block-size=1 --output=size,used,avail,fstype '/home/ivan/projects'</name>
+      <name>/usr/bin/df --block-size=1 --output=size,used,avail,fstype /home/ivan/projects</name>
       <stdout>   1B-blocks         Used       Avail Type</stdout>
       <stdout>210304499712 133128257536 66422046720 nfs4</stdout>
     </Command>
@@ -920,31 +920,31 @@
       <stderr>release: 0.32  2021/05/05 [svn: r167]</stderr>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/bcache0'</name>
+      <name>/usr/bin/stat --format %f /dev/bcache0</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/bcache1'</name>
+      <name>/usr/bin/stat --format %f /dev/bcache1</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/bcache2'</name>
+      <name>/usr/bin/stat --format %f /dev/bcache2</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sda'</name>
+      <name>/usr/bin/stat --format %f /dev/sda</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sdb'</name>
+      <name>/usr/bin/stat --format %f /dev/sdb</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sr0'</name>
+      <name>/usr/bin/stat --format %f /dev/sr0</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/test -d '/sys/firmware/efi/efivars'</name>
+      <name>/usr/bin/test -d /sys/firmware/efi/efivars</name>
       <exit-code>1</exit-code>
     </Command>
     <Command>
@@ -956,26 +956,26 @@
       <stdout>parted (GNU parted) 3.4</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --machine '/dev/bcache0' unit s print</name>
+      <name>/usr/sbin/parted --script --machine /dev/bcache0 unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/bcache0:4194288s:unknown:512:512:loop:Unknown:;</stdout>
       <stdout>1:0s:4194287s:4194288s:ext4::;</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --machine '/dev/bcache1' unit s print</name>
+      <name>/usr/sbin/parted --script --machine /dev/bcache1 unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/bcache1:2097152s:unknown:512:512:gpt:Unknown:;</stdout>
       <stdout>1:2048s:1026047s:1024000s:ext3::;</stdout>
       <stdout>2:1026048s:2097118s:1071071s:ext4::;</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --machine '/dev/bcache2' unit s print</name>
+      <name>/usr/sbin/parted --script --machine /dev/bcache2 unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/bcache2:204800s:unknown:512:512:loop:Unknown:;</stdout>
       <stdout>1:0s:204799s:204800s:ext4::;</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --machine '/dev/sda' unit s print</name>
+      <name>/usr/sbin/parted --script --machine /dev/sda unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/sda:104857600s:scsi:512:512:gpt:ATA VBOX HARDDISK:;</stdout>
       <stdout>1:2048s:100659199s:100657152s:ext4::;</stdout>
@@ -983,7 +983,7 @@
       <stdout>3:100661248s:104857566s:4196319s:linux-swap(v1)::swap;</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --machine '/dev/sdb' unit s print</name>
+      <name>/usr/sbin/parted --script --machine /dev/sdb unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/sdb:15974400s:scsi:512:512:gpt:Generic Flash Disk:;</stdout>
       <stdout>1:2048s:4196351s:4194304s:::lvm;</stdout>

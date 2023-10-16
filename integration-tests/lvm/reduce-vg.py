@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# requirements: lvm vg test with physical volumes sdb1 and sdb2, physical volume sdb2 unused
+# requirements: lvm vg test with physical volumes sdc1 and sdc2, physical volume sdc2 unused
 
 
 from sys import exit
@@ -21,9 +21,9 @@ print(staging)
 
 lvm_vg = LvmVg.find_by_vg_name(staging, "test")
 
-sdb2 = Partition.find_by_name(staging, "/dev/sdb2")
+sdc2 = Partition.find_by_name(staging, "/dev/sdd2")
 
-lvm_vg.remove_lvm_pv(sdb2)
+lvm_vg.remove_lvm_pv(sdc2)
 
 print(staging)
 

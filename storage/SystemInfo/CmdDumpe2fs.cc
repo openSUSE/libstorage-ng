@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 SUSE LLC
+ * Copyright (c) [2019-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -34,7 +34,7 @@ namespace storage
     CmdDumpe2fs::CmdDumpe2fs(const string& device)
 	: device(device)
     {
-	SystemCmd cmd(DUMPE2FS_BIN " -h " + quote(device), SystemCmd::DoThrow);
+	SystemCmd cmd({ DUMPE2FS_BIN, "-h", device }, SystemCmd::DoThrow);
 
 	parse(cmd.stdout());
     }

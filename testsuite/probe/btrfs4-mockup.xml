@@ -3,7 +3,7 @@
 <Mockup>
   <Commands>
     <Command>
-      <name>/bin/ls -1 --sort=none '/sys/block'</name>
+      <name>/bin/ls -1 --sort=none /sys/block</name>
       <stdout>sdd</stdout>
     </Command>
     <Command>
@@ -99,15 +99,15 @@
       <stderr>release: 0.32  2021/05/05 [svn: r167]</stderr>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sdd'</name>
+      <name>/usr/bin/stat --format %f /dev/sdd</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/test -d '/sys/firmware/efi/efivars'</name>
+      <name>/usr/bin/test -d /sys/firmware/efi/efivars</name>
       <exit-code>1</exit-code>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdd'</name>
+      <name>/usr/bin/udevadm info /dev/sdd</name>
       <stdout>P: /devices/pci0000:00/0000:00:14.0/usb2/2-8/2-8:1.0/host9/target9:0:0/9:0:0:0/block/sdd</stdout>
       <stdout>N: sdd</stdout>
       <stdout>L: 0</stdout>
@@ -158,7 +158,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdd1'</name>
+      <name>/usr/bin/udevadm info /dev/sdd1</name>
       <stdout>P: /devices/pci0000:00/0000:00:14.0/usb2/2-8/2-8:1.0/host9/target9:0:0/9:0:0:0/block/sdd/sdd1</stdout>
       <stdout>N: sdd1</stdout>
       <stdout>L: 0</stdout>
@@ -228,7 +228,7 @@
       <stdout>parted (GNU parted) 3.4</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --machine '/dev/sdd' unit s print</name>
+      <name>/usr/sbin/parted --script --machine /dev/sdd unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/sdd:5860466688s:scsi:512:4096:gpt:WD My Passport 25E2::128;</stdout>
       <stdout>1:2048s:58605567s:58603520s:btrfs::;</stdout>

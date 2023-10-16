@@ -8,7 +8,7 @@
       <name>/sbin/mdadm --create '/dev/md0' --run --level=raid5 --metadata=1.2 --homehost=any --raid-devices=3 '/dev/sdd1' '/dev/sde1' '/dev/sdf1' --write-journal='/dev/sdb1'</name>
     </Command>
     <Command>
-      <name>/sbin/mdadm --detail '/dev/md0' --export</name>
+      <name>/sbin/mdadm --detail /dev/md0 --export</name>
       <stdout>MD_LEVEL=raid5</stdout>
       <stdout>MD_DEVICES=3</stdout>
       <stdout>MD_METADATA=1.2</stdout>

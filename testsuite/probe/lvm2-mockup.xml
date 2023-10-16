@@ -3,7 +3,7 @@
 <Mockup>
   <Commands>
     <Command>
-      <name>/bin/ls -1 --sort=none '/sys/block'</name>
+      <name>/bin/ls -1 --sort=none /sys/block</name>
       <stdout>dm-1</stdout>
       <stdout>dm-6</stdout>
       <stdout>dm-4</stdout>
@@ -33,7 +33,7 @@
       <name>/sbin/dmsetup table</name>
     </Command>
     <Command>
-      <name>/sbin/lvs --reportformat json --config 'log { command_names = 0 prefix = "" }' --units b --nosuffix --all --options lv_name,lv_uuid,vg_name,vg_uuid,lv_role,lv_attr,lv_size,origin_size,segtype,stripes,stripe_size,chunk_size,pool_lv,pool_lv_uuid,origin,origin_uuid,data_lv,data_lv_uuid,metadata_lv,metadata_lv_uuid</name>
+      <name>/sbin/lvs --reportformat json --config log { command_names = 0 prefix = "" } --units b --nosuffix --all --options lv_name,lv_uuid,vg_name,vg_uuid,lv_role,lv_attr,lv_size,origin_size,segtype,stripes,stripe_size,chunk_size,pool_lv,pool_lv_uuid,origin,origin_uuid,data_lv,data_lv_uuid,metadata_lv,metadata_lv_uuid</name>
       <stdout>  {</stdout>
       <stdout>      "report": [</stdout>
       <stdout>          {</stdout>
@@ -56,7 +56,7 @@
       <exit-code>127</exit-code>
     </Command>
     <Command>
-      <name>/sbin/pvs --reportformat json --config 'log { command_names = 0 prefix = "" }' --units b --nosuffix --all --options pv_name,pv_uuid,vg_name,vg_uuid,pv_attr,pe_start</name>
+      <name>/sbin/pvs --reportformat json --config log { command_names = 0 prefix = "" } --units b --nosuffix --all --options pv_name,pv_uuid,vg_name,vg_uuid,pv_attr,pe_start</name>
       <!-- output incomplete -->
       <stdout>  {</stdout>
       <stdout>      "report": [</stdout>
@@ -69,7 +69,7 @@
       <stdout>  }</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/dm-4'</name>
+      <name>/usr/bin/udevadm info /dev/dm-4</name>
       <stdout>P: /devices/virtual/block/dm-4</stdout>
       <stdout>N: dm-4</stdout>
       <stdout>S: disk/by-id/dm-name-system-swap</stdout>
@@ -102,7 +102,7 @@
       <stdout>E: USEC_INITIALIZED=3220380</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sda'</name>
+      <name>/usr/bin/udevadm info /dev/sda</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda</stdout>
       <stdout>N: sda</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB09d89637-d9690549</stdout>
@@ -150,7 +150,7 @@
       <stdout>E: USEC_INITIALIZED=12033392</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sda1'</name>
+      <name>/usr/bin/udevadm info /dev/sda1</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda1</stdout>
       <stdout>N: sda1</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB09d89637-d9690549-part1</stdout>
@@ -214,7 +214,7 @@
       <stdout>E: USEC_INITIALIZED=12812805</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sda2'</name>
+      <name>/usr/bin/udevadm info /dev/sda2</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda2</stdout>
       <stdout>N: sda2</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB09d89637-d9690549-part2</stdout>
@@ -281,7 +281,7 @@
       <stdout>E: USEC_INITIALIZED=12885390</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sr0'</name>
+      <name>/usr/bin/udevadm info /dev/sr0</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.1/ata4/host3/target3:0:0/3:0:0:0/block/sr0</stdout>
       <stdout>N: sr0</stdout>
       <stdout>L: -100</stdout>
@@ -348,7 +348,7 @@
       <stdout>E: USEC_INITIALIZED=11340413</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/system/home'</name>
+      <name>/usr/bin/udevadm info /dev/system/home</name>
       <stdout>P: /devices/virtual/block/dm-6</stdout>
       <stdout>N: dm-6</stdout>
       <stdout>S: disk/by-id/dm-name-system-home</stdout>
@@ -380,7 +380,7 @@
       <stdout>E: USEC_INITIALIZED=14057865</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/system/root'</name>
+      <name>/usr/bin/udevadm info /dev/system/root</name>
       <stdout>P: /devices/virtual/block/dm-3</stdout>
       <stdout>N: dm-3</stdout>
       <stdout>S: disk/by-id/dm-name-system-root</stdout>
@@ -413,7 +413,7 @@
       <stdout>E: USEC_INITIALIZED=3105114</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/system/swap'</name>
+      <name>/usr/bin/udevadm info /dev/system/swap</name>
       <stdout>P: /devices/virtual/block/dm-4</stdout>
       <stdout>N: dm-4</stdout>
       <stdout>S: disk/by-id/dm-name-system-swap</stdout>
@@ -449,7 +449,7 @@
       <name>/usr/bin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
-      <name>/sbin/vgs --reportformat json --config 'log { command_names = 0 prefix = "" }' --units b --nosuffix --options vg_name,vg_uuid,vg_attr,vg_extent_size,vg_extent_count,vg_free_count</name>
+      <name>/sbin/vgs --reportformat json --config log { command_names = 0 prefix = "" } --units b --nosuffix --options vg_name,vg_uuid,vg_attr,vg_extent_size,vg_extent_count,vg_free_count</name>
       <stdout>  {</stdout>
       <stdout>      "report": [</stdout>
       <stdout>          {</stdout>
@@ -475,15 +475,15 @@
       <stderr>release: 0.32  2021/05/05 [svn: r167]</stderr>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sda'</name>
+      <name>/usr/bin/stat --format %f /dev/sda</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sr0'</name>
+      <name>/usr/bin/stat --format %f /dev/sr0</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/test -d '/sys/firmware/efi/efivars'</name>
+      <name>/usr/bin/test -d /sys/firmware/efi/efivars</name>
       <exit-code>1</exit-code>
     </Command>
     <Command>
@@ -495,7 +495,7 @@
       <stdout>parted (GNU parted) 3.4</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --machine '/dev/sda' unit s print</name>
+      <name>/usr/sbin/parted --script --machine /dev/sda unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/sda:33554432s:scsi:512:512:msdos:ATA VBOX HARDDISK:;</stdout>
       <stdout>1:2048s:530431s:528384s:ext4::boot, type=83;</stdout>

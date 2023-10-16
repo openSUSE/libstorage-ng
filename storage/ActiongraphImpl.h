@@ -207,6 +207,7 @@ namespace storage
 	void set_priorities();
 	void set_priorities_upward(vertex_descriptor v1);
 	void calculate_order();
+	void check_taboos();
 
 	const Storage& storage;
 

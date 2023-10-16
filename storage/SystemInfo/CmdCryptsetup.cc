@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2019-2022] SUSE LLC
+ * Copyright (c) [2019-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -39,7 +39,7 @@ namespace storage
     CmdCryptsetupStatus::CmdCryptsetupStatus(const string& name)
 	: name(name), encryption_type(EncryptionType::UNKNOWN)
     {
-	SystemCmd cmd(CRYPTSETUP_BIN " status " + quote(name), SystemCmd::DoThrow);
+	SystemCmd cmd({ CRYPTSETUP_BIN, "status", name }, SystemCmd::DoThrow);
 
 	parse(cmd.stdout());
     }
@@ -99,7 +99,7 @@ namespace storage
     CmdCryptsetupLuksDump::CmdCryptsetupLuksDump(const string& name)
 	: name(name)
     {
-	SystemCmd cmd(CRYPTSETUP_BIN " luksDump " + quote(name), SystemCmd::DoThrow);
+	SystemCmd cmd({ CRYPTSETUP_BIN, "luksDump", name }, SystemCmd::DoThrow);
 
 	parse(cmd.stdout());
     }
@@ -292,7 +292,7 @@ namespace storage
     CmdCryptsetupBitlkDump::CmdCryptsetupBitlkDump(const string& name)
 	: name(name)
     {
-	SystemCmd cmd(CRYPTSETUP_BIN " bitlkDump " + quote(name), SystemCmd::DoThrow);
+	SystemCmd cmd({ CRYPTSETUP_BIN, "bitlkDump", name }, SystemCmd::DoThrow);
 
 	parse(cmd.stdout());
     }

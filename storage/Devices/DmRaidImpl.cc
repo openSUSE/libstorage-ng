@@ -102,9 +102,9 @@ namespace storage
     {
 	y2mil("activate_dm_raids");
 
-	string cmd_line = DMRAID_BIN " --activate yes --no_partitions";
+	SystemCmd::Args cmd_args = { DMRAID_BIN, "--activate", "yes", "--no_partitions" };
 
-	SystemCmd cmd(cmd_line);
+	SystemCmd cmd(cmd_args);
 
 	if (cmd.retcode() == 0)
 	    SystemCmd({ UDEVADM_BIN_SETTLE });
@@ -118,9 +118,9 @@ namespace storage
     {
 	y2mil("deactivate_dm_raids");
 
-	string cmd_line = DMRAID_BIN " --activate no";
+	SystemCmd::Args cmd_args = { DMRAID_BIN, "--activate", "no" };
 
-	SystemCmd cmd(cmd_line);
+	SystemCmd cmd(cmd_args);
 
 	if (cmd.retcode() == 0)
 	    return true;

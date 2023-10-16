@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -54,7 +54,7 @@ namespace storage
 
     Blkid::Blkid(const string& device)
     {
-	SystemCmd::Options options(BLKID_BIN " -c '" DEV_NULL_FILE "' " + quote(device), SystemCmd::DoThrow);
+	SystemCmd::Options options({ BLKID_BIN, "-c", DEV_NULL_FILE, device }, SystemCmd::DoThrow);
 	options.verify = [](int exit_code) { return exit_code == 0 || exit_code == 2; };
 
 	SystemCmd cmd(options);

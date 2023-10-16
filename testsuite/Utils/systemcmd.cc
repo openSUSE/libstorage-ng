@@ -44,11 +44,11 @@ BOOST_TEST_GLOBAL_FIXTURE(Fixture);
 BOOST_AUTO_TEST_CASE(hello_stdout_cmd)
 {
     vector<string> stdout = {
-	"stdout #1: hello",
+	"stdout #1: hello world",
 	"stdout #2: stdout"
     };
 
-    SystemCmd cmd("../helpers/echoargs hello stdout");
+    SystemCmd cmd("../helpers/echoargs 'hello world' stdout");
 
     BOOST_CHECK_EQUAL(join(cmd.stdout()), join(stdout));
     BOOST_CHECK(cmd.stderr().empty());
@@ -59,11 +59,11 @@ BOOST_AUTO_TEST_CASE(hello_stdout_cmd)
 BOOST_AUTO_TEST_CASE(hello_stdout_args)
 {
     vector<string> stdout = {
-	"stdout #1: hello",
+	"stdout #1: hello world",
 	"stdout #2: stdout"
     };
 
-    SystemCmd cmd({ "../helpers/echoargs", "hello", "stdout" });
+    SystemCmd cmd({ "../helpers/echoargs", "hello world", "stdout" });
 
     BOOST_CHECK_EQUAL(join(cmd.stdout()), join(stdout));
     BOOST_CHECK(cmd.stderr().empty());

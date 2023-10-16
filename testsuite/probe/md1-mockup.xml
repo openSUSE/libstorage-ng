@@ -2,7 +2,7 @@
 <Mockup>
   <Commands>
     <Command>
-      <name>/bin/ls -1 --sort=none '/sys/block'</name>
+      <name>/bin/ls -1 --sort=none /sys/block</name>
       <stdout>md0</stdout>
       <stdout>sda</stdout>
       <stdout>sdb</stdout>
@@ -92,7 +92,7 @@
       <stderr></stderr>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/md0'</name>
+      <name>/usr/bin/udevadm info /dev/md0</name>
       <stdout>P: /devices/virtual/block/md0</stdout>
       <stdout>N: md0</stdout>
       <stdout>L: 100</stdout>
@@ -127,7 +127,7 @@
       <stderr></stderr>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sda'</name>
+      <name>/usr/bin/udevadm info /dev/sda</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda</stdout>
       <stdout>N: sda</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VBb5bd49a6-9719c9ff</stdout>
@@ -183,7 +183,7 @@
       <stderr></stderr>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdb'</name>
+      <name>/usr/bin/udevadm info /dev/sdb</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb</stdout>
       <stdout>N: sdb</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB558bee5c-c4399e89</stdout>
@@ -239,7 +239,7 @@
       <stderr></stderr>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdc'</name>
+      <name>/usr/bin/udevadm info /dev/sdc</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata3/host2/target2:0:0/2:0:0:0/block/sdc</stdout>
       <stdout>N: sdc</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB0eeaf303-8fd4e564</stdout>
@@ -295,7 +295,7 @@
       <stderr></stderr>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdd'</name>
+      <name>/usr/bin/udevadm info /dev/sdd</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata4/host3/target3:0:0/3:0:0:0/block/sdd</stdout>
       <stdout>N: sdd</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB2990e9d7-d065ff3e</stdout>
@@ -351,7 +351,7 @@
       <stderr></stderr>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sr0'</name>
+      <name>/usr/bin/udevadm info /dev/sr0</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.1/ata10/host9/target9:0:0/9:0:0:0/block/sr0</stdout>
       <stdout>N: sr0</stdout>
       <stdout>L: -100</stdout>
@@ -441,31 +441,31 @@
       <stderr>release: 0.32  2021/05/05 [svn: r167]</stderr>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sda'</name>
+      <name>/usr/bin/stat --format %f /dev/sda</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sdb'</name>
+      <name>/usr/bin/stat --format %f /dev/sdb</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sdc'</name>
+      <name>/usr/bin/stat --format %f /dev/sdc</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sdd'</name>
+      <name>/usr/bin/stat --format %f /dev/sdd</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/md0'</name>
+      <name>/usr/bin/stat --format %f /dev/md0</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sr0'</name>
+      <name>/usr/bin/stat --format %f /dev/sr0</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/test -d '/sys/firmware/efi/efivars'</name>
+      <name>/usr/bin/test -d /sys/firmware/efi/efivars</name>
       <stdout></stdout>
       <stderr></stderr>
     </Command>
@@ -479,13 +479,13 @@
       <stdout>parted (GNU parted) 3.4</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --machine '/dev/md0' unit s print</name>
+      <name>/usr/sbin/parted --script --machine /dev/md0 unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/md0:4173s:md:512:512:unknown:Linux Software RAID Array:;</stdout>
       <stderr>Error: /dev/md0: unrecognised disk label</stderr>
     </Command>
     <Command>
-      <name>/sbin/mdadm --detail '/dev/md0' --export</name>
+      <name>/sbin/mdadm --detail /dev/md0 --export</name>
       <!-- output faked and incomplete -->
       <stdout>MD_LEVEL=raid5</stdout>
       <stdout>MD_METADATA=1.2</stdout>

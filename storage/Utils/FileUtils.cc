@@ -106,7 +106,7 @@ namespace storage
     {
 	try
 	{
-	    SystemCmd cmd(UMOUNT_BIN " " + quote(get_fullname()), SystemCmd::DoThrow);
+	    SystemCmd cmd({ UMOUNT_BIN, get_fullname() }, SystemCmd::DoThrow);
 	}
 	catch (const Exception& exception)
 	{

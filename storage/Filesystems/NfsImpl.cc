@@ -289,7 +289,7 @@ namespace storage
 	if (rpcbind_started)
 	    return;
 
-	SystemCmd cmd(RPCBIND_BIN);
+	SystemCmd cmd({ RPCBIND_BIN });
 
 	rpcbind_started = true;
     }

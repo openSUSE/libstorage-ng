@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# requirements: lvm vg test with lvm pv on /dev/sdb2
+# requirements: lvm vg test with lvm pv on /dev/sdc1
 
 
 from sys import exit
@@ -19,9 +19,9 @@ staging = storage.get_staging()
 
 print(staging)
 
-sdb2 = BlkDevice.find_by_name(staging, "/dev/sdb2")
+sdc1 = BlkDevice.find_by_name(staging, "/dev/sdc1")
 
-sdb2.set_size(sdb2.get_size() + 512 * MiB)
+sdc1.set_size(sdc1.get_size() + 512 * MiB)
 
 print(staging)
 

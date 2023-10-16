@@ -933,9 +933,9 @@ namespace storage
     {
 	wait_for_devices({ get_non_impl() });
 
-	string cmd_line = WIPEFS_BIN " --all " + quote(get_name());
+	SystemCmd::Args cmd_args = { WIPEFS_BIN, "--all", get_name() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -944,9 +944,9 @@ namespace storage
     {
 	wait_for_devices({ get_non_impl() });
 
-	string cmd_line = BLKDISCARD_BIN " " + quote(get_name());
+	SystemCmd::Args cmd_args = { BLKDISCARD_BIN, get_name() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::NoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::NoThrow);
     }
 
 

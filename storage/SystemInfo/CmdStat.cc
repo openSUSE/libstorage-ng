@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 SUSE LLC
+ * Copyright (c) [2018-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -34,7 +34,7 @@ namespace storage
     CmdStat::CmdStat(const string& path)
 	: path(path)
     {
-	SystemCmd cmd(STAT_BIN " --format '%f' " + quote(path));
+	SystemCmd cmd({ STAT_BIN, "--format", "%f", path });
 
 	if (cmd.retcode() == 0 && cmd.stdout().size() >= 1)
 	    parse(cmd.stdout());

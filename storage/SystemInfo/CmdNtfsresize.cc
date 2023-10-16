@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -37,7 +37,7 @@ namespace storage
     CmdNtfsresize::CmdNtfsresize(const string& device)
 	: device(device), min_size(0)
     {
-	SystemCmd cmd(NTFSRESIZE_BIN " --force --info " + quote(device), SystemCmd::DoThrow);
+	SystemCmd cmd({ NTFSRESIZE_BIN, "--force", "--info", device }, SystemCmd::DoThrow);
 
 	parse(cmd.stdout());
     }

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2017-2020] SUSE LLC
+ * Copyright (c) [2017-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -106,7 +106,7 @@ namespace storage
 	}
 	else
 	{
-	    SystemCmd::Options options(TEST_BIN " -d '" EFIVARS_DIR "'", SystemCmd::DoThrow);
+	    SystemCmd::Options options({ TEST_BIN, "-d", EFIVARS_DIR }, SystemCmd::DoThrow);
 	    options.verify = [](int exit_code) { return exit_code == 0 || exit_code == 1; };
 
 	    SystemCmd cmd(options);

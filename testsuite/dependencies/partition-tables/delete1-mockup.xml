@@ -5,55 +5,55 @@
       <name>/usr/bin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
-      <name>/sbin/wipefs --all '/dev/sda4'</name>
+      <name>/sbin/wipefs --all /dev/sda4</name>
       <!-- stdout missing -->
     </Command>
     <Command>
-      <name>/sbin/wipefs --all '/dev/sda3'</name>
+      <name>/sbin/wipefs --all /dev/sda3</name>
       <!-- stdout missing -->
     </Command>
     <Command>
-      <name>/sbin/wipefs --all '/dev/sda1'</name>
+      <name>/sbin/wipefs --all /dev/sda1</name>
       <!-- stdout missing -->
     </Command>
     <Command>
-      <name>/usr/sbin/blkdiscard '/dev/sda4'</name>
+      <name>/usr/sbin/blkdiscard /dev/sda4</name>
       <!-- stdout missing -->
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script '/dev/sda' rm 4</name>
+      <name>/usr/sbin/parted --script /dev/sda rm 4</name>
       <!-- stdout missing -->
     </Command>
     <Command>
-      <name>/usr/sbin/blkdiscard '/dev/sda3'</name>
+      <name>/usr/sbin/blkdiscard /dev/sda3</name>
       <!-- stdout missing -->
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script '/dev/sda' rm 3</name>
+      <name>/usr/sbin/parted --script /dev/sda rm 3</name>
       <!-- stdout missing -->
     </Command>
     <Command>
-      <name>/usr/sbin/blkdiscard '/dev/sda2'</name>
+      <name>/usr/sbin/blkdiscard /dev/sda2</name>
       <!-- stdout missing -->
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script '/dev/sda' rm 2</name>
+      <name>/usr/sbin/parted --script /dev/sda rm 2</name>
       <!-- stdout missing -->
     </Command>
     <Command>
-      <name>/usr/sbin/blkdiscard '/dev/sda1'</name>
+      <name>/usr/sbin/blkdiscard /dev/sda1</name>
       <!-- stdout missing -->
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script '/dev/sda' rm 1</name>
+      <name>/usr/sbin/parted --script /dev/sda rm 1</name>
       <!-- stdout missing -->
     </Command>
     <Command>
-      <name>/sbin/wipefs --all '/dev/sda'</name>
+      <name>/sbin/wipefs --all /dev/sda</name>
       <!-- stdout missing -->
     </Command>
     <Command>
-      <name>/usr/sbin/blkdiscard '/dev/sda'</name>
+      <name>/usr/sbin/blkdiscard /dev/sda</name>
       <!-- stdout missing -->
     </Command>
   </Commands>

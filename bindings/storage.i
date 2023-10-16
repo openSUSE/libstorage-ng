@@ -39,6 +39,7 @@ use_ostream(storage::PartitionSlot);
 %feature("director") storage::CommitCallbacks;
 %feature("director") storage::CommitCallbacksV2;
 %feature("director") storage::RemoteCallbacks;
+%feature("director") storage::RemoteCallbacksV2;
 %feature("director") storage::DevicegraphStyleCallbacks;
 %feature("director") storage::Logger;
 

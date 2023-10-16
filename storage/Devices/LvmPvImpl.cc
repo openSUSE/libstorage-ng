@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -332,11 +332,11 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = PVCREATE_BIN " --force " + quote(blk_device->get_name());
+	SystemCmd::Args cmd_args = { PVCREATE_BIN, "--force", blk_device->get_name() };
 
 	wait_for_devices({ blk_device });
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -347,10 +347,10 @@ namespace storage
 
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = PVS_BIN " --options pv_name,pv_uuid,pv_size,pe_start --units b " +
-	    quote(blk_device->get_name());
+	SystemCmd::Args cmd_args = { PVS_BIN, "--options", "pv_name,pv_uuid,pv_size,pe_start", "--units", "b",
+	    blk_device->get_name() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::NoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::NoThrow);
     }
 
 
@@ -411,13 +411,13 @@ namespace storage
 
 	const BlkDevice* blk_device_rhs = lvm_pv_rhs->get_impl().get_blk_device();
 
-	string cmd_line = PVRESIZE_BIN " " + quote(action->blk_device->get_name());
+	SystemCmd::Args cmd_args = { PVRESIZE_BIN, action->blk_device->get_name() };
 	if (action->resize_mode == ResizeMode::SHRINK)
-	    cmd_line += " --yes --setphysicalvolumesize " + to_string(blk_device_rhs->get_size()) + "b";
+	    cmd_args << "--yes" << "--setphysicalvolumesize" << to_string(blk_device_rhs->get_size()) + "b";
 
 	wait_for_devices({ action->blk_device });
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -443,9 +443,9 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = PVREMOVE_BIN " " + quote(blk_device->get_name());
+	SystemCmd::Args cmd_args = { PVREMOVE_BIN, blk_device->get_name() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 }

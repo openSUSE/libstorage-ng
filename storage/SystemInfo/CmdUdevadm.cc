@@ -51,7 +51,7 @@ namespace storage
 	// events (fixed in recent versions). So always run 'udevadm settle'.
 	SystemCmd({ UDEVADM_BIN_SETTLE });
 
-	SystemCmd cmd(UDEVADM_BIN " info " + quote(file), SystemCmd::DoThrow);
+	SystemCmd cmd({ UDEVADM_BIN, "info", file }, SystemCmd::DoThrow);
 
 	parse(cmd.stdout());
     }

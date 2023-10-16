@@ -2,7 +2,7 @@
 <Mockup>
   <Commands>
     <Command>
-      <name>/bin/ls -1 --sort=none '/sys/block'</name>
+      <name>/bin/ls -1 --sort=none /sys/block</name>
       <stdout>md0</stdout>
       <stdout>md1</stdout>
       <stdout>md2</stdout>
@@ -97,7 +97,7 @@
       <stdout>/dev/md0p2: UUID="178825b0-311f-4914-b4d9-5a60e322150c" TYPE="ext4" PARTUUID="8bd64fbc-17e6-4de6-998f-f7027fa3b049"</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/md0'</name>
+      <name>/usr/bin/udevadm info /dev/md0</name>
       <stdout>P: /devices/virtual/block/md0</stdout>
       <stdout>N: md0</stdout>
       <stdout>L: 100</stdout>
@@ -126,7 +126,7 @@
       <stdout>E: USEC_INITIALIZED=349261752</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/md0p1'</name>
+      <name>/usr/bin/udevadm info /dev/md0p1</name>
       <stdout>P: /devices/virtual/block/md0/md0p1</stdout>
       <stdout>N: md0p1</stdout>
       <stdout>L: 100</stdout>
@@ -167,7 +167,7 @@
       <stdout>E: USEC_INITIALIZED=49347283</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/md0p2'</name>
+      <name>/usr/bin/udevadm info /dev/md0p2</name>
       <stdout>P: /devices/virtual/block/md0/md0p2</stdout>
       <stdout>N: md0p2</stdout>
       <stdout>L: 100</stdout>
@@ -207,7 +207,7 @@
       <stdout>E: USEC_INITIALIZED=4449347299</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/md1'</name>
+      <name>/usr/bin/udevadm info /dev/md1</name>
       <stdout>P: /devices/virtual/block/md1</stdout>
       <stdout>N: md1</stdout>
       <stdout>L: 100</stdout>
@@ -244,7 +244,7 @@
       <stdout>E: USEC_INITIALIZED=336772678</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/md2'</name>
+      <name>/usr/bin/udevadm info /dev/md2</name>
       <stdout>P: /devices/virtual/block/md2</stdout>
       <stdout>N: md2</stdout>
       <stdout>L: 100</stdout>
@@ -281,7 +281,7 @@
       <stdout>E: USEC_INITIALIZED=345642759</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sda'</name>
+      <name>/usr/bin/udevadm info /dev/sda</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda</stdout>
       <stdout>N: sda</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VBb5bd49a6-9719c9ff</stdout>
@@ -336,7 +336,7 @@
       <stdout>E: USEC_INITIALIZED=82172</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdb'</name>
+      <name>/usr/bin/udevadm info /dev/sdb</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb</stdout>
       <stdout>N: sdb</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB558bee5c-c4399e89</stdout>
@@ -391,7 +391,7 @@
       <stdout>E: USEC_INITIALIZED=82290</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdc'</name>
+      <name>/usr/bin/udevadm info /dev/sdc</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata3/host2/target2:0:0/2:0:0:0/block/sdc</stdout>
       <stdout>N: sdc</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB0eeaf303-8fd4e564</stdout>
@@ -446,7 +446,7 @@
       <stdout>E: USEC_INITIALIZED=82411</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdd'</name>
+      <name>/usr/bin/udevadm info /dev/sdd</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata4/host3/target3:0:0/3:0:0:0/block/sdd</stdout>
       <stdout>N: sdd</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB2990e9d7-d065ff3e</stdout>
@@ -501,7 +501,7 @@
       <stdout>E: USEC_INITIALIZED=82583</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sr0'</name>
+      <name>/usr/bin/udevadm info /dev/sr0</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.1/ata10/host9/target9:0:0/9:0:0:0/block/sr0</stdout>
       <stdout>N: sr0</stdout>
       <stdout>L: -100</stdout>
@@ -587,39 +587,39 @@
       <stderr>release: 0.32  2021/05/05 [svn: r167]</stderr>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sda'</name>
+      <name>/usr/bin/stat --format %f /dev/sda</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sdb'</name>
+      <name>/usr/bin/stat --format %f /dev/sdb</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sdc'</name>
+      <name>/usr/bin/stat --format %f /dev/sdc</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sdd'</name>
+      <name>/usr/bin/stat --format %f /dev/sdd</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/md0'</name>
+      <name>/usr/bin/stat --format %f /dev/md0</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/md1'</name>
+      <name>/usr/bin/stat --format %f /dev/md1</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/md2'</name>
+      <name>/usr/bin/stat --format %f /dev/md2</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sr0'</name>
+      <name>/usr/bin/stat --format %f /dev/sr0</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/test -d '/sys/firmware/efi/efivars'</name>
+      <name>/usr/bin/test -d /sys/firmware/efi/efivars</name>
     </Command>
     <Command>
       <name>/usr/bin/uname -m</name>
@@ -630,28 +630,28 @@
       <stdout>parted (GNU parted) 3.4</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --machine '/dev/md0' unit s print</name>
+      <name>/usr/sbin/parted --script --machine /dev/md0 unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/md0:67106816s:md:512:512:gpt:Linux Software RAID Array:;</stdout>
       <stdout>1:2048s:999423s:997376s:ext4::;</stdout>
       <stdout>2:999424s:67104767s:66105344s:ext4::;</stdout>
     </Command>
     <Command>
-      <name>/sbin/mdadm --detail '/dev/md0' --export</name>
+      <name>/sbin/mdadm --detail /dev/md0 --export</name>
       <!-- output faked and incomplete -->
       <stdout>MD_LEVEL=raid0</stdout>
       <stdout>MD_METADATA=1.0</stdout>
       <stdout>MD_UUID=d11cbd17:b4fa9ccd:bb7b9bab:557d863c</stdout>
     </Command>
     <Command>
-      <name>/sbin/mdadm --detail '/dev/md1' --export</name>
+      <name>/sbin/mdadm --detail /dev/md1 --export</name>
       <!-- output faked and incomplete -->
       <stdout>MD_LEVEL=raid1</stdout>
       <stdout>MD_METADATA=1.0</stdout>
       <stdout>MD_UUID=3e531727:0857f684:cd2e394b:62046b74</stdout>
     </Command>
     <Command>
-      <name>/sbin/mdadm --detail '/dev/md2' --export</name>
+      <name>/sbin/mdadm --detail /dev/md2 --export</name>
       <!-- output faked and incomplete -->
       <stdout>MD_LEVEL=raid1</stdout>
       <stdout>MD_METADATA=1.0</stdout>

@@ -3,7 +3,7 @@
 <Mockup>
   <Commands>
     <Command>
-      <name>/bin/ls -1 --sort=none '/sys/block'</name>
+      <name>/bin/ls -1 --sort=none /sys/block</name>
       <stdout>sda</stdout>
       <stdout>sr0</stdout>
       <stdout>dm-0</stdout>
@@ -19,7 +19,7 @@
       <stdout>/dev/mapper/system-home: UUID="5a32b2fb-ac84-4b2f-b53c-4ff68c4721c7" TYPE="xfs"</stdout>
     </Command>
     <Command>
-      <name>/sbin/lvs --reportformat json --config 'log { command_names = 0 prefix = "" }' --units b --nosuffix --all --options lv_name,lv_uuid,vg_name,vg_uuid,lv_role,lv_attr,lv_size,origin_size,segtype,stripes,stripe_size,chunk_size,pool_lv,pool_lv_uuid,origin,origin_uuid,data_lv,data_lv_uuid,metadata_lv,metadata_lv_uuid</name>
+      <name>/sbin/lvs --reportformat json --config log { command_names = 0 prefix = "" } --units b --nosuffix --all --options lv_name,lv_uuid,vg_name,vg_uuid,lv_role,lv_attr,lv_size,origin_size,segtype,stripes,stripe_size,chunk_size,pool_lv,pool_lv_uuid,origin,origin_uuid,data_lv,data_lv_uuid,metadata_lv,metadata_lv_uuid</name>
       <stdout>  {</stdout>
       <stdout>      "report": [</stdout>
       <stdout>          {</stdout>
@@ -33,7 +33,7 @@
       <stdout>  }</stdout>
     </Command>
     <Command>
-      <name>/sbin/pvs --reportformat json --config 'log { command_names = 0 prefix = "" }' --units b --nosuffix --all --options pv_name,pv_uuid,vg_name,vg_uuid,pv_attr,pe_start</name>
+      <name>/sbin/pvs --reportformat json --config log { command_names = 0 prefix = "" } --units b --nosuffix --all --options pv_name,pv_uuid,vg_name,vg_uuid,pv_attr,pe_start</name>
       <!-- output incomplete -->
       <stdout>  {</stdout>
       <stdout>      "report": [</stdout>
@@ -46,7 +46,7 @@
       <stdout>  }</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/dm-1'</name>
+      <name>/usr/bin/udevadm info /dev/dm-1</name>
       <stdout>P: /devices/virtual/block/dm-1</stdout>
       <stdout>N: dm-1</stdout>
       <stdout>L: 50</stdout>
@@ -91,7 +91,7 @@
       <stdout>E: USEC_INITIALIZED=2286583</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sda'</name>
+      <name>/usr/bin/udevadm info /dev/sda</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda</stdout>
       <stdout>N: sda</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VBb49c5b26-db7a99ae</stdout>
@@ -140,7 +140,7 @@
       <stdout>E: USEC_INITIALIZED=5741416</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sda1'</name>
+      <name>/usr/bin/udevadm info /dev/sda1</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda1</stdout>
       <stdout>N: sda1</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VBb49c5b26-db7a99ae-part1</stdout>
@@ -205,7 +205,7 @@
       <stdout>E: USEC_INITIALIZED=5872320</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sr0'</name>
+      <name>/usr/bin/udevadm info /dev/sr0</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.1/ata3/host2/target2:0:0/2:0:0:0/block/sr0</stdout>
       <stdout>N: sr0</stdout>
       <stdout>L: -100</stdout>
@@ -273,7 +273,7 @@
       <stdout>E: USEC_INITIALIZED=6070299</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/system/home'</name>
+      <name>/usr/bin/udevadm info /dev/system/home</name>
       <stdout>P: /devices/virtual/block/dm-2</stdout>
       <stdout>N: dm-2</stdout>
       <stdout>L: 50</stdout>
@@ -317,7 +317,7 @@
       <stdout>E: USEC_INITIALIZED=9271920</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/system/root'</name>
+      <name>/usr/bin/udevadm info /dev/system/root</name>
       <stdout>P: /devices/virtual/block/dm-0</stdout>
       <stdout>N: dm-0</stdout>
       <stdout>L: 50</stdout>
@@ -363,7 +363,7 @@
       <stdout>E: USEC_INITIALIZED=2201050</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/system/swap'</name>
+      <name>/usr/bin/udevadm info /dev/system/swap</name>
       <stdout>P: /devices/virtual/block/dm-1</stdout>
       <stdout>N: dm-1</stdout>
       <stdout>L: 50</stdout>
@@ -411,7 +411,7 @@
       <name>/usr/bin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
-      <name>/sbin/vgs --reportformat json --config 'log { command_names = 0 prefix = "" }' --units b --nosuffix --options vg_name,vg_uuid,vg_attr,vg_extent_size,vg_extent_count,vg_free_count</name>
+      <name>/sbin/vgs --reportformat json --config log { command_names = 0 prefix = "" } --units b --nosuffix --options vg_name,vg_uuid,vg_attr,vg_extent_size,vg_extent_count,vg_free_count</name>
       <stdout>  {</stdout>
       <stdout>      "report": [</stdout>
       <stdout>          {</stdout>
@@ -437,15 +437,15 @@
       <stderr>release: 0.32  2021/05/05 [svn: r167]</stderr>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sda'</name>
+      <name>/usr/bin/stat --format %f /dev/sda</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sr0'</name>
+      <name>/usr/bin/stat --format %f /dev/sr0</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/test -d '/sys/firmware/efi/efivars'</name>
+      <name>/usr/bin/test -d /sys/firmware/efi/efivars</name>
     </Command>
     <Command>
       <name>/usr/bin/uname -m</name>
@@ -456,7 +456,7 @@
       <stdout>parted (GNU parted) 3.4</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --machine '/dev/sda' unit s print</name>
+      <name>/usr/sbin/parted --script --machine /dev/sda unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/sda:33554432s:scsi:512:512:msdos:ATA VBOX HARDDISK:;</stdout>
       <stdout>1:2048s:33554431s:33552384s:::boot, lvm, type=8e;</stdout>

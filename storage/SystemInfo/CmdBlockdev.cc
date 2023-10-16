@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 SUSE LLC
+ * Copyright (c) [2021-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -34,7 +34,7 @@ namespace storage
     CmdBlockdev::CmdBlockdev(const string& path)
 	: path(path)
     {
-	SystemCmd cmd(BLOCKDEV_BIN " --getsize64 " + quote(path));
+	SystemCmd cmd({ BLOCKDEV_BIN, "--getsize64", path });
 
 	if (cmd.retcode() == 0 && cmd.stdout().size() >= 1)
 	    parse(cmd.stdout());

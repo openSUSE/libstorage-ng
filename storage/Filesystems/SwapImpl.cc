@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -169,11 +169,11 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = SWAPON_BIN " --fixpgsz " + quote(blk_device->get_name());
+	SystemCmd::Args cmd_args = { SWAPON_BIN, "--fixpgsz", blk_device->get_name() };
 
 	wait_for_devices();
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
 
 	if (mount_point->exists_in_system())
 	    redirect_to_system(mount_point)->set_active(true);
@@ -185,11 +185,11 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = SWAPOFF_BIN " " + quote(blk_device->get_name());
+	SystemCmd::Args cmd_args = { SWAPOFF_BIN, blk_device->get_name() };
 
 	try
 	{
-	    SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	    SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
 	}
 	catch (const Exception& exception)
 	{

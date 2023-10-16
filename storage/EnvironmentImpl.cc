@@ -22,7 +22,7 @@
 
 
 #include <langinfo.h>
-#include <string.h>
+#include <cstring>
 #include <ostream>
 
 #include "config.h"
@@ -208,6 +208,7 @@ namespace storage
 	    "LIBSTORAGE_OS_FLAVOUR",
 	    "LIBSTORAGE_PFSOEMS",
 	    "LIBSTORAGE_ROOTPREFIX",
+	    "LIBSTORAGE_TABOOS",
 	    "LIBSTORAGE_TOPOLOGICAL_SORT_METHOD",
 	};
 

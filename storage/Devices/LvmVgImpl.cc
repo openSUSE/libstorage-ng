@@ -580,13 +580,13 @@ namespace storage
     void
     LvmVg::Impl::do_create()
     {
-	string cmd_line = VGCREATE_BIN " --physicalextentsize " + to_string(get_extent_size()) +
-	    "b -- " + quote(vg_name);
+	SystemCmd::Args cmd_args = { VGCREATE_BIN, "--physicalextentsize", to_string(get_extent_size()) + "b", "--",
+	    vg_name };
 
 	for (const LvmPv* lvm_pv : get_lvm_pvs())
-	    cmd_line += " " + quote(lvm_pv->get_blk_device()->get_name());
+	    cmd_args << lvm_pv->get_blk_device()->get_name();
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -595,10 +595,10 @@ namespace storage
     {
 	// log some data about the volume group that might be useful for debugging
 
-	string cmd_line = VGS_BIN " --options vg_name,vg_uuid,vg_size,vg_extent_size,"
-	    "vg_extent_count --units b -- " + quote(vg_name);
+	SystemCmd::Args cmd_args = { VGS_BIN, "--options", "vg_name,vg_uuid,vg_size,vg_extent_size,"
+	    "vg_extent_count", "--units", "b", "--", vg_name };
 
-	SystemCmd cmd(cmd_line, SystemCmd::NoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::NoThrow);
     }
 
 
@@ -623,10 +623,9 @@ namespace storage
 	const LvmVg* lvm_vg_lhs = to_lvm_vg(action->get_device(commit_data.actiongraph, LHS));
 	const LvmVg* lvm_vg_rhs = to_lvm_vg(action->get_device(commit_data.actiongraph, RHS));
 
-	string cmd_line = VGRENAME_BIN " " + quote(lvm_vg_lhs->get_vg_name()) + " " +
-	    quote(lvm_vg_rhs->get_vg_name());
+	SystemCmd::Args cmd_args = { VGRENAME_BIN, lvm_vg_lhs->get_vg_name(), lvm_vg_rhs->get_vg_name() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -650,9 +649,9 @@ namespace storage
     void
     LvmVg::Impl::do_delete() const
     {
-	string cmd_line = VGREMOVE_BIN " -- " + quote(vg_name);
+	SystemCmd::Args cmd_args = { VGREMOVE_BIN, "--", vg_name };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -721,18 +720,18 @@ namespace storage
     void
     LvmVg::Impl::do_reduce(const LvmPv* lvm_pv) const
     {
-	string cmd_line = VGREDUCE_BIN " -- " + quote(vg_name) + " " + quote(lvm_pv->get_blk_device()->get_name());
+	SystemCmd::Args cmd_args = { VGREDUCE_BIN, "--", vg_name, lvm_pv->get_blk_device()->get_name() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
     void
     LvmVg::Impl::do_extend(const LvmPv* lvm_pv) const
     {
-	string cmd_line = VGEXTEND_BIN " -- " + quote(vg_name) + " " + quote(lvm_pv->get_blk_device()->get_name());
+	SystemCmd::Args cmd_args = { VGEXTEND_BIN, "--", vg_name, lvm_pv->get_blk_device()->get_name() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -754,9 +753,9 @@ namespace storage
     void
     LvmVg::Impl::do_reduce_missing() const
     {
-	string cmd_line = VGREDUCE_BIN " --removemissing --force -- " + quote(vg_name);
+	SystemCmd::Args cmd_args = { VGREDUCE_BIN, "--removemissing", "--force", "--", vg_name };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 

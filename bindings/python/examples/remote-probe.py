@@ -4,7 +4,7 @@ from sys import argv, exit
 from getopt import getopt, GetoptError
 from subprocess import Popen, PIPE
 from storage import Environment, Storage, ProbeMode_STANDARD, ProbeMode_STANDARD_WRITE_MOCKUP, TargetMode_DIRECT
-from storage import RemoteCallbacks, RemoteCommand, RemoteFile, set_remote_callbacks
+from storage import RemoteCallbacksV2, RemoteCommand, RemoteFile, set_remote_callbacks
 from storage import set_logger, get_logfile_logger, get_stdout_logger
 
 
@@ -43,12 +43,20 @@ def run_command(name):
     return ret
 
 
-class MyRemoteCallbacks(RemoteCallbacks):
+class MyRemoteCallbacks(RemoteCallbacksV2):
 
     def __init__(self):
         super(MyRemoteCallbacks, self).__init__()
 
     def get_command(self, name):
+        print("command '%s'" % name)
+        command = run_command(name)
+        return command
+
+    def get_command_v2(self, args):
+        name = ""
+        for arg in args:
+            name = name + arg + " "
         print("command '%s'" % name)
         command = run_command(name)
         return command
@@ -91,7 +99,7 @@ def doit():
 
 
 def usage():
-    print("usage: remote-probe.py [--host=name] [--save-mockup] [--save-devicegraph]")
+    print("usage: remote-probe.py [--host=name] [--port=part] [--save-mockup] [--save-devicegraph]")
     exit(1)
 
 try:

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2019-2022] SUSE LLC
+ * Copyright (c) [2019-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -182,12 +182,12 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = DD_BIN " if=/dev/urandom of=" + quote(blk_device->get_name()) +
-	    " bs=1KiB count=256 conv=nocreat";
+	SystemCmd::Args cmd_args = { DD_BIN, "if=" DEV_URANDOM_FILE, "of=" + blk_device->get_name(),
+	    "bs=1KiB", "count=256", "conv=nocreat" };
 
 	wait_for_devices({ blk_device });
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -206,9 +206,9 @@ namespace storage
     void
     PlainEncryption::Impl::do_deactivate() const
     {
-	string cmd_line = CRYPTSETUP_BIN " --batch-mode close " + quote(get_dm_table_name());
+	SystemCmd::Args cmd_args = { CRYPTSETUP_BIN, "--batch-mode", "close", get_dm_table_name() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 }

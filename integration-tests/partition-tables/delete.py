@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# requirements: /dev/sdb with a partition table
+# requirements: /dev/sdc with a partition table
 
 
 from storage import *
@@ -18,7 +18,7 @@ staging = storage.get_staging()
 
 # print(staging)
 
-partitionable = Partitionable.find_by_name(staging, "/dev/sdb")
+partitionable = Partitionable.find_by_name(staging, "/dev/sdc")
 
 partitionable.remove_descendants()
 

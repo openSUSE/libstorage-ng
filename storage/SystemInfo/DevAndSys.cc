@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -39,7 +39,7 @@ namespace storage
     Dir::Dir(const string& path)
 	: path(path)
     {
-	SystemCmd cmd(LS_BIN " -1 --sort=none " + quote(path), SystemCmd::DoThrow);
+	SystemCmd cmd({ LS_BIN, "-1", "--sort=none", path }, SystemCmd::DoThrow);
 
 	parse(cmd.stdout());
 
@@ -158,9 +158,9 @@ namespace storage
     map<string, string>
     DevLinks::getDirLinks(const string& path) const
     {
-	// TODO use cmd(STAT_BIN " --format '%F %N' " + quote(path) + "/*")?
+	// TODO use cmd(STAT_BIN " --format '%F %N' " + path + "/*")?
 
-	SystemCmd cmd(LS_BIN " -1l --sort=none " + quote(path), SystemCmd::DoThrow);
+	SystemCmd cmd({ LS_BIN, "-1l", "--sort=none", path }, SystemCmd::DoThrow);
 
 	return parse(cmd.stdout());
     }

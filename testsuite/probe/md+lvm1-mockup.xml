@@ -2,7 +2,7 @@
 <Mockup>
   <Commands>
     <Command>
-      <name>/bin/ls -1 --sort=none '/sys/block'</name>
+      <name>/bin/ls -1 --sort=none /sys/block</name>
       <stdout>sdd</stdout>
       <stdout>md127</stdout>
       <stdout>dm-6</stdout>
@@ -13,7 +13,7 @@
       <stdout>dm-5</stdout>
     </Command>
     <Command>
-      <name>/bin/ls -1l --sort=none '/dev/md'</name>
+      <name>/bin/ls -1l --sort=none /dev/md</name>
       <stdout>total 0</stdout>
       <stdout>lrwxrwxrwx 1 root root 8 Jun  4 09:24 md-b -&gt; ../md127</stdout>
     </Command>
@@ -38,7 +38,7 @@
       <name>/sbin/dmsetup table</name>
     </Command>
     <Command>
-      <name>/sbin/lvs --reportformat json --config 'log { command_names = 0 prefix = "" }' --units b --nosuffix --all --options lv_name,lv_uuid,vg_name,vg_uuid,lv_role,lv_attr,lv_size,origin_size,segtype,stripes,stripe_size,chunk_size,pool_lv,pool_lv_uuid,origin,origin_uuid,data_lv,data_lv_uuid,metadata_lv,metadata_lv_uuid</name>
+      <name>/sbin/lvs --reportformat json --config log { command_names = 0 prefix = "" } --units b --nosuffix --all --options lv_name,lv_uuid,vg_name,vg_uuid,lv_role,lv_attr,lv_size,origin_size,segtype,stripes,stripe_size,chunk_size,pool_lv,pool_lv_uuid,origin,origin_uuid,data_lv,data_lv_uuid,metadata_lv,metadata_lv_uuid</name>
       <stdout>  {</stdout>
       <stdout>      "report": [</stdout>
       <stdout>          {</stdout>
@@ -51,8 +51,8 @@
       <stdout>  }</stdout>
     </Command>
     <Command>
-      <name>/sbin/mdadm --detail '/dev/md/md-b' --export</name>
-      <name>/sbin/mdadm --detail '/dev/md127' --export</name>
+      <name>/sbin/mdadm --detail /dev/md/md-b --export</name>
+      <name>/sbin/mdadm --detail /dev/md127 --export</name>
       <stdout>MD_LEVEL=raid1</stdout>
       <stdout>MD_DEVICES=2</stdout>
       <stdout>MD_METADATA=1.0</stdout>
@@ -65,7 +65,7 @@
       <stdout>MD_DEVICE_dev_sdc2_DEV=/dev/sdc2</stdout>
     </Command>
     <Command>
-      <name>/sbin/mdadm --detail '/dev/md0' --export</name>
+      <name>/sbin/mdadm --detail /dev/md0 --export</name>
       <stdout>MD_LEVEL=raid1</stdout>
       <stdout>MD_DEVICES=2</stdout>
       <stdout>MD_METADATA=1.0</stdout>
@@ -80,7 +80,7 @@
       <name>/sbin/multipath -d -v 2 -ll</name>
     </Command>
     <Command>
-      <name>/sbin/pvs --reportformat json --config 'log { command_names = 0 prefix = "" }' --units b --nosuffix --all --options pv_name,pv_uuid,vg_name,vg_uuid,pv_attr,pe_start</name>
+      <name>/sbin/pvs --reportformat json --config log { command_names = 0 prefix = "" } --units b --nosuffix --all --options pv_name,pv_uuid,vg_name,vg_uuid,pv_attr,pe_start</name>
       <stdout>  {</stdout>
       <stdout>      "report": [</stdout>
       <stdout>          {</stdout>
@@ -99,7 +99,7 @@
       <stdout>  }</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/md/md-b'</name>
+      <name>/usr/bin/udevadm info /dev/md/md-b</name>
       <stdout>P: /devices/virtual/block/md127</stdout>
       <stdout>N: md127</stdout>
       <stdout>L: 100</stdout>
@@ -148,7 +148,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/md0'</name>
+      <name>/usr/bin/udevadm info /dev/md0</name>
       <stdout>P: /devices/virtual/block/md0</stdout>
       <stdout>N: md0</stdout>
       <stdout>L: 100</stdout>
@@ -194,7 +194,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/md127'</name>
+      <name>/usr/bin/udevadm info /dev/md127</name>
       <stdout>P: /devices/virtual/block/md127</stdout>
       <stdout>N: md127</stdout>
       <stdout>L: 100</stdout>
@@ -243,7 +243,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdc'</name>
+      <name>/usr/bin/udevadm info /dev/sdc</name>
       <stdout>P: /devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc</stdout>
       <stdout>N: sdc</stdout>
       <stdout>L: 0</stdout>
@@ -294,7 +294,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdc1'</name>
+      <name>/usr/bin/udevadm info /dev/sdc1</name>
       <stdout>P: /devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc/sdc1</stdout>
       <stdout>N: sdc1</stdout>
       <stdout>L: 0</stdout>
@@ -371,7 +371,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdc2'</name>
+      <name>/usr/bin/udevadm info /dev/sdc2</name>
       <stdout>P: /devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc/sdc2</stdout>
       <stdout>N: sdc2</stdout>
       <stdout>L: 0</stdout>
@@ -448,7 +448,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdd'</name>
+      <name>/usr/bin/udevadm info /dev/sdd</name>
       <stdout>P: /devices/pci0000:00/0000:00:14.0/usb2/2-8/2-8:1.0/host9/target9:0:0/9:0:0:0/block/sdd</stdout>
       <stdout>N: sdd</stdout>
       <stdout>L: 0</stdout>
@@ -499,7 +499,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdd1'</name>
+      <name>/usr/bin/udevadm info /dev/sdd1</name>
       <stdout>P: /devices/pci0000:00/0000:00:14.0/usb2/2-8/2-8:1.0/host9/target9:0:0/9:0:0:0/block/sdd/sdd1</stdout>
       <stdout>N: sdd1</stdout>
       <stdout>L: 0</stdout>
@@ -576,7 +576,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdd2'</name>
+      <name>/usr/bin/udevadm info /dev/sdd2</name>
       <stdout>P: /devices/pci0000:00/0000:00:14.0/usb2/2-8/2-8:1.0/host9/target9:0:0/9:0:0:0/block/sdd/sdd2</stdout>
       <stdout>N: sdd2</stdout>
       <stdout>L: 0</stdout>
@@ -653,7 +653,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sr0'</name>
+      <name>/usr/bin/udevadm info /dev/sr0</name>
       <stdout>P: /devices/pci0000:00/0000:00:17.0/ata7/host6/target6:0:0/6:0:0:0/block/sr0</stdout>
       <stdout>N: sr0</stdout>
       <stdout>L: -100</stdout>
@@ -716,7 +716,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/vg-a/lv-a'</name>
+      <name>/usr/bin/udevadm info /dev/vg-a/lv-a</name>
       <stdout>P: /devices/virtual/block/dm-6</stdout>
       <stdout>N: dm-6</stdout>
       <stdout>L: 0</stdout>
@@ -749,7 +749,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/vg-b/lv-b'</name>
+      <name>/usr/bin/udevadm info /dev/vg-b/lv-b</name>
       <stdout>P: /devices/virtual/block/dm-5</stdout>
       <stdout>N: dm-5</stdout>
       <stdout>L: 0</stdout>
@@ -785,7 +785,7 @@
       <name>/usr/bin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
-      <name>/sbin/vgs --reportformat json --config 'log { command_names = 0 prefix = "" }' --units b --nosuffix --options vg_name,vg_uuid,vg_attr,vg_extent_size,vg_extent_count,vg_free_count</name>
+      <name>/sbin/vgs --reportformat json --config log { command_names = 0 prefix = "" } --units b --nosuffix --options vg_name,vg_uuid,vg_attr,vg_extent_size,vg_extent_count,vg_free_count</name>
       <stdout>  {</stdout>
       <stdout>      "report": [</stdout>
       <stdout>          {</stdout>
@@ -815,32 +815,32 @@
       <stderr>release: 0.32  2021/05/05 [svn: r167]</stderr>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/md0'</name>
+      <name>/usr/bin/stat --format %f /dev/md0</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/md127'</name>
+      <name>/usr/bin/stat --format %f /dev/md127</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/pktcdvd0'</name>
+      <name>/usr/bin/stat --format %f /dev/pktcdvd0</name>
       <stderr>/usr/bin/stat: cannot stat '/dev/pktcdvd0': No such file or directory</stderr>
       <exit-code>1</exit-code>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sdc'</name>
+      <name>/usr/bin/stat --format %f /dev/sdc</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sdd'</name>
+      <name>/usr/bin/stat --format %f /dev/sdd</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sr0'</name>
+      <name>/usr/bin/stat --format %f /dev/sr0</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/test -d '/sys/firmware/efi/efivars'</name>
+      <name>/usr/bin/test -d /sys/firmware/efi/efivars</name>
       <exit-code>1</exit-code>
     </Command>
     <Command>
@@ -852,14 +852,14 @@
       <stdout>parted (GNU parted) 3.4</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --machine '/dev/sdc' unit s print</name>
+      <name>/usr/sbin/parted --script --machine /dev/sdc unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/sdc:5860466688s:scsi:512:4096:gpt:WD My Passport 25E2:;</stdout>
       <stdout>1:2048s:58605567s:58603520s:::raid;</stdout>
       <stdout>2:58605568s:117209087s:58603520s:::raid;</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --machine '/dev/sdd' unit s print</name>
+      <name>/usr/sbin/parted --script --machine /dev/sdd unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/sdd:5860466688s:scsi:512:4096:gpt:WD My Passport 25E2:;</stdout>
       <stdout>1:2048s:58605567s:58603520s:::raid;</stdout>

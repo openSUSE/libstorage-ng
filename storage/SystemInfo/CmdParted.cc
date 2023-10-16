@@ -47,8 +47,8 @@ namespace storage
     {
 	const bool json = PartedVersion::supports_json_option();
 
-	SystemCmd::Options options(PARTED_BIN " --script " + string(json ? "--json " : "--machine ") + quote(device) +
-				   " unit s print", SystemCmd::DoThrow);
+	SystemCmd::Options options({ PARTED_BIN, "--script", json ? "--json" : "--machine", device,
+		"unit", "s", "print" }, SystemCmd::DoThrow);
 	options.verify = [](int) { return true; };
 	if (!json)
 	    options.env.push_back("PARTED_PRINT_NUMBER_OF_PARTITION_SLOTS=1");
