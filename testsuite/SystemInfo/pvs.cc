@@ -18,9 +18,9 @@ void
 check(const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command(PVS_BIN " --reportformat json --config 'log { command_names = 0 prefix = \"\" }' "
-			"--units b --nosuffix --all --options pv_name,pv_uuid,vg_name,vg_uuid,pv_attr,"
-			"pe_start", input);
+    Mockup::set_command({ PVS_BIN, "--reportformat", "json", "--config", "log { command_names = 0 prefix = \"\" }",
+	    "--units", "b", "--nosuffix", "--all", "--options", "pv_name,pv_uuid,vg_name,vg_uuid,pv_attr,pe_start" }
+	, input);
 
     CmdPvs cmd_pvs;
 

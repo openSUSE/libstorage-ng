@@ -128,11 +128,11 @@ namespace storage
 
 	    try
 	    {
-		SystemCmd cmd1(MULTIPATH_BIN, SystemCmd::DoThrow);
+		SystemCmd cmd1({ MULTIPATH_BIN }, SystemCmd::DoThrow);
 
 		SystemCmd({ UDEVADM_BIN_SETTLE });
 
-		SystemCmd cmd2(MULTIPATHD_BIN, SystemCmd::DoThrow);
+		SystemCmd cmd2({ MULTIPATHD_BIN }, SystemCmd::DoThrow);
 
 		SystemCmd({ UDEVADM_BIN_SETTLE });
 
@@ -359,9 +359,9 @@ namespace storage
     void
     Multipath::Impl::do_deactivate() const
     {
-	string cmd_line = MULTIPATH_BIN " -f " + quote(get_name());
+	SystemCmd::Args cmd_args = { MULTIPATH_BIN, "-f", get_name() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 }

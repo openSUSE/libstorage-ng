@@ -3,7 +3,7 @@
 <Mockup>
   <Commands>
     <Command>
-      <name>/bin/ls -1 --sort=none '/sys/block'</name>
+      <name>/bin/ls -1 --sort=none /sys/block</name>
       <stdout>sr0</stdout>
       <stdout>sda</stdout>
     </Command>
@@ -198,19 +198,19 @@
       <stderr>release: 0.32  2021/05/05 [svn: r167]</stderr>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sda'</name>
+      <name>/usr/bin/stat --format %f /dev/sda</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sr0'</name>
+      <name>/usr/bin/stat --format %f /dev/sr0</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/test -d '/sys/firmware/efi/efivars'</name>
+      <name>/usr/bin/test -d /sys/firmware/efi/efivars</name>
       <exit-code>1</exit-code>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sda'</name>
+      <name>/usr/bin/udevadm info /dev/sda</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda</stdout>
       <stdout>M: sda</stdout>
       <stdout>U: block</stdout>
@@ -280,7 +280,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sda1'</name>
+      <name>/usr/bin/udevadm info /dev/sda1</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda1</stdout>
       <stdout>M: sda1</stdout>
       <stdout>R: 1</stdout>
@@ -359,7 +359,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sda2'</name>
+      <name>/usr/bin/udevadm info /dev/sda2</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda2</stdout>
       <stdout>M: sda2</stdout>
       <stdout>R: 2</stdout>
@@ -446,7 +446,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sda3'</name>
+      <name>/usr/bin/udevadm info /dev/sda3</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda3</stdout>
       <stdout>M: sda3</stdout>
       <stdout>R: 3</stdout>
@@ -530,7 +530,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sda4'</name>
+      <name>/usr/bin/udevadm info /dev/sda4</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda4</stdout>
       <stdout>M: sda4</stdout>
       <stdout>R: 4</stdout>
@@ -614,7 +614,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sr0'</name>
+      <name>/usr/bin/udevadm info /dev/sr0</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.1/ata9/host8/target8:0:0/8:0:0:0/block/sr0</stdout>
       <stdout>M: sr0</stdout>
       <stdout>R: 0</stdout>
@@ -700,7 +700,7 @@
       <stdout>x86_64</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --json '/dev/sda' unit s print</name>
+      <name>/usr/sbin/parted --script --json /dev/sda unit s print</name>
       <stdout>{</stdout>
       <stdout>   "disk": {</stdout>
       <stdout>      "path": "/dev/sda",</stdout>

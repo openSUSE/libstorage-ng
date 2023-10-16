@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# requirements: partition /dev/sdb1 on MS-DOS
+# requirements: partition /dev/sdc1 on MS-DOS
 
 
 from storage import *
@@ -18,7 +18,7 @@ staging = storage.get_staging()
 
 print(staging)
 
-partition = Partition.find_by_name(staging, "/dev/sdb1")
+partition = Partition.find_by_name(staging, "/dev/sdc1")
 
 partition.set_boot(not partition.is_boot())
 

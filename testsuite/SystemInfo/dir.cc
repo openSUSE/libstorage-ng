@@ -23,7 +23,7 @@ check(const string& path, const vector<string>& stdout, const string& result)
     Mockup::Command command;
     command.stdout = stdout;
 
-    Mockup::set_command(LS_BIN " -1 --sort=none " + quote(path), command);
+    Mockup::set_command({ LS_BIN, "-1", "--sort=none", path }, command);
 
     Dir dir(path);
 
@@ -57,7 +57,7 @@ BOOST_AUTO_TEST_CASE(error1)
     command.exit_code = 2;
 
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command(LS_BIN " -1 --sort=none " + quote(path), command);
+    Mockup::set_command({ LS_BIN, "-1", "--sort=none", path }, command);
 
     BOOST_CHECK_THROW(Dir dir(path), Exception);
 }

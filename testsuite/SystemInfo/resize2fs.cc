@@ -19,7 +19,7 @@ void
 check(const string& device, const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command(RESIZE2FS_BIN " -P " + quote(device), input);
+    Mockup::set_command({ RESIZE2FS_BIN, "-P", device }, input);
 
     CmdResize2fs cmd_resize2fs(device);
 

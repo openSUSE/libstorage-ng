@@ -204,7 +204,7 @@ namespace storage
 
 	    try
 	    {
-		SystemCmd cmd(VGCHANGE_BIN " --activate y", SystemCmd::DoThrow);
+		SystemCmd cmd({ VGCHANGE_BIN, "--activate", "y" }, SystemCmd::DoThrow);
 	    }
 	    catch (const Exception& exception)
 	    {
@@ -240,9 +240,9 @@ namespace storage
     {
 	y2mil("deactivate_lvm_lvs");
 
-	string cmd_line = VGCHANGE_BIN " --activate n";
+	SystemCmd::Args cmd_args = { VGCHANGE_BIN, "--activate", "n" };
 
-	SystemCmd cmd(cmd_line);
+	SystemCmd cmd(cmd_args);
 
 	return cmd.retcode() == 0;
     }
@@ -973,21 +973,19 @@ namespace storage
 	const LvmVg* lvm_vg = get_lvm_vg();
 	const Region& region = get_region();
 
-	string cmd_line = LVCREATE_BIN;
+	SystemCmd::Args cmd_args = { LVCREATE_BIN };
 
 	switch (lv_type)
 	{
 	    case LvType::NORMAL:
 	    {
-		cmd_line += " --zero=y --wipesignatures=y --yes --extents " +
-		    to_string(region.get_length());
+		cmd_args << "--zero=y" << "--wipesignatures=y" << "--yes" << "--extents" << to_string(region.get_length());
 	    }
 	    break;
 
 	    case LvType::THIN_POOL:
 	    {
-		cmd_line += " --type thin-pool --zero=y --yes --extents " +
-		    to_string(region.get_length());
+		cmd_args << "--type" << "thin-pool" << "--zero=y" << "--yes" << "--extents" << to_string(region.get_length());
 	    }
 	    break;
 
@@ -995,9 +993,8 @@ namespace storage
 	    {
 		const LvmLv* thin_pool = get_thin_pool();
 
-		cmd_line += " --type thin --wipesignatures=y --yes --virtualsize " +
-		    to_string(region.to_bytes(region.get_length())) + "B --thin-pool " +
-		    quote(thin_pool->get_lv_name());
+		cmd_args << "--type" << "thin" << "--wipesignatures=y" << "--yes" << "--virtualsize" <<
+		    to_string(region.to_bytes(region.get_length())) + "B" << "--thin-pool" << thin_pool->get_lv_name();
 	    }
 	    break;
 
@@ -1017,19 +1014,19 @@ namespace storage
 
 	if (supports_stripes() && stripes > 1)
 	{
-	    cmd_line += " --stripes " + to_string(stripes);
+	    cmd_args << "--stripes" << to_string(stripes);
 	    if (stripe_size > 0)
-		cmd_line += " --stripesize " + to_string(stripe_size / KiB);
+		cmd_args << "--stripesize" << to_string(stripe_size / KiB);
 	}
 
 	if (supports_chunk_size() && chunk_size > 0)
 	{
-	    cmd_line += " --chunksize " + to_string(chunk_size / KiB);
+	    cmd_args << "--chunksize" << to_string(chunk_size / KiB);
 	}
 
-	cmd_line += " --name " + quote(lv_name) + " -- " + quote(lvm_vg->get_vg_name());
+	cmd_args << "--name" << lv_name << "--" << lvm_vg->get_vg_name();
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -1040,10 +1037,10 @@ namespace storage
 
 	const LvmVg* lvm_vg = get_lvm_vg();
 
-	string cmd_line = LVS_BIN " --options vg_name,lv_name,lv_uuid,lv_size --units b -- " +
-	    quote(lvm_vg->get_vg_name() + "/" + lv_name);
+	SystemCmd::Args cmd_args = { LVS_BIN, "--options", "vg_name,lv_name,lv_uuid,lv_size", "--units", "b", "--",
+	    lvm_vg->get_vg_name() + "/" + lv_name };
 
-	SystemCmd cmd(cmd_line, SystemCmd::NoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::NoThrow);
     }
 
 
@@ -1073,10 +1070,10 @@ namespace storage
 	const LvmLv* lvm_lv_lhs = to_lvm_lv(action->get_device(commit_data.actiongraph, LHS));
 	const LvmLv* lvm_lv_rhs = to_lvm_lv(action->get_device(commit_data.actiongraph, RHS));
 
-	string cmd_line = LVRENAME_BIN " " + quote(lvm_vg->get_vg_name()) + " " +
-	    quote(lvm_lv_lhs->get_lv_name()) + " " + quote(lvm_lv_rhs->get_lv_name());
+	SystemCmd::Args cmd_args = { LVRENAME_BIN, lvm_vg->get_vg_name(), lvm_lv_lhs->get_lv_name(),
+	    lvm_lv_rhs->get_lv_name() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -1217,15 +1214,15 @@ namespace storage
 
 	const LvmLv* lvm_lv_rhs = to_lvm_lv(action->get_device(commit_data.actiongraph, RHS));
 
-	string cmd_line = LVRESIZE_BIN;
+	SystemCmd::Args cmd_args = { LVRESIZE_BIN };
 
 	if (action->resize_mode == ResizeMode::SHRINK)
-	    cmd_line += " --force";
+	    cmd_args << "--force";
 
-	cmd_line += " --extents " + to_string(lvm_lv_rhs->get_region().get_length()) + " -- "
-	    + quote(lvm_vg->get_vg_name() + "/" + lv_name);
+	cmd_args << "--extents" << to_string(lvm_lv_rhs->get_region().get_length()) << "--"
+		 << lvm_vg->get_vg_name() + "/" + lv_name;
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -1290,9 +1287,9 @@ namespace storage
     {
 	const LvmVg* lvm_vg = get_lvm_vg();
 
-	string cmd_line = LVREMOVE_BIN " --force -- " + quote(lvm_vg->get_vg_name() + "/" + lv_name);
+	SystemCmd::Args cmd_args = { LVREMOVE_BIN, "--force", "--", lvm_vg->get_vg_name() + "/" + lv_name };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -1357,9 +1354,9 @@ namespace storage
     {
 	const LvmVg* lvm_vg = get_lvm_vg();
 
-	string cmd_line = LVCHANGE_BIN " --activate y -- " + quote(lvm_vg->get_vg_name() + "/" + lv_name);
+	SystemCmd::Args cmd_args = { LVCHANGE_BIN, "--activate", "y", "--", lvm_vg->get_vg_name() + "/" + lv_name };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -1424,9 +1421,9 @@ namespace storage
     {
 	const LvmVg* lvm_vg = get_lvm_vg();
 
-	string cmd_line = LVCHANGE_BIN " --activate n -- " + quote(lvm_vg->get_vg_name() + "/" + lv_name);
+	SystemCmd::Args cmd_args = { LVCHANGE_BIN, "--activate", "n", "--", lvm_vg->get_vg_name() + "/" + lv_name };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -32,9 +32,9 @@
 
 
 // see bsc #1186780
-#define CONFIG_OVERRIDE "--config 'log { command_names = 0 prefix = \"\" }'"
+#define CONFIG_OVERRIDE "--config", "log { command_names = 0 prefix = \"\" }"
 
-#define COMMON_LVM_OPTIONS "--reportformat json " CONFIG_OVERRIDE " --units b --nosuffix"
+#define COMMON_LVM_OPTIONS "--reportformat", "json", CONFIG_OVERRIDE, "--units", "b", "--nosuffix"
 
 
 namespace storage
@@ -65,8 +65,8 @@ namespace storage
 
     CmdPvs::CmdPvs()
     {
-	SystemCmd cmd(PVS_BIN " " COMMON_LVM_OPTIONS " --all --options pv_name,pv_uuid,"
-		      "vg_name,vg_uuid,pv_attr,pe_start", SystemCmd::DoThrow);
+	SystemCmd cmd({ PVS_BIN, COMMON_LVM_OPTIONS, "--all", "--options",  "pv_name,pv_uuid,"
+		"vg_name,vg_uuid,pv_attr,pe_start" }, SystemCmd::DoThrow);
 
 	parse(cmd.stdout());
     }
@@ -157,10 +157,10 @@ namespace storage
 	// Note: Querying segtype, origin, origin_uuid and origin_size is rather new and
 	// not available in all testsuite data.
 
-	SystemCmd cmd(LVS_BIN " " COMMON_LVM_OPTIONS " --all --options lv_name,lv_uuid,vg_name,"
-		      "vg_uuid,lv_role,lv_attr,lv_size,origin_size,segtype,stripes,stripe_size,"
-		      "chunk_size,pool_lv,pool_lv_uuid,origin,origin_uuid,data_lv,data_lv_uuid,"
-		      "metadata_lv,metadata_lv_uuid", SystemCmd::DoThrow);
+	SystemCmd cmd({ LVS_BIN, COMMON_LVM_OPTIONS, "--all", "--options", "lv_name,lv_uuid,vg_name,"
+		"vg_uuid,lv_role,lv_attr,lv_size,origin_size,segtype,stripes,stripe_size,"
+		"chunk_size,pool_lv,pool_lv_uuid,origin,origin_uuid,data_lv,data_lv_uuid,"
+		"metadata_lv,metadata_lv_uuid" }, SystemCmd::DoThrow);
 
 	parse(cmd.stdout());
     }
@@ -374,8 +374,8 @@ namespace storage
 
     CmdVgs::CmdVgs()
     {
-	SystemCmd cmd(VGS_BIN " " COMMON_LVM_OPTIONS " --options vg_name,vg_uuid,vg_attr,"
-		      "vg_extent_size,vg_extent_count,vg_free_count", SystemCmd::DoThrow);
+	SystemCmd cmd({ VGS_BIN, COMMON_LVM_OPTIONS, "--options", "vg_name,vg_uuid,vg_attr,"
+		"vg_extent_size,vg_extent_count,vg_free_count" }, SystemCmd::DoThrow);
 
 	parse(cmd.stdout());
     }

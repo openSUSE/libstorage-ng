@@ -20,7 +20,7 @@ check(const string& file, const vector<string>& input, const vector<string>& out
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
     Mockup::set_command({ UDEVADM_BIN_SETTLE }, {});
-    Mockup::set_command(UDEVADM_BIN " info " + quote(file), input);
+    Mockup::set_command({ UDEVADM_BIN, "info", file }, input);
 
     CmdUdevadmInfo cmd_udevadm_info(file);
 

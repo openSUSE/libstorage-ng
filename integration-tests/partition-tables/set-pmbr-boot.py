@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# requirements: gpt on /dev/sdb
+# requirements: gpt on /dev/sdc
 
 
 from storage import *
@@ -18,7 +18,7 @@ staging = storage.get_staging()
 
 print(staging)
 
-disk = Disk.find_by_name(staging, "/dev/sdb")
+disk = Disk.find_by_name(staging, "/dev/sdc")
 
 gpt = to_gpt(disk.get_partition_table())
 

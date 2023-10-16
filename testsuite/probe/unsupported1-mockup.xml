@@ -2,7 +2,7 @@
 <Mockup>
   <Commands>
     <Command>
-      <name>/bin/ls -1 --sort=none '/sys/block'</name>
+      <name>/bin/ls -1 --sort=none /sys/block</name>
       <stdout>sdc</stdout>
       <stdout>sdd</stdout>
     </Command>
@@ -37,19 +37,19 @@
       <stderr>release: 0.32  2021/05/05 [svn: r167]</stderr>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sdc'</name>
+      <name>/usr/bin/stat --format %f /dev/sdc</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sdd'</name>
+      <name>/usr/bin/stat --format %f /dev/sdd</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/test -d '/sys/firmware/efi/efivars'</name>
+      <name>/usr/bin/test -d /sys/firmware/efi/efivars</name>
       <exit-code>1</exit-code>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdc'</name>
+      <name>/usr/bin/udevadm info /dev/sdc</name>
       <stdout>P: /devices/pci0000:00/0000:00:17.0/ata3/host2/target2:0:0/2:0:0:0/block/sdc</stdout>
       <stdout>N: sdc</stdout>
       <stdout>L: 0</stdout>
@@ -130,7 +130,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdc1'</name>
+      <name>/usr/bin/udevadm info /dev/sdc1</name>
       <stdout>P: /devices/pci0000:00/0000:00:17.0/ata3/host2/target2:0:0/2:0:0:0/block/sdc/sdc1</stdout>
       <stdout>N: sdc1</stdout>
       <stdout>L: 0</stdout>
@@ -222,7 +222,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdd'</name>
+      <name>/usr/bin/udevadm info /dev/sdd</name>
       <stdout>P: /devices/pci0000:00/0000:00:17.0/ata4/host3/target3:0:0/3:0:0:0/block/sdd</stdout>
       <stdout>N: sdd</stdout>
       <stdout>L: 0</stdout>
@@ -313,13 +313,13 @@
       <stdout>parted (GNU parted) 3.4</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --machine '/dev/sdc' unit s print</name>
+      <name>/usr/sbin/parted --script --machine /dev/sdc unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/sdc:625142448s:scsi:512:512:gpt:ATA TOSHIBA MK3261GS::128;</stdout>
       <stdout>1:2048s:62515199s:62513152s:::;</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --machine '/dev/sdd' unit s print</name>
+      <name>/usr/sbin/parted --script --machine /dev/sdd unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/sdd:625142448s:scsi:512:4096:amiga:ATA WDC WD3200BEKT-6::128;</stdout>
     </Command>

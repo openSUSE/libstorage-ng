@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 SUSE LLC
+ * Copyright (c) [2019-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -34,7 +34,7 @@ namespace storage
     CmdResize2fs::CmdResize2fs(const string& device)
 	: device(device), min_blocks(0)
     {
-	SystemCmd cmd(RESIZE2FS_BIN " -P " + quote(device), SystemCmd::DoThrow);
+	SystemCmd cmd({ RESIZE2FS_BIN, "-P", device }, SystemCmd::DoThrow);
 
 	parse(cmd.stdout());
     }

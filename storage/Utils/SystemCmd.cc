@@ -251,11 +251,28 @@ namespace storage
 
 	if (get_remote_callbacks())
 	{
-	    const RemoteCommand remote_command = get_remote_callbacks()->get_command(command());
-	    _outputLines[IDX_STDOUT] = remote_command.stdout;
-	    _outputLines[IDX_STDERR] = remote_command.stderr;
-	    _cmdRet = remote_command.exit_code;
-	    ret = 0;
+	    const RemoteCallbacks* remote_callbacks = get_remote_callbacks();
+
+	    if (args().empty())
+	    {
+		const RemoteCommand remote_command = remote_callbacks->get_command(command());
+		_outputLines[IDX_STDOUT] = remote_command.stdout;
+		_outputLines[IDX_STDERR] = remote_command.stderr;
+		_cmdRet = remote_command.exit_code;
+		ret = 0;
+	    }
+	    else
+	    {
+		const RemoteCallbacksV2* remote_callbacks_v2 = dynamic_cast<const RemoteCallbacksV2*>(remote_callbacks);
+		if (!remote_callbacks_v2)
+		    ST_THROW(Exception("old RemoteCallback"));
+
+		const RemoteCommand remote_command = remote_callbacks_v2->get_command_v2(args());
+		_outputLines[IDX_STDOUT] = remote_command.stdout;
+		_outputLines[IDX_STDERR] = remote_command.stderr;
+		_cmdRet = remote_command.exit_code;
+		ret = 0;
+	    }
 	}
 	else
 	{

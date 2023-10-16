@@ -3,7 +3,7 @@
 <Mockup>
   <Commands>
     <Command>
-      <name>/bin/ls -1 --sort=none '/sys/block'</name>
+      <name>/bin/ls -1 --sort=none /sys/block</name>
     </Command>
     <Command>
       <name>/sbin/blkid -c /dev/null</name>
@@ -21,12 +21,12 @@
       <name>/sbin/multipath -d -v 2 -ll</name>
     </Command>
     <Command>
-      <name>/usr/bin/df --block-size=1 --output=size,used,avail,fstype '/test2'</name>
+      <name>/usr/bin/df --block-size=1 --output=size,used,avail,fstype /test2</name>
       <stdout>    1B-blocks          Used         Avail Type</stdout>
       <stdout>3216071524352 1981481418752 1234590105600 nfs</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/df --block-size=1 --output=size,used,avail,fstype '/test3'</name>
+      <name>/usr/bin/df --block-size=1 --output=size,used,avail,fstype /test3</name>
       <stdout>    1B-blocks          Used         Avail Type</stdout>
       <stdout>3216071524352 1981481418752 1234590105600 nfs</stdout>
     </Command>
@@ -35,7 +35,7 @@
       <stdout>4096</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/test -d '/sys/firmware/efi/efivars'</name>
+      <name>/usr/bin/test -d /sys/firmware/efi/efivars</name>
       <exit-code>1</exit-code>
     </Command>
     <Command>

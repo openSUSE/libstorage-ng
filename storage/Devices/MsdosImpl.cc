@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -316,9 +316,9 @@ namespace storage
 
 	partitionable->get_impl().discard_device();
 
-	string cmd_line = PARTED_BIN " --script " + quote(partitionable->get_name()) + " mklabel msdos";
+	SystemCmd::Args cmd_args = { PARTED_BIN, "--script", partitionable->get_name(), "mklabel", "msdos" };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
 
 	SystemCmd({ UDEVADM_BIN_SETTLE });
     }

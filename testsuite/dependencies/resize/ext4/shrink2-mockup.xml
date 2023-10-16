@@ -13,11 +13,11 @@
       <!-- stdout missing -->
     </Command>
     <Command>
-      <name>/usr/sbin/blkdiscard '/dev/sdc5'</name>
+      <name>/usr/sbin/blkdiscard /dev/sdc5</name>
       <!-- stdout missing -->
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script '/dev/sdc' rm 5</name>
+      <name>/usr/sbin/parted --script /dev/sdc rm 5</name>
       <!-- stdout missing -->
     </Command>
   </Commands>

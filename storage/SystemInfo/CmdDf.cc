@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -36,7 +36,7 @@ namespace storage
     CmdDf::CmdDf(const string& path)
 	: path(path)
     {
-	SystemCmd cmd(DF_BIN " --block-size=1 --output=size,used,avail,fstype " + quote(path));
+	SystemCmd cmd({ DF_BIN, "--block-size=1", "--output=size,used,avail,fstype", path });
 	if (cmd.retcode() == 0)
 	    parse(cmd.stdout());
     }

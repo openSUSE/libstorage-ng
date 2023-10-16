@@ -2,7 +2,7 @@
 <Mockup>
   <Commands>
     <Command>
-      <name>/bin/ls -1 --sort=none '/sys/block'</name>
+      <name>/bin/ls -1 --sort=none /sys/block</name>
       <stdout>sr0</stdout>
       <stdout>sda</stdout>
     </Command>
@@ -19,7 +19,7 @@
       <exit-code>127</exit-code>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sda'</name>
+      <name>/usr/bin/udevadm info /dev/sda</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda</stdout>
       <stdout>N: sda</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB09d89637-d9690549</stdout>
@@ -70,7 +70,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sda1'</name>
+      <name>/usr/bin/udevadm info /dev/sda1</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda1</stdout>
       <stdout>N: sda1</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB09d89637-d9690549-part1</stdout>
@@ -136,7 +136,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sda2'</name>
+      <name>/usr/bin/udevadm info /dev/sda2</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda2</stdout>
       <stdout>N: sda2</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB09d89637-d9690549-part2</stdout>
@@ -205,7 +205,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sr0'</name>
+      <name>/usr/bin/udevadm info /dev/sr0</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.1/ata4/host3/target3:0:0/3:0:0:0/block/sr0</stdout>
       <stdout>N: sr0</stdout>
       <stdout>L: -100</stdout>
@@ -291,15 +291,15 @@
       <stderr>release: 0.32  2021/05/05 [svn: r167]</stderr>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sda'</name>
+      <name>/usr/bin/stat --format %f /dev/sda</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sr0'</name>
+      <name>/usr/bin/stat --format %f /dev/sr0</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/test -d '/sys/firmware/efi/efivars'</name>
+      <name>/usr/bin/test -d /sys/firmware/efi/efivars</name>
       <exit-code>1</exit-code>
     </Command>
     <Command>
@@ -311,7 +311,7 @@
       <stdout>parted (GNU parted) 3.4</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --machine '/dev/sda' unit s print</name>
+      <name>/usr/sbin/parted --script --machine /dev/sda unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/sda:33554432s:scsi:512:512:msdos:ATA VBOX HARDDISK:;</stdout>
       <stdout>1:2048s:3051519s:3049472s:linux-swap(v1)::type=82;</stdout>

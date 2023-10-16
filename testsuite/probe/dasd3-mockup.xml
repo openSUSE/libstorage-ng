@@ -3,14 +3,14 @@
 <Mockup>
   <Commands>
     <Command>
-      <name>/bin/ls -1 --sort=none '/sys/block'</name>
+      <name>/bin/ls -1 --sort=none /sys/block</name>
       <stdout>vda</stdout>
     </Command>
     <Command>
       <name>/sbin/blkid -c /dev/null</name>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/vda'</name>
+      <name>/usr/bin/udevadm info /dev/vda</name>
       <stdout>P: /devices/css0/0.0.0000/0.0.0000/virtio0/block/vda</stdout>
       <stdout>N: vda</stdout>
       <stdout>S: disk/by-path/ccw-0.0.0000</stdout>
@@ -33,7 +33,7 @@
       <stdout>4096</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/test -d '/sys/firmware/efi/efivars'</name>
+      <name>/usr/bin/test -d /sys/firmware/efi/efivars</name>
       <exit-code>1</exit-code>
     </Command>
     <Command>
@@ -45,7 +45,7 @@
       <stdout>parted (GNU parted) 3.4</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --machine '/dev/vda' unit s print</name>
+      <name>/usr/sbin/parted --script --machine /dev/vda unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/vda:14424480s:dasd:512:4096:dasd:IBM S390 DASD drive:;</stdout>
     </Command>
@@ -62,7 +62,7 @@
       <name>/sbin/dmsetup table</name>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/vda'</name>
+      <name>/usr/bin/stat --format %f /dev/vda</name>
       <stdout>61b0</stdout>
     </Command>
   </Commands>

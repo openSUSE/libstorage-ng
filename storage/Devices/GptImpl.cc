@@ -279,9 +279,9 @@ namespace storage
 
 	partitionable->get_impl().discard_device();
 
-	string cmd_line = PARTED_BIN " --script " + quote(partitionable->get_name()) + " mklabel gpt";
+	SystemCmd::Args cmd_args = { PARTED_BIN, "--script", partitionable->get_name(), "mklabel", "gpt" };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
 
 	SystemCmd({ UDEVADM_BIN_SETTLE });
     }
@@ -364,10 +364,10 @@ namespace storage
     {
 	const Partitionable* partitionable = get_partitionable();
 
-	string cmd_line = PARTED_BIN " --script " + quote(partitionable->get_name()) +
-	    " disk_set pmbr_boot " + (is_pmbr_boot() ? "on" : "off");
+	SystemCmd::Args cmd_args = { PARTED_BIN, "--script", partitionable->get_name(),
+	    "disk_set", "pmbr_boot", is_pmbr_boot() ? "on" : "off" };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 

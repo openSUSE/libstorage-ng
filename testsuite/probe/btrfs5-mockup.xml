@@ -3,7 +3,7 @@
 <Mockup>
   <Commands>
     <Command>
-      <name>/bin/ls -1 --sort=none '/sys/block'</name>
+      <name>/bin/ls -1 --sort=none /sys/block</name>
       <stdout>sdb</stdout>
     </Command>
     <Command>
@@ -110,15 +110,15 @@
       <stderr>release: 0.32  2021/05/05 [svn: r167]</stderr>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sdb'</name>
+      <name>/usr/bin/stat --format %f /dev/sdb</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/test -d '/sys/firmware/efi/efivars'</name>
+      <name>/usr/bin/test -d /sys/firmware/efi/efivars</name>
       <exit-code>1</exit-code>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdb'</name>
+      <name>/usr/bin/udevadm info /dev/sdb</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb</stdout>
       <stdout>N: sdb</stdout>
       <stdout>L: 0</stdout>
@@ -181,7 +181,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdb1'</name>
+      <name>/usr/bin/udevadm info /dev/sdb1</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb1</stdout>
       <stdout>N: sdb1</stdout>
       <stdout>L: 0</stdout>
@@ -271,7 +271,7 @@
       <stdout>parted (GNU parted) 3.4</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --machine '/dev/sdb' unit s print</name>
+      <name>/usr/sbin/parted --script --machine /dev/sdb unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/sdb:16777216s:scsi:512:512:gpt:ATA VBOX HARDDISK::128;</stdout>
       <stdout>1:2048s:16775167s:16773120s:btrfs::;</stdout>

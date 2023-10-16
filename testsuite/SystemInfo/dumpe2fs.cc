@@ -19,7 +19,7 @@ void
 check(const string& device, const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command(DUMPE2FS_BIN " -h " + quote(device), input);
+    Mockup::set_command({ DUMPE2FS_BIN, "-h", device }, input);
 
     CmdDumpe2fs cmd_dumpe2fs(device);
 

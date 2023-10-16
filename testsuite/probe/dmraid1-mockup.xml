@@ -3,7 +3,7 @@
 <Mockup>
   <Commands>
     <Command>
-      <name>/bin/ls -1 --sort=none '/sys/block'</name>
+      <name>/bin/ls -1 --sort=none /sys/block</name>
       <stdout>dm-1</stdout>
       <stdout>sdb</stdout>
       <stdout>sr0</stdout>
@@ -45,7 +45,7 @@
       <stderr>bash: /sbin/multipath: No such file or directory</stderr>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/mapper/isw_ddgdcbibhd_test1'</name>
+      <name>/usr/bin/udevadm info /dev/mapper/isw_ddgdcbibhd_test1</name>
       <stdout>P: /devices/virtual/block/dm-0</stdout>
       <stdout>N: dm-0</stdout>
       <stdout>L: 50</stdout>
@@ -82,7 +82,7 @@
       <stdout>E: USEC_INITIALIZED=57938318</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/mapper/isw_ddgdcbibhd_test1-part1'</name>
+      <name>/usr/bin/udevadm info /dev/mapper/isw_ddgdcbibhd_test1-part1</name>
       <stdout>P: /devices/virtual/block/dm-2</stdout>
       <stdout>N: dm-2</stdout>
       <stdout>L: 50</stdout>
@@ -133,7 +133,7 @@
       <stdout>E: USEC_INITIALIZED=58275587</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/mapper/isw_ddgdcbibhd_test1-part2'</name>
+      <name>/usr/bin/udevadm info /dev/mapper/isw_ddgdcbibhd_test1-part2</name>
       <stdout>P: /devices/virtual/block/dm-3</stdout>
       <stdout>N: dm-3</stdout>
       <stdout>L: 50</stdout>
@@ -183,7 +183,7 @@
       <stdout>E: USEC_INITIALIZED=58289852</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/mapper/isw_ddgdcbibhd_test2'</name>
+      <name>/usr/bin/udevadm info /dev/mapper/isw_ddgdcbibhd_test2</name>
       <stdout>P: /devices/virtual/block/dm-1</stdout>
       <stdout>N: dm-1</stdout>
       <stdout>L: 50</stdout>
@@ -224,7 +224,7 @@
       <stdout>E: USEC_INITIALIZED=57990951</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sda'</name>
+      <name>/usr/bin/udevadm info /dev/sda</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda</stdout>
       <stdout>N: sda</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB777f5d67-56603f01</stdout>
@@ -274,7 +274,7 @@
       <stdout>E: USEC_INITIALIZED=9788636</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sda1'</name>
+      <name>/usr/bin/udevadm info /dev/sda1</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda1</stdout>
       <stdout>N: sda1</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB777f5d67-56603f01-part1</stdout>
@@ -339,7 +339,7 @@
       <stdout>E: USEC_INITIALIZED=10023547</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sda2'</name>
+      <name>/usr/bin/udevadm info /dev/sda2</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda2</stdout>
       <stdout>N: sda2</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB777f5d67-56603f01-part2</stdout>
@@ -406,7 +406,7 @@
       <stdout>E: USEC_INITIALIZED=10043423</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdb'</name>
+      <name>/usr/bin/udevadm info /dev/sdb</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb</stdout>
       <stdout>N: sdb</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB6a9bf539-bed09c6d</stdout>
@@ -458,18 +458,18 @@
     </Command>
     <Command>
       <!-- output faked and incomplete -->
-      <name>/usr/bin/udevadm info '/dev/sdb1'</name>
+      <name>/usr/bin/udevadm info /dev/sdb1</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb1</stdout>
       <stdout>N: sdb1</stdout>
     </Command>>
     <Command>
       <!-- output faked and incomplete -->
-      <name>/usr/bin/udevadm info '/dev/sdb2'</name>
+      <name>/usr/bin/udevadm info /dev/sdb2</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb2</stdout>
       <stdout>N: sdb2</stdout>
     </Command>>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdc'</name>
+      <name>/usr/bin/udevadm info /dev/sdc</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata3/host2/target2:0:0/2:0:0:0/block/sdc</stdout>
       <stdout>N: sdc</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VBe0e2de48-b05a036b</stdout>
@@ -521,18 +521,18 @@
     </Command>
     <Command>
       <!-- output faked and incomplete -->
-      <name>/usr/bin/udevadm info '/dev/sdc1'</name>
+      <name>/usr/bin/udevadm info /dev/sdc1</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata3/host2/target2:0:0/2:0:0:0/block/sdc/sdc1</stdout>
       <stdout>N: sdc1</stdout>
     </Command>
     <Command>
       <!-- output faked and incomplete -->
-      <name>/usr/bin/udevadm info '/dev/sdc2'</name>
+      <name>/usr/bin/udevadm info /dev/sdc2</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata3/host2/target2:0:0/2:0:0:0/block/sdc/sdc2</stdout>
       <stdout>N: sdc2</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sr0'</name>
+      <name>/usr/bin/udevadm info /dev/sr0</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.1/ata7/host6/target6:0:0/6:0:0:0/block/sr0</stdout>
       <stdout>N: sr0</stdout>
       <stdout>L: -100</stdout>
@@ -619,23 +619,23 @@
       <stderr>release: 0.32  2021/05/05 [svn: r167]</stderr>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sda'</name>
+      <name>/usr/bin/stat --format %f /dev/sda</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sdb'</name>
+      <name>/usr/bin/stat --format %f /dev/sdb</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sdc'</name>
+      <name>/usr/bin/stat --format %f /dev/sdc</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sr0'</name>
+      <name>/usr/bin/stat --format %f /dev/sr0</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/test -d '/sys/firmware/efi/efivars'</name>
+      <name>/usr/bin/test -d /sys/firmware/efi/efivars</name>
     </Command>
     <Command>
       <name>/usr/bin/uname -m</name>
@@ -646,20 +646,20 @@
       <stdout>parted (GNU parted) 3.4</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --machine '/dev/mapper/isw_ddgdcbibhd_test1' unit s print</name>
+      <name>/usr/sbin/parted --script --machine /dev/mapper/isw_ddgdcbibhd_test1 unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/mapper/isw_ddgdcbibhd_test1:16777216s:dm:512:512:gpt:Linux device-mapper (mirror):;</stdout>
       <stdout>1:2048s:8388607s:8386560s:ext4::;</stdout>
       <stdout>2:8388608s:16775167s:8386560s:xfs::;</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --machine '/dev/mapper/isw_ddgdcbibhd_test2' unit s print</name>
+      <name>/usr/sbin/parted --script --machine /dev/mapper/isw_ddgdcbibhd_test2 unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/mapper/isw_ddgdcbibhd_test2:33534976s:dm:512:512:loop:Linux device-mapper (striped):;</stdout>
       <stdout>1:0s:33534975s:33534976s:ext4::;</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --machine '/dev/sda' unit s print</name>
+      <name>/usr/sbin/parted --script --machine /dev/sda unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/sda:33554432s:scsi:512:512:msdos:ATA VBOX HARDDISK:;</stdout>
       <stdout>1:2048s:3051519s:3049472s:linux-swap(v1)::type=82;</stdout>

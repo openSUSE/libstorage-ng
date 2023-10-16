@@ -3,7 +3,7 @@
 <Mockup>
   <Commands>
     <Command>
-      <name>/bin/ls -1 --sort=none '/sys/block'</name>
+      <name>/bin/ls -1 --sort=none /sys/block</name>
       <stdout>dm-1</stdout>
       <stdout>sdd</stdout>
       <stdout>dasda</stdout>
@@ -32,7 +32,7 @@
     </Command>
     <Command>
       <!-- output faked and incomplete -->
-      <name>/sbin/cryptsetup luksDump '/dev/mapper/36005076305ffc73a00000000000013b4-part1'</name>
+      <name>/sbin/cryptsetup luksDump /dev/mapper/36005076305ffc73a00000000000013b4-part1</name>
       <stdout>Version:       	1</stdout>
       <stdout>Cipher name:    aes</stdout>
       <stdout>Cipher mode:    xts-plain64</stdout>
@@ -40,14 +40,14 @@
     </Command>
     <Command>
       <!-- output faked and incomplete -->
-      <name>/sbin/cryptsetup luksDump '/dev/mapper/36005076305ffc73a00000000000013b5'</name>
+      <name>/sbin/cryptsetup luksDump /dev/mapper/36005076305ffc73a00000000000013b5</name>
       <stdout>Version:       	1</stdout>
       <stdout>Cipher name:    aes</stdout>
       <stdout>Cipher mode:    xts-plain64</stdout>
       <stdout>MK bits:        512</stdout>
     </Command>
     <Command>
-      <name>/sbin/dasdview --extended '/dev/dasda'</name>
+      <name>/sbin/dasdview --extended /dev/dasda</name>
       <stdout></stdout>
       <stdout>--- general DASD information --------------------------------------------------</stdout>
       <stdout>device node            : /dev/dasda</stdout>
@@ -128,7 +128,7 @@
       <stdout>  `- 0:0:1:1085554707 sdc 8:32 active ready running</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/dasda'</name>
+      <name>/usr/bin/udevadm info /dev/dasda</name>
       <stdout>P: /devices/css0/0.0.0003/0.0.0150/block/dasda</stdout>
       <stdout>N: dasda</stdout>
       <stdout>S: disk/by-id/ccw-0X0150</stdout>
@@ -153,7 +153,7 @@
       <stdout>E: USEC_INITIALIZED=2583927</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/dasda1'</name>
+      <name>/usr/bin/udevadm info /dev/dasda1</name>
       <stdout>P: /devices/css0/0.0.0003/0.0.0150/block/dasda/dasda1</stdout>
       <stdout>N: dasda1</stdout>
       <stdout>S: disk/by-id/ccw-0X0150-part1</stdout>
@@ -185,7 +185,7 @@
       <stdout>E: USEC_INITIALIZED=2601208</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/dasda2'</name>
+      <name>/usr/bin/udevadm info /dev/dasda2</name>
       <stdout>P: /devices/css0/0.0.0003/0.0.0150/block/dasda/dasda2</stdout>
       <stdout>N: dasda2</stdout>
       <stdout>S: disk/by-id/ccw-0X0150-part2</stdout>
@@ -217,7 +217,7 @@
       <stdout>E: USEC_INITIALIZED=2685096</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/dasda3'</name>
+      <name>/usr/bin/udevadm info /dev/dasda3</name>
       <stdout>P: /devices/css0/0.0.0003/0.0.0150/block/dasda/dasda3</stdout>
       <stdout>N: dasda3</stdout>
       <stdout>S: disk/by-id/ccw-0X0150-part3</stdout>
@@ -249,7 +249,7 @@
       <stdout>E: USEC_INITIALIZED=2696227</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/mapper/36005076305ffc73a00000000000013b4'</name>
+      <name>/usr/bin/udevadm info /dev/mapper/36005076305ffc73a00000000000013b4</name>
       <stdout>P: /devices/virtual/block/dm-0</stdout>
       <stdout>N: dm-0</stdout>
       <stdout>L: 50</stdout>
@@ -282,7 +282,7 @@
       <stdout>E: USEC_INITIALIZED=1198639029</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/mapper/36005076305ffc73a00000000000013b4-part1'</name>
+      <name>/usr/bin/udevadm info /dev/mapper/36005076305ffc73a00000000000013b4-part1</name>
       <stdout>P: /devices/virtual/block/dm-1</stdout>
       <stdout>N: dm-1</stdout>
       <stdout>L: 50</stdout>
@@ -327,7 +327,7 @@
       <stdout>E: USEC_INITIALIZED=1288006334</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/mapper/36005076305ffc73a00000000000013b5'</name>
+      <name>/usr/bin/udevadm info /dev/mapper/36005076305ffc73a00000000000013b5</name>
       <stdout>P: /devices/virtual/block/dm-3</stdout>
       <stdout>N: dm-3</stdout>
       <stdout>L: 50</stdout>
@@ -364,7 +364,7 @@
       <stdout>E: USEC_INITIALIZED=284532536146</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/mapper/cr-test1'</name>
+      <name>/usr/bin/udevadm info /dev/mapper/cr-test1</name>
       <stdout>P: /devices/virtual/block/dm-2</stdout>
       <stdout>N: dm-2</stdout>
       <stdout>S: disk/by-id/dm-name-cr-test1</stdout>
@@ -394,7 +394,7 @@
       <stdout>E: USEC_INITIALIZED=333255756088</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/mapper/cr-test2'</name>
+      <name>/usr/bin/udevadm info /dev/mapper/cr-test2</name>
       <stdout>P: /devices/virtual/block/dm-4</stdout>
       <stdout>N: dm-4</stdout>
       <stdout>S: disk/by-id/dm-name-cr-test2</stdout>
@@ -424,7 +424,7 @@
       <stdout>E: USEC_INITIALIZED=333264943794</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sda'</name>
+      <name>/usr/bin/udevadm info /dev/sda</name>
       <stdout>P: /devices/css0/0.0.0008/0.0.fc00/host0/rport-0:0-0/target0:0:0/0:0:0:1085554707/block/sda</stdout>
       <stdout>N: sda</stdout>
       <stdout>S: disk/by-id/scsi-36005076305ffc73a00000000000013b4</stdout>
@@ -478,12 +478,12 @@
     </Command>
     <Command>
       <!-- output faked and incomplete -->
-      <name>/usr/bin/udevadm info '/dev/sda1'</name>
+      <name>/usr/bin/udevadm info /dev/sda1</name>
       <stdout>P: /devices/css0/0.0.0008/0.0.fc00/host0/rport-0:0-0/target0:0:0/0:0:0:1085554707/block/sda/sda1</stdout>
       <stdout>N: sda1</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdb'</name>
+      <name>/usr/bin/udevadm info /dev/sdb</name>
       <stdout>P: /devices/css0/0.0.0008/0.0.fc00/host0/rport-0:0-0/target0:0:0/0:0:0:1085620243/block/sdb</stdout>
       <stdout>N: sdb</stdout>
       <stdout>S: disk/by-id/scsi-36005076305ffc73a00000000000013b5</stdout>
@@ -534,7 +534,7 @@
       <stdout>E: USEC_INITIALIZED=1091495019</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdc'</name>
+      <name>/usr/bin/udevadm info /dev/sdc</name>
       <stdout>P: /devices/css0/0.0.0008/0.0.fc00/host0/rport-0:0-1/target0:0:1/0:0:1:1085554707/block/sdc</stdout>
       <stdout>N: sdc</stdout>
       <stdout>S: disk/by-id/scsi-36005076305ffc73a00000000000013b4</stdout>
@@ -588,12 +588,12 @@
     </Command>
     <Command>
       <!-- output faked and incomplete -->
-      <name>/usr/bin/udevadm info '/dev/sdc1'</name>
+      <name>/usr/bin/udevadm info /dev/sdc1</name>
       <stdout>P: /devices/css0/0.0.0008/0.0.fc00/host0/rport-0:0-1/target0:0:1/0:0:1:1085554707/block/sdc/sdc1</stdout>
       <stdout>N: sdc1</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdd'</name>
+      <name>/usr/bin/udevadm info /dev/sdd</name>
       <stdout>P: /devices/css0/0.0.0008/0.0.fc00/host0/rport-0:0-1/target0:0:1/0:0:1:1085620243/block/sdd</stdout>
       <stdout>N: sdd</stdout>
       <stdout>S: disk/by-id/scsi-36005076305ffc73a00000000000013b5</stdout>
@@ -663,31 +663,31 @@
       <stderr>release: 0.32  2021/05/05 [svn: r167]</stderr>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sda'</name>
+      <name>/usr/bin/stat --format %f /dev/sda</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sdb'</name>
+      <name>/usr/bin/stat --format %f /dev/sdb</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sdc'</name>
+      <name>/usr/bin/stat --format %f /dev/sdc</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sdd'</name>
+      <name>/usr/bin/stat --format %f /dev/sdd</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/dasda'</name>
+      <name>/usr/bin/stat --format %f /dev/dasda</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/mapper/36005076305ffc73a00000000000013b4-part1'</name>
+      <name>/usr/bin/stat --format %f /dev/mapper/36005076305ffc73a00000000000013b4-part1</name>
       <stdout>a1ff</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/test -d '/sys/firmware/efi/efivars'</name>
+      <name>/usr/bin/test -d /sys/firmware/efi/efivars</name>
       <exit-code>1</exit-code>
     </Command>
     <Command>
@@ -699,7 +699,7 @@
       <stdout>parted (GNU parted) 3.4</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --machine '/dev/dasda' unit s print</name>
+      <name>/usr/sbin/parted --script --machine /dev/dasda unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/dasda:14424480s:dasd:512:4096:dasd:IBM S390 DASD drive:;</stdout>
       <stdout>1:6144s:215039s:208896s:ext2::;</stdout>
@@ -707,13 +707,13 @@
       <stdout>3:11796480s:14419967s:2623488s:linux-swap(v1)::;</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --machine '/dev/mapper/36005076305ffc73a00000000000013b4' unit s print</name>
+      <name>/usr/sbin/parted --script --machine /dev/mapper/36005076305ffc73a00000000000013b4 unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/mapper/36005076305ffc73a00000000000013b4:2097152s:dm:512:512:gpt:Linux device-mapper (multipath):;</stdout>
       <stdout>1:2048s:2097118s:2095071s:::;</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --machine '/dev/mapper/36005076305ffc73a00000000000013b5' unit s print</name>
+      <name>/usr/sbin/parted --script --machine /dev/mapper/36005076305ffc73a00000000000013b5 unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/mapper/36005076305ffc73a00000000000013b5:2097152s:dm:512:512:unknown:Linux device-mapper (multipath):;</stdout>
       <stderr>Error: /dev/mapper/36005076305ffc73a00000000000013b5: unrecognised disk label</stderr>

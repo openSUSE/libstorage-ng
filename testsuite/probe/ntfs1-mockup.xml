@@ -3,7 +3,7 @@
 <Mockup>
   <Commands>
     <Command>
-      <name>/bin/ls -1 --sort=none '/sys/block'</name>
+      <name>/bin/ls -1 --sort=none /sys/block</name>
       <stdout>sdc</stdout>
     </Command>
     <Command>
@@ -25,7 +25,7 @@
       <name>/sbin/multipath -d -v 2 -ll</name>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdc'</name>
+      <name>/usr/bin/udevadm info /dev/sdc</name>
       <stdout>P: /devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.6/1-1.6:1.0/host7/target7:0:0/7:0:0:0/block/sdc</stdout>
       <stdout>N: sdc</stdout>
       <stdout>S: disk/by-id/usb-WD_My_Passport_25E2_575842314436354C33384445-0:0</stdout>
@@ -72,7 +72,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdc1'</name>
+      <name>/usr/bin/udevadm info /dev/sdc1</name>
       <stdout>P: /devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.6/1-1.6:1.0/host7/target7:0:0/7:0:0:0/block/sdc/sdc1</stdout>
       <stdout>N: sdc1</stdout>
       <stdout>S: disk/by-id/usb-WD_My_Passport_25E2_575842314436354C33384445-0:0-part1</stdout>
@@ -132,7 +132,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdc2'</name>
+      <name>/usr/bin/udevadm info /dev/sdc2</name>
       <stdout>P: /devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.6/1-1.6:1.0/host7/target7:0:0/7:0:0:0/block/sdc/sdc2</stdout>
       <stdout>N: sdc2</stdout>
       <stdout>S: disk/by-id/usb-WD_My_Passport_25E2_575842314436354C33384445-0:0-part2</stdout>
@@ -192,7 +192,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdc3'</name>
+      <name>/usr/bin/udevadm info /dev/sdc3</name>
       <stdout>P: /devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.6/1-1.6:1.0/host7/target7:0:0/7:0:0:0/block/sdc/sdc3</stdout>
       <stdout>N: sdc3</stdout>
       <stdout>S: disk/by-id/usb-WD_My_Passport_25E2_575842314436354C33384445-0:0-part3</stdout>
@@ -269,11 +269,11 @@
       <stderr>release: 0.32  2021/05/05 [svn: r167]</stderr>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sdc'</name>
+      <name>/usr/bin/stat --format %f /dev/sdc</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/test -d '/sys/firmware/efi/efivars'</name>
+      <name>/usr/bin/test -d /sys/firmware/efi/efivars</name>
       <exit-code>1</exit-code>
     </Command>
     <Command>
@@ -285,7 +285,7 @@
       <stdout>parted (GNU parted) 3.4</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --machine '/dev/sdc' unit s print</name>
+      <name>/usr/sbin/parted --script --machine /dev/sdc unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/sdc:5860466688s:scsi:512:4096:gpt:WD My Passport 25E2:;</stdout>
       <stdout>1:2048s:58605567s:58603520s:ntfs::;</stdout>

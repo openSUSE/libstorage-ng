@@ -3,7 +3,7 @@
 <Mockup>
   <Commands>
     <Command>
-      <name>/bin/ls -1 --sort=none '/sys/block'</name>
+      <name>/bin/ls -1 --sort=none /sys/block</name>
       <stdout>sda</stdout>
       <stdout>sr0</stdout>
       <stdout>dm-0</stdout>
@@ -17,7 +17,7 @@
     </Command>
     <Command>
       <!-- output faked and incomplete -->
-      <name>/sbin/cryptsetup luksDump '/dev/sda2'</name>
+      <name>/sbin/cryptsetup luksDump /dev/sda2</name>
       <stdout>Version:       	1</stdout>
       <stdout>Cipher name:    aes</stdout>
       <stdout>Cipher mode:    xts-plain64</stdout>
@@ -28,7 +28,7 @@
       <stdout>cr_home: 0 16779264 crypt aes-xts-plain64 0000000000000000000000000000000000000000000000000000000000000000 0 8:2 4096</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/mapper/cr_home'</name>
+      <name>/usr/bin/udevadm info /dev/mapper/cr_home</name>
       <stdout>P: /devices/virtual/block/dm-0</stdout>
       <stdout>N: dm-0</stdout>
       <stdout>L: 50</stdout>
@@ -68,7 +68,7 @@
       <stdout>E: USEC_INITIALIZED=32865604</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sda'</name>
+      <name>/usr/bin/udevadm info /dev/sda</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda</stdout>
       <stdout>N: sda</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB56faa9ee-37629d93</stdout>
@@ -117,7 +117,7 @@
       <stdout>E: USEC_INITIALIZED=5248818</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sda1'</name>
+      <name>/usr/bin/udevadm info /dev/sda1</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda1</stdout>
       <stdout>N: sda1</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB56faa9ee-37629d93-part1</stdout>
@@ -181,7 +181,7 @@
       <stdout>E: USEC_INITIALIZED=5648925</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sda2'</name>
+      <name>/usr/bin/udevadm info /dev/sda2</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda2</stdout>
       <stdout>N: sda2</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB56faa9ee-37629d93-part2</stdout>
@@ -243,7 +243,7 @@
       <stdout>E: USEC_INITIALIZED=5718331</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sr0'</name>
+      <name>/usr/bin/udevadm info /dev/sr0</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.1/ata3/host2/target2:0:0/2:0:0:0/block/sr0</stdout>
       <stdout>N: sr0</stdout>
       <stdout>L: -100</stdout>
@@ -328,15 +328,15 @@
       <stderr>release: 0.32  2021/05/05 [svn: r167]</stderr>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sda'</name>
+      <name>/usr/bin/stat --format %f /dev/sda</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sr0'</name>
+      <name>/usr/bin/stat --format %f /dev/sr0</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/test -d '/sys/firmware/efi/efivars'</name>
+      <name>/usr/bin/test -d /sys/firmware/efi/efivars</name>
     </Command>
     <Command>
       <name>/usr/bin/uname -m</name>
@@ -347,7 +347,7 @@
       <stdout>parted (GNU parted) 3.4</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --machine '/dev/sda' unit s print</name>
+      <name>/usr/sbin/parted --script --machine /dev/sda unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/sda:33554432s:scsi:512:512:msdos:ATA VBOX HARDDISK:;</stdout>
       <stdout>1:2048s:16771071s:16769024s:ext4::boot, type=83;</stdout>

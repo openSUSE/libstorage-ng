@@ -3,7 +3,7 @@
 <Mockup>
   <Commands>
     <Command>
-      <name>/bin/ls -1 --sort=none '/sys/block'</name>
+      <name>/bin/ls -1 --sort=none /sys/block</name>
       <stdout>sdc</stdout>
     </Command>
     <Command>
@@ -35,15 +35,15 @@
       <stderr>release: 0.32  2021/05/05 [svn: r167]</stderr>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sdc'</name>
+      <name>/usr/bin/stat --format %f /dev/sdc</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/test -d '/sys/firmware/efi/efivars'</name>
+      <name>/usr/bin/test -d /sys/firmware/efi/efivars</name>
       <exit-code>1</exit-code>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdc'</name>
+      <name>/usr/bin/udevadm info /dev/sdc</name>
       <stdout>P: /devices/pci0000:00/0000:00:17.0/ata3/host2/target2:0:0/2:0:0:0/block/sdc</stdout>
       <stdout>N: sdc</stdout>
       <stdout>L: 0</stdout>
@@ -143,7 +143,7 @@
       <stdout>parted (GNU parted) 3.4</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --machine '/dev/sdc' unit s print</name>
+      <name>/usr/sbin/parted --script --machine /dev/sdc unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/sdc:625142448s:scsi:512:512:gpt:ATA TOSHIBA MK3261GS::128;</stdout>
     </Command>

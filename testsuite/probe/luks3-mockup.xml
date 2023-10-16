@@ -2,7 +2,7 @@
 <Mockup>
   <Commands>
     <Command>
-      <name>/bin/ls -1 --sort=none '/sys/block'</name>
+      <name>/bin/ls -1 --sort=none /sys/block</name>
       <stdout>sdc</stdout>
       <stdout>dm-5</stdout>
     </Command>
@@ -13,7 +13,7 @@
     </Command>
     <Command>
       <!-- output faked and incomplete -->
-      <name>/sbin/cryptsetup luksDump '/dev/sdc1'</name>
+      <name>/sbin/cryptsetup luksDump /dev/sdc1</name>
       <stdout>Version:       	1</stdout>
       <stdout>Cipher name:    aes</stdout>
       <stdout>Cipher mode:    xts-plain64</stdout>
@@ -32,12 +32,12 @@
       <name>/sbin/multipath -d -v 2 -ll</name>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/disk/by-uuid/39334baa-941f-42ab-a0a4-7c20a427aff2'</name>
+      <name>/usr/bin/udevadm info /dev/disk/by-uuid/39334baa-941f-42ab-a0a4-7c20a427aff2</name>
       <stderr>Unknown device, --name=, --path=, or absolute path in /dev/ or /sys expected.</stderr>
       <exit-code>4</exit-code>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/mapper/cr-test2'</name>
+      <name>/usr/bin/udevadm info /dev/mapper/cr-test2</name>
       <stdout>P: /devices/virtual/block/dm-5</stdout>
       <stdout>N: dm-5</stdout>
       <stdout>S: disk/by-id/dm-name-cr-test2</stdout>
@@ -68,7 +68,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdc'</name>
+      <name>/usr/bin/udevadm info /dev/sdc</name>
       <stdout>P: /devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc</stdout>
       <stdout>N: sdc</stdout>
       <stdout>S: disk/by-id/usb-WD_My_Passport_25E2_57584D31454135463654544A-0:0</stdout>
@@ -117,7 +117,7 @@
       <stdout></stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdc1'</name>
+      <name>/usr/bin/udevadm info /dev/sdc1</name>
       <stdout>P: /devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc/sdc1</stdout>
       <stdout>N: sdc1</stdout>
       <stdout>S: disk/by-id/usb-WD_My_Passport_25E2_57584D31454135463654544A-0:0-part1</stdout>
@@ -198,11 +198,11 @@
       <stderr>release: 0.32  2021/05/05 [svn: r167]</stderr>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sdc'</name>
+      <name>/usr/bin/stat --format %f /dev/sdc</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/test -d '/sys/firmware/efi/efivars'</name>
+      <name>/usr/bin/test -d /sys/firmware/efi/efivars</name>
       <exit-code>1</exit-code>
     </Command>
     <Command>
@@ -214,7 +214,7 @@
       <stdout>parted (GNU parted) 3.4</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --machine '/dev/sdc' unit s print</name>
+      <name>/usr/sbin/parted --script --machine /dev/sdc unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/sdc:5860466688s:scsi:512:4096:gpt:WD My Passport 25E2:;</stdout>
       <stdout>1:2048s:2099199s:2097152s:::;</stdout>

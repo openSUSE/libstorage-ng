@@ -3,7 +3,7 @@
 <Mockup>
   <Commands>
     <Command>
-      <name>/bin/ls -1 --sort=none '/sys/block'</name>
+      <name>/bin/ls -1 --sort=none /sys/block</name>
       <stdout>dasdc</stdout>
       <stdout>dasda</stdout>
       <stdout>dasdb</stdout>
@@ -17,7 +17,7 @@
       <stdout>/dev/dasdc1: UUID="9d9f984f-2b62-47cd-a49e-e66ab8bb8a14" TYPE="ext4"</stdout>
     </Command>
     <Command>
-      <name>/sbin/dasdview --extended '/dev/dasda'</name>
+      <name>/sbin/dasdview --extended /dev/dasda</name>
       <stdout></stdout>
       <stdout>--- general DASD information --------------------------------------------------</stdout>
       <stdout>device node            : /dev/dasda</stdout>
@@ -53,7 +53,7 @@
       <stdout>                         4e200000 00000000  00000000 00000000</stdout>
     </Command>
     <Command>
-      <name>/sbin/dasdview --extended '/dev/dasdb'</name>
+      <name>/sbin/dasdview --extended /dev/dasdb</name>
       <stdout></stdout>
       <stdout>--- general DASD information --------------------------------------------------</stdout>
       <stdout>device node            : /dev/dasdb</stdout>
@@ -108,7 +108,7 @@
       <stdout>                         000cc040 313a31ae  02030000 0000a000</stdout>
     </Command>
     <Command>
-      <name>/sbin/dasdview --extended '/dev/dasdc'</name>
+      <name>/sbin/dasdview --extended /dev/dasdc</name>
       <stdout></stdout>
       <stdout>--- general DASD information --------------------------------------------------</stdout>
       <stdout>device node            : /dev/dasdc</stdout>
@@ -177,7 +177,7 @@
       <exit-code>127</exit-code>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/dasda'</name>
+      <name>/usr/bin/udevadm info /dev/dasda</name>
       <stdout>P: /devices/css0/0.0.0016/0.0.3333/block/dasda</stdout>
       <stdout>N: dasda</stdout>
       <stdout>S: disk/by-path/ccw-0.0.3333</stdout>
@@ -196,7 +196,7 @@
       <stdout>E: USEC_INITIALIZED=6835278</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/dasda1'</name>
+      <name>/usr/bin/udevadm info /dev/dasda1</name>
       <stdout>P: /devices/css0/0.0.0016/0.0.3333/block/dasda/dasda1</stdout>
       <stdout>N: dasda1</stdout>
       <stdout>S: disk/by-path/ccw-0.0.3333-part1</stdout>
@@ -216,7 +216,7 @@
       <stdout>E: USEC_INITIALIZED=14104054324</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/dasdb'</name>
+      <name>/usr/bin/udevadm info /dev/dasdb</name>
       <stdout>P: /devices/css0/0.0.0003/0.0.0150/block/dasdb</stdout>
       <stdout>N: dasdb</stdout>
       <stdout>S: disk/by-id/ccw-0X0150</stdout>
@@ -241,7 +241,7 @@
       <stdout>E: USEC_INITIALIZED=6835334</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/dasdb1'</name>
+      <name>/usr/bin/udevadm info /dev/dasdb1</name>
       <stdout>P: /devices/css0/0.0.0003/0.0.0150/block/dasdb/dasdb1</stdout>
       <stdout>N: dasdb1</stdout>
       <stdout>S: disk/by-id/ccw-0X0150-part1</stdout>
@@ -273,7 +273,7 @@
       <stdout>E: USEC_INITIALIZED=6956324</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/dasdb2'</name>
+      <name>/usr/bin/udevadm info /dev/dasdb2</name>
       <stdout>P: /devices/css0/0.0.0003/0.0.0150/block/dasdb/dasdb2</stdout>
       <stdout>N: dasdb2</stdout>
       <stdout>S: disk/by-id/ccw-0X0150-part2</stdout>
@@ -305,7 +305,7 @@
       <stdout>E: USEC_INITIALIZED=6907660</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/dasdb3'</name>
+      <name>/usr/bin/udevadm info /dev/dasdb3</name>
       <stdout>P: /devices/css0/0.0.0003/0.0.0150/block/dasdb/dasdb3</stdout>
       <stdout>N: dasdb3</stdout>
       <stdout>S: disk/by-id/ccw-0X0150-part3</stdout>
@@ -337,7 +337,7 @@
       <stdout>E: USEC_INITIALIZED=6957187</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/dasdc'</name>
+      <name>/usr/bin/udevadm info /dev/dasdc</name>
       <stdout>P: /devices/css0/0.0.0004/0.0.0160/block/dasdc</stdout>
       <stdout>N: dasdc</stdout>
       <stdout>S: disk/by-id/ccw-0X0160</stdout>
@@ -362,7 +362,7 @@
       <stdout>E: USEC_INITIALIZED=6831972</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/dasdc1'</name>
+      <name>/usr/bin/udevadm info /dev/dasdc1</name>
       <stdout>P: /devices/css0/0.0.0004/0.0.0160/block/dasdc/dasdc1</stdout>
       <stdout>N: dasdc1</stdout>
       <stdout>S: disk/by-id/ccw-0X0160-part1</stdout>
@@ -401,7 +401,7 @@
       <stdout>4096</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/test -d '/sys/firmware/efi/efivars'</name>
+      <name>/usr/bin/test -d /sys/firmware/efi/efivars</name>
       <exit-code>1</exit-code>
     </Command>
     <Command>
@@ -413,13 +413,13 @@
       <stdout>parted (GNU parted) 3.4</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --machine '/dev/dasda' unit s print</name>
+      <name>/usr/sbin/parted --script --machine /dev/dasda unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/dasda:20000s:dasd:512:512:dasd:IBM S390 DASD drive:implicit_partition_table;</stdout>
       <stdout>1:2s:19999s:19998s:ext4::;</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --machine '/dev/dasdb' unit s print</name>
+      <name>/usr/sbin/parted --script --machine /dev/dasdb unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/dasdb:14424480s:dasd:512:4096:dasd:IBM S390 DASD drive:;</stdout>
       <stdout>1:6144s:215039s:208896s:ext2::;</stdout>
@@ -427,21 +427,21 @@
       <stdout>3:10229760s:14419967s:4190208s:linux-swap(v1)::swap;</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --machine '/dev/dasdc' unit s print</name>
+      <name>/usr/sbin/parted --script --machine /dev/dasdc unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/dasdc:4808160s:dasd:512:4096:dasd:IBM S390 DASD drive:;</stdout>
       <stdout>1:24s:4808159s:4808136s:ext4::;</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/dasda'</name>
+      <name>/usr/bin/stat --format %f /dev/dasda</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/dasdb'</name>
+      <name>/usr/bin/stat --format %f /dev/dasdb</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/dasdc'</name>
+      <name>/usr/bin/stat --format %f /dev/dasdc</name>
       <stdout>61b0</stdout>
     </Command>
   </Commands>

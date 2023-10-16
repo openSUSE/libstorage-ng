@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) 2019 SUSE LLC
+ * Copyright (c) [2019-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -40,16 +40,16 @@ namespace storage
      */
     struct RemoteCommand
     {
-	RemoteCommand() : stdout(), stderr(), exit_code(0) {}
+	RemoteCommand() = default;
 	RemoteCommand(const std::vector<std::string>& stdout)
-	    : stdout(stdout), stderr(), exit_code(0) {}
+	    : stdout(stdout) {}
 	RemoteCommand(const std::vector<std::string>& stdout,
 		      const std::vector<std::string>& stderr, int exit_code)
 	    : stdout(stdout), stderr(stderr), exit_code(exit_code) {}
 
 	std::vector<std::string> stdout;
 	std::vector<std::string> stderr;
-	int exit_code;
+	int exit_code = 0;
 
 	/**
 	 * Compare stdout, stderr and exit_code of two RemoteCommands
@@ -63,7 +63,7 @@ namespace storage
      */
     struct RemoteFile
     {
-	RemoteFile() : content() {}
+	RemoteFile() = default;
 	RemoteFile(const std::vector<std::string>& content) : content(content) {}
 
 	std::vector<std::string> content;
@@ -83,6 +83,17 @@ namespace storage
 
 	virtual RemoteCommand get_command(const std::string& name) const = 0;
 	virtual RemoteFile get_file(const std::string& name) const = 0;
+
+    };
+
+
+    class RemoteCallbacksV2 : public RemoteCallbacks
+    {
+    public:
+
+	virtual ~RemoteCallbacksV2() {}
+
+	virtual RemoteCommand get_command_v2(const std::vector<std::string>& args) const = 0;
 
     };
 

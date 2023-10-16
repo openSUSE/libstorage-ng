@@ -61,12 +61,12 @@ BOOST_AUTO_TEST_CASE(test_ext4)
 
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
 
-    Mockup::set_command(DUMPE2FS_BIN " -h '/dev/sda1'", vector<string> {
+    Mockup::set_command(DUMPE2FS_BIN " -h /dev/sda1", vector<string> {
 	"Filesystem features:      64bit",
 	"Block size:               4096",
     });
 
-    Mockup::set_command(RESIZE2FS_BIN " -P '/dev/sda1'", vector<string> {
+    Mockup::set_command(RESIZE2FS_BIN " -P /dev/sda1", vector<string> {
 	"Estimated minimum size of the filesystem: 1000000"
     });
 
@@ -116,7 +116,7 @@ BOOST_AUTO_TEST_CASE(test_ntfs)
 
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
 
-    Mockup::set_command(NTFSRESIZE_BIN " --force --info '/dev/sda1'", vector<string> {
+    Mockup::set_command(NTFSRESIZE_BIN " --force --info /dev/sda1", vector<string> {
 	"You might resize at 10737418240 bytes or 10 GB (freeing 1014 GB)."
     });
 

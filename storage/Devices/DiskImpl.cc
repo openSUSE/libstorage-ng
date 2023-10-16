@@ -399,11 +399,11 @@ namespace storage
     {
 	// only used for TargetMode::IMAGE
 
-	string cmd_line = DD_BIN " if='" DEV_ZERO_FILE "' of=" + quote(image_filename) +
-	    " obs=" + to_string(get_region().get_block_size()) + " seek=" +
-	    to_string(get_region().get_length()) + " count=0 conv=excl";
+	SystemCmd::Args cmd_args = { DD_BIN, "if=" DEV_ZERO_FILE, "of=" + image_filename,
+	    "obs=" + to_string(get_region().get_block_size()), "seek=" +
+	    to_string(get_region().get_length()), "count=0", "conv=excl" };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -431,10 +431,10 @@ namespace storage
     {
 	// only used for TargetMode::IMAGE
 
-	string cmd_line = LOSETUP_BIN " --sector-size " + to_string(get_region().get_block_size()) + " " +
-	    quote(get_name()) + " " + quote(image_filename);
+	SystemCmd::Args cmd_args = { LOSETUP_BIN, "--sector-size", to_string(get_region().get_block_size()),
+	    get_name(), image_filename };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 }

@@ -23,7 +23,7 @@ check(const string& device, const vector<string>& stdout, const vector<string>& 
 
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
     Mockup::set_command(PARTED_BIN " --version", RemoteCommand({ "parted (GNU parted) 3.5" }, {}, 0));
-    Mockup::set_command(PARTED_BIN " --script --json " + quote(device) + " unit s print",
+    Mockup::set_command({ PARTED_BIN, "--script", "--json", device, "unit", "s", "print" },
 			RemoteCommand(stdout, stderr, 0));
 
     Parted parted(device);
@@ -51,7 +51,7 @@ check_exception(const string& device, const vector<string>& input)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
     Mockup::set_command(PARTED_BIN " --version", RemoteCommand({ "parted (GNU parted) 3.5" }, {}, 0));
-    Mockup::set_command(PARTED_BIN " --script --json " + quote(device) + " unit s print", input);
+    Mockup::set_command({ PARTED_BIN, "--script", "--json", device, "unit", "s", "print" }, input);
 
     BOOST_CHECK_THROW({ Parted parted(device); }, Exception);
 }

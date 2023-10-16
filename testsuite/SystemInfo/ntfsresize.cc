@@ -19,7 +19,7 @@ void
 check(const string& device, const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command(NTFSRESIZE_BIN " --force --info " + quote(device), input);
+    Mockup::set_command({ NTFSRESIZE_BIN, "--force", "--info", device }, input);
 
     CmdNtfsresize cmd_ntfsresize(device);
 
@@ -70,7 +70,7 @@ BOOST_AUTO_TEST_CASE(error1)
     };
 
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command(NTFSRESIZE_BIN " --force --info " + quote(device), Mockup::Command(input, {}, 1));
+    Mockup::set_command({ NTFSRESIZE_BIN, "--force", "--info", device }, Mockup::Command(input, {}, 1));
 
     BOOST_CHECK_THROW({ CmdNtfsresize cmd_ntfsresize(device); }, Exception);
 }

@@ -1159,10 +1159,9 @@ namespace storage
 
 	const Partitionable* partitionable = get_partitionable();
 
-	string cmd_line = PARTED_BIN " --script " + quote(partitionable->get_name()) +
-	    " unit s print";
+	SystemCmd::Args cmd_args = { PARTED_BIN, "--script", partitionable->get_name(), "unit", "s", "print" };
 
-	SystemCmd cmd(cmd_line, SystemCmd::NoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::NoThrow);
     }
 
 
@@ -1361,10 +1360,10 @@ namespace storage
     {
 	const Partitionable* partitionable = get_partitionable();
 
-	string cmd_line = PARTED_BIN " --script " + quote(partitionable->get_name()) + " set " +
-	    to_string(get_number()) + " boot " + (is_boot() ? "on" : "off");
+	SystemCmd::Args cmd_args = { PARTED_BIN, "--script", partitionable->get_name(), "set",
+	    to_string(get_number()), "boot", is_boot() ? "on" : "off" };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -1399,10 +1398,10 @@ namespace storage
     {
 	const Partitionable* partitionable = get_partitionable();
 
-	string cmd_line = PARTED_BIN " --script " + quote(partitionable->get_name()) + " set " +
-	    to_string(get_number()) + " legacy_boot " + (is_legacy_boot() ? "on" : "off");
+	SystemCmd::Args cmd_args = { PARTED_BIN, "--script", partitionable->get_name(), "set",
+	    to_string(get_number()), "legacy_boot", is_legacy_boot() ? "on" : "off" };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -1437,10 +1436,10 @@ namespace storage
     {
 	const Partitionable* partitionable = get_partitionable();
 
-	string cmd_line = PARTED_BIN " --script " + quote(partitionable->get_name()) + " set " +
-	    to_string(get_number()) + " no_automount " + (is_no_automount() ? "on" : "off");
+	SystemCmd::Args cmd_args = { PARTED_BIN, "--script", partitionable->get_name(), "set",
+	    to_string(get_number()), "no_automount", is_no_automount() ? "on" : "off" };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -1533,10 +1532,10 @@ namespace storage
 
 	const Partitionable* partitionable = get_partitionable();
 
-	string cmd_line = PARTED_BIN " --script " + quote(partitionable->get_name()) + " rm " +
-	    to_string(get_number());
+	SystemCmd::Args cmd_args = { PARTED_BIN, "--script", partitionable->get_name(), "rm",
+	    to_string(get_number()) };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -1553,10 +1552,10 @@ namespace storage
 
 	const Partitionable* partitionable = partition_table->get_partitionable();
 
-	string cmd_line = EFIBOOTMGR_BIN " --verbose --delete --disk " +
-	    quote(partitionable->get_name()) + " --part " + to_string(get_number());
+	SystemCmd::Args cmd_args = { EFIBOOTMGR_BIN, "--verbose", "--delete", "--disk",
+	    partitionable->get_name(), "--part", to_string(get_number()) };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 

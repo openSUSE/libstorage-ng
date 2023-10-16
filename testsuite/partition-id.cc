@@ -45,7 +45,7 @@ BOOST_AUTO_TEST_CASE(test3)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
     Mockup::set_command(UNAME_BIN " -m", RemoteCommand({ "i686" }, {}, 0));
-    Mockup::set_command(TEST_BIN " -d '/sys/firmware/efi/efivars'", RemoteCommand({}, {}, 0));
+    Mockup::set_command(TEST_BIN " -d /sys/firmware/efi/efivars", RemoteCommand({}, {}, 0));
     Mockup::set_command(GETCONF_BIN " PAGESIZE", RemoteCommand({ "4096" }, {}, 0));
 
     SystemInfo system_info;

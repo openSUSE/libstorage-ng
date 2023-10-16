@@ -3,7 +3,7 @@
 <Mockup>
   <Commands>
     <Command>
-      <name>/bin/ls -1 --sort=none '/sys/block'</name>
+      <name>/bin/ls -1 --sort=none /sys/block</name>
       <stdout>sdb</stdout>
       <stdout>sdc</stdout>
     </Command>
@@ -24,7 +24,7 @@
       <name>/sbin/dmsetup table</name>
     </Command>
     <Command>
-      <name>/sbin/lvs --reportformat json --config 'log { command_names = 0 prefix = "" }' --units b --nosuffix --all --options lv_name,lv_uuid,vg_name,vg_uuid,lv_role,lv_attr,lv_size,origin_size,segtype,stripes,stripe_size,chunk_size,pool_lv,pool_lv_uuid,origin,origin_uuid,data_lv,data_lv_uuid,metadata_lv,metadata_lv_uuid</name>
+      <name>/sbin/lvs --reportformat json --config log { command_names = 0 prefix = "" } --units b --nosuffix --all --options lv_name,lv_uuid,vg_name,vg_uuid,lv_role,lv_attr,lv_size,origin_size,segtype,stripes,stripe_size,chunk_size,pool_lv,pool_lv_uuid,origin,origin_uuid,data_lv,data_lv_uuid,metadata_lv,metadata_lv_uuid</name>
       <stdout>  {</stdout>
       <stdout>      "report": [</stdout>
       <stdout>          {</stdout>
@@ -46,7 +46,7 @@
       <exit-code>127</exit-code>
     </Command>
     <Command>
-      <name>/sbin/pvs --reportformat json --config 'log { command_names = 0 prefix = "" }' --units b --nosuffix --all --options pv_name,pv_uuid,vg_name,vg_uuid,pv_attr,pe_start</name>
+      <name>/sbin/pvs --reportformat json --config log { command_names = 0 prefix = "" } --units b --nosuffix --all --options pv_name,pv_uuid,vg_name,vg_uuid,pv_attr,pe_start</name>
       <stdout>  {</stdout>
       <stdout>      "report": [</stdout>
       <stdout>          {</stdout>
@@ -68,7 +68,7 @@
       <stderr>  Couldn't find device with uuid lv08LY-exMW-YKNh-GgX7-q0Ja-dW8H-lJ9Ejw.</stderr>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdb'</name>
+      <name>/usr/bin/udevadm info /dev/sdb</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb</stdout>
       <stdout>N: sdb</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VBb0b74e3e-a4b92e47</stdout>
@@ -121,7 +121,7 @@
       <stdout>E: USEC_INITIALIZED=145504322</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdb1'</name>
+      <name>/usr/bin/udevadm info /dev/sdb1</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb1</stdout>
       <stdout>N: sdb1</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VBb0b74e3e-a4b92e47-part1</stdout>
@@ -189,7 +189,7 @@
       <stdout>E: USEC_INITIALIZED=145518907</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdb2'</name>
+      <name>/usr/bin/udevadm info /dev/sdb2</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb2</stdout>
       <stdout>N: sdb2</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VBb0b74e3e-a4b92e47-part2</stdout>
@@ -257,7 +257,7 @@
       <stdout>E: USEC_INITIALIZED=145526549</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdc'</name>
+      <name>/usr/bin/udevadm info /dev/sdc</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata3/host2/target2:0:0/2:0:0:0/block/sdc</stdout>
       <stdout>N: sdc</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB91c9f2aa-0392f4ef</stdout>
@@ -310,7 +310,7 @@
       <stdout>E: USEC_INITIALIZED=7387725923</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdc1'</name>
+      <name>/usr/bin/udevadm info /dev/sdc1</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata3/host2/target2:0:0/2:0:0:0/block/sdc/sdc1</stdout>
       <stdout>N: sdc1</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB91c9f2aa-0392f4ef-part1</stdout>
@@ -378,7 +378,7 @@
       <stdout>E: USEC_INITIALIZED=7387753153</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/udevadm info '/dev/sdc2'</name>
+      <name>/usr/bin/udevadm info /dev/sdc2</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata3/host2/target2:0:0/2:0:0:0/block/sdc/sdc2</stdout>
       <stdout>N: sdc2</stdout>
       <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB91c9f2aa-0392f4ef-part2</stdout>
@@ -445,7 +445,7 @@
       <name>/usr/bin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
-      <name>/sbin/vgs --reportformat json --config 'log { command_names = 0 prefix = "" }' --units b --nosuffix --options vg_name,vg_uuid,vg_attr,vg_extent_size,vg_extent_count,vg_free_count</name>
+      <name>/sbin/vgs --reportformat json --config log { command_names = 0 prefix = "" } --units b --nosuffix --options vg_name,vg_uuid,vg_attr,vg_extent_size,vg_extent_count,vg_free_count</name>
       <stdout>  {</stdout>
       <stdout>      "report": [</stdout>
       <stdout>          {</stdout>
@@ -478,15 +478,15 @@
       <stderr>release: 0.32  2021/05/05 [svn: r167]</stderr>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sdb'</name>
+      <name>/usr/bin/stat --format %f /dev/sdb</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/stat --format '%f' '/dev/sdc'</name>
+      <name>/usr/bin/stat --format %f /dev/sdc</name>
       <stdout>61b0</stdout>
     </Command>
     <Command>
-      <name>/usr/bin/test -d '/sys/firmware/efi/efivars'</name>
+      <name>/usr/bin/test -d /sys/firmware/efi/efivars</name>
       <exit-code>1</exit-code>
     </Command>
     <Command>
@@ -498,14 +498,14 @@
       <stdout>parted (GNU parted) 3.4</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --machine '/dev/sdb' unit s print</name>
+      <name>/usr/sbin/parted --script --machine /dev/sdb unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/sdb:2097152s:scsi:512:512:gpt:ATA VBOX HARDDISK:;</stdout>
       <stdout>1:2048s:1048575s:1046528s:::;</stdout>
       <stdout>2:1048576s:2095103s:1046528s:::;</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --machine '/dev/sdc' unit s print</name>
+      <name>/usr/sbin/parted --script --machine /dev/sdc unit s print</name>
       <stdout>BYT;</stdout>
       <stdout>/dev/sdc:2097152s:scsi:512:512:gpt:ATA VBOX HARDDISK:;</stdout>
       <stdout>1:2048s:1048575s:1046528s:::;</stdout>
