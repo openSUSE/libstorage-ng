@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -25,6 +25,8 @@
 #define STORAGE_STORAGE_IMPL_H
 
 
+#include <set>
+
 #include "storage/Devices/Device.h"
 #include "storage/Utils/FileUtils.h"
 #include "storage/Utils/LockImpl.h"
@@ -38,6 +40,10 @@ namespace storage
 {
     using std::string;
     using std::map;
+    using std::set;
+
+
+    class SystemInfo;
 
 
     class LuksInfo::Impl
@@ -173,6 +179,8 @@ namespace storage
 	 */
 	static void reset_global_sid() { global_sid = initial_global_sid; }
 
+	const set<sid_t>& get_taboos() const { return taboos; }
+
     private:
 
 	void verify_devicegraph_name(const string& name) const;
@@ -182,7 +190,9 @@ namespace storage
 
 	static sid_t global_sid;
 
-	void probe_helper(const ProbeCallbacks* probe_callbacks, Devicegraph* system);
+	void probe_helper(const ProbeCallbacks* probe_callbacks, Devicegraph* system, SystemInfo& system_info);
+
+	void setup_taboos(SystemInfo& system_info);
 
 	Storage& storage;
 
@@ -205,6 +215,8 @@ namespace storage
 	std::unique_ptr<const Actiongraph> actiongraph;
 
 	TmpDir tmp_dir;
+
+	set<sid_t> taboos;
 
     };
 

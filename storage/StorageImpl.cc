@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -20,6 +20,9 @@
  * find current contact information at www.novell.com.
  */
 
+
+#include <boost/algorithm/string/classification.hpp>
+#include <boost/algorithm/string/split.hpp>
 
 #include "config.h"
 #include "storage/Utils/AppUtil.h"
@@ -186,6 +189,8 @@ namespace storage
 
 	CallbacksGuard callbacks_guard(probe_callbacks);
 
+	SystemInfo system_info;
+
 	if (exist_devicegraph("probed"))
 	    remove_devicegraph("probed");
 
@@ -203,17 +208,17 @@ namespace storage
 	switch (environment.get_probe_mode())
 	{
 	    case ProbeMode::STANDARD: {
-		probe_helper(probe_callbacks, probed);
+		probe_helper(probe_callbacks, probed, system_info);
 	    } break;
 
 	    case ProbeMode::STANDARD_WRITE_DEVICEGRAPH: {
-		probe_helper(probe_callbacks, probed);
+		probe_helper(probe_callbacks, probed, system_info);
 		probed->save(environment.get_devicegraph_filename());
 	    } break;
 
 	    case ProbeMode::STANDARD_WRITE_MOCKUP: {
 		Mockup::set_mode(Mockup::Mode::RECORD);
-		probe_helper(probe_callbacks, probed);
+		probe_helper(probe_callbacks, probed, system_info);
 		Mockup::save(environment.get_mockup_filename());
 	    } break;
 
@@ -227,7 +232,7 @@ namespace storage
 	    case ProbeMode::READ_MOCKUP: {
 		Mockup::set_mode(Mockup::Mode::PLAYBACK);
 		Mockup::load(environment.get_mockup_filename());
-		probe_helper(probe_callbacks, probed);
+		probe_helper(probe_callbacks, probed, system_info);
 		Mockup::occams_razor();
 	    } break;
 	}
@@ -240,17 +245,42 @@ namespace storage
 
 	copy_devicegraph("system", "staging");
 	copy_devicegraph("system", "probed");
+
+	setup_taboos(system_info);
     }
 
 
     void
-    Storage::Impl::probe_helper(const ProbeCallbacks* probe_callbacks, Devicegraph* probed)
+    Storage::Impl::setup_taboos(SystemInfo& system_info)
     {
-	SystemInfo::Impl system_info;
+	const char* tmp1 = getenv("LIBSTORAGE_TABOOS");
+	if (tmp1)
+	{
+	    const Devicegraph* probed = get_probed();
 
-	arch = system_info.getArch();
+	    // TODO special treatment for "\:"
 
-	Prober prober(storage, probe_callbacks, probed, system_info);
+	    vector<string> tmp2;
+	    boost::split(tmp2, tmp1, boost::is_any_of(":"), boost::token_compress_on);
+
+	    for (const string& tmp3 : tmp2)
+	    {
+		if (BlkDevice::exists_by_any_name(probed, tmp3, system_info))
+		    taboos.insert(BlkDevice::find_by_any_name(probed, tmp3, system_info)->get_sid());
+	    }
+	}
+
+	if (!taboos.empty())
+	    y2mil("taboos: " << taboos);
+    }
+
+
+    void
+    Storage::Impl::probe_helper(const ProbeCallbacks* probe_callbacks, Devicegraph* probed, SystemInfo& system_info)
+    {
+	arch = system_info.get_impl().getArch();
+
+	Prober prober(storage, probe_callbacks, probed, system_info.get_impl());
     }
 
 

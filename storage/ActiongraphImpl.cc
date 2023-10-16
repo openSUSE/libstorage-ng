@@ -156,6 +156,8 @@ namespace storage
 
 	calculate_order();
 
+	check_taboos();
+
 	y2mil("stopwatch " << stopwatch << " for actiongraph generation");
     }
 
@@ -786,6 +788,32 @@ namespace storage
 
 	    default:
 		ST_THROW(Exception("unknown topological sort method"));
+	}
+    }
+
+
+    void
+    Actiongraph::Impl::check_taboos()
+    {
+	const set<sid_t> taboos = get_storage().get_impl().get_taboos();
+
+	for (vertex_descriptor vertex : vertices())
+	{
+	    const Action::Base* action = graph[vertex].get();
+
+	    if (action->affects_device())
+	    {
+		const Action::Delete* delete_action = dynamic_cast<const Action::Delete*>(action);
+		if (delete_action)
+		{
+		    const Device* device = delete_action->get_device(*this);
+		    for (const Device* ancestor : device->get_ancestors(true))
+		    {
+			if (contains(taboos, ancestor->get_sid()))
+			    ST_THROW(Exception("taboo device used in actiongraph"));
+		    }
+		}
+	    }
 	}
     }
 
