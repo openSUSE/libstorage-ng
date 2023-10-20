@@ -388,7 +388,7 @@ namespace storage
 		    y2err("execle() failed: THIS SHOULD NOT HAPPEN \"SH_BIN\" Ret:" <<
 			  _cmdRet << " errno: " << errno);
 		    y2err( "Exiting child process" );
-		    exit(127); // same as "command not found" in the shell
+		    _exit(127); // same as "command not found" in the shell
 		    break;
 
 		case -1:
