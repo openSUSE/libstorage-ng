@@ -2,7 +2,6 @@
 #define BOOST_TEST_DYN_LINK
 #define BOOST_TEST_MODULE libstorage
 
-#include <boost/version.hpp>
 #include <boost/test/unit_test.hpp>
 #include <boost/algorithm/string.hpp>
 
@@ -13,6 +12,7 @@
 #include "storage/Utils/Exception.h"
 #include "storage/Utils/Mockup.h"
 #include "storage/Utils/SystemCmd.h"
+#include "storage/Utils/StorageDefines.h"
 
 
 using namespace std;
@@ -105,14 +105,14 @@ BOOST_AUTO_TEST_CASE(hello_mixed)
 }
 
 
-BOOST_AUTO_TEST_CASE(pipe_stdin)
+BOOST_AUTO_TEST_CASE(pipe_stdin_cmd)
 {
     vector<string> stdout = {
         "Hello, cruel world",
         "I'm leaving you today"
     };
 
-    SystemCmd::Options cmd_options("cat");
+    SystemCmd::Options cmd_options(CAT_BIN);
     cmd_options.stdin_text = "Hello, cruel world\nI'm leaving you today";
 
     SystemCmd cmd(cmd_options);
@@ -121,9 +121,33 @@ BOOST_AUTO_TEST_CASE(pipe_stdin)
 }
 
 
-BOOST_AUTO_TEST_CASE(retcode_42)
+BOOST_AUTO_TEST_CASE(pipe_stdin_args)
+{
+    vector<string> stdout = {
+	"Hello, cruel world",
+	"I'm leaving you today"
+    };
+
+    SystemCmd::Options cmd_options({ CAT_BIN });
+    cmd_options.stdin_text = "Hello, cruel world\nI'm leaving you today";
+
+    SystemCmd cmd(cmd_options);
+
+    BOOST_CHECK_EQUAL(join(cmd.stdout()), join(stdout));
+}
+
+
+BOOST_AUTO_TEST_CASE(retcode_42_cmd)
 {
     SystemCmd cmd("../helpers/retcode 42");
+
+    BOOST_CHECK(cmd.retcode() == 42);
+}
+
+
+BOOST_AUTO_TEST_CASE(retcode_42_args)
+{
+    SystemCmd cmd({ "../helpers/retcode", "42" });
 
     BOOST_CHECK(cmd.retcode() == 42);
 }
@@ -138,9 +162,16 @@ BOOST_AUTO_TEST_CASE(non_existent_no_throw)
 }
 
 
-BOOST_AUTO_TEST_CASE(non_existent_throw)
+BOOST_AUTO_TEST_CASE(non_existent_throw_cmd)
 {
-    BOOST_CHECK_THROW({SystemCmd cmd("/bin/wrglbrmpf", SystemCmd::ThrowBehaviour::DoThrow);},
+    BOOST_CHECK_THROW({ SystemCmd cmd("/bin/wrglbrmpf", SystemCmd::ThrowBehaviour::DoThrow); },
+		      CommandNotFoundException);
+}
+
+
+BOOST_AUTO_TEST_CASE(non_existent_throw_args)
+{
+    BOOST_CHECK_THROW({ SystemCmd cmd({ "/bin/wrglbrmpf" }, SystemCmd::ThrowBehaviour::DoThrow); },
 		      CommandNotFoundException);
 }
 
@@ -154,9 +185,16 @@ BOOST_AUTO_TEST_CASE(segfault_no_throw)
 }
 
 
-BOOST_AUTO_TEST_CASE(segfault_throw)
+BOOST_AUTO_TEST_CASE(segfault_throw_cmd)
 {
     BOOST_CHECK_THROW({SystemCmd cmd("../helpers/segfaulter", SystemCmd::ThrowBehaviour::DoThrow);},
+		      SystemCmdException);
+}
+
+
+BOOST_AUTO_TEST_CASE(segfault_throw_args)
+{
+    BOOST_CHECK_THROW({ SystemCmd cmd({ "../helpers/segfaulter" }, SystemCmd::ThrowBehaviour::DoThrow); },
 		      SystemCmdException);
 }
 
@@ -170,9 +208,16 @@ BOOST_AUTO_TEST_CASE(non_exec_no_throw)
 }
 
 
-BOOST_AUTO_TEST_CASE(non_exec_throw)
+BOOST_AUTO_TEST_CASE(non_exec_throw_cmd)
 {
-    BOOST_CHECK_THROW({SystemCmd cmd( "../helpers/segfaulter.cc", SystemCmd::ThrowBehaviour::DoThrow);},
+    BOOST_CHECK_THROW({ SystemCmd cmd("../helpers/segfaulter.cc", SystemCmd::ThrowBehaviour::DoThrow); },
+		      SystemCmdException);
+}
+
+
+BOOST_AUTO_TEST_CASE(non_exec_throw_args)
+{
+    BOOST_CHECK_THROW({ SystemCmd cmd({ "../helpers/segfaulter.cc" }, SystemCmd::ThrowBehaviour::DoThrow); },
 		      SystemCmdException);
 }
 
