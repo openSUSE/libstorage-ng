@@ -217,18 +217,6 @@ namespace storage
     }
 
 
-    void
-    SystemCmd::closeOpenFds() const
-    {
-	int max_fd = getdtablesize();
-
-	for ( int fd = 3; fd < max_fd; fd++ )
-	{
-	    close(fd);
-	}
-    }
-
-
     int
     SystemCmd::execute()
     {
@@ -338,39 +326,35 @@ namespace storage
 	    }
 	    y2deb("sout:" << _pfds[1].fd << " serr:" << _pfds[2].fd);
 
+	    const int max_fd = getdtablesize();
+
 	    const TmpForExec args_p(make_args());
 	    const TmpForExec env_p(make_env());
 
 	    switch( (_cmdPid=fork()) )
 	    {
 		case 0: // child process
+		{
+		    // Do not use exit() here. Use _exit() instead.
+
+		    // Only use async‐signal‐safe functions here, see fork(2) and
+		    // signal-safety(7).
 
 		    if ( dup2( sin[0], STDIN_FILENO )<0 )
-		    {
-			SYSCALL_FAILED_NOTHROW( "dup2 stdin failed in child process" );
-		    }
+			_exit(125);
 		    if ( dup2( sout[1], STDOUT_FILENO )<0 )
-		    {
-			SYSCALL_FAILED_NOTHROW( "dup2 stdout failed in child process" );
-		    }
+			_exit(125);
 		    if ( dup2( serr[1], STDERR_FILENO )<0 )
-		    {
-			SYSCALL_FAILED_NOTHROW( "dup2 stderr failed in child process" );
-		    }
+			_exit(125);
 		    if ( close( sin[1] )<0 )
-		    {
-			SYSCALL_FAILED_NOTHROW( "close( stdin ) failed in child process" );
-		    }
+			_exit(125);
 		    if ( close( sout[0] )<0 )
-		    {
-			SYSCALL_FAILED_NOTHROW( "close( stdout ) failed in child process" );
-		    }
+			_exit(125);
 		    if ( close( serr[0] )<0 )
-		    {
-			SYSCALL_FAILED_NOTHROW( "close( stderr ) failed in child process" );
-		    }
+			_exit(125);
 
-		    closeOpenFds();
+		    for (int fd = 3; fd < max_fd; ++fd)
+			close(fd);
 
 		    if (args().empty())
 		    {
@@ -381,22 +365,29 @@ namespace storage
 			_cmdRet = execvpe(args()[0].c_str(), args_p.get(), env_p.get());
 		    }
 
-		    // execle() should not return. If we get here, it failed.
-		    // Throwing an exception here would not make any sense, however:
-		    // We are in the forked child process, and there is nothing
-		    // to return to that could make use of an exception.
-		    y2err("execle() failed: THIS SHOULD NOT HAPPEN \"SH_BIN\" Ret:" <<
-			  _cmdRet << " errno: " << errno);
-		    y2err( "Exiting child process" );
-		    _exit(127); // same as "command not found" in the shell
-		    break;
+		    // If we get here the exec has failed. Depending on errno we return an
+		    // error code like the shell does ('sh -c ...'). Unfortunately it is
+		    // not possible in the parent to distinguish whether exec or the
+		    // program returned the code (e.g. 127). So far that does not seem to
+		    // be needed. If ever needed the "self-pipe trick" could be used.
+
+		    if (errno == ENOENT)
+			_exit(SHELL_RET_COMMAND_NOT_FOUND);
+		    if (errno == ENOEXEC || errno == EACCES || errno == EISDIR)
+			_exit(SHELL_RET_COMMAND_NOT_EXECUTABLE);
+		    _exit(125);
+		}
+		break;
 
 		case -1:
+		{
 		    _cmdRet = -1;
 		    SYSCALL_FAILED( "fork() failed" );
-		    break;
+		}
+		break;
 
 		default: // parent process
+		{
 		    if ( close( sin[0] ) < 0 )
 		    {
 			SYSCALL_FAILED_NOTHROW( "close( stdin ) in parent failed" );
@@ -430,8 +421,8 @@ namespace storage
 
 		    doWait( _cmdRet );
 		    y2mil("stopwatch " << stopwatch << " for \"" << display_command() << "\"");
-
-		    break;
+		}
+		break;
 	    }
 	}
 	else
