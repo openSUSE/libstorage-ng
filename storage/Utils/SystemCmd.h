@@ -225,7 +225,6 @@ namespace storage
 	void init();
 	void cleanup();
 	void invalidate();
-	void closeOpenFds() const;
 	int doExecute();
 	bool doWait(int& cmdRet_ret);
 	void checkOutput();
@@ -275,17 +274,14 @@ namespace storage
 	/**
 	 * Constructs the args for the child process.
 	 *
-	 * Must not be called after exec since allocating the memory
-	 * for the vector is not allowed then (in a multithreaded
-	 * program), see fork(2) and signal-safety(7). So simply call
-	 * it right before fork.
+	 * Not async‐signal‐safe, see fork(2) and signal-safety(7).
 	 */
 	TmpForExec make_args() const;
 
 	/**
 	 * Constructs the environment for the child process.
 	 *
-	 * Same not as for make_args().
+	 * Not async‐signal‐safe, see fork(2) and signal-safety(7).
 	 */
 	TmpForExec make_env() const;
 
