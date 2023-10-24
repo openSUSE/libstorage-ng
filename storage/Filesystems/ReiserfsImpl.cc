@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2021] SUSE LLC
+ * Copyright (c) [2017-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -80,10 +80,9 @@ namespace storage
 
 	// TODO handle mounted
 
-	string cmd_line = TUNEREISERFS_BIN " --label " + quote(get_label()) + " " +
-	    quote(blk_device->get_name());
+	SystemCmd::Args cmd_args = { TUNEREISERFS_BIN, "--label", get_label(), blk_device->get_name() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -94,10 +93,9 @@ namespace storage
 
 	// TODO handle mounted?
 
-	string cmd_line = TUNEREISERFS_BIN " --uuid " + quote(get_uuid()) + " " +
-	    quote(blk_device->get_name());
+	SystemCmd::Args cmd_args = { TUNEREISERFS_BIN, "--uuid", get_uuid(), blk_device->get_name() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -268,11 +268,11 @@ namespace storage
 
 	const BlkDevice* blk_device = get_blk_devices()[0];
 
-	string cmd_line = BCACHE_BIN " make -C " + quote(blk_device->get_name());
+	SystemCmd::Args cmd_args = { BCACHE_BIN, "make", "-C", blk_device->get_name() };
 
 	wait_for_devices({ blk_device });
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
 
 	for (const string& line : cmd.stdout())
 	{
@@ -348,9 +348,9 @@ namespace storage
 
 	const BlkDevice* blk_device = get_blk_devices().front();
 
-	string cmd_line = BCACHE_BIN " unregister " + quote(blk_device->get_name());
+	SystemCmd::Args cmd_args = { BCACHE_BIN, "unregister", blk_device->get_name() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
 
 	string cset_name = SYSFS_DIR "/fs/bcache/" + get_uuid();
 

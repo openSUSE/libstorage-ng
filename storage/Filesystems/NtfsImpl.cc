@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -130,10 +130,9 @@ namespace storage
 
 	// TODO labels starting with a '-' do not work (see bsc #1187746).
 
-	string cmd_line = NTFSLABEL_BIN " " + quote(blk_device->get_name()) + " " +
-	    quote(get_label());
+	SystemCmd::Args cmd_args = { NTFSLABEL_BIN, blk_device->get_name(), get_label() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 

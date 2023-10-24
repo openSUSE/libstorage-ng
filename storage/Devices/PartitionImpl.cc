@@ -1131,22 +1131,21 @@ namespace storage
 
 	for (unsigned int i : tmps)
 	{
-	    string cmd_line = PARTED_BIN " --script " + quote(partitionable->get_name()) + " rm " +
-		to_string(i);
+	    SystemCmd::Args cmd_args = { PARTED_BIN, "--script", partitionable->get_name(), "rm", to_string(i) };
 
 	    SystemCmd({ UDEVADM_BIN_SETTLE });
 
-	    SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	    SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
 	}
 
-	string cmd_line = PARTED_BIN " --script " + quote(partitionable->get_name()) +
-	    " unit s resizepart " + to_string(get_number()) + " " + to_string(get_region().get_end());
+	SystemCmd::Args cmd_args = { PARTED_BIN, "--script", partitionable->get_name(),
+	    "unit", "s", "resizepart", to_string(get_number()), to_string(get_region().get_end()) };
 
 	SystemCmd({ UDEVADM_BIN_SETTLE });
 
 	wait_for_devices({ get_non_impl() });
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
 
 	y2mil("do_create_post_number_hack end");
     }
@@ -1229,7 +1228,7 @@ namespace storage
 	const PartitionTable* partition_table = get_partition_table();
 	const Partitionable* partitionable = partition_table->get_partitionable();
 
-	string cmd_line = PARTED_BIN " --script " + quote(partitionable->get_name());
+	SystemCmd::Args cmd_args = { PARTED_BIN, "--script", partitionable->get_name() };
 
 	// Note: The 'type' command is now available in upstream parted
 	// (2022-05-24). 'swap' is not available for MS-DOS in upstream parted
@@ -1240,20 +1239,20 @@ namespace storage
 	map<unsigned int, const char*>::const_iterator it = Parted::id_to_name.find(get_id());
 	if (it != Parted::id_to_name.end() && it->first != ID_SWAP)
 	{
-	    cmd_line += " set " + to_string(get_number()) + " " + string(it->second) + " on";
+	    cmd_args << "set" << to_string(get_number()) << string(it->second) << "on";
 	}
 	else if (is_msdos(partition_table))
 	{
 	    if (PartedVersion::supports_type_command())
-		cmd_line += " type " + to_string(get_number()) + " " + sformat("0x%02x", get_id());
+		cmd_args << "type" << to_string(get_number()) << sformat("0x%02x", get_id());
 	    else
-		cmd_line += " set " + to_string(get_number()) + " type " + to_string(get_id());
+		cmd_args << "set" << to_string(get_number()) << "type" << to_string(get_id());
 	}
 	else if (is_gpt(partition_table) && PartedVersion::supports_type_command())
 	{
 	    map<unsigned int, const char*>::const_iterator it2 = Parted::id_to_uuid.find(get_id());
 	    if (it2 != Parted::id_to_uuid.end())
-		cmd_line += " type " + to_string(get_number()) + " " + it2->second;
+		cmd_args << "type" << to_string(get_number()) << it2->second;
 	    else
 		ST_THROW(Exception("impossible to set partition id"));
 	}
@@ -1265,12 +1264,12 @@ namespace storage
 		    // This is tricky but parted has no clearer way - it also fails if the
 		    // partition has a swap signature. For MS-DOS and GPT the new 'type'
 		    // command is used if available.
-		    cmd_line += " set " + to_string(get_number()) + " lvm on set " +
-			to_string(get_number()) + " lvm off";
+		    cmd_args << "set" << to_string(get_number()) << "lvm" << "on" << "set" <<
+			to_string(get_number()) << "lvm" << "off";
 		    break;
 
 		case ID_SWAP:
-		    cmd_line += " set " + to_string(get_number()) + " swap on";
+		    cmd_args << "set" << to_string(get_number()) << "swap" << "on";
 		    break;
 
 		default:
@@ -1279,7 +1278,7 @@ namespace storage
 	    }
 	}
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -1612,20 +1611,20 @@ namespace storage
 	const Partition* partition_rhs = to_partition(action->get_device(commit_data.actiongraph, RHS));
 	const Partitionable* partitionable = get_partitionable();
 
-	string cmd_line = PARTED_BIN " --script ";
+	SystemCmd::Args cmd_args = { PARTED_BIN, "--script" };
 
 	if (PartedVersion::supports_ignore_busy())
-	    cmd_line += "--ignore-busy ";
+	    cmd_args << "--ignore-busy";
 
-	cmd_line += quote(partitionable->get_name()) + " unit s resizepart " + to_string(get_number()) + " ";
+	cmd_args << partitionable->get_name() << "unit" << "s" << "resizepart" << to_string(get_number());
 
 	unsigned long long factor = parted_sector_adjustment_factor();
 
-	cmd_line += to_string(partition_rhs->get_region().get_end() * factor + (factor - 1));
+	cmd_args << to_string(partition_rhs->get_region().get_end() * factor + (factor - 1));
 
 	wait_for_devices({ get_non_impl() });
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -93,10 +93,9 @@ namespace storage
 	// TODO labels starting with a '-' do not work with dosfstools 4.2, a preceding
 	// '--' is needed. But that does not work with dosfstools 4.1.
 
-	string cmd_line = FATLABEL_BIN " " + quote(blk_device->get_name()) + " " +
-	    quote(get_label());
+	SystemCmd::Args cmd_args = { FATLABEL_BIN, blk_device->get_name(), get_label() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -111,13 +110,13 @@ namespace storage
 
 	const BlkDevice* blk_device_rhs = vfat_rhs->get_impl().get_blk_device();
 
-	string cmd_line = FATRESIZE_BIN " " + quote(action->blk_device->get_name());
+	SystemCmd::Args cmd_args = { FATRESIZE_BIN, action->blk_device->get_name() };
 	if (action->resize_mode == ResizeMode::SHRINK)
-	    cmd_line += " " + to_string(blk_device_rhs->get_size() / KiB);
+	    cmd_args << to_string(blk_device_rhs->get_size() / KiB);
 
 	wait_for_devices();
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 }

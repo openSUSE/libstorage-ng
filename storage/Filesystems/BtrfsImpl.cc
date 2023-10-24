@@ -1038,14 +1038,14 @@ namespace storage
 	    to_filesystem_user(get_devicegraph()->find_holder(action->blk_device->get_sid(), get_sid()));
 	unsigned int devid = filesystem_user->get_impl().get_id();
 
-	string cmd_line = BTRFS_BIN " filesystem resize " + to_string(devid) + ":";
+	SystemCmd::Args cmd_args = { BTRFS_BIN, "filesystem", "resize" };
 	if (action->resize_mode == ResizeMode::SHRINK)
-	    cmd_line += to_string(blk_device_rhs->get_size());
+	    cmd_args << to_string(devid) + ":" + to_string(blk_device_rhs->get_size());
 	else
-	    cmd_line += "max";
-	cmd_line += " " + quote(ensure_mounted.get_any_mount_point());
+	    cmd_args << to_string(devid) + ":max";
+	cmd_args << ensure_mounted.get_any_mount_point();
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -1079,10 +1079,9 @@ namespace storage
 
 	// TODO handle mounted
 
-	string cmd_line = BTRFS_BIN " filesystem label " + quote(blk_device->get_name()) + " " +
-	    quote(get_label());
+	SystemCmd::Args cmd_args = { BTRFS_BIN, "filesystem", "label", blk_device->get_name(), get_label() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -1098,14 +1097,14 @@ namespace storage
 	if (blk_devices.size() < 2)
 	    return;
 
-	string cmd_line = BTRFS_BIN " device scan";
+	SystemCmd::Args cmd_args = { BTRFS_BIN, "device", "scan" };
 
 	for (const BlkDevice* blk_device : blk_devices)
-	    cmd_line += " " + quote(blk_device->get_name());
+	    cmd_args << blk_device->get_name();
 
 	wait_for_devices();
 
-	SystemCmd cmd(cmd_line, SystemCmd::NoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::NoThrow);
     }
 
 
@@ -1188,10 +1187,10 @@ namespace storage
 
 	EnsureMounted ensure_mounted(get_filesystem(), false);
 
-	string cmd_line = BTRFS_BIN " device remove " + quote(blk_device->get_name()) + " " +
-	    quote(ensure_mounted.get_any_mount_point());
+	SystemCmd::Args cmd_args = { BTRFS_BIN, "device", "remove", blk_device->get_name(),
+	    ensure_mounted.get_any_mount_point() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -1202,12 +1201,12 @@ namespace storage
 
 	EnsureMounted ensure_mounted(get_filesystem(), false);
 
-	string cmd_line = BTRFS_BIN " device add " + quote(blk_device->get_name()) + " " +
-	    quote(ensure_mounted.get_any_mount_point());
+	SystemCmd::Args cmd_args = { BTRFS_BIN, "device", "add", blk_device->get_name(),
+	    ensure_mounted.get_any_mount_point() };
 
 	storage::wait_for_devices({ blk_device });
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -1246,10 +1245,10 @@ namespace storage
     {
 	EnsureMounted ensure_mounted(get_top_level_btrfs_subvolume(), false);
 
-	string cmd_line = BTRFS_BIN " quota " + string(quota ? "enable" : "disable") + " " +
-	    quote(ensure_mounted.get_any_mount_point());
+	SystemCmd::Args cmd_args = { BTRFS_BIN, "quota", quota ? "enable" : "disable",
+	    ensure_mounted.get_any_mount_point() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 

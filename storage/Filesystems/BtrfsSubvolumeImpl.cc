@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2020] SUSE LLC
+ * Copyright (c) [2017-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -587,9 +587,9 @@ namespace storage
 	    rmdir(full_path.c_str());
 	}
 
-	string cmd_line = BTRFS_BIN " subvolume create " + quote(full_path);
+	SystemCmd::Args cmd_args = { BTRFS_BIN, "subvolume", "create", full_path };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
 
 	probe_id(ensure_mounted.get_any_mount_point());
 
@@ -723,10 +723,10 @@ namespace storage
 
 	EnsureMounted ensure_mounted(top_level, false);
 
-	string cmd_line = CHATTR_BIN " " + string(nocow ? "+" : "-") + "C " +
-	    quote(ensure_mounted.get_any_mount_point() + "/" + path);
+	SystemCmd::Args cmd_args = { CHATTR_BIN, nocow ? "+C" : "-C",
+	    ensure_mounted.get_any_mount_point() + "/" + path };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -756,10 +756,10 @@ namespace storage
 
 	EnsureMounted ensure_mounted(top_level, false);
 
-	string cmd_line = BTRFS_BIN " subvolume set-default " + to_string(id) + " " +
-	    quote(ensure_mounted.get_any_mount_point());
+	SystemCmd::Args cmd_args = { BTRFS_BIN, "subvolume", "set-default", to_string(id),
+	    ensure_mounted.get_any_mount_point() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -789,10 +789,10 @@ namespace storage
 
 	EnsureMounted ensure_mounted(top_level, false);
 
-	string cmd_line = BTRFS_BIN " subvolume delete " +
-	    quote(ensure_mounted.get_any_mount_point() + "/" + path);
+	SystemCmd::Args cmd_args = { BTRFS_BIN, "subvolume", "delete",
+	    ensure_mounted.get_any_mount_point() + "/" + path };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 

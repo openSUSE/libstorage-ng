@@ -5,7 +5,7 @@
       <name>/usr/bin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
-      <name>/sbin/mdadm --add-spare '/dev/md0' '/dev/sdd'</name>
+      <name>/sbin/mdadm --add-spare /dev/md0 /dev/sdd</name>
       <!-- stdout missing -->
     </Command>
   </Commands>

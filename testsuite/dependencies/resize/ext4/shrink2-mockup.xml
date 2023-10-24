@@ -5,15 +5,15 @@
       <name>/usr/bin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
-      <name>/usr/sbin/resize2fs -f '/dev/sdc6' 9437184K</name>
+      <name>/usr/sbin/resize2fs -f /dev/sdc6 9437184K</name>
       <!-- stdout missing -->
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --ignore-busy '/dev/sdc' unit s resizepart 6 39852031</name>
+      <name>/usr/sbin/parted --script --ignore-busy /dev/sdc unit s resizepart 6 39852031</name>
       <!-- stdout missing -->
     </Command>
     <Command>
-      <name>/usr/sbin/blkdiscard /dev/sdc5</name>
+      <name>/usr/sbin/blkdiscard --verbose /dev/sdc5</name>
       <!-- stdout missing -->
     </Command>
     <Command>

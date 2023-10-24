@@ -127,18 +127,18 @@ namespace storage
 
 	const BlkDevice* blk_device_rhs = swap_rhs->get_impl().get_blk_device();
 
-	string cmd_line = MKSWAP_BIN;
+	SystemCmd::Args cmd_args = { MKSWAP_BIN };
 	if (!get_label().empty())
-	    cmd_line += " -L " + quote(get_label());
+	    cmd_args << "-L" << get_label();
 	if (!get_uuid().empty())
-	    cmd_line += " -U " + quote(get_uuid());
-	cmd_line += " " + quote(action->blk_device->get_name());
+	    cmd_args << "-U" << get_uuid();
+	cmd_args << action->blk_device->get_name();
 	if (action->resize_mode == ResizeMode::SHRINK)
-	    cmd_line += " " + to_string(blk_device_rhs->get_size() / KiB);
+	    cmd_args << to_string(blk_device_rhs->get_size() / KiB);
 
 	wait_for_devices();
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -147,9 +147,9 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = SWAPLABEL_BIN " -L " + quote(get_label()) + " " + quote(blk_device->get_name());
+	SystemCmd::Args cmd_args = { SWAPLABEL_BIN, "-L", get_label(), blk_device->get_name() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -158,9 +158,9 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = SWAPLABEL_BIN " -U " + quote(get_uuid()) + " " + quote(blk_device->get_name());
+	SystemCmd::Args cmd_args = { SWAPLABEL_BIN, "-U", get_uuid(), blk_device->get_name() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 

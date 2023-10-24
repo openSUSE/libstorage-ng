@@ -417,7 +417,7 @@ namespace storage
 	{
 	    case 0:
 	    {
-		SystemCmd cmd(MDADM_BIN " --assemble --scan");
+		SystemCmd cmd({ MDADM_BIN, "--assemble", "--scan" });
 
 		if (cmd.retcode() == 0)
 		    SystemCmd({ UDEVADM_BIN_SETTLE });
@@ -453,9 +453,9 @@ namespace storage
     {
 	y2mil("deactivate_mds");
 
-	string cmd_line = MDADM_BIN " --stop --scan";
+	SystemCmd::Args cmd_args = { MDADM_BIN, "--stop", "--scan" };
 
-	SystemCmd cmd(cmd_line);
+	SystemCmd cmd(cmd_args);
 
 	return cmd.retcode() == 0;
     }
@@ -1158,42 +1158,42 @@ namespace storage
 	if (journals.size() > 1)
 	    ST_THROW(Exception("only one journal device allowed"));
 
-	string cmd_line = MDADM_BIN " --create " + quote(get_name()) + " --run --level=" +
-	    boost::to_lower_copy(toString(md_level), locale::classic()) + " --metadata=" +
-	    (metadata.empty() ? "1.0" : metadata) + " --homehost=any";
+	SystemCmd::Args cmd_args = { MDADM_BIN, "--create", get_name(), "--run", "--level=" +
+	    boost::to_lower_copy(toString(md_level), locale::classic()), "--metadata=" +
+	    (metadata.empty() ? "1.0" : metadata), "--homehost=any" };
 
 	if ((md_level == MdLevel::RAID1 || md_level == MdLevel::RAID4 ||
 	     md_level == MdLevel::RAID5 || md_level == MdLevel::RAID6 ||
 	     md_level == MdLevel::RAID10) && journals.empty())
-	    cmd_line += " --bitmap=internal";
+	    cmd_args << "--bitmap=internal";
 
 	// mdadm 4.2 bails out if a chunk size is provided for RAID1 (bsc#1205172)
 	if (is_chunk_size_meaningful() && chunk_size > 0)
-	    cmd_line += " --chunk=" + to_string(chunk_size / KiB);
+	    cmd_args << "--chunk=" + to_string(chunk_size / KiB);
 
 	if (md_parity != MdParity::DEFAULT)
-	    cmd_line += " --parity=" + toString(md_parity);
+	    cmd_args << "--parity=" + toString(md_parity);
 
 	if (!uuid.empty())
-	    cmd_line += " --uuid=" + quote(uuid);
+	    cmd_args << "--uuid=" + uuid;
 
-	cmd_line += " --raid-devices=" + to_string(devices.size());
+	cmd_args << "--raid-devices=" + to_string(devices.size());
 
 	if (!spares.empty())
-	    cmd_line += " --spare-devices=" + to_string(spares.size());
+	    cmd_args << "--spare-devices=" + to_string(spares.size());
 
 	for (const pair<const unsigned int, string>& value : devices)
-	    cmd_line += " " + quote(value.second);
+	    cmd_args << value.second;
 
 	for (const pair<const unsigned int, string>& value : spares)
-	    cmd_line += " " + quote(value.second);
+	    cmd_args << value.second;
 
 	if (!journals.empty())
-	    cmd_line += " --write-journal=" + quote(journals.front());
+	    cmd_args << "--write-journal=" + journals.front();
 
 	wait_for_devices(std::as_const(*this).get_blk_devices());
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
 
 	if (uuid.empty())
 	{
@@ -1207,9 +1207,9 @@ namespace storage
     {
 	// log some data about the MD RAID that might be useful for debugging
 
-	string cmd_line = CAT_BIN " " PROC_DIR "/mdstat";
+	SystemCmd::Args cmd_args = { CAT_BIN, PROC_DIR "/mdstat" };
 
-	SystemCmd cmd(cmd_line, SystemCmd::NoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::NoThrow);
     }
 
 
@@ -1235,12 +1235,12 @@ namespace storage
     void
     Md::Impl::do_delete() const
     {
-	string cmd_line = MDADM_BIN " --zero-superblock ";
+	SystemCmd::Args cmd_args = { MDADM_BIN, "--zero-superblock" };
 
 	for (const BlkDevice* blk_device : get_blk_devices())
-	    cmd_line += " " + quote(blk_device->get_name());
+	    cmd_args << blk_device->get_name();
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -1363,9 +1363,9 @@ namespace storage
     void
     Md::Impl::do_reduce(const BlkDevice* blk_device) const
     {
-	string cmd_line = MDADM_BIN " --remove " + quote(get_name()) + " " + quote(blk_device->get_name());
+	SystemCmd::Args cmd_args = { MDADM_BIN, "--remove", get_name(), blk_device->get_name() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
 
 	// Thanks to udev "md-raid-assembly.rules" running "parted <disk>
 	// print" readds the device to the md if the signature is still
@@ -1379,13 +1379,12 @@ namespace storage
     {
 	const MdUser* md_user = blk_device->get_impl().get_single_out_holder_of_type<const MdUser>();
 
-	string cmd_line = MDADM_BIN;
-	cmd_line += !md_user->is_spare() ? " --add" : " --add-spare";
-	cmd_line += " " + quote(get_name()) + " " + quote(blk_device->get_name());
+	SystemCmd::Args cmd_args = { MDADM_BIN, !md_user->is_spare() ? "--add" : "--add-spare", get_name(),
+	    blk_device->get_name() };
 
 	storage::wait_for_devices({ blk_device });
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -1411,9 +1410,9 @@ namespace storage
     void
     Md::Impl::do_deactivate() const
     {
-	string cmd_line = MDADM_BIN " --stop " + quote(get_name());
+	SystemCmd::Args cmd_args = { MDADM_BIN, "--stop", get_name() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 }

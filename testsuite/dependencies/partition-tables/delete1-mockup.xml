@@ -17,7 +17,7 @@
       <!-- stdout missing -->
     </Command>
     <Command>
-      <name>/usr/sbin/blkdiscard /dev/sda4</name>
+      <name>/usr/sbin/blkdiscard --verbose /dev/sda4</name>
       <!-- stdout missing -->
     </Command>
     <Command>
@@ -25,7 +25,7 @@
       <!-- stdout missing -->
     </Command>
     <Command>
-      <name>/usr/sbin/blkdiscard /dev/sda3</name>
+      <name>/usr/sbin/blkdiscard --verbose /dev/sda3</name>
       <!-- stdout missing -->
     </Command>
     <Command>
@@ -33,7 +33,7 @@
       <!-- stdout missing -->
     </Command>
     <Command>
-      <name>/usr/sbin/blkdiscard /dev/sda2</name>
+      <name>/usr/sbin/blkdiscard --verbose /dev/sda2</name>
       <!-- stdout missing -->
     </Command>
     <Command>
@@ -41,7 +41,7 @@
       <!-- stdout missing -->
     </Command>
     <Command>
-      <name>/usr/sbin/blkdiscard /dev/sda1</name>
+      <name>/usr/sbin/blkdiscard --verbose /dev/sda1</name>
       <!-- stdout missing -->
     </Command>
     <Command>
@@ -53,7 +53,7 @@
       <!-- stdout missing -->
     </Command>
     <Command>
-      <name>/usr/sbin/blkdiscard /dev/sda</name>
+      <name>/usr/sbin/blkdiscard --verbose /dev/sda</name>
       <!-- stdout missing -->
     </Command>
   </Commands>

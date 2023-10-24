@@ -555,17 +555,17 @@ namespace storage
 	do_pre_mount();
 	wait_for_devices();
 
-	string cmd_line = MOUNT_BIN " -t " + toString(mount_point->get_mount_type());
+	SystemCmd::Args cmd_args = { MOUNT_BIN, "-t", toString(mount_point->get_mount_type()) };
 
 	MountOpts mount_opts = mount_point->get_impl().get_mount_options();
 	if (force_rw)
 	    mount_opts.remove("ro");
 	if (!mount_opts.empty())
-	    cmd_line += " -o " + quote(mount_opts.format());
+	    cmd_args << "-o"  << mount_opts.format();
 
-	cmd_line += " " + quote(get_mount_name()) + " " + quote(real_mount_point);
+	cmd_args << get_mount_name() << real_mount_point;
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
 
 	if (mount_point->exists_in_system())
 	    redirect_to_system(mount_point)->set_active(true);
@@ -577,11 +577,11 @@ namespace storage
     {
 	string real_mount_point = mount_point->get_impl().get_rootprefixed_path();
 
-	string cmd_line = UMOUNT_BIN " " + quote(real_mount_point);
+	SystemCmd::Args cmd_args = { UMOUNT_BIN, real_mount_point };
 
 	try
 	{
-	    SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	    SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
 	}
 	catch (const Exception& exception)
 	{
