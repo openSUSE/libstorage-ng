@@ -171,9 +171,9 @@ namespace storage
 
 	SystemCmd cmd1(cmd_line1);
 
-	string cmd_line2 = MULTIPATH_BIN " -F";
+	SystemCmd::Args cmd_args2 = { MULTIPATH_BIN, "-F" };
 
-	SystemCmd cmd2(cmd_line2);
+	SystemCmd cmd2(cmd_args2);
 
 	return cmd2.retcode() == 0;
     }

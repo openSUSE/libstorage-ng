@@ -944,7 +944,7 @@ namespace storage
     {
 	wait_for_devices({ get_non_impl() });
 
-	SystemCmd::Args cmd_args = { BLKDISCARD_BIN, get_name() };
+	SystemCmd::Args cmd_args = { BLKDISCARD_BIN, "--verbose", get_name() };
 
 	SystemCmd cmd(cmd_args, SystemCmd::NoThrow);
     }

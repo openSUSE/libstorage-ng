@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2020-2021] SUSE LLC
+ * Copyright (c) [2020-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -395,10 +395,10 @@ namespace storage
     {
 	EnsureMounted ensure_mounted(get_btrfs()->get_top_level_btrfs_subvolume(), false);
 
-	string cmd_line = BTRFS_BIN " qgroup create " + format_id(id) + " " +
-	    quote(ensure_mounted.get_any_mount_point());
+	SystemCmd::Args cmd_args = { BTRFS_BIN, "qgroup", "create", format_id(id),
+	    ensure_mounted.get_any_mount_point() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -454,17 +454,15 @@ namespace storage
     {
 	EnsureMounted ensure_mounted(get_btrfs()->get_top_level_btrfs_subvolume(), false);
 
-	string cmd_line1 = BTRFS_BIN " qgroup limit " + (referenced_limit != std::nullopt ?
-	    to_string(referenced_limit.value()) : "none") + " " + format_id(id) + " " +
-	    quote(ensure_mounted.get_any_mount_point());
+	SystemCmd::Args cmd_args1 = { BTRFS_BIN, "qgroup", "limit", referenced_limit != std::nullopt ?
+	    to_string(referenced_limit.value()) : "none", format_id(id), ensure_mounted.get_any_mount_point() };
 
-	SystemCmd cmd1(cmd_line1, SystemCmd::DoThrow);
+	SystemCmd cmd1(cmd_args1, SystemCmd::DoThrow);
 
-	string cmd_line2 = BTRFS_BIN " qgroup limit -e " + (exclusive_limit != std::nullopt ?
-	    to_string(exclusive_limit.value()) : "none") + " " + format_id(id) + " " +
-	    quote(ensure_mounted.get_any_mount_point());
+	SystemCmd::Args cmd_args2 = { BTRFS_BIN, "qgroup", "limit", "-e", exclusive_limit != std::nullopt ?
+	    to_string(exclusive_limit.value()) : "none", format_id(id), ensure_mounted.get_any_mount_point() };
 
-	SystemCmd cmd2(cmd_line2, SystemCmd::DoThrow);
+	SystemCmd cmd2(cmd_args2, SystemCmd::DoThrow);
     }
 
 
@@ -492,10 +490,10 @@ namespace storage
     {
 	EnsureMounted ensure_mounted(get_btrfs()->get_top_level_btrfs_subvolume(), false);
 
-	string cmd_line = BTRFS_BIN " qgroup destroy " + format_id(id) + " " +
-	    quote(ensure_mounted.get_any_mount_point());
+	SystemCmd::Args cmd_args = { BTRFS_BIN, "qgroup", "destroy", format_id(id),
+	    ensure_mounted.get_any_mount_point() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 

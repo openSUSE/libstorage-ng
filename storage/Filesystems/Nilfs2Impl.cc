@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 SUSE LLC
+ * Copyright (c) [2022-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -74,9 +74,9 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = NILFS_TUNE_BIN " -L " + quote(get_label()) + " " + quote(blk_device->get_name());
+	SystemCmd::Args cmd_args = { NILFS_TUNE_BIN, "-L", get_label(), blk_device->get_name() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -85,9 +85,9 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = NILFS_TUNE_BIN " -U " + quote(get_uuid()) + " " + quote(blk_device->get_name());
+	SystemCmd::Args cmd_args = { NILFS_TUNE_BIN, "-U", get_uuid(), blk_device->get_name() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -111,13 +111,13 @@ namespace storage
 
 	EnsureMounted ensure_mounted(get_filesystem(), false);
 
-	string cmd_line = NILFS_RESIZE_BIN " --yes " + quote(action->blk_device->get_name());
+	SystemCmd::Args cmd_args = { NILFS_RESIZE_BIN, "--yes", action->blk_device->get_name() };
 	if (action->resize_mode == ResizeMode::SHRINK)
-	    cmd_line += " " + to_string(blk_device_rhs->get_size() / KiB) + "K";
+	    cmd_args << to_string(blk_device_rhs->get_size() / KiB) + "K";
 
 	wait_for_devices();
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 }

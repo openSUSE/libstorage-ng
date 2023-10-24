@@ -19,7 +19,7 @@
       <!-- stdout missing -->
     </Command>
     <Command>
-      <name>/usr/sbin/blkdiscard /dev/sdb1</name>
+      <name>/usr/sbin/blkdiscard --verbose /dev/sdb1</name>
       <!-- stdout missing -->
     </Command>
     <Command>

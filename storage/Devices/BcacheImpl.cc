@@ -693,17 +693,18 @@ namespace storage
 	{
 	    const BlkDevice* backing_device = get_backing_device();
 
-	    string cmd_line = BCACHE_BIN " make -B " + quote(backing_device->get_name());
+	    SystemCmd::Args cmd_args1 = { BCACHE_BIN, "make", "-B", backing_device->get_name() };
 
 	    wait_for_devices({ backing_device });
 
-	    SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	    SystemCmd cmd1(cmd_args1, SystemCmd::DoThrow);
 
 	    wait_for_devices({ get_non_impl() });
 
-	    cmd_line = BCACHE_BIN " set-cachemode " + quote(backing_device->get_name()) + " " + quote(toString(cache_mode));
+	    SystemCmd::Args cmd_args2 = { BCACHE_BIN, "set-cachemode", backing_device->get_name(),
+		toString(cache_mode) };
 
-	    SystemCmd cmd2(cmd_line, SystemCmd::DoThrow);
+	    SystemCmd cmd2(cmd_args2, SystemCmd::DoThrow);
 	}
     }
 
@@ -755,9 +756,9 @@ namespace storage
     void
     Bcache::Impl::do_deactivate() const
     {
-	string cmd_line = BCACHE_BIN " unregister " + quote(get_backing_device()->get_name());
+	SystemCmd::Args cmd_args = { BCACHE_BIN, "unregister", get_backing_device()->get_name() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
 
 	wait_for_detach_devices({ get_non_impl() });
     }
@@ -791,9 +792,10 @@ namespace storage
     void
     Bcache::Impl::do_attach_bcache_cset() const
     {
-	string cmd_line = BCACHE_BIN " attach " + quote(get_bcache_cset()->get_uuid()) + " " + quote(get_backing_device()->get_name());
+	SystemCmd::Args cmd_args = { BCACHE_BIN, "attach", get_bcache_cset()->get_uuid(),
+	    get_backing_device()->get_name() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -823,9 +825,9 @@ namespace storage
     void
     Bcache::Impl::do_detach_bcache_cset() const
     {
-	string cmd_line = BCACHE_BIN " detach " + quote(get_backing_device()->get_name());
+	SystemCmd::Args cmd_args = { BCACHE_BIN, "detach", get_backing_device()->get_name() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -851,9 +853,10 @@ namespace storage
     void
     Bcache::Impl::do_update_cache_mode() const
     {
-	string cmd_line = BCACHE_BIN " set-cachemode " + quote(get_backing_device()->get_name()) + " " + quote(toString(get_cache_mode()));
+	SystemCmd::Args cmd_args = { BCACHE_BIN, "set-cachemode", get_backing_device()->get_name(),
+	    toString(get_cache_mode()) };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 

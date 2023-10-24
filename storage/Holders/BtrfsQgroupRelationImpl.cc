@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 SUSE LLC
+ * Copyright (c) [2020-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -95,7 +95,7 @@ namespace storage
     BtrfsQgroupRelation::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
     {
 	// Only btrfs qgroup relations between btrfs qgroups must be created in the
-	// system. Relations from a btrfs or from a subvolume do not exists in the system.
+	// system. Relations from a btrfs or from a subvolume do not exist in the system.
 
 	vector<shared_ptr<Action::Base>> actions;
 
@@ -237,10 +237,10 @@ namespace storage
 
 	EnsureMounted ensure_mounted(btrfs->get_top_level_btrfs_subvolume(), false);
 
-	string cmd_line = BTRFS_BIN " qgroup assign " + BtrfsQgroup::Impl::format_id(qgroup1->get_id()) + " " +
-	    BtrfsQgroup::Impl::format_id(qgroup2->get_id()) + " " + quote(ensure_mounted.get_any_mount_point());
+	SystemCmd::Args cmd_args = { BTRFS_BIN, "qgroup", "assign", BtrfsQgroup::Impl::format_id(qgroup1->get_id()),
+	    BtrfsQgroup::Impl::format_id(qgroup2->get_id()), ensure_mounted.get_any_mount_point() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -304,10 +304,10 @@ namespace storage
 
 	EnsureMounted ensure_mounted(btrfs->get_top_level_btrfs_subvolume(), false);
 
-	string cmd_line = BTRFS_BIN " qgroup remove " + BtrfsQgroup::Impl::format_id(qgroup1->get_id()) + " " +
-	    BtrfsQgroup::Impl::format_id(qgroup2->get_id()) + " " + quote(ensure_mounted.get_any_mount_point());
+	SystemCmd::Args cmd_args = { BTRFS_BIN, "qgroup", "remove", BtrfsQgroup::Impl::format_id(qgroup1->get_id()),
+	    BtrfsQgroup::Impl::format_id(qgroup2->get_id()), ensure_mounted.get_any_mount_point() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 }

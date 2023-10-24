@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -120,9 +120,9 @@ namespace storage
 
 	EnsureMounted ensure_mounted(get_filesystem(), false);
 
-	string cmd_line = XFSGROWFS_BIN " " + quote(ensure_mounted.get_any_mount_point());
+	SystemCmd::Args cmd_args = { XFSGROWFS_BIN, ensure_mounted.get_any_mount_point() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -131,10 +131,10 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = XFSADMIN_BIN " -L " + quote(get_label().empty() ? "--" : get_label()) + " " +
-	    quote(blk_device->get_name());
+	SystemCmd::Args cmd_args = { XFSADMIN_BIN, "-L", get_label().empty() ? "--" : get_label(),
+	    blk_device->get_name() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -143,9 +143,9 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = XFSADMIN_BIN " -U " + quote(get_uuid()) + " " + quote(blk_device->get_name());
+	SystemCmd::Args cmd_args = { XFSADMIN_BIN, "-U", get_uuid(), blk_device->get_name() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 }

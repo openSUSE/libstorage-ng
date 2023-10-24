@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -263,10 +263,10 @@ namespace storage
 	    // TRANSLATORS: progress message
 	    message_callback(activate_callbacks, sformat(_("Activating LUKS %s"), uuid));
 
-	    string cmd_line = CRYPTSETUP_BIN " --batch-mode open --type luks " + quote(name) + " " +
-		quote(dm_table_name) + " --tries 1 --key-file -";
+	    SystemCmd::Args cmd_args = { CRYPTSETUP_BIN, "--batch-mode", "open", "--type", "luks",
+		name, dm_table_name, "--tries", "1", "--key-file", "-" };
 
-	    SystemCmd::Options cmd_options(cmd_line, SystemCmd::DoThrow);
+	    SystemCmd::Options cmd_options(cmd_args, SystemCmd::DoThrow);
 	    cmd_options.stdin_text = password;
 	    cmd_options.verify = [](int exit_code) { return exit_code == 0 || exit_code == 2; };
 
@@ -369,9 +369,9 @@ namespace storage
 	    if (!boost::starts_with(value.second.uuid, "CRYPT-LUKS"))
 		continue;
 
-	    string cmd_line = CRYPTSETUP_BIN " --batch-mode close " + quote(value.first);
+	    SystemCmd::Args cmd_args { CRYPTSETUP_BIN, "--batch-mode", "close", value.first };
 
-	    SystemCmd cmd(cmd_line);
+	    SystemCmd cmd(cmd_args);
 
 	    if (cmd.retcode() != 0)
 		ret = false;
@@ -705,9 +705,9 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = CRYPTSETUP_BIN " --batch-mode erase " + quote(blk_device->get_name());
+	SystemCmd::Args cmd_args = { CRYPTSETUP_BIN, "--batch-mode", "erase", blk_device->get_name() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
 
 	// cryptsetup erase does not remove the signature, thus also use
 	// generic wipefs.
@@ -731,9 +731,9 @@ namespace storage
     void
     Luks::Impl::do_deactivate() const
     {
-	string cmd_line = CRYPTSETUP_BIN " --batch-mode close " + quote(get_dm_table_name());
+	SystemCmd::Args cmd_args = { CRYPTSETUP_BIN, "--batch-mode", "close", get_dm_table_name() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 }

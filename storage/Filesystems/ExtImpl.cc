@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -173,9 +173,9 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = TUNE2FS_BIN " -L " + quote(get_label()) + " " + quote(blk_device->get_name());
+	SystemCmd::Args cmd_args = { TUNE2FS_BIN, "-L", get_label(), blk_device->get_name() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -184,9 +184,9 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = TUNE2FS_BIN " -U " + quote(get_uuid()) + " " + quote(blk_device->get_name());
+	SystemCmd::Args cmd_args = { TUNE2FS_BIN, "-U", get_uuid(), blk_device->get_name() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -208,13 +208,13 @@ namespace storage
 
 	const BlkDevice* blk_device_rhs = ext_rhs->get_impl().get_blk_device();
 
-	string cmd_line = RESIZE2FS_BIN " -f " + quote(action->blk_device->get_name());
+	SystemCmd::Args cmd_args = { RESIZE2FS_BIN, "-f", action->blk_device->get_name() };
 	if (action->resize_mode == ResizeMode::SHRINK)
-	    cmd_line += " " + to_string(blk_device_rhs->get_size() / KiB) + "K";
+	    cmd_args << to_string(blk_device_rhs->get_size() / KiB) + "K";
 
 	wait_for_devices();
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 }

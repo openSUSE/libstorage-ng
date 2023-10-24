@@ -5,19 +5,19 @@
       <name>/usr/bin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --ignore-busy '/dev/sdc' unit s resizepart 1 23070719</name>
+      <name>/usr/sbin/parted --script --ignore-busy /dev/sdc unit s resizepart 1 23070719</name>
       <stdout>Warning: Partition /dev/sdc1 is being used, continuing anyway.</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --ignore-busy '/dev/sdd' unit s resizepart 1 23070719</name>
+      <name>/usr/sbin/parted --script --ignore-busy /dev/sdd unit s resizepart 1 23070719</name>
       <stdout>Warning: Partition /dev/sdd1 is being used, continuing anyway.</stdout>
     </Command>
     <Command>
-      <name>/sbin/btrfs filesystem resize 1:max '/test'</name>
+      <name>/sbin/btrfs filesystem resize 1:max /test</name>
       <stdout>Resize '/test' of '1:max'</stdout>
     </Command>
     <Command>
-      <name>/sbin/btrfs filesystem resize 2:max '/test'</name>
+      <name>/sbin/btrfs filesystem resize 2:max /test</name>
       <stdout>Resize '/test' of '2:max'</stdout>
     </Command>
   </Commands>

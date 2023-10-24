@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -86,19 +86,19 @@ namespace storage
 		       bool read_only, const vector<string>& options)
 	: TmpDir(path, name_template)
     {
-	string cmd_line = MOUNT_BIN;
+	SystemCmd::Args cmd_args = { MOUNT_BIN };
 
 	// TODO also check options for 'ro' and 'rw'?
 
 	if (read_only)
-	    cmd_line += " --read-only";
+	    cmd_args << "--read-only";
 
-	cmd_line += " " + quote(device) + " " + quote(get_fullname());
+	cmd_args << device << get_fullname();
 
 	if (!options.empty())
-	    cmd_line += " -o " + boost::join(options, ",");
+	    cmd_args << "-o" << boost::join(options, ",");
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 

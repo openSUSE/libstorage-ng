@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2018-2021] SUSE LLC
+ * Copyright (c) [2018-2023] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -75,10 +75,9 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = TUNEJFS_BIN " -L " + quote(get_label()) + " " +
-	    quote(blk_device->get_name());
+	SystemCmd::Args cmd_args = { TUNEJFS_BIN, "-L", get_label(), blk_device->get_name() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 
@@ -87,10 +86,9 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = TUNEJFS_BIN " -U " + quote(get_uuid()) + " " +
-	    quote(blk_device->get_name());
+	SystemCmd::Args cmd_args = { TUNEJFS_BIN, "-U", get_uuid(), blk_device->get_name() };
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 }
