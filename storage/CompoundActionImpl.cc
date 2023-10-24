@@ -128,7 +128,8 @@ namespace storage
     {
 	for (auto action : commit_actions)
 	{
-	    if (storage::is_delete(action) && get_target_device(actiongraph, action) == target_device)
+	    if (storage::is_delete(action) && action->affects_device() &&
+		get_target_device(actiongraph, action) == target_device)
 		return true;
 	}
 
