@@ -755,20 +755,4 @@ namespace storage
 	return "'" + boost::replace_all_copy(str, "'", "'\\''") + "'";
     }
 
-
-    string
-    SystemCmd::quote(const vector<string>& strs)
-    {
-	string ret;
-
-	for (vector<string>::const_iterator it = strs.begin(); it != strs.end(); ++it)
-	{
-	    if (it != strs.begin())
-		ret.append(" ");
-	    ret.append(quote(*it));
-	}
-
-	return ret;
-    }
-
 }
