@@ -213,11 +213,6 @@ namespace storage
 	 */
 	static string quote(const string& str);
 
-	/**
-	 * Quotes and protects every single string in the vector for shell execution.
-	 */
-	static string quote(const vector<string>& strs);
-
     private:
 
 	enum OutputStream { IDX_STDOUT, IDX_STDERR };
@@ -366,18 +361,10 @@ namespace storage
     };
 
 
-
     inline string
     quote(const string& str)
     {
 	return SystemCmd::quote(str);
-    }
-
-
-    inline string
-    quote(const vector<string>& strs)
-    {
-	return SystemCmd::quote(strs);
     }
 
 }
