@@ -51,8 +51,8 @@ namespace storage
 
     private:
 
-	string mount_point;
-	string path;
+	const string mount_point;
+	const string path;
 
 	bool nocow = false;
 

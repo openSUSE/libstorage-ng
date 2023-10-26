@@ -63,7 +63,7 @@ namespace storage
 
 	void parse(const vector<string>& lines);
 
-	string path;
+	const string path;
 
 	vector<string> entries;
 
@@ -92,7 +92,7 @@ namespace storage
 
     private:
 
-	string path;
+	const string path;
 
 	vector<string> content;
 

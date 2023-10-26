@@ -52,7 +52,7 @@ namespace storage
 
 	void parse(const vector<string>& lines);
 
-	string name;
+	const string name;
 
 	EncryptionType encryption_type;
 
