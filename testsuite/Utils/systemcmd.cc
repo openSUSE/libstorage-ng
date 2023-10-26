@@ -241,3 +241,14 @@ BOOST_AUTO_TEST_CASE(env)
     BOOST_CHECK(cmd.retcode() == 0);
     BOOST_CHECK_EQUAL(join(cmd.stdout()), join(stdout));
 }
+
+
+BOOST_AUTO_TEST_CASE(close_fds)
+{
+    SystemCmd cmd({ LS_BIN, "-1", "/proc/self/fd/" });
+
+    BOOST_CHECK_EQUAL(cmd.retcode(), 0);
+
+    // stdin, stdout, stderr and an fd resulting from the opendir in ls
+    BOOST_CHECK_EQUAL(cmd.stdout().size(), 4);
+}

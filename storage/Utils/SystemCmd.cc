@@ -353,8 +353,11 @@ namespace storage
 		    if ( close( serr[0] )<0 )
 			_exit(125);
 
+		    // Unfortunaltely close_range(2) is still too new. It is also not
+		    // mentioned in signal-safety(7).
+
 		    for (int fd = 3; fd < max_fd; ++fd)
-			close(fd);
+			fcntl(fd, F_SETFD, FD_CLOEXEC);
 
 		    if (args().empty())
 		    {
