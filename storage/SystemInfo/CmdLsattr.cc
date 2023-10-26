@@ -22,13 +22,11 @@
 
 #include <boost/algorithm/string.hpp>
 
-#include "storage/Utils/AppUtil.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/StorageDefines.h"
-#include "storage/Utils/StorageTmpl.h"
 #include "storage/SystemInfo/CmdLsattr.h"
-#include "storage/Utils/Enum.h"
-#include "storage/Utils/Exception.h"
+#include "storage/Utils/ExceptionImpl.h"
+#include "storage/Utils/LoggerImpl.h"
 
 
 namespace storage
@@ -39,8 +37,7 @@ namespace storage
     CmdLsattr::CmdLsattr(const key_t& key, const string& mount_point, const string& path)
 	: mount_point(mount_point), path(path)
     {
-	SystemCmd::Options cmd_options(LSATTR_BIN " -d " + quote(mount_point + "/" + path),
-				       SystemCmd::DoThrow);
+	SystemCmd::Options cmd_options({ LSATTR_BIN, "-d", mount_point + "/" + path }, SystemCmd::DoThrow);
 	cmd_options.mockup_key = LSATTR_BIN " -d (device:" + get<0>(key) + " path:" + get<1>(key) + ")";
 
 	SystemCmd cmd(cmd_options);
