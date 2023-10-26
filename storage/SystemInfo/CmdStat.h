@@ -55,7 +55,7 @@ namespace storage
 
 	void parse(const vector<string>& lines);
 
-	string path;
+	const string path;
 
 	mode_t mode = 0;
 

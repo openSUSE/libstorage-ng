@@ -69,7 +69,7 @@ namespace storage
 
 	void parse(const vector<string>& stdout);
 
-	string file;
+	const string file;
 
 	string path;
 	string name;

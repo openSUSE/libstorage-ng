@@ -51,7 +51,7 @@ namespace storage
 
 	void parse(const std::vector<string>& lines);
 
-	string device;
+	const string device;
 
 	string bus_id;
 

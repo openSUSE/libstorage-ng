@@ -48,7 +48,7 @@ namespace storage
 
 	void parse(const vector<string>& lines);
 
-	string path;
+	const string path;
 
 	unsigned long long size = 0;
 

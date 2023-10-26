@@ -53,7 +53,7 @@ namespace storage
 
 	void parse(const vector<string>& lines);
 
-	string device;
+	const string device;
 
 	unsigned long long min_blocks;
 
