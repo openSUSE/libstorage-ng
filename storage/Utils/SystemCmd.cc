@@ -278,6 +278,23 @@ namespace storage
     }
 
 
+    namespace
+    {
+
+	/**
+	 * Struct to hold information about failures of the child between fork and exec. The
+	 * struct is passed via a pipe from the client to the parent. The information is so
+	 * far only used for logging.
+	 */
+	struct ChildFailureInfo
+	{
+	    int cmdnum = 0;
+	    int errnum = 0;
+	};
+
+    }
+
+
     int
     SystemCmd::doExecute()
     {
@@ -288,6 +305,11 @@ namespace storage
         _childStdin = NULL;
 	_files[IDX_STDERR] = _files[IDX_STDOUT] = NULL;
 	invalidate();
+
+	int child_failure_info_pipe[2];
+	if (pipe(child_failure_info_pipe) != 0)
+	    SYSCALL_FAILED("pipe child_failure_info creation failed");
+
 	int sin[2];
 	int sout[2];
 	int serr[2];
@@ -307,6 +329,7 @@ namespace storage
 	    SYSCALL_FAILED( "pipe stderr creation failed" );
 	    ok = false;
 	}
+
 	if ( ok )
 	{
 	    _pfds[0].fd = sin[1];
@@ -340,6 +363,9 @@ namespace storage
 		    // Only use async‐signal‐safe functions here, see fork(2) and
 		    // signal-safety(7).
 
+		    if (close(child_failure_info_pipe[0]) < 0)
+			_exit(125);
+
 		    if ( dup2( sin[0], STDIN_FILENO )<0 )
 			_exit(125);
 		    if ( dup2( sout[1], STDOUT_FILENO )<0 )
@@ -369,10 +395,11 @@ namespace storage
 		    }
 
 		    // If we get here the exec has failed. Depending on errno we return an
-		    // error code like the shell does ('sh -c ...'). Unfortunately it is
-		    // not possible in the parent to distinguish whether exec or the
-		    // program returned the code (e.g. 127). So far that does not seem to
-		    // be needed. If ever needed the "self-pipe trick" could be used.
+		    // error code like the shell does ('sh -c ...').
+
+		    ChildFailureInfo child_failure_info { 1, errno };
+		    write(child_failure_info_pipe[1], &child_failure_info, sizeof(child_failure_info));
+		    close(child_failure_info_pipe[1]);
 
 		    if (errno == ENOENT)
 			_exit(SHELL_RET_COMMAND_NOT_FOUND);
@@ -391,6 +418,22 @@ namespace storage
 
 		default: // parent process
 		{
+		    if (close(child_failure_info_pipe[1]) != 0)
+			SYSCALL_FAILED("close(childfailureinfo_pipe) failed");
+
+		    // Read ChildFailureInfo. If the exec in the child succeeded the pipe
+		    // was closed (due to CLOEXEC) and reading fails. If the exec in the
+		    // child failed the information was written to the pipe and can be
+		    // used here in the parent.
+
+		    ChildFailureInfo child_failure_info;
+		    if (read(child_failure_info_pipe[0], &child_failure_info, sizeof(child_failure_info)) ==
+			sizeof(child_failure_info))
+		    {
+			y2err("exec failed: " << child_failure_info.errnum << " " <<
+			      stringerror(child_failure_info.errnum));
+		    }
+
 		    if ( close( sin[0] ) < 0 )
 		    {
 			SYSCALL_FAILED_NOTHROW( "close( stdin ) in parent failed" );
@@ -403,6 +446,7 @@ namespace storage
 		    {
 			SYSCALL_FAILED_NOTHROW( "close( stderr ) in parent failed" );
 		    }
+
 		    _cmdRet = 0;
 
                     _childStdin = fdopen( sin[1], "a" );
