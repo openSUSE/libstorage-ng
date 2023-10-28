@@ -306,6 +306,8 @@ namespace storage
 	_files[IDX_STDERR] = _files[IDX_STDOUT] = NULL;
 	invalidate();
 
+	// TODO use RAII for pipes
+
 	int child_failure_info_pipe[2];
 	if (pipe(child_failure_info_pipe) != 0)
 	    SYSCALL_FAILED("pipe child_failure_info creation failed");
@@ -419,7 +421,7 @@ namespace storage
 		default: // parent process
 		{
 		    if (close(child_failure_info_pipe[1]) != 0)
-			SYSCALL_FAILED("close(childfailureinfo_pipe) failed");
+			SYSCALL_FAILED("close(child_failure_info_pipe[1]) failed");
 
 		    // Read ChildFailureInfo. If the exec in the child succeeded the pipe
 		    // was closed (due to CLOEXEC) and reading fails. If the exec in the
@@ -433,6 +435,9 @@ namespace storage
 			y2err("exec failed: " << child_failure_info.errnum << " " <<
 			      stringerror(child_failure_info.errnum));
 		    }
+
+		    if (close(child_failure_info_pipe[0]) != 0)
+		        SYSCALL_FAILED("close(child_failure_info_pipe[0]) failed");
 
 		    if ( close( sin[0] ) < 0 )
 		    {

@@ -5,6 +5,7 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/algorithm/string.hpp>
 
+#include <fcntl.h>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -243,12 +244,33 @@ BOOST_AUTO_TEST_CASE(env)
 }
 
 
+int
+num_open_fds()
+{
+    const int max_fd = getdtablesize();
+
+    int n = 0;
+
+    for (int fd = 0; fd < max_fd; ++fd)
+        if (fcntl(fd, F_GETFD) == 0)
+	  ++n;
+
+    return n;
+}
+
+
 BOOST_AUTO_TEST_CASE(close_fds)
 {
+    // stdin, stdout and stderr - fails with valgrind
+    BOOST_CHECK_EQUAL(num_open_fds(), 3);
+
     SystemCmd cmd({ LS_BIN, "-1", "/proc/self/fd/" });
 
     BOOST_CHECK_EQUAL(cmd.retcode(), 0);
 
     // stdin, stdout, stderr and an fd resulting from the opendir in ls
     BOOST_CHECK_EQUAL(cmd.stdout().size(), 4);
+
+    // still only stdin, stdout and stderr - fails with valgrind
+    BOOST_CHECK_EQUAL(num_open_fds(), 3);
 }
