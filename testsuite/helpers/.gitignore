@@ -3,5 +3,6 @@ libhelpers.la
 echoargs
 echoargs_mixed
 echoargs_stderr
+repeat
 retcode
 segfaulter

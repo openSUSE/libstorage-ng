@@ -13,6 +13,7 @@ noinst_PROGRAMS =	\
 	echoargs	\
 	echoargs_stderr	\
 	echoargs_mixed	\
+	repeat		\
 	retcode		\
 	segfaulter
 
