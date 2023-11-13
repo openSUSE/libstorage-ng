@@ -72,6 +72,20 @@ BOOST_AUTO_TEST_CASE(hello_stdout_args)
 }
 
 
+BOOST_AUTO_TEST_CASE(hello_huge_stdout_args)
+{
+    vector<string> stdout;
+    for (int i = 0; i < 1000000; ++i)
+	stdout.push_back("Hello world, how are you?");
+
+    SystemCmd::Options cmd_options({ "../helpers/repeat", "1000000", "Hello world, how are you?" });
+
+    SystemCmd cmd(cmd_options);
+
+    BOOST_CHECK_EQUAL(join(cmd.stdout()), join(stdout));
+}
+
+
 BOOST_AUTO_TEST_CASE(hello_stderr)
 {
     vector<string> stderr = {
