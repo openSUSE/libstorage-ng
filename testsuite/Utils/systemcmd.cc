@@ -53,7 +53,7 @@ BOOST_AUTO_TEST_CASE(hello_stdout_cmd)
 
     BOOST_CHECK_EQUAL(join(cmd.stdout()), join(stdout));
     BOOST_CHECK(cmd.stderr().empty());
-    BOOST_CHECK(cmd.retcode() == 0);
+    BOOST_CHECK_EQUAL(cmd.retcode(), 0);
 }
 
 
@@ -68,7 +68,7 @@ BOOST_AUTO_TEST_CASE(hello_stdout_args)
 
     BOOST_CHECK_EQUAL(join(cmd.stdout()), join(stdout));
     BOOST_CHECK(cmd.stderr().empty());
-    BOOST_CHECK(cmd.retcode() == 0);
+    BOOST_CHECK_EQUAL(cmd.retcode(), 0);
 }
 
 
@@ -152,11 +152,26 @@ BOOST_AUTO_TEST_CASE(pipe_stdin_args)
 }
 
 
+BOOST_AUTO_TEST_CASE(pipe_huge_stdin_args)
+{
+    vector<string> stdout;
+    for (int i = 0; i < 100000; ++i)
+	stdout.push_back("Hello world, always keep on smiling!");
+
+    SystemCmd::Options cmd_options({ CAT_BIN });
+    cmd_options.stdin_text = boost::join(stdout, "\n");
+
+    SystemCmd cmd(cmd_options);
+
+    BOOST_CHECK_EQUAL(join(cmd.stdout()), join(stdout));
+}
+
+
 BOOST_AUTO_TEST_CASE(retcode_42_cmd)
 {
     SystemCmd cmd("../helpers/retcode 42");
 
-    BOOST_CHECK(cmd.retcode() == 42);
+    BOOST_CHECK_EQUAL(cmd.retcode(), 42);
 }
 
 
@@ -164,7 +179,7 @@ BOOST_AUTO_TEST_CASE(retcode_42_args)
 {
     SystemCmd cmd({ "../helpers/retcode", "42" });
 
-    BOOST_CHECK(cmd.retcode() == 42);
+    BOOST_CHECK_EQUAL(cmd.retcode(), 42);
 }
 
 
@@ -253,7 +268,7 @@ BOOST_AUTO_TEST_CASE(env)
 
     SystemCmd cmd(options);
 
-    BOOST_CHECK(cmd.retcode() == 0);
+    BOOST_CHECK_EQUAL(cmd.retcode(), 0);
     BOOST_CHECK_EQUAL(join(cmd.stdout()), join(stdout));
 }
 
@@ -275,6 +290,9 @@ num_open_fds()
 
 BOOST_AUTO_TEST_CASE(close_fds)
 {
+    // Check that no file descriptors are leaked (are closed even right after the
+    // SystemCmd constructor).
+
     // stdin, stdout and stderr - fails with valgrind
     BOOST_CHECK_EQUAL(num_open_fds(), 3);
 

@@ -25,7 +25,9 @@
 #include <unistd.h>
 #include <cerrno>
 #include <fcntl.h>
+#include <poll.h>
 #include <langinfo.h>
+#include <sys/types.h>
 #include <sys/wait.h>
 #include <string>
 #include <sstream>
@@ -41,11 +43,9 @@
 #include "storage/Utils/StorageTmpl.h"
 
 
-#define SYSCALL_FAILED( SYSCALL_MSG ) \
-    ST_MAYBE_THROW( Exception( Exception::strErrno( errno, SYSCALL_MSG ) ), do_throw() )
+#define SYSCALL_FAILED(SYSCALL_MSG) \
+    ST_THROW(Exception(Exception::strErrno(errno, SYSCALL_MSG)))
 
-#define SYSCALL_FAILED_NOTHROW( SYSCALL_MSG ) \
-    ST_MAYBE_THROW( Exception( Exception::strErrno( errno, SYSCALL_MSG ) ), false )
 
 // See man bash
 // Since all commands are started via a shell, only the shell's return value is returned.
@@ -104,25 +104,14 @@ namespace storage
 	    y2mil("constructor SystemCmd(" << args() << ")");
 
 	if (command().empty() && args().empty())
-            ST_THROW(SystemCmdException(this, "Neither command nor args specified"));
+	    ST_THROW(SystemCmdException(this, "Neither command nor args specified"));
 
 	if (!command().empty() && !args().empty())
-            ST_THROW(SystemCmdException(this, "Both command and args specified"));
+	    ST_THROW(SystemCmdException(this, "Both command and args specified"));
 
-	init();
+	execute_with_mockup();
 
-	try
-	{
-	    execute();
-	}
-	catch ( const Exception &exception )
-	{
-	    ST_CAUGHT( exception );
-	    cleanup();
-	    ST_RETHROW( exception );
-	}
-
-	if (do_throw() && !options.verify(_cmdRet))
+	if (do_throw() && !options.verify(child_retcode))
 	{
 	    string s = "command '" + display_command() + "' failed:\n\n";
 
@@ -132,7 +121,7 @@ namespace storage
 	    if (!stderr().empty())
 		s += "stderr:\n" + boost::join(stderr(), "\n") + "\n\n";
 
-	    s += "exit code:\n" + to_string(_cmdRet);
+	    s += "exit code:\n" + to_string(child_retcode);
 
 	    ST_THROW(Exception(s));
 	}
@@ -164,17 +153,6 @@ namespace storage
     }
 
 
-    void
-    SystemCmd::init()
-    {
-        _childStdin = NULL;
-	_files[0] = _files[1] = NULL;
-	_pfds[0].events = POLLOUT; // stdin
-	_pfds[1].events = POLLIN;  // stdout
-	_pfds[2].events = POLLIN;  // stderr
-    }
-
-
     string
     SystemCmd::mockup_key() const
     {
@@ -189,53 +167,22 @@ namespace storage
 
 
     void
-    SystemCmd::cleanup()
-    {
-        if ( _childStdin )
-        {
-            fclose( _childStdin );
-            _childStdin = NULL;
-        }
-
-	if ( _files[IDX_STDOUT] )
-	{
-	    fclose( _files[IDX_STDOUT] );
-	    _files[IDX_STDOUT] = NULL;
-	}
-
-	if ( _files[IDX_STDERR] )
-	{
-	    fclose( _files[IDX_STDERR] );
-	    _files[IDX_STDERR] = NULL;
-	}
-    }
-
-
-    SystemCmd::~SystemCmd()
-    {
-	cleanup();
-    }
-
-
-    int
-    SystemCmd::execute()
+    SystemCmd::execute_with_mockup()
     {
 	// TODO the command handling could need a better concept
 
 	if (Mockup::get_mode() == Mockup::Mode::PLAYBACK)
 	{
 	    const Mockup::Command mockup_command = Mockup::get_command(mockup_key());
-	    _outputLines[IDX_STDOUT] = mockup_command.stdout;
-	    _outputLines[IDX_STDERR] = mockup_command.stderr;
-	    _cmdRet = mockup_command.exit_code;
+	    stdout_lines = mockup_command.stdout;
+	    stderr_lines = mockup_command.stderr;
+	    child_retcode = mockup_command.exit_code;
 
-	    if (_cmdRet == 127 && do_throw())
+	    if (child_retcode == 127 && do_throw())
 		ST_THROW(CommandNotFoundException(this));
 
-	    return 0;
+	    return;
 	}
-
-	int ret;
 
 	if (get_remote_callbacks())
 	{
@@ -244,10 +191,9 @@ namespace storage
 	    if (args().empty())
 	    {
 		const RemoteCommand remote_command = remote_callbacks->get_command(command());
-		_outputLines[IDX_STDOUT] = remote_command.stdout;
-		_outputLines[IDX_STDERR] = remote_command.stderr;
-		_cmdRet = remote_command.exit_code;
-		ret = 0;
+		stdout_lines = remote_command.stdout;
+		stderr_lines = remote_command.stderr;
+		child_retcode = remote_command.exit_code;
 	    }
 	    else
 	    {
@@ -256,30 +202,97 @@ namespace storage
 		    ST_THROW(Exception("old RemoteCallback"));
 
 		const RemoteCommand remote_command = remote_callbacks_v2->get_command_v2(args());
-		_outputLines[IDX_STDOUT] = remote_command.stdout;
-		_outputLines[IDX_STDERR] = remote_command.stderr;
-		_cmdRet = remote_command.exit_code;
-		ret = 0;
+		stdout_lines = remote_command.stdout;
+		stderr_lines = remote_command.stderr;
+		child_retcode = remote_command.exit_code;
 	    }
 	}
 	else
 	{
-	    y2mil("SystemCmd Executing:\"" << display_command() << "\"");
-	    y2mil("timestamp " << timestamp());
-	    ret = doExecute();
+	    execute();
 	}
 
 	if (Mockup::get_mode() == Mockup::Mode::RECORD)
 	{
 	    Mockup::set_command(mockup_key(), Mockup::Command(stdout(), stderr(), retcode()));
 	}
-
-	return ret;
     }
 
 
     namespace
     {
+
+	class FileDescriptor : boost::noncopyable
+	{
+	public:
+
+	    ~FileDescriptor() { if (fd >= 0) close(); }
+
+	    int close();
+
+	    int fd = -1;
+
+	};
+
+
+	int
+	FileDescriptor::close()
+	{
+	    int ret = ::close(fd);
+	    fd = -1;
+	    return ret;
+	}
+
+
+	class Pipe : boost::noncopyable
+	{
+	public:
+
+	    Pipe(int flags = O_CLOEXEC);
+
+	    FileDescriptor read_end;
+	    FileDescriptor write_end;
+
+	};
+
+
+	Pipe::Pipe(int flags)
+	{
+	    int pipefd[2];
+
+	    if (pipe2(pipefd, flags) != 0)
+		SYSCALL_FAILED("pipe2 failed");
+
+	    read_end.fd = pipefd[0];
+	    write_end.fd = pipefd[1];
+	}
+
+
+	/**
+	 * Class to tempararily hold copies of args or env for execle() and execvpe().
+	 */
+	class TmpForExec : boost::noncopyable
+	{
+	public:
+
+	    TmpForExec(const vector<char*>& values) : values(values) {}
+	    ~TmpForExec();
+
+	    char* const * get() const { return &values[0]; }
+
+	private:
+
+	    vector<char*> values;
+
+	};
+
+
+	TmpForExec::~TmpForExec()
+	{
+	    for (char* v : values)
+		free(v);
+	}
+
 
 	/**
 	 * Struct to hold information about failures of the child between fork and exec. The
@@ -295,469 +308,410 @@ namespace storage
     }
 
 
-    int
-    SystemCmd::doExecute()
+    /**
+     * This extra class allows us to 1. reduce the size of SystemCmd.h esp. the number of
+     * includes and 2. ensure that the resources associated with it are released
+     * automatically early (before the SystemCmd destructor).
+     */
+    class SystemCmd::Executor
     {
-	y2deb("command:" << display_command());
+    public:
+
+	Executor(SystemCmd& system_cmd);
+
+    private:
+
+	void step_fork_and_exec();
+	void step_poll();
+	void step_wait();
+
+	void write_stdin();
+	void read_stdout();
+	void read_stderr();
+
+	void fill_buffer(const char* name, int fd, string& buffer, vector<string>& lines) const;
+	void split_buffer(const char* name, string& buffer, vector<string>& lines, bool finito = false) const;
+	void add_line(const char* name, const string& line, vector<string>& lines) const;
+
+	/**
+	 * Constructs the args for the child process.
+	 *
+	 * Not async‐signal‐safe, see fork(2) and signal-safety(7).
+	 */
+	TmpForExec make_args() const;
+
+	/**
+	 * Constructs the environment for the child process.
+	 *
+	 * Not async‐signal‐safe, see fork(2) and signal-safety(7).
+	 */
+	TmpForExec make_env() const;
+
+	SystemCmd& system_cmd;
+
+	pid_t child_pid = -1;
+
+	Pipe stdin_pipe;
+	Pipe stdout_pipe;
+	Pipe stderr_pipe;
+
+	struct pollfd pollfds[3];
+
+	string::size_type stdin_pos = 0;
+
+	string stdout_buffer;
+	string stderr_buffer;
+
+    };
+
+
+    void
+    SystemCmd::execute()
+    {
+	y2mil("SystemCmd Executing:\"" << display_command() << "\"");
+	y2mil("timestamp " << timestamp());
 
 	Stopwatch stopwatch;
 
-        _childStdin = NULL;
-	_files[IDX_STDERR] = _files[IDX_STDOUT] = NULL;
-	invalidate();
+	Executor executor(*this);
 
-	// TODO use RAII for pipes
+	y2mil("stopwatch " << stopwatch << " for \"" << display_command() << "\"");
+    }
 
-	int child_failure_info_pipe[2];
-	if (pipe(child_failure_info_pipe) != 0)
-	    SYSCALL_FAILED("pipe child_failure_info creation failed");
 
-	int sin[2];
-	int sout[2];
-	int serr[2];
-	bool ok = true;
-	if ( pipe(sin)<0 )
+    SystemCmd::Executor::Executor(SystemCmd& system_cmd)
+	: system_cmd(system_cmd)
+    {
+	step_fork_and_exec();
+	step_poll();
+	step_wait();
+    }
+
+
+    void
+    SystemCmd::Executor::step_fork_and_exec()
+    {
+	y2deb("step fork and exec");
+
+	if (fcntl(stdin_pipe.write_end.fd, F_SETFL, O_NONBLOCK) != 0)
+	    SYSCALL_FAILED("pipe stdin O_NONBLOCK failed");
+
+	if (fcntl(stdout_pipe.read_end.fd, F_SETFL, O_NONBLOCK) != 0)
+	    SYSCALL_FAILED("pipe stdout O_NONBLOCK failed");
+
+	if (fcntl(stderr_pipe.read_end.fd, F_SETFL, O_NONBLOCK) != 0)
+	    SYSCALL_FAILED("pipe stderr O_NONBLOCK failed");
+
+	Pipe child_failure_info_pipe;
+
+	const int max_fd = getdtablesize();
+
+	const TmpForExec args_p(make_args());
+	const TmpForExec env_p(make_env());
+
+	child_pid = fork();
+	if (child_pid == -1)
+	    SYSCALL_FAILED("fork failed");
+
+	if (child_pid == 0)
 	{
-	    SYSCALL_FAILED( "pipe stdin creation failed" );
-	    ok = false;
+	    // child process
+
+	    // Do not use exit() here. Use _exit() instead.
+
+	    // Only use async‐signal‐safe functions here, see fork(2) and
+	    // signal-safety(7).
+
+	    if (dup2(stdin_pipe.read_end.fd, STDIN_FILENO) < 0)
+		_exit(125);
+	    if (stdin_pipe.write_end.close() != 0)
+		_exit(125);
+
+	    if (dup2(stdout_pipe.write_end.fd, STDOUT_FILENO) < 0)
+		_exit(125);
+	    if (stdout_pipe.read_end.close() != 0)
+		_exit(125);
+
+	    if (dup2(stderr_pipe.write_end.fd, STDERR_FILENO) < 0)
+		_exit(125);
+	    if (stderr_pipe.read_end.close() != 0)
+		_exit(125);
+
+	    if (child_failure_info_pipe.read_end.close() != 0)
+		_exit(125);
+
+	    // Unfortunaltely close_range(2) is still too new. It is also not mentioned in
+	    // signal-safety(7). We use CLOEXEC here since child_failure_info_pipe must
+	    // not yet be closed.
+
+	    for (int fd = 3; fd < max_fd; ++fd)
+		fcntl(fd, F_SETFD, FD_CLOEXEC);
+
+	    if (system_cmd.args().empty())
+		execle(SH_BIN, SH_BIN, "-c", system_cmd.command().c_str(), nullptr, env_p.get());
+	    else
+		execvpe(system_cmd.args()[0].c_str(), args_p.get(), env_p.get());
+
+	    // If we get here the exec has failed. Depending on errno we return an
+	    // error code like the shell does ('sh -c ...').
+
+	    ChildFailureInfo child_failure_info { 1, errno };
+	    int write_ret = TEMP_FAILURE_RETRY(write(child_failure_info_pipe.write_end.fd,
+						     &child_failure_info, sizeof(child_failure_info)));
+	    if (write_ret != sizeof(child_failure_info))
+		_exit(125);
+	    if (child_failure_info_pipe.write_end.close() != 0)
+		_exit(125);
+
+	    if (errno == ENOENT)
+		_exit(SHELL_RET_COMMAND_NOT_FOUND);
+	    if (errno == ENOEXEC || errno == EACCES || errno == EISDIR)
+		_exit(SHELL_RET_COMMAND_NOT_EXECUTABLE);
+	    _exit(125);
 	}
-	if ( pipe(sout)<0 )
+
+	// parent process
+
+	y2mil("child_pid:" << child_pid);
+
+	if (stdin_pipe.read_end.close() != 0)
+	    SYSCALL_FAILED("close stdin in parent failed");
+
+	if (stdout_pipe.write_end.close() != 0)
+	    SYSCALL_FAILED("close stdout in parent failed");
+
+	if (stderr_pipe.write_end.close() != 0)
+	    SYSCALL_FAILED("close stderr in parent failed" );
+
+	if (child_failure_info_pipe.write_end.close() != 0)
+	    SYSCALL_FAILED("close child_failure_info_pipe failed");
+
+	// Read ChildFailureInfo. If the exec in the child succeeded the pipe
+	// was closed (due to CLOEXEC) and reading fails. If the exec in the
+	// child failed the information was written to the pipe and can be
+	// used here in the parent.
+
+	ChildFailureInfo child_failure_info;
+	int read_ret = TEMP_FAILURE_RETRY(read(child_failure_info_pipe.read_end.fd, &child_failure_info,
+					       sizeof(child_failure_info)));
+	if (read_ret < 0)
+	    SYSCALL_FAILED("read child_failure_info");
+
+	if (read_ret == sizeof(child_failure_info))
 	{
-	    SYSCALL_FAILED( "pipe stdout creation failed" );
-	    ok = false;
+	    // so far only used for logging
+	    y2err("exec failed: " << child_failure_info.errnum);
 	}
-	if ( pipe(serr)<0 )
+
+	if (child_failure_info_pipe.read_end.close() != 0)
+	    SYSCALL_FAILED("close child_failure_info_pipe failed");
+    }
+
+
+    void
+    SystemCmd::Executor::step_poll()
+    {
+	pollfds[0].events = POLLOUT;
+	pollfds[0].fd = stdin_pipe.write_end.fd;
+
+	pollfds[1].events = POLLIN;
+	pollfds[1].fd = stdout_pipe.read_end.fd;
+
+	pollfds[2].events = POLLIN;
+	pollfds[2].fd = stderr_pipe.read_end.fd;
+
+	while (pollfds[0].fd != -1 || pollfds[1].fd != -1 || pollfds[2].fd != -1)
 	{
-	    SYSCALL_FAILED( "pipe stderr creation failed" );
-	    ok = false;
+	    y2deb("pollfds[0].fd:" << pollfds[0].fd << "pollfds[1].fd:" << pollfds[1].fd <<
+		  "pollfds[2].fd:" << pollfds[2].fd);
+
+	    int poll_ret = TEMP_FAILURE_RETRY(poll(pollfds, 3, -1));
+	    if (poll_ret < 0)
+		SYSCALL_FAILED("poll failed");
+
+	    if (poll_ret > 0)
+	    {
+		y2deb("pollfds[0].revents:" << pollfds[0].revents << "pollfds[1].revents:" <<
+		      pollfds[1].revents << "pollfds[2].revents:" << pollfds[2].revents);
+
+		if (pollfds[0].revents & POLLOUT)
+		    write_stdin();
+
+		if (pollfds[1].revents & POLLIN)
+		    read_stdout();
+		if (pollfds[1].revents & POLLHUP)
+		    pollfds[1].fd = -1;
+
+		if (pollfds[2].revents & POLLIN)
+		    read_stderr();
+		if (pollfds[2].revents & POLLHUP)
+		    pollfds[2].fd = -1;
+	    }
 	}
 
-	if ( ok )
+	stdout_pipe.read_end.close();
+	split_buffer("stdout", stdout_buffer, system_cmd.stdout_lines, true);
+	if (system_cmd.stdout_lines.size() >= system_cmd.options.log_line_limit)
+	    y2mil("stdout lines:" << system_cmd.stdout_lines.size());
+
+	stderr_pipe.read_end.close();
+	split_buffer("stderr", stderr_buffer, system_cmd.stderr_lines, true);
+	if (system_cmd.stderr_lines.size() >= system_cmd.options.log_line_limit)
+	    y2mil("stderr lines:" << system_cmd.stderr_lines.size());
+    }
+
+
+    void
+    SystemCmd::Executor::step_wait()
+    {
+	y2deb("step wait");
+
+	int wstatus;
+	int waitpid_ret = TEMP_FAILURE_RETRY(waitpid(child_pid, &wstatus, 0));
+	if (waitpid_ret < 0)
+	    SYSCALL_FAILED("waitpid failed");
+
+	y2deb("waitpid_ret:" << waitpid_ret << " wstatus:" << wstatus);
+
+	if (WIFEXITED(wstatus))
 	{
-	    _pfds[0].fd = sin[1];
-	    if ( fcntl( _pfds[0].fd, F_SETFL, O_NONBLOCK )<0 )
+	    system_cmd.child_retcode = WEXITSTATUS(wstatus);
+	    if (system_cmd.child_retcode == SHELL_RET_COMMAND_NOT_EXECUTABLE)
+		ST_MAYBE_THROW(SystemCmdException(&system_cmd, "Command not executable"), system_cmd.do_throw());
+	    else if (system_cmd.child_retcode == SHELL_RET_COMMAND_NOT_FOUND)
+		ST_MAYBE_THROW(CommandNotFoundException(&system_cmd), system_cmd.do_throw());
+	    else if (system_cmd.child_retcode > SHELL_RET_SIGNAL)
 	    {
-		SYSCALL_FAILED( "fcntl O_NONBLOCK failed for stdin" );
+		std::stringstream msg;
+		msg << "Caught signal #" << (system_cmd.child_retcode - SHELL_RET_SIGNAL);
+		ST_MAYBE_THROW(SystemCmdException(&system_cmd, msg.str()), system_cmd.do_throw());
 	    }
-	    _pfds[1].fd = sout[0];
-	    if ( fcntl( _pfds[1].fd, F_SETFL, O_NONBLOCK )<0 )
+	}
+	else if (WIFSIGNALED(wstatus))
+	{
+	    system_cmd.child_retcode = -127;
+	    int sig = WTERMSIG(wstatus);
+	    y2err("child caught signal " << sig /* << " (" << sigabbrev_np(sig) << ")" */);
+	    ST_MAYBE_THROW(SystemCmdException(&system_cmd, "Command failed (signaled)"), system_cmd.do_throw());
+	}
+	else
+	{
+	    system_cmd.child_retcode = -127;
+	    ST_MAYBE_THROW(SystemCmdException(&system_cmd, "Command failed"), system_cmd.do_throw());
+	}
+
+	y2mil("child_retcode:" << system_cmd.child_retcode);
+    }
+
+
+    void
+    SystemCmd::Executor::write_stdin()
+    {
+	const char* p = system_cmd.options.stdin_text.data();
+
+	while (true)
+	{
+	    const size_t count = min(system_cmd.options.stdin_text.size() - stdin_pos, (string::size_type)(1024));
+	    if (count == 0)
 	    {
-		SYSCALL_FAILED( "fcntl O_NONBLOCK failed for stdout" );
+		stdin_pipe.write_end.close();
+		pollfds[0].fd = -1;
+		break;
 	    }
-	    _pfds[2].fd = serr[0];
-	    if ( fcntl( _pfds[2].fd, F_SETFL, O_NONBLOCK )<0 )
+
+	    ssize_t write_ret = TEMP_FAILURE_RETRY(write(stdin_pipe.write_end.fd, &p[stdin_pos], count));
+	    if (write_ret < 0)
 	    {
-		SYSCALL_FAILED( "fcntl O_NONBLOCK failed for stderr" );
+		if (errno == EAGAIN)
+		    break;
+
+		SYSCALL_FAILED("write");
 	    }
-	    y2deb("sout:" << _pfds[1].fd << " serr:" << _pfds[2].fd);
 
-	    const int max_fd = getdtablesize();
+	    stdin_pos += write_ret;
+	}
+    }
 
-	    const TmpForExec args_p(make_args());
-	    const TmpForExec env_p(make_env());
 
-	    switch( (_cmdPid=fork()) )
+    void
+    SystemCmd::Executor::read_stdout()
+    {
+	fill_buffer("stdout", stdout_pipe.read_end.fd, stdout_buffer, system_cmd.stdout_lines);
+    }
+
+
+    void
+    SystemCmd::Executor::read_stderr()
+    {
+	fill_buffer("stderr", stderr_pipe.read_end.fd, stderr_buffer, system_cmd.stderr_lines);
+    }
+
+
+    void
+    SystemCmd::Executor::fill_buffer(const char* name, int fd, string& buffer, vector<string>& lines) const
+    {
+	// We need a loop here to read all data from fd since poll can set POLLIN and
+	// POLLHUP at the same time. Otherwise we can loose data.
+
+	char buffer2[1024];
+
+	while (true)
+	{
+	    ssize_t read_ret = TEMP_FAILURE_RETRY(read(fd, buffer2, sizeof(buffer2)));
+	    if (read_ret < 0)
 	    {
-		case 0: // child process
-		{
-		    // Do not use exit() here. Use _exit() instead.
+		if (errno == EAGAIN)
+		    break;
 
-		    // Only use async‐signal‐safe functions here, see fork(2) and
-		    // signal-safety(7).
+		SYSCALL_FAILED("read");
+	    }
 
-		    if (close(child_failure_info_pipe[0]) < 0)
-			_exit(125);
+	    buffer.append(buffer2, read_ret);
 
-		    if ( dup2( sin[0], STDIN_FILENO )<0 )
-			_exit(125);
-		    if ( dup2( sout[1], STDOUT_FILENO )<0 )
-			_exit(125);
-		    if ( dup2( serr[1], STDERR_FILENO )<0 )
-			_exit(125);
-		    if ( close( sin[1] )<0 )
-			_exit(125);
-		    if ( close( sout[0] )<0 )
-			_exit(125);
-		    if ( close( serr[0] )<0 )
-			_exit(125);
+	    split_buffer(name, buffer, lines);
 
-		    // Unfortunaltely close_range(2) is still too new. It is also not
-		    // mentioned in signal-safety(7).
+	    if ((size_t)(read_ret) < sizeof(buffer2))
+		break;
+	}
+    }
 
-		    for (int fd = 3; fd < max_fd; ++fd)
-			fcntl(fd, F_SETFD, FD_CLOEXEC);
 
-		    if (args().empty())
-		    {
-			_cmdRet = execle(SH_BIN, SH_BIN, "-c", command().c_str(), nullptr, env_p.get());
-		    }
-		    else
-		    {
-			_cmdRet = execvpe(args()[0].c_str(), args_p.get(), env_p.get());
-		    }
-
-		    // If we get here the exec has failed. Depending on errno we return an
-		    // error code like the shell does ('sh -c ...').
-
-		    ChildFailureInfo child_failure_info { 1, errno };
-		    write(child_failure_info_pipe[1], &child_failure_info, sizeof(child_failure_info));
-		    close(child_failure_info_pipe[1]);
-
-		    if (errno == ENOENT)
-			_exit(SHELL_RET_COMMAND_NOT_FOUND);
-		    if (errno == ENOEXEC || errno == EACCES || errno == EISDIR)
-			_exit(SHELL_RET_COMMAND_NOT_EXECUTABLE);
-		    _exit(125);
-		}
+    void
+    SystemCmd::Executor::split_buffer(const char* name, string& buffer, vector<string>& lines, bool finito) const
+    {
+	while (true)
+	{
+	    string::size_type pos = buffer.find('\n');
+	    if (pos == string::npos)
 		break;
 
-		case -1:
-		{
-		    _cmdRet = -1;
-		    SYSCALL_FAILED( "fork() failed" );
-		}
-		break;
-
-		default: // parent process
-		{
-		    if (close(child_failure_info_pipe[1]) != 0)
-			SYSCALL_FAILED("close(child_failure_info_pipe[1]) failed");
-
-		    // Read ChildFailureInfo. If the exec in the child succeeded the pipe
-		    // was closed (due to CLOEXEC) and reading fails. If the exec in the
-		    // child failed the information was written to the pipe and can be
-		    // used here in the parent.
-
-		    ChildFailureInfo child_failure_info;
-		    if (read(child_failure_info_pipe[0], &child_failure_info, sizeof(child_failure_info)) ==
-			sizeof(child_failure_info))
-		    {
-			y2err("exec failed: " << child_failure_info.errnum << " " <<
-			      stringerror(child_failure_info.errnum));
-		    }
-
-		    if (close(child_failure_info_pipe[0]) != 0)
-		        SYSCALL_FAILED("close(child_failure_info_pipe[0]) failed");
-
-		    if ( close( sin[0] ) < 0 )
-		    {
-			SYSCALL_FAILED_NOTHROW( "close( stdin ) in parent failed" );
-		    }
-		    if ( close( sout[1] )<0 )
-		    {
-			SYSCALL_FAILED_NOTHROW( "close( stdout ) in parent failed" );
-		    }
-		    if ( close( serr[1] )<0 )
-		    {
-			SYSCALL_FAILED_NOTHROW( "close( stderr ) in parent failed" );
-		    }
-
-		    _cmdRet = 0;
-
-                    _childStdin = fdopen( sin[1], "a" );
-		    if ( _childStdin == NULL )
-		    {
-			SYSCALL_FAILED_NOTHROW( "fdopen( stdin ) failed" );
-		    }
-
-		    _files[IDX_STDOUT] = fdopen( sout[0], "r" );
-		    if ( _files[IDX_STDOUT] == NULL )
-		    {
-			SYSCALL_FAILED_NOTHROW( "fdopen( stdout ) failed" );
-		    }
-		    _files[IDX_STDERR] = fdopen( serr[0], "r" );
-		    if ( _files[IDX_STDERR] == NULL )
-		    {
-			SYSCALL_FAILED_NOTHROW( "fdopen( stderr ) failed" );
-		    }
-
-		    doWait( _cmdRet );
-		    y2mil("stopwatch " << stopwatch << " for \"" << display_command() << "\"");
-		}
-		break;
-	    }
+	    add_line(name, buffer.substr(0, pos), lines);
+	    buffer.erase(0, pos + 1);
 	}
+
+	if (finito && !buffer.empty())
+	    add_line(name, buffer, lines);
+    }
+
+
+    void
+    SystemCmd::Executor::add_line(const char* name, const string& line, vector<string>& lines) const
+    {
+	if (lines.size() < system_cmd.options.log_line_limit)
+	    y2mil("line " << name << "[" << lines.size() << "] '" << line << "'");
 	else
-	{
-	    _cmdRet = -1;
-	}
-	if ( _cmdRet==-127 || _cmdRet==-1 )
-	{
-	    y2err("system (\"" << display_command() << "\") = " << _cmdRet);
-	}
-	checkOutput();
-	y2mil("system() Returns:" << _cmdRet);
-	if ( _cmdRet!=0 )
-	    logOutput();
-	return _cmdRet;
+	    y2deb("line " << name << "[" << lines.size() << "] '" << line << "'");
+
+	lines.push_back(line);
     }
 
 
-    bool
-    SystemCmd::doWait( int& cmdRet_ret )
-    {
-	int waitpidRet;
-	int cmdStatus;
-
-	do
-	{
-	    y2deb("[1] fd:" << _pfds[1].fd << " ev:" << hex << (unsigned)(_pfds[1].events) << dec << " "
-		  "[2] fd:" << _pfds[2].fd << " ev:" << hex << (unsigned)(_pfds[2].events));
-	    int sel = poll( _pfds, 3, 1000 );
-	    if (sel < 0)
-	    {
-		SYSCALL_FAILED_NOTHROW( "poll() failed" );
-	    }
-	    y2deb("poll ret:" << sel);
-	    if ( sel>0 )
-	    {
-                if ( _pfds[0].revents )
-                    sendStdin();
-                if ( _pfds[1].revents || _pfds[2].revents )
-                    checkOutput();
-	    }
-	    waitpidRet = waitpid( _cmdPid, &cmdStatus, WNOHANG );
-	    y2deb("Wait ret:" << waitpidRet);
-	}
-	while ( waitpidRet == 0 );
-
-	if ( waitpidRet != 0 )
-	{
-	    checkOutput();
-            if ( _childStdin )
-            {
-                fclose( _childStdin );
-                _childStdin = NULL;
-            }
-	    fclose( _files[IDX_STDOUT] );
-	    _files[IDX_STDOUT] = NULL;
-	    fclose( _files[IDX_STDERR] );
-	    _files[IDX_STDERR] = NULL;
-	    if (WIFEXITED(cmdStatus))
-	    {
-		cmdRet_ret = WEXITSTATUS(cmdStatus);
-		if ( cmdRet_ret == SHELL_RET_COMMAND_NOT_EXECUTABLE )
-		    ST_MAYBE_THROW(SystemCmdException(this, "Command not executable"), do_throw());
-		else if ( cmdRet_ret == SHELL_RET_COMMAND_NOT_FOUND )
-		    ST_MAYBE_THROW(CommandNotFoundException(this), do_throw());
-		else if ( cmdRet_ret > SHELL_RET_SIGNAL )
-		{
-		    std::stringstream msg;
-		    msg << "Caught signal #" << ( cmdRet_ret - SHELL_RET_SIGNAL );
-		    ST_MAYBE_THROW( SystemCmdException(this, msg.str()), do_throw());
-		}
-	    }
-	    else
-	    {
-		cmdRet_ret = -127;
-		ST_MAYBE_THROW(SystemCmdException(this, "Command failed"), do_throw());
-	    }
-	}
-
-	y2deb("Wait:" << waitpidRet << " pid:" << _cmdPid << " stat:" << cmdStatus <<
-	      " Ret:" << cmdRet_ret);
-	return waitpidRet != 0;
-    }
-
-
-    void
-    SystemCmd::invalidate()
-    {
-	for (int streamIndex = 0; streamIndex < 2; streamIndex++)
-	{
-	    _outputLines[streamIndex].clear();
-	    _newLineSeen[streamIndex] = true;
-	}
-    }
-
-
-    void
-    SystemCmd::checkOutput()
-    {
-	y2deb("NewLine out:" << _newLineSeen[IDX_STDOUT] << " err:" << _newLineSeen[IDX_STDERR]);
-	if (_files[IDX_STDOUT])
-	    getUntilEOF(_files[IDX_STDOUT], _outputLines[IDX_STDOUT], _newLineSeen[IDX_STDOUT], false);
-	if (_files[IDX_STDERR])
-	    getUntilEOF(_files[IDX_STDERR], _outputLines[IDX_STDERR], _newLineSeen[IDX_STDERR], true);
-	y2deb("NewLine out:" << _newLineSeen[IDX_STDOUT] << " err:" << _newLineSeen[IDX_STDERR]);
-    }
-
-
-    void
-    SystemCmd::sendStdin()
-    {
-        if ( ! _childStdin )
-            return;
-
-        if (!options.stdin_text.empty())
-        {
-            string::size_type count = 0;
-            string::size_type len   = options.stdin_text.size();
-            int result = 1;
-
-            while ( count < len && result > 0 )
-                result = fputc( options.stdin_text[ count++ ], _childStdin );
-
-            options.stdin_text.erase( 0, count );
-            // y2deb( count << " characters written; left over: \"" << _stdinText << "\"" );
-        }
-
-        if (options.stdin_text.empty())
-        {
-            fclose( _childStdin );
-            _childStdin = NULL;
-            _pfds[0].fd = -1; // ignore for poll() from now on
-        }
-    }
-
-
-#define BUF_LEN 256
-
-    void
-    SystemCmd::getUntilEOF( FILE* file, vector<string>& lines,
-			    bool& newLineSeen_ret, bool isStderr ) const
-    {
-	size_t oldSize = lines.size();
-	char buffer[BUF_LEN];
-	int count;
-	int c;
-	string text;
-
-	clearerr( file );
-	count = 0;
-	c = EOF;
-	while ( (c=fgetc(file)) != EOF )
-	{
-	    buffer[count++] = c;
-	    if ( count==sizeof(buffer)-1 )
-	    {
-		buffer[count] = 0;
-		extractNewline( buffer, count, newLineSeen_ret, text, lines );
-		count = 0;
-	    }
-	    c = EOF;
-	}
-	if ( count>0 )
-	{
-	    buffer[count] = 0;
-	    extractNewline( buffer, count, newLineSeen_ret, text, lines );
-	}
-	if ( text.length() > 0 )
-	{
-	    if ( newLineSeen_ret )
-	    {
-		addLine( text, lines );
-	    }
-	    else
-	    {
-		lines[lines.size()-1] += text;
-	    }
-	    newLineSeen_ret = false;
-	}
-	else
-	{
-	    newLineSeen_ret = true;
-	}
-	y2deb("text:" << text << " NewLine:" << newLineSeen_ret);
-	if ( oldSize != lines.size() )
-	{
-	    y2mil("pid:" << _cmdPid << " added lines:" << lines.size() - oldSize << " stderr:" << isStderr);
-	}
-    }
-
-
-    void
-    SystemCmd::extractNewline(const string& buffer, int count, bool& newLineSeen_ret,
-			      string& text, vector<string>& lines) const
-    {
-	string::size_type index;
-
-	text += buffer;
-	while ( (index=text.find( '\n' )) != string::npos )
-	{
-	    if ( !newLineSeen_ret )
-	    {
-		lines[lines.size()-1] += text.substr( 0, index );
-	    }
-	    else
-	    {
-		addLine( text.substr( 0, index ), lines );
-	    }
-	    text.erase( 0, index+1 );
-	    newLineSeen_ret = true;
-	}
-	y2deb("text: \"" << text << "\" newLineSeen: " << newLineSeen_ret);
-    }
-
-
-    void
-    SystemCmd::addLine(const string& text, vector<string>& lines) const
-    {
-	if (lines.size() < options.log_line_limit)
-	{
-	    y2mil("Adding Line " << lines.size() + 1 << " \"" << text << "\"");
-	}
-	else
-	{
-	    y2deb("Adding Line " << lines.size() + 1 << " \"" << text << "\"");
-	}
-
-	lines.push_back(text);
-    }
-
-
-    void
-    SystemCmd::logOutput() const
-    {
-	unsigned lineCount = stderr().size();
-	if (lineCount <= options.log_line_limit)
-	{
-	    for (const string& line : stderr())
-		y2mil("stderr:" << line);
-	}
-	else
-	{
-	    for (unsigned i = 0; i < options.log_line_limit / 2; ++i)
-		y2mil("stderr:" << stderr()[i]);
-
-	    y2mil("stderr omitting lines");
-
-	    for (unsigned i = lineCount - options.log_line_limit / 2; i < lineCount; ++i)
-		y2mil("stderr:" << stderr()[i]);
-	}
-
-	lineCount = stdout().size();
-	if (lineCount <= options.log_line_limit)
-	{
-	    for (const string& line : stdout())
-                y2mil("stdout:" << line);
-	}
-	else
-	{
-	    for (unsigned i = 0; i < options.log_line_limit / 2; ++i)
-		y2mil("stdout:" << stdout()[i]);
-
-	    y2mil("stdout omitting lines");
-
-	    for (unsigned i = lineCount - options.log_line_limit / 2; i < lineCount; ++i)
-		y2mil("stdout:" << stdout()[i]);
-	}
-    }
-
-
-    SystemCmd::TmpForExec::~TmpForExec()
-    {
-	for (char* v : values)
-	    free(v);
-    }
-
-
-    SystemCmd::TmpForExec
-    SystemCmd::make_args() const
+    TmpForExec
+    SystemCmd::Executor::make_args() const
     {
 	vector<char*> args;
 
-	for (const string& v : options.args)
+	for (const string& v : system_cmd.options.args)
 	{
 	    args.push_back(strdup(v.c_str()));
 	}
@@ -768,8 +722,8 @@ namespace storage
     }
 
 
-    SystemCmd::TmpForExec
-    SystemCmd::make_env() const
+    TmpForExec
+    SystemCmd::Executor::make_env() const
     {
 	// Environment variables should be present only once in the environment.
 	// https://pubs.opengroup.org/onlinepubs/009695399/basedefs/xbd_chap08.html
@@ -779,7 +733,7 @@ namespace storage
 	for (char** v = environ; *v != NULL; ++v)
 	    env.push_back(strdup(*v));
 
-	for (const string& v : options.env)
+	for (const string& v : system_cmd.options.env)
 	{
 	    string::size_type pos = v.find("=");
 	    if (pos == string::npos)
