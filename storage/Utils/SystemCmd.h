@@ -25,8 +25,6 @@
 #define STORAGE_SYSTEM_CMD_H
 
 
-#include <sys/poll.h>
-#include <cstdio>
 #include <string>
 #include <vector>
 #include <functional>
@@ -80,9 +78,7 @@ namespace storage
 	struct Options
 	{
 	    Options(const string& command, ThrowBehaviour throw_behaviour = NoThrow);
-
 	    Options(const Args& args, ThrowBehaviour throw_behaviour = NoThrow);
-
 	    Options(std::initializer_list<string> init, ThrowBehaviour throw_behaviour = NoThrow);
 
 	    /**
@@ -97,6 +93,9 @@ namespace storage
 
 	    /**
 	     * Should exceptions be thrown or not?
+	     *
+	     * For fundamental fatal errors, e.g. pipe(), fork(), or dup() failures, an
+	     * exception is thrown in any case. The system seems to be in Dutch anyway.
 	     */
 	    ThrowBehaviour throw_behaviour = NoThrow;
 
@@ -163,28 +162,14 @@ namespace storage
 	SystemCmd(std::initializer_list<string> init, ThrowBehaviour throw_behaviour = NoThrow);
 
 	/**
-	 * Destructor.
+	 * Return the output lines collected on stdout.
 	 */
-	~SystemCmd();
-
-    private:
+	const vector<string>& stdout() const { return stdout_lines; }
 
 	/**
-	 * Execute the specified command in the foreground and return its exit code.
-	 **/
-	int execute();
-
-    public:
-
-	/**
-	 * Return the output lines collected on stdout so far.
+	 * Return the output lines collected on stderr.
 	 */
-	const vector<string>& stdout() const { return _outputLines[IDX_STDOUT]; }
-
-	/**
-	 * Return the output lines collected on stderr so far.
-	 */
-	const vector<string>& stderr() const { return _outputLines[IDX_STDERR]; }
+	const vector<string>& stderr() const { return stderr_lines; }
 
 	/**
 	 * Return the command executed.
@@ -204,9 +189,7 @@ namespace storage
 	/**
 	 * Return the exit code of the command.
 	 */
-	int retcode() const { return _cmdRet; }
-
-    public:
+	int retcode() const { return child_retcode; }
 
 	/**
 	 * Quotes and protects a single string for shell execution.
@@ -215,70 +198,21 @@ namespace storage
 
     private:
 
-	enum OutputStream { IDX_STDOUT, IDX_STDERR };
+	class Executor;
 
-	void init();
-	void cleanup();
-	void invalidate();
-	int doExecute();
-	bool doWait(int& cmdRet_ret);
-	void checkOutput();
-        void sendStdin();
-	void getUntilEOF(FILE* file, vector<string>& lines,
-			 bool& newLineSeen_ret, bool isStderr) const;
-	void extractNewline(const string& buffer, int count, bool& newLineSeen_ret,
-			    string& text, vector<string>& lines) const;
-	void addLine(const string& text, vector<string>& lines) const;
-
-	void logOutput() const;
+	void execute_with_mockup();
+	void execute();
 
 	bool do_throw() const { return options.throw_behaviour == DoThrow; }
 
 	string mockup_key() const;
 
-	Options options;
+	const Options options;
 
-	FILE* _files[2];
-        FILE* _childStdin;
-	vector<string> _outputLines[2];
-	bool _newLineSeen[2];
-	int _cmdRet = 0;
-	int _cmdPid = 0;
-	struct pollfd _pfds[3];
+	vector<string> stdout_lines;
+	vector<string> stderr_lines;
 
-
-	/**
-	 * Class to tempararily hold copies for execle() and execvpe().
-	 */
-	class TmpForExec
-	{
-	public:
-
-	    TmpForExec(const vector<char*>& values) : values(values) {}
-	    ~TmpForExec();
-
-	    char* const * get() const { return &values[0]; }
-
-	private:
-
-	    vector<char*> values;
-
-	};
-
-
-	/**
-	 * Constructs the args for the child process.
-	 *
-	 * Not async‐signal‐safe, see fork(2) and signal-safety(7).
-	 */
-	TmpForExec make_args() const;
-
-	/**
-	 * Constructs the environment for the child process.
-	 *
-	 * Not async‐signal‐safe, see fork(2) and signal-safety(7).
-	 */
-	TmpForExec make_env() const;
+	int child_retcode = -1;
 
     };
 
@@ -292,28 +226,24 @@ namespace storage
     class SystemCmdException : public Exception
     {
     public:
-	SystemCmdException( const SystemCmd * sysCmd, const string & msg )
-	    : Exception( "" )
-	{
-	    _cmdRet = -1;
 
-	    if ( sysCmd )
+	SystemCmdException(const SystemCmd* system_cmd, const string& msg)
+	    : Exception("")
+	{
+	    if (system_cmd)
 	    {
 		// Copy relevant information from sysCmd because it might go
 		// out of scope while this exception still exists.
-		_cmd = sysCmd->display_command();
-		setMsg( msg + ": \"" + _cmd + "\"" );
-		_cmdRet = sysCmd->retcode();
-		_stderr = sysCmd->stderr();
+		_cmd = system_cmd->display_command();
+		setMsg(msg + ": \"" + _cmd + "\"");
+		_cmd_ret = system_cmd->retcode();
+		_stderr = system_cmd->stderr();
 	    }
 	    else
 	    {
 		setMsg( msg );
 	    }
 	}
-
-	virtual ~SystemCmdException() noexcept
-	    {}
 
 	/**
 	 * Return the command that was to be called with all arguments.
@@ -325,7 +255,7 @@ namespace storage
 	 * not always be meaningful, e.g. if fork() failed or if the command
 	 * could not even be started.
 	 */
-	int cmdRet() const { return _cmdRet; }
+	int cmdRet() const { return _cmd_ret; }
 
 	/**
 	 * Return the stderr output of the command. If the command could not be
@@ -334,9 +264,11 @@ namespace storage
 	const vector<string> & stderr() const { return _stderr; }
 
     protected:
+
 	string _cmd;
-	int    _cmdRet;
+	int _cmd_ret = -1;
 	vector<string> _stderr;
+
     };
 
 
@@ -348,16 +280,15 @@ namespace storage
      * The purpose of this class is to make this special case easily
      * distinguishable from other error cases (command installed, but failed
      * for some reason).
-     **/
+     */
     class CommandNotFoundException : public SystemCmdException
     {
     public:
-	CommandNotFoundException( const SystemCmd * sysCmd )
-	    : SystemCmdException( sysCmd, "Command not found" )
+
+	CommandNotFoundException(const SystemCmd* system_cmd)
+	    : SystemCmdException(system_cmd, "Command not found")
 	    {}
 
-	virtual ~CommandNotFoundException() noexcept
-	    {}
     };
 
 

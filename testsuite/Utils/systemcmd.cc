@@ -152,6 +152,21 @@ BOOST_AUTO_TEST_CASE(pipe_stdin_args)
 }
 
 
+BOOST_AUTO_TEST_CASE(pipe_huge_stdin_args)
+{
+    vector<string> stdout;
+    for (int i = 0; i < 100000; ++i)
+	stdout.push_back("Hello world, always keep on smiling!");
+
+    SystemCmd::Options cmd_options({ CAT_BIN });
+    cmd_options.stdin_text = boost::join(stdout, "\n");
+
+    SystemCmd cmd(cmd_options);
+
+    BOOST_CHECK_EQUAL(join(cmd.stdout()), join(stdout));
+}
+
+
 BOOST_AUTO_TEST_CASE(retcode_42_cmd)
 {
     SystemCmd cmd("../helpers/retcode 42");
