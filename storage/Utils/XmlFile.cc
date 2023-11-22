@@ -22,6 +22,7 @@
 
 
 #include <string.h>
+#include <libxml/parser.h>
 
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/ExceptionImpl.h"
