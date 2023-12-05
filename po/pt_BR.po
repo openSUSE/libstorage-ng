@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-31 13:28+0200\n"
-"PO-Revision-Date: 2023-03-31 20:14+0000\n"
+"PO-Revision-Date: 2023-12-05 21:02+0000\n"
 "Last-Translator: Luiz Fernando Ranghetti <elchevive68@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.opensuse.org/projects/"
 "libstorage/ng-master/pt_BR/>\n"
@@ -397,9 +397,9 @@ msgstr "Limpar indicador de inicialização antigo da partição %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Clear no-automount flag of partition %1$s"
-msgstr "Limpar indicador de inicialização da partição %1$s"
+msgstr "Limpar indicador de sem montagem automática da partição %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -443,9 +443,9 @@ msgstr "Limpando indicador de inicialização antigo da partição %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Clearing no-automount flag of partition %1$s"
-msgstr "Limpando indicador de inicialização da partição %1$s"
+msgstr "Limpando indicador de sem montagem automática da partição %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -2982,9 +2982,9 @@ msgstr "Defina limites para qgrupo de subvolume %1$s em %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Set no-automount flag of partition %1$s"
-msgstr "Definir indicador de inicialização da partição %1$s"
+msgstr "Definir indicador de sem montagem automática da partição %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -3101,9 +3101,9 @@ msgstr "Definindo limites para qgrupo de subvolume %1$s em %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting no-automount flag of partition %1$s"
-msgstr "Definindo indicador de inicialização da partição %1$s"
+msgstr "Definindo indicador de sem montagem automática da partição %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
