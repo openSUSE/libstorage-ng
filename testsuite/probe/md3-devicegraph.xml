@@ -14,9 +14,6 @@
       <udev-path>pci-0000:00:1f.2-ata-2</udev-path>
       <udev-path>pci-0000:00:1f.2-scsi-1:0:0:0</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c</udev-id>
       <topology/>
       <range>256</range>
       <rotational>true</rotational>
@@ -34,9 +31,6 @@
       <udev-path>pci-0000:00:1f.2-ata-1</udev-path>
       <udev-path>pci-0000:00:1f.2-scsi-0:0:0:0</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VB117fcb28-1410b7be</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VB117fcb28-1410b7be</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VB117fcb28-1410b7be</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VB117fcb28-1410b7be</udev-id>
       <topology/>
       <range>256</range>
       <rotational>true</rotational>
@@ -178,9 +172,6 @@
       <udev-path>pci-0000:00:1f.2-ata-2-part1</udev-path>
       <udev-path>pci-0000:00:1f.2-scsi-1:0:0:0-part1</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c-part1</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part1</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part1</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part1</udev-id>
       <type>primary</type>
       <id>131</id>
       <uuid>ce47be2c-9ab1-4c28-9ff5-a304b4768830</uuid>
@@ -198,9 +189,6 @@
       <udev-path>pci-0000:00:1f.2-ata-2-part2</udev-path>
       <udev-path>pci-0000:00:1f.2-scsi-1:0:0:0-part2</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c-part2</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part2</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part2</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part2</udev-id>
       <type>primary</type>
       <id>131</id>
       <uuid>250e5184-c37d-4ff3-adaa-f60571af2c5c</uuid>
@@ -218,9 +206,6 @@
       <udev-path>pci-0000:00:1f.2-ata-2-part3</udev-path>
       <udev-path>pci-0000:00:1f.2-scsi-1:0:0:0-part3</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c-part3</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part3</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part3</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part3</udev-id>
       <type>primary</type>
       <id>131</id>
       <uuid>fae69e0b-9f42-426d-955a-5eca43f43cfe</uuid>
@@ -238,9 +223,6 @@
       <udev-path>pci-0000:00:1f.2-ata-2-part4</udev-path>
       <udev-path>pci-0000:00:1f.2-scsi-1:0:0:0-part4</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c-part4</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part4</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part4</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part4</udev-id>
       <type>primary</type>
       <id>131</id>
       <uuid>a2114d3d-cb17-4b40-8c86-124e82431fb1</uuid>
@@ -258,9 +240,6 @@
       <udev-path>pci-0000:00:1f.2-ata-2-part5</udev-path>
       <udev-path>pci-0000:00:1f.2-scsi-1:0:0:0-part5</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c-part5</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part5</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part5</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part5</udev-id>
       <type>primary</type>
       <id>131</id>
       <uuid>e3f1842e-53b2-46a4-85eb-ebd7e2a0200f</uuid>
@@ -278,9 +257,6 @@
       <udev-path>pci-0000:00:1f.2-ata-2-part6</udev-path>
       <udev-path>pci-0000:00:1f.2-scsi-1:0:0:0-part6</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c-part6</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part6</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part6</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part6</udev-id>
       <type>primary</type>
       <id>131</id>
       <uuid>4307f060-eec3-4c56-be05-ab1cd1f91cd3</uuid>
@@ -298,9 +274,6 @@
       <udev-path>pci-0000:00:1f.2-ata-2-part7</udev-path>
       <udev-path>pci-0000:00:1f.2-scsi-1:0:0:0-part7</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c-part7</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part7</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part7</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part7</udev-id>
       <type>primary</type>
       <id>131</id>
       <uuid>7305ac2d-cca9-4650-8425-824bbb54bdd7</uuid>
@@ -318,9 +291,6 @@
       <udev-path>pci-0000:00:1f.2-ata-2-part8</udev-path>
       <udev-path>pci-0000:00:1f.2-scsi-1:0:0:0-part8</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c-part8</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part8</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part8</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part8</udev-id>
       <type>primary</type>
       <id>131</id>
       <uuid>e41b0358-9364-4db4-8502-f69f063c510e</uuid>
@@ -338,9 +308,6 @@
       <udev-path>pci-0000:00:1f.2-ata-2-part9</udev-path>
       <udev-path>pci-0000:00:1f.2-scsi-1:0:0:0-part9</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c-part9</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part9</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part9</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part9</udev-id>
       <type>primary</type>
       <id>131</id>
       <uuid>b2c0e9c3-c82b-4df5-9fef-0ab55eb8f532</uuid>
@@ -358,9 +325,6 @@
       <udev-path>pci-0000:00:1f.2-ata-2-part10</udev-path>
       <udev-path>pci-0000:00:1f.2-scsi-1:0:0:0-part10</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c-part10</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part10</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part10</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part10</udev-id>
       <type>primary</type>
       <id>131</id>
       <uuid>a5f92ac6-b053-402b-9aba-9888dd63e4cf</uuid>
@@ -378,9 +342,6 @@
       <udev-path>pci-0000:00:1f.2-ata-2-part11</udev-path>
       <udev-path>pci-0000:00:1f.2-scsi-1:0:0:0-part11</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c-part11</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part11</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part11</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part11</udev-id>
       <type>primary</type>
       <id>131</id>
       <uuid>45c294f7-36b9-4a7b-9f80-949fcb546a68</uuid>
@@ -398,9 +359,6 @@
       <udev-path>pci-0000:00:1f.2-ata-2-part12</udev-path>
       <udev-path>pci-0000:00:1f.2-scsi-1:0:0:0-part12</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VBcc916f5f-e2309f1c-part12</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part12</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part12</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VBcc916f5f-e2309f1c-part12</udev-id>
       <type>primary</type>
       <id>131</id>
       <uuid>d5132300-a1a7-466b-8200-7e2d4ca8fe14</uuid>
@@ -422,9 +380,6 @@
       <udev-path>pci-0000:00:1f.2-ata-1-part1</udev-path>
       <udev-path>pci-0000:00:1f.2-scsi-0:0:0:0-part1</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VB117fcb28-1410b7be-part1</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VB117fcb28-1410b7be-part1</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VB117fcb28-1410b7be-part1</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VB117fcb28-1410b7be-part1</udev-id>
       <type>primary</type>
       <id>131</id>
       <legacy-boot>true</legacy-boot>
@@ -443,9 +398,6 @@
       <udev-path>pci-0000:00:1f.2-ata-1-part2</udev-path>
       <udev-path>pci-0000:00:1f.2-scsi-0:0:0:0-part2</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VB117fcb28-1410b7be-part2</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VB117fcb28-1410b7be-part2</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VB117fcb28-1410b7be-part2</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VB117fcb28-1410b7be-part2</udev-id>
       <type>primary</type>
       <id>257</id>
       <uuid>2a68a80b-94f7-4770-abf5-058f9660e791</uuid>
@@ -463,9 +415,6 @@
       <udev-path>pci-0000:00:1f.2-ata-1-part3</udev-path>
       <udev-path>pci-0000:00:1f.2-scsi-0:0:0:0-part3</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VB117fcb28-1410b7be-part3</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VB117fcb28-1410b7be-part3</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VB117fcb28-1410b7be-part3</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VB117fcb28-1410b7be-part3</udev-id>
       <type>primary</type>
       <id>131</id>
       <uuid>8e2978ee-6ecb-4f3d-98d6-3a19ae5b1744</uuid>

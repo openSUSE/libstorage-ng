@@ -14,9 +14,6 @@
       <udev-path>pci-0000:00:1f.2-ata-2</udev-path>
       <udev-path>pci-0000:00:1f.2-scsi-1:0:0:0</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VB5b99f565-832be514</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VB5b99f565-832be514</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VB5b99f565-832be514</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VB5b99f565-832be514</udev-id>
       <topology/>
       <range>256</range>
       <rotational>true</rotational>
@@ -34,9 +31,6 @@
       <udev-path>pci-0000:00:1f.2-ata-1</udev-path>
       <udev-path>pci-0000:00:1f.2-scsi-0:0:0:0</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VBfe1a188b-41f5c00a</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VBfe1a188b-41f5c00a</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VBfe1a188b-41f5c00a</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VBfe1a188b-41f5c00a</udev-id>
       <topology/>
       <range>256</range>
       <transport>SATA</transport>
@@ -57,9 +51,6 @@
       <udev-path>pci-0000:00:1f.2-ata-2-part1</udev-path>
       <udev-path>pci-0000:00:1f.2-scsi-1:0:0:0-part1</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VB5b99f565-832be514-part1</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VB5b99f565-832be514-part1</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VB5b99f565-832be514-part1</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VB5b99f565-832be514-part1</udev-id>
       <type>primary</type>
       <id>131</id>
       <uuid>829e28a6-bc72-48c8-8608-fd4d48c12441</uuid>
@@ -77,9 +68,6 @@
       <udev-path>pci-0000:00:1f.2-ata-2-part2</udev-path>
       <udev-path>pci-0000:00:1f.2-scsi-1:0:0:0-part2</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VB5b99f565-832be514-part2</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VB5b99f565-832be514-part2</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VB5b99f565-832be514-part2</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VB5b99f565-832be514-part2</udev-id>
       <type>primary</type>
       <id>131</id>
       <uuid>994b6478-e56f-43db-a06b-4ac243fae03c</uuid>
@@ -100,9 +88,6 @@
       <udev-path>pci-0000:00:1f.2-ata-1-part1</udev-path>
       <udev-path>pci-0000:00:1f.2-scsi-0:0:0:0-part1</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VBfe1a188b-41f5c00a-part1</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VBfe1a188b-41f5c00a-part1</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VBfe1a188b-41f5c00a-part1</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VBfe1a188b-41f5c00a-part1</udev-id>
       <type>primary</type>
       <id>130</id>
     </Partition>
@@ -119,9 +104,6 @@
       <udev-path>pci-0000:00:1f.2-ata-1-part2</udev-path>
       <udev-path>pci-0000:00:1f.2-scsi-0:0:0:0-part2</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VBfe1a188b-41f5c00a-part2</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VBfe1a188b-41f5c00a-part2</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VBfe1a188b-41f5c00a-part2</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VBfe1a188b-41f5c00a-part2</udev-id>
       <type>primary</type>
       <id>131</id>
       <boot>true</boot>
@@ -139,9 +121,6 @@
       <udev-path>pci-0000:00:1f.2-ata-1-part3</udev-path>
       <udev-path>pci-0000:00:1f.2-scsi-0:0:0:0-part3</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VBfe1a188b-41f5c00a-part3</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VBfe1a188b-41f5c00a-part3</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VBfe1a188b-41f5c00a-part3</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VBfe1a188b-41f5c00a-part3</udev-id>
       <type>primary</type>
       <id>131</id>
     </Partition>
@@ -158,9 +137,6 @@
       <udev-path>pci-0000:00:1f.2-ata-1-part4</udev-path>
       <udev-path>pci-0000:00:1f.2-scsi-0:0:0:0-part4</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VBfe1a188b-41f5c00a-part4</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VBfe1a188b-41f5c00a-part4</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VBfe1a188b-41f5c00a-part4</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VBfe1a188b-41f5c00a-part4</udev-id>
       <type>primary</type>
       <id>131</id>
     </Partition>

@@ -14,10 +14,6 @@
       <topology/>
       <udev-path>pci-0000:00:11.5-ata-1</udev-path>
       <udev-id>ata-ST3250620AS_5QE2RQKV</udev-id>
-      <udev-id>scsi-0ATA_ST3250620AS_5QE2RQKV</udev-id>
-      <udev-id>scsi-1ATA_ST3250620AS_5QE2RQKV</udev-id>
-      <udev-id>scsi-30000000000000000</udev-id>
-      <udev-id>scsi-SATA_ST3250620AS_5QE2RQKV</udev-id>
       <udev-id>wwn-0x0000000000000000</udev-id>
       <range>256</range>
       <rotational>true</rotational>
@@ -35,10 +31,7 @@
       <topology/>
       <udev-path>pci-0000:00:11.5-ata-6</udev-path>
       <udev-id>ata-HGST_HSH721414ALE6M4_VEG0JW4N</udev-id>
-      <udev-id>scsi-0ATA_HGST_HSH721414AL_VEG0JW4N</udev-id>
-      <udev-id>scsi-1ATA_HGST_HSH721414ALE6M4_VEG0JW4N</udev-id>
       <udev-id>scsi-35000cca25bc03f59</udev-id>
-      <udev-id>scsi-SATA_HGST_HSH721414AL_VEG0JW4N</udev-id>
       <udev-id>wwn-0x5000cca25bc03f59</udev-id>
       <range>256</range>
       <rotational>true</rotational>
@@ -61,10 +54,6 @@
       <topology/>
       <udev-path>pci-0000:00:11.5-ata-1-part1</udev-path>
       <udev-id>ata-ST3250620AS_5QE2RQKV-part1</udev-id>
-      <udev-id>scsi-0ATA_ST3250620AS_5QE2RQKV-part1</udev-id>
-      <udev-id>scsi-1ATA_ST3250620AS_5QE2RQKV-part1</udev-id>
-      <udev-id>scsi-30000000000000000-part1</udev-id>
-      <udev-id>scsi-SATA_ST3250620AS_5QE2RQKV-part1</udev-id>
       <udev-id>wwn-0x0000000000000000-part1</udev-id>
       <type>primary</type>
       <id>257</id>
@@ -83,10 +72,6 @@
       <topology/>
       <udev-path>pci-0000:00:11.5-ata-1-part2</udev-path>
       <udev-id>ata-ST3250620AS_5QE2RQKV-part2</udev-id>
-      <udev-id>scsi-0ATA_ST3250620AS_5QE2RQKV-part2</udev-id>
-      <udev-id>scsi-1ATA_ST3250620AS_5QE2RQKV-part2</udev-id>
-      <udev-id>scsi-30000000000000000-part2</udev-id>
-      <udev-id>scsi-SATA_ST3250620AS_5QE2RQKV-part2</udev-id>
       <udev-id>wwn-0x0000000000000000-part2</udev-id>
       <type>primary</type>
       <id>131</id>
@@ -106,10 +91,6 @@
       <topology/>
       <udev-path>pci-0000:00:11.5-ata-1-part3</udev-path>
       <udev-id>ata-ST3250620AS_5QE2RQKV-part3</udev-id>
-      <udev-id>scsi-0ATA_ST3250620AS_5QE2RQKV-part3</udev-id>
-      <udev-id>scsi-1ATA_ST3250620AS_5QE2RQKV-part3</udev-id>
-      <udev-id>scsi-30000000000000000-part3</udev-id>
-      <udev-id>scsi-SATA_ST3250620AS_5QE2RQKV-part3</udev-id>
       <udev-id>wwn-0x0000000000000000-part3</udev-id>
       <type>primary</type>
       <id>130</id>

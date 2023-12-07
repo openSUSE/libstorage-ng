@@ -14,9 +14,6 @@
       <udev-path>pci-0000:00:1f.2-ata-1</udev-path>
       <udev-path>pci-0000:00:1f.2-ata-1.0</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VB098dbc19-95da593f</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VB098dbc19-95da593f</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VB098dbc19-95da593f</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VB098dbc19-95da593f</udev-id>
       <range>256</range>
       <rotational>true</rotational>
     </Disk>
@@ -37,9 +34,6 @@
       <udev-path>pci-0000:00:1f.2-ata-1-part1</udev-path>
       <udev-path>pci-0000:00:1f.2-ata-1.0-part1</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VB098dbc19-95da593f-part1</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VB098dbc19-95da593f-part1</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VB098dbc19-95da593f-part1</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VB098dbc19-95da593f-part1</udev-id>
       <type>primary</type>
       <id>257</id>
       <uuid>e920e60d-4a30-4d5b-b0ea-6717a626f558</uuid>
@@ -57,9 +51,6 @@
       <udev-path>pci-0000:00:1f.2-ata-1-part2</udev-path>
       <udev-path>pci-0000:00:1f.2-ata-1.0-part2</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VB098dbc19-95da593f-part2</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VB098dbc19-95da593f-part2</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VB098dbc19-95da593f-part2</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VB098dbc19-95da593f-part2</udev-id>
       <type>primary</type>
       <id>131</id>
       <legacy-boot>true</legacy-boot>
@@ -78,9 +69,6 @@
       <udev-path>pci-0000:00:1f.2-ata-1-part3</udev-path>
       <udev-path>pci-0000:00:1f.2-ata-1.0-part3</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VB098dbc19-95da593f-part3</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VB098dbc19-95da593f-part3</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VB098dbc19-95da593f-part3</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VB098dbc19-95da593f-part3</udev-id>
       <type>primary</type>
       <id>130</id>
       <uuid>55b4e909-62fa-44d8-85de-4ca90d603f5e</uuid>
