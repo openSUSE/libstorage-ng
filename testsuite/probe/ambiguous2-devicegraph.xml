@@ -14,10 +14,7 @@
       <udev-path>pci-0000:00:17.0-ata-3</udev-path>
       <udev-path>pci-0000:00:17.0-ata-3.0</udev-path>
       <udev-id>ata-TOSHIBA_MK3261GSYN_Y169P5D6T</udev-id>
-      <udev-id>scsi-0ATA_TOSHIBA_MK3261GS_Y169P5D6T</udev-id>
-      <udev-id>scsi-1ATA_TOSHIBA_MK3261GSYN_Y169P5D6T</udev-id>
       <udev-id>scsi-350000393a258296e</udev-id>
-      <udev-id>scsi-SATA_TOSHIBA_MK3261GS_Y169P5D6T</udev-id>
       <udev-id>wwn-0x50000393a258296e</udev-id>
       <range>256</range>
       <rotational>true</rotational>

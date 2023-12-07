@@ -15,7 +15,6 @@
       <udev-path>ccw-0.0.fa00-zfcp-0x500507630500873a:0x401340b400000000</udev-path>
       <udev-path>scsi-0:0:0:1085554707</udev-path>
       <udev-id>scsi-36005076305ffc73a00000000000013b4</udev-id>
-      <udev-id>scsi-SIBM_2107900_75L237113B4</udev-id>
       <udev-id>wwn-0x6005076305ffc73a00000000000013b4</udev-id>
       <topology/>
       <range>256</range>
@@ -35,7 +34,6 @@
       <udev-path>ccw-0.0.fa00-zfcp-0x500507630500873a:0x401340b500000000</udev-path>
       <udev-path>scsi-0:0:0:1085620243</udev-path>
       <udev-id>scsi-36005076305ffc73a00000000000013b5</udev-id>
-      <udev-id>scsi-SIBM_2107900_75L237113B5</udev-id>
       <udev-id>wwn-0x6005076305ffc73a00000000000013b5</udev-id>
       <topology/>
       <range>256</range>
@@ -55,7 +53,6 @@
       <udev-path>ccw-0.0.fa00-zfcp-0x500507630510473a:0x401340b400000000</udev-path>
       <udev-path>scsi-0:0:1:1085554707</udev-path>
       <udev-id>scsi-36005076305ffc73a00000000000013b4</udev-id>
-      <udev-id>scsi-SIBM_2107900_75L237113B4</udev-id>
       <udev-id>wwn-0x6005076305ffc73a00000000000013b4</udev-id>
       <topology/>
       <range>256</range>
@@ -75,7 +72,6 @@
       <udev-path>ccw-0.0.fa00-zfcp-0x500507630510473a:0x401340b500000000</udev-path>
       <udev-path>scsi-0:0:1:1085620243</udev-path>
       <udev-id>scsi-36005076305ffc73a00000000000013b5</udev-id>
-      <udev-id>scsi-SIBM_2107900_75L237113B5</udev-id>
       <udev-id>wwn-0x6005076305ffc73a00000000000013b5</udev-id>
       <topology/>
       <range>256</range>

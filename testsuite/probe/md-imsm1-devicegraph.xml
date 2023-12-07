@@ -13,9 +13,6 @@
       </region>
       <udev-path>pci-0000:00:1f.2-ata-4</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VBb7981c42-298aa589</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VBb7981c42-298aa589</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VBb7981c42-298aa589</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VBb7981c42-298aa589</udev-id>
       <topology/>
       <range>256</range>
       <rotational>true</rotational>
@@ -32,9 +29,6 @@
       </region>
       <udev-path>pci-0000:00:1f.2-ata-2</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VB6a9bf539-bed09c6d</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VB6a9bf539-bed09c6d</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VB6a9bf539-bed09c6d</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VB6a9bf539-bed09c6d</udev-id>
       <topology/>
       <range>256</range>
       <rotational>true</rotational>
@@ -51,9 +45,6 @@
       </region>
       <udev-path>pci-0000:00:1f.2-ata-3</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VBe0e2de48-b05a036b</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VBe0e2de48-b05a036b</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VBe0e2de48-b05a036b</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VBe0e2de48-b05a036b</udev-id>
       <topology/>
       <range>256</range>
       <rotational>true</rotational>
@@ -70,9 +61,6 @@
       </region>
       <udev-path>pci-0000:00:1f.2-ata-1</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VB777f5d67-56603f01</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VB777f5d67-56603f01</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VB777f5d67-56603f01</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VB777f5d67-56603f01</udev-id>
       <topology/>
       <range>256</range>
       <transport>SATA</transport>
@@ -144,9 +132,6 @@
       </region>
       <udev-path>pci-0000:00:1f.2-ata-1-part1</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VB777f5d67-56603f01-part1</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VB777f5d67-56603f01-part1</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VB777f5d67-56603f01-part1</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VB777f5d67-56603f01-part1</udev-id>
       <type>primary</type>
       <id>130</id>
     </Partition>
@@ -162,9 +147,6 @@
       </region>
       <udev-path>pci-0000:00:1f.2-ata-1-part2</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VB777f5d67-56603f01-part2</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VB777f5d67-56603f01-part2</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VB777f5d67-56603f01-part2</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VB777f5d67-56603f01-part2</udev-id>
       <type>primary</type>
       <id>131</id>
       <boot>true</boot>

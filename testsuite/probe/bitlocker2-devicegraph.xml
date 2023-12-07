@@ -14,9 +14,6 @@
       <udev-path>pci-0000:00:1f.2-ata-1</udev-path>
       <udev-path>pci-0000:00:1f.2-ata-1.0</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VBc322156a-d852b824</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VBc322156a-d852b824</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VBc322156a-d852b824</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VBc322156a-d852b824</udev-id>
       <range>256</range>
       <rotational>true</rotational>
     </Disk>
@@ -36,9 +33,6 @@
       <udev-path>pci-0000:00:1f.2-ata-1-part1</udev-path>
       <udev-path>pci-0000:00:1f.2-ata-1.0-part1</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VBc322156a-d852b824-part1</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VBc322156a-d852b824-part1</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VBc322156a-d852b824-part1</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VBc322156a-d852b824-part1</udev-id>
       <type>primary</type>
       <id>0xef</id>
       <label>EFI system partition</label>
@@ -57,9 +51,6 @@
       <udev-path>pci-0000:00:1f.2-ata-1-part2</udev-path>
       <udev-path>pci-0000:00:1f.2-ata-1.0-part2</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VBc322156a-d852b824-part2</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VBc322156a-d852b824-part2</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VBc322156a-d852b824-part2</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VBc322156a-d852b824-part2</udev-id>
       <type>primary</type>
       <id>0x103</id>
       <label>Microsoft reserved partition</label>
@@ -78,9 +69,6 @@
       <udev-path>pci-0000:00:1f.2-ata-1-part3</udev-path>
       <udev-path>pci-0000:00:1f.2-ata-1.0-part3</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VBc322156a-d852b824-part3</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VBc322156a-d852b824-part3</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VBc322156a-d852b824-part3</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VBc322156a-d852b824-part3</udev-id>
       <type>primary</type>
       <id>0x102</id>
       <label>Basic data partition</label>
@@ -99,9 +87,6 @@
       <udev-path>pci-0000:00:1f.2-ata-1-part4</udev-path>
       <udev-path>pci-0000:00:1f.2-ata-1.0-part4</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VBc322156a-d852b824-part4</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VBc322156a-d852b824-part4</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VBc322156a-d852b824-part4</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VBc322156a-d852b824-part4</udev-id>
       <type>primary</type>
       <id>0x12</id>
       <uuid>638f1eff-0e09-48de-a96b-4de818430907</uuid>
