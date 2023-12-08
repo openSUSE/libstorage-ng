@@ -82,18 +82,6 @@ namespace storage
     private:
 
         /**
-         * Call the external installation-helper program with arguments.
-	 * Throws in case of errors.
-         **/
-        void installation_helper(const vector<string>& args) const;
-
-        /**
-         * Build a command line from a command and its arguments.
-         * Wrap all arguments that don't start with '--' in single quotes.
-         **/
-        string build_command_line(const string& command, const vector<string>& args) const;
-
-        /**
          * Check if snapper can and should be configured for this btrfs.
          * Return true if okay, false if not.
          **/

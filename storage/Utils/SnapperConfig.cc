@@ -57,14 +57,15 @@ SnapperConfig::pre_mount() const
     // See also
     // https://github.com/openSUSE/snapper/blob/master/client/installation-helper.cc
 
-    vector<string> args = {
+    SystemCmd::Args cmd_args = {
+	INSTALLATION_HELPER_BIN,
         "--step", "1",
         "--device", get_parent_device_name(),
 	// as of bsc #1092757 snapshot descriptions are not translated
         "--description", "first root filesystem"
     };
 
-    installation_helper( args );
+    SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
 }
 
 
@@ -74,14 +75,15 @@ SnapperConfig::post_mount() const
     if ( ! sanity_check() )
         return;
 
-    vector<string> args = {
+    SystemCmd::Args cmd_args = {
+	INSTALLATION_HELPER_BIN,
         "--step", "2",
         "--device", get_parent_device_name(),
         "--root-prefix", get_root_prefix(),
         "--default-subvolume-name", get_default_subvolume_name()
     };
 
-    installation_helper( args );
+    SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
 }
 
 
@@ -117,32 +119,6 @@ SnapperConfig::post_add_to_etc_fstab(EtcFstab& etc_fstab) const
     etc_fstab.add( entry );
     etc_fstab.log_diff();
     etc_fstab.write();
-}
-
-
-void
-SnapperConfig::installation_helper(const vector<string>& args) const
-{
-    SystemCmd cmd(build_command_line(INSTALLATION_HELPER_BIN, args), SystemCmd::DoThrow);
-}
-
-
-string
-SnapperConfig::build_command_line(const string& command, const vector<string>& args) const
-{
-    string command_line = command;
-
-    for ( const string & arg: args )
-    {
-        command_line += " ";
-
-        if ( boost::starts_with( arg, "--" ) )
-            command_line += arg;
-        else
-            command_line += SystemCmd::quote( arg );
-    }
-
-    return command_line;
 }
 
 
