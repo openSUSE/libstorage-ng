@@ -420,7 +420,7 @@ namespace storage
 		SystemCmd cmd({ MDADM_BIN, "--assemble", "--scan" });
 
 		if (cmd.retcode() == 0)
-		    SystemCmd({ UDEVADM_BIN_SETTLE });
+		    udev_settle();
 
 		return cmd.retcode() == 0;
 	    }
@@ -436,7 +436,7 @@ namespace storage
 		SystemCmd cmd2(cmd_line2);
 
 		if (cmd2.retcode() == 0)
-		    SystemCmd({ UDEVADM_BIN_SETTLE });
+		    udev_settle();
 
 		unlink(filename.c_str());
 

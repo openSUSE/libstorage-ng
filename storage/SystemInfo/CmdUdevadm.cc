@@ -49,7 +49,7 @@ namespace storage
 	// can happen since e.g. 'parted' opens the disk device read-write
 	// even when all parted commands are read-only, thus triggering udev
 	// events (fixed in recent versions). So always run 'udevadm settle'.
-	SystemCmd({ UDEVADM_BIN_SETTLE });
+	udev_settle();
 
 	SystemCmd cmd({ UDEVADM_BIN, "info", file }, SystemCmd::DoThrow);
 

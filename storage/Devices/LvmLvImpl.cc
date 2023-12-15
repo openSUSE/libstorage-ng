@@ -217,7 +217,7 @@ namespace storage
 	    bool ret = number_of_inactive != CmdLvs().number_of_inactive();
 
 	    if (ret)
-		SystemCmd({ UDEVADM_BIN_SETTLE });
+		udev_settle();
 
 	    return ret;
 	}

@@ -43,6 +43,7 @@
 #include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/Utils/LoggerImpl.h"
 #include "storage/Utils/Format.h"
+#include "storage/Utils/SystemCmd.h"
 
 
 namespace storage
@@ -351,6 +352,13 @@ namespace storage
 	}
 
 	return r;
+    }
+
+
+    void
+    udev_settle()
+    {
+	SystemCmd({ UDEVADM_BIN_SETTLE }, SystemCmd::NoThrow);
     }
 
 

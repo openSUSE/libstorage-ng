@@ -130,11 +130,11 @@ namespace storage
 	    {
 		SystemCmd cmd1({ MULTIPATH_BIN }, SystemCmd::DoThrow);
 
-		SystemCmd({ UDEVADM_BIN_SETTLE });
+		udev_settle();
 
 		SystemCmd cmd2({ MULTIPATHD_BIN }, SystemCmd::DoThrow);
 
-		SystemCmd({ UDEVADM_BIN_SETTLE });
+		udev_settle();
 
 		return true;
 	    }

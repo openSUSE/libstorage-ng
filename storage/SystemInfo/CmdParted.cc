@@ -83,7 +83,7 @@ namespace storage
 	parse(cmd.stdout(), cmd.stderr());
 
 	if (PartedVersion::print_triggers_udev())
-	    SystemCmd({ UDEVADM_BIN_SETTLE });
+	    udev_settle();
     }
 
 

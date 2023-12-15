@@ -283,7 +283,7 @@ namespace storage
 
 	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
 
-	SystemCmd({ UDEVADM_BIN_SETTLE });
+	udev_settle();
     }
 
 
@@ -327,7 +327,7 @@ namespace storage
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
-	SystemCmd({ UDEVADM_BIN_SETTLE });
+	udev_settle();
     }
 
 
