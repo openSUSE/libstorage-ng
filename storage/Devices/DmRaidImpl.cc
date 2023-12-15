@@ -107,7 +107,7 @@ namespace storage
 	SystemCmd cmd(cmd_args);
 
 	if (cmd.retcode() == 0)
-	    SystemCmd({ UDEVADM_BIN_SETTLE });
+	    udev_settle();
 
 	return cmd.retcode() == 0;
     }

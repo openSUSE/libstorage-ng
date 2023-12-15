@@ -1010,7 +1010,7 @@ namespace storage
 	cmd_line += to_string(get_region().get_start() * factor) + " " +
 	    to_string((get_region().get_end() - tmps.size()) * factor + (factor - 1));
 
-	SystemCmd({ UDEVADM_BIN_SETTLE });
+	udev_settle();
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
@@ -1020,7 +1020,7 @@ namespace storage
 	{
 	    if (!PartedVersion::supports_wipe_signatures())
 	    {
-		SystemCmd({ UDEVADM_BIN_SETTLE });
+		udev_settle();
 		wipe_device();
 	    }
 
@@ -1110,7 +1110,7 @@ namespace storage
 
 	    cmd_line += to_string(get_region().get_end() - i) + " " + to_string(get_region().get_end() - i);
 
-	    SystemCmd({ UDEVADM_BIN_SETTLE });
+	    udev_settle();
 
 	    SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 	}
@@ -1133,7 +1133,7 @@ namespace storage
 	{
 	    SystemCmd::Args cmd_args = { PARTED_BIN, "--script", partitionable->get_name(), "rm", to_string(i) };
 
-	    SystemCmd({ UDEVADM_BIN_SETTLE });
+	    udev_settle();
 
 	    SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
 	}
@@ -1141,7 +1141,7 @@ namespace storage
 	SystemCmd::Args cmd_args = { PARTED_BIN, "--script", partitionable->get_name(),
 	    "unit", "s", "resizepart", to_string(get_number()), to_string(get_region().get_end()) };
 
-	SystemCmd({ UDEVADM_BIN_SETTLE });
+	udev_settle();
 
 	wait_for_devices({ get_non_impl() });
 
