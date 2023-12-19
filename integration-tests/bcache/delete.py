@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# requirements: some bcaches on /dev/sdb1, /dev/sdb2 and /dev/sdc1
+# requirements: some bcaches on /dev/sdc1, /dev/sdc2 and /dev/sdd1
 
 
 from storage import *
@@ -18,14 +18,14 @@ staging = storage.get_staging()
 
 print(staging)
 
-sdb1 = Partition.find_by_name(staging, "/dev/sdb1")
-sdb1.remove_descendants()
-
-sdb2 = Partition.find_by_name(staging, "/dev/sdb2")
-sdb2.remove_descendants()
-
 sdc1 = Partition.find_by_name(staging, "/dev/sdc1")
 sdc1.remove_descendants()
+
+sdc2 = Partition.find_by_name(staging, "/dev/sdc2")
+sdc2.remove_descendants()
+
+sdd1 = Partition.find_by_name(staging, "/dev/sdd1")
+sdd1.remove_descendants()
 
 print(staging)
 
