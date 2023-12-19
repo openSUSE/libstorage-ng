@@ -343,7 +343,7 @@ namespace storage
     {
 	// TODO handle multiple caching devices?
 
-	if(get_blk_devices().empty())
+	if (get_blk_devices().empty())
 	    ST_THROW(DeviceNotFound("No caching devices"));
 
 	const BlkDevice* blk_device = get_blk_devices().front();
