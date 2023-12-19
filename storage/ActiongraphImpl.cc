@@ -915,12 +915,12 @@ namespace storage
     void
     Actiongraph::Impl::commit(const CommitOptions& commit_options, const CommitCallbacks* commit_callbacks) const
     {
-	CallbacksGuard callbacks_guard(commit_callbacks);
-
 	y2mil("commit begin");
 
 	y2mil("used-features: " << get_used_features_names(used_features()));
 	y2mil("rootprefix: " << storage.get_rootprefix());
+
+	CallbacksGuard callbacks_guard(commit_callbacks);
 
 	CommitData commit_data(*this, Tense::PRESENT_CONTINUOUS);
 

@@ -75,7 +75,7 @@ namespace storage
 
     /**
      * Check if the block device has holders as reported by the kernel in
-     * /sys. If the block device is a partition the disk is also check for
+     * /sys. If the block device is a partition the disk is also checked for
      * holders.
      */
     bool has_kernel_holders(const string& name, SystemInfo::Impl& system_info);

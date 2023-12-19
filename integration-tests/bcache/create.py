@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# requirements: unused partitions /dev/sdb1, /dev/sdb2 and /dev/sdc1
+# requirements: unused partitions /dev/sdc1, /dev/sdc2 and /dev/sdd1
 
 
 from storage import *
@@ -18,20 +18,20 @@ staging = storage.get_staging()
 
 print(staging)
 
-sdb1 = Partition.find_by_name(staging, "/dev/sdb1")
-sdb2 = Partition.find_by_name(staging, "/dev/sdb2")
-
 sdc1 = Partition.find_by_name(staging, "/dev/sdc1")
+sdc2 = Partition.find_by_name(staging, "/dev/sdc2")
 
-bcache_cset = sdc1.create_bcache_cset()
+sdd1 = Partition.find_by_name(staging, "/dev/sdd1")
 
-bcache0 = sdb1.create_bcache("/dev/bcache0")
+bcache_cset = sdd1.create_bcache_cset()
+
+bcache0 = sdc1.create_bcache("/dev/bcache0")
 bcache0.attach_bcache_cset(bcache_cset)
 bcache0.create_blk_filesystem(FsType_EXT4)
 
-bcache1 = sdb2.create_bcache("/dev/bcache1")
+bcache1 = sdc2.create_bcache("/dev/bcache1")
 bcache1.attach_bcache_cset(bcache_cset)
-bcache1.create_blk_filesystem(FsType_EXT4)
+bcache1.create_blk_filesystem(FsType_XFS)
 
 print(staging)
 

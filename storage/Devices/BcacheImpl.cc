@@ -75,7 +75,7 @@ namespace storage
 	: Partitionable::Impl(name), cache_mode(CacheMode::NONE),
 	  sequential_cutoff(0), type(type), writeback_percent(0)
     {
-	if(get_type() == BcacheType::BACKED)
+	if (get_type() == BcacheType::BACKED)
 	{
 	    cache_mode = CacheMode::WRITETHROUGH;
 	    sequential_cutoff = 8 * MiB;
@@ -92,14 +92,14 @@ namespace storage
     {
 	string tmp;
 
-	if(getChildValue(node, "type", tmp))
+	if (getChildValue(node, "type", tmp))
 	    type = toValueWithFallback(tmp, BcacheType::BACKED);
 
-	if(get_type() == BcacheType::BACKED)
+	if (get_type() == BcacheType::BACKED)
 	{
 	    cache_mode = CacheMode::WRITETHROUGH;
 
-	    if(getChildValue(node, "cache-mode", tmp))
+	    if (getChildValue(node, "cache-mode", tmp))
 		cache_mode = toValueWithFallback(tmp, CacheMode::WRITETHROUGH);
 
 	    getChildValue(node, "writeback-percent", writeback_percent);
@@ -175,7 +175,7 @@ namespace storage
 
 	setChildValue(node, "type", toString(type));
 
-	if(get_type() == BcacheType::BACKED)
+	if (get_type() == BcacheType::BACKED)
 	{
 	    setChildValue(node, "cache-mode", toString(cache_mode));
 	    setChildValue(node, "writeback-percent", writeback_percent);
@@ -311,7 +311,7 @@ namespace storage
 	const File& size_file = get_sysfs_file(system_info, "size");
 	set_region(Region(0, size_file.get<unsigned long long>(), 512));
 
-	if(get_type() == BcacheType::BACKED)
+	if (get_type() == BcacheType::BACKED)
 	{
 	    const File& cache_mode_file = get_sysfs_file(system_info, "bcache/cache_mode");
 	    set_cache_mode(parse_mode(cache_mode_file));
@@ -378,7 +378,7 @@ namespace storage
 
 	vector<const BlkDevice*> ret = devicegraph.filter_devices_of_type<const BlkDevice>(devicegraph.parents(vertex));
 
-	if(ret.empty())
+	if (ret.empty())
 	    ST_THROW(DeviceNotFound("No backing device"));
 
 	return ret.front();
@@ -414,14 +414,14 @@ namespace storage
 
 
     void
-    Bcache::Impl::add_bcache_cset(BcacheCset* bcache_cset)
+    Bcache::Impl::attach_bcache_cset(BcacheCset* bcache_cset)
     {
 	ST_CHECK_PTR(bcache_cset);
 
-	if(get_type() == BcacheType::FLASH_ONLY)
+	if (get_type() == BcacheType::FLASH_ONLY)
 	    ST_THROW(LogicException("A Caching Set cannot be added to a flash-only bcache"));
 
-	if(has_bcache_cset())
+	if (has_bcache_cset())
 	    ST_THROW(LogicException("The bcache is already associated to a Caching Set"));
 
 	User::create(get_devicegraph(), bcache_cset, get_non_impl());
@@ -429,12 +429,12 @@ namespace storage
 
 
     void
-    Bcache::Impl::remove_bcache_cset()
+    Bcache::Impl::detach_bcache_cset()
     {
-	if(get_type() == BcacheType::FLASH_ONLY)
+	if (get_type() == BcacheType::FLASH_ONLY)
 	    ST_THROW(LogicException("A Caching Set cannot be removed from a flash-only bcache"));
 
-	if(!has_bcache_cset())
+	if (!has_bcache_cset())
 	    ST_THROW(LogicException("The bcache does not have an associated Caching Set"));
 
 	User* user = to_user(get_devicegraph()->find_holder(get_bcache_cset()->get_sid(), get_sid()));
@@ -488,7 +488,7 @@ namespace storage
 
 	out << " type:" << toString(type);
 
-	if(get_type() == BcacheType::BACKED)
+	if (get_type() == BcacheType::BACKED)
 	{
 	    out << " cache mode:" << toString(cache_mode)
 		<< " writeback percent:" << writeback_percent << "%"
@@ -507,7 +507,7 @@ namespace storage
     void
     Bcache::Impl::calculate_region()
     {
-	if(get_type() == BcacheType::BACKED)
+	if (get_type() == BcacheType::BACKED)
 	{
 	    const BlkDevice* blk_device = get_backing_device();
 
@@ -598,7 +598,7 @@ namespace storage
     {
 	// TODO Flash-only Bcache
 
-	if(get_type() == BcacheType::BACKED)
+	if (get_type() == BcacheType::BACKED)
 	{
 	    vector<shared_ptr<Action::Base>> actions;
 
@@ -619,28 +619,28 @@ namespace storage
 
 	// TODO Flash-only Bcache
 
-	if(get_type() == BcacheType::BACKED)
+	if (get_type() == BcacheType::BACKED)
 	{
 	    vector<shared_ptr<Action::Base>> actions;
 
-	    if(lhs_bcache->has_bcache_cset() && has_bcache_cset())
+	    if (lhs_bcache->has_bcache_cset() && has_bcache_cset())
 	    {
-		if(!lhs_bcache->get_bcache_cset()->get_impl().equal(get_bcache_cset()->get_impl()))
+		if (!lhs_bcache->get_bcache_cset()->get_impl().equal(get_bcache_cset()->get_impl()))
 		{
 		    actions.push_back(make_shared<Action::DetachBcacheCset>(get_sid(), lhs_bcache->get_bcache_cset()));
 		    actions.push_back(make_shared<Action::AttachBcacheCset>(get_sid()));
 		}
 	    }
-	    else if(lhs_bcache->has_bcache_cset() && !has_bcache_cset())
+	    else if (lhs_bcache->has_bcache_cset() && !has_bcache_cset())
 	    {
 		actions.push_back(make_shared<Action::DetachBcacheCset>(get_sid(), lhs_bcache->get_bcache_cset()));
 	    }
-	    else if(!lhs_bcache->has_bcache_cset() && has_bcache_cset())
+	    else if (!lhs_bcache->has_bcache_cset() && has_bcache_cset())
 	    {
 		actions.push_back(make_shared<Action::AttachBcacheCset>(get_sid()));
 	    }
 
-	    if(lhs_bcache->get_cache_mode() != get_cache_mode())
+	    if (lhs_bcache->get_cache_mode() != get_cache_mode())
 		actions.push_back(make_shared<Action::UpdateCacheMode>(get_sid()));
 
 	    actiongraph.add_chain(actions);
@@ -653,7 +653,7 @@ namespace storage
     {
 	// TODO Flash-only Bcache
 
-	if(get_type() == BcacheType::BACKED)
+	if (get_type() == BcacheType::BACKED)
 	{
 	    vector<shared_ptr<Action::Base>> actions;
 
@@ -689,7 +689,7 @@ namespace storage
     {
 	// TODO Flash-only Bcache
 
-	if(get_type() == BcacheType::BACKED)
+	if (get_type() == BcacheType::BACKED)
 	{
 	    const BlkDevice* backing_device = get_backing_device();
 
@@ -731,7 +731,7 @@ namespace storage
     {
 	// TODO Flash-only Bcache
 
-	if(get_type() == BcacheType::BACKED)
+	if (get_type() == BcacheType::BACKED)
 	    get_backing_device()->get_impl().wipe_device();
     }
 

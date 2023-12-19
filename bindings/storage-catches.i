@@ -225,6 +225,8 @@
 %catches(storage::Exception) storage::Actiongraph::write_graphviz(const std::string &filename, GraphvizFlags flags=GraphvizFlags::NAME, GraphvizFlags tooltip_flags=GraphvizFlags::NONE) const;
 %catches(storage::AlignError) storage::Alignment::align(const Region &region, AlignPolicy align_policy=AlignPolicy::ALIGN_START_AND_END) const;
 %catches(storage::LogicException, storage::Exception) storage::Bcache::add_bcache_cset(BcacheCset *bcache_cset);
+%catches(storage::LogicException, storage::Exception) storage::Bcache::attach_bcache_cset(BcacheCset *bcache_cset);
+%catches(storage::LogicException, storage::Exception) storage::Bcache::detach_bcache_cset();
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Bcache::find_by_name(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Bcache::find_by_name(const Devicegraph *devicegraph, const std::string &name);
 %catches(storage::Exception) storage::Bcache::find_free_name(const Devicegraph *devicegraph);

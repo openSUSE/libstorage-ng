@@ -31,9 +31,13 @@ namespace storage
     bool
     light_probe()
     {
+	y2mil("light-probe begin");
+
 	SystemInfo::Impl system_info;
 
 	SysBlockEntries sys_block_entries = probe_sys_block_entries(system_info);
+
+	y2mil("light-probe end");
 
 	return !sys_block_entries.disks.empty() || !sys_block_entries.dasds.empty();
     }

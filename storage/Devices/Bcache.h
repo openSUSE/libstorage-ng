@@ -141,7 +141,12 @@ namespace storage
 	 *
 	 * @throw LogicException, Exception
 	 */
-	void add_bcache_cset(BcacheCset* bcache_cset);
+	void attach_bcache_cset(BcacheCset* bcache_cset);
+
+	/**
+	 * @copydoc attach_bcache_cset
+	 */
+	void add_bcache_cset(BcacheCset* bcache_cset) ST_DEPRECATED;
 
 	/**
 	 * Removes association with a caching set.
@@ -150,7 +155,12 @@ namespace storage
 	 *
 	 * @throw LogicException, Exception
 	 */
-	void remove_bcache_cset();
+	void detach_bcache_cset();
+
+	/**
+	 * @copydoc detach_bcache_cset
+	 */
+	void remove_bcache_cset() ST_DEPRECATED;
 
 	/**
 	 * Returns cache mode attribute.
