@@ -85,8 +85,8 @@ namespace storage
 	    if (!get_child_value(tmp1, "HostNQN", something.host_nqn))
 		ST_THROW(Exception("\"HostNQN\" not found in json output of 'nvme list-subsys'"));
 
-	    if (!get_child_value(tmp1, "HostID", something.host_id))
-		ST_THROW(Exception("\"HostID\" not found in json output of 'nvme list-subsys'"));
+	    if (!get_child_value(tmp1, "Host ID", something.host_id) && !get_child_value(tmp1, "HostID", something.host_id))
+		ST_THROW(Exception("\"Host ID\" not found in json output of 'nvme list-subsys'"));
 
 	    vector<json_object*> tmp2;
 	    if (!get_child_nodes(tmp1, "Subsystems", tmp2))
