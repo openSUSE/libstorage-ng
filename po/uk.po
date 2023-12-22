@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.uk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-31 13:28+0200\n"
+"POT-Creation-Date: 2023-12-22 09:40+0100\n"
 "PO-Revision-Date: 2018-02-23 14:15+0000\n"
 "Last-Translator: Andriy Bandura <andriykopanytsia@gmail.com>\n"
 "Language-Team: Ukrainian <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -1647,7 +1647,7 @@ msgid ""
 "%1$s\n"
 "\n"
 "These logical volumes are ignored. Operations on the\n"
-"correponding volume groups may fail."
+"corresponding volume groups may fail."
 msgstr ""
 
 #. TRANSLATORS: Error message displayed during probing,
@@ -1946,7 +1946,7 @@ msgstr "Збільшити розділ %1$s від %2$s до %3$s"
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2.00 GiB)
 #, fuzzy, c-format
-msgid "Format partition %1$s (%2$s) as encryped swap"
+msgid "Format partition %1$s (%2$s) as encrypted swap"
 msgstr "Створити розділ %1$s (%2$s)"
 
 #. TRANSLATORS:
