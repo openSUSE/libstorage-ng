@@ -207,7 +207,7 @@ namespace storage
 	void set_in_etc_fstab(bool in_etc_fstab);
 
 	/**
-	 * Checks whether the mount point has a mountable. This is usally true
+	 * Checks whether the mount point has a mountable. This is usually true
 	 * unless the devicegraph is broken.
 	 */
 	bool has_mountable() const;

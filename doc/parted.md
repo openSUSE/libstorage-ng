@@ -104,7 +104,7 @@ For parted's strategy look at `libparted/arch/linux.c::linux_get_optimum_alignme
 ## Conclusion
 
 Letting parted decide on the exact partition sizes seems to be prone to
-achive unpredictable results. It might be better to deal with it inside
+achieve unpredictable results. It might be better to deal with it inside
 libstorage. As shown, aligning partitions is no rocket science. :-)
 
 

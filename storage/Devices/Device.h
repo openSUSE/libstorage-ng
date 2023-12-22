@@ -243,7 +243,7 @@ namespace storage
 	static bool compare_by_sid(const Device* lhs, const Device* rhs);
 
 	/**
-	 * Compare (less than) two Devices by name. So far only avaliable for
+	 * Compare (less than) two Devices by name. So far only available for
 	 * BlkDevices and LvmVgs.
 	 *
 	 * The comparison sorts to alphabetical order with some
@@ -263,7 +263,7 @@ namespace storage
 
 	/**
 	 * Get a sort-key based on the device name. So far only
-	 * avaliable for BlkDevices and LvmVgs. For other types the
+	 * available for BlkDevices and LvmVgs. For other types the
 	 * sort-key is empty.
 	 *
 	 * The sorting based on the sort-key sorts to alphabetical

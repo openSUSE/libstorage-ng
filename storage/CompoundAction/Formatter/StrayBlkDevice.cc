@@ -97,7 +97,7 @@ namespace storage
 	// TRANSLATORS:
 	// %1$s is replaced with the partition name (e.g. /dev/sda1),
 	// %2$s is replaced with the size (e.g. 2.00 GiB)
-	Text text = _( "Format partition %1$s (%2$s) as encryped swap" );
+	Text text = _("Format partition %1$s (%2$s) as encrypted swap");
 
 	return sformat(text, get_device_name(), get_size());
     }

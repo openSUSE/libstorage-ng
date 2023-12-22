@@ -33,7 +33,7 @@ namespace storage
 {
 
     /**
-     * We use the term "resize" for chaning the size of a non-container block
+     * We use the term "resize" for changing the size of a non-container block
      * device, e.g. change the size of a partition or LVM logical volume.
      */
     enum class ResizeMode

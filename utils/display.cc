@@ -204,7 +204,7 @@ main(int argc, char **argv)
     }
     catch (const exception& e)
     {
-	cerr << "exception occured: " << e.what() << '\n';
+	cerr << "exception occurred: " << e.what() << '\n';
 	exit(EXIT_FAILURE);
     }
 
