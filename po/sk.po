@@ -6,10 +6,10 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-12-22 09:40+0100\n"
-"PO-Revision-Date: 2023-07-31 21:15+0000\n"
+"PO-Revision-Date: 2023-12-22 15:02+0000\n"
 "Last-Translator: Ferdinand Galko <galko.ferdinand@gmail.com>\n"
-"Language-Team: Slovak <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/sk/>\n"
+"Language-Team: Slovak <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1667,7 +1667,7 @@ msgstr ""
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by a list of device names joined by newlines (e.g.
 #. /dev/test/cached\n/dev/test/snapshot)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Detected LVM logical volumes of unsupported types:\n"
 "\n"
@@ -1994,7 +1994,7 @@ msgstr "Formátovať bcache %1$s na %2$s (%3$s) s %4$s"
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Format partition %1$s (%2$s) as encrypted swap"
 msgstr "Formátovať oddiel %1$s (%2$s) ako šifrovaný swap"
 
