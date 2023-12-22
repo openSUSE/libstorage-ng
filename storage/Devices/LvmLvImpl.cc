@@ -372,7 +372,7 @@ namespace storage
 	    // /dev/test/cached\n/dev/test/snapshot)
 	    Text text = sformat(_("Detected LVM logical volumes of unsupported types:\n\n%1$s\n\n"
 				  "These logical volumes are ignored. Operations on the\n"
-				  "correponding volume groups may fail."),
+				  "corresponding volume groups may fail."),
 				join(unsupported_lvs, JoinMode::NEWLINE, 10));
 
 	    error_callback(prober.get_probe_callbacks(), text);

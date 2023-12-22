@@ -27,7 +27,7 @@ Additional some features have already been requests:
 
 - more comprehensive encryption support
 
-And some technics might be requested soon and might need special support:
+And some techniques might be requested soon and might need special support:
 
 - Support for SMR Host-Managed drives
 
@@ -44,7 +44,7 @@ this is easy.
 Testability
 -----------
 
-Improved robustness and testability are mandatory. Errors should be catched as
+Improved robustness and testability are mandatory. Errors should be caught as
 early as possible for quick feedback during development. To ensure that:
 
 - Prefer compile-time checks to run-time checks.

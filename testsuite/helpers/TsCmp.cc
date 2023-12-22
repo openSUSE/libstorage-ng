@@ -60,7 +60,7 @@ namespace storage
 
     /**
      * This function adjusts the sids which is needed when devices are detected in a
-     * differnet order than expected. Block devices use the name for identification, most
+     * different order than expected. Block devices use the name for identification, most
      * others a uuid or a path. Some types are not handled at all, e.g. Nfs.
      *
      * The function makes assumptions that break in the general case and does no error

@@ -269,7 +269,7 @@ namespace storage
 
 
 	/**
-	 * Class to tempararily hold copies of args or env for execle() and execvpe().
+	 * Class to temporarily hold copies of args or env for execle() and execvpe().
 	 */
 	class TmpForExec : boost::noncopyable
 	{
@@ -440,7 +440,7 @@ namespace storage
 	    if (child_failure_info_pipe.read_end.close() != 0)
 		_exit(125);
 
-	    // Unfortunaltely close_range(2) is still too new. It is also not mentioned in
+	    // Unfortunately close_range(2) is still too new. It is also not mentioned in
 	    // signal-safety(7). We use CLOEXEC here since child_failure_info_pipe must
 	    // not yet be closed.
 

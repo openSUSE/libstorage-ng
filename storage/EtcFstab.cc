@@ -480,7 +480,7 @@ namespace storage
             // There is one pathological case, though:
             //
             // When two or more entries have the same mount point (which is
-            // illegal, but somebody might write such an fstab manuallly),
+            // illegal, but somebody might write such an fstab manually),
             // there is no correct mount order; this algorithm would get into
             // an endless loop if we now checked the same index again. But by
             // just proceeding with the next one (and silently assuming that

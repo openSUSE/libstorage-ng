@@ -103,7 +103,7 @@ namespace storage
 	/**
 	 * Decide whether multipath should be activated.
 	 *
-	 * The looks_like_real_multipath paramter is not reliable.
+	 * The looks_like_real_multipath parameter is not reliable.
 	 */
 	virtual bool multipath(bool looks_like_real_multipath) const = 0;
 

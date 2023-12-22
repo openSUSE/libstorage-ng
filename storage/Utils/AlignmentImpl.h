@@ -35,7 +35,7 @@ namespace storage
      *
      * Note: This class has no functions to query the topology or extra-grain.
      * This is on purpose since the implemnentation might change if further
-     * alignment contraints are required. In that case a better
+     * alignment constraints are required. In that case a better
      * implemnentation might be to only keep one offset and one grain (of
      * sector = offset + X * grain). See parted sources for the background.
      */

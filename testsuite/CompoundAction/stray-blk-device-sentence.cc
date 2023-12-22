@@ -136,7 +136,7 @@ BOOST_AUTO_TEST_CASE( test_encrypted_swap )
     BOOST_REQUIRE( compound_action) ;
 
     BOOST_CHECK_EQUAL( compound_action->sentence(),
-                       "Format partition /dev/vda3 (4.00 GiB) as encryped swap" );
+                       "Format partition /dev/vda3 (4.00 GiB) as encrypted swap" );
 }
 
 

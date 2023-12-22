@@ -85,7 +85,7 @@ Implemented:
 
 Experimental:
 
-* LUKS2 integrity sypport.
+* LUKS2 integrity support.
 
 Missing:
 

@@ -94,7 +94,7 @@ namespace storage
 	virtual Text get_message_name() const = 0;
 
 	/**
-	 * A name useable for mounting the mountable. E.g. for BlkFilesystems
+	 * A name usable for mounting the mountable. E.g. for BlkFilesystems
 	 * the name of a device and for Nfs the server plus the path.
 	 *
 	 * For messages get_message_name() must be used.
@@ -102,7 +102,7 @@ namespace storage
 	virtual string get_mount_name() const = 0;
 
 	/**
-	 * A name useable for mounting the mountable. E.g. for BlkFilesystems
+	 * A name usable for mounting the mountable. E.g. for BlkFilesystems
 	 * the name of a device and for Nfs the server plus the path. Used for
 	 * entries in /etc/fstab.
 	 */

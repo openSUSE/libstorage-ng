@@ -206,7 +206,7 @@ public:
 
 protected:
     /**
-     * Diff lines betwen start and end and add the result to the internal
+     * Diff lines between start and end and add the result to the internal
      * hunks.
      **/
     void diff( Range a, Range b );
