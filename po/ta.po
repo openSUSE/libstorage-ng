@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-31 13:28+0200\n"
+"POT-Creation-Date: 2023-12-22 09:40+0100\n"
 "PO-Revision-Date: 2003-08-14 10:47+0200\n"
 "Last-Translator: xxx <yyy@example.org>\n"
 "Language-Team: Tamil <i18n@suse.de>\n"
@@ -1640,7 +1640,7 @@ msgid ""
 "%1$s\n"
 "\n"
 "These logical volumes are ignored. Operations on the\n"
-"correponding volume groups may fail."
+"corresponding volume groups may fail."
 msgstr ""
 
 #. TRANSLATORS: Error message displayed during probing,
@@ -1942,7 +1942,7 @@ msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s)%3$s உடன்
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2.00 GiB)
 #, fuzzy, c-format
-msgid "Format partition %1$s (%2$s) as encryped swap"
+msgid "Format partition %1$s (%2$s) as encrypted swap"
 msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவாக்கவும்"
 
 #. TRANSLATORS:

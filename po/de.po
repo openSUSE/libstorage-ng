@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-31 13:28+0200\n"
+"POT-Creation-Date: 2023-12-22 09:40+0100\n"
 "PO-Revision-Date: 2023-05-13 02:15+0000\n"
 "Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -1677,14 +1677,14 @@ msgstr "Bcache-Cacheset auf %1$s wird von Bcache %2$s (%3$s) getrennt"
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by a list of device names joined by newlines (e.g.
 #. /dev/test/cached\n/dev/test/snapshot)
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Detected LVM logical volumes of unsupported types:\n"
 "\n"
 "%1$s\n"
 "\n"
 "These logical volumes are ignored. Operations on the\n"
-"correponding volume groups may fail."
+"corresponding volume groups may fail."
 msgstr ""
 "Logische LVM-Volumes auf nicht unterstützten Gerätetypen erkannt:\n"
 "\n"
@@ -2004,8 +2004,8 @@ msgstr "Bcache %1$s auf %2$s (%3$s) mit %4$s formatieren"
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2.00 GiB)
-#, c-format
-msgid "Format partition %1$s (%2$s) as encryped swap"
+#, fuzzy, c-format
+msgid "Format partition %1$s (%2$s) as encrypted swap"
 msgstr "Partition %1$s (%2$s) als verschlüsselte swap formatieren"
 
 #. TRANSLATORS:

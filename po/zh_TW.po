@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-31 13:28+0200\n"
+"POT-Creation-Date: 2023-12-22 09:40+0100\n"
 "PO-Revision-Date: 2023-02-08 09:14+0000\n"
 "Last-Translator: Grace Yu <grace.yu@excel-gits.com>\n"
 "Language-Team: Chinese (Taiwan) <https://l10n.opensuse.org/projects/"
@@ -1653,14 +1653,14 @@ msgstr "正在從 bcache %2$s (%3$s) 解除對 %1$s 上 bcache 快取叢集的�
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by a list of device names joined by newlines (e.g.
 #. /dev/test/cached\n/dev/test/snapshot)
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Detected LVM logical volumes of unsupported types:\n"
 "\n"
 "%1$s\n"
 "\n"
 "These logical volumes are ignored. Operations on the\n"
-"correponding volume groups may fail."
+"corresponding volume groups may fail."
 msgstr ""
 "已將類型不受支援的 LVM 邏輯磁碟區解除關聯：\n"
 "\n"
@@ -1977,8 +1977,8 @@ msgstr "在包含 %4$s 的 %2$s (%3$s) 上格式化 bcache %1$s"
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2.00 GiB)
-#, c-format
-msgid "Format partition %1$s (%2$s) as encryped swap"
+#, fuzzy, c-format
+msgid "Format partition %1$s (%2$s) as encrypted swap"
 msgstr "將分割區 %1$s (%2$s) 格式化為加密交換格式"
 
 #. TRANSLATORS:

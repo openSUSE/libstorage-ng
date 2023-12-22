@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-31 13:28+0200\n"
+"POT-Creation-Date: 2023-12-22 09:40+0100\n"
 "PO-Revision-Date: 2019-02-19 09:18+0000\n"
 "Last-Translator: Miguel Branco <mgl.branco@gmail.com>\n"
 "Language-Team: Galician <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -1695,7 +1695,7 @@ msgid ""
 "%1$s\n"
 "\n"
 "These logical volumes are ignored. Operations on the\n"
-"correponding volume groups may fail."
+"corresponding volume groups may fail."
 msgstr ""
 
 #. TRANSLATORS: Error message displayed during probing,
@@ -2006,8 +2006,8 @@ msgstr "Formatar o bcache %1$s de %2$s (%3$s) con %4$s"
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2.00 GiB)
-#, c-format
-msgid "Format partition %1$s (%2$s) as encryped swap"
+#, fuzzy, c-format
+msgid "Format partition %1$s (%2$s) as encrypted swap"
 msgstr "Formatar a partición %1$s (%2$s) como swap cifrado"
 
 #. TRANSLATORS:

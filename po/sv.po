@@ -9,11 +9,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-31 13:28+0200\n"
+"POT-Creation-Date: 2023-12-22 09:40+0100\n"
 "PO-Revision-Date: 2023-09-09 06:15+0000\n"
 "Last-Translator: Luna  Jernberg <bittin@opensuse.org>\n"
-"Language-Team: Swedish <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/sv/>\n"
+"Language-Team: Swedish <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1737,14 +1737,14 @@ msgstr "Kopplar från Bcache-cacheuppsättning på %1$s från bcache %2$s (%3$s)
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by a list of device names joined by newlines (e.g.
 #. /dev/test/cached\n/dev/test/snapshot)
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Detected LVM logical volumes of unsupported types:\n"
 "\n"
 "%1$s\n"
 "\n"
 "These logical volumes are ignored. Operations on the\n"
-"correponding volume groups may fail."
+"corresponding volume groups may fail."
 msgstr ""
 "Logiska LVM-volymer har identifierats av typer som saknar stöd:\n"
 "\n"
@@ -2066,8 +2066,8 @@ msgstr "Formatera bcache %1$s på %2$s (%3$s) med %4$s"
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2.00 GiB)
-#, c-format
-msgid "Format partition %1$s (%2$s) as encryped swap"
+#, fuzzy, c-format
+msgid "Format partition %1$s (%2$s) as encrypted swap"
 msgstr "Formatera partition %1$s (%2$s) som krypterat byte"
 
 # SLE12

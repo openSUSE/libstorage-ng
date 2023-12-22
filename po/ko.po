@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.ko\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-31 13:28+0200\n"
+"POT-Creation-Date: 2023-12-22 09:40+0100\n"
 "PO-Revision-Date: 2019-04-04 15:03+0000\n"
 "Last-Translator: Hwajin Kim <hwajin.kim@e4net.net>\n"
 "Language-Team: Korean <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -1763,14 +1763,14 @@ msgstr "Bcache %2$s(%3$s)에서 %1$s의 Bcache 캐시 설정 분리 중"
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by a list of device names joined by newlines (e.g.
 #. /dev/test/cached\n/dev/test/snapshot)
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Detected LVM logical volumes of unsupported types:\n"
 "\n"
 "%1$s\n"
 "\n"
 "These logical volumes are ignored. Operations on the\n"
-"correponding volume groups may fail."
+"corresponding volume groups may fail."
 msgstr ""
 "지원되지 않는 유형의 감지된 LVM 논리적 볼륨:\n"
 "\n"
@@ -2088,8 +2088,8 @@ msgstr "%4$s을(를) 사용하여 %2$s(%3$s)에서 bcache %1$s 포맷"
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2.00 GiB)
-#, c-format
-msgid "Format partition %1$s (%2$s) as encryped swap"
+#, fuzzy, c-format
+msgid "Format partition %1$s (%2$s) as encrypted swap"
 msgstr "%1$s (%2$s) 파티션을 암호화된 스왑으로 포맷"
 
 # SLE12

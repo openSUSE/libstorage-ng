@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-31 13:28+0200\n"
+"POT-Creation-Date: 2023-12-22 09:40+0100\n"
 "PO-Revision-Date: 2023-08-06 17:15+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
-"Language-Team: Georgian <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/ka/>\n"
+"Language-Team: Georgian <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/ka/>\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1666,14 +1666,14 @@ msgstr "Bcache %2$s-დან (%3$s) bcache-ის კეშის სეტი�
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by a list of device names joined by newlines (e.g.
 #. /dev/test/cached\n/dev/test/snapshot)
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Detected LVM logical volumes of unsupported types:\n"
 "\n"
 "%1$s\n"
 "\n"
 "These logical volumes are ignored. Operations on the\n"
-"correponding volume groups may fail."
+"corresponding volume groups may fail."
 msgstr ""
 "აღმოჩენილია მხარდაუჭერელი ტიპის LVM-ის ლოგიკური ტომები:\n"
 "\n"
@@ -1995,8 +1995,8 @@ msgstr "Bcache %1$s-ის დაფორმატება %2$s-ზე (%3$s) 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2.00 GiB)
-#, c-format
-msgid "Format partition %1$s (%2$s) as encryped swap"
+#, fuzzy, c-format
+msgid "Format partition %1$s (%2$s) as encrypted swap"
 msgstr "დანაყოფის %1$s (%2$s) დაშიფრულ სვოპად დაფორმატება"
 
 #. TRANSLATORS:
@@ -3156,8 +3156,8 @@ msgstr "%1$s-ის %2$s-ზე %3$s-დან %4$s-მდე შემცირ
 #, c-format
 msgid "Shrink encryption layer device on %1$s from %2$s to %3$s"
 msgstr ""
-"%1$s-ზე მდებარე დაშიფვრის ფენის მოწყობილობის ზომის შემცირება %2$s-დან "
-"%3$s-მდე"
+"%1$s-ზე მდებარე დაშიფვრის ფენის მოწყობილობის ზომის შემცირება %2$s-დან %3$s-"
+"მდე"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -3332,7 +3332,8 @@ msgstr "%3$s-ზე მდებარე qgroup %1$s-ის qgroup %2$s-ზე 
 #. and /dev/sdb2 (2.00 GiB))
 #, c-format
 msgid "Unassign qgroup of subvolume %1$s from qgroup %2$s on %3$s"
-msgstr "%1$s ქვეტომის qgroup-ის %3$s-ზე მდებარე %2$s qgroupდან მინიჭების მოხსნა"
+msgstr ""
+"%1$s ქვეტომის qgroup-ის %3$s-ზე მდებარე %2$s qgroupდან მინიჭების მოხსნა"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
