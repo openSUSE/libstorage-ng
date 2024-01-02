@@ -22,6 +22,7 @@
 
 
 #include "storage/StorageImpl.h"
+#include "storage/SystemInfo/SystemInfo.h"
 
 
 namespace storage
@@ -407,7 +408,16 @@ namespace storage
     void
     Storage::probe(const ProbeCallbacks* probe_callbacks)
     {
-	get_impl().probe(probe_callbacks);
+	SystemInfo system_info;
+
+	get_impl().probe(system_info, probe_callbacks);
+    }
+
+
+    void
+    Storage::probe(SystemInfo& system_info, const ProbeCallbacksV3* probe_callbacks)
+    {
+	get_impl().probe(system_info, probe_callbacks);
     }
 
 

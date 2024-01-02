@@ -81,6 +81,7 @@ namespace storage
     class Devicegraph;
     class Actiongraph;
     class Pool;
+    class SystemInfo;
     enum class PtType;
     enum class FsType;
     enum class MountByType;
@@ -637,9 +638,22 @@ namespace storage
 	 * If an error reported via probe_callbacks is not ignored the
 	 * function throws Aborted.
 	 *
+	 * @see probe(SystemInfo& system_info, const ProbeCallbacks* probe_callbacks)
+	 *
 	 * @throw Aborted, Exception
 	 */
 	void probe(const ProbeCallbacks* probe_callbacks = nullptr);
+
+	/**
+	 * Same as probe(const ProbeCallbacks* probe_callbacks) except for the SystemInfo
+	 * parameter.  Useful when after probing additional calls to
+	 * BlkDevice::find_by_any_name() are used.
+	 *
+	 * @see probe(const ProbeCallbacks* probe_callbacks)
+	 *
+	 * @throw Aborted, Exception
+	 */
+	void probe(SystemInfo& system_info, const ProbeCallbacksV3* probe_callbacks = nullptr);
 
 	/**
 	 * The actiongraph must be valid.
