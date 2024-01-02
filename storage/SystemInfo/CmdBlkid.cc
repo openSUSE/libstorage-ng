@@ -39,8 +39,10 @@ namespace storage
     using namespace std;
 
 
-    Blkid::Blkid()
+    Blkid::Blkid(Udevadm& udevadm)
     {
+	udevadm.settle();
+
 	SystemCmd::Options options({ BLKID_BIN, "-c", DEV_NULL_FILE }, SystemCmd::DoThrow);
 
 	// If blkid does not find anything it returns 2 (see bsc #1203285).
@@ -52,8 +54,10 @@ namespace storage
     }
 
 
-    Blkid::Blkid(const string& device)
+    Blkid::Blkid(Udevadm& udevadm, const string& device)
     {
+	udevadm.settle();
+
 	SystemCmd::Options options({ BLKID_BIN, "-c", DEV_NULL_FILE, device }, SystemCmd::DoThrow);
 	options.verify = [](int exit_code) { return exit_code == 0 || exit_code == 2; };
 

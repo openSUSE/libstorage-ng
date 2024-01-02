@@ -26,7 +26,9 @@ check(const string& device, const vector<string>& stdout, const vector<string>& 
     Mockup::set_command({ PARTED_BIN, "--script", "--json", device, "unit", "s", "print" },
 			RemoteCommand(stdout, stderr, 0));
 
-    Parted parted(device);
+    Udevadm udevadm;
+
+    Parted parted(udevadm, device);
 
     ostringstream parsed;
     parsed.setf(std::ios::boolalpha);
@@ -53,7 +55,9 @@ check_exception(const string& device, const vector<string>& input)
     Mockup::set_command(PARTED_BIN " --version", RemoteCommand({ "parted (GNU parted) 3.5" }, {}, 0));
     Mockup::set_command({ PARTED_BIN, "--script", "--json", device, "unit", "s", "print" }, input);
 
-    BOOST_CHECK_THROW({ Parted parted(device); }, Exception);
+    Udevadm udevadm;
+
+    BOOST_CHECK_THROW({ Parted parted(udevadm, device); }, Exception);
 }
 
 

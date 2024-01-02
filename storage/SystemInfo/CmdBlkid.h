@@ -30,6 +30,7 @@
 #include <list>
 #include <vector>
 
+#include "storage/Utils/Udev.h"
 #include "storage/Filesystems/Filesystem.h"
 #include "storage/SystemInfo/SystemInfo.h"
 
@@ -49,8 +50,8 @@ namespace storage
     {
     public:
 
-	Blkid();
-	Blkid(const string& device);
+	Blkid(Udevadm& udevadm);
+	Blkid(Udevadm& udevadm, const string& device);
 
 	struct Entry
 	{

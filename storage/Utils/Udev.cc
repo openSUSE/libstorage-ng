@@ -1,6 +1,5 @@
 /*
- * Copyright (c) [2004-2010] Novell, Inc.
- * Copyright (c) 2023 SUSE LLC
+ * Copyright (c) [2023-2024] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,39 +20,36 @@
  */
 
 
-#include "storage/SystemInfo/SystemInfoImpl.h"
+#include "storage/Utils/Udev.h"
+#include "storage/Utils/SystemCmd.h"
+#include "storage/Utils/StorageDefines.h"
 
 
 namespace storage
 {
 
-    SystemInfo::Impl::Impl()
+    void
+    udev_settle()
     {
-	y2deb("constructed SystemInfo::Impl");
+	SystemCmd({ UDEVADM_BIN_SETTLE }, SystemCmd::NoThrow);
     }
 
 
-    SystemInfo::Impl::~Impl()
+    void
+    Udevadm::settle()
     {
-	y2deb("destructed SystemInfo::Impl");
-    }
-
-
-    const CmdUdevadmInfo&
-    SystemInfo::Impl::getCmdUdevadmInfo(const string& file)
-    {
-	for (const auto& tmp : cmd_udevadm_infos.get_data())
+	if (settle_needed)
 	{
-	    // does not have an object iff the constructor threw
-	    if (!tmp.second.has_object())
-		continue;
-
-	    const CmdUdevadmInfo& cmd_udevadm_info = tmp.second.get_object();
-	    if (cmd_udevadm_info.is_alias_of(file))
-		return cmd_udevadm_info;
+	    udev_settle();
+	    settle_needed = false;
 	}
+    }
 
-	return cmd_udevadm_infos.get2(udevadm, file);
+
+    void
+    Udevadm::set_settle_needed()
+    {
+	settle_needed = true;
     }
 
 }

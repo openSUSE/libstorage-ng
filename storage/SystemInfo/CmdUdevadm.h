@@ -31,6 +31,7 @@
 #include <vector>
 
 #include "storage/Utils/Enum.h"
+#include "storage/Utils/Udev.h"
 
 
 namespace storage
@@ -46,7 +47,7 @@ namespace storage
 
 	enum class DeviceType { UNKNOWN, DISK, PARTITION };
 
-	CmdUdevadmInfo(const string& file);
+	CmdUdevadmInfo(Udevadm& udevadm, const string& file);
 
 	const string& get_path() const { return path; }
 	const string& get_name() const { return name; }

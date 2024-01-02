@@ -28,6 +28,7 @@
 #include "storage/Utils/Region.h"
 #include "storage/Utils/JsonFile.h"
 #include "storage/Devices/PartitionTable.h"
+#include "storage/Utils/Udev.h"
 
 
 namespace storage
@@ -50,7 +51,7 @@ namespace storage
 	 * with the 'parted' command and parse its output.
 	 * This may throw a SystemCmdException or a ParseException.
 	 */
-	Parted(const string& device);
+	Parted(Udevadm& udevadm, const string& device);
 
 	/**
 	 * Entry for one partition.

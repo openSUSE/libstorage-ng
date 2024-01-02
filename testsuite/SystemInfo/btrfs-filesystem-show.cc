@@ -20,12 +20,15 @@ check(const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
     Mockup::set_command(BTRFS_BIN " filesystem show", input);
+    Mockup::set_command({ UDEVADM_BIN_SETTLE }, {});
 
-    CmdBtrfsFilesystemShow cmdbtrfsfilesystemshow;
+    Udevadm udevadm;
+
+    CmdBtrfsFilesystemShow cmd_btrfs_filesystem_show(udevadm);
 
     ostringstream parsed;
     parsed.setf(std::ios::boolalpha);
-    parsed << cmdbtrfsfilesystemshow;
+    parsed << cmd_btrfs_filesystem_show;
 
     string lhs = parsed.str();
     string rhs;
@@ -43,7 +46,9 @@ check_parse_exception(const vector<string>& input)
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
     Mockup::set_command(BTRFS_BIN " filesystem show", input);
 
-    BOOST_CHECK_THROW({ CmdBtrfsFilesystemShow cmdbtrfsfilesystemshow; }, ParseException);
+    Udevadm udevadm;
+
+    BOOST_CHECK_THROW({ CmdBtrfsFilesystemShow cmd_btrfs_filesystem_show(udevadm); }, ParseException);
 }
 
 
@@ -55,7 +60,9 @@ check_systemcmd_exception(const vector<string>& input, const vector<string>& std
     Mockup::Command command(input, stderr, 1);
     Mockup::set_command(BTRFS_BIN " filesystem show", command);
 
-    BOOST_CHECK_THROW({ CmdBtrfsFilesystemShow cmdbtrfsfilesystemshow; }, SystemCmdException);
+    Udevadm udevadm;
+
+    BOOST_CHECK_THROW({ CmdBtrfsFilesystemShow cmd_btrfs_filesystem_show(udevadm); }, SystemCmdException);
 }
 
 

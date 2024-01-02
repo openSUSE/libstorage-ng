@@ -33,6 +33,7 @@
 #include "storage/Filesystems/Btrfs.h"
 #include "storage/Filesystems/BtrfsQgroupImpl.h"
 #include "storage/Utils/JsonFile.h"
+#include "storage/Utils/Udev.h"
 
 
 namespace storage
@@ -57,7 +58,7 @@ namespace storage
 	 *
 	 * This may throw a SystemCmdException or a ParseException.
 	 */
-	CmdBtrfsFilesystemShow();
+	CmdBtrfsFilesystemShow(Udevadm& udevadm);
 
 	/**
 	 * Device of a btrfs filesystem.

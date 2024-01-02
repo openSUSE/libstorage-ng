@@ -355,13 +355,6 @@ namespace storage
     }
 
 
-    void
-    udev_settle()
-    {
-	SystemCmd({ UDEVADM_BIN_SETTLE }, SystemCmd::NoThrow);
-    }
-
-
     string
     stringerror(int errnum)
     {

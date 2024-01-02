@@ -33,6 +33,8 @@
 #include <vector>
 #include <map>
 
+#include "storage/Utils/Udev.h"
+
 
 namespace storage
 {
@@ -48,7 +50,7 @@ namespace storage
     {
     public:
 
-	Dir(const string& path);
+	Dir(Udevadm& udevadm, const string& path);
 
 	typedef vector<string>::const_iterator const_iterator;
 
@@ -115,7 +117,7 @@ namespace storage
 
     protected:
 
-	map<string, string> getDirLinks(const string& path) const;
+	map<string, string> getDirLinks(Udevadm& udevadm, const string& path) const;
 	map<string, string> parse(const vector<string>& lines) const;
 
 	map<string, vector<string>> data;
@@ -127,7 +129,7 @@ namespace storage
     {
     public:
 
-	MdLinks();
+	MdLinks(Udevadm& udevadm);
 
     };
 

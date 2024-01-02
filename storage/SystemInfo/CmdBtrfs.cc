@@ -39,8 +39,10 @@ namespace storage
     using namespace std;
 
 
-    CmdBtrfsFilesystemShow::CmdBtrfsFilesystemShow()
+    CmdBtrfsFilesystemShow::CmdBtrfsFilesystemShow(Udevadm& udevadm)
     {
+	udevadm.settle();
+
 	SystemCmd::Options cmd_options({ BTRFS_BIN, "filesystem", "show" }, SystemCmd::DoThrow);
 	cmd_options.verify = [](int) { return true; };
 
