@@ -90,9 +90,6 @@ namespace storage
                                      const string& delim = "=",
                                      const string& removeSur = " \t\n" );
 
-    string udev_encode(const string&);
-    string udev_decode(const string&);
-
     string normalizeDevice(const string& dev);
 
 

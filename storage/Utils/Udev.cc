@@ -1,5 +1,6 @@
 /*
- * Copyright (c) [2023-2024] SUSE LLC
+ * Copyright (c) [2004-2015] Novell, Inc.
+ * Copyright (c) [2016-2024] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -27,6 +28,54 @@
 
 namespace storage
 {
+
+    string
+    udev_encode(const string& s)
+    {
+	string r = s;
+
+	string::size_type pos = 0;
+
+	while (true)
+	{
+	    pos = r.find_first_of(" '\\/$", pos);
+	    if (pos == string::npos)
+		break;
+
+	    char tmp[16];
+	    sprintf(tmp, "\\x%02x", r[pos]);
+	    r.replace(pos, 1, tmp);
+
+	    pos += 4;
+	}
+
+	return r;
+    }
+
+
+    string
+    udev_decode(const string& s)
+    {
+	string r = s;
+
+	string::size_type pos = 0;
+
+	while (true)
+	{
+	    pos = r.find("\\x", pos);
+	    if (pos == string::npos || pos > r.size() - 4)
+		break;
+
+	    unsigned int tmp;
+	    if (sscanf(r.substr(pos + 2, 2).c_str(), "%x", &tmp) == 1)
+		r.replace(pos, 4, 1, (char) tmp);
+
+	    pos += 1;
+	}
+
+	return r;
+    }
+
 
     void
     udev_settle()

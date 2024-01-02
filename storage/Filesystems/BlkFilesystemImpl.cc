@@ -32,6 +32,7 @@
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/HumanString.h"
 #include "storage/Utils/CallbacksImpl.h"
+#include "storage/Utils/Udev.h"
 #include "storage/Filesystems/BlkFilesystemImpl.h"
 #include "storage/Filesystems/MountPointImpl.h"
 #include "storage/Holders/FilesystemUserImpl.h"

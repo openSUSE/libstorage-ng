@@ -1,5 +1,6 @@
 /*
- * Copyright (c) [2023-2024] SUSE LLC
+ * Copyright (c) [2004-2015] Novell, Inc.
+ * Copyright (c) [2016-2024] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -24,8 +25,16 @@
 #define STORAGE_UDEV_H
 
 
+#include <string>
+
+
 namespace storage
 {
+    using std::string;
+
+
+    string udev_encode(const string&);
+    string udev_decode(const string&);
 
     void udev_settle();
 
