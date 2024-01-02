@@ -36,9 +36,11 @@ namespace storage
     using namespace std;
 
 
-    Dir::Dir(const string& path)
+    Dir::Dir(Udevadm& udevadm, const string& path)
 	: path(path)
     {
+	udevadm.settle();
+
 	SystemCmd cmd({ LS_BIN, "-1", "--sort=none", path }, SystemCmd::DoThrow);
 
 	parse(cmd.stdout());
@@ -156,8 +158,10 @@ namespace storage
 
 
     map<string, string>
-    DevLinks::getDirLinks(const string& path) const
+    DevLinks::getDirLinks(Udevadm& udevadm, const string& path) const
     {
+	udevadm.settle();
+
 	// TODO use cmd(STAT_BIN " --format '%F %N' " + path + "/*")?
 
 	SystemCmd cmd({ LS_BIN, "-1l", "--sort=none", path }, SystemCmd::DoThrow);
@@ -204,12 +208,12 @@ namespace storage
     }
 
 
-    MdLinks::MdLinks()
+    MdLinks::MdLinks(Udevadm& udevadm)
     {
         map<string, string> links;
 	try
 	{
-	    links = getDirLinks("/dev/md");
+	    links = getDirLinks(udevadm, "/dev/md");
 	}
 	catch (const Exception& exception)
 	{

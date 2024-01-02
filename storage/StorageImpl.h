@@ -140,7 +140,7 @@ namespace storage
 
 	DeactivateStatusV2 deactivate() const;
 
-	void probe(const ProbeCallbacks* probe_callbacks);
+	void probe(SystemInfo& system_info, const ProbeCallbacks* probe_callbacks);
 
 	void commit(const CommitOptions& commit_options, const CommitCallbacks* commit_callbacks);
 

@@ -41,15 +41,15 @@ namespace storage
     });
 
 
-    CmdUdevadmInfo::CmdUdevadmInfo(const string& file)
+    CmdUdevadmInfo::CmdUdevadmInfo(Udevadm& udevadm, const string& file)
 	: file(file)
     {
 	// Without emptying the udev queue 'udevadm info' can display old data
 	// or even complain about unknown devices. Even during probing this
 	// can happen since e.g. 'parted' opens the disk device read-write
 	// even when all parted commands are read-only, thus triggering udev
-	// events (fixed in recent versions). So always run 'udevadm settle'.
-	udev_settle();
+	// events (fixed in SUSE versions). So always run 'udevadm settle'.
+	udevadm.settle();
 
 	SystemCmd cmd({ UDEVADM_BIN, "info", file }, SystemCmd::DoThrow);
 

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2024] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -29,6 +29,7 @@
 #include "storage/EtcCrypttab.h"
 #include "storage/EtcMdadm.h"
 
+#include "storage/Utils/Udev.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/SystemInfo/Arch.h"
 #include "storage/SystemInfo/ProcMounts.h"
@@ -56,6 +57,7 @@ namespace storage
 {
     using std::map;
 
+
     /**
      * Encapsulates system access, also for testsuite mocking
      */
@@ -78,24 +80,26 @@ namespace storage
 	Impl();
 	~Impl();
 
+	Udevadm udevadm;
+
 	const EtcFstab& getEtcFstab(const string& path) { return etc_fstab.get(path); }
 	const EtcCrypttab& getEtcCrypttab(const string& path) { return etc_crypttab.get(path); }
 	const EtcMdadm& getEtcMdadm(const string& path) { return etc_mdadm.get(path); }
 
 	const Arch& getArch() { return arch.get(); }
-	const Dir& getDir(const string& path) { return dirs.get(path); }
+	const Dir& getDir(const string& path) { return dirs.get2(udevadm, path); }
 	const File& getFile(const string& path) { return files.get(path); }
 	const CmdStat& getCmdStat(const string& path) { return cmd_stats.get(path); }
 	const CmdBlockdev& getCmdBlockdev(const string& path) { return cmd_blockdev.get(path); }
-	const MdLinks& getMdLinks() { return md_links.get(); }
+	const MdLinks& getMdLinks() { return md_links.get2(udevadm); }
 	const ProcMounts& getProcMounts() { return proc_mounts.get(); }
 	const ProcMdstat& getProcMdstat() { return proc_mdstat.get(); }
 	const MdadmDetail& getMdadmDetail(const string& device) { return mdadm_details.get(device); }
-	const Blkid& getBlkid() { return blkid.get(); }
+	const Blkid& getBlkid() { return blkid.get2(udevadm); }
 	const Lsscsi& getLsscsi() { return lsscsi.get(); }
 	const CmdNvmeList& getCmdNvmeList() { return cmd_nvme_list.get(); }
 	const CmdNvmeListSubsys& getCmdNvmeListSubsys() { return cmd_nvme_list_subsys.get(); }
-	const Parted& getParted(const string& device) { return parteds.get(device); }
+	const Parted& getParted(const string& device) { return parteds.get2(udevadm, device); }
 	const Dasdview& getDasdview(const string& device) { return dasdviews.get(device); }
 	const CmdDmsetupInfo& getCmdDmsetupInfo() { return cmd_dmsetup_info.get(); }
 	const CmdDmsetupTable& getCmdDmsetupTable() { return cmd_dmsetup_table.get(); }
@@ -104,7 +108,7 @@ namespace storage
 	const CmdDmraid& getCmdDmraid() { return cmd_dmraid.get(); }
 	const CmdMultipath& getCmdMultipath() { return cmd_multipath.get(); }
 
-	const CmdBtrfsFilesystemShow& getCmdBtrfsFilesystemShow() { return cmd_btrfs_filesystem_show.get(); }
+	const CmdBtrfsFilesystemShow& getCmdBtrfsFilesystemShow() { return cmd_btrfs_filesystem_show.get2(udevadm); }
 
 	// The device is only used for the cache-key.
 	const CmdBtrfsSubvolumeList& getCmdBtrfsSubvolumeList(const string& device, const string& mount_point)
@@ -173,6 +177,30 @@ namespace storage
 		return *object;
 	    }
 
+	    /**
+	     * Just like get() above but also pass udevadm to constructor.
+	     */
+	    const Object& get2(Udevadm& udevadm, Args... args)
+	    {
+		if (ep)
+		    std::rethrow_exception(ep);
+
+		if (!object)
+		{
+		    try
+		    {
+			object = make_shared<Object>(udevadm, args...);
+		    }
+		    catch (const std::exception& e)
+		    {
+			ep = std::current_exception();
+			std::rethrow_exception(ep);
+		    }
+		}
+
+		return *object;
+	    }
+
 	    bool has_object() const { return (bool)(object); }
 	    const Object& get_object() const { return *object; }
 
@@ -203,6 +231,14 @@ namespace storage
 		if (pos == data.end() || typename map<Arg, Helper>::key_compare()(arg, pos->first))
 		    pos = data.insert(pos, typename map<Arg, Helper>::value_type(arg, Helper()));
 		return pos->second.get(arg);
+	    }
+
+	    const Object& get2(Udevadm& udevadm, const Arg& arg)
+	    {
+		typename map<Arg, Helper>::iterator pos = data.lower_bound(arg);
+		if (pos == data.end() || typename map<Arg, Helper>::key_compare()(arg, pos->first))
+		    pos = data.insert(pos, typename map<Arg, Helper>::value_type(arg, Helper()));
+		return pos->second.get2(udevadm, arg);
 	    }
 
 	    const map<Arg, Helper>& get_data() const { return data; }

@@ -55,7 +55,7 @@ namespace storage
 
 	const string device;
 
-	unsigned long long min_blocks;
+	unsigned long long min_blocks = 0;
 
     };
 

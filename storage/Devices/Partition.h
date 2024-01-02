@@ -294,7 +294,7 @@ namespace storage
 	PartitionType get_type() const;
 
 	/**
-	 * Set the partiton type.
+	 * Set the partition type.
 	 *
 	 * @see PartitionType
 	 *

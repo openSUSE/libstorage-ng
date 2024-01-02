@@ -32,6 +32,7 @@
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/HumanString.h"
 #include "storage/Utils/CallbacksImpl.h"
+#include "storage/Utils/Udev.h"
 #include "storage/Filesystems/BlkFilesystemImpl.h"
 #include "storage/Filesystems/MountPointImpl.h"
 #include "storage/Holders/FilesystemUserImpl.h"
@@ -252,9 +253,11 @@ namespace storage
     void
     BlkFilesystem::Impl::probe_uuid()
     {
+	Udevadm udevadm;
+
 	const BlkDevice* blk_device = get_blk_device();
 
-	const Blkid& blkid(blk_device->get_name());
+	const Blkid blkid(udevadm, blk_device->get_name());
 	Blkid::const_iterator it = blkid.get_sole_entry();
 	if (it != blkid.end())
 	    uuid = it->second.fs_uuid;

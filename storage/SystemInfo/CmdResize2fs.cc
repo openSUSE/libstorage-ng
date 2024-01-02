@@ -32,7 +32,7 @@ namespace storage
 {
 
     CmdResize2fs::CmdResize2fs(const string& device)
-	: device(device), min_blocks(0)
+	: device(device)
     {
 	SystemCmd cmd({ RESIZE2FS_BIN, "-P", device }, SystemCmd::DoThrow);
 

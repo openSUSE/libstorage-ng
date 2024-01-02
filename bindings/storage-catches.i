@@ -428,6 +428,7 @@
 %catches(storage::Exception) storage::Storage::get_system();
 %catches(storage::Exception) storage::Storage::get_system() const;
 %catches(storage::Aborted, storage::Exception) storage::Storage::probe(const ProbeCallbacks *probe_callbacks=nullptr);
+%catches(storage::Aborted, storage::Exception) storage::Storage::probe(SystemInfo &system_info, const ProbeCallbacksV3 *probe_callbacks=nullptr);
 %catches(storage::Exception) storage::Storage::remove_devicegraph(const std::string &name);
 %catches(storage::Exception) storage::Storage::remove_pool(const std::string &name);
 %catches(storage::Exception) storage::Storage::rename_pool(const std::string &old_name, const std::string &new_name);

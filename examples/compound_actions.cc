@@ -59,7 +59,7 @@ main()
     }
     catch (const exception& e)
     {
-	cerr << "exception occured: " << e.what() << endl;
+	cerr << "exception occurred: " << e.what() << endl;
 
 	return EXIT_FAILURE;
     }

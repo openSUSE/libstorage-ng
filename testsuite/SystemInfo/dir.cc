@@ -24,8 +24,11 @@ check(const string& path, const vector<string>& stdout, const string& result)
     command.stdout = stdout;
 
     Mockup::set_command({ LS_BIN, "-1", "--sort=none", path }, command);
+    Mockup::set_command({ UDEVADM_BIN_SETTLE }, {});
 
-    Dir dir(path);
+    Udevadm udevadm;
+
+    Dir dir(udevadm, path);
 
     ostringstream parsed;
     parsed.setf(std::ios::boolalpha);
@@ -59,5 +62,7 @@ BOOST_AUTO_TEST_CASE(error1)
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
     Mockup::set_command({ LS_BIN, "-1", "--sort=none", path }, command);
 
-    BOOST_CHECK_THROW(Dir dir(path), Exception);
+    Udevadm udevadm;
+
+    BOOST_CHECK_THROW(Dir dir(udevadm, path), Exception);
 }

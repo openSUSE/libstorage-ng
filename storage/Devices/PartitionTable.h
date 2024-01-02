@@ -116,14 +116,14 @@ namespace storage
 	 *
 	 * Lowest number for a primary or extended partition is 1.
 	 *
-	 * This function is independend of existing partitions.
+	 * This function is independent of existing partitions.
 	 */
 	unsigned int max_primary() const;
 
 	/**
 	 * Returns whether a extended partition is supported.
 	 *
-	 * This function is independend of existing partitions.
+	 * This function is independent of existing partitions.
 	 */
 	bool extended_possible() const;
 
@@ -133,7 +133,7 @@ namespace storage
 	 *
 	 * Lowest number for a logical partition is 5.
 	 *
-	 * This function is independend of existing partitions.
+	 * This function is independent of existing partitions.
 	 */
 	unsigned int max_logical() const;
 

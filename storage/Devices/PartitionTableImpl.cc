@@ -482,7 +482,7 @@ namespace storage
     void
     PartitionTable::Impl::run_dependency_manager(Actiongraph::Impl& actiongraph)
     {
-	// To speed up things this fuctions finds the actions for all
+	// To speed up things this functions finds the actions for all
 	// partition tables. Going through the actions for every partition
 	// table individually is slow.
 

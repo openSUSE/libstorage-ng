@@ -1,6 +1,6 @@
 /*
- * Copyright (c) [2004-2010] Novell, Inc.
- * Copyright (c) 2023 SUSE LLC
+ * Copyright (c) [2004-2015] Novell, Inc.
+ * Copyright (c) [2016-2024] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,39 +21,39 @@
  */
 
 
-#include "storage/SystemInfo/SystemInfoImpl.h"
+#ifndef STORAGE_UDEV_H
+#define STORAGE_UDEV_H
+
+
+#include <string>
 
 
 namespace storage
 {
+    using std::string;
 
-    SystemInfo::Impl::Impl()
+
+    string udev_encode(const string&);
+    string udev_decode(const string&);
+
+    void udev_settle();
+
+
+    class Udevadm
     {
-	y2deb("constructed SystemInfo::Impl");
-    }
 
+    public:
 
-    SystemInfo::Impl::~Impl()
-    {
-	y2deb("destructed SystemInfo::Impl");
-    }
+	void settle();
+	void set_settle_needed();
 
+    private:
 
-    const CmdUdevadmInfo&
-    SystemInfo::Impl::getCmdUdevadmInfo(const string& file)
-    {
-	for (const auto& tmp : cmd_udevadm_infos.get_data())
-	{
-	    // does not have an object iff the constructor threw
-	    if (!tmp.second.has_object())
-		continue;
+	bool settle_needed = true;
 
-	    const CmdUdevadmInfo& cmd_udevadm_info = tmp.second.get_object();
-	    if (cmd_udevadm_info.is_alias_of(file))
-		return cmd_udevadm_info;
-	}
-
-	return cmd_udevadm_infos.get2(udevadm, file);
-    }
+    };
 
 }
+
+
+#endif

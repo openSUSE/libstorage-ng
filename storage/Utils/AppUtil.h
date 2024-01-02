@@ -90,11 +90,6 @@ namespace storage
                                      const string& delim = "=",
                                      const string& removeSur = " \t\n" );
 
-    string udev_encode(const string&);
-    string udev_decode(const string&);
-
-    void udev_settle();
-
     string normalizeDevice(const string& dev);
 
 
@@ -137,7 +132,7 @@ namespace storage
 
 
     /**
-     * Padding informations for NameSchema.
+     * Padding information for NameSchema.
      */
     struct PadInfo
     {

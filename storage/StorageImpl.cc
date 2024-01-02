@@ -181,15 +181,13 @@ namespace storage
 
 
     void
-    Storage::Impl::probe(const ProbeCallbacks* probe_callbacks)
+    Storage::Impl::probe(SystemInfo& system_info, const ProbeCallbacks* probe_callbacks)
     {
 	y2mil("probe begin");
 
 	y2mil("rootprefix: " << get_rootprefix());
 
 	CallbacksGuard callbacks_guard(probe_callbacks);
-
-	SystemInfo system_info;
 
 	if (exist_devicegraph("probed"))
 	    remove_devicegraph("probed");

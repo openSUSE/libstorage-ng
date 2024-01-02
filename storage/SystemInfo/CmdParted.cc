@@ -42,7 +42,7 @@ namespace storage
     using namespace std;
 
 
-    Parted::Parted(const string& device)
+    Parted::Parted(Udevadm& udevadm, const string& device)
 	: device(device)
     {
 	const bool json = PartedVersion::supports_json_option();
@@ -83,7 +83,7 @@ namespace storage
 	parse(cmd.stdout(), cmd.stderr());
 
 	if (PartedVersion::print_triggers_udev())
-	    udev_settle();
+	    udevadm.set_settle_needed();
     }
 
 
@@ -391,7 +391,7 @@ namespace storage
 
 	// TODO parted has a strange interface to represent partition type
 	// ids. On GPT it is not possible to distinguish whether the id is
-	// linux or unknown. Work with upsteam parted to improve the
+	// linux or unknown. Work with upstream parted to improve the
 	// interface. The line below should then be entry.id = ID_UNKNOWN
 
 	entry.id = ID_LINUX;

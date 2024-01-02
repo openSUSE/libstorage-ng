@@ -19,8 +19,11 @@ check(const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
     Mockup::set_command(BLKID_BIN " -c /dev/null", input);
+    Mockup::set_command({ UDEVADM_BIN_SETTLE }, {});
 
-    Blkid blkid;
+    Udevadm udevadm;
+
+    Blkid blkid(udevadm);
 
     ostringstream parsed;
     parsed.setf(std::ios::boolalpha);

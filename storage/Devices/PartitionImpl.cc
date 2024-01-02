@@ -25,6 +25,7 @@
 #include <boost/algorithm/string.hpp>
 
 #include "storage/Utils/AppUtil.h"
+#include "storage/Utils/Udev.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/StorageTmpl.h"
@@ -177,8 +178,9 @@ namespace storage
     void
     Partition::Impl::probe_uuid()
     {
-	const CmdUdevadmInfo& cmd_udevadm_info = CmdUdevadmInfo(get_name());
+	Udevadm udevadm;
 
+	const CmdUdevadmInfo cmd_udevadm_info(udevadm, get_name());
 	if (!cmd_udevadm_info.get_by_partuuid_links().empty())
 	    uuid = cmd_udevadm_info.get_by_partuuid_links().front();
     }

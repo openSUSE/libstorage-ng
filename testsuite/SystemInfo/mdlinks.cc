@@ -20,12 +20,15 @@ check(const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
     Mockup::set_command({ LS_BIN, "-1l", "--sort=none", "/dev/md" }, input);
+    Mockup::set_command({ UDEVADM_BIN_SETTLE }, {});
 
-    MdLinks mdlinks;
+    Udevadm udevadm;
+
+    MdLinks md_links(udevadm);
 
     ostringstream parsed;
     parsed.setf(std::ios::boolalpha);
-    parsed << mdlinks;
+    parsed << md_links;
 
     string lhs = parsed.str();
     string rhs = accumulate(output.begin(), output.end(), ""s,
@@ -40,12 +43,15 @@ check_error(const vector<string>& input, const vector<string>& error_input, cons
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
     Mockup::Command command(input, error_input, 1);
     Mockup::set_command({ LS_BIN, "-1l", "--sort=none", "/dev/md" }, command);
+    Mockup::set_command({ UDEVADM_BIN_SETTLE }, {});
 
-    MdLinks mdlinks;
+    Udevadm udevadm;
+
+    MdLinks md_links(udevadm);
 
     ostringstream parsed;
     parsed.setf(std::ios::boolalpha);
-    parsed << mdlinks;
+    parsed << md_links;
 
     string lhs = parsed.str();
     string rhs = accumulate(output.begin(), output.end(), ""s,

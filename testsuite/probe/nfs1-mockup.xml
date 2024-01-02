@@ -31,6 +31,9 @@
       <stdout>3216071524352 1981481418752 1234590105600 nfs</stdout>
     </Command>
     <Command>
+      <name>/usr/bin/udevadm settle --timeout=20</name>
+    </Command>
+    <Command>
       <name>/usr/bin/getconf PAGESIZE</name>
       <stdout>4096</stdout>
     </Command>

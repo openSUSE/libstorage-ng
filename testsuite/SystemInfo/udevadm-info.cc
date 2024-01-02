@@ -22,7 +22,9 @@ check(const string& file, const vector<string>& input, const vector<string>& out
     Mockup::set_command({ UDEVADM_BIN_SETTLE }, {});
     Mockup::set_command({ UDEVADM_BIN, "info", file }, input);
 
-    CmdUdevadmInfo cmd_udevadm_info(file);
+    Udevadm udevadm;
+
+    CmdUdevadmInfo cmd_udevadm_info(udevadm, file);
 
     ostringstream parsed;
     parsed.setf(std::ios::boolalpha);
