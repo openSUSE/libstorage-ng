@@ -56,7 +56,7 @@ namespace storage
 
 	const string device;
 
-	unsigned long long min_size;
+	unsigned long long min_size = 0;
 
     };
 

@@ -35,7 +35,7 @@ namespace storage
 {
 
     CmdNtfsresize::CmdNtfsresize(const string& device)
-	: device(device), min_size(0)
+	: device(device)
     {
 	SystemCmd cmd({ NTFSRESIZE_BIN, "--force", "--info", device }, SystemCmd::DoThrow);
 
