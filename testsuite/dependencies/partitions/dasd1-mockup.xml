@@ -11,13 +11,13 @@
       <name>/usr/sbin/parted --script /dev/vda unit s print</name>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --wipesignatures '/dev/dasda' unit s mkpart ext2 192 409727</name>
+      <name>/usr/sbin/parted --script --wipesignatures /dev/dasda unit s mkpart ext2 192 409727</name>
     </Command>
     <Command>
       <name>/usr/sbin/blkdiscard --verbose /dev/dasda1</name>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --wipesignatures '/dev/vda' unit s mkpart ext2 24 51215</name>
+      <name>/usr/sbin/parted --script --wipesignatures /dev/vda unit s mkpart ext2 24 51215</name>
     </Command>
     <Command>
       <name>/usr/sbin/blkdiscard --verbose /dev/vda1</name>
