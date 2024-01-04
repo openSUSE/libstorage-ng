@@ -8,7 +8,7 @@ This document was created as a summary of a meeting held in Nuernberg in Februar
 
 * AI Lukas: ML: libstorage-ng@opensuse.org
 * AI PM: Clarify requirements on FAT partitions
-* AI lmb, Holgi: Claryfy requirements on filesystems (see below)
+* AI lmb, Holgi: Clarify requirements on filesystems (see below)
 * AI Architecture maintainers: Clarify which configurations of RAID are bootable, possibly under which conditions
 * AI: Verify support of resizing logical volumes for LVM
 * AI: Clarify why we do not support encryption of root filesystem, which tools would possibly need to be fixed
@@ -51,7 +51,7 @@ ways to manage the disk space provided by the disks
        * mdadm RAID: https://en.wikipedia.org/wiki/Mdadm
        * dmraid (Device Mapper RAID): https://en.wikipedia.org/wiki/Device_mapper ?
 
-BIOS-managed raid is configured in BIOS (and Linux system detects it), Linux softwre RAID must be configured in Linux
+BIOS-managed raid is configured in BIOS (and Linux system detects it), Linux software RAID must be configured in Linux
 
 RAID levels:
 
@@ -80,7 +80,7 @@ Raid and boot partitions
 ### Volume Managers
 
    * LVM
-   * Btrfs (volume manager features): not yet supported, needs FATE with usecases and technical information
+   * Btrfs (volume manager features): not yet supported, needs FATE with use-cases and technical information
    * EVMS: legacy; no longer supported, drop, not even for upgrade (see https://bugzilla.suse.com/show_bug.cgi?id=848821#c18)
 
 Supported actions (LVM only):
@@ -106,7 +106,7 @@ Not supported (use low-level tools instead):
 
 ### Encryption
 
-   * full disk encryptionn (LVM only: encrypted PVs)
+   * full disk encryption (LVM only: encrypted PVs)
    * per partition (not root file system) with device mapper
    * per partition also for the root filesystem (currently not supported, AI: find out why it is not possible and fix it)
    * using LUKS (Linux Unified Key Setup)
@@ -185,7 +185,7 @@ File Systems and operations to be supported by new libstorage
 | ext2       | X      | X    | X      |                                                         |
 | ext3       | X      | X    | X      |                                                         |
 | ext4       | X      | X    | X      |                                                         |
-| Btrfs      | X      | X    | X      | primary root parition, avoid for data                   |
+| Btrfs      | X      | X    | X      | primary root partition, avoid for data                  |
 | XFS        | X      | X    | X      | preferred for data                                      |
 | JFS        | X      | X    | X      | Drop                                                    |
 | ReiserFS   |        | X    | X      | Support existing partitions, not allowed to create new  |
@@ -226,8 +226,8 @@ Local file system can be located in a disk partition, in whole disk, on an MD ar
                * latest (7/2015): 48 bit LBA; 144 PB (144000 TB) limit
            * there have always been limits, they always seemed way out of reach, and we always reached them before we thought it possible.
            * BIOS can only access first 8 disks
-       * Stage1 and Stage2 of grub2 should always be on the same disk (means including the partition where stage2 will be insalled into and the config)
-       * BIOS can only support 8 harddisks, so bootloader needs to be on the first 8 ones
+       * Stage1 and Stage2 of grub2 should always be on the same disk (means including the partition where stage2 will be installed into and the config)
+       * BIOS can only support 8 hard-disks, so bootloader needs to be on the first 8 ones
 
    * UEFI (Unified Extensible Firmware Interface):
        * typically used with GPT disk label
@@ -235,7 +235,7 @@ Local file system can be located in a disk partition, in whole disk, on an MD ar
 
    * PPC (Power PC)
        * can use MS-DOS or GPT disk label
-       * requires PReP partition in KVM or LPAR, on LPAR less than 8MB, idealy size of grub2 stage1
+       * requires PReP partition in KVM or LPAR, on LPAR less than 8MB, ideally size of grub2 stage1
        * no special partition required for OPAL/PowerNV/Bare
        * ***TO DO: Get more information from the PPC arch maintainers***
 
@@ -269,7 +269,7 @@ Local file system can be located in a disk partition, in whole disk, on an MD ar
        * parted will use the smallest available number when creating a new partition
        * bootflags are not required (maybe important for legacy BIOS, ignored UEFI)
        * **UEFI**
-           * EFI system partiton, vfat formated, might require specific UUID, limited to 32GB (vfat)
+           * EFI system partition, vfat formatted, might require specific UUID, limited to 32GB (vfat)
        * **legacy BIOS**
            * protective MBR (should have active flag)
            * hybrid MBR -> we do not want that any longer
@@ -278,7 +278,7 @@ Local file system can be located in a disk partition, in whole disk, on an MD ar
    * DASD (s/390 specific)
        * Up to 4 partitions
        * Separate zipl partition needed
-       * First sector is special, only writeable with appropriate tools
+       * First sector is special, only writable with appropriate tools
        * Needs to write the blocklist onto zipl partition, kernel/initrd must reside there (needs to be large enough to hold two copies of kernel and initrd)
        * AI: Provide details about specific tools for first sector writing, reasoning for two copies of kernel (why two?) for DASD
 

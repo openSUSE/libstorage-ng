@@ -1368,7 +1368,7 @@ namespace storage
 	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
 
 	// Thanks to udev "md-raid-assembly.rules" running "parted <disk>
-	// print" readds the device to the md if the signature is still
+	// print" re-adds the device to the md if the signature is still
 	// valid. Thus remove the signature.
 	blk_device->get_impl().wipe_device();
     }

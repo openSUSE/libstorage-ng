@@ -109,7 +109,7 @@ namespace storage
 	// https://en.wikipedia.org/wiki/BIOS_boot_partition. Normally the
 	// space for the MBR gap is unused anyway due to partition alignment
 	// but for disks with an alignment offset it can be required to
-	// explicitely reserve it.
+	// explicitly reserve it.
 
 	unsigned long long at_front = max(1ULL, region.to_blocks(minimal_mbr_gap));
 
