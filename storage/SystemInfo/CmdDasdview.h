@@ -55,8 +55,8 @@ namespace storage
 
 	string bus_id;
 
-	DasdType type;
-	DasdFormat format;
+	DasdType type = DasdType::UNKNOWN;
+	DasdFormat format = DasdFormat::NONE;
 
     };
 

@@ -32,7 +32,7 @@ namespace storage
 {
 
     Dasdview::Dasdview(const string& device)
-	: device(device), bus_id(), type(DasdType::UNKNOWN), format(DasdFormat::NONE)
+	: device(device)
     {
 	SystemCmd cmd({ DASDVIEW_BIN, "--extended", device }, SystemCmd::DoThrow);
 

@@ -37,7 +37,7 @@ namespace storage
 
 
     CmdCryptsetupStatus::CmdCryptsetupStatus(const string& name)
-	: name(name), encryption_type(EncryptionType::UNKNOWN)
+	: name(name)
     {
 	SystemCmd cmd({ CRYPTSETUP_BIN, "status", name }, SystemCmd::DoThrow);
 

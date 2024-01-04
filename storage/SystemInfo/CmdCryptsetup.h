@@ -54,7 +54,7 @@ namespace storage
 
 	const string name;
 
-	EncryptionType encryption_type;
+	EncryptionType encryption_type = EncryptionType::UNKNOWN;
 
     };
 

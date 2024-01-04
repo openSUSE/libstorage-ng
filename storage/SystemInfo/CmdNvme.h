@@ -70,7 +70,7 @@ namespace storage
 	struct Path
 	{
 	    string name;
-	    Transport transport;
+	    Transport transport = Transport::UNKNOWN;
 	};
 
 	struct Subsystem
