@@ -51,7 +51,9 @@ namespace storage
 	// events (fixed in SUSE versions). So always run 'udevadm settle'.
 	udevadm.settle();
 
-	SystemCmd cmd({ UDEVADM_BIN, "info", file }, SystemCmd::DoThrow);
+	SystemCmd::Options options({ UDEVADM_BIN, "info", file }, SystemCmd::DoThrow);
+	options.env.push_back("SYSTEMD_COLORS=false");
+	SystemCmd cmd(options);
 
 	parse(cmd.stdout());
     }
