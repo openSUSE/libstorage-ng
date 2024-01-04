@@ -165,7 +165,7 @@ nr_this_dev:            0
 first_bucket:           1
 /dev/sdf blkdiscard beginning...done
 > bcache attach /dev/sdf /dev/sdc
-Failed to attache to cset 423801be-5553-4205-9650-c8d12eb7897d
+Failed to attach to cset 423801be-5553-4205-9650-c8d12eb7897d
 > dmesg | tail -1
 [ 5084.307221] bcache: bch_cached_dev_attach() Couldn't attach sdc: block size less than set's block size
 ```
@@ -272,7 +272,7 @@ Name            Type            State                   Bname           AttachTo
 /dev/sde        0 (cache)       active                  N/A             N/A
 /dev/sdc        3 (cache)       active                  N/A             N/A
 > bcache attach 921ea429-2483-4382-ab8f-290511ed0d55 /dev/sdd
-Failed to attache to cset 921ea429-2483-4382-ab8f-290511ed0d55
+Failed to attach to cset 921ea429-2483-4382-ab8f-290511ed0d55
 > bcache attach 921ea429-2483-4382-ab8f-290511ed0d55 /dev/sdf
 ```
 

@@ -38,8 +38,6 @@ namespace storage
     // TODO overall not nice
 
     Arch::Arch(bool do_probe)
-	: arch("unknown"), ppc_mac(false), ppc_pegasos(false), ppc_power_nv(false),
-	  efiboot(false), page_size(0)
     {
 	if (do_probe)
 	    probe();

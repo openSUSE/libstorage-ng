@@ -15,7 +15,7 @@
       <!-- stdout missing -->
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script --wipesignatures '/dev/sdb' unit s mkpart "''" ext2 2048 2147485695</name>
+      <name>/usr/sbin/parted --script --wipesignatures /dev/sdb unit s mkpart '' ext2 2048 2147485695</name>
       <!-- stdout missing -->
     </Command>
     <Command>

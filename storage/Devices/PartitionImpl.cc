@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2024] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -947,7 +947,7 @@ namespace storage
 	    boost::replace_all(t, "'", "\\'");
 	    boost::replace_all(t, "\"", "\\\"");
 
-	    return "\"'" + t + "'\"";
+	    return "'" + t + "'";
 	}
 
     }
@@ -963,19 +963,19 @@ namespace storage
 
 	do_create_pre_hack(tmps);
 
-	string cmd_line = PARTED_BIN " --script ";
+	SystemCmd::Args cmd_args = { PARTED_BIN, "--script" };
 
 	if (PartedVersion::supports_wipe_signatures())
-	    cmd_line += "--wipesignatures ";
+	    cmd_args << "--wipesignatures";
 
-	cmd_line += quote(partitionable->get_name()) + " unit s mkpart ";
+	cmd_args << partitionable->get_name() << "unit" << "s" << "mkpart";
 
 	if (is_msdos(partition_table))
-	    cmd_line += toString(get_type()) + " ";
+	    cmd_args << toString(get_type());
 
 	if (is_gpt(partition_table))
 	    // pass empty string as partition name
-	    cmd_line += quote_label("") + " ";
+	    cmd_args << quote_label("");
 
 	if (get_type() != PartitionType::EXTENDED)
 	{
@@ -989,32 +989,32 @@ namespace storage
 	    switch (get_id())
 	    {
 		case ID_SWAP:
-		    cmd_line += "linux-swap ";
+		    cmd_args << "linux-swap";
 		    break;
 
 		case ID_DOS32:
-		    cmd_line += "fat32 ";
+		    cmd_args << "fat32";
 		    break;
 
 		case ID_NTFS:
 		case ID_WINDOWS_BASIC_DATA:
-		    cmd_line += "ntfs ";
+		    cmd_args << "ntfs";
 		    break;
 
 		default:
-		    cmd_line += "ext2 ";
+		    cmd_args << "ext2";
 		    break;
 	    }
 	}
 
 	unsigned long long factor = parted_sector_adjustment_factor();
 
-	cmd_line += to_string(get_region().get_start() * factor) + " " +
-	    to_string((get_region().get_end() - tmps.size()) * factor + (factor - 1));
+	cmd_args << to_string(get_region().get_start() * factor)
+		 << to_string((get_region().get_end() - tmps.size()) * factor + (factor - 1));
 
 	udev_settle();
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
 
 	do_create_post_hack(tmps);
 
@@ -1095,26 +1095,27 @@ namespace storage
 
 	for (unsigned int i = 0; i < tmps.size(); ++i)
 	{
-	    string cmd_line = PARTED_BIN " --script ";
+	    SystemCmd::Args cmd_args = { PARTED_BIN, "--script" };
 
 	    if (PartedVersion::supports_wipe_signatures())
-		cmd_line += "--wipesignatures ";
+		cmd_args << "--wipesignatures";
 
-	    cmd_line += quote(partitionable->get_name()) + " unit s mkpart ";
+	    cmd_args << partitionable->get_name() << "unit" << "s" << "mkpart";
 
 	    if (is_msdos(partition_table))
-		cmd_line += "primary ";
+		cmd_args << "primary";
 
 	    if (is_gpt(partition_table))
-		cmd_line += "'\"\"' ";
+		// pass empty string as partition name
+		cmd_args << quote_label("");
 
-	    cmd_line += "ext2 ";
+	    cmd_args << "ext2";
 
-	    cmd_line += to_string(get_region().get_end() - i) + " " + to_string(get_region().get_end() - i);
+	    cmd_args << to_string(get_region().get_end() - i) << to_string(get_region().get_end() - i);
 
 	    udev_settle();
 
-	    SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	    SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
 	}
 
 	y2mil("do_create_pre_number_hack end");
@@ -1321,12 +1322,10 @@ namespace storage
     {
 	const Partitionable* partitionable = get_partitionable();
 
-	string cmd_line = PARTED_BIN " --script " + quote(partitionable->get_name()) + " name " +
-	    to_string(get_number()) + " ";
+	SystemCmd::Args cmd_args = { PARTED_BIN, "--script", partitionable->get_name(), "name",
+	    to_string(get_number()), quote_label(label) };
 
-	cmd_line += quote_label(label);
-
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
 

@@ -33,7 +33,7 @@ libstorage-ng uses three special devicegraphs:
   Only very few operations (only the immediate_* functions) are allowed on the
   system devicegraph.
 
-  The intension in the future is to update the system devicegraph during
+  The intention in the future is to update the system devicegraph during
   commit and copy it to probed devicegraph after the commit.
 
 

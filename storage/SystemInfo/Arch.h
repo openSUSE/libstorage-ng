@@ -68,12 +68,12 @@ namespace storage
 
 	void probe();
 
-	std::string arch;
-	bool ppc_mac;
-	bool ppc_pegasos;
-	bool ppc_power_nv;
-	bool efiboot;
-	unsigned int page_size;
+	std::string arch = "unknown";
+	bool ppc_mac = false;
+	bool ppc_pegasos = false;
+	bool ppc_power_nv = false;
+	bool efiboot = false;
+	unsigned int page_size = 0;
 
     };
 
