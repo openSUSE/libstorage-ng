@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 SUSE LLC
+ * Copyright (c) [2018-2024] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,7 +21,8 @@
 
 
 #include "storage/Utils/LightProbe.h"
-#include "storage/SystemInfo/SystemInfoImpl.h"
+#include "storage/Utils/LoggerImpl.h"
+#include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Prober.h"
 
 
@@ -31,11 +32,18 @@ namespace storage
     bool
     light_probe()
     {
+	SystemInfo system_info;
+
+	return light_probe(system_info);
+    }
+
+
+    bool
+    light_probe(SystemInfo& system_info)
+    {
 	y2mil("light-probe begin");
 
-	SystemInfo::Impl system_info;
-
-	SysBlockEntries sys_block_entries = probe_sys_block_entries(system_info);
+	SysBlockEntries sys_block_entries = probe_sys_block_entries(system_info.get_impl());
 
 	y2mil("light-probe end");
 

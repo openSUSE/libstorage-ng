@@ -34,10 +34,13 @@ namespace storage
     /**
      * The SystemInfo class keeps various system information.
      *
-     * So far the class can only be used for the Storage::probe() and
+     * So far the class can only be used for the Storage::probe(), lighe_probe() and
      * BlkDevice::find_by_any_name() functions. There it can avoid querying the same
      * information from the system several times when using several calls to
      * BlkDevice::find_by_any_name().
+     *
+     * After modifying the storage system the SystemInfo object is invalid and must not be
+     * used anymore.
      */
     class SystemInfo : private boost::noncopyable
     {
