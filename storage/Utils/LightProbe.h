@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 SUSE LLC
+ * Copyright (c) [2018-2024] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -27,6 +27,9 @@
 namespace storage
 {
 
+    class SystemInfo;
+
+
     /**
      * This function does some very light probing and returns true iff some
      * disks or DASDs were found in the system. No devicegraph is generated.
@@ -35,6 +38,16 @@ namespace storage
      * @throw Exception
      */
     bool light_probe();
+
+
+    /**
+     * Same as light_probe() except for the SystemInfo parameter.
+     *
+     * @see light_probe()
+     *
+     * @throw Exception
+     */
+    bool light_probe(SystemInfo& system_info);
 
 }
 
