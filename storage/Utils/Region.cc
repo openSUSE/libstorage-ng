@@ -88,9 +88,7 @@ namespace storage
     }
 
 
-    Region::~Region()
-    {
-    }
+    Region::~Region() = default;
 
 
     Region&

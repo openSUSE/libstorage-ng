@@ -37,9 +37,7 @@ namespace storage
     }
 
 
-    LuksInfo::~LuksInfo()
-    {
-    }
+    LuksInfo::~LuksInfo() = default;
 
 
     const string&
@@ -90,9 +88,7 @@ namespace storage
     }
 
 
-    BitlockerInfo::~BitlockerInfo()
-    {
-    }
+    BitlockerInfo::~BitlockerInfo() = default;
 
 
     const string&
@@ -142,9 +138,7 @@ namespace storage
     }
 
 
-    DeactivateStatusV2::~DeactivateStatusV2()
-    {
-    }
+    DeactivateStatusV2::~DeactivateStatusV2() = default;
 
 
     DeactivateStatusV2&
@@ -203,9 +197,7 @@ namespace storage
     }
 
 
-    Storage::~Storage()
-    {
-    }
+    Storage::~Storage() = default;
 
 
     const Environment&

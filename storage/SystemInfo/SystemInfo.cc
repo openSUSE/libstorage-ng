@@ -32,8 +32,6 @@ namespace storage
     }
 
 
-    SystemInfo::~SystemInfo()
-    {
-    }
+    SystemInfo::~SystemInfo() = default;
 
 }

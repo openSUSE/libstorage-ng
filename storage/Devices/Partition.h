@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2024] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -34,6 +34,7 @@ namespace storage
     class PartitionTable;
     class Partitionable;
     class SystemInfo;
+    class Arch;
 
 
     /**
@@ -249,6 +250,17 @@ namespace storage
      * @see IdNum, LinuxPartitionIdCategory
      */
     bool is_linux_partition_id(IdNum id, LinuxPartitionIdCategory linux_partition_id_category);
+
+
+    /**
+     * Get the partition id for the Linux partition of the given category (root, usr, ...)
+     * depending on the architecture.
+     *
+     * @see IdNum, LinuxPartitionIdCategory
+     *
+     * @throw Exception
+     */
+    IdNum get_linux_partition_id(LinuxPartitionIdCategory linux_partition_id_category, const Arch& arch);
 
 
     /**

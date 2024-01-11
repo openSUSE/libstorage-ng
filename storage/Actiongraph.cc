@@ -35,9 +35,7 @@ namespace storage
     }
 
 
-    Actiongraph::~Actiongraph()
-    {
-    }
+    Actiongraph::~Actiongraph() = default;
 
 
     const Storage&

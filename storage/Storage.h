@@ -456,6 +456,10 @@ namespace storage
     public:
 
 	const Environment& get_environment() const;
+
+	/**
+	 * So far only valid after probing.
+	 */
 	const Arch& get_arch() const;
 
 	/**

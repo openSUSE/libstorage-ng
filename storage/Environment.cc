@@ -48,9 +48,7 @@ namespace storage
     }
 
 
-    Environment::~Environment()
-    {
-    }
+    Environment::~Environment() = default;
 
 
     bool
