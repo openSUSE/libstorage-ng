@@ -72,11 +72,6 @@ namespace storage
     }
 
 
-    BtrfsQgroup::Impl::~Impl()
-    {
-    }
-
-
     bool
     BtrfsQgroup::Impl::is_in_view(View view) const
     {

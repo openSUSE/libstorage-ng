@@ -62,8 +62,6 @@ namespace storage
 
 	Impl(const id_t& id);
 
-	virtual ~Impl();
-
 	Impl(const xmlNode* node);
 
 	virtual bool is_in_view(View view) const override;
