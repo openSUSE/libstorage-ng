@@ -40,6 +40,7 @@
 %exceptionclass storage::WrongNumberOfHolders;
 %exceptionclass storage::WrongNumberOfParents;
 
+%catches(storage::Exception) storage::get_linux_partition_id(LinuxPartitionIdCategory linux_partition_id_category, const Arch &arch);
 %catches(storage::Exception) storage::get_linux_partition_id(LinuxPartitionIdCategory linux_partition_id_category, SystemInfo &system_info);
 %catches(storage::ParseException, storage::OverflowException) storage::humanstring_to_byte(const std::string &str, bool classic);
 %catches(storage::NullPointerException) storage::is_bcache(const Device *device);

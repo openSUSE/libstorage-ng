@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2024] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -115,17 +115,23 @@ namespace storage
 
 
     IdNum
-    get_linux_partition_id(LinuxPartitionIdCategory linux_partition_id_category, SystemInfo& system_info)
+    get_linux_partition_id(LinuxPartitionIdCategory linux_partition_id_category, const Arch& arch)
     {
-	const string& arch = system_info.get_impl().getArch().get_arch();
-
 	for (const IdInfo& id_info : id_info_registry)
 	{
-	    if (id_info.linux_partition_id_category == linux_partition_id_category && regex_match(arch, id_info.arch))
+	    if (id_info.linux_partition_id_category == linux_partition_id_category &&
+		regex_match(arch.get_arch(), id_info.arch))
 		return id_info.id;
 	}
 
 	ST_THROW(Exception(sformat("partition id unknown for architecture %s", arch)));
+    }
+
+
+    IdNum
+    get_linux_partition_id(LinuxPartitionIdCategory linux_partition_id_category, SystemInfo& system_info)
+    {
+	return get_linux_partition_id(linux_partition_id_category, system_info.get_impl().getArch());
     }
 
 

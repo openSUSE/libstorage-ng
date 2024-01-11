@@ -15,3 +15,10 @@ print("x86_64", ID_LINUX_ROOT_X86_64)
 
 print(get_linux_partition_id(LinuxPartitionIdCategory_ROOT, system_info))
 
+environment = Environment(False)
+
+storage = Storage(environment)
+storage.probe()
+
+print(get_linux_partition_id(LinuxPartitionIdCategory_ROOT, storage.get_arch()))
+
