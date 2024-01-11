@@ -47,9 +47,7 @@ namespace storage
     }
 
 
-    Device::~Device()
-    {
-    }
+    Device::~Device() = default;
 
 
     string

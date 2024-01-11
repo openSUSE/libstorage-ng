@@ -45,9 +45,7 @@ namespace storage
     }
 
 
-    Holder::~Holder()
-    {
-    }
+    Holder::~Holder() = default;
 
 
     bool

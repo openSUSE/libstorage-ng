@@ -42,9 +42,7 @@ namespace storage
     }
 
 
-    Pool::~Pool()
-    {
-    }
+    Pool::~Pool() = default;
 
 
     const map<string, string>&

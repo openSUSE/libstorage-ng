@@ -47,9 +47,7 @@ namespace storage
     }
 
 
-    Alignment::~Alignment()
-    {
-    }
+    Alignment::~Alignment() = default;
 
 
     Alignment&

@@ -45,9 +45,7 @@ namespace storage
     }
 
 
-    Topology::~Topology()
-    {
-    }
+    Topology::~Topology() = default;
 
 
     Topology&

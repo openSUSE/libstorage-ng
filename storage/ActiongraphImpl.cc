@@ -65,9 +65,7 @@ namespace storage
     }
 
 
-    CommitData::~CommitData()
-    {
-    }
+    CommitData::~CommitData() = default;
 
 
     EtcFstab&

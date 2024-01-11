@@ -122,9 +122,7 @@ namespace storage
     }
 
 
-    Devicegraph::~Devicegraph()
-    {
-    }
+    Devicegraph::~Devicegraph() = default;
 
 
     bool
