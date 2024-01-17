@@ -131,7 +131,7 @@ namespace storage
     IdNum
     get_linux_partition_id(LinuxPartitionIdCategory linux_partition_id_category, SystemInfo& system_info)
     {
-	return get_linux_partition_id(linux_partition_id_category, system_info.get_impl().getArch());
+	return get_linux_partition_id(linux_partition_id_category, system_info.get_arch());
     }
 
 

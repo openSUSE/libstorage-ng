@@ -31,6 +31,9 @@
 namespace storage
 {
 
+    class Arch;
+
+
     /**
      * The SystemInfo class keeps various system information.
      *
@@ -48,6 +51,13 @@ namespace storage
 
 	SystemInfo();
 	~SystemInfo();
+
+	/**
+	 * Get an Arch object.
+	 *
+	 * @throw Exception
+	 */
+	const Arch& get_arch();
 
     public:
 

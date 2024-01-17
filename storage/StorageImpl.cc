@@ -276,7 +276,7 @@ namespace storage
     void
     Storage::Impl::probe_helper(const ProbeCallbacks* probe_callbacks, Devicegraph* probed, SystemInfo& system_info)
     {
-	arch = system_info.get_impl().getArch();
+	arch = system_info.get_arch();
 
 	Prober prober(storage, probe_callbacks, probed, system_info.get_impl());
     }

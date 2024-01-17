@@ -438,5 +438,6 @@
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::StrayBlkDevice::find_by_name(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::StrayBlkDevice::find_by_name(const Devicegraph *devicegraph, const std::string &name);
 %catches(storage::HolderAlreadyExists) storage::Subdevice::create(Devicegraph *devicegraph, const Device *source, const Device *target);
+%catches(storage::Exception) storage::SystemInfo::get_arch();
 %catches(storage::HolderAlreadyExists) storage::User::create(Devicegraph *devicegraph, const Device *source, const Device *target);
 
