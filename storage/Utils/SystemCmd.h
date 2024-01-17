@@ -119,7 +119,7 @@ namespace storage
 	     * additionally to verify if the command succeeded and if not an
 	     * exception is thrown.
 	     */
-	    std::function<bool(int)> verify = [](int exit_code){ return exit_code == 0; };
+	    std::function<bool(int)> verify = [](int exit_code) { return exit_code == 0; };
 
 	    /**
 	     * Environment variables to override existing environment variables. Per

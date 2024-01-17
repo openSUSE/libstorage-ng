@@ -34,4 +34,11 @@ namespace storage
 
     SystemInfo::~SystemInfo() = default;
 
+
+    const Arch&
+    SystemInfo::get_arch()
+    {
+	return get_impl().getArch();
+    }
+
 }

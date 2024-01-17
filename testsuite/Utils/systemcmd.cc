@@ -293,8 +293,8 @@ BOOST_AUTO_TEST_CASE(close_fds)
     // Check that no file descriptors are leaked (are closed even right after the
     // SystemCmd constructor).
 
-    // stdin, stdout and stderr - fails with valgrind
-    BOOST_CHECK_EQUAL(num_open_fds(), 3);
+    // n can be more than three, e.g. in valgrind or emacs
+    const int n = num_open_fds();
 
     SystemCmd cmd({ LS_BIN, "-1", "/proc/self/fd/" });
 
@@ -303,6 +303,6 @@ BOOST_AUTO_TEST_CASE(close_fds)
     // stdin, stdout, stderr and an fd resulting from the opendir in ls
     BOOST_CHECK_EQUAL(cmd.stdout().size(), 4);
 
-    // still only stdin, stdout and stderr - fails with valgrind
-    BOOST_CHECK_EQUAL(num_open_fds(), 3);
+    // same number of open fds as before
+    BOOST_CHECK_EQUAL(num_open_fds(), n);
 }
