@@ -10,10 +10,10 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-12-22 09:40+0100\n"
-"PO-Revision-Date: 2023-08-08 15:15+0000\n"
+"PO-Revision-Date: 2024-01-19 05:59+0000\n"
 "Last-Translator: Kukuh Syafaat <syafaatkukuh@gmail.com>\n"
-"Language-Team: Indonesian <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/id/>\n"
+"Language-Team: Indonesian <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/id/>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1659,7 +1659,7 @@ msgstr ""
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by a list of device names joined by newlines (e.g.
 #. /dev/test/cached\n/dev/test/snapshot)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Detected LVM logical volumes of unsupported types:\n"
 "\n"
@@ -1672,7 +1672,7 @@ msgstr ""
 "\n"
 "%1$s\n"
 "\n"
-"Volume logical ini diabaikan. Operasi pada\n"
+"Volume logikal ini diabaikan. Operasi pada\n"
 "grup volume terkait mungkin gagal."
 
 #. TRANSLATORS: Error message displayed during probing,
@@ -1986,7 +1986,7 @@ msgstr "Format bcache %1$s pada %2$s (%3$s) dengan %4$s"
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Format partition %1$s (%2$s) as encrypted swap"
 msgstr "Format partisi %1$s (%2$s) sebagai swap terenkripsi"
 
