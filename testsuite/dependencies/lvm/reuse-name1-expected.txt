@@ -1,0 +1,8 @@
+1a - Delete volume group test (10.00 GiB) -> 1b 2d
+1b - Delete physical volume on /dev/sdc1 -> 1c
+1c - Delete partition /dev/sdc1 (10.00 GiB) ->
+
+2a - Create partition /dev/sdd1 (10.00 GiB) -> 2b
+2b - Set id of partition /dev/sdd1 to Linux LVM -> 2c
+2c - Create physical volume on /dev/sdd1 -> 2d
+2d - Create volume group test (10.00 GiB) from /dev/sdd1 (10.00 GiB) ->
