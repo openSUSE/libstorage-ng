@@ -100,6 +100,7 @@
 #define MULTIPATHD_BIN "/sbin/multipathd"
 #define DMSETUP_BIN "/sbin/dmsetup"
 #define DMRAID_BIN "/sbin/dmraid"
+#define BCACHEFS_BIN "/usr/sbin/bcachefs"
 #define BTRFS_BIN "/sbin/btrfs"
 #define WIPEFS_BIN "/sbin/wipefs"
 #define BLKDISCARD_BIN "/usr/sbin/blkdiscard"
@@ -158,6 +159,7 @@
 #define DUMPE2FS_BIN "/sbin/dumpe2fs"
 
 #define MKSWAP_BIN "/sbin/mkswap"
+#define MKFS_BCACHEFS_BIN "/usr/sbin/mkfs.bcachefs"
 #define MKFS_XFS_BIN "/sbin/mkfs.xfs"
 #define MKFS_JFS_BIN "/sbin/mkfs.jfs"
 #define MKFS_FAT_BIN "/sbin/mkfs.fat"

@@ -154,7 +154,7 @@ Implemented:
 
 * For btrfs, ext2, ext3, ext4, ReiserFS, NTFS, VFat, ExFat, XFS, JFS,
   swap, F2FS (excluding multiple devices), NILFS2 (excluding
-  checkpoints), ISO9660, UDF, NFS and tmpfs the most important
+  checkpoints), ISO9660, UDF, NFS, bcachefs and tmpfs the most important
   operations (probing, creating, deleting, resizing, mounting and
   unmounting).
 * Handling of /etc/fstab.
@@ -163,6 +163,7 @@ Implemented:
 
 Missing:
 
+* Bcachefs resizing, snapshots and multiple-devices.
 * On demand unmounting.
 
 

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2024] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -46,6 +46,7 @@
 #include "storage/Devices/BitlockerV2.h"
 #include "storage/Devices/Bcache.h"
 #include "storage/Devices/BcacheCset.h"
+#include "storage/Filesystems/Bcachefs.h"
 #include "storage/Filesystems/Ext2.h"
 #include "storage/Filesystems/Ext3.h"
 #include "storage/Filesystems/Ext4.h"
@@ -82,6 +83,7 @@ namespace storage
     const map<string, device_load_fnc> device_load_registry = {
 	{ "Bcache", &Bcache::load },
 	{ "BcacheCset", &BcacheCset::load },
+	{ "Bcachefs", &Bcachefs::load },
 	{ "Bitlocker", &Bitlocker::load },
 	{ "BitlockerV2", &BitlockerV2::load },
 	{ "Btrfs", &Btrfs::load },
@@ -138,6 +140,7 @@ namespace storage
 
 
     const map<FsType, blk_filesystem_create_fnc> blk_filesystem_create_registry = {
+	{ FsType::BCACHEFS, &Bcachefs::create },
 	{ FsType::BITLOCKER, &Bitlocker::create },
 	{ FsType::BTRFS, &Btrfs::create },
 	{ FsType::EXFAT, &Exfat::create },
