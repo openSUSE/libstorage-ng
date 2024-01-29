@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2024] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -756,6 +756,59 @@ namespace storage
 	SystemCmd::Args cmd_args = { VGREDUCE_BIN, "--removemissing", "--force", "--", vg_name };
 
 	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
+    }
+
+
+    void
+    LvmVg::Impl::run_dependency_manager(Actiongraph::Impl& actiongraph)
+    {
+	// Ensure that a volume group with the same name is deleted before the new is
+	// created.
+
+	struct AllActions
+	{
+	    optional<Actiongraph::Impl::vertex_descriptor> create_action;
+	    optional<Actiongraph::Impl::vertex_descriptor> delete_action;
+	};
+
+	map<string, AllActions> all_actions_per_vg_name;
+
+	for (Actiongraph::Impl::vertex_descriptor vertex : actiongraph.vertices())
+	{
+	    const Action::Base* action = actiongraph[vertex];
+	    if (!action->affects_device())
+		continue;
+
+	    const Action::Create* create_action = dynamic_cast<const Action::Create*>(action);
+	    if (create_action)
+	    {
+		const Device* device = create_action->get_device(actiongraph);
+		if (is_lvm_vg(device))
+		{
+		    const LvmVg* lvm_vg = to_lvm_vg(device);
+		    all_actions_per_vg_name[lvm_vg->get_vg_name()].create_action = vertex;
+		}
+	    }
+
+	    const Action::Delete* delete_action = dynamic_cast<const Action::Delete*>(action);
+	    if (delete_action)
+	    {
+		const Device* device = delete_action->get_device(actiongraph);
+		if (is_lvm_vg(device))
+		{
+		    const LvmVg* lvm_vg = to_lvm_vg(device);
+		    all_actions_per_vg_name[lvm_vg->get_vg_name()].delete_action = vertex;
+		}
+	    }
+	}
+
+	for (const map<string, AllActions>::value_type& tmp : all_actions_per_vg_name)
+	{
+	    const AllActions& all_actions = tmp.second;
+
+	    if (all_actions.create_action && all_actions.delete_action)
+		actiongraph.add_edge(all_actions.delete_action.value(), all_actions.create_action.value());
+	}
     }
 
 

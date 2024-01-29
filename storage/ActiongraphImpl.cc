@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2024] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -32,6 +32,7 @@
 #include "storage/Devices/DeviceImpl.h"
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Devices/PartitionTableImpl.h"
+#include "storage/Devices/LvmVgImpl.h"
 #include "storage/Devices/GptImpl.h"
 #include "storage/Devices/BcacheImpl.h"
 #include "storage/Filesystems/BlkFilesystemImpl.h"
@@ -573,7 +574,7 @@ namespace storage
 	}
 
 	PartitionTable::Impl::run_dependency_manager(*this);
-
+	LvmVg::Impl::run_dependency_manager(*this);
 	Bcache::Impl::run_dependency_manager(*this);
 
 	for (vertex_descriptor vertex : vertices())

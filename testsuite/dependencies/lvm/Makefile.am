@@ -9,7 +9,7 @@ LDADD = ../../../storage/libstorage-ng.la ../../helpers/libhelpers.la		\
 
 check_PROGRAMS =								\
 	reduce1.test extend1.test complex1.test complex2.test complex3.test	\
-	thin1.test snapshot1.test
+	thin1.test snapshot1.test reuse-name1.test
 
 AM_DEFAULT_SOURCE_EXT = .cc
 
@@ -22,5 +22,6 @@ EXTRA_DIST =											\
 	complex2-probed.xml complex2-staging.xml complex2-expected.txt				\
 	complex3-probed.xml complex3-staging.xml complex3-expected.txt				\
 	thin1-probed.xml thin1-staging.xml thin1-expected.txt					\
-	snapshot1-probed.xml snapshot1-staging.xml snapshot1-expected.txt
+	snapshot1-probed.xml snapshot1-staging.xml snapshot1-expected.txt			\
+	reuse-name1-probed.xml reuse-name1-staging.xml reuse-name1-expected.txt
 

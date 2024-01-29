@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2024] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -131,6 +131,8 @@ namespace storage
 	 * (see vgs(8)).
 	 */
 	bool is_partial() const;
+
+	static void run_dependency_manager(Actiongraph::Impl& actiongraph);
 
 	virtual void add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs_base) const override;
 	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;
