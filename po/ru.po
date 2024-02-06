@@ -4,17 +4,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-22 09:40+0100\n"
+"POT-Creation-Date: 2024-02-06 09:28+0100\n"
 "PO-Revision-Date: 2024-01-12 23:59+0000\n"
 "Last-Translator: Vik On <4o3lxdc1y@mozmail.com>\n"
-"Language-Team: Russian <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/ru/>\n"
+"Language-Team: Russian <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.9.1\n"
 
 msgid ""
@@ -342,6 +342,11 @@ msgstr "Bcаche"
 #. TRANSLATORS: name of object
 msgid "Bcache Cache Set"
 msgstr "Набор кэша Bcache"
+
+#. TRANSLATORS: name of object
+#, fuzzy
+msgid "Bcachefs"
+msgstr "Bcаche"
 
 #. TRANSLATORS: name of object
 msgid "BitLocker"

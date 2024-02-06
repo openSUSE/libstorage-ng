@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-22 09:40+0100\n"
+"POT-Creation-Date: 2024-02-06 09:28+0100\n"
 "PO-Revision-Date: 2023-03-26 22:14+0000\n"
 "Last-Translator: neome <neome@posteo.me>\n"
 "Language-Team: Polish <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -357,6 +357,11 @@ msgstr "Bcache"
 #. TRANSLATORS: name of object
 msgid "Bcache Cache Set"
 msgstr "Sekcja pamięci podręcznej Bcache"
+
+#. TRANSLATORS: name of object
+#, fuzzy
+msgid "Bcachefs"
+msgstr "Bcache"
 
 #. TRANSLATORS: name of object
 msgid "BitLocker"
