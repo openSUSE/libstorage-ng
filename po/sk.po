@@ -5,11 +5,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-22 09:40+0100\n"
+"POT-Creation-Date: 2024-02-06 09:28+0100\n"
 "PO-Revision-Date: 2023-12-22 15:02+0000\n"
 "Last-Translator: Ferdinand Galko <galko.ferdinand@gmail.com>\n"
-"Language-Team: Slovak <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/sk/>\n"
+"Language-Team: Slovak <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -346,6 +346,11 @@ msgstr "Bcache"
 #. TRANSLATORS: name of object
 msgid "Bcache Cache Set"
 msgstr "Sada vyrovnávacej pamäte Bcache"
+
+#. TRANSLATORS: name of object
+#, fuzzy
+msgid "Bcachefs"
+msgstr "Bcache"
 
 #. TRANSLATORS: name of object
 msgid "BitLocker"

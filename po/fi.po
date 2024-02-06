@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-22 09:40+0100\n"
+"POT-Creation-Date: 2024-02-06 09:28+0100\n"
 "PO-Revision-Date: 2022-02-03 12:12+0000\n"
 "Last-Translator: Tommi Nieminen <software@legisign.org>\n"
 "Language-Team: Finnish <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -349,6 +349,11 @@ msgstr "Bcache"
 #. TRANSLATORS: name of object
 msgid "Bcache Cache Set"
 msgstr "Bcache-välimuistijoukko"
+
+#. TRANSLATORS: name of object
+#, fuzzy
+msgid "Bcachefs"
+msgstr "Bcache"
 
 #. TRANSLATORS: name of object
 msgid "BitLocker"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-22 09:40+0100\n"
+"POT-Creation-Date: 2024-02-06 09:28+0100\n"
 "PO-Revision-Date: 2005-02-16 10:21+0100\n"
 "Last-Translator: Kanwaljeet Singh Brar <kanwaljeetbrar@yahoo.co.in>\n"
 "Language-Team: Punjabi <i18n@suse.de>\n"
@@ -341,6 +341,10 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Bcache Cache Set"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "Bcachefs"
 msgstr ""
 
 #. TRANSLATORS: name of object
