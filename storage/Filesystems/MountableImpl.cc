@@ -264,7 +264,7 @@ namespace storage
 
 		if (fstab_entry != filtered_entries.end())
 		{
-		    // There are active entries in /etc/fsbab, so discarding the rest
+		    // There are active entries in /etc/fstab, so discarding the rest
 		    filtered_entries.erase(
 			remove_if(filtered_entries.begin(), filtered_entries.end(),
 			    [](const JointEntry* entry) { return !entry->is_in_etc_fstab(); }
