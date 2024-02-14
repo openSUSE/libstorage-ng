@@ -195,6 +195,8 @@ namespace storage
 
 	const char* env_vars[] = {
 	    "PATH",
+	    "LANG",
+	    "LC_ALL", "LC_CTYPE", "LC_MESSAGES"
 	    "LD_LIBRARY_PATH",
 	    "LD_PRELOAD",
 	    "LIBSTORAGE_BTRFS_QGROUPS",
