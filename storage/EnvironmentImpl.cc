@@ -191,11 +191,12 @@ namespace storage
     void
     Environment::Impl::extra_log()
     {
+	y2mil("locale " << setlocale(LC_ALL, NULL));
 	y2mil("codeset " << nl_langinfo(CODESET));
 
 	const char* env_vars[] = {
 	    "PATH",
-	    "LANG",
+	    "LANG", "LANGUAGE",
 	    "LC_ALL", "LC_CTYPE", "LC_MESSAGES"
 	    "LD_LIBRARY_PATH",
 	    "LD_PRELOAD",
