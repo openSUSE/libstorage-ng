@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2018-2023] SUSE LLC
+ * Copyright (c) [2018-2024] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,7 +21,9 @@
  */
 
 
+#include <locale.h>
 #include <langinfo.h>
+#include <libintl.h>
 #include <cstring>
 #include <ostream>
 
@@ -193,6 +195,10 @@ namespace storage
     {
 	y2mil("locale " << setlocale(LC_ALL, NULL));
 	y2mil("codeset " << nl_langinfo(CODESET));
+
+	const char* p1 = bind_textdomain_codeset("libstorage-ng", NULL);
+	if (p1)
+	    y2mil("textdomain-codeset " << p1);
 
 	const char* env_vars[] = {
 	    "PATH",
