@@ -12,10 +12,10 @@ msgstr ""
 "Project-Id-Version: libstorage.fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-06 09:28+0100\n"
-"PO-Revision-Date: 2022-02-03 12:12+0000\n"
+"PO-Revision-Date: 2024-02-22 11:42+0000\n"
 "Last-Translator: Tommi Nieminen <software@legisign.org>\n"
-"Language-Team: Finnish <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/fi/>\n"
+"Language-Team: Finnish <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -112,14 +112,14 @@ msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "Alustetaan looginen taltio %1$s (%2$s) tiedostojärjestelmällä %3$s"
 
 #. TRANSLATORS: progress message
-#, fuzzy, c-format
+#, c-format
 msgid "Activating BitLocker %s"
-msgstr "Otetaan käyttöön LUKS %s"
+msgstr "Aktivoidaan BitLocker %s"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Activating BitLocker %s failed"
-msgstr "LUKS-laitteen%s käyttöönotto epäonnistui"
+msgstr "BitLocker %s: aktivointi epäonnistui"
 
 #. TRANSLATORS: progress message
 #, c-format
@@ -351,9 +351,8 @@ msgid "Bcache Cache Set"
 msgstr "Bcache-välimuistijoukko"
 
 #. TRANSLATORS: name of object
-#, fuzzy
 msgid "Bcachefs"
-msgstr "Bcache"
+msgstr "Bcachefs"
 
 #. TRANSLATORS: name of object
 msgid "BitLocker"
@@ -399,9 +398,9 @@ msgstr "Poista vanha käynnistyslippu osiolta %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Clear no-automount flag of partition %1$s"
-msgstr "Poista käynnistyslippu osiolta %1$s"
+msgstr "Poista ei automaattiliittämistä -lippu osiolta %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -446,9 +445,9 @@ msgstr "Poistetaan vanha käynnistyslippu osiolta %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Clearing no-automount flag of partition %1$s"
-msgstr "Poistetaan käynnistyslippu osiolta %1$s"
+msgstr "Poistetaan ei automaattiliittämistä -lippu osiolta %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -1677,7 +1676,7 @@ msgstr ""
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by a list of device names joined by newlines (e.g.
 #. /dev/test/cached\n/dev/test/snapshot)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Detected LVM logical volumes of unsupported types:\n"
 "\n"
@@ -1940,7 +1939,7 @@ msgstr "f2fs"
 #. TRANSLATORS: error message
 #, c-format
 msgid "Failed to find device %s"
-msgstr ""
+msgstr "Laitetta %s ei löytynyt"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -2008,7 +2007,7 @@ msgstr "Alusta laitteen %2$s (%3$s) bcache %1$s tiedostojärjestelmään %4$s"
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Format partition %1$s (%2$s) as encrypted swap"
 msgstr "Alusta osio %1$s (%2$s) salatuksi sivutukseksi"
 
@@ -2265,51 +2264,51 @@ msgstr "Linux-RAID"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (ARM 32-bit)"
-msgstr ""
+msgstr "Linux-juuriosio (32-bittinen ARM)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (ARM 64-bit)"
-msgstr ""
+msgstr "Linux-juuriosio (64-bittinen ARM)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (PPC 32-bit)"
-msgstr ""
+msgstr "Linux-juuriosio (32-bittinen PPC)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (PPC 64-bit BE)"
-msgstr ""
+msgstr "Linux-juuriosio (64-bittinen BE PPC)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (PPC 64-bit LE)"
-msgstr ""
+msgstr "Linux-juuriosio (64-bittinen LE PPC)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (RISC-V 32-bit)"
-msgstr ""
+msgstr "Linux-juuriosio (32-bittinen RISC-V)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (RISC-V 64-bit)"
-msgstr ""
+msgstr "Linux-juuriosio (64-bittinen RISC-V)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (S/390 32-bit)"
-msgstr ""
+msgstr "Linux-juuriosio (32-bittinen S/390)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (S/390 64-bit)"
-msgstr ""
+msgstr "Linux-juuriosio (64-bittinen S/390)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (x86 32-bit)"
-msgstr ""
+msgstr "Linux-juuriosio (32-bittinen x86)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (x86 64-bit)"
-msgstr ""
+msgstr "Linux-juuriosio (64-bittinen x86)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Server Data"
-msgstr ""
+msgstr "Linux-palvelindata"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Swap"
@@ -2317,47 +2316,47 @@ msgstr "Linux-sivutus"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (ARM 32-bit)"
-msgstr ""
+msgstr "Linuxin USR-osio (32-bittinen ARM)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (ARM 64-bit)"
-msgstr ""
+msgstr "Linuxin USR-osio (64-bittinen ARM)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (PPC 32-bit)"
-msgstr ""
+msgstr "Linuxin USR-osio (32-bittinen PPC)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (PPC 64-bit BE)"
-msgstr ""
+msgstr "Linuxin USR-osio (64-bittinen BE PPC)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (PPC 64-bit LE)"
-msgstr ""
+msgstr "Linuxin USR-osio (64-bittinen LE PPC)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (RISC-V 32-bit)"
-msgstr ""
+msgstr "Linuxin USR-osio (32-bittinen RISC-V)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (RISC-V 64-bit)"
-msgstr ""
+msgstr "Linuxin USR-osio (64-bittinen RISC-V)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (S/390 32-bit)"
-msgstr ""
+msgstr "Linuxin USR-osio (32-bittinen S/390)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (S/390 64-bit)"
-msgstr ""
+msgstr "Linuxin USR-osio (64-bittinen S/390)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (x86 32-bit)"
-msgstr ""
+msgstr "Linuxin USR-osio (32-bittinen x86)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (x86 64-bit)"
-msgstr ""
+msgstr "Linuxin USR-osio (64-bittinen x86)"
 
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
 msgid "M"
@@ -2503,7 +2502,7 @@ msgstr "NFS"
 
 #. TRANSLATORS: name of object
 msgid "NILFS2"
-msgstr ""
+msgstr "NILFS2"
 
 #. TRANSLATORS: name of object
 msgid "NTFS"
@@ -2537,14 +2536,12 @@ msgstr "PiB"
 msgid "Plain Encryption"
 msgstr "Yksinkertainen salaus"
 
-#, fuzzy
 msgid "Probing BitLocker"
-msgstr "BitLocker"
+msgstr "Etsitään BitLockeria"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing BitLocker failed"
-msgstr "Levyjen tutkiminen epäonnistui"
+msgstr "BitLockerin etsiminen epäonnistui"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -2861,9 +2858,9 @@ msgstr "Muuta salaustasolaitteen %1$s nimeksi %2$s /etc/crypttab-tiedostossa"
 #. %1$s is replaced with the old logical volume name (e.g. foo),
 #. %2$s is replaced with the new logical volume name (e.g. bar),
 #. %3$s is replaced with the volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Rename logical volume %1$s to %2$s on volume group %3$s"
-msgstr "Luo looginen taltio %1$s (%2$s) taltioryhmään %3$s"
+msgstr "Muuta taltioryhmän %3$s loogisen taltion %1$s nimeksi %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -2876,9 +2873,9 @@ msgstr "Muuta liitospisteen %1$s (%2$s) nimeksi %3$s /etc/fstab-tiedostossa"
 #. TRANSLATORS:
 #. %1$s is replaced with the old volume group name (e.g. foo),
 #. %2$s is replaced with the new volume group name (e.g. bar)
-#, fuzzy, c-format
+#, c-format
 msgid "Rename volume group %1$s to %2$s"
-msgstr "Luo taltioryhmä %1$s (%2$s)"
+msgstr "Muuta taltioryhmän %1$s nimeksi %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
@@ -3002,9 +2999,9 @@ msgstr "Aseta rajat alitaltion %1$s qgroupille laitteilla %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Set no-automount flag of partition %1$s"
-msgstr "Aseta osiolle %1$s käynnistyslippu"
+msgstr "Aseta ei automaattiliittämistä -lippu osiolle %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -3121,9 +3118,9 @@ msgstr "Asetetaan rajat laitteiden %2$s alitaltion %1$s qgroupille"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting no-automount flag of partition %1$s"
-msgstr "Asetetaan osiolle %1$s käynnistyslippu"
+msgstr "Asetetaan ei automaattiliittämistä -lippu osiolle %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -3366,7 +3363,7 @@ msgstr "Irrotetaan alitaltion %1$s qgroup qgroupista %2$s laitteilla %3$s"
 
 #. TRANSLATORS: name of partition type
 msgid "Unknown"
-msgstr ""
+msgstr "Tuntematon"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
