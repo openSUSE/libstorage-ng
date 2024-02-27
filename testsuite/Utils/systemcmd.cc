@@ -11,7 +11,6 @@
 #include <vector>
 
 #include "storage/Utils/Exception.h"
-#include "storage/Utils/Mockup.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/StorageDefines.h"
 
@@ -281,7 +280,7 @@ num_open_fds()
     int n = 0;
 
     for (int fd = 0; fd < max_fd; ++fd)
-        if (fcntl(fd, F_GETFD) == 0)
+        if (fcntl(fd, F_GETFD) != -1)
 	  ++n;
 
     return n;
