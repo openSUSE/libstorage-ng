@@ -52,7 +52,8 @@ namespace storage
 	udevadm.settle();
 
 	SystemCmd::Options options({ UDEVADM_BIN, "info", file }, SystemCmd::DoThrow);
-	options.env.push_back("SYSTEMD_COLORS=false");
+	options.unsetenv("SYSTEMD_COLORS");
+
 	SystemCmd cmd(options);
 
 	parse(cmd.stdout());

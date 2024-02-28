@@ -51,7 +51,7 @@ namespace storage
 		"unit", "s", "print" }, SystemCmd::DoThrow);
 	options.verify = [](int) { return true; };
 	if (!json)
-	    options.env.push_back("PARTED_PRINT_NUMBER_OF_PARTITION_SLOTS=1");
+	    options.setenv("PARTED_PRINT_NUMBER_OF_PARTITION_SLOTS", "1");
 
 	SystemCmd cmd(options);
 

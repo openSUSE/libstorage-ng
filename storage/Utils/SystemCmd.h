@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2024] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -122,14 +122,17 @@ namespace storage
 	    std::function<bool(int)> verify = [](int exit_code) { return exit_code == 0; };
 
 	    /**
-	     * Environment variables to override existing environment variables. Per
-	     * default this includes LC_ALL=C[.UTF-8] and LANGUAGE=C[.UTF-8].
+	     * Environment variables for child. Per default this includes the original
+	     * environment and LC_ALL=C[.UTF-8] and LANGUAGE=C[.UTF-8].
 	     */
-	    vector<string> env;
+	    vector<string> envs;
+
+	    void setenv(const char* name, const char* value);
+	    void unsetenv(const char* name);
 
 	private:
 
-	    void init_env();
+	    void init_envs();
 
 	};
 

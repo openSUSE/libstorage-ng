@@ -41,10 +41,7 @@ namespace storage
 	: path(path), name(name_template)
     {
 	char* t = strdup(get_fullname().c_str());
-	if (!t)
-	{
-	    ST_THROW(Exception("strdup failed"));
-	}
+	ST_CHECK_PTR(t);
 
 	if (mkdtemp(t) == NULL)
 	{

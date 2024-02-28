@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2024] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -62,35 +62,66 @@ namespace storage
     SystemCmd::Options::Options(const string& command, ThrowBehaviour throw_behaviour)
 	: command(command), throw_behaviour(throw_behaviour)
     {
-	init_env();
+	init_envs();
     }
 
 
     SystemCmd::Options::Options(const Args& args, ThrowBehaviour throw_behaviour)
 	: args(args.get_values()), throw_behaviour(throw_behaviour)
     {
-	init_env();
+	init_envs();
     }
 
 
     SystemCmd::Options::Options(std::initializer_list<string> init, ThrowBehaviour throw_behaviour)
 	: args(init), throw_behaviour(throw_behaviour)
     {
-	init_env();
+	init_envs();
     }
 
 
     void
-    SystemCmd::Options::init_env()
+    SystemCmd::Options::setenv(const char* name, const char* value)
     {
+	// Environment variables should be present only once in the environment.
+	// https://pubs.opengroup.org/onlinepubs/009695399/basedefs/xbd_chap08.html
+
+	unsetenv(name);
+
+	envs.emplace_back(string(name) + "=" + value);
+    }
+
+
+    void
+    SystemCmd::Options::unsetenv(const char* name)
+    {
+	erase_if(envs, [name](const string& env) {
+	    string::size_type pos = env.find("=");
+	    return env.substr(0, pos) == name;
+	});
+    }
+
+
+    void
+    SystemCmd::Options::init_envs()
+    {
+	for (char** v = environ; *v != NULL; ++v)
+	    envs.push_back(*v);
+
 	// parted needs UTF-8 to decode partition names with non-ASCII characters. Might
 	// be the case for other programs as well. Running in non-UTF-8 is not really
 	// supported.
 
 	if (strcmp(nl_langinfo(CODESET), "UTF-8") == 0)
-	    env = { "LC_ALL=C.UTF-8", "LANGUAGE=C.UTF-8" };
+	{
+	    setenv("LC_ALL", "C.UTF-8");
+	    setenv("LANGUAGE", "C.UTF-8");
+	}
 	else
-	    env = { "LC_ALL=C", "LANGUAGE=C" };
+	{
+	    setenv("LC_ALL", "C");
+	    setenv("LANGUAGE", "C");
+	}
     }
 
 
@@ -713,7 +744,9 @@ namespace storage
 
 	for (const string& v : system_cmd.options.args)
 	{
-	    args.push_back(strdup(v.c_str()));
+	    char* p = strdup(v.c_str());
+	    ST_CHECK_NEW(p);
+	    args.push_back(p);
 	}
 
 	args.push_back(nullptr);
@@ -725,33 +758,18 @@ namespace storage
     TmpForExec
     SystemCmd::Executor::make_env() const
     {
-	// Environment variables should be present only once in the environment.
-	// https://pubs.opengroup.org/onlinepubs/009695399/basedefs/xbd_chap08.html
+	vector<char*> envs;
 
-	vector<char*> env;
-
-	for (char** v = environ; *v != NULL; ++v)
-	    env.push_back(strdup(*v));
-
-	for (const string& v : system_cmd.options.env)
+	for (const string& v : system_cmd.options.envs)
 	{
-	    string::size_type pos = v.find("=");
-	    if (pos == string::npos)
-		continue;
-
-	    string key = v.substr(0, pos + 1); // key including '=' sign
-
-	    vector<char*>::iterator it = find_if(env.begin(), env.end(),
-		[&key](const char* tmp) { return boost::starts_with(tmp, key); });
-	    if (it != env.end())
-		*it = strdup(v.c_str());
-	    else
-		env.push_back(strdup(v.c_str()));
+	    char* p = strdup(v.c_str());
+	    ST_CHECK_NEW(p);
+	    envs.push_back(p);
 	}
 
-	env.push_back(nullptr);
+	envs.push_back(nullptr);
 
-	return env;
+	return envs;
     }
 
 
