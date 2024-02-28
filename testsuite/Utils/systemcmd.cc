@@ -9,6 +9,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 #include "storage/Utils/Exception.h"
 #include "storage/Utils/SystemCmd.h"
@@ -251,7 +252,40 @@ BOOST_AUTO_TEST_CASE(non_exec_throw_args)
 }
 
 
-BOOST_AUTO_TEST_CASE(env)
+BOOST_AUTO_TEST_CASE(env1)
+{
+    setenv("TWO", "2", 1);
+
+    SystemCmd::Options options("env");
+
+    BOOST_CHECK(find(options.envs.begin(), options.envs.end(), "TWO=2") != options.envs.end());
+
+    options.setenv("ONE", "1");
+
+    BOOST_CHECK(find(options.envs.begin(), options.envs.end(), "ONE=1") != options.envs.end());
+
+    options.setenv("ONE", "");
+
+    BOOST_CHECK(find(options.envs.begin(), options.envs.end(), "ONE=") != options.envs.end());
+
+    options.unsetenv("ONE");
+
+    BOOST_CHECK(find(options.envs.begin(), options.envs.end(), "ONE") == options.envs.end());
+    BOOST_CHECK(find(options.envs.begin(), options.envs.end(), "ONE=") == options.envs.end());
+    BOOST_CHECK(find(options.envs.begin(), options.envs.end(), "ONE=1") == options.envs.end());
+
+    // AFAIS an empty environment variable is always stored with a trailing '='. Even if
+    // that is not the case unsetenv works.
+
+    options.envs.push_back("ONE");
+    options.unsetenv("ONE");
+
+    BOOST_CHECK(find(options.envs.begin(), options.envs.end(), "ONE") == options.envs.end());
+    BOOST_CHECK(find(options.envs.begin(), options.envs.end(), "ONE=") == options.envs.end());
+}
+
+
+BOOST_AUTO_TEST_CASE(env2)
 {
     vector<string> stdout = {
 	"C ++ sure"
@@ -263,7 +297,7 @@ BOOST_AUTO_TEST_CASE(env)
 
     SystemCmd::Options options("echo $LC_ALL $FUNNY $AMUSING");
 
-    options.env.push_back("AMUSING=sure");
+    options.setenv("AMUSING", "sure");
 
     SystemCmd cmd(options);
 
