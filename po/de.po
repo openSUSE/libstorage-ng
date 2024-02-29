@@ -14,10 +14,10 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-06 09:28+0100\n"
-"PO-Revision-Date: 2023-05-13 02:15+0000\n"
-"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
-"Language-Team: German <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/de/>\n"
+"PO-Revision-Date: 2024-02-29 14:42+0000\n"
+"Last-Translator: Gemineo <vistatec@gemineo.de>\n"
+"Language-Team: German <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -354,9 +354,8 @@ msgid "Bcache Cache Set"
 msgstr "Bcache-Cacheset"
 
 #. TRANSLATORS: name of object
-#, fuzzy
 msgid "Bcachefs"
-msgstr "Bcache"
+msgstr "Bcachefs"
 
 #. TRANSLATORS: name of object
 msgid "BitLocker"
@@ -402,9 +401,9 @@ msgstr "Legacy-Boot-Flag von Partition %1$s löschen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Clear no-automount flag of partition %1$s"
-msgstr "Boot-Flag der Partition %1$s reinigen"
+msgstr "no-automount-Flag von Partition %1$s bereinigen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -449,9 +448,9 @@ msgstr "Legacy-Boot-Flag von Partition %1$s wird gelöscht"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Clearing no-automount flag of partition %1$s"
-msgstr "Boot-Flag von Partition %1$s wird gelöscht"
+msgstr "no-automount-Flag von Partition %1$s wird bereinigt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -1682,7 +1681,7 @@ msgstr "Bcache-Cacheset auf %1$s wird von Bcache %2$s (%3$s) getrennt"
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by a list of device names joined by newlines (e.g.
 #. /dev/test/cached\n/dev/test/snapshot)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Detected LVM logical volumes of unsupported types:\n"
 "\n"
@@ -1691,7 +1690,7 @@ msgid ""
 "These logical volumes are ignored. Operations on the\n"
 "corresponding volume groups may fail."
 msgstr ""
-"Logische LVM-Volumes auf nicht unterstützten Gerätetypen erkannt:\n"
+"Logische LVM-Volumes mit nicht unterstützten Typen erkannt:\n"
 "\n"
 "%1$s\n"
 "\n"
@@ -2009,7 +2008,7 @@ msgstr "Bcache %1$s auf %2$s (%3$s) mit %4$s formatieren"
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Format partition %1$s (%2$s) as encrypted swap"
 msgstr "Partition %1$s (%2$s) als verschlüsselte swap formatieren"
 
@@ -2998,9 +2997,9 @@ msgstr "Limits für qgroup von Subvolume %1$s auf %2$s festlegen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Set no-automount flag of partition %1$s"
-msgstr "Boot-Flag von Partition %1$s setzen"
+msgstr "no-automount-Flag von Partition %1$s festlegen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -3117,9 +3116,9 @@ msgstr "Limits für qgroup von Subvolume %1$s auf %2$s werden festgelegt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting no-automount flag of partition %1$s"
-msgstr "Boot-Flag von Partition %1$s wird gesetzt"
+msgstr "no-automount-Flag von Partition %1$s wird festgelegt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
