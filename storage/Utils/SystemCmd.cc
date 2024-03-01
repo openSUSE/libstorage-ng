@@ -300,32 +300,6 @@ namespace storage
 
 
 	/**
-	 * Class to temporarily hold copies of args or env for execle() and execvpe().
-	 */
-	class TmpForExec : boost::noncopyable
-	{
-	public:
-
-	    TmpForExec(const vector<char*>& values) : values(values) {}
-	    ~TmpForExec();
-
-	    char* const * get() const { return &values[0]; }
-
-	private:
-
-	    vector<char*> values;
-
-	};
-
-
-	TmpForExec::~TmpForExec()
-	{
-	    for (char* v : values)
-		free(v);
-	}
-
-
-	/**
 	 * Struct to hold information about failures of the child between fork and exec. The
 	 * struct is passed via a pipe from the client to the parent. The information is so
 	 * far only used for logging.
@@ -369,14 +343,14 @@ namespace storage
 	 *
 	 * Not async‐signal‐safe, see fork(2) and signal-safety(7).
 	 */
-	TmpForExec make_args() const;
+	vector<const char*> make_args() const;
 
 	/**
 	 * Constructs the environment for the child process.
 	 *
 	 * Not async‐signal‐safe, see fork(2) and signal-safety(7).
 	 */
-	TmpForExec make_env() const;
+	vector<const char*> make_env() const;
 
 	SystemCmd& system_cmd;
 
@@ -437,8 +411,8 @@ namespace storage
 
 	const int max_fd = getdtablesize();
 
-	const TmpForExec args_p(make_args());
-	const TmpForExec env_p(make_env());
+	const vector<const char*> args_p(make_args());
+	const vector<const char*> env_p(make_env());
 
 	child_pid = fork();
 	if (child_pid == -1)
@@ -478,10 +452,17 @@ namespace storage
 	    for (int fd = 3; fd < max_fd; ++fd)
 		fcntl(fd, F_SETFD, FD_CLOEXEC);
 
+	    // The const_casts below should be fine since the exec functions do not modify
+	    // "pointers and the strings to which those arrays point". Assume that also
+	    // applies to GNU execvpe.
+	    // https://pubs.opengroup.org/onlinepubs/9699919799/functions/exec.html
+
 	    if (system_cmd.args().empty())
-		execle(SH_BIN, SH_BIN, "-c", system_cmd.command().c_str(), nullptr, env_p.get());
+		execle(SH_BIN, SH_BIN, "-c", system_cmd.command().c_str(), nullptr,
+		       const_cast<char* const *>(env_p.data()));
 	    else
-		execvpe(system_cmd.args()[0].c_str(), args_p.get(), env_p.get());
+		execvpe(system_cmd.args()[0].c_str(), const_cast<char* const *>(args_p.data()),
+			const_cast<char* const *>(env_p.data()));
 
 	    // If we get here the exec has failed. Depending on errno we return an
 	    // error code like the shell does ('sh -c ...').
@@ -737,36 +718,28 @@ namespace storage
     }
 
 
-    TmpForExec
+    vector<const char*>
     SystemCmd::Executor::make_args() const
     {
-	vector<char*> args;
+	vector<const char*> args;
+	args.reserve(system_cmd.options.args.size() + 1);
 
 	for (const string& v : system_cmd.options.args)
-	{
-	    char* p = strdup(v.c_str());
-	    ST_CHECK_NEW(p);
-	    args.push_back(p);
-	}
-
+	    args.push_back(v.c_str());
 	args.push_back(nullptr);
 
 	return args;
     }
 
 
-    TmpForExec
+    vector<const char*>
     SystemCmd::Executor::make_env() const
     {
-	vector<char*> envs;
+	vector<const char*> envs;
+	envs.reserve(system_cmd.options.envs.size() + 1);
 
 	for (const string& v : system_cmd.options.envs)
-	{
-	    char* p = strdup(v.c_str());
-	    ST_CHECK_NEW(p);
-	    envs.push_back(p);
-	}
-
+	    envs.push_back(v.c_str());
 	envs.push_back(nullptr);
 
 	return envs;
