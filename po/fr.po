@@ -11,10 +11,10 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-06 09:28+0100\n"
-"PO-Revision-Date: 2023-03-09 13:14+0000\n"
-"Last-Translator: Guillaume GARDET <guillaume.gardet@opensuse.org>\n"
-"Language-Team: French <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/fr/>\n"
+"PO-Revision-Date: 2024-03-04 16:42+0000\n"
+"Last-Translator: Sophie Leroy <sophie@stoquart.com>\n"
+"Language-Team: French <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -373,9 +373,8 @@ msgid "Bcache Cache Set"
 msgstr "Cache Bcache défini"
 
 #. TRANSLATORS: name of object
-#, fuzzy
 msgid "Bcachefs"
-msgstr "Bcache"
+msgstr "Bcachefs"
 
 #. TRANSLATORS: name of object
 msgid "BitLocker"
@@ -422,9 +421,9 @@ msgstr "Effacer le fanion de démarrage legacy de la partition %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Clear no-automount flag of partition %1$s"
-msgstr "Effacer le fanion de démarrage de la partition %1$s"
+msgstr "Effacer l'indicateur no-automount de la partition %1$s"
 
 # TLABEL partitioning_2002_01_04_0147__351
 #. TRANSLATORS: displayed before action,
@@ -476,9 +475,9 @@ msgstr "Effacement du fanion de démarrage legacy de la partition %1$s"
 # TLABEL update_2002_01_04_0147__20
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Clearing no-automount flag of partition %1$s"
-msgstr "Effacement du fanion de démarrage de la partition %1$s"
+msgstr "Effacement de l'indicateur no-automount de la partition %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -1831,7 +1830,7 @@ msgstr "Détachement du cache Bcache défini sur %1$s du Bcache sur %2$s (%3$s)"
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by a list of device names joined by newlines (e.g.
 #. /dev/test/cached\n/dev/test/snapshot)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Detected LVM logical volumes of unsupported types:\n"
 "\n"
@@ -2188,7 +2187,7 @@ msgstr "Formater le bcache %1$s sur %2$s (%3$s) avec %4$s"
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Format partition %1$s (%2$s) as encrypted swap"
 msgstr "Formater la partition %1$s (%2$s) comme swap chiffrée"
 
@@ -3256,9 +3255,9 @@ msgstr "Définir des limites pour le qgroup du sous-volume %1$s sur %2$s"
 # TLABEL partitioning_2002_01_04_0147__425
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Set no-automount flag of partition %1$s"
-msgstr "Définir le fanion de démarrage de la partition %1$s"
+msgstr "Définir l'indicateur no-automount de la partition %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -3391,9 +3390,9 @@ msgstr "Définition des limites pour le qgroup du sous-volume %1$s sur %2$s"
 # TLABEL partitioning_2002_01_04_0147__425
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting no-automount flag of partition %1$s"
-msgstr "Définition du fanion de démarrage de la partition %1$s"
+msgstr "Définition de l'indicateur no-automount de la partition %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
