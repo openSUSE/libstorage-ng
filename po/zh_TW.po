@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-06 09:28+0100\n"
-"PO-Revision-Date: 2023-02-08 09:14+0000\n"
+"PO-Revision-Date: 2024-03-04 10:43+0000\n"
 "Last-Translator: Grace Yu <grace.yu@excel-gits.com>\n"
 "Language-Team: Chinese (Taiwan) <https://l10n.opensuse.org/projects/"
 "libstorage/ng-master/zh_TW/>\n"
@@ -349,9 +349,8 @@ msgid "Bcache Cache Set"
 msgstr "Bcache 快取組"
 
 #. TRANSLATORS: name of object
-#, fuzzy
 msgid "Bcachefs"
-msgstr "Bcache"
+msgstr "Bcachefs"
 
 #. TRANSLATORS: name of object
 msgid "BitLocker"
@@ -397,9 +396,9 @@ msgstr "清除分割區 %1$s 的舊開機旗標"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Clear no-automount flag of partition %1$s"
-msgstr "清除分割區 %1$s 的開機旗標"
+msgstr "清除分割區 %1$s 的 no-automount 旗標"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -443,9 +442,9 @@ msgstr "正在清除分割區 %1$s 的舊開機旗標"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Clearing no-automount flag of partition %1$s"
-msgstr "正在清除分割區 %1$s 的開機旗標"
+msgstr "正在清除分割區 %1$s 的 no-automount 旗標"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -1658,7 +1657,7 @@ msgstr "正在從 bcache %2$s (%3$s) 解除對 %1$s 上 bcache 快取叢集的�
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by a list of device names joined by newlines (e.g.
 #. /dev/test/cached\n/dev/test/snapshot)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Detected LVM logical volumes of unsupported types:\n"
 "\n"
@@ -1667,12 +1666,12 @@ msgid ""
 "These logical volumes are ignored. Operations on the\n"
 "corresponding volume groups may fail."
 msgstr ""
-"已將類型不受支援的 LVM 邏輯磁碟區解除關聯：\n"
+"偵測到不受支援類型的 LVM 邏輯磁碟區：\n"
 "\n"
 "%1$s\n"
 "\n"
-"將忽略這些邏輯磁碟區。在對應磁碟區群組\n"
-"上執行操作可能會失敗。"
+"將忽略這些邏輯磁碟區。在對應磁碟區群組上執行\n"
+"操作可能會失敗。"
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the filesystem type (e.g. ext4),
@@ -1982,7 +1981,7 @@ msgstr "在包含 %4$s 的 %2$s (%3$s) 上格式化 bcache %1$s"
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Format partition %1$s (%2$s) as encrypted swap"
 msgstr "將分割區 %1$s (%2$s) 格式化為加密交換格式"
 
@@ -2819,9 +2818,9 @@ msgstr "在 /etc/crypttab 中將加密層裝置從 %1$s 重新命名為 %2$s"
 #. %1$s is replaced with the old logical volume name (e.g. foo),
 #. %2$s is replaced with the new logical volume name (e.g. bar),
 #. %3$s is replaced with the volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Rename logical volume %1$s to %2$s on volume group %3$s"
-msgstr "在磁碟區群組 %3$s 上建立邏輯磁碟區 %1$s (%2$s)"
+msgstr "將磁碟區群組 %3$s 上的邏輯磁碟區 %1$s 重新命名為 %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -2834,9 +2833,9 @@ msgstr "在 /etc/fstab 中將裝載點 %1$s 從 %2$s 重新命名為 %3$s"
 #. TRANSLATORS:
 #. %1$s is replaced with the old volume group name (e.g. foo),
 #. %2$s is replaced with the new volume group name (e.g. bar)
-#, fuzzy, c-format
+#, c-format
 msgid "Rename volume group %1$s to %2$s"
-msgstr "建立磁碟區群組 %1$s (%2$s)"
+msgstr "將磁碟區群組 %1$s 重新命名為 %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
@@ -2959,9 +2958,9 @@ msgstr "設定 %2$s 上子磁碟區 %1$s 的 qgroup 限制"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Set no-automount flag of partition %1$s"
-msgstr "設定分割區 %1$s 的開機旗標"
+msgstr "設定分割區 %1$s 的 no-automount 旗標"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -3079,9 +3078,9 @@ msgstr "正在設定 %2$s 上子磁碟區 %1$s 的 qgroup 限制"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting no-automount flag of partition %1$s"
-msgstr "正在設定分割區 %1$s 的開機旗標"
+msgstr "正在設定分割區 %1$s 的 no-automount 旗標"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
