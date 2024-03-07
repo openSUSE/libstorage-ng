@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2024] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -44,7 +44,7 @@ namespace storage
 
     public:
 
-	virtual unsigned long long min_size() const override { return 40 * MiB; }
+	virtual unsigned long long min_size() const override { return 300 * MiB; }
 	virtual unsigned long long max_size() const override { return 8 * EiB - 1 * B; }
 
 	virtual bool supports_mounted_shrink() const override { return false; }
