@@ -63,7 +63,7 @@ namespace storage
 	 *
 	 * So far only partitionables with a partition table are included.
 	 *
-	 * The result is notdeterministic.
+	 * The result is nondeterministic.
 	 */
 	vector<Partitionable*> get_partitionable_candidates(Devicegraph* devicegraph) const;
 

@@ -133,7 +133,7 @@ namespace storage
 	    return Text();
 
 	// TRANSLATORS:
-	// %1$s is replaced with the the bcache name (e.g. /dev/bcache0),
+	// %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 	// %2$s is replaced with the a list of cache devices with size
 	// (e.g. "/dev/sdb1 (64.00 GiB) and /dev/sdc1 (160.00 GiB)")
 	Text text = _( "%1$s is cached by %2$s" );

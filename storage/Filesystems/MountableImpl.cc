@@ -502,7 +502,7 @@ namespace storage
 			   // and /dev/sdb2 (1.00 GiB))
 			   _("Remove mount point %1$s of %2$s from /etc/fstab"),
 			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by thr mount point (e.g. /home),
+			   // %1$s is replaced by the mount point (e.g. /home),
 			   // %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 			   // and /dev/sdb2 (1.00 GiB))
 			   _("Removing mount point %1$s of %2$s from /etc/fstab"));

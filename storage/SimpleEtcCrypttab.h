@@ -48,7 +48,7 @@ namespace storage
      * Read a crypttab file.
      *
      * Whether the function returns an empty vector or throws an exception if
-     * reading or parsing is undefined.
+     * reading or parsing fails is undefined.
      *
      * @throw Exception
      */
