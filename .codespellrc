@@ -1,0 +1,3 @@
+# Ref: https://github.com/codespell-project/codespell#using-a-config-file
+[codespell]
+skip = po
