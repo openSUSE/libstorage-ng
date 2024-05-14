@@ -102,6 +102,7 @@ namespace storage
 	    NameSchema(regex(DEV_DIR "/pmem([0-9]+)\\.([0-9]+)s?", regex::extended), { { PadInfo::N1, 3 }, { PadInfo::N1, 3 } }),
 	    NameSchema(regex(DEV_DIR "/nvme([0-9]+)n([0-9]+)", regex::extended), { { PadInfo::N1, 3 }, { PadInfo::N1, 3 } }),
 	    NameSchema(regex(DEV_DIR "/xvd([a-z]+)", regex::extended), { { PadInfo::A1, 5 } }),
+	    NameSchema(regex(DEV_DIR "/nbd([0-9]+)", regex::extended), { { PadInfo::N1, 3 } }),
 	    NameSchema(regex(DEV_DIR "/ram([0-9]+)", regex::extended), { { PadInfo::N1, 3 } })
 	};
 
@@ -163,6 +164,13 @@ namespace storage
     }
 
 
+    bool
+    Disk::Impl::is_nbd() const
+    {
+	return boost::starts_with(get_name(), DEV_DIR "/nbd");
+    }
+
+
     string
     Disk::Impl::pool_name() const
     {
@@ -175,6 +183,8 @@ namespace storage
 	    return "NVMes";
 	else if (is_brd())
 	    return "BRDs";
+	else if (is_nbd())
+	    return "NBDs";
 
 	return is_rotational() ? "HDDs" : "SSDs";
     }
@@ -229,7 +239,7 @@ namespace storage
 		prober.handle(exception, sformat(_("Probing disk %s failed"), get_name()), UF_NVME);
 	    }
 	}
-	else if (is_pmem() || is_brd())
+	else if (is_pmem() || is_brd() || is_nbd())
 	{
 	    // no proper transport
 	}
