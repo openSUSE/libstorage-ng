@@ -58,9 +58,16 @@ namespace storage
 	 */
 	FsType get_type() const;
 
+	/**
+	 * Query whether the SpaceInfo was already detected or set.
+	 */
 	bool has_space_info() const;
 
 	/**
+	 * Detect the SpaceInfo.
+	 *
+	 * The SpaceInfo is cached. Fast if has_space_info() is true.
+	 *
 	 * So far only supported for Nfs.
 	 *
 	 * @throw Exception
