@@ -167,9 +167,9 @@ namespace storage
     {
 	y2mil("deactivate_multipaths");
 
-	string cmd_line1 = MULTIPATHD_BIN " -k'shutdown'";
+	SystemCmd::Args cmd_args1 = { MULTIPATHD_BIN, "-kshutdown" };
 
-	SystemCmd cmd1(cmd_line1);
+	SystemCmd cmd1(cmd_args1);
 
 	SystemCmd::Args cmd_args2 = { MULTIPATH_BIN, "-F" };
 
