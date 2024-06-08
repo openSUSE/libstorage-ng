@@ -12,15 +12,16 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2010-06-10 00:16+0300\n"
-"Last-Translator: Borislav Mitev <morbid_viper@tkzs.org>\n"
-"Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
+"PO-Revision-Date: 2024-06-08 16:46+0000\n"
+"Last-Translator: koralski <koralsky11@gmail.com>\n"
+"Language-Team: Bulgarian <https://l10n.opensuse.org/projects/libstorage/"
+"ng-sle-15-sp1/bg/>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.5.5\n"
 
 msgid ""
 "\n"
@@ -81,9 +82,9 @@ msgstr "Задаване на криптирано loop устройство н�
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activate logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Създаване на логически дял %1$s (%2$s) с %3$s за %4$s "
+msgstr "Създаване на логически дял %1$s (%2$s) в група за дялове %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
