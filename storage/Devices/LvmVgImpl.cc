@@ -651,6 +651,8 @@ namespace storage
     {
 	SystemCmd::Args cmd_args = { VGREMOVE_BIN, "--", vg_name };
 
+	udev_settle();
+
 	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
