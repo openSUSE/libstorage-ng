@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2024-06-13 20:46+0000\n"
+"PO-Revision-Date: 2024-06-14 00:46+0000\n"
 "Last-Translator: Jure Repinc <jlp@holodeck1.com>\n"
 "Language-Team: Slovenian <https://l10n.opensuse.org/projects/libstorage/"
 "ng-sle-15-sp1/sl/>\n"
@@ -1999,9 +1999,8 @@ msgid "Linux Swap"
 msgstr "Linux (swap)"
 
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
-#, fuzzy
 msgid "M"
-msgstr "MB"
+msgstr "M"
 
 #. TRANSLATORS: symbol for "mega bytes" (best keep untranslated)
 msgid "MB"
@@ -2009,12 +2008,11 @@ msgstr "MB"
 
 #. TRANSLATORS: name of object
 msgid "MD RAID"
-msgstr ""
+msgstr "MD RAID"
 
 #. TRANSLATORS: name of object
-#, fuzzy
 msgid "MS-DOS Partition Table"
-msgstr "Preverjanje razdelka %1"
+msgstr "Razpredelnica razdelkov MS-DOS"
 
 #. TRANSLATORS: symbol for "mebi bytes" (best keep untranslated)
 msgid "MiB"
@@ -2022,23 +2020,23 @@ msgstr "MiB"
 
 #. TRANSLATORS: name of partition type
 msgid "Microsoft Reserved Partition"
-msgstr ""
+msgstr "Microsoftov rezerviran razdelek"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount %1$s %2$s (%3$s) at %4$s"
-msgstr "Priključevanje korenskega razdelka %1 na %2"
+msgstr "Priklopi %1$s %2$s (%3$s) na %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount %1$s at %2$s"
-msgstr "Priključevanje korenskega razdelka %1 na %2"
+msgstr "Priklopi %1$s na %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
