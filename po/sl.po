@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-06 09:28+0100\n"
-"PO-Revision-Date: 2024-06-14 13:46+0000\n"
+"PO-Revision-Date: 2024-06-17 11:46+0000\n"
 "Last-Translator: Jure Repinc <jlp@holodeck1.com>\n"
 "Language-Team: Slovenian <https://l10n.opensuse.org/projects/libstorage/"
 "ng-master/sl/>\n"
@@ -108,7 +108,7 @@ msgstr "Omogoči tanek logični nosilec %1$s (%2$s) na skupini nosilcev %3$s"
 #, c-format
 msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr ""
-"Omogoči logični nosilec s tankim bazenom %1$s (%2$s) na skupini nosilcev %3$s"
+"Omogoči logični nosilec s tanko zalogo %1$s (%2$s) na skupini nosilcev %3$s"
 
 #. TRANSLATORS: progress message
 #, c-format
@@ -183,8 +183,8 @@ msgstr ""
 #, c-format
 msgid "Activating thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr ""
-"Omogočanje logičnega nosilca s tankim bazenom %1$s (%2$s) na skupini "
-"nosilcev %3$s"
+"Omogočanje logičnega nosilca s tanko zalogo %1$s (%2$s) na skupini nosilcev "
+"%3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the device name (e.g. /dev/sdc1),
@@ -1017,7 +1017,7 @@ msgstr "Ustvari tanek logični nosilec %1$s (%2$s) na skupini nosilcev %3$s"
 #, c-format
 msgid "Create thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr ""
-"Ustvari logični nosilec s tankim bazenom %1$s (%2$s) na skupini nosilcev %3$s"
+"Ustvari logični nosilec s tanko zalogo %1$s (%2$s) na skupini nosilcev %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced with the volume group name (e.g. system),
@@ -1194,8 +1194,8 @@ msgstr ""
 #, c-format
 msgid "Creating thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr ""
-"Ustvarjanje logičnega nosilca s tankim bazenom %1$s (%2$s) na skupini "
-"nosilcev %3$s"
+"Ustvarjanje logičnega nosilca s tanko zalogo %1$s (%2$s) na skupini nosilcev "
+"%3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -1288,8 +1288,7 @@ msgstr "Onemogoči tanek logični nosilec %1$s (%2$s) na skupini nosilcev %3$s"
 #, c-format
 msgid "Deactivate thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr ""
-"Onemogoči logični nosilec s tankim bazenom %1$s (%2$s) na skupini nosilcev "
-"%3$s"
+"Onemogoči logični nosilec s tanko zalogo %1$s (%2$s) na skupini nosilcev %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -1350,7 +1349,7 @@ msgstr ""
 #, c-format
 msgid "Deactivating thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr ""
-"Onemogočanje logičnega nosilca s tankim bazenom %1$s (%2$s) na skupini "
+"Onemogočanje logičnega nosilca s tanko zalogo %1$s (%2$s) na skupini "
 "nosilcev %3$s"
 
 #. TRANSLATORS:
@@ -1515,7 +1514,7 @@ msgstr "Izbriši tanek logični nosilec %1$s (%2$s) na skupini nosilcev %3$s"
 #, c-format
 msgid "Delete thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr ""
-"Izbriši logični nosilec s tankim bazenom %1$s (%2$s) na skupini nosilcev %3$s"
+"Izbriši logični nosilec s tanko zalogo %1$s (%2$s) na skupini nosilcev %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -1656,7 +1655,7 @@ msgstr "Brisanje tankega logičnega nosilca %1$s (%2$s) na skupini nosilcev %3$s
 #, c-format
 msgid "Deleting thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr ""
-"Brisanje logičnega nosilca s tankim bazenom %1$s (%2$s) na skupini nosilcev "
+"Brisanje logičnega nosilca s tanko zalogo %1$s (%2$s) na skupini nosilcev "
 "%3$s"
 
 #. TRANSLATORS: displayed during action,
@@ -2134,8 +2133,8 @@ msgstr ""
 msgid ""
 "Grow thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
-"Povečaj logični nosilec s tankim bazenom %1$s na skupini nosilcev %2$s z %3$"
-"s na %4$s"
+"Povečaj logični nosilec s tanko zalogo %1$s na skupini nosilcev %2$s z %3$s "
+"na %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -2211,8 +2210,8 @@ msgstr ""
 msgid ""
 "Growing thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
-"Povečevanje logičnega nosilca s tankim bazenom %1$s na skupini nosilcev %2$s "
-"z %3$s na %4$s"
+"Povečevanje logičnega nosilca s tanko zalogo %1$s na skupini nosilcev %2$s z "
+"%3$s na %4$s"
 
 #. TRANSLATORS: name of object
 msgid "ISO 9660"
@@ -3215,8 +3214,8 @@ msgstr ""
 msgid ""
 "Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
-"Zmanjšaj logični nosilec s tankim bazenom %1$s na skupini nosilcev %2$s z %3$"
-"s na %4$s"
+"Zmanjšaj logični nosilec s tanko zalogo %1$s na skupini nosilcev %2$s z %3$s "
+"na %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -3294,8 +3293,8 @@ msgid ""
 "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to "
 "%4$s"
 msgstr ""
-"Zmanjševanje logičnega nosilca s tankim bazenom %1$s na skupini nosilcev %2$"
-"s z %3$s na %4$s"
+"Zmanjševanje logičnega nosilca s tanko zalogo %1$s na skupini nosilcev %2$s "
+"z %3$s na %4$s"
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"
