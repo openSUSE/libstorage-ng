@@ -197,6 +197,11 @@ namespace storage
 
 	unsigned long chunk_size = 0;
 
+	/**
+	 * The UUID.
+	 *
+	 * Note: Special MD RAID format.
+	 */
 	string uuid;
 
 	string metadata;

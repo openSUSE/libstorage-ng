@@ -117,7 +117,13 @@ namespace storage
 
 	MdadmDetail(const string& device);
 
+	/**
+	 * The UUID.
+	 *
+	 * Note: Special MD RAID format.
+	 */
 	string uuid;
+
 	string devname;
 	string metadata;
 	MdLevel level;
