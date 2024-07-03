@@ -610,6 +610,9 @@ namespace storage
     void
     Md::Impl::probe_uuid()
     {
+	// Note: The UUID reported by mdadm has a different format than reported by
+	// e.g. blkid.
+
 	MdadmDetail mdadm_detail(get_name());
 	uuid = mdadm_detail.uuid;
     }

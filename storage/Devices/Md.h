@@ -203,11 +203,15 @@ namespace storage
 
 	/**
 	 * Get the UUID.
+	 *
+	 * Note: Special MD RAID format.
 	 */
 	const std::string& get_uuid() const;
 
 	/**
 	 * Set the UUID. The UUID is only set when creating a new RAID on disk.
+	 *
+	 * Note: Special MD RAID format.
 	 */
 	void set_uuid(const std::string& uuid);
 
