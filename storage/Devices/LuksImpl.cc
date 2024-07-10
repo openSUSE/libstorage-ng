@@ -501,14 +501,10 @@ namespace storage
     void
     Luks::Impl::probe_uuid()
     {
-	Udevadm udevadm;
-
 	const BlkDevice* blk_device = get_blk_device();
 
-	const Blkid blkid(udevadm, blk_device->get_name());
-	Blkid::const_iterator it = blkid.get_sole_entry();
-	if (it != blkid.end())
-	    uuid = it->second.luks_uuid;
+	const CmdCryptsetupLuksDump cmd_cryptsetup_luks_dump(blk_device->get_name());
+	uuid = cmd_cryptsetup_luks_dump.get_uuid();
     }
 
 
