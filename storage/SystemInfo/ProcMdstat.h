@@ -101,7 +101,7 @@ namespace storage
 
 	void parse(const vector<string>& lines);
 
-	Entry parse(const string& line1, const string& line2);
+	Entry parse_entry(const string& line1, const string& line2) const;
 
 	map<string, Entry> data;
 
