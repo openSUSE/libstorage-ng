@@ -56,7 +56,7 @@ namespace storage
 	    {
 		string name = extractNthWord(0, *it1);
 		if (boost::starts_with(name, "md"))
-		    data[name] = parse(*it1, *(it1 + 1));
+		    data[name] = parse_entry(*it1, *(it1 + 1));
 	    }
 	}
 
@@ -65,7 +65,7 @@ namespace storage
 
 
     ProcMdstat::Entry
-    ProcMdstat::parse(const string& line1, const string& line2)
+    ProcMdstat::parse_entry(const string& line1, const string& line2) const
     {
 	ProcMdstat::Entry entry;
 
