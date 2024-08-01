@@ -158,6 +158,25 @@ BOOST_AUTO_TEST_CASE(parse6)
 }
 
 
+BOOST_AUTO_TEST_CASE(parse7)
+{
+    vector<string> input = {
+	"Personalities : [raid1] [raid10] ",
+	"md0 : active raid10 sdb1[5] sdc1[4] sdd1[3] sde1[2] sdf1[1] sdg1[0]",
+	"      100604928 blocks super 1.2 512K chunks 2 near-copies [6/6] [UUUUUU]",
+	"      bitmap: 0/1 pages [0KB], 65536KB chunk",
+	"",
+	"unused devices: <none>"
+    };
+
+    vector<string> output = {
+	"data[md0] -> md-level:RAID10 md-parity:n2 super:1.2 chunk-size:524288 size:103019446272 devices:</dev/sdb1 /dev/sdc1 /dev/sdd1 /dev/sde1 /dev/sdf1 /dev/sdg1>"
+    };
+
+    check(input, output);
+}
+
+
 BOOST_AUTO_TEST_CASE(parse_inactive_noncontainer)
 {
     vector<string> input = {
