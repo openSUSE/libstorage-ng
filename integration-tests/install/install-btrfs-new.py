@@ -4,7 +4,7 @@
 # Adding the sys path is needed with the standard opensuse
 # inst-sys. libstorage-ng-python3 must also be added e.g. via a dud.
 import sys
-sys.path += ["/usr/lib64/python3.8/site-packages"]
+sys.path += ["/usr/lib64/python3.11/site-packages"]
 
 
 from storage import *
@@ -67,7 +67,7 @@ staging = storage.get_staging()
 
 
 disk = find_disk(staging)
-disk.remove_descendants()
+disk.remove_descendants(View_REMOVE)
 
 gpt = to_gpt(disk.create_partition_table(PtType_GPT))
 

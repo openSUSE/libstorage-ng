@@ -67,7 +67,7 @@ staging = storage.get_staging()
 
 
 disk = find_disk(staging)
-disk.remove_descendants()
+disk.remove_descendants(View_REMOVE)
 
 gpt = to_gpt(disk.create_partition_table(PtType_GPT))
 
