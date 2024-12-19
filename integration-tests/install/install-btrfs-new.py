@@ -6,6 +6,7 @@
 import sys
 sys.path += ["/usr/lib64/python3.11/site-packages"]
 
+import subprocess
 
 from storage import *
 
@@ -93,8 +94,8 @@ top_level = btrfs.get_top_level_btrfs_subvolume()
 at_subvolume = top_level.create_btrfs_subvolume("@")
 
 
-# The following code does not rely on the snapper installation-helper. The procedure is untested.
-# Also some code to make snapper work afterwards is missing.
+# The following code relies only partial the snapper installation-helper
+# (only on the 'config' step but not on the 'filesystem' step).
 
 class Subvolume():
     def __init__(self, path, nocow = False, mount = True, default = False, subvolumes = []):
@@ -133,5 +134,4 @@ except Exception as exception:
     print(exception.what())
 
 
-# After package installation the call 'installation-helper --step
-# <does-not-exist-yet>' is needed.
+subprocess.run([ "/usr/lib/snapper/installation-helper", "--root", "/mnt", "--step", "config" ])
