@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -40,6 +40,7 @@
 #include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/FreeInfo.h"
 #include "storage/Prober.h"
+#include "storage/EnvironmentImpl.h"
 #include "storage/Utils/Format.h"
 #include "storage/Registries.h"
 #include "storage/Actions/ActivateImpl.h"
@@ -942,6 +943,9 @@ namespace storage
     void
     BlkDevice::Impl::discard_device() const
     {
+	if (!run_blkdiscard())
+	    return;
+
 	wait_for_devices({ get_non_impl() });
 
 	SystemCmd::Args cmd_args = { BLKDISCARD_BIN, "--verbose", get_name() };

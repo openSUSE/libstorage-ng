@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2018-2023] SUSE LLC
+ * Copyright (c) [2018-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -130,6 +130,11 @@ namespace storage
      * There are several methods for the topological sort of the actiongraph.
      */
     int topological_sort_method();
+
+    /**
+     * Switch to enable blkdiscard calls.
+     */
+    bool run_blkdiscard();
 
     /**
      * Operating system flavour.
