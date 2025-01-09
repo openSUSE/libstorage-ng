@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2018-2024] SUSE LLC
+ * Copyright (c) [2018-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -167,6 +167,13 @@ namespace storage
     }
 
 
+    bool
+    run_blkdiscard()
+    {
+	return read_env_var("LIBSTORAGE_BLKDISCARD", true);
+    }
+
+
     const vector<string> EnumTraits<OsFlavour>::names({
 	"linux", "suse", "redhat"
     });
@@ -206,6 +213,7 @@ namespace storage
 	    "LC_ALL", "LC_CTYPE", "LC_MESSAGES"
 	    "LD_LIBRARY_PATH",
 	    "LD_PRELOAD",
+	    "LIBSTORAGE_BLKDISCARD",
 	    "LIBSTORAGE_BTRFS_QGROUPS",
 	    "LIBSTORAGE_BTRFS_SNAPSHOT_RELATIONS",
 	    "LIBSTORAGE_CONFDIR",
