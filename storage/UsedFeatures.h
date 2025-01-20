@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -24,7 +24,7 @@
 #define STORAGE_USED_FEATURES_H
 
 
-#include <stdint.h>
+#include <cstdint>
 #include <string>
 
 

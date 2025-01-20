@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2018-2023] SUSE LLC
+ * Copyright (c) [2018-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -24,7 +24,7 @@
 #define STORAGE_CALLBACKS_IMPL_H
 
 
-#include <stdint.h>
+#include <cstdint>
 
 #include "storage/Utils/Callbacks.h"
 #include "storage/Actions/Base.h"
