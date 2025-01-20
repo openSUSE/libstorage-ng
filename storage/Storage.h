@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -25,6 +25,7 @@
 #define STORAGE_STORAGE_H
 
 
+#include <cstdint>
 #include <string>
 #include <vector>
 #include <map>

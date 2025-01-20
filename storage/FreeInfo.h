@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2010] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -26,6 +26,7 @@
 
 
 #include <libxml/tree.h>
+#include <cstdint>
 #include <ostream>
 
 
