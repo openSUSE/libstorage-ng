@@ -18,7 +18,7 @@ staging = storage.get_staging()
 
 sdc1 = Partition.find_by_name(staging, "/dev/sdc1")
 
-luks = sdc1.create_encryption("cr-test")
+luks = sdc1.create_encryption("cr-test", EncryptionType_LUKS1)
 
 luks.set_password("12345678")
 
