@@ -610,6 +610,8 @@ namespace storage
     void
     Md::Impl::probe_uuid()
     {
+	udev_settle();
+
 	// Note: The UUID reported by mdadm has a different format than reported by
 	// e.g. blkid.
 
