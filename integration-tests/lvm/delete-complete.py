@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# requirements: disk /dev/sdb with lvm on partition sdb1 and sdb2
+# requirements: disk /dev/sdc with lvm on partition sdc1 and sdd1
 
 
 from sys import exit
@@ -17,11 +17,11 @@ storage.probe()
 
 staging = storage.get_staging()
 
-sdb1 = Partition.find_by_name(staging, "/dev/sdb1")
-sdb1.remove_descendants()
+sdc1 = Partition.find_by_name(staging, "/dev/sdc1")
+sdc1.remove_descendants(View_REMOVE)
 
-sdb2 = Partition.find_by_name(staging, "/dev/sdb2")
-sdb2.remove_descendants()
+sdd1 = Partition.find_by_name(staging, "/dev/sdd1")
+sdd1.remove_descendants(View_REMOVE)
 
 print(staging)
 

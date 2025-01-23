@@ -19,13 +19,13 @@ staging = storage.get_staging()
 print(staging)
 
 sdc1 = Partition.find_by_name(staging, "/dev/sdc1")
-sdc1.remove_descendants()
+sdc1.remove_descendants(View_REMOVE)
 
 sdc2 = Partition.find_by_name(staging, "/dev/sdc2")
-sdc2.remove_descendants()
+sdc2.remove_descendants(View_REMOVE)
 
 sdd1 = Partition.find_by_name(staging, "/dev/sdd1")
-sdd1.remove_descendants()
+sdd1.remove_descendants(View_REMOVE)
 
 print(staging)
 

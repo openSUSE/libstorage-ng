@@ -25,7 +25,7 @@ print(staging)
 
 partitionable = Partitionable.find_by_name(staging, "/dev/dasdb")
 
-partitionable.remove_descendants()
+partitionable.remove_descendants(View_REMOVE)
 
 partitionable.create_partition_table(PtType_DASD)
 

@@ -59,7 +59,7 @@ BOOST_AUTO_TEST_CASE(reassign_numbers)
 }
 
 
-BOOST_AUTO_TEST_CASE(remove_bcache_cset)
+BOOST_AUTO_TEST_CASE(detach_bcache_cset)
 {
     Environment environment(true, ProbeMode::READ_DEVICEGRAPH, TargetMode::DIRECT);
     environment.set_devicegraph_filename("probe/bcache1-devicegraph.xml");
@@ -76,7 +76,7 @@ BOOST_AUTO_TEST_CASE(remove_bcache_cset)
     BOOST_CHECK_EQUAL(bcache1->has_bcache_cset(), true);
     BOOST_CHECK_EQUAL(bcache2->has_bcache_cset(), true);
 
-    bcache1->remove_bcache_cset();
+    bcache1->detach_bcache_cset();
 
     BOOST_CHECK_EQUAL(bcache1->has_bcache_cset(), false);
     BOOST_CHECK_EQUAL(bcache2->has_bcache_cset(), true);

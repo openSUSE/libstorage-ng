@@ -27,7 +27,7 @@ for tmpfs in tmpfses:
         mount_point = tmpfs.get_mount_point()
 
         if mount_point.get_path() == "/test":
-            tmpfs.remove_descendants()
+            tmpfs.remove_descendants(View_REMOVE)
             staging.remove_device(tmpfs)
 
 print(staging)

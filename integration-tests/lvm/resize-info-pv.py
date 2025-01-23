@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# requirements: lvm vg test with physical volume /dev/sdb1
+# requirements: lvm vg test with physical volume /dev/sdc1
 
 
 from sys import exit
@@ -19,9 +19,9 @@ probed = storage.get_probed()
 
 print(probed)
 
-sdb1 = BlkDevice.find_by_name(probed, "/dev/sdb1")
+sdc1 = BlkDevice.find_by_name(probed, "/dev/sdc1")
 
-resize_info = sdb1.detect_resize_info()
+resize_info = sdc1.detect_resize_info()
 
 print(resize_info)
 

@@ -64,7 +64,7 @@ namespace storage
                 bcache0 = disk0->create_bcache( "/dev/bcache0" );
 
 		if(cset)
-		    bcache0->add_bcache_cset( cset0 );
+		    bcache0->attach_bcache_cset(cset0);
             }
 
 
@@ -74,7 +74,7 @@ namespace storage
                 bcache1 = disk1->create_bcache( "/dev/bcache1" );
 
 		if(cset)
-		    bcache1->add_bcache_cset( cset1 );
+		    bcache1->attach_bcache_cset(cset1);
             }
 
 	    Disk* disk0 = nullptr;
