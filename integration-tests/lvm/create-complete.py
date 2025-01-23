@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# requirements: disk /dev/sdb with empty partitions sdb1 and sdb2
+# requirements: disk /dev/sdc with empty partitions sdc1 and sdd1
 
 
 from sys import exit
@@ -17,12 +17,12 @@ storage.probe()
 
 staging = storage.get_staging()
 
-sdb1 = Partition.find_by_name(staging, "/dev/sdb1")
-sdb2 = Partition.find_by_name(staging, "/dev/sdb2")
+sdc1 = Partition.find_by_name(staging, "/dev/sdc1")
+sdd1 = Partition.find_by_name(staging, "/dev/sdd1")
 
 test = LvmVg.create(staging, "test")
-test.add_lvm_pv(sdb1)
-test.add_lvm_pv(sdb2)
+test.add_lvm_pv(sdc1)
+test.add_lvm_pv(sdd1)
 
 test.create_lvm_lv("1", LvType_NORMAL, 1 * GiB)
 test.create_lvm_lv("2", LvType_NORMAL, 1 * GiB)

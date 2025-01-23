@@ -20,7 +20,7 @@ staging = storage.get_staging()
 
 partitionable = Partitionable.find_by_name(staging, "/dev/sdc")
 
-partitionable.remove_descendants()
+partitionable.remove_descendants(View_REMOVE)
 
 # print(staging)
 

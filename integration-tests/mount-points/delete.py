@@ -24,7 +24,7 @@ blk_filesystem = sdc1.get_blk_filesystem()
 
 for descendant in blk_filesystem.get_descendants(False):
     if is_mount_point(descendant):
-        blk_filesystem.remove_descendants()
+        blk_filesystem.remove_descendants(View_REMOVE)
 
 print(staging)
 

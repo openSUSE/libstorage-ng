@@ -20,7 +20,7 @@ print(staging)
 
 nfs = Nfs.find_by_server_and_path(staging, "dist", "/dist")
 
-nfs.remove_descendants()
+nfs.remove_descendants(View_REMOVE)
 staging.remove_device(nfs)
 
 print(staging)
