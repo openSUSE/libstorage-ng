@@ -44,7 +44,11 @@ namespace storage
 
     public:
 
+	/**
+	 * Settle iff flag is set.
+	 */
 	void settle();
+
 	void set_settle_needed();
 
     private:
