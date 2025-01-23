@@ -270,8 +270,8 @@ namespace storage
 	 */
 	static std::vector<const Btrfs*> get_all(const Devicegraph* devicegraph);
 
-	bool get_configure_snapper() const;
-	void set_configure_snapper(bool configure);
+	bool get_configure_snapper() const ST_DEPRECATED;
+	void set_configure_snapper(bool configure) ST_DEPRECATED;
 
     public:
 
