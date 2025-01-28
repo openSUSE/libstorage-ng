@@ -14,8 +14,8 @@ A whitelist will also reduce the risk of using erroneous udev links, e.g. see
 bsc #1063249 and bsc #1140630.
 
 The configuration is loaded from the file udev-filters.json. This is
-so far not documented since in detail since it may have to change
-depending on future development of udev.
+so far not documented in detail since it may have to change depending
+on future development of udev.
 
 Unresolved bugs concerning udev links:
 - pmem (bsc #1140630)
