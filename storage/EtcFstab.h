@@ -209,10 +209,7 @@ namespace storage
     {
     public:
 
-	/**
-	 * Constructor.
-	 **/
-	FstabEntry();
+	FstabEntry() = default;
 
 	FstabEntry(const string & spec, const string& mount_point, FsType fs_type);
 
@@ -273,7 +270,7 @@ namespace storage
 
 	string	  spec;		// including UUID=, LABEL=, PARTUUID=, ...
 	string	  mount_point;	// always use set_mount_point()
-	FsType	  fs_type;	// see Filesystems/Filesystem.h
+	FsType	  fs_type = FsType::UNKNOWN;	// see Filesystems/Filesystem.h
 	MountOpts mount_opts;
 	int	  dump_pass = 0;	// historic
 	int	  fsck_pass = 0;

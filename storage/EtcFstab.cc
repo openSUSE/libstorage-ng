@@ -179,12 +179,6 @@ namespace storage
     }
 
 
-    FstabEntry::FstabEntry()
-	: fs_type(FsType::UNKNOWN)
-    {
-    }
-
-
     FstabEntry::FstabEntry(const string& spec, const string& mount_point, FsType fs_type)
 	: spec(spec), fs_type(fs_type)
     {

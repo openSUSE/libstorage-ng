@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -28,6 +28,7 @@
 #include <vector>
 
 #include "storage/FreeInfo.h"
+#include "storage/Filesystems/Filesystem.h"
 
 
 namespace storage
@@ -44,6 +45,9 @@ namespace storage
 
 	unsigned long long get_size() const { return size; }
 	unsigned long long get_used() const { return used; }
+	unsigned long long get_available() const { return available; }
+
+	FsType get_fs_type() const { return fs_type; }
 
 	SpaceInfo get_space_info() const { return SpaceInfo(size, used); }
 
@@ -57,6 +61,9 @@ namespace storage
 
 	unsigned long long size = 0;
 	unsigned long long used = 0;
+	unsigned long long available = 0;
+
+	FsType fs_type = FsType::UNKNOWN;
 
     };
 
