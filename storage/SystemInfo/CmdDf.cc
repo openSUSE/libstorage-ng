@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2023] SUSE LLC
+ * Copyright (c) [2017-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -22,10 +22,11 @@
 
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/StorageDefines.h"
-#include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/LoggerImpl.h"
 #include "storage/SystemInfo/CmdDf.h"
 #include "storage/Utils/ExceptionImpl.h"
+#include "storage/Filesystems/FilesystemImpl.h"
+#include "storage/Utils/AppUtil.h"
 
 
 namespace storage
@@ -51,7 +52,15 @@ namespace storage
 	std::istringstream data(lines[1]);
 	classic(data);
 
-	data >> size >> used;
+	data >> size >> used >> available;
+
+	if (size < used + available)
+	    y2war("implausible df values");
+
+	string tmp;
+	data >> tmp;
+	if (!toValue(tmp, fs_type))
+	    y2war("unknown fs-type '" << tmp << "'");
 
 	if (data.fail())
 	    ST_THROW(Exception("parse error"));
@@ -63,7 +72,8 @@ namespace storage
     std::ostream&
     operator<<(std::ostream& s, const CmdDf& cmd_df)
     {
-	s << "path:" << cmd_df.path << " size:" << cmd_df.size << " used:" << cmd_df.used << '\n';
+	s << "path:" << cmd_df.path << " size:" << cmd_df.size << " used:" << cmd_df.used
+	  << " available:" << cmd_df.available << " fs-type:" << toString(cmd_df.fs_type) << '\n';
 
 	return s;
     }
