@@ -69,6 +69,16 @@ namespace storage
     }
 
 
+    SpaceInfo
+    CmdDf::get_space_info() const
+    {
+	// At least btrfs can have available = 0 but still have used < size. That should
+	// show up as full (100%) anyway.
+
+	return SpaceInfo(used + available, used);
+    }
+
+
     std::ostream&
     operator<<(std::ostream& s, const CmdDf& cmd_df)
     {

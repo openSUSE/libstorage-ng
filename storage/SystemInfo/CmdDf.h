@@ -49,7 +49,7 @@ namespace storage
 
 	FsType get_fs_type() const { return fs_type; }
 
-	SpaceInfo get_space_info() const { return SpaceInfo(size, used); }
+	SpaceInfo get_space_info() const;
 
 	friend std::ostream& operator<<(std::ostream& s, const CmdDf& cmd_df);
 
