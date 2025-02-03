@@ -68,7 +68,10 @@ namespace storage
 	 *
 	 * The SpaceInfo is cached. Fast if has_space_info() is true.
 	 *
-	 * So far only supported for Nfs.
+	 * The space info can be very inaccurate, esp. for btrfs or without prior calling
+	 * sync, since it is based on df.
+	 *
+	 * Not supported for swap.
 	 *
 	 * @throw Exception
 	 */
