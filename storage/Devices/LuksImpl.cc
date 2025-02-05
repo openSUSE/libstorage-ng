@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -518,6 +518,9 @@ namespace storage
     unsigned long long
     Luks::Impl::metadata_size() const
     {
+	// size of luks metadata is explained at
+	// https://gitlab.com/cryptsetup/cryptsetup/wikis/FrequentlyAskedQuestions
+
 	switch (get_type())
 	{
 	    case EncryptionType::LUKS1:
@@ -543,12 +546,14 @@ namespace storage
 	const BlkDevice* blk_device = get_blk_device();
 
 	unsigned long long size = blk_device->get_size();
+	unsigned long long optimal_io_size = blk_device->get_topology().get_optimal_io_size();
 
-	// size of luks metadata is explained at
-	// https://gitlab.com/cryptsetup/cryptsetup/wikis/FrequentlyAskedQuestions
+	// explained a bit in cryptsetup-luksformat(8)
 
-	if (size > metadata_size())
-	    size -= metadata_size();
+	unsigned long long payload_offset = max(metadata_size(), optimal_io_size);
+
+	if (size > payload_offset)
+	    size -= payload_offset;
 	else
 	    size = 0 * B;
 
@@ -564,7 +569,7 @@ namespace storage
 	// 0. optimal_io_size is the same as for the underlying blk
 	// device.
 
-	set_topology(Topology(0, blk_device->get_topology().get_optimal_io_size()));
+	set_topology(Topology(0, optimal_io_size));
     }
 
 
