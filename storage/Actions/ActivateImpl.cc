@@ -42,8 +42,9 @@ namespace storage
 	void
 	Activate::commit(CommitData& commit_data, const CommitOptions& commit_options) const
 	{
-	    const Device* device = get_device(commit_data.actiongraph, RHS);
+	    Device* device = get_device(commit_data.actiongraph, RHS);
 	    device->get_impl().do_activate();
+	    device->get_impl().do_activate_post_verify();
 	}
 
 

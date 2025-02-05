@@ -357,7 +357,7 @@ namespace storage
 
 
     void
-    Multipath::Impl::do_deactivate() const
+    Multipath::Impl::do_deactivate()
     {
 	SystemCmd::Args cmd_args = { MULTIPATH_BIN, "-f", get_name() };
 

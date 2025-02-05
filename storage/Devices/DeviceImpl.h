@@ -172,11 +172,12 @@ namespace storage
 	virtual uf_t do_delete_used_features() const { return 0; }
 
 	virtual Text do_activate_text(Tense tense) const;
-	virtual void do_activate() const;
+	virtual void do_activate();
+	virtual void do_activate_post_verify() const;
 	virtual uf_t do_activate_used_features() const { return 0; }
 
 	virtual Text do_deactivate_text(Tense tense) const;
-	virtual void do_deactivate() const;
+	virtual void do_deactivate();
 	virtual uf_t do_deactivate_used_features() const { return 0; }
 
 	virtual Text do_resize_text(const CommitData& commit_data, const Action::Resize* action) const;

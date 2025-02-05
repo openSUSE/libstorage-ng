@@ -115,7 +115,7 @@ namespace storage
 	virtual void do_create() override;
 
 	virtual Text do_activate_text(Tense tense) const override;
-	virtual void do_activate() const override;
+	virtual void do_activate() override;
 
     private:
 

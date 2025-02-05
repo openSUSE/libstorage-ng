@@ -125,8 +125,10 @@ namespace storage
 
     // specialization using shared one from above
     template int File::get<int>() const;
+    template long File::get<long>() const;
+    template unsigned int File::get<unsigned int>() const;
+    template unsigned long File::get<unsigned long>() const;
     template unsigned long long File::get<unsigned long long>() const;
-    template unsigned File::get<unsigned>() const;
 
 
     template<>

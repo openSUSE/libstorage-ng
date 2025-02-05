@@ -162,11 +162,11 @@ namespace storage
 	virtual uf_t do_delete_used_features() const override { return UF_LVM; }
 
 	virtual Text do_activate_text(Tense tense) const override;
-	virtual void do_activate() const override;
+	virtual void do_activate() override;
 	virtual uf_t do_activate_used_features() const override { return UF_LVM; }
 
 	virtual Text do_deactivate_text(Tense tense) const override;
-	virtual void do_deactivate() const override;
+	virtual void do_deactivate() override;
 	virtual uf_t do_deactivate_used_features() const override { return UF_LVM; }
 
     private:

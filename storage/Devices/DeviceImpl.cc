@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -406,9 +406,15 @@ namespace storage
 
 
     void
-    Device::Impl::do_activate() const
+    Device::Impl::do_activate()
     {
 	ST_THROW(LogicException("stub Device::Impl::do_activate called"));
+    }
+
+
+    void
+    Device::Impl::do_activate_post_verify() const
+    {
     }
 
 
@@ -420,7 +426,7 @@ namespace storage
 
 
     void
-    Device::Impl::do_deactivate() const
+    Device::Impl::do_deactivate()
     {
 	ST_THROW(LogicException("stub Device::Impl::do_deactivate called"));
     }

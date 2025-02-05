@@ -42,7 +42,7 @@ namespace storage
 	void
 	Deactivate::commit(CommitData& commit_data, const CommitOptions& commit_options) const
 	{
-	    const Device* device = get_device(commit_data.actiongraph, LHS);
+	    Device* device = get_device(commit_data.actiongraph, LHS);
 	    device->get_impl().do_deactivate();
 	}
 

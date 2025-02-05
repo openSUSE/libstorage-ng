@@ -98,7 +98,7 @@ namespace storage
 	virtual void process_udev_ids(vector<string>& udev_ids, const UdevFilters& udev_filters) const override;
 
 	virtual Text do_deactivate_text(Tense tense) const override;
-	virtual void do_deactivate() const override;
+	virtual void do_deactivate() override;
 	virtual uf_t do_deactivate_used_features() const override { return UF_MULTIPATH; }
 
     private:

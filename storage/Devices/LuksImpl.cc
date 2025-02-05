@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -518,6 +518,9 @@ namespace storage
     unsigned long long
     Luks::Impl::metadata_size() const
     {
+	// size of luks metadata is explained at
+	// https://gitlab.com/cryptsetup/cryptsetup/wikis/FrequentlyAskedQuestions
+
 	switch (get_type())
 	{
 	    case EncryptionType::LUKS1:
@@ -543,12 +546,14 @@ namespace storage
 	const BlkDevice* blk_device = get_blk_device();
 
 	unsigned long long size = blk_device->get_size();
+	unsigned long long optimal_io_size = blk_device->get_topology().get_optimal_io_size();
 
-	// size of luks metadata is explained at
-	// https://gitlab.com/cryptsetup/cryptsetup/wikis/FrequentlyAskedQuestions
+	// explained a bit in cryptsetup-luksformat(8)
 
-	if (size > metadata_size())
-	    size -= metadata_size();
+	unsigned long long payload_offset = max(metadata_size(), optimal_io_size);
+
+	if (size > payload_offset)
+	    size -= payload_offset;
 	else
 	    size = 0 * B;
 
@@ -564,7 +569,7 @@ namespace storage
 	// 0. optimal_io_size is the same as for the underlying blk
 	// device.
 
-	set_topology(Topology(0, blk_device->get_topology().get_optimal_io_size()));
+	set_topology(Topology(0, optimal_io_size));
     }
 
 
@@ -715,7 +720,7 @@ namespace storage
 
 
     void
-    Luks::Impl::do_activate() const
+    Luks::Impl::do_activate()
     {
 	const BlkDevice* blk_device = get_blk_device();
 
@@ -723,15 +728,41 @@ namespace storage
 	    " " + quote(get_dm_table_name()) + " --tries 1 " + get_open_options();
 
 	add_key_file_option_and_execute(cmd_line);
+
+	SystemInfo::Impl system_info;
+	const CmdUdevadmInfo& cmd_udevadm_info = system_info.getCmdUdevadmInfo(get_name());
+	set_sysfs_name(cmd_udevadm_info.get_name());
+	set_sysfs_path(cmd_udevadm_info.get_path());
     }
 
 
     void
-    Luks::Impl::do_deactivate() const
+    Luks::Impl::do_activate_post_verify() const
+    {
+	// log some data about the LUKS device that might be useful for debugging
+
+	SystemInfo::Impl system_info;
+
+	const File& size_file = get_sysfs_file(system_info, "size");
+	const File& optimal_io_size_file = get_sysfs_file(system_info, "queue/optimal_io_size");
+
+	unsigned long long size = 512 * size_file.get<unsigned long long>();
+	unsigned long optimal_io_size = optimal_io_size_file.get<unsigned long>();
+
+	log_unexpected("luks size", get_size(), size);
+	log_unexpected("luks optimal_io_size", get_topology().get_optimal_io_size(), optimal_io_size);
+    }
+
+
+    void
+    Luks::Impl::do_deactivate()
     {
 	SystemCmd::Args cmd_args = { CRYPTSETUP_BIN, "--batch-mode", "close", get_dm_table_name() };
 
 	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
+
+	set_sysfs_name("");
+	set_sysfs_path("");
     }
 
 }

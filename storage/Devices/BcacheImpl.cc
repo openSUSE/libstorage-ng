@@ -754,7 +754,7 @@ namespace storage
 
 
     void
-    Bcache::Impl::do_deactivate() const
+    Bcache::Impl::do_deactivate()
     {
 	SystemCmd::Args cmd_args = { BCACHE_BIN, "unregister", get_backing_device()->get_name() };
 
