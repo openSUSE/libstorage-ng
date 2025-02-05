@@ -17,4 +17,21 @@
       <name>/usr/bin/cat /proc/mdstat</name>
     </Command>
   </Commands>
+  <Files>
+    <File>
+      <name>/sys/devices/virtual/block/md0/size</name>
+      <!-- content faked -->
+      <content>33512488</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/md0/alignment_offset</name>
+      <!-- content faked -->
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/md0/queue/optimal_io_size</name>
+      <!-- content faked -->
+      <content>0</content>
+    </File>
+  </Files>
 </Mockup>

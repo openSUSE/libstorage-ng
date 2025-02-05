@@ -154,8 +154,8 @@ namespace storage
 	const File& alignment_offset_file = get_sysfs_file(system_info, "alignment_offset");
 	const File& optimal_io_size_file = get_sysfs_file(system_info, "queue/optimal_io_size");
 
-	unsigned long long alignment_offset = alignment_offset_file.get<int>();
-	unsigned long long optimal_io_size = optimal_io_size_file.get<int>();
+	long alignment_offset = alignment_offset_file.get<long>();
+	unsigned long optimal_io_size = optimal_io_size_file.get<unsigned long>();
 
 	set_topology(Topology(alignment_offset, optimal_io_size));
     }

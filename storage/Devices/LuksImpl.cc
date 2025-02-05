@@ -720,7 +720,7 @@ namespace storage
 
 
     void
-    Luks::Impl::do_activate() const
+    Luks::Impl::do_activate()
     {
 	const BlkDevice* blk_device = get_blk_device();
 
@@ -728,15 +728,41 @@ namespace storage
 	    " " + quote(get_dm_table_name()) + " --tries 1 " + get_open_options();
 
 	add_key_file_option_and_execute(cmd_line);
+
+	SystemInfo::Impl system_info;
+	const CmdUdevadmInfo& cmd_udevadm_info = system_info.getCmdUdevadmInfo(get_name());
+	set_sysfs_name(cmd_udevadm_info.get_name());
+	set_sysfs_path(cmd_udevadm_info.get_path());
     }
 
 
     void
-    Luks::Impl::do_deactivate() const
+    Luks::Impl::do_activate_post_verify() const
+    {
+	// log some data about the LUKS device that might be useful for debugging
+
+	SystemInfo::Impl system_info;
+
+	const File& size_file = get_sysfs_file(system_info, "size");
+	const File& optimal_io_size_file = get_sysfs_file(system_info, "queue/optimal_io_size");
+
+	unsigned long long size = 512 * size_file.get<unsigned long long>();
+	unsigned long optimal_io_size = optimal_io_size_file.get<unsigned long>();
+
+	log_unexpected("luks size", get_size(), size);
+	log_unexpected("luks optimal_io_size", get_topology().get_optimal_io_size(), optimal_io_size);
+    }
+
+
+    void
+    Luks::Impl::do_deactivate()
     {
 	SystemCmd::Args cmd_args = { CRYPTSETUP_BIN, "--batch-mode", "close", get_dm_table_name() };
 
 	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
+
+	set_sysfs_name("");
+	set_sysfs_path("");
     }
 
 }

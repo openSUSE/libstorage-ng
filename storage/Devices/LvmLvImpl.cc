@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -1037,10 +1037,9 @@ namespace storage
 
 	const LvmVg* lvm_vg = get_lvm_vg();
 
-	SystemCmd::Args cmd_args = { LVS_BIN, "--options", "vg_name,lv_name,lv_uuid,lv_size", "--units", "b", "--",
-	    lvm_vg->get_vg_name() + "/" + lv_name };
-
-	SystemCmd cmd(cmd_args, SystemCmd::NoThrow);
+	CmdLvs cmd_lvs(get_lvm_vg()->get_vg_name(), lv_name);
+	const CmdLvs::Lv& lv = cmd_lvs.get_lvs()[0];
+	log_unexpected("lvm-lv extents", lvm_vg->get_extent_size(), lv.size);
     }
 
 
@@ -1350,7 +1349,7 @@ namespace storage
 
 
     void
-    LvmLv::Impl::do_activate() const
+    LvmLv::Impl::do_activate()
     {
 	const LvmVg* lvm_vg = get_lvm_vg();
 
@@ -1417,7 +1416,7 @@ namespace storage
 
 
     void
-    LvmLv::Impl::do_deactivate() const
+    LvmLv::Impl::do_deactivate()
     {
 	const LvmVg* lvm_vg = get_lvm_vg();
 

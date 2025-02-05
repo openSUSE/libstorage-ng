@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -63,12 +63,31 @@ namespace storage
     }
 
 
+#define PVS_OPTIONS "pv_name,pv_uuid,vg_name,vg_uuid,pv_attr,pe_start"
+
+
     CmdPvs::CmdPvs()
     {
-	SystemCmd cmd({ PVS_BIN, COMMON_LVM_OPTIONS, "--all", "--options",  "pv_name,pv_uuid,"
-		"vg_name,vg_uuid,pv_attr,pe_start" }, SystemCmd::DoThrow);
+	SystemCmd cmd({ PVS_BIN, COMMON_LVM_OPTIONS, "--all", "--options",  PVS_OPTIONS }, SystemCmd::DoThrow);
 
 	parse(cmd.stdout());
+    }
+
+
+    CmdPvs::CmdPvs(const string& pv_name)
+    {
+	SystemCmd cmd({ PVS_BIN, COMMON_LVM_OPTIONS, "--all", "--options",  "pv_name,pv_uuid,"
+		"vg_name,vg_uuid,pv_attr,pe_start", pv_name }, SystemCmd::DoThrow);
+
+	parse(cmd.stdout());
+
+	if (pvs.size() != 1)
+	    ST_THROW(Exception("command pvs returned wrong number of pvs"));
+
+	const Pv& pv = pvs[0];
+
+	if (pv.pv_name != pv_name)
+	    ST_THROW(Exception("command pvs returned wrong pv_name"));
     }
 
 
@@ -152,17 +171,39 @@ namespace storage
     }
 
 
+#define LVS_OPTIONS "lv_name,lv_uuid,vg_name,vg_uuid,lv_role,lv_attr,lv_size,origin_size,segtype,"	\
+	"stripes,stripe_size,chunk_size,pool_lv,pool_lv_uuid,origin,origin_uuid,data_lv,data_lv_uuid,"	\
+	"metadata_lv,metadata_lv_uuid"
+
+
     CmdLvs::CmdLvs()
     {
 	// Note: Querying segtype, origin, origin_uuid and origin_size is rather new and
 	// not available in all testsuite data.
 
-	SystemCmd cmd({ LVS_BIN, COMMON_LVM_OPTIONS, "--all", "--options", "lv_name,lv_uuid,vg_name,"
-		"vg_uuid,lv_role,lv_attr,lv_size,origin_size,segtype,stripes,stripe_size,"
-		"chunk_size,pool_lv,pool_lv_uuid,origin,origin_uuid,data_lv,data_lv_uuid,"
-		"metadata_lv,metadata_lv_uuid" }, SystemCmd::DoThrow);
+	SystemCmd cmd({ LVS_BIN, COMMON_LVM_OPTIONS, "--all", "--options", LVS_OPTIONS }, SystemCmd::DoThrow);
 
 	parse(cmd.stdout());
+    }
+
+
+    CmdLvs::CmdLvs(const string& vg_name, const string& lv_name)
+    {
+	SystemCmd cmd({ LVS_BIN, COMMON_LVM_OPTIONS, "--all", "--options", LVS_OPTIONS, vg_name + "/" + lv_name },
+		      SystemCmd::DoThrow);
+
+	parse(cmd.stdout());
+
+	if (lvs.size() != 1)
+	    ST_THROW(Exception("command lvs returned wrong number of lvs"));
+
+	const Lv& lv = lvs[0];
+
+	if (lv.vg_name != vg_name)
+	    ST_THROW(Exception("command lvs returned wrong vg_name"));
+
+	if (lv.lv_name != lv_name)
+	    ST_THROW(Exception("command lvs returned wrong lv_name"));
     }
 
 
@@ -372,12 +413,30 @@ namespace storage
     }
 
 
+#define VGS_OPTIONS "vg_name,vg_uuid,vg_attr,vg_extent_size,vg_extent_count,vg_free_count"
+
+
     CmdVgs::CmdVgs()
     {
-	SystemCmd cmd({ VGS_BIN, COMMON_LVM_OPTIONS, "--options", "vg_name,vg_uuid,vg_attr,"
-		"vg_extent_size,vg_extent_count,vg_free_count" }, SystemCmd::DoThrow);
+	SystemCmd cmd({ VGS_BIN, COMMON_LVM_OPTIONS, "--options", VGS_OPTIONS }, SystemCmd::DoThrow);
 
 	parse(cmd.stdout());
+    }
+
+
+    CmdVgs::CmdVgs(const string& vg_name)
+    {
+	SystemCmd cmd({ VGS_BIN, COMMON_LVM_OPTIONS, "--options", VGS_OPTIONS, vg_name }, SystemCmd::DoThrow);
+
+	parse(cmd.stdout());
+
+	if (vgs.size() != 1)
+	    ST_THROW(Exception("command vgs returned wrong number of vgs"));
+
+	const Vg& vg = vgs[0];
+
+	if (vg.vg_name != vg_name)
+	    ST_THROW(Exception("command vgs returned wrong vg_name"));
     }
 
 

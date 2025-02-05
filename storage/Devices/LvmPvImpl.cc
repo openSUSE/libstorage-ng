@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -347,10 +347,9 @@ namespace storage
 
 	const BlkDevice* blk_device = get_blk_device();
 
-	SystemCmd::Args cmd_args = { PVS_BIN, "--options", "pv_name,pv_uuid,pv_size,pe_start", "--units", "b",
-	    blk_device->get_name() };
-
-	SystemCmd cmd(cmd_args, SystemCmd::NoThrow);
+	CmdPvs cmd_pvs(blk_device->get_name());
+	const CmdPvs::Pv& pv = cmd_pvs.get_pvs()[0];
+	log_unexpected("lvm-pv pe-start", pe_start, pv.pe_start);
     }
 
 

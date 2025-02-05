@@ -21,8 +21,20 @@
       <!-- stdout missing -->
     </Command>
     <Command>
-      <name>/sbin/pvs --options pv_name,pv_uuid,pv_size,pe_start --units b /dev/sdb4</name>
-      <!-- stdout missing -->
+      <name>/sbin/pvs --reportformat json --config log { command_names = 0 prefix = "" } --units b --nosuffix --all --options pv_name,pv_uuid,vg_name,vg_uuid,pv_attr,pe_start /dev/sdb4</name>
+      <!-- stdout faked -->
+      <stdout>  {</stdout>
+      <stdout>      "report": [</stdout>
+      <stdout>          {</stdout>
+      <stdout>             "pv": [</stdout>
+      <stdout>                  {"pv_name":"/dev/sdb4", "pv_uuid":"8NmjyS-2zY3-OKoY-zq3S-ggZb-DCBx-daSW2b", "vg_name":"", "vg_uuid":"x8Uvlc-SPR4-UMrl-3kde-Zvli-MIIS-w8nert", "pv_attr":"a--", "pe_start":"1048576"}</stdout>
+      <stdout>              ]</stdout>
+      <stdout>          }</stdout>
+      <stdout>      ]</stdout>
+      <stdout>      ,</stdout>
+      <stdout>      "log": [</stdout>
+      <stdout>      ]</stdout>
+      <stdout>  }</stdout>
     </Command>
     <Command>
       <name>/sbin/vgextend -- testvg /dev/sdb4</name>
@@ -37,8 +49,20 @@
       <!-- stdout missing -->
     </Command>
     <Command>
-      <name>/sbin/lvs --options vg_name,lv_name,lv_uuid,lv_size --units b -- testvg/newlv</name>
-      <!-- stdout missing -->
+      <name>/sbin/lvs --reportformat json --config log { command_names = 0 prefix = "" } --units b --nosuffix --all --options lv_name,lv_uuid,vg_name,vg_uuid,lv_role,lv_attr,lv_size,origin_size,segtype,stripes,stripe_size,chunk_size,pool_lv,pool_lv_uuid,origin,origin_uuid,data_lv,data_lv_uuid,metadata_lv,metadata_lv_uuid testvg/newlv</name>
+      <!-- stdout faked -->
+      <stdout>  {</stdout>
+      <stdout>      "report": [</stdout>
+      <stdout>          {</stdout>
+      <stdout>              "lv": [</stdout>
+      <stdout>                  {"lv_name":"newlv", "lv_uuid":"8xHgAg-W20e-2nyI-ePNI-Sgcs-83fM-2TY7eN", "vg_name":"testvg", "vg_uuid":"x8Uvlc-SPR4-UMrl-3kde-Zvli-MIIS-w8nert", "lv_role":"public", "lv_attr":"-wi-ao----", "lv_size":"4194304", "origin_size":"", "segtype":"linear", "stripes":"1", "stripe_size":"0", "chunk_size":"0", "pool_lv":"", "pool_lv_uuid":"", "origin":"", "origin_uuid":"", "data_lv":"", "data_lv_uuid":"", "metadata_lv":"", "metadata_lv_uuid":""}</stdout>
+      <stdout>              ]</stdout>
+      <stdout>          }</stdout>
+      <stdout>      ]</stdout>
+      <stdout>      ,</stdout>
+      <stdout>      "log": [</stdout>
+      <stdout>      ]</stdout>
+      <stdout>  }</stdout>
     </Command>
   </Commands>
 </Mockup>

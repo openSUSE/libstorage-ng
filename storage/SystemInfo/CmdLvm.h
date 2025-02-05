@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -55,6 +55,7 @@ namespace storage
     public:
 
 	CmdPvs();
+	CmdPvs(const string& pv_name);
 
 	struct Pv
 	{
@@ -90,6 +91,7 @@ namespace storage
     public:
 
 	CmdLvs();
+	CmdLvs(const string& vg_name, const string& lv_name);
 
 	/**
 	 * Enum to represent the role reported by lvs. So far only
@@ -153,14 +155,15 @@ namespace storage
     public:
 
 	CmdVgs();
+	CmdVgs(const string& vg_name);
 
 	struct Vg
 	{
 	    string vg_name;
 	    string vg_uuid;
-	    unsigned long extent_size = 0;
-	    unsigned long extent_count = 0;
-	    unsigned long free_extent_count = 0;
+	    unsigned long long extent_size = 0;
+	    unsigned long long extent_count = 0;
+	    unsigned long long free_extent_count = 0;
 	};
 
 	friend std::ostream& operator<<(std::ostream& s, const CmdVgs& cmd_vgs);

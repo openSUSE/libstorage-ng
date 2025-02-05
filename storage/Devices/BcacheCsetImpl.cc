@@ -339,7 +339,7 @@ namespace storage
 
 
     void
-    BcacheCset::Impl::do_deactivate() const
+    BcacheCset::Impl::do_deactivate()
     {
 	// TODO handle multiple caching devices?
 

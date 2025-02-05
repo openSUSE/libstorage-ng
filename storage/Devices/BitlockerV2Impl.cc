@@ -489,7 +489,7 @@ namespace storage
 
 
     void
-    BitlockerV2::Impl::do_activate() const
+    BitlockerV2::Impl::do_activate()
     {
 	const BlkDevice* blk_device = get_blk_device();
 
@@ -501,7 +501,7 @@ namespace storage
 
 
     void
-    BitlockerV2::Impl::do_deactivate() const
+    BitlockerV2::Impl::do_deactivate()
     {
 	SystemCmd::Args cmd_args = { CRYPTSETUP_BIN, "--batch-mode", "close", get_dm_table_name() };
 

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2018-2021] SUSE LLC
+ * Copyright (c) [2018-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -38,7 +38,7 @@
 #include <boost/io/ios_state.hpp>
 
 #include "storage/Utils/AppUtil.h"
-#include "storage/Utils/Logger.h"
+#include "storage/Utils/LoggerImpl.h"
 #include "storage/Utils/ExceptionImpl.h"
 
 
@@ -260,6 +260,19 @@ namespace storage
 	    output.push_back(input[t.second]);
 
 	return output;
+    }
+
+
+    template <class T>
+    void
+    log_unexpected(const char* name, const T& expected, const T& seen)
+    {
+	if (expected < seen)
+	    y2war("unexpected " << name << ", expected:" << expected << " < seen:" << seen);
+	else if (expected > seen)
+	    y2war("unexpected " << name << ", expected:" << expected << " > seen:" << seen);
+	else
+	    y2mil("expected " << name << ", expected:" << expected << " == seen:" << seen);
     }
 
 }

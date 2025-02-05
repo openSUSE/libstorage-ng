@@ -437,7 +437,7 @@ namespace storage
 
 
     void
-    Disk::Impl::do_activate() const
+    Disk::Impl::do_activate()
     {
 	// only used for TargetMode::IMAGE
 

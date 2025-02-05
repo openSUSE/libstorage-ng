@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2024] SUSE LLC
+ * Copyright (c) [2016-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -595,10 +595,9 @@ namespace storage
     {
 	// log some data about the volume group that might be useful for debugging
 
-	SystemCmd::Args cmd_args = { VGS_BIN, "--options", "vg_name,vg_uuid,vg_size,vg_extent_size,"
-	    "vg_extent_count", "--units", "b", "--", vg_name };
-
-	SystemCmd cmd(cmd_args, SystemCmd::NoThrow);
+	CmdVgs cmd_vgs(vg_name);
+	const CmdVgs::Vg& vg = cmd_vgs.get_vgs()[0];
+	log_unexpected("lmv-vg extent-count", number_of_extents(), vg.extent_count);
     }
 
 

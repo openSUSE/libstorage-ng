@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -1215,6 +1215,20 @@ namespace storage
 	SystemCmd::Args cmd_args = { CAT_BIN, PROC_DIR "/mdstat" };
 
 	SystemCmd cmd(cmd_args, SystemCmd::NoThrow);
+
+	SystemInfo::Impl system_info;
+
+	const File& size_file = get_sysfs_file(system_info, "size");
+	const File& alignment_offset_file = get_sysfs_file(system_info, "alignment_offset");
+	const File& optimal_io_size_file = get_sysfs_file(system_info, "queue/optimal_io_size");
+
+	unsigned long long size = 512 * size_file.get<unsigned long long>();
+	long alignment_offset = alignment_offset_file.get<long>();
+	unsigned long optimal_io_size = optimal_io_size_file.get<unsigned long>();
+
+	log_unexpected("md size", get_size(), size);
+	log_unexpected("md alignment_offset", get_topology().get_alignment_offset(), alignment_offset);
+	log_unexpected("md optimal_io_size", get_topology().get_optimal_io_size(), optimal_io_size);
     }
 
 
@@ -1413,7 +1427,7 @@ namespace storage
 
 
     void
-    Md::Impl::do_deactivate() const
+    Md::Impl::do_deactivate()
     {
 	SystemCmd::Args cmd_args = { MDADM_BIN, "--stop", get_name() };
 

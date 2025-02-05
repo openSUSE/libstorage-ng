@@ -171,7 +171,7 @@ namespace storage
 	void do_extend(const BlkDevice* blk_device) const;
 
 	virtual Text do_deactivate_text(Tense tense) const override;
-	virtual void do_deactivate() const override;
+	virtual void do_deactivate() override;
 	virtual uf_t do_deactivate_used_features() const override { return UF_MDRAID; }
 
 	virtual void calculate_region_and_topology();

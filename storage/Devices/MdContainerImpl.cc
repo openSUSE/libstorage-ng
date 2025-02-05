@@ -126,7 +126,7 @@ namespace storage
 
 
     void
-    MdContainer::Impl::do_deactivate() const
+    MdContainer::Impl::do_deactivate()
     {
 	Device::Impl::do_deactivate();
     }
