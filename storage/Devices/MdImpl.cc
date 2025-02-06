@@ -989,17 +989,22 @@ namespace storage
 	if (md_level == MdLevel::RAID1)
 	    real_chunk_size = 64 * KiB;
 
-	int number = 0;
-	unsigned long long sum = 0;
-	unsigned long long smallest = std::numeric_limits<unsigned long long>::max();
-
-	unsigned int block_size = 0;
+	/* values of the underlying devices */
+	unsigned int underlying_number = 0;
+	unsigned long long underlying_sum = 0;
+	unsigned long long underlying_smallest = std::numeric_limits<unsigned long long>::max();
+	unsigned int underlying_block_size = 0;
+	unsigned long underlying_optimal_io_size = 0;
 
 	for (const BlkDevice* blk_device : blk_devices)
 	{
-	    unsigned long long size = blk_device->get_size();
+	    const Region& region = blk_device->get_region();
+	    const Topology& topology = blk_device->get_topology();
 
-	    block_size = std::max(block_size, blk_device->get_region().get_block_size());
+	    unsigned long long underlying_size = blk_device->get_size();
+
+	    underlying_block_size = std::max(underlying_block_size, region.get_block_size());
+	    underlying_optimal_io_size = std::max(underlying_optimal_io_size, topology.get_optimal_io_size());
 
 	    const MdUser* md_user = blk_device->get_impl().get_single_out_holder_of_type<const MdUser>();
 	    bool spare = md_user->is_spare();
@@ -1011,88 +1016,105 @@ namespace storage
 	    unsigned long long superblock_size = 16 * KiB;
 
 	    // roughly 1% with 128 MiB limit
-	    unsigned long long bitmap_size = min(128 * MiB, size / 64);
+	    unsigned long long bitmap_size = min(128 * MiB, underlying_size / 64);
 
 	    // man page says 4 KiB but from the code it looks like 8 KiB
 	    unsigned long long badblocklog_size = 8 * KiB;
 
-	    size = subtract_saturated(size, superblock_size + bitmap_size + badblocklog_size + real_chunk_size);
+	    underlying_size = subtract_saturated(underlying_size, superblock_size + bitmap_size +
+						 badblocklog_size + real_chunk_size);
 
 	    // for metadata version 1.1 and 1.2 the data-offset is rounded by 1 MiB
-	    size = round_down(size, 1 * MiB);
+	    underlying_size = round_down(underlying_size, 1 * MiB);
 
-	    long rest = size % real_chunk_size;
+	    long rest = underlying_size % real_chunk_size;
 	    if (rest > 0)
-		size = subtract_saturated(size, rest);
+		underlying_size = subtract_saturated(underlying_size, rest);
 
 	    // safety net
-	    size = subtract_saturated(size, max(128 * KiB, size / 1024));
+	    underlying_size = subtract_saturated(underlying_size, max(128 * KiB, underlying_size / 1024));
 
 	    if (!spare && !journal)
 	    {
-		number++;
-		sum += size;
+		underlying_number++;
+		underlying_sum += underlying_size;
 	    }
 
 	    if (!journal)
 	    {
-		smallest = min(smallest, size);
+		underlying_smallest = min(underlying_smallest, underlying_size);
 	    }
 	}
 
 	unsigned long long size = 0;
-	long optimal_io_size = 0;
+	unsigned long optimal_io_size = 0;
 
 	switch (md_level)
 	{
 	    case MdLevel::LINEAR:
-		if (number >= 2)
+		if (underlying_number >= 2)
 		{
-		    size = sum;
-		    optimal_io_size = 0;
+		    size = underlying_sum;
+
+		    if (underlying_optimal_io_size > 0)
+			optimal_io_size = underlying_optimal_io_size;
 		}
 		break;
 
 	    case MdLevel::RAID0:
-		if (number >= 2)
+		if (underlying_number >= 2)
 		{
-		    size = sum;
-		    optimal_io_size = real_chunk_size * number;
+		    size = underlying_sum;
+		    optimal_io_size = real_chunk_size * underlying_number;
+
+		    if (underlying_optimal_io_size > 0)
+			optimal_io_size = boost::integer::lcm(optimal_io_size, underlying_optimal_io_size);
 		}
 		break;
 
 	    case MdLevel::RAID1:
-		if (number >= 2)
+		if (underlying_number >= 2)
 		{
-		    size = smallest;
-		    optimal_io_size = 0;
+		    size = underlying_smallest;
+
+		    if (underlying_optimal_io_size > 0)
+			optimal_io_size = underlying_optimal_io_size;
 		}
 		break;
 
 	    case MdLevel::RAID4:
 	    case MdLevel::RAID5:
-		if (number >= 3)
+		if (underlying_number >= 3)
 		{
-		    size = smallest * (number - 1);
-		    optimal_io_size = real_chunk_size * (number - 1);
+		    size = underlying_smallest * (underlying_number - 1);
+		    optimal_io_size = real_chunk_size * (underlying_number - 1);
+
+		    if (underlying_optimal_io_size > 0)
+			optimal_io_size = boost::integer::lcm(optimal_io_size, underlying_optimal_io_size);
 		}
 		break;
 
 	    case MdLevel::RAID6:
-		if (number >= 4)
+		if (underlying_number >= 4)
 		{
-		    size = smallest * (number - 2);
-		    optimal_io_size = real_chunk_size * (number - 2);
+		    size = underlying_smallest * (underlying_number - 2);
+		    optimal_io_size = real_chunk_size * (underlying_number - 2);
+
+		    if (underlying_optimal_io_size > 0)
+			optimal_io_size = boost::integer::lcm(optimal_io_size, underlying_optimal_io_size);
 		}
 		break;
 
 	    case MdLevel::RAID10:
-		if (number >= 2)
+		if (underlying_number >= 2)
 		{
-		    size = ((smallest / real_chunk_size) * number / 2) * real_chunk_size;
-		    optimal_io_size = real_chunk_size * number / 2;
-		    if (number % 2 == 1)
+		    size = ((underlying_smallest / real_chunk_size) * underlying_number / 2) * real_chunk_size;
+		    optimal_io_size = real_chunk_size * underlying_number / 2;
+		    if (underlying_number % 2 == 1)
 			optimal_io_size *= 2;
+
+		    if (underlying_optimal_io_size > 0)
+			optimal_io_size = boost::integer::lcm(optimal_io_size, underlying_optimal_io_size);
 		}
 		break;
 
@@ -1101,8 +1123,8 @@ namespace storage
 		break;
 	}
 
-	if (block_size && block_size != get_region().get_block_size())
-	    set_region(Region(0, 0, block_size));
+	if (underlying_block_size && underlying_block_size != get_region().get_block_size())
+	    set_region(Region(0, 0, underlying_block_size));
 
 	set_size(size);
 	set_topology(Topology(0, optimal_io_size));
