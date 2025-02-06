@@ -13,13 +13,13 @@ from storage import *
 from storageitu import *
 
 
-# should be of slightly different size
-# should be at least 130 GiB so that mdadm reserves the max limit for bitmap
+# should have 8 MiB optimal IO size (see bsc #1236687)
 
-partitions = ["/dev/sdc1", "/dev/sdd1", "/dev/sdc2", "/dev/sdd2"]
+partitions = ["/dev/sdf1", "/dev/sdf2", "/dev/sdf3", "/dev/sdf4",
+              "/dev/sdf5", "/dev/sdf6", "/dev/sdf7", "/dev/sdf8"]
 
 
-results = open("size-and-topology.txt", 'w')
+results = open("size-and-topology2.txt", 'w')
 
 
 set_logger(get_logfile_logger())
@@ -67,8 +67,8 @@ def doit(metadata, level, num_devices, chunk_size):
     size_ok = expected_size == seen_size
     io_size_ok = expected_io_size == seen_io_size
 
-    results.write("metadata:%s, level:%s, devices:%d, chunk-size:%d" %(metadata, get_md_level_name(level),
-                                                                       num_devices, chunk_size))
+    results.write("metadata:%s, level:%s, devices:%d, chunk-size:%d" % (metadata, get_md_level_name(level),
+                                                                        num_devices, chunk_size))
     if size_ok:
         results.write(", size %d" % (expected_size))
     else:
