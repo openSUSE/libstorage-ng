@@ -189,8 +189,8 @@ namespace storage
 
     CmdLvs::CmdLvs(const string& vg_name, const string& lv_name)
     {
-	SystemCmd cmd({ LVS_BIN, COMMON_LVM_OPTIONS, "--all", "--options", LVS_OPTIONS, vg_name + "/" + lv_name },
-		      SystemCmd::DoThrow);
+	SystemCmd cmd({ LVS_BIN, COMMON_LVM_OPTIONS, "--all", "--options", LVS_OPTIONS, "--",
+		vg_name + "/" + lv_name }, SystemCmd::DoThrow);
 
 	parse(cmd.stdout());
 
@@ -426,7 +426,8 @@ namespace storage
 
     CmdVgs::CmdVgs(const string& vg_name)
     {
-	SystemCmd cmd({ VGS_BIN, COMMON_LVM_OPTIONS, "--options", VGS_OPTIONS, vg_name }, SystemCmd::DoThrow);
+	SystemCmd cmd({ VGS_BIN, COMMON_LVM_OPTIONS, "--options", VGS_OPTIONS, "--", vg_name },
+		SystemCmd::DoThrow);
 
 	parse(cmd.stdout());
 
