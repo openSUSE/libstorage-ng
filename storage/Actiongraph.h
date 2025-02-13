@@ -130,14 +130,18 @@ namespace storage
 			    GraphvizFlags tooltip_flags = GraphvizFlags::NONE) const;
 
 	/**
-	 * Sorted according to dependencies among actions. So there can be some random in
-	 * the sorting.
+	 * Sorted according to dependencies among actions. So there can be some randomness
+	 * in the sorting.
 	 */
 	std::vector<const Action::Base*> get_commit_actions() const;
 
 	std::vector<std::string> get_commit_actions_as_strings() const ST_DEPRECATED;
 
+	/**
+	 * Already called inside of Storage::calculate_actiongraph().
+	 */
 	void generate_compound_actions();
+
 	std::vector<const CompoundAction*> get_compound_actions() const;
 
     public:

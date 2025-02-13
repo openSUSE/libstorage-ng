@@ -108,7 +108,6 @@ def commit(storage, skip_save_graphs = True, skip_print_actiongraph = True,
     print()
 
     print("Condensed:")
-    actiongraph.generate_compound_actions()
     for compound_action in actiongraph.get_compound_actions():
         print(colorize_compound_action(compound_action.sentence(), compound_action))
     print()

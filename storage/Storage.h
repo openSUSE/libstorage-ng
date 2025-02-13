@@ -591,6 +591,8 @@ namespace storage
 	std::string prepend_rootprefix(const std::string& mount_point) const;
 
 	/**
+	 * Calculates the actiongraph including the compound actions.
+	 *
 	 * The actiongraph is only valid until either the probed or staging
 	 * devicegraph is modified.
 	 *
