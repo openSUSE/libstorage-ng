@@ -62,6 +62,7 @@ use_ostream(storage::PartitionSlot);
 #include "storage/Utils/Lock.h"
 #include "storage/FreeInfo.h"
 #include "storage/UsedFeatures.h"
+#include "storage/LvmDevicesFile.h"
 #include "storage/View.h"
 #include "storage/Version.h"
 
@@ -167,6 +168,7 @@ use_ostream(storage::PartitionSlot);
 %include "../../storage/Utils/Lock.h"
 %include "../../storage/FreeInfo.h"
 %include "../../storage/UsedFeatures.h"
+%include "../../storage/LvmDevicesFile.h"
 %include "../../storage/View.h"
 %include "../../storage/Version.h"
 

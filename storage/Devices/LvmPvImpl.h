@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -111,6 +111,14 @@ namespace storage
 	virtual Text do_delete_text(Tense tense) const override;
 	virtual void do_delete() const override;
 	virtual uf_t do_delete_used_features() const override { return UF_LVM; }
+
+	virtual Text do_add_to_lvm_devices_file_text(Tense tense) const;
+	virtual void do_add_to_lvm_devices_file(const CommitData& commit_data) const;
+	virtual uf_t do_add_to_lvm_devices_file_used_features() const { return UF_LVM; }
+
+	virtual Text do_remove_from_lvm_devices_file_text(Tense tense) const;
+	virtual void do_remove_from_lvm_devices_file(const CommitData& commit_data) const;
+	virtual uf_t do_remove_from_lvm_devices_file_used_features() const { return UF_LVM; }
 
     private:
 

@@ -29,6 +29,7 @@ libstorage_ng_la_SOURCES =						\
 	EtcMdadm.h			EtcMdadm.cc			\
 	SimpleEtcFstab.h		SimpleEtcFstab.cc		\
 	SimpleEtcCrypttab.h		SimpleEtcCrypttab.cc		\
+	LvmDevicesFile.h		LvmDevicesFile.cc		\
 	FreeInfo.h			FreeInfo.cc			\
 	UsedFeatures.h			UsedFeatures.cc			\
 	View.h								\
@@ -64,6 +65,7 @@ pkginclude_HEADERS =		\
 	SimpleEtcFstab.h	\
 	SimpleEtcCrypttab.h	\
 	FreeInfo.h		\
+	LvmDevicesFile.h	\
 	UsedFeatures.h		\
 	View.h			\
 	CompoundAction.h	\

@@ -9,6 +9,7 @@ libactions_la_SOURCES =							\
 	AddToEtcCrypttabImpl.h		AddToEtcCrypttabImpl.cc		\
 	AddToEtcFstabImpl.h		AddToEtcFstabImpl.cc		\
 	AddToEtcMdadmImpl.h		AddToEtcMdadmImpl.cc		\
+	AddToLvmDevicesFileImpl.h	AddToLvmDevicesFileImpl.cc	\
 	AttachBcacheCsetImpl.h 		AttachBcacheCsetImpl.cc		\
 	Base.h				Base.cc				\
 	BaseImpl.h			BaseImpl.cc			\
@@ -26,6 +27,7 @@ libactions_la_SOURCES =							\
 	RemoveFromEtcCrypttabImpl.h	RemoveFromEtcCrypttabImpl.cc	\
 	RemoveFromEtcFstabImpl.h	RemoveFromEtcFstabImpl.cc	\
 	RemoveFromEtcMdadmImpl.h	RemoveFromEtcMdadmImpl.cc	\
+	RemoveFromLvmDevicesFileImpl.h	RemoveFromLvmDevicesFileImpl.cc	\
 	RenameImpl.h			RenameImpl.cc			\
 	RenameInImpl.h			RenameInImpl.cc			\
 	RenameInEtcCrypttabImpl.h	RenameInEtcCrypttabImpl.cc	\
