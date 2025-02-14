@@ -37,6 +37,8 @@
 #include "storage/Storage.h"
 #include "storage/Utils/Format.h"
 #include "storage/Actions/ResizeImpl.h"
+#include "storage/Actions/AddToLvmDevicesFileImpl.h"
+#include "storage/Actions/RemoveFromLvmDevicesFileImpl.h"
 
 
 namespace storage
@@ -443,6 +445,62 @@ namespace storage
 	const BlkDevice* blk_device = get_blk_device();
 
 	SystemCmd::Args cmd_args = { PVREMOVE_BIN, blk_device->get_name() };
+
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
+    }
+
+
+    Text
+    LvmPv::Impl::do_add_to_lvm_devices_file_text(Tense tense) const
+    {
+	const BlkDevice* blk_device = get_blk_device();
+
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1)
+			   _("Add physical volume %1$s to LVM devices file"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1)
+			   _("Adding physical volume %1$s to LVM devices file"));
+
+	return sformat(text, blk_device->get_name());
+    }
+
+
+    void
+    LvmPv::Impl::do_add_to_lvm_devices_file(const CommitData& commit_data) const
+    {
+	const BlkDevice* blk_device = get_blk_device();
+
+	SystemCmd::Args cmd_args = { LVMDEVICES_BIN, "--adddev", blk_device->get_name() };
+
+	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
+    }
+
+
+    Text
+    LvmPv::Impl::do_remove_from_lvm_devices_file_text(Tense tense) const
+    {
+	const BlkDevice* blk_device = get_blk_device();
+
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1)
+			   _("Remove physical volume %1$s from LVM devices file"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1)
+			   _("Removing physical volume %1$s from LVM devices file"));
+
+	return sformat(text, blk_device->get_name());
+    }
+
+
+    void
+    LvmPv::Impl::do_remove_from_lvm_devices_file(const CommitData& commit_data) const
+    {
+	const BlkDevice* blk_device = get_blk_device();
+
+	SystemCmd::Args cmd_args = { LVMDEVICES_BIN, "--deldev", blk_device->get_name() };
 
 	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }

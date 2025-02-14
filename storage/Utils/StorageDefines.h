@@ -95,6 +95,8 @@
 #define VGS_BIN "/sbin/vgs"
 #define VGCHANGE_BIN "/sbin/vgchange"
 
+#define LVMDEVICES_BIN "/usr/sbin/lvmdevices"
+
 #define CRYPTSETUP_BIN "/sbin/cryptsetup"
 #define MULTIPATH_BIN "/sbin/multipath"
 #define MULTIPATHD_BIN "/sbin/multipathd"

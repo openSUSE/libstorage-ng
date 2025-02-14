@@ -316,6 +316,8 @@
 %catches(storage::Exception) storage::Holder::set_source(const Device *source);
 %catches(storage::Exception) storage::Holder::set_target(const Device *target);
 %catches(storage::Exception) storage::ImplicitPt::create_implicit_partition();
+%catches(storage::Exception) storage::LvmDevicesFile::create(const Devicegraph *devicegraph);
+%catches(storage::Exception) storage::LvmDevicesFile::status();
 %catches(storage::Exception) storage::LvmLv::create_lvm_lv(const std::string &lv_name, LvType lv_type, unsigned long long size);
 %catches(storage::Exception) storage::LvmLv::get_lvm_lv(const std::string &lv_name);
 %catches(storage::Exception) storage::LvmLv::get_lvm_vg() const;
