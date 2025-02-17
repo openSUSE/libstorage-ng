@@ -67,8 +67,7 @@ namespace storage
 	// Note: Calling "vgimportdevices --all" does not add devices not belonging to a
 	// volume group. The code here also adds those devices.
 
-	vector<const LvmPv*> lvm_pvs = devicegraph->get_impl().get_devices_of_type<const LvmPv>();
-	for (const LvmPv* lvm_pv : lvm_pvs)
+	for (const LvmPv* lvm_pv : LvmPv::get_all(devicegraph))
 	{
 	    if (!lvm_pv->has_blk_device())
 		continue;

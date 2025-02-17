@@ -54,3 +54,9 @@ November 2021
 Used by [barrel](https://github.com/aschnell/barrel) included in
 openSUSE Tumbleweed.
 
+
+February 2025
+-------------
+
+Used by [Agama](https://agama-project.github.io/) to install SLE 16 Beta 1.
+
