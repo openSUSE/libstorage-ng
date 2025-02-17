@@ -458,10 +458,10 @@ namespace storage
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by device name (e.g. /dev/sda1)
-			   _("Add physical volume %1$s to LVM devices file"),
+			   _("Add device %1$s to LVM devices file"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by device name (e.g. /dev/sda1)
-			   _("Adding physical volume %1$s to LVM devices file"));
+			   _("Adding device %1$s to LVM devices file"));
 
 	return sformat(text, blk_device->get_name());
     }
@@ -486,10 +486,10 @@ namespace storage
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by device name (e.g. /dev/sda1)
-			   _("Remove physical volume %1$s from LVM devices file"),
+			   _("Remove device %1$s from LVM devices file"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by device name (e.g. /dev/sda1)
-			   _("Removing physical volume %1$s from LVM devices file"));
+			   _("Removing device %1$s from LVM devices file"));
 
 	return sformat(text, blk_device->get_name());
     }
