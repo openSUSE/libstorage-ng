@@ -9,16 +9,16 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-17 09:40+0100\n"
-"PO-Revision-Date: 2024-02-06 14:42+0000\n"
+"PO-Revision-Date: 2025-02-17 16:51+0000\n"
 "Last-Translator: David Medina <medipas@gmail.com>\n"
-"Language-Team: Catalan <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/ca/>\n"
+"Language-Team: Catalan <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/ca/>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.9.1\n"
+"X-Generator: Weblate 5.10\n"
 
 msgid ""
 "\n"
@@ -212,7 +212,7 @@ msgstr "Afegeix %1$s a /etc/mdadm.conf"
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Add device %1$s to LVM devices file"
-msgstr ""
+msgstr "Afegeix el dispositiu %1$s al fitxer de dispositius d'LVM"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -267,7 +267,7 @@ msgstr "Afegint %1$s a /etc/mdadm.conf"
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Adding device %1$s to LVM devices file"
-msgstr ""
+msgstr "Afegint el dispositiu %1$s al fitxer de dispositius d'LVM"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -2758,7 +2758,7 @@ msgstr "Suprimeix %1$s d'/etc/mdadm.conf"
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Remove device %1$s from LVM devices file"
-msgstr ""
+msgstr "Suprimeix el dispositiu %1$s del fitxer de dispositius d'LVM"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -2819,9 +2819,9 @@ msgstr "Suprimeix %1$s d'/etc/mdadm.conf"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Removing device %1$s from LVM devices file"
-msgstr "Suprimint %1$s de %2$s"
+msgstr "Suprimint el dispositiu %1$s del fitxer de dispositius d'LVM"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
