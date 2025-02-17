@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-06 09:28+0100\n"
+"POT-Creation-Date: 2025-02-17 09:40+0100\n"
 "PO-Revision-Date: 2019-02-19 09:18+0000\n"
 "Last-Translator: Miguel Branco <mgl.branco@gmail.com>\n"
 "Language-Team: Galician <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -61,7 +61,7 @@ msgid "%1$s and %2$s"
 msgstr "Ampliar %1$s a %2$s"
 
 #. TRANSLATORS:
-#. %1$s is replaced with the the bcache name (e.g. /dev/bcache0),
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the a list of cache devices with size
 #. (e.g. "/dev/sdb1 (64.00 GiB) and /dev/sdc1 (160.00 GiB)")
 #, c-format
@@ -217,6 +217,12 @@ msgstr "Engadirlle %1$s a /etc/mdadm.conf"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
+msgid "Add device %1$s to LVM devices file"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1)
+#, c-format
 msgid "Add encryption layer device on %1$s to /etc/crypttab"
 msgstr ""
 "Engadirlle unha capa de cifrado de dispositivo a %1$s para /etc/crypttab"
@@ -263,6 +269,12 @@ msgstr "Engadíndolle %1$s a %2$s"
 #, c-format
 msgid "Adding %1$s to /etc/mdadm.conf"
 msgstr "Engadindo %1$s en /etc/mdadm.conf"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1)
+#, c-format
+msgid "Adding device %1$s to LVM devices file"
+msgstr ""
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -2769,6 +2781,12 @@ msgstr "Eliminando %1$s de /etc/mdadm.conf"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
+msgid "Remove device %1$s from LVM devices file"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1)
+#, c-format
 msgid "Remove encryption layer device on %1$s from /etc/crypttab"
 msgstr "Eliminar a capa de cifrado do dispositivo en %1$s de /etc/crypttab"
 
@@ -2825,12 +2843,18 @@ msgstr "Eliminando %1$s de /etc/mdadm.conf"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Removing device %1$s from LVM devices file"
+msgstr "Eliminando %1$s de %2$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Removing encryption layer device on %1$s from /etc/crypttab"
 msgstr "Eliminando a capa de cifrado do dispositivo en %1$s de /etc/crypttab"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by thr mount point (e.g. /home),
+#. %1$s is replaced by the mount point (e.g. /home),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB))
 #, c-format

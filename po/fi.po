@@ -11,11 +11,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-06 09:28+0100\n"
+"POT-Creation-Date: 2025-02-17 09:40+0100\n"
 "PO-Revision-Date: 2024-02-22 11:42+0000\n"
 "Last-Translator: Tommi Nieminen <software@legisign.org>\n"
-"Language-Team: Finnish <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/fi/>\n"
+"Language-Team: Finnish <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -60,7 +60,7 @@ msgid "%1$s and %2$s"
 msgstr "%1$s ja %2$s"
 
 #. TRANSLATORS:
-#. %1$s is replaced with the the bcache name (e.g. /dev/bcache0),
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the a list of cache devices with size
 #. (e.g. "/dev/sdb1 (64.00 GiB) and /dev/sdc1 (160.00 GiB)")
 #, c-format
@@ -212,6 +212,12 @@ msgstr "Lisää %1$s tiedostoon /etc/mdadm.conf"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
+msgid "Add device %1$s to LVM devices file"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1)
+#, c-format
 msgid "Add encryption layer device on %1$s to /etc/crypttab"
 msgstr "Lisää laitteen %1$s salaustaso /etc/crypttab-tiedostoon"
 
@@ -257,6 +263,12 @@ msgstr "Lisätään %1$s kohteeseen %2$s"
 #, c-format
 msgid "Adding %1$s to /etc/mdadm.conf"
 msgstr "Lisätään %1$s tiedostoon /etc/mdadm.conf"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1)
+#, c-format
+msgid "Adding device %1$s to LVM devices file"
+msgstr ""
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -2759,6 +2771,12 @@ msgstr "Poista %1$s /etc/mdadm.conf-tiedostosta"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
+msgid "Remove device %1$s from LVM devices file"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1)
+#, c-format
 msgid "Remove encryption layer device on %1$s from /etc/crypttab"
 msgstr "Poista laitteen %1$s salaustaso /etc/crypttab-tiedostosta"
 
@@ -2816,12 +2834,18 @@ msgstr "Poistetaan %1$s /etc/mdadm.conf-tiedostosta"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Removing device %1$s from LVM devices file"
+msgstr "Poistetaan %1$s laitteelta %2$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Removing encryption layer device on %1$s from /etc/crypttab"
 msgstr "Poistetaan laitteen %1$s salaustaso /etc/crypttab-tiedostosta"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by thr mount point (e.g. /home),
+#. %1$s is replaced by the mount point (e.g. /home),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB))
 #, c-format

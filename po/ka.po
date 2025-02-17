@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-06 09:28+0100\n"
+"POT-Creation-Date: 2025-02-17 09:40+0100\n"
 "PO-Revision-Date: 2024-02-10 07:42+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
-"Language-Team: Georgian <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/ka/>\n"
+"Language-Team: Georgian <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/ka/>\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -56,7 +56,7 @@ msgid "%1$s and %2$s"
 msgstr "%1$s და %2$s"
 
 #. TRANSLATORS:
-#. %1$s is replaced with the the bcache name (e.g. /dev/bcache0),
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the a list of cache devices with size
 #. (e.g. "/dev/sdb1 (64.00 GiB) and /dev/sdc1 (160.00 GiB)")
 #, c-format
@@ -208,6 +208,12 @@ msgstr "%1$s-ის ჩამატება /etc/mdadm.conf-ში"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
+msgid "Add device %1$s to LVM devices file"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1)
+#, c-format
 msgid "Add encryption layer device on %1$s to /etc/crypttab"
 msgstr ""
 "%1$s-ზე არსებული დაშიფრული ფენის მოწყობილობის /etc/crypttab-ში ჩამატება"
@@ -254,6 +260,12 @@ msgstr "%1$s-ის დამატება %2$s-სთვის"
 #, c-format
 msgid "Adding %1$s to /etc/mdadm.conf"
 msgstr "%1$s-ის ჩამატება /etc/mdadm.conf-ში"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1)
+#, c-format
+msgid "Adding device %1$s to LVM devices file"
+msgstr ""
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -2747,6 +2759,12 @@ msgstr "%1$s-ის /etc/mdadm.conf-დან წაშლა"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
+msgid "Remove device %1$s from LVM devices file"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1)
+#, c-format
 msgid "Remove encryption layer device on %1$s from /etc/crypttab"
 msgstr "/etc/crypttab-დან დაშიფვრის ფენის მოწყობილობის %1$s წაშლა"
 
@@ -2802,12 +2820,18 @@ msgstr "%1$s-ის წაშლა /etc/mdadm.conf-დან"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Removing device %1$s from LVM devices file"
+msgstr "%1$s-ის %2$s-დან წაშლა"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Removing encryption layer device on %1$s from /etc/crypttab"
 msgstr "/etc/crypttab-დან %1$s-ზე მდებარე დაშიფვრის ფენის მოწყობილობის წაშლა"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by thr mount point (e.g. /home),
+#. %1$s is replaced by the mount point (e.g. /home),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
 #. and /dev/sdb2 (1.00 GiB))
 #, c-format
