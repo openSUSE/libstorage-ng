@@ -11,16 +11,16 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-17 09:40+0100\n"
-"PO-Revision-Date: 2024-03-04 16:42+0000\n"
-"Last-Translator: Sophie Leroy <sophie@stoquart.com>\n"
-"Language-Team: French <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/fr/>\n"
+"PO-Revision-Date: 2025-02-18 08:57+0000\n"
+"Last-Translator: Guillaume GARDET <guillaume.gardet@opensuse.org>\n"
+"Language-Team: French <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.9.1\n"
+"X-Generator: Weblate 5.10\n"
 "X-Poedit-Language: French\n"
 
 msgid ""
@@ -224,7 +224,7 @@ msgstr "Ajouter %1$s à /etc/mdadm.conf"
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Add device %1$s to LVM devices file"
-msgstr ""
+msgstr "Ajouter le périphérique %1$s au fichier des périphériques LVM"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -282,7 +282,7 @@ msgstr "Ajout de %1$s à /etc/mdadm.conf"
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Adding device %1$s to LVM devices file"
-msgstr ""
+msgstr "Ajout du périphérique %1$s au fichier des périphériques LVM"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
