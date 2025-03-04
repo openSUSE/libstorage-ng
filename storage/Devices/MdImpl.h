@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -82,6 +82,11 @@ namespace storage
 	bool is_numeric() const;
 
 	unsigned int get_number() const;
+
+	/**
+	 * Get the short name or RAID name of the RAID. E.g. "foo" for "/dev/md/foo".
+	 */
+	string get_short_name() const;
 
 	MdLevel get_md_level() const { return md_level; }
 	void set_md_level(MdLevel md_level);
