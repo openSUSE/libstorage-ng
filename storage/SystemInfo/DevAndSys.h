@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -111,7 +111,9 @@ namespace storage
 	const_iterator begin() const { return data.begin(); }
 	const_iterator end() const { return data.end(); }
 
-	const_iterator find(const string& nm) const { return data.find(nm); }
+	const_iterator find(const string& name) const { return data.find(name); }
+
+	const_iterator find_reverse(const string& name) const;
 
 	friend std::ostream& operator<<(std::ostream& s, const DevLinks& devlinks);
 

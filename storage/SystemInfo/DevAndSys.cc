@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -197,6 +197,19 @@ namespace storage
 	}
 
 	return ret;
+    }
+
+
+    DevLinks::const_iterator
+    DevLinks::find_reverse(const string& name) const
+    {
+	for (const_iterator it = begin(); it != end(); ++it)
+	{
+	    if (contains(it->second, name))
+		return it;
+	}
+
+	return end();
     }
 
 

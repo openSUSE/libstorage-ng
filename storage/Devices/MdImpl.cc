@@ -787,6 +787,18 @@ namespace storage
     }
 
 
+    string
+    Md::Impl::get_short_name() const
+    {
+	smatch match;
+
+	if (!regex_match(get_name(), match, format1_name_regex) || match.size() != 2)
+	    ST_THROW(Exception("not a named Md"));
+
+	return match[1].str();
+    }
+
+
     uf_t
     Md::Impl::used_features(UsedFeaturesDependencyType used_features_dependency_type) const
     {
@@ -1221,6 +1233,19 @@ namespace storage
 	wait_for_devices(std::as_const(*this).get_blk_devices());
 
 	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
+
+	if (!is_numeric())
+	{
+	    SystemInfo::Impl system_info;
+	    const MdLinks& md_links = system_info.getMdLinks();
+
+	    MdLinks::const_iterator it = md_links.find_reverse(get_short_name());
+	    if (it == md_links.end())
+		ST_THROW(Exception("named md link not found"));
+
+	    set_sysfs_name(it->first);
+	    set_sysfs_path("/devices/virtual/block/" + it->first);
+	}
 
 	if (uuid.empty())
 	{
