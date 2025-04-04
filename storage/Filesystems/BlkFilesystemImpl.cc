@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2024] SUSE LLC
+ * Copyright (c) [2016-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -305,6 +305,13 @@ namespace storage
 	if (!resize_info.has_value())
 	{
 	    const BlkFilesystem* tmp_blk_filesystem = redirect_to_system(get_non_impl());
+
+	    if (tmp_blk_filesystem->has_mount_point())
+	    {
+		const MountPoint* mount_point = tmp_blk_filesystem->get_mount_point();
+		if (mount_point->is_active() && mount_point->get_impl().is_read_only())
+		    return ResizeInfo(false, RB_FILESYSTEM_MOUNT_READ_ONLY);
+	    }
 
 	    ResizeInfo tmp_resize_info = tmp_blk_filesystem->get_impl().detect_resize_info_on_disk(blk_device);
 

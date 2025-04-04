@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2023] SUSE LLC
+ * Copyright (c) [2017-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -113,6 +113,11 @@ namespace storage
 
 	MountOpts default_mount_options() const;
 	void set_default_mount_options();
+
+	/**
+	 * Checks for "ro" in the mount options.
+	 */
+	bool is_read_only() const;
 
 	int get_freq() const { return freq; }
 	void set_freq(int freq) { Impl::freq = freq; }

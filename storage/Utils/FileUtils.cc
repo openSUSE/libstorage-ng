@@ -21,8 +21,8 @@
  */
 
 
-#include <string.h>
-#include <unistd.h>
+#include <cstring>
+#include <cstdlib>
 #include <boost/algorithm/string.hpp>
 
 #include "storage/Utils/FileUtils.h"

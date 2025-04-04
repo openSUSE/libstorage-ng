@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2023] SUSE LLC
+ * Copyright (c) [2017-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -375,6 +375,13 @@ namespace storage
     MountPoint::Impl::set_default_mount_options()
     {
 	set_mount_options(default_mount_options());
+    }
+
+
+    bool
+    MountPoint::Impl::is_read_only() const
+    {
+	return mount_options.contains("ro");
     }
 
 
