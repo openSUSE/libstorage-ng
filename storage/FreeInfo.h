@@ -192,6 +192,13 @@ namespace storage
 	 */
 	RB_RESIZE_NOT_SUPPORTED_DUE_TO_SNAPSHOTS = 1 << 19,
 
+	/**
+	 * The filesystem is mounted read-only.
+	 *
+	 * Blocks shrink and grow.
+	 */
+	RB_FILESYSTEM_MOUNT_READ_ONLY = 1 << 20,
+
     };
 
 
