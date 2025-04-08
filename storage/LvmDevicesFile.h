@@ -67,9 +67,14 @@ namespace storage
 	/**
 	 * Add all LVM PVs in the devicegraph to the LVM devices file thus creating it. If
 	 * the LVM devices file already exists libstorage-ng cannot see PVs on disk that
-	 * are not included the LVM devices file.
+	 * are not included in the LVM devices file.
 	 *
-	 * Should only be called if the status is DISABLED.
+	 * Should only be called if the status is MISSING.
+	 *
+	 * If the status is ENABLED even libstorage-ng does not see LVM devices not
+	 * already in the LVM devices file.
+	 *
+	 * If the status is DISABLED the LVM devices file is ignored anyway.
 	 *
 	 * @throw Exception
 	 */
