@@ -13,16 +13,16 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-17 09:40+0100\n"
-"PO-Revision-Date: 2024-03-04 10:43+0000\n"
+"PO-Revision-Date: 2025-04-08 13:56+0000\n"
 "Last-Translator: Davide Aiello <davide.aiello@novilingulists.com>\n"
-"Language-Team: Italian <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/it/>\n"
+"Language-Team: Italian <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.9.1\n"
+"X-Generator: Weblate 5.10.3\n"
 "X-Poedit-Language: Italian\n"
 
 msgid ""
@@ -223,7 +223,7 @@ msgstr "Aggiungere %1$s a /etc/mdadm.conf"
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Add device %1$s to LVM devices file"
-msgstr ""
+msgstr "Aggiungi dispositivo %1$s al file dei dispositivi LVM"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -278,7 +278,7 @@ msgstr "Aggiunta di %1$s a /etc/mdadm.conf"
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Adding device %1$s to LVM devices file"
-msgstr ""
+msgstr "Aggiunta del dispositivo %1$s al file dei dispositivi LVM"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -2985,7 +2985,7 @@ msgstr "Rimuovere %1$s da /etc/mdadm.conf"
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Remove device %1$s from LVM devices file"
-msgstr ""
+msgstr "Rimuovi dispositivo %1$s dal file dei dispositivi LVM"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -3047,9 +3047,9 @@ msgstr "Rimozione di %1$s da /etc/mdadm.conf"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Removing device %1$s from LVM devices file"
-msgstr "Rimozione di %1$s da %2$s"
+msgstr "Rimozione del dispositivo %1$s dal file dei dispositivi LVM"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
