@@ -5,17 +5,17 @@ msgstr ""
 "Project-Id-Version: libstorage.ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-17 09:40+0100\n"
-"PO-Revision-Date: 2024-01-12 23:59+0000\n"
-"Last-Translator: Vik On <4o3lxdc1y@mozmail.com>\n"
-"Language-Team: Russian <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/ru/>\n"
+"PO-Revision-Date: 2025-05-08 11:59+0000\n"
+"Last-Translator: Aleksey Fedorov <Aleksejfedorov963@gmail.com>\n"
+"Language-Team: Russian <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.9.1\n"
+"X-Generator: Weblate 5.11.4\n"
 
 msgid ""
 "\n"
@@ -106,14 +106,14 @@ msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "Включить логический том «тонкого» пула %1$s (%2$s) в группе томов %3$s"
 
 #. TRANSLATORS: progress message
-#, fuzzy, c-format
+#, c-format
 msgid "Activating BitLocker %s"
-msgstr "Включение LUKS %s"
+msgstr "Активация BitLocker %s"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Activating BitLocker %s failed"
-msgstr "Не удалось включить LUKS %s"
+msgstr "Сбой активации BitLocker %s"
 
 #. TRANSLATORS: progress message
 #, c-format
@@ -208,7 +208,7 @@ msgstr "Добавить %1$s в /etc/mdadm.conf"
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Add device %1$s to LVM devices file"
-msgstr ""
+msgstr "Добавить устройство %1$s в файл устройств LVM"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -262,7 +262,7 @@ msgstr "Добавление %1$s в /etc/mdadm.conf"
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Adding device %1$s to LVM devices file"
-msgstr ""
+msgstr "Добавление устройства %1$s в файл устройств LVM"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -356,9 +356,8 @@ msgid "Bcache Cache Set"
 msgstr "Набор кэша Bcache"
 
 #. TRANSLATORS: name of object
-#, fuzzy
 msgid "Bcachefs"
-msgstr "Bcаche"
+msgstr "Bcachefs"
 
 #. TRANSLATORS: name of object
 msgid "BitLocker"
@@ -404,9 +403,9 @@ msgstr "Снять устаревший загрузочный флаг разд
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Clear no-automount flag of partition %1$s"
-msgstr "Снять загрузочный флаг раздела %1$s"
+msgstr "Снять флаг запрета автомонтирования с раздела %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -450,9 +449,9 @@ msgstr "Снятие устаревшего загрузочного флага 
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Clearing no-automount flag of partition %1$s"
-msgstr "Снятие загрузочного флага раздела %1$s"
+msgstr "Снятие флага запрета автомонтирования с раздела %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -2297,39 +2296,39 @@ msgstr "Корневой раздел Linux (32-разрядная версия 
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (PPC 64-bit BE)"
-msgstr ""
+msgstr "Корневой раздел Linux (PPC 64-bit BE)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (PPC 64-bit LE)"
-msgstr ""
+msgstr "Корневой раздел Linux (PPC 64-bit LE)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (RISC-V 32-bit)"
-msgstr ""
+msgstr "Корневой раздел Linux (RISC-V 32-bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (RISC-V 64-bit)"
-msgstr ""
+msgstr "Корневой раздел Linux (RISC-V 64-bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (S/390 32-bit)"
-msgstr ""
+msgstr "Корневой раздел Linux (S/390 32-bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (S/390 64-bit)"
-msgstr ""
+msgstr "Корневой раздел Linux (S/390 64-bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (x86 32-bit)"
-msgstr ""
+msgstr "Корневой раздел Linux (x86 32-bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (x86 64-bit)"
-msgstr ""
+msgstr "Корневой раздел Linux (x86 64-bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Server Data"
-msgstr ""
+msgstr "Данные сервера Linux"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Swap"
@@ -2337,47 +2336,47 @@ msgstr "Подкачка Linux"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (ARM 32-bit)"
-msgstr ""
+msgstr "Раздел Linux USR (ARM 32-bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (ARM 64-bit)"
-msgstr ""
+msgstr "Раздел Linux USR (ARM 64-bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (PPC 32-bit)"
-msgstr ""
+msgstr "Раздел Linux USR (PPC 32-bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (PPC 64-bit BE)"
-msgstr ""
+msgstr "Раздел Linux USR (PPC 64-bit BE)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (PPC 64-bit LE)"
-msgstr ""
+msgstr "Раздел Linux USR (PPC 64-bit LE)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (RISC-V 32-bit)"
-msgstr ""
+msgstr "Раздел Linux USR (RISC-V 32-bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (RISC-V 64-bit)"
-msgstr ""
+msgstr "Раздел Linux USR (RISC-V 64-bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (S/390 32-bit)"
-msgstr ""
+msgstr "Раздел Linux USR (S/390 32-bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (S/390 64-bit)"
-msgstr ""
+msgstr "Раздел Linux USR (S/390 64-bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (x86 32-bit)"
-msgstr ""
+msgstr "Раздел Linux USR (x86 32-bit)"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (x86 64-bit)"
-msgstr ""
+msgstr "Раздел Linux USR (x86 64-bit)"
 
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
 msgid "M"
@@ -2522,7 +2521,7 @@ msgstr "NFS"
 
 #. TRANSLATORS: name of object
 msgid "NILFS2"
-msgstr ""
+msgstr "Объект NILFS2"
 
 #. TRANSLATORS: name of object
 msgid "NTFS"
@@ -2556,14 +2555,12 @@ msgstr "ПиБ"
 msgid "Plain Encryption"
 msgstr "Простое шифрование"
 
-#, fuzzy
 msgid "Probing BitLocker"
-msgstr "BitLoсker"
+msgstr "Проверка BitLoсker"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing BitLocker failed"
-msgstr "Ошибка проверки дисков"
+msgstr "Сбой проверки BitLocker"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -2782,7 +2779,7 @@ msgstr "Удалить %1$s из /etc/mdadm.conf"
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Remove device %1$s from LVM devices file"
-msgstr ""
+msgstr "Удалить устройство %1$s из файла устройств LVM"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -2842,9 +2839,9 @@ msgstr "Удаление %1$s из /etc/mdadm.conf"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Removing device %1$s from LVM devices file"
-msgstr "Удаление %1$s из %2$s"
+msgstr "Удаление устройства %1$s из файла устройств LVM"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -2888,9 +2885,9 @@ msgstr "Переименовать зашифрованное устройств
 #. %1$s is replaced with the old logical volume name (e.g. foo),
 #. %2$s is replaced with the new logical volume name (e.g. bar),
 #. %3$s is replaced with the volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Rename logical volume %1$s to %2$s on volume group %3$s"
-msgstr "Создать логический том %1$s (%2$s) в группе томов %3$s"
+msgstr "Переименовать логический том %1$s в %2$s в группе томов %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -2903,9 +2900,9 @@ msgstr "Переименовать точку монтирования %1$s из
 #. TRANSLATORS:
 #. %1$s is replaced with the old volume group name (e.g. foo),
 #. %2$s is replaced with the new volume group name (e.g. bar)
-#, fuzzy, c-format
+#, c-format
 msgid "Rename volume group %1$s to %2$s"
-msgstr "Создать группу томов %1$s (%2$s)"
+msgstr "Переименовать группу томов %1$s в %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
@@ -3028,9 +3025,9 @@ msgstr "Задать лимиты для qgroup подтома %1$s на %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Set no-automount flag of partition %1$s"
-msgstr "Установить загрузочный флаг раздела %1$s"
+msgstr "Установить флаг запрета автомонтирования для раздела %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -3147,9 +3144,9 @@ msgstr "Задание лимитов для qgroup подтома %1$s на %2$
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting no-automount flag of partition %1$s"
-msgstr "Установка загрузочного флага раздела %1$s"
+msgstr "Установка флага запрета автомонтирования для раздела %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -3387,7 +3384,7 @@ msgstr "Исключение qgroup подтома %1$s из qgroup %2$s на %3
 
 #. TRANSLATORS: name of partition type
 msgid "Unknown"
-msgstr ""
+msgstr "Неизвестный"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
