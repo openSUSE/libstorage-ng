@@ -8,13 +8,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-17 09:40+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-05-29 23:59+0000\n"
+"Last-Translator: Athmane MOKRAOUI <butterflyoffire+opensuse@protonmail.com>\n"
+"Language-Team: Kabyle <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/kab/>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.11.4\n"
 
 msgid ""
 "\n"
@@ -357,11 +360,11 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "BitLocker"
-msgstr ""
+msgstr "BitLocker"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs"
-msgstr ""
+msgstr "Btrfs"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs Qgroup"
@@ -1173,7 +1176,7 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "DASD"
-msgstr ""
+msgstr "DASD"
 
 #. TRANSLATORS: name of object
 msgid "DASD Partition Table"
@@ -1718,7 +1721,7 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Disk"
-msgstr ""
+msgstr "Aḍebsi"
 
 #. TRANSLATORS: symbol for "exa" (best keep untranslated)
 msgid "E"
@@ -1859,19 +1862,19 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Encryption"
-msgstr ""
+msgstr "Awgelhen"
 
 #. TRANSLATORS: name of object
 msgid "Ext2"
-msgstr ""
+msgstr "Ext2"
 
 #. TRANSLATORS: name of object
 msgid "Ext3"
-msgstr ""
+msgstr "Ext3"
 
 #. TRANSLATORS: name of object
 msgid "Ext4"
-msgstr ""
+msgstr "Ext4"
 
 #. TRANSLATORS: name of partition type
 msgid "Extended Partition"
@@ -1879,7 +1882,7 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "F2FS"
-msgstr ""
+msgstr "F2FS"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -1985,7 +1988,7 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "GPT"
-msgstr ""
+msgstr "GPT"
 
 #. TRANSLATORS: symbol for "gibi bytes" (best keep untranslated)
 msgid "GiB"
@@ -2149,7 +2152,7 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "JFS"
-msgstr ""
+msgstr "JFS"
 
 #. TRANSLATORS: symbol for "kibi bytes" (best keep untranslated)
 msgid "KiB"
@@ -2157,7 +2160,7 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "LUKS"
-msgstr ""
+msgstr "LUKS"
 
 #. TRANSLATORS: name of object
 msgid "LVM Logical Volume"
@@ -2173,7 +2176,7 @@ msgstr ""
 
 #. TRANSLATORS: name of partition type
 msgid "Linux"
-msgstr ""
+msgstr "Linux"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Home"
@@ -2181,11 +2184,11 @@ msgstr ""
 
 #. TRANSLATORS: name of partition type
 msgid "Linux LVM"
-msgstr ""
+msgstr "Linux LVM"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux RAID"
-msgstr ""
+msgstr "Linux RAID"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Root Partition (ARM 32-bit)"
@@ -2237,7 +2240,7 @@ msgstr ""
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Swap"
-msgstr ""
+msgstr "Linux Swap"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux USR Partition (ARM 32-bit)"
