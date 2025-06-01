@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2025-05-29 23:59+0000\n"
+"PO-Revision-Date: 2025-06-01 16:59+0000\n"
 "Last-Translator: Athmane MOKRAOUI <butterflyoffire+opensuse@protonmail.com>\n"
 "Language-Team: Kabyle <https://l10n.opensuse.org/projects/libstorage/"
 "ng-sle-15-sp1/kab/>\n"
@@ -23,6 +23,8 @@ msgid ""
 "\n"
 "are you serious?!"
 msgstr ""
+"\n"
+"s tidet-ik·im?!"
 
 #. TRANSLATORS: appended after list of value to indicate that some
 #. values have been omitted
@@ -36,7 +38,7 @@ msgstr ""
 #. %2$s is replaced with the size (e.g. 60 GiB)
 #, c-format
 msgid "%1$s (%2$s)"
-msgstr ""
+msgstr "%1$s (%2$s)"
 
 #. TRANSLATORS: appended after list of value to indicate that some
 #. values have been omitted
@@ -51,7 +53,7 @@ msgstr ""
 #. %2$s is replaced by second value
 #, c-format
 msgid "%1$s and %2$s"
-msgstr ""
+msgstr "%1$s d %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the the bcache name (e.g. /dev/bcache0),
@@ -66,7 +68,7 @@ msgstr ""
 #. %2$s is replaced by second value
 #, c-format
 msgid "%1$s, %2$s"
-msgstr ""
+msgstr "%1$s, %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -168,7 +170,7 @@ msgstr ""
 #. %1$s is replaced by md name (e.g. /dev/md0)
 #, c-format
 msgid "Add %1$s to /etc/mdadm.conf"
-msgstr ""
+msgstr "Rnu %1$s ar /etc/mdadm.conf"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1880,7 +1882,7 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "ISO 9660"
-msgstr ""
+msgstr "ISO 9660"
 
 #. TRANSLATORS: name of object
 msgid "Implicit Partition Table"
@@ -1888,7 +1890,7 @@ msgstr ""
 
 #. TRANSLATORS: name of partition type
 msgid "Intel RST"
-msgstr ""
+msgstr "Intel RST"
 
 #. TRANSLATORS: name of object
 msgid "JFS"
@@ -1940,7 +1942,7 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "MD RAID"
-msgstr ""
+msgstr "MD RAID"
 
 #. TRANSLATORS: name of object
 msgid "MS-DOS Partition Table"
@@ -2047,7 +2049,7 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "NTFS"
-msgstr ""
+msgstr "NTFS"
 
 #. TRANSLATORS: symbol for "peta" (best keep untranslated)
 msgid "P"
@@ -2063,7 +2065,7 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Partition"
-msgstr ""
+msgstr "Aḥric"
 
 #. TRANSLATORS: symbol for "pebi bytes" (best keep untranslated)
 msgid "PiB"
@@ -2653,7 +2655,7 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Swap"
-msgstr ""
+msgstr "Swap"
 
 #. TRANSLATORS: symbol for "tera" (best keep untranslated)
 msgid "T"
@@ -2669,7 +2671,7 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "UDF"
-msgstr ""
+msgstr "UDF"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -2731,7 +2733,7 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "VFAT"
-msgstr ""
+msgstr "VFAT"
 
 #. TRANSLATORS: name of partition type
 msgid "Windows Data Partition"
@@ -2739,11 +2741,11 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "XFS"
-msgstr ""
+msgstr "XFS"
 
 #. TRANSLATORS: name of a filesystem object in the storage devicegraph
 msgid "exFAT"
-msgstr ""
+msgstr "exFAT"
 
 #. TRANSLATORS: symbol for "kilo" (best keep untranslated)
 msgid "k"
