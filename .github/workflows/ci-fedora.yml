@@ -10,7 +10,7 @@ jobs:
     steps:
 
     - name: Install additional packages
-      run: dnf -y install autoconf automake boost-devel doxygen gcc-c++ gettext glibc-langpack-de glibc-langpack-fr glibc-langpack-en graphviz json-c-devel libtool libxml2-devel make python3-devel ruby-devel rubygem-test-unit swig xz
+      run: dnf -y install autoconf automake awk boost-devel doxygen gcc-c++ gettext glibc-langpack-de glibc-langpack-fr glibc-langpack-en graphviz json-c-devel libtool libxml2-devel make python3-devel ruby-devel rubygem-test-unit swig xz
 
     - name: List installed packages
       run: rpm -qa | sort
