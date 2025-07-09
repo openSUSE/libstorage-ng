@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -32,6 +32,7 @@
 #include "storage/Utils/Format.h"
 #include "storage/StorageImpl.h"
 #include "storage/DevicegraphImpl.h"
+#include "storage/LvmDevicesFile.h"
 #include "storage/Devices/DiskImpl.h"
 #include "storage/Devices/DasdImpl.h"
 #include "storage/Devices/MultipathImpl.h"
@@ -299,6 +300,15 @@ namespace storage
 
 	// TRANSLATORS: progress message
 	message_callback(probe_callbacks, _("Probing LVM"));
+
+	try
+	{
+	    LvmDevicesFile::status();
+	}
+	catch (const Exception& exception)
+	{
+	    ST_CAUGHT(exception);
+	}
 
 	try
 	{
