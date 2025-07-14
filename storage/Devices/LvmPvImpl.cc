@@ -37,8 +37,6 @@
 #include "storage/Storage.h"
 #include "storage/Utils/Format.h"
 #include "storage/Actions/ResizeImpl.h"
-#include "storage/Actions/AddToLvmDevicesFileImpl.h"
-#include "storage/Actions/RemoveFromLvmDevicesFileImpl.h"
 
 
 namespace storage
@@ -334,7 +332,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	SystemCmd::Args cmd_args = { PVCREATE_BIN, "--force", blk_device->get_name() };
+	SystemCmd::Args cmd_args = { PVCREATE_BIN, "--verbose", "--force", blk_device->get_name() };
 
 	wait_for_devices({ blk_device });
 
@@ -412,7 +410,7 @@ namespace storage
 
 	const BlkDevice* blk_device_rhs = lvm_pv_rhs->get_impl().get_blk_device();
 
-	SystemCmd::Args cmd_args = { PVRESIZE_BIN, action->blk_device->get_name() };
+	SystemCmd::Args cmd_args = { PVRESIZE_BIN, "--verbose", action->blk_device->get_name() };
 	if (action->resize_mode == ResizeMode::SHRINK)
 	    cmd_args << "--yes" << "--setphysicalvolumesize" << to_string(blk_device_rhs->get_size()) + "b";
 
@@ -444,7 +442,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	SystemCmd::Args cmd_args = { PVREMOVE_BIN, blk_device->get_name() };
+	SystemCmd::Args cmd_args = { PVREMOVE_BIN, "--verbose", blk_device->get_name() };
 
 	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
@@ -472,7 +470,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	SystemCmd::Args cmd_args = { LVMDEVICES_BIN, "--adddev", blk_device->get_name() };
+	SystemCmd::Args cmd_args = { LVMDEVICES_BIN, "--verbose", "--adddev", blk_device->get_name() };
 
 	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
@@ -500,7 +498,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	SystemCmd::Args cmd_args = { LVMDEVICES_BIN, "--deldev", blk_device->get_name() };
+	SystemCmd::Args cmd_args = { LVMDEVICES_BIN, "--verbose", "--deldev", blk_device->get_name() };
 
 	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }

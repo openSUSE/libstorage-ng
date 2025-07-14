@@ -580,8 +580,8 @@ namespace storage
     void
     LvmVg::Impl::do_create()
     {
-	SystemCmd::Args cmd_args = { VGCREATE_BIN, "--physicalextentsize", to_string(get_extent_size()) + "b", "--",
-	    vg_name };
+	SystemCmd::Args cmd_args = { VGCREATE_BIN, "--verbose", "--physicalextentsize",
+	    to_string(get_extent_size()) + "b", "--", vg_name };
 
 	for (const LvmPv* lvm_pv : get_lvm_pvs())
 	    cmd_args << lvm_pv->get_blk_device()->get_name();
@@ -622,7 +622,8 @@ namespace storage
 	const LvmVg* lvm_vg_lhs = to_lvm_vg(action->get_device(commit_data.actiongraph, LHS));
 	const LvmVg* lvm_vg_rhs = to_lvm_vg(action->get_device(commit_data.actiongraph, RHS));
 
-	SystemCmd::Args cmd_args = { VGRENAME_BIN, lvm_vg_lhs->get_vg_name(), lvm_vg_rhs->get_vg_name() };
+	SystemCmd::Args cmd_args = { VGRENAME_BIN, "--verbose", lvm_vg_lhs->get_vg_name(),
+	    lvm_vg_rhs->get_vg_name() };
 
 	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
@@ -648,7 +649,7 @@ namespace storage
     void
     LvmVg::Impl::do_delete() const
     {
-	SystemCmd::Args cmd_args = { VGREMOVE_BIN, "--", vg_name };
+	SystemCmd::Args cmd_args = { VGREMOVE_BIN, "--verbose", "--", vg_name };
 
 	udev_settle();
 
@@ -721,7 +722,7 @@ namespace storage
     void
     LvmVg::Impl::do_reduce(const LvmPv* lvm_pv) const
     {
-	SystemCmd::Args cmd_args = { VGREDUCE_BIN, "--", vg_name, lvm_pv->get_blk_device()->get_name() };
+	SystemCmd::Args cmd_args = { VGREDUCE_BIN, "--verbose", "--", vg_name, lvm_pv->get_blk_device()->get_name() };
 
 	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
@@ -730,7 +731,7 @@ namespace storage
     void
     LvmVg::Impl::do_extend(const LvmPv* lvm_pv) const
     {
-	SystemCmd::Args cmd_args = { VGEXTEND_BIN, "--", vg_name, lvm_pv->get_blk_device()->get_name() };
+	SystemCmd::Args cmd_args = { VGEXTEND_BIN, "--verbose", "--", vg_name, lvm_pv->get_blk_device()->get_name() };
 
 	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
@@ -754,7 +755,7 @@ namespace storage
     void
     LvmVg::Impl::do_reduce_missing() const
     {
-	SystemCmd::Args cmd_args = { VGREDUCE_BIN, "--removemissing", "--force", "--", vg_name };
+	SystemCmd::Args cmd_args = { VGREDUCE_BIN, "--verbose", "--removemissing", "--force", "--", vg_name };
 
 	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
