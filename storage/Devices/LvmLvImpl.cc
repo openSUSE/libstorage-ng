@@ -204,7 +204,7 @@ namespace storage
 
 	    try
 	    {
-		SystemCmd cmd({ VGCHANGE_BIN, "--activate", "y" }, SystemCmd::DoThrow);
+		SystemCmd cmd({ VGCHANGE_BIN, "--verbose", "--activate", "y" }, SystemCmd::DoThrow);
 	    }
 	    catch (const Exception& exception)
 	    {
@@ -240,7 +240,7 @@ namespace storage
     {
 	y2mil("deactivate_lvm_lvs");
 
-	SystemCmd::Args cmd_args = { VGCHANGE_BIN, "--activate", "n" };
+	SystemCmd::Args cmd_args = { VGCHANGE_BIN, "--verbose", "--activate", "n" };
 
 	SystemCmd cmd(cmd_args);
 
@@ -973,7 +973,7 @@ namespace storage
 	const LvmVg* lvm_vg = get_lvm_vg();
 	const Region& region = get_region();
 
-	SystemCmd::Args cmd_args = { LVCREATE_BIN };
+	SystemCmd::Args cmd_args = { LVCREATE_BIN, "--verbose" };
 
 	switch (lv_type)
 	{
@@ -1069,7 +1069,7 @@ namespace storage
 	const LvmLv* lvm_lv_lhs = to_lvm_lv(action->get_device(commit_data.actiongraph, LHS));
 	const LvmLv* lvm_lv_rhs = to_lvm_lv(action->get_device(commit_data.actiongraph, RHS));
 
-	SystemCmd::Args cmd_args = { LVRENAME_BIN, lvm_vg->get_vg_name(), lvm_lv_lhs->get_lv_name(),
+	SystemCmd::Args cmd_args = { LVRENAME_BIN, "--verbose", lvm_vg->get_vg_name(), lvm_lv_lhs->get_lv_name(),
 	    lvm_lv_rhs->get_lv_name() };
 
 	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
@@ -1213,7 +1213,7 @@ namespace storage
 
 	const LvmLv* lvm_lv_rhs = to_lvm_lv(action->get_device(commit_data.actiongraph, RHS));
 
-	SystemCmd::Args cmd_args = { LVRESIZE_BIN };
+	SystemCmd::Args cmd_args = { LVRESIZE_BIN, "--verbose" };
 
 	if (action->resize_mode == ResizeMode::SHRINK)
 	    cmd_args << "--force";
@@ -1286,7 +1286,8 @@ namespace storage
     {
 	const LvmVg* lvm_vg = get_lvm_vg();
 
-	SystemCmd::Args cmd_args = { LVREMOVE_BIN, "--force", "--", lvm_vg->get_vg_name() + "/" + lv_name };
+	SystemCmd::Args cmd_args = { LVREMOVE_BIN, "--verbose", "--force", "--", lvm_vg->get_vg_name() +
+	    "/" + lv_name };
 
 	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
@@ -1353,7 +1354,8 @@ namespace storage
     {
 	const LvmVg* lvm_vg = get_lvm_vg();
 
-	SystemCmd::Args cmd_args = { LVCHANGE_BIN, "--activate", "y", "--", lvm_vg->get_vg_name() + "/" + lv_name };
+	SystemCmd::Args cmd_args = { LVCHANGE_BIN, "--verbose", "--activate", "y", "--", lvm_vg->get_vg_name() +
+	    "/" + lv_name };
 
 	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
@@ -1420,7 +1422,8 @@ namespace storage
     {
 	const LvmVg* lvm_vg = get_lvm_vg();
 
-	SystemCmd::Args cmd_args = { LVCHANGE_BIN, "--activate", "n", "--", lvm_vg->get_vg_name() + "/" + lv_name };
+	SystemCmd::Args cmd_args = { LVCHANGE_BIN, "--verbose", "--activate", "n", "--", lvm_vg->get_vg_name() +
+	    "/" + lv_name };
 
 	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }

@@ -5,19 +5,19 @@
       <name>/usr/bin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
-      <name>/sbin/lvresize --force --extents 640 -- testvg/secondlv</name>
+      <name>/sbin/lvresize --verbose --force --extents 640 -- testvg/secondlv</name>
       <!-- stdout missing -->
     </Command>
     <Command>
-      <name>/sbin/vgreduce -- testvg /dev/sdb3</name>
+      <name>/sbin/vgreduce --verbose -- testvg /dev/sdb3</name>
       <!-- stdout missing -->
     </Command>
     <Command>
-      <name>/sbin/pvremove /dev/sdb3</name>
+      <name>/sbin/pvremove --verbose /dev/sdb3</name>
       <!-- stdout missing -->
     </Command>
     <Command>
-      <name>/sbin/pvcreate --force /dev/sdb4</name>
+      <name>/sbin/pvcreate --verbose --force /dev/sdb4</name>
       <!-- stdout missing -->
     </Command>
     <Command>
@@ -37,15 +37,15 @@
       <stdout>  }</stdout>
     </Command>
     <Command>
-      <name>/sbin/vgextend -- testvg /dev/sdb4</name>
+      <name>/sbin/vgextend --verbose -- testvg /dev/sdb4</name>
       <!-- stdout missing -->
     </Command>
     <Command>
-      <name>/sbin/lvresize --extents 5120 -- testvg/firstlv</name>
+      <name>/sbin/lvresize --verbose --extents 5120 -- testvg/firstlv</name>
       <!-- stdout missing -->
     </Command>
     <Command>
-      <name>/sbin/lvcreate --zero=y --wipesignatures=y --yes --extents 640 --name newlv -- testvg</name>
+      <name>/sbin/lvcreate --verbose --zero=y --wipesignatures=y --yes --extents 640 --name newlv -- testvg</name>
       <!-- stdout missing -->
     </Command>
     <Command>

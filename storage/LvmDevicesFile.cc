@@ -73,7 +73,7 @@ namespace storage
 		continue;
 
 	    const BlkDevice* blk_device = lvm_pv->get_blk_device();
-	    SystemCmd cmd({ LVMDEVICES_BIN, "--adddev", blk_device->get_name() });
+	    SystemCmd cmd({ LVMDEVICES_BIN, "--verbose", "--adddev", blk_device->get_name() });
 	}
     }
 
