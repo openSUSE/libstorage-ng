@@ -416,6 +416,9 @@ namespace storage
 
 	wait_for_devices({ action->blk_device });
 
+	if (!is_known_to_lvm(action->blk_device))
+	    cmd_args << "--config" << "devices { use_devicesfile = 0 }";
+
 	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
 
@@ -443,6 +446,9 @@ namespace storage
 	const BlkDevice* blk_device = get_blk_device();
 
 	SystemCmd::Args cmd_args = { PVREMOVE_BIN, "--verbose", blk_device->get_name() };
+
+	if (!is_known_to_lvm(blk_device))
+	    cmd_args << "--config" << "devices { use_devicesfile = 0 }";
 
 	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }
@@ -501,6 +507,24 @@ namespace storage
 	SystemCmd::Args cmd_args = { LVMDEVICES_BIN, "--verbose", "--deldev", blk_device->get_name() };
 
 	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
+    }
+
+
+    bool
+    LvmPv::Impl::is_known_to_lvm(const BlkDevice* blk_device)
+    {
+	try
+	{
+	    CmdPvs cmd_pvs(blk_device->get_name());
+
+	    return !cmd_pvs.get_pvs().empty();
+	}
+	catch (const Exception& e)
+	{
+	    ST_CAUGHT(e);
+
+	    return false;
+	}
     }
 
 }

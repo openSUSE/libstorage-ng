@@ -131,6 +131,24 @@ namespace storage
 	 */
 	unsigned long long pe_start = default_pe_start;
 
+	/**
+	 * Check whether the PV on the block device is known to LVM.
+	 *
+	 * Why is this needed? Consider this workflow:
+	 *
+	 * 1. No LVM devices file exists.
+	 *    A PV on sdb1 exists.
+	 * 2. Create PV on sda1.
+	 *    That creates an LVM devices file.
+	 * 3. Remove the old PV on sdb1.
+	 *    Fails since sdb1 is not included the new LVM devices file.
+	 *
+	 * So for some PV command disabling the LVM devices file is needed.
+	 *
+	 * See https://bugzilla.suse.com/show_bug.cgi?id=1246066#c13.
+	 */
+	static bool is_known_to_lvm(const BlkDevice* blk_device);
+
     };
 
 }
