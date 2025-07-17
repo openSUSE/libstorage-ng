@@ -126,7 +126,7 @@ namespace storage
 
 	string devname;
 	string metadata;
-	MdLevel level;
+	MdLevel level = MdLevel::UNKNOWN;
 
 	/**
 	 * Mapping from device name to role (a number or spare). Faulty and journal

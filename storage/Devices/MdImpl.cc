@@ -81,10 +81,10 @@ namespace storage
     });
 
 
-    // Matches names of the form /dev/md<number> and /dev/md/<number>. The
-    // latter looks like a named MD but since mdadm creates /dev/md<number> in
-    // that case and not /dev/md<some big number> the number must be
-    // considered in find_free_numeric_name().
+    // Matches names of the form /dev/md<number> and /dev/md/<number>. The latter looks
+    // like a named MD but since mdadm creates /dev/md<number> (without leading zeros) in
+    // that case and not /dev/md<some big dynamic number> the number must be considered in
+    // find_free_numeric_name().
 
     const regex Md::Impl::numeric_name_regex(DEV_DIR "/md/?([0-9]+)", regex::extended);
 
@@ -94,7 +94,11 @@ namespace storage
     // does not work, e.g. the links in /dev/md/ are broken.
 
     const regex Md::Impl::format1_name_regex(DEV_MD_DIR "/([^/ ]+)", regex::extended);
-    const regex Md::Impl::format2_name_regex(DEV_MD_DIR "_([^/ ]+)", regex::extended);
+
+
+    // Adding "CREATE names=yes" to mdadm.conf gets named RAIDs using /dev/md_<name>.
+
+    const regex Md::Impl::format2_name_regex(DEV_DIR "/md_([^/ ]+)", regex::extended);
 
 
     Md::Impl::Impl(const string& name)
@@ -103,12 +107,7 @@ namespace storage
 	if (!is_valid_name(name))
 	    ST_THROW(Exception("invalid Md name"));
 
-	if (is_numeric())
-	{
-	    string::size_type pos = string(DEV_DIR).size() + 1;
-	    set_sysfs_name(name.substr(pos));
-	    set_sysfs_path("/devices/virtual/block/" + name.substr(pos));
-	}
+	update_sysfs_name_and_path();
     }
 
 
@@ -149,6 +148,38 @@ namespace storage
 	};
 
 	return format_to_name_schemata(get_name(), name_schemata);
+    }
+
+
+    void
+    Md::Impl::set_name(const string& name)
+    {
+	if (!is_valid_name(name))
+	    ST_THROW(Exception("invalid Md name"));
+
+	Partitionable::Impl::set_name(name);
+
+	update_sysfs_name_and_path();
+    }
+
+
+    void
+    Md::Impl::update_sysfs_name_and_path()
+    {
+	smatch match;
+
+	if (regex_match(get_name(), match, numeric_name_regex) && match.size() == 2)
+	{
+	    string tmp = match[1];
+	    tmp.erase(0, min(tmp.find_first_not_of('0'), tmp.size() - 1));
+	    set_sysfs_name("md" + tmp);
+	    set_sysfs_path("/devices/virtual/block/md" + tmp);
+	}
+	else
+	{
+	    set_sysfs_name("");
+	    set_sysfs_path("");
+	}
     }
 
 
@@ -783,7 +814,14 @@ namespace storage
 	if (!regex_match(get_name(), match, numeric_name_regex) || match.size() != 2)
 	    ST_THROW(Exception("not a numeric Md"));
 
-	return atoi(match[1].str().c_str());
+	try
+	{
+	    return stoi(match[1]);
+	}
+	catch (const std::out_of_range& e)
+	{
+	    ST_THROW(Exception("Md number out of range"));
+	}
     }
 
 
@@ -795,7 +833,7 @@ namespace storage
 	if (!regex_match(get_name(), match, format1_name_regex) || match.size() != 2)
 	    ST_THROW(Exception("not a named Md"));
 
-	return match[1].str();
+	return match[1];
     }
 
 

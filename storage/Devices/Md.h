@@ -84,6 +84,8 @@ namespace storage
 	 * form "/dev/md<number>" or "/dev/md/<name>". The first form is
 	 * called numeric. If name is a number it is also called numeric.
 	 *
+	 * Tests have shown that the number must be between 0 and 1048575.
+	 *
 	 * @see Device::create(Devicegraph*)
 	 *
 	 * @throw Exception
@@ -122,12 +124,14 @@ namespace storage
 	std::vector<const BlkDevice*> get_blk_devices() const;
 
 	/**
-	 * Returns true if the name of the MD is numeric.
+	 * Returns true iff the name of the MD is numeric. This is the case for
+	 * e.g. /dev/md1 and also /dev/md/2.
 	 */
 	bool is_numeric() const;
 
 	/**
-	 * Returns the number of the MD. Throws if the MD is not numeric.
+	 * Returns the number of the MD. Throws if the MD is not numeric or if the number
+	 * is out of range.
 	 *
 	 * @throw Exception
 	 */

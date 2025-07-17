@@ -69,6 +69,8 @@ namespace storage
 
 	virtual ResizeInfo detect_resize_info(const BlkDevice* blk_device = nullptr) const override;
 
+	virtual void set_name(const string& name) override;
+
 	MdUser* add_device(BlkDevice* blk_device);
 	void remove_device(BlkDevice* blk_device);
 
@@ -187,7 +189,7 @@ namespace storage
 
     private:
 
-	// regex to match name of the form /dev/md<number>
+	// regex to match name of the form /dev/md<number> and /dev/md/<number>
 	static const regex numeric_name_regex;
 
 	// regex to match name of the form /dev/md/<name>
@@ -212,6 +214,8 @@ namespace storage
 	string metadata;
 
 	bool in_etc_mdadm = true;
+
+	void update_sysfs_name_and_path();
 
     };
 
