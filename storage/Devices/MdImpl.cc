@@ -94,7 +94,11 @@ namespace storage
     // does not work, e.g. the links in /dev/md/ are broken.
 
     const regex Md::Impl::format1_name_regex(DEV_MD_DIR "/([^/ ]+)", regex::extended);
-    const regex Md::Impl::format2_name_regex(DEV_MD_DIR "_([^/ ]+)", regex::extended);
+
+
+    // Adding "CREATE names=yes" to mdadm.conf gets named RAIDs using /dev/md_<name>.
+
+    const regex Md::Impl::format2_name_regex(DEV_DIR "/md_([^/ ]+)", regex::extended);
 
 
     Md::Impl::Impl(const string& name)
@@ -810,7 +814,14 @@ namespace storage
 	if (!regex_match(get_name(), match, numeric_name_regex) || match.size() != 2)
 	    ST_THROW(Exception("not a numeric Md"));
 
-	return atoi(match[1].str().c_str());
+	try
+	{
+	    return stoi(match[1]);
+	}
+	catch (const std::out_of_range& e)
+	{
+	    ST_THROW(Exception("Md number out of range"));
+	}
     }
 
 
@@ -822,7 +833,7 @@ namespace storage
 	if (!regex_match(get_name(), match, format1_name_regex) || match.size() != 2)
 	    ST_THROW(Exception("not a named Md"));
 
-	return match[1].str();
+	return match[1];
     }
 
 

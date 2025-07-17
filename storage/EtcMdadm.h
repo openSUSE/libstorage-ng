@@ -52,8 +52,6 @@ namespace storage
 	 */
 	struct Entry
 	{
-	    Entry() : device(), uuid(), metadata(), container_uuid(), container_member() {}
-
 	    string device;
 	    string uuid;
 	    string metadata;

@@ -338,7 +338,7 @@ namespace storage
 
 
     MdadmDetail::MdadmDetail(const string& device)
-	: uuid(), devname(), metadata(), level(MdLevel::UNKNOWN), device(device)
+	: device(device)
     {
 	SystemCmd cmd({ MDADM_BIN, "--detail", device, "--export" }, SystemCmd::DoThrow);
 
