@@ -67,7 +67,7 @@ namespace storage
 	virtual RemoveInfo detect_remove_info() const { return RemoveInfo(true, 0); }
 
 	const string& get_name() const { return name; }
-	void set_name(const string& name);
+	virtual void set_name(const string& name);
 
 	const string& get_sysfs_name() const { return sysfs_name; }
 	void set_sysfs_name(const string& sysfs_name) { Impl::sysfs_name = sysfs_name; }

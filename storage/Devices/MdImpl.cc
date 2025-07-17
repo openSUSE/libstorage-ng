@@ -81,10 +81,10 @@ namespace storage
     });
 
 
-    // Matches names of the form /dev/md<number> and /dev/md/<number>. The
-    // latter looks like a named MD but since mdadm creates /dev/md<number> in
-    // that case and not /dev/md<some big number> the number must be
-    // considered in find_free_numeric_name().
+    // Matches names of the form /dev/md<number> and /dev/md/<number>. The latter looks
+    // like a named MD but since mdadm creates /dev/md<number> (without leading zeros) in
+    // that case and not /dev/md<some big dynamic number> the number must be considered in
+    // find_free_numeric_name().
 
     const regex Md::Impl::numeric_name_regex(DEV_DIR "/md/?([0-9]+)", regex::extended);
 
@@ -103,12 +103,7 @@ namespace storage
 	if (!is_valid_name(name))
 	    ST_THROW(Exception("invalid Md name"));
 
-	if (is_numeric())
-	{
-	    string::size_type pos = string(DEV_DIR).size() + 1;
-	    set_sysfs_name(name.substr(pos));
-	    set_sysfs_path("/devices/virtual/block/" + name.substr(pos));
-	}
+	update_sysfs_name_and_path();
     }
 
 
@@ -149,6 +144,38 @@ namespace storage
 	};
 
 	return format_to_name_schemata(get_name(), name_schemata);
+    }
+
+
+    void
+    Md::Impl::set_name(const string& name)
+    {
+	if (!is_valid_name(name))
+	    ST_THROW(Exception("invalid Md name"));
+
+	Partitionable::Impl::set_name(name);
+
+	update_sysfs_name_and_path();
+    }
+
+
+    void
+    Md::Impl::update_sysfs_name_and_path()
+    {
+	smatch match;
+
+	if (regex_match(get_name(), match, numeric_name_regex) && match.size() == 2)
+	{
+	    string tmp = match[1];
+	    tmp.erase(0, min(tmp.find_first_not_of('0'), tmp.size() - 1));
+	    set_sysfs_name("md" + tmp);
+	    set_sysfs_path("/devices/virtual/block/md" + tmp);
+	}
+	else
+	{
+	    set_sysfs_name("");
+	    set_sysfs_path("");
+	}
     }
 
 
