@@ -10,16 +10,16 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-17 09:40+0100\n"
-"PO-Revision-Date: 2024-02-20 14:42+0000\n"
-"Last-Translator: Kukuh Syafaat <syafaatkukuh@gmail.com>\n"
-"Language-Team: Indonesian <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/id/>\n"
+"PO-Revision-Date: 2025-07-22 15:00+0000\n"
+"Last-Translator: Julia Faltenbacher <julia.faltenbacher@suse.com>\n"
+"Language-Team: Indonesian <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/id/>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.9.1\n"
+"X-Generator: Weblate 5.12.2\n"
 
 msgid ""
 "\n"
@@ -1660,8 +1660,7 @@ msgstr "Menghapus grup volume %1$s (%2$s)"
 #. %3$s is replaced by size (e.g. 2.00 GiB)
 #, c-format
 msgid "Detach bcache cache set on %1$s from bcache %2$s (%3$s)"
-msgstr ""
-"Lepaskan cache bcache yang ditetapkan pada %1$s dari bcache %2$s (%3$s)"
+msgstr "Lepaskan cache bcache yang ditetapkan pada %1$s dari bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -1977,8 +1976,7 @@ msgstr ""
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr ""
-"Format volume logical LVM %1$s (%2$s) pada grup volume %3$s dengan %4$s"
+msgstr "Format volume logical LVM %1$s (%2$s) pada grup volume %3$s dengan %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -2156,8 +2154,7 @@ msgstr "Memperbesar perangkat loop terenkripsi pada %1$s dari %2$s ke %3$s"
 #. %4$s is replaced by new size (e.g. 2.00 GiB)
 #, c-format
 msgid "Growing logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Memperbesar volume logical %1$s pada grup volume %2$s dari %3$s ke %4$s"
+msgstr "Memperbesar volume logical %1$s pada grup volume %2$s dari %3$s ke %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -3250,8 +3247,7 @@ msgstr "Menyusutkan perangkat loop terenkripsi pada %1$s dari %2$s ke %3$s"
 #. %4$s is replaced by new size (e.g. 1.00 GiB)
 #, c-format
 msgid "Shrinking logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Menyusutkan volume logical %1$s pada grup volume %2$s dari %3$s ke %4$s"
+msgstr "Menyusutkan volume logical %1$s pada grup volume %2$s dari %3$s ke %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
