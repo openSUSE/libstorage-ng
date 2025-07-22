@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-17 09:40+0100\n"
-"PO-Revision-Date: 2025-06-12 01:59+0000\n"
-"Last-Translator: Samanta Magalhaes <samanta_texttrans@outlook.com>\n"
+"PO-Revision-Date: 2025-07-22 15:00+0000\n"
+"Last-Translator: Julia Faltenbacher <julia.faltenbacher@suse.com>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.opensuse.org/projects/"
 "libstorage/ng-master/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.11.4\n"
+"X-Generator: Weblate 5.12.2\n"
 
 msgid ""
 "\n"
@@ -583,8 +583,7 @@ msgstr ""
 #. %3$s is replaced with the volume group name (e.g. system)
 #, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
-msgstr ""
-"Criar volume lógico LVM %1$s (%2$s) no grupo de volumes %3$s para troca"
+msgstr "Criar volume lógico LVM %1$s (%2$s) no grupo de volumes %3$s para troca"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -1198,8 +1197,7 @@ msgstr "Criando volume lógico thin %1$s (%2$s) no grupo de volumes %3$s"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Creating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"Criando volume lógico de pool thin %1$s (%2$s) no grupo de volumes %3$s"
+msgstr "Criando volume lógico de pool thin %1$s (%2$s) no grupo de volumes %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -1732,8 +1730,8 @@ msgid ""
 "Detected a LVM logical volume next to a partition table of type %1$s on the\n"
 "device %2$s. The LVM logical volume will be ignored as good as possible."
 msgstr ""
-"Detectou um volume lógico LVM ao lado de uma tabela de partições do tipo "
-"%1$s no\n"
+"Detectou um volume lógico LVM ao lado de uma tabela de partições do tipo %1$"
+"s no\n"
 "dispositivo %2$s. O volume lógico do LVM será ignorado da melhor forma "
 "possível."
 
@@ -1857,8 +1855,8 @@ msgid ""
 "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with "
 "%5$s"
 msgstr ""
-"Criptografar volume lógico LVM %1$s (%2$s) no grupo de volumes %3$s para "
-"%4$s com %5$s"
+"Criptografar volume lógico LVM %1$s (%2$s) no grupo de volumes %3$s para %4$"
+"s com %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -2170,8 +2168,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 2.00 GiB)
 #, c-format
 msgid "Growing logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Aumentando volume lógico %1$s no grupo de volume %2$s de %3$s para %4$s"
+msgstr "Aumentando volume lógico %1$s no grupo de volume %2$s de %3$s para %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -3267,8 +3264,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 1.00 GiB)
 #, c-format
 msgid "Shrinking logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Diminuindo volume lógico %1$s no grupo de volume %2$s de %3$s para %4$s"
+msgstr "Diminuindo volume lógico %1$s no grupo de volume %2$s de %3$s para %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
