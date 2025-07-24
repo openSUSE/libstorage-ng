@@ -64,7 +64,7 @@ namespace storage
 
 
     void
-    close_log_stream(LogLevel log_level, const char* file, unsigned line, const char* func,
+    close_log_stream(LogLevel log_level, const char* file, unsigned int line, const char* func,
 		     ostringstream* stream)
     {
 	Logger* logger = get_logger();

@@ -78,7 +78,7 @@ namespace storage
     StdoutLogger::write(LogLevel log_level, const string& component, const string& file,
 			int line, const string& function, const string& content)
     {
-	std::cout << datetime(time(nullptr)) << " <" << static_cast<log_level_underlying_type>(log_level)
+	std::cerr << datetime(time(nullptr)) << " <" << static_cast<log_level_underlying_type>(log_level)
 		  << "> [" << component << "] " << file << "(" << function << "):" << line << " "
 		  << content << std::endl;
     }
