@@ -37,7 +37,7 @@ namespace storage
 
     std::ostringstream* open_log_stream();
 
-    void close_log_stream(LogLevel log_level, const char* file, unsigned line,
+    void close_log_stream(LogLevel log_level, const char* file, unsigned int line,
 			  const char* func, std::ostringstream*);
 
 #define y2deb(op) y2log_op(storage::LogLevel::DEBUG, __FILE__, __LINE__, __FUNCTION__, op)

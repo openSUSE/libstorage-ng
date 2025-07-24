@@ -76,7 +76,7 @@ namespace storage
 
 
     /**
-     * Returns a Logger that logs to stdout. Do not use this function for
+     * Returns a Logger that logs to stdout/stderr. Do not use this function for
      * production code but only for examples and test-cases.
      */
     Logger* get_stdout_logger();

@@ -16,6 +16,8 @@ using namespace storage;
 
 BOOST_AUTO_TEST_CASE(md_values)
 {
+    set_logger(get_stdout_logger());
+
     Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
 
     Storage storage(environment);
