@@ -38,7 +38,7 @@ namespace storage
 
     CmdNvmeList::CmdNvmeList()
     {
-	SystemCmd cmd({ NVME_BIN, "list", "--verbose", "--output", "json" }, SystemCmd::DoThrow);
+	SystemCmd cmd({ NVME_BIN, "list", "--verbose", "--output-format", "json" }, SystemCmd::DoThrow);
 
 	parse(cmd.stdout());
     }
@@ -60,7 +60,7 @@ namespace storage
 
     CmdNvmeListSubsys::CmdNvmeListSubsys()
     {
-	SystemCmd cmd({ NVME_BIN, "list-subsys", "--verbose", "--output", "json" }, SystemCmd::DoThrow);
+	SystemCmd cmd({ NVME_BIN, "list-subsys", "--verbose", "--output-format", "json" }, SystemCmd::DoThrow);
 
 	parse(cmd.stdout());
     }

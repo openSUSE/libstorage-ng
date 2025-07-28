@@ -19,7 +19,7 @@ void
 check(const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command(NVME_BIN " list --verbose --output json", input);
+    Mockup::set_command(NVME_BIN " list --verbose --output-format json", input);
 
     CmdNvmeList cmd_nvme_list;
 
