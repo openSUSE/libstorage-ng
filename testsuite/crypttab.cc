@@ -124,3 +124,26 @@ BOOST_AUTO_TEST_CASE( create_new )
 
     remove( filename.c_str() );
 }
+
+
+BOOST_AUTO_TEST_CASE(escape_and_unescape)
+{
+    // input needs to be formatted exactly like the expected output
+
+    vector<string> input = {
+	"a\\040b  /dev/sdc1"
+    };
+
+    EtcCrypttab crypttab;
+    crypttab.parse(input);
+
+    BOOST_CHECK_EQUAL(crypttab.get_entry_count(), 1);
+
+    BOOST_CHECK_EQUAL(crypttab.get_entry(0)->get_crypt_device(), "a b");
+    BOOST_CHECK_EQUAL(crypttab.get_entry(0)->get_block_device(), "/dev/sdc1");
+
+    vector<string> output = crypttab.format_lines();
+
+    for (int i = 0; i < crypttab.get_entry_count(); ++i)
+	BOOST_CHECK_EQUAL(output[i], input[i]);
+}

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2017-2018] SUSE LLC
+ * Copyright (c) [2017-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -103,8 +103,8 @@ namespace storage
     {
 	set_column_count( CRYPTTAB_MIN_COLUMN_COUNT );
 
-	set_column( 0, crypt_device );
-	set_column( 1, block_device );
+	set_column(0, EtcCrypttab::encode(crypt_device));
+	set_column(1, EtcCrypttab::encode(block_device));
 
         if ( ! password.empty() || ! crypt_opts.empty() )
             add_column( password.empty() ? "none" : password );
@@ -133,8 +133,8 @@ namespace storage
 	}
 
 	int col = 0;
-	crypt_device = get_column( col++ );
-        block_device = get_column( col++ );
+	crypt_device = EtcCrypttab::decode(get_column(col++));
+	block_device = EtcCrypttab::decode(get_column(col++));
 
         if ( col < columns )
         {
@@ -286,7 +286,34 @@ namespace storage
     }
 
 
-    void EtcCrypttab::log()
+    string
+    EtcCrypttab::encode(const string& unencoded)
+    {
+	string tmp = unencoded;
+
+	boost::replace_all(tmp, "\\", "\\\\");
+
+	boost::replace_all(tmp, " ", "\\040");
+
+	return tmp;
+    }
+
+
+    string
+    EtcCrypttab::decode(const string& encoded)
+    {
+	string tmp = encoded;
+
+	boost::replace_all(tmp, "\\040", " ");
+
+	boost::replace_all(tmp, "\\\\", "\\");
+
+	return tmp;
+    }
+
+
+    void
+    EtcCrypttab::log()
     {
         string_vec lines = format_lines();
 

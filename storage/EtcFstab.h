@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2017-2022] SUSE LLC
+ * Copyright (c) [2017-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -359,12 +359,12 @@ namespace storage
 	 * Encode a string that might contain whitespace for use in /etc/fstab:
 	 * Use the corresponding octal sequence instead (\040 for blank etc.).
 	 **/
-	static string fstab_encode( const string & unencoded );
+	static string encode(const string& unencoded);
 
 	/**
-	 * Decode an fstab-encoded string: Change back \040 a blank etc.
+	 * Decode an fstab-encoded string: Change back \040 to blank etc.
 	 **/
-	static string fstab_decode( const string & encoded );
+	static string decode(const string& encoded);
 
         /**
          * Dump the current contents to the log.

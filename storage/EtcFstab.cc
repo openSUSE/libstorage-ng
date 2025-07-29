@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2017-2023] SUSE LLC
+ * Copyright (c) [2017-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -167,7 +167,7 @@ namespace storage
 
     bool MountOpts::parse( const string & opt_string, int line_no )
     {
-        string decoded = EtcFstab::fstab_decode( opt_string );
+        string decoded = EtcFstab::decode(opt_string);
 	boost::split( opts,
 		      decoded,
 		      boost::is_any_of( "," ),
@@ -222,8 +222,8 @@ namespace storage
 	set_column_count( FSTAB_COLUMN_COUNT );
 
 	int col = 0;
-	set_column( col++, EtcFstab::fstab_encode( spec ) );
-	set_column( col++, EtcFstab::fstab_encode( get_mount_point() ) );
+	set_column(col++, EtcFstab::encode(spec));
+	set_column(col++, EtcFstab::encode(get_mount_point()));
 
         if ( fs_type != FsType::UNKNOWN )
             set_column( col++, toString( fs_type ) );
@@ -264,13 +264,13 @@ namespace storage
 	}
 
 	int col = 0;
-	spec = EtcFstab::fstab_decode( get_column( col++ ) );
-	set_mount_point( EtcFstab::fstab_decode( get_column( col++ ) ) );
+	spec = EtcFstab::decode(get_column(col++));
+	set_mount_point(EtcFstab::decode(get_column(col++)));
 
 	if (!toValue( get_column( col++ ), fs_type ))
             fs_type = FsType::UNKNOWN;
 
-	mount_opts.parse( EtcFstab::fstab_decode( get_column( col++ ) ), line_no );
+	mount_opts.parse(EtcFstab::decode(get_column(col++)), line_no);
 
 	dump_pass = 0;
 	fsck_pass = 0;
@@ -485,7 +485,7 @@ namespace storage
 
 
     string
-    EtcFstab::fstab_encode(const string& unencoded)
+    EtcFstab::encode(const string& unencoded)
     {
 	string tmp = unencoded;
 
@@ -502,7 +502,7 @@ namespace storage
 
 
     string
-    EtcFstab::fstab_decode(const string& encoded)
+    EtcFstab::decode(const string& encoded)
     {
 	string tmp = encoded;
 
