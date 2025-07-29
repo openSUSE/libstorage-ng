@@ -103,7 +103,7 @@ namespace storage
     {
 	for (size_t i = 1; i < lines.size(); ++i)
 	{
-	    string spec = EtcFstab::fstab_decode(extractNthWord(0, lines[i]));
+	    string spec = EtcFstab::decode(extractNthWord(0, lines[i]));
 
 	    string::size_type pos = spec.find(" (deleted)");
 	    if (pos != string::npos)

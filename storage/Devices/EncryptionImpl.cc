@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -31,6 +31,7 @@
 #include "storage/EnvironmentImpl.h"
 #include "storage/Utils/Format.h"
 #include "storage/Utils/SystemCmd.h"
+#include "storage/Utils/Dm.h"
 #include "storage/Prober.h"
 #include "storage/Actions/ActivateImpl.h"
 #include "storage/Actions/DeactivateImpl.h"
@@ -58,7 +59,7 @@ namespace storage
 
 
     Encryption::Impl::Impl(const string& dm_table_name)
-	: BlkDevice::Impl(DEV_MAPPER_DIR "/" + dm_table_name)
+	: BlkDevice::Impl(DEV_MAPPER_DIR "/" + dm_encode(dm_table_name))
     {
 	set_dm_table_name(dm_table_name);
     }
@@ -147,7 +148,7 @@ namespace storage
     Encryption::Impl::set_dm_table_name(const string& dm_table_name)
     {
 	BlkDevice::Impl::set_dm_table_name(dm_table_name);
-	BlkDevice::Impl::set_name(DEV_MAPPER_DIR "/" + dm_table_name);
+	BlkDevice::Impl::set_name(DEV_MAPPER_DIR "/" + dm_encode(dm_table_name));
     }
 
 

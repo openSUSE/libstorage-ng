@@ -1,6 +1,6 @@
 /*
- * Copyright (c) [2004-2009] Novell, Inc.
- * Copyright (c) 2018 SUSE LLC
+ * Copyright (c) [2004-2015] Novell, Inc.
+ * Copyright (c) [2016-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,42 +21,42 @@
  */
 
 
-#ifndef STORAGE_LOCK_H
-#define STORAGE_LOCK_H
-
-
-#include <sys/types.h>
-
-#include "storage/Utils/Exception.h"
+#include "storage/Utils/Dm.h"
 
 
 namespace storage
 {
 
-    /**
-     * Exception indicating that getting the lock failed.
-     */
-    class LockException : public Exception
+    // # dmsetup ls
+    // stupid space    (254:13)
+    // stupid$dollar   (254:14)
+
+    // # ll /dev/mapper/
+    // lrwxrwxrwx 1 root root       8 Jul 29 11:26 stupid\x20space -> ../dm-13
+    // lrwxrwxrwx 1 root root       8 Jul 29 11:26 stupid\x24dollar -> ../dm-14
+
+    string
+    dm_encode(const string& s)
     {
+	string r = s;
 
-    public:
+	string::size_type pos = 0;
 
-	LockException(pid_t locker_pid);
+	while (true)
+	{
+	    pos = r.find_first_of(" $", pos);
+	    if (pos == string::npos)
+		break;
 
-	/**
-	 * pid of one of the process holding a lock. The pid is 0 if it could
-	 * not be determined, -1 if the lock is held by a open file descriptor
-	 * lock and -2 if the lock is held by the same process. Note that the
-	 * pid may already be out of date by the time the function returns.
-	 */
-	pid_t get_locker_pid() const;
+	    char tmp[16];
+	    sprintf(tmp, "\\x%02x", r[pos]);
+	    r.replace(pos, 1, tmp);
 
-    private:
+	    pos += 4;
+	}
 
-	const pid_t locker_pid;
+	return r;
+    }
 
-    };
 
 }
-
-#endif

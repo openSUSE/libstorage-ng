@@ -1,6 +1,6 @@
 /*
- * Copyright (c) [2004-2009] Novell, Inc.
- * Copyright (c) 2018 SUSE LLC
+ * Copyright (c) [2004-2015] Novell, Inc.
+ * Copyright (c) [2016-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,42 +21,21 @@
  */
 
 
-#ifndef STORAGE_LOCK_H
-#define STORAGE_LOCK_H
+#ifndef STORAGE_DM_H
+#define STORAGE_DM_H
 
 
-#include <sys/types.h>
-
-#include "storage/Utils/Exception.h"
+#include <string>
 
 
 namespace storage
 {
+    using std::string;
 
-    /**
-     * Exception indicating that getting the lock failed.
-     */
-    class LockException : public Exception
-    {
 
-    public:
-
-	LockException(pid_t locker_pid);
-
-	/**
-	 * pid of one of the process holding a lock. The pid is 0 if it could
-	 * not be determined, -1 if the lock is held by a open file descriptor
-	 * lock and -2 if the lock is held by the same process. Note that the
-	 * pid may already be out of date by the time the function returns.
-	 */
-	pid_t get_locker_pid() const;
-
-    private:
-
-	const pid_t locker_pid;
-
-    };
+    string dm_encode(const string&);
 
 }
+
 
 #endif
