@@ -21,7 +21,7 @@
  */
 
 
-#include <stdlib.h>
+#include <cstdlib>
 #include <regex>
 #include <boost/algorithm/string.hpp>
 #include <boost/algorithm/string/classification.hpp>

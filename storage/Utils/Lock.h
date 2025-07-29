@@ -25,7 +25,6 @@
 #define STORAGE_LOCK_H
 
 
-#include <unistd.h>
 #include <sys/types.h>
 
 #include "storage/Utils/Exception.h"

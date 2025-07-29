@@ -16,7 +16,7 @@ BOOST_AUTO_TEST_CASE( parse_and_format )
 {
     // This needs to be formatted exactly like the expected output
 
-    string_vec input = {
+    vector<string> input = {
         /** 00 **/ "LABEL=swap        swap         swap   defaults     0  0",
         /** 01 **/ "LABEL=xfs-root    /            xfs    defaults     0  0",
         /** 02 **/ "LABEL=btrfs-root  /btrfs-root  btrfs  ro           1  2",
@@ -31,7 +31,7 @@ BOOST_AUTO_TEST_CASE( parse_and_format )
     // Check formatting
     //
 
-    string_vec output = fstab.format_lines();
+    vector<string> output = fstab.format_lines();
 
     BOOST_CHECK_EQUAL( fstab.get_entry_count(), input.size() );
 
@@ -126,12 +126,12 @@ BOOST_AUTO_TEST_CASE( parse_and_format )
 
 BOOST_AUTO_TEST_CASE(parse_and_format_without_optional_columns)
 {
-    string_vec input = {
+    vector<string> input = {
 	"/space     /tmp/space  none  bind",
 	"/dev/sda1  /           xfs   defaults  1"
     };
 
-    string_vec expected_output = {
+    vector<string> expected_output = {
 	"/space     /tmp/space  none  bind      0  0",
 	"/dev/sda1  /           xfs   defaults  1  0"
     };
@@ -141,7 +141,7 @@ BOOST_AUTO_TEST_CASE(parse_and_format_without_optional_columns)
 
     BOOST_CHECK_EQUAL(fstab.get_entry_count(), 2);
 
-    string_vec output = fstab.format_lines();
+    vector<string> output = fstab.format_lines();
 
     for (int i = 0; i < fstab.get_entry_count(); ++i)
         BOOST_CHECK_EQUAL(output[i], expected_output[i]);
@@ -169,7 +169,7 @@ BOOST_AUTO_TEST_CASE(parse_and_format_without_optional_columns)
 BOOST_AUTO_TEST_CASE( mount_order )
 {
     // Wrong mount order by intention
-    string_vec input = {
+    vector<string> input = {
         /** 00 **/ "LABEL=var-log  /var/log     ext4   defaults     1  2",
         /** 01 **/ "LABEL=var      /var         ext4   defaults     1  2",
         /** 02 **/ "LABEL=walk     /space/walk  xfs    noauto,user  1  2",
@@ -249,7 +249,7 @@ BOOST_AUTO_TEST_CASE( mount_order )
 
 BOOST_AUTO_TEST_CASE( duplicate_mount_points )
 {
-    string_vec input = {
+    vector<string> input = {
         /** 00 **/  "LABEL=root   /      ext4  defaults     1  1",
         /** 01 **/  "LABEL=data1  /data  ext4  noauto,user  1  2",
         /** 02 **/  "LABEL=data2  /data  xfs   noauto,user  1  2",
@@ -320,7 +320,7 @@ BOOST_AUTO_TEST_CASE( unknown_fs_type )
 {
     // This needs to be formatted exactly like the expected output
 
-    string_vec input = {
+    vector<string> input = {
         /** 00 **/ "LABEL=swap      swap     swap    defaults     0  0",
         /** 01 **/ "LABEL=xfs-root  /        xfs     defaults     0  0",
         /** 02 **/ "LABEL=coolfs    /coolfs  coolfs  ro           1  2",
@@ -343,7 +343,7 @@ BOOST_AUTO_TEST_CASE( unknown_fs_type )
 
     coolfs->set_mount_point( "/data" );
 
-    string_vec output = fstab.format_lines();
+    vector<string> output = fstab.format_lines();
     BOOST_CHECK_EQUAL( output.size(), 4 );
 
     // Check if the fs type is still "coolfs" and not "unknown",
@@ -367,7 +367,7 @@ BOOST_AUTO_TEST_CASE( validate_entry )
 {
     // This needs to be formatted exactly like the expected output
 
-    string_vec initial = {
+    vector<string> initial = {
         "LABEL=swap      swap     swap    defaults     0  0",
         "LABEL=xfs-root  /        xfs     defaults     0  0",
         "# Data comment 1",
@@ -378,7 +378,7 @@ BOOST_AUTO_TEST_CASE( validate_entry )
         "LABEL=space     /space   xfs     noauto,user  1  2"
     };
 
-    string_vec modified = {
+    vector<string> modified = {
         "LABEL=swap      swap     swap    defaults     0  0",
         "LABEL=xfs-root  /        xfs     defaults     0  0",
         "LABEL=space     /space   xfs     noauto,user  1  2"
@@ -389,7 +389,7 @@ BOOST_AUTO_TEST_CASE( validate_entry )
 
     BOOST_CHECK_EQUAL( fstab.get_entry_count(), 5 );
 
-    string_vec output = fstab.format_lines();
+    vector<string> output = fstab.format_lines();
     BOOST_CHECK_EQUAL( output.size(), initial.size() );
 
     for ( int i=0; i < fstab.get_entry_count(); ++i )
@@ -436,7 +436,7 @@ BOOST_AUTO_TEST_CASE(escape_and_unescape)
 {
     // input needs to be formatted exactly like the expected output
 
-    string_vec input = {
+    vector<string> input = {
         "LABEL=a\\040b  /test\\0111  ext4  defaults  0  0",
         "LABEL=c\\012d  /test\\\\2    ext4  defaults  0  0"
     };

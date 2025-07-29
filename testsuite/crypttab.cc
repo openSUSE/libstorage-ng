@@ -16,7 +16,7 @@ BOOST_AUTO_TEST_CASE( parse_and_format )
     // This needs to be formatted exactly like the expected output or the
     // check below must be disabled
 
-    string_vec input = {
+    vector<string> input = {
         /** 00 **/ "cr_home  UUID=4711-0815",
         /** 01 **/ "cr_data  /dev/sdb2       none    nofail,timeout=20s",
         /** 02 **/ "cr_db1   /dev/sdb3       s3cr3t  timeout=20s",
@@ -32,7 +32,7 @@ BOOST_AUTO_TEST_CASE( parse_and_format )
     // Check formatting
     //
 
-    string_vec output = crypttab.format_lines();
+    vector<string> output = crypttab.format_lines();
 
     BOOST_CHECK_EQUAL( crypttab.get_entry_count(), input.size() );
 

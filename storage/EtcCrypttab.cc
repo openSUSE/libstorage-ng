@@ -20,7 +20,8 @@
  * find current contact information at www.novell.com.
  */
 
-#include <stdlib.h>
+
+#include <cstdlib>
 #include <boost/algorithm/string.hpp>
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/split.hpp>
