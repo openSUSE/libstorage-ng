@@ -2,6 +2,7 @@
  * File: CommentedConfigFile.cc
  *
  * Copyright (c) 2017 Stefan Hundhammer <Stefan.Hundhammer@gmx.de>
+ * Copyright (c) 2025 SUSE LLC
  *
  * This is part of the commented-config-file project.
  * License: GPL V2
@@ -37,12 +38,10 @@
 namespace storage
 {
 
-CommentedConfigFile::CommentedConfigFile(int permissions) :
-    permissions(permissions),
-    comment_marker( "#" ),
-    diff_enabled( false )
-{
-}
+    CommentedConfigFile::CommentedConfigFile(int permissions)
+	: permissions(permissions)
+    {
+    }
 
 
 CommentedConfigFile::~CommentedConfigFile()
@@ -361,7 +360,7 @@ void CommentedConfigFile::split_off_comment( const string & line,
 					     string & content_ret,
 					     string & comment_ret )
 {
-    size_t pos = line.find( comment_marker );
+    size_t pos = inline_comments ? line.find(comment_marker) : string::npos;
 
     if ( pos == string::npos )
     {
@@ -370,7 +369,7 @@ void CommentedConfigFile::split_off_comment( const string & line,
     }
     else
     {
-        content_ret = line.substr( 0, pos-1 );
+        content_ret = line.substr( 0, pos );
         comment_ret = line.substr( pos );
     }
 

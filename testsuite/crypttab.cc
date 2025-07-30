@@ -144,6 +144,37 @@ BOOST_AUTO_TEST_CASE(escape_and_unescape)
 
     vector<string> output = crypttab.format_lines();
 
-    for (int i = 0; i < crypttab.get_entry_count(); ++i)
-	BOOST_CHECK_EQUAL(output[i], input[i]);
+    BOOST_CHECK_EQUAL(input.size(), output.size());
+
+    for (size_t i = 0; i < input.size(); ++i)
+	BOOST_CHECK_EQUAL(input[i], output[i]);
+}
+
+
+BOOST_AUTO_TEST_CASE(comments)
+{
+    // input needs to be formatted exactly like the expected output
+
+    vector<string> input = {
+	"# a comment",
+	"# spanning two lines",
+	"cr-#1  /dev/sdc1",		// not a inline comment
+	"",
+	"# also a comment"
+    };
+
+    EtcCrypttab crypttab;
+    crypttab.parse(input);
+
+    BOOST_CHECK_EQUAL(crypttab.get_entry_count(), 1);
+
+    BOOST_CHECK_EQUAL(crypttab.get_entry(0)->get_crypt_device(), "cr-#1");
+    BOOST_CHECK_EQUAL(crypttab.get_entry(0)->get_block_device(), "/dev/sdc1");
+
+    vector<string> output = crypttab.format_lines();
+
+    BOOST_CHECK_EQUAL(input.size(), output.size());
+
+    for (size_t i = 0; i < input.size(); ++i)
+	BOOST_CHECK_EQUAL(input[i], output[i]);
 }

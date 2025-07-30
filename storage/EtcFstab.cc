@@ -293,8 +293,7 @@ namespace storage
 
 
 
-    EtcFstab::EtcFstab(const string& filename) :
-	ColumnConfigFile()
+    EtcFstab::EtcFstab(const string& filename)
     {
 	// Set reasonable field widths for /etc/fstab
 
@@ -306,6 +305,7 @@ namespace storage
 	set_max_column_width( col++,  1 ); // dump pass
 	set_max_column_width( col++,  1 ); // fsck pass
 
+	set_inline_comments(false);
 	set_pad_columns( true );
         set_diff_enabled();
 
@@ -511,7 +511,10 @@ namespace storage
 	boost::replace_all(tmp, "\\011", "\t");
 	boost::replace_all(tmp, "\\012", "\n");
 	boost::replace_all(tmp, "\\040", " ");
-	boost::replace_all(tmp, "\\123", "\\");
+	boost::replace_all(tmp, "\\134", "\\");
+
+	// "#" is encoded as "\043" in /proc/mounts (only for 1st field)
+	boost::replace_all(tmp, "\\043", "#");
 
 	boost::replace_all(tmp, "\\\\", "\\");
 

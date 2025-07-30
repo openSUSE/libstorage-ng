@@ -61,7 +61,7 @@ namespace storage
     Encryption::Impl::Impl(const string& dm_table_name)
 	: BlkDevice::Impl(DEV_MAPPER_DIR "/" + dm_encode(dm_table_name))
     {
-	set_dm_table_name(dm_table_name);
+	BlkDevice::Impl::set_dm_table_name(dm_table_name);
     }
 
 
