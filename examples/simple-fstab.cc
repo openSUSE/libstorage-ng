@@ -3,6 +3,7 @@
 #include <boost/algorithm/string.hpp>
 
 #include "storage/SimpleEtcFstab.h"
+#include "storage/Utils/Logger.h"
 
 using namespace std;
 using namespace storage;
@@ -11,6 +12,8 @@ using namespace storage;
 int
 main()
 {
+    set_logger(get_stdout_logger());
+
     vector<SimpleEtcFstabEntry> fstab = read_simple_etc_fstab("/etc/fstab");
 
     for (const SimpleEtcFstabEntry& entry : fstab)
