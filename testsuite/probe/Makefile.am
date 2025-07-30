@@ -14,6 +14,7 @@ check_PROGRAMS =								\
 	lvm-raid1.test lvm-mirror1.test lvm-snapshot1.test			\
 	lvm-errors1.test lvm-unsupported1.test integrity.test			\
 	luks+lvm1.test lvm+luks1.test luks1.test luks2.test luks3.test		\
+	luks4.test								\
 	multi-mount-point1.test multi-mount-point2.test				\
 	multi-mount-point3.test multi-mount-point4.test				\
 	bcache1.test bcache2.test btrfs1.test btrfs2.test btrfs3.test		\
@@ -55,6 +56,7 @@ EXTRA_DIST = disk-mockup.xml disk-devicegraph.xml				\
 	luks1-mockup.xml luks1-devicegraph.xml					\
 	luks2-mockup.xml luks2-devicegraph.xml					\
 	luks3-mockup.xml luks3-devicegraph.xml					\
+	luks4-mockup.xml luks4-devicegraph.xml					\
 	lvm+luks1-mockup.xml lvm+luks1-devicegraph.xml				\
 	bcache1-mockup.xml bcache1-devicegraph.xml				\
 	bcache2-mockup.xml bcache2-devicegraph.xml				\
