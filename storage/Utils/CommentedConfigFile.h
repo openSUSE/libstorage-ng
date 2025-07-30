@@ -2,6 +2,7 @@
  * File: CommentedConfigFile.h
  *
  * Copyright (c) 2017 Stefan Hundhammer <Stefan.Hundhammer@gmx.de>
+ * Copyright (c) 2025 SUSE LLC
  *
  * This is part of the commented-config-file project.
  * License: GPL V2
@@ -417,9 +418,19 @@ public:
     void set_comment_marker( const string & marker ) { comment_marker = marker; }
 
     /**
+     * Return the inline comments setting.
+     */
+    bool is_inline_comments() const { return inline_comments; }
+
+    /**
+     * Set whether comments can be inline or just at the beginning of the line.
+     */
+    void set_inline_comments(bool value) { inline_comments = value; }
+
+    /**
      * Return 'true' if diffs are enabled. Diffs are not enabled by default.
      **/
-    bool get_diff_enabled() const { return diff_enabled; }
+    bool is_diff_enabled() const { return diff_enabled; }
 
     /**
      * Enable or disable diffs. This saves a copy of the formatted text lines
@@ -525,8 +536,9 @@ private:
 
     string	    filename;
     int 	    permissions;
-    string	    comment_marker;
-    bool	    diff_enabled;
+    string comment_marker = "#";
+    bool inline_comments = true;
+    bool diff_enabled = false;
 
     string_vec	    header_comments;
     vector<Entry *> entries;
