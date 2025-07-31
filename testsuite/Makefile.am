@@ -20,7 +20,8 @@ check_PROGRAMS =								\
 	encryption2.test lvm1.test lvm-pv-usable-size.test graphviz.test	\
 	copy-individual.test mountpoint.test bcache1.test graph.test 		\
 	restore.test set-source.test valid-names.test mount-by2.test		\
-	resize1.test partition-id.test
+	resize1.test partition-id.test						\
+	fstab-encoding.test crypttab-encoding.test
 
 AM_DEFAULT_SOURCE_EXT = .cc
 

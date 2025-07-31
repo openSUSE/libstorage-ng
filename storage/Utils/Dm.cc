@@ -44,7 +44,7 @@ namespace storage
 
 	while (true)
 	{
-	    pos = r.find_first_of(" $", pos);
+	    pos = r.find_first_of(" !$%*~", pos);
 	    if (pos == string::npos)
 		break;
 
