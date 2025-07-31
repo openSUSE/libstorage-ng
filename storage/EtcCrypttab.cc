@@ -307,6 +307,9 @@ namespace storage
 
 	boost::replace_all(tmp, "\\040", " ");
 
+	// '#' can be optionally escaped
+	boost::replace_all(tmp, "\\043", "#");
+
 	boost::replace_all(tmp, "\\\\", "\\");
 
 	return tmp;
