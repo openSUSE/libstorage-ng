@@ -504,18 +504,18 @@ namespace storage
 
 	    try
 	    {
-		const MdadmDetail& mdadm_detail = system_info.getMdadmDetail(name);
+		const CmdMdadmDetail& cmd_mdadm_detail = system_info.getCmdMdadmDetail(name);
 
-		if (!mdadm_detail.devname.empty())
+		if (!cmd_mdadm_detail.devname.empty())
 		{
 		    MdLinks::const_iterator it = md_links.find(short_name);
 		    if (it != md_links.end())
 		    {
 			// the mapping is backwards so we must iterate the result
 			const vector<string>& links = it->second;
-			if (std::find(links.begin(), links.end(), mdadm_detail.devname) != links.end())
+			if (std::find(links.begin(), links.end(), cmd_mdadm_detail.devname) != links.end())
 			{
-			    name = DEV_MD_DIR "/" + mdadm_detail.devname;
+			    name = DEV_MD_DIR "/" + cmd_mdadm_detail.devname;
 			}
 		    }
 		}
@@ -559,10 +559,10 @@ namespace storage
 	md_parity = entry.md_parity;
 	chunk_size = entry.chunk_size;
 
-	const MdadmDetail& mdadm_detail = system_info.getMdadmDetail(get_name());
-	uuid = mdadm_detail.uuid;
-	metadata = mdadm_detail.metadata;
-	md_level = mdadm_detail.level;
+	const CmdMdadmDetail& cmd_mdadm_detail = system_info.getCmdMdadmDetail(get_name());
+	uuid = cmd_mdadm_detail.uuid;
+	metadata = cmd_mdadm_detail.metadata;
+	md_level = cmd_mdadm_detail.level;
 
 	const Storage& storage = prober.get_storage();
 	const EtcMdadm& etc_mdadm = system_info.getEtcMdadm(storage.prepend_rootprefix(ETC_MDADM));
@@ -605,13 +605,13 @@ namespace storage
 	// AFAIS probing the order for spare devices is not possible
 	// (and likely also not useful).
 
-	const MdadmDetail& mdadm_detail = prober.get_system_info().getMdadmDetail(get_name());
+	const CmdMdadmDetail& cmd_mdadm_detail = system_info.getCmdMdadmDetail(get_name());
 
 	// Convert roles from map<name, role> to map<sid, role>.
 
 	map<sid_t, string> roles;
 
-	for (const map<string, string>::value_type& role : mdadm_detail.roles)
+	for (const map<string, string>::value_type& role : cmd_mdadm_detail.roles)
 	{
 	    BlkDevice* blk_device = BlkDevice::Impl::find_by_any_name(system, role.first, system_info);
 	    roles[blk_device->get_sid()] = role.second;
@@ -646,8 +646,8 @@ namespace storage
 	// Note: The UUID reported by mdadm has a different format than reported by
 	// e.g. blkid.
 
-	MdadmDetail mdadm_detail(get_name());
-	uuid = mdadm_detail.uuid;
+	CmdMdadmDetail cmd_mdadm_detail(get_name());
+	uuid = cmd_mdadm_detail.uuid;
     }
 
 

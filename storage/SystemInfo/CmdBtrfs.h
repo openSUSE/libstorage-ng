@@ -284,7 +284,7 @@ namespace storage
     };
 
 
-    class BtrfsVersion
+    class CmdBtrfsVersion
     {
     public:
 

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2010-2020] Novell, Inc.
- * Copyright (c) 2023 SUSE LLC
+ * Copyright (c) [2023-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -36,9 +36,9 @@ namespace storage
     using namespace std;
 
 
-    Lsscsi::Lsscsi()
+    CmdLsscsi::CmdLsscsi()
     {
-	const bool json = LsscsiVersion::supports_json_option();
+	const bool json = CmdLsscsiVersion::supports_json_option();
 
 	SystemCmd cmd({ LSSCSI_BIN, "--transport" }, SystemCmd::DoThrow);
 
@@ -47,7 +47,7 @@ namespace storage
 
 
     void
-    Lsscsi::parse(const vector<string>& lines)
+    CmdLsscsi::parse(const vector<string>& lines)
     {
 	data.clear();
 
@@ -104,7 +104,7 @@ namespace storage
 
 
     bool
-    Lsscsi::get_entry(const string& device, Entry& entry) const
+    CmdLsscsi::get_entry(const string& device, Entry& entry) const
     {
 	const_iterator it = data.find(device);
 	if (it == data.end())
@@ -115,23 +115,25 @@ namespace storage
     }
 
 
-    std::ostream& operator<<(std::ostream& s, const Lsscsi& lsscsi)
+    std::ostream&
+    operator<<(std::ostream& s, const CmdLsscsi& cmd_lsscsi)
     {
-	for (Lsscsi::const_iterator it = lsscsi.data.begin(); it != lsscsi.data.end(); ++it)
+	for (CmdLsscsi::const_iterator it = cmd_lsscsi.data.begin(); it != cmd_lsscsi.data.end(); ++it)
 	    s << "data[" << it->first << "] -> " << it->second << '\n';
 
 	return s;
     }
 
 
-    std::ostream& operator<<(std::ostream& s, const Lsscsi::Entry& entry)
+    std::ostream&
+    operator<<(std::ostream& s, const CmdLsscsi::Entry& entry)
     {
 	return s << "transport:" << toString(entry.transport);
     }
 
 
     void
-    LsscsiVersion::query_version()
+    CmdLsscsiVersion::query_version()
     {
 	if (did_set_version)
 	    return;
@@ -145,7 +147,7 @@ namespace storage
 
 
     void
-    LsscsiVersion::parse_version(const string& version)
+    CmdLsscsiVersion::parse_version(const string& version)
     {
 	const regex version_rx("(version|release): ([0-9]+)\\.([0-9]+)", regex::extended);
 
@@ -164,7 +166,7 @@ namespace storage
 
 
     bool
-    LsscsiVersion::supports_json_option()
+    CmdLsscsiVersion::supports_json_option()
     {
 	query_version();
 
@@ -172,9 +174,9 @@ namespace storage
     }
 
 
-    bool LsscsiVersion::did_set_version = false;
+    bool CmdLsscsiVersion::did_set_version = false;
 
-    int LsscsiVersion::major = 0;
-    int LsscsiVersion::minor = 0;
+    int CmdLsscsiVersion::major = 0;
+    int CmdLsscsiVersion::minor = 0;
 
 }

@@ -12,13 +12,13 @@ test_lsscsi(SystemInfo::Impl& system_info)
 {
     try
     {
-	const Lsscsi& lsscsi = system_info.getLsscsi();
-	cout << "Lsscsi success" << endl;
-	cout << lsscsi << endl;
+	const CmdLsscsi& cmd_lsscsi = system_info.getCmdLsscsi();
+	cout << "CmdLsscsi success" << endl;
+	cout << cmd_lsscsi << endl;
     }
     catch (const exception& e)
     {
-	cerr << "Lsscsi failed" << endl;
+	cerr << "CmdLsscsi failed" << endl;
     }
 }
 

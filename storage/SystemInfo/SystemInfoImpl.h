@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2024] SUSE LLC
+ * Copyright (c) [2016-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -45,6 +45,7 @@
 #include "storage/SystemInfo/CmdDmsetup.h"
 #include "storage/SystemInfo/CmdCryptsetup.h"
 #include "storage/SystemInfo/CmdDmraid.h"
+#include "storage/SystemInfo/CmdMdadm.h"
 #include "storage/SystemInfo/CmdMultipath.h"
 #include "storage/SystemInfo/CmdNvme.h"
 #include "storage/SystemInfo/CmdBtrfs.h"
@@ -94,9 +95,9 @@ namespace storage
 	const MdLinks& getMdLinks() { return md_links.get2(udevadm); }
 	const ProcMounts& getProcMounts() { return proc_mounts.get(); }
 	const ProcMdstat& getProcMdstat() { return proc_mdstat.get(); }
-	const MdadmDetail& getMdadmDetail(const string& device) { return mdadm_details.get(device); }
+	const CmdMdadmDetail& getCmdMdadmDetail(const string& device) { return cmd_mdadm_details.get(device); }
 	const Blkid& getBlkid() { return blkid.get2(udevadm); }
-	const Lsscsi& getLsscsi() { return lsscsi.get(); }
+	const CmdLsscsi& getCmdLsscsi() { return cmd_lsscsi.get(); }
 	const CmdNvmeList& getCmdNvmeList() { return cmd_nvme_list.get(); }
 	const CmdNvmeListSubsys& getCmdNvmeListSubsys() { return cmd_nvme_list_subsys.get(); }
 	const Parted& getParted(const string& device) { return parteds.get2(udevadm, device); }
@@ -292,9 +293,9 @@ namespace storage
 	LazyObject<MdLinks> md_links;
 	LazyObject<ProcMounts> proc_mounts;
 	LazyObject<ProcMdstat> proc_mdstat;
-	LazyObjects<MdadmDetail> mdadm_details;
+	LazyObjects<CmdMdadmDetail> cmd_mdadm_details;
 	LazyObject<Blkid> blkid;
-	LazyObject<Lsscsi> lsscsi;
+	LazyObject<CmdLsscsi> cmd_lsscsi;
 	LazyObject<CmdNvmeList> cmd_nvme_list;
 	LazyObject<CmdNvmeListSubsys> cmd_nvme_list_subsys;
 	LazyObjects<Parted> parteds;

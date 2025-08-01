@@ -12,7 +12,9 @@ test-cmd-df
 test-cmd-dmsetup-info
 test-cmd-dmsetup-table
 test-cmd-dumpe2fs
+test-cmd-lsscsi
 test-cmd-lvs
+test-cmd-mdadm-detail
 test-cmd-ntfsresize
 test-cmd-nvme-list
 test-cmd-nvme-list-subsys
@@ -25,8 +27,6 @@ test-dasdview
 test-dir
 test-dmraid
 test-lsattr
-test-lsscsi
-test-mdadm-detail
 test-mdlinks
 test-multipath
 test-parted
