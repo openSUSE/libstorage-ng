@@ -12,13 +12,13 @@ test_mdadm_detail(SystemInfo::Impl& system_info, const string& device)
 {
     try
     {
-	const MdadmDetail& mdadm_detail = system_info.getMdadmDetail(device);
-	cout << "MdadmDetail success" << endl;
-	cout << mdadm_detail << endl;
+	const CmdMdadmDetail& cmd_mdadm_detail = system_info.getCmdMdadmDetail(device);
+	cout << "CmdMdadmDetail success" << endl;
+	cout << cmd_mdadm_detail << endl;
     }
     catch (const exception& e)
     {
-	cerr << "MdadmDetail failed" << endl;
+	cerr << "CmdMdadmDetail failed" << endl;
     }
 }
 

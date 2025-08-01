@@ -21,11 +21,11 @@ check(const vector<string>& input, const vector<string>& output)
     Mockup::set_command(LSSCSI_BIN " --version", RemoteCommand({}, { "release: 0.32  2021/05/05 [svn: r167]" }, 0));
     Mockup::set_command(LSSCSI_BIN " --transport", input);
 
-    Lsscsi lsscsi;
+    CmdLsscsi cmd_lsscsi;
 
     ostringstream parsed;
     parsed.setf(std::ios::boolalpha);
-    parsed << lsscsi;
+    parsed << cmd_lsscsi;
 
     string lhs = parsed.str();
     string rhs = boost::join(output, "\n") + "\n";

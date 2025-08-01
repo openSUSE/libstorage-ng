@@ -25,8 +25,9 @@
 #define STORAGE_PROC_MDSTAT_H
 
 
-#include <map>
+#include <string>
 #include <vector>
+#include <map>
 
 #include "storage/Devices/Md.h"
 
@@ -104,43 +105,6 @@ namespace storage
 	Entry parse_entry(const string& line1, const string& line2) const;
 
 	map<string, Entry> data;
-
-    };
-
-
-    /**
-     * Parse (the --export variant of) mdadm --detail
-     */
-    class MdadmDetail
-    {
-    public:
-
-	MdadmDetail(const string& device);
-
-	/**
-	 * The UUID.
-	 *
-	 * Note: Special MD RAID format.
-	 */
-	string uuid;
-
-	string devname;
-	string metadata;
-	MdLevel level = MdLevel::UNKNOWN;
-
-	/**
-	 * Mapping from device name to role (a number or spare). Faulty and journal
-	 * devices are also marked as spare by mdadm here (that might be a bug).
-	 */
-	map<string, string> roles;
-
-	friend std::ostream& operator<<(std::ostream& s, const MdadmDetail& mdadm_detail);
-
-    private:
-
-	void parse(const vector<string>& lines);
-
-	string device;
 
     };
 

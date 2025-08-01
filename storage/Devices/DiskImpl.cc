@@ -245,8 +245,8 @@ namespace storage
 	}
 	else
 	{
-	    Lsscsi::Entry entry;
-	    if (system_info.getLsscsi().get_entry(get_name(), entry))
+	    CmdLsscsi::Entry entry;
+	    if (system_info.getCmdLsscsi().get_entry(get_name(), entry))
 		transport = entry.transport;
 	}
 

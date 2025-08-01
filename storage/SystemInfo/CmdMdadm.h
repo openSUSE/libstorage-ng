@@ -1,6 +1,6 @@
 /*
- * Copyright (c) [2010-2014] Novell, Inc.
- * Copyright (c) [2023-2025] SUSE LLC
+ * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) [2017-2022] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,15 +21,15 @@
  */
 
 
-#ifndef STORAGE_CMD_LSSCSI_H
-#define STORAGE_CMD_LSSCSI_H
+#ifndef STORAGE_CMD_MDADM_H
+#define STORAGE_CMD_MDADM_H
 
 
 #include <string>
-#include <map>
 #include <vector>
+#include <map>
 
-#include "storage/Devices/Disk.h"
+#include "storage/Devices/Md.h"
 
 
 namespace storage
@@ -39,48 +39,39 @@ namespace storage
     using std::vector;
 
 
-    class CmdLsscsi
+    /**
+     * Parse (the --export variant of) mdadm --detail
+     */
+    class CmdMdadmDetail
     {
     public:
 
-	CmdLsscsi();
+	CmdMdadmDetail(const string& device);
 
-	struct Entry
-	{
-	    Transport transport = Transport::UNKNOWN;
-	};
+	/**
+	 * The UUID.
+	 *
+	 * Note: Special MD RAID format.
+	 */
+	string uuid;
 
-	friend std::ostream& operator<<(std::ostream& s, const CmdLsscsi& cmd_lsscsi);
-	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
+	string devname;
+	string metadata;
+	MdLevel level = MdLevel::UNKNOWN;
 
-	bool get_entry(const string& device, Entry& entry) const;
+	/**
+	 * Mapping from device name to role (a number or spare). Faulty and journal
+	 * devices are also marked as spare by mdadm here (that might be a bug).
+	 */
+	map<string, string> roles;
+
+	friend std::ostream& operator<<(std::ostream& s, const CmdMdadmDetail& cmd_mdadm_detail);
 
     private:
 
 	void parse(const vector<string>& lines);
 
-	typedef map<string, Entry>::const_iterator const_iterator;
-
-	map<string, Entry> data;
-
-    };
-
-
-    class CmdLsscsiVersion
-    {
-    public:
-
-	static void query_version();
-	static void parse_version(const string& version);
-
-	static bool supports_json_option();
-
-    private:
-
-	static bool did_set_version;
-
-	static int major;
-	static int minor;
+	string device;
 
     };
 

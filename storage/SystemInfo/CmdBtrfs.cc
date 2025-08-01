@@ -351,7 +351,7 @@ namespace storage
 
     CmdBtrfsFilesystemDf::CmdBtrfsFilesystemDf(const key_t& key, const string& mount_point)
     {
-	const bool json = BtrfsVersion::supports_json_option_for_filesystem_df();
+	const bool json = CmdBtrfsVersion::supports_json_option_for_filesystem_df();
 
 	const string tmp = BTRFS_BIN " " + string(json ? "--format json " : "") + "filesystem df ";
 	SystemCmd::Options cmd_options(tmp + quote(mount_point), SystemCmd::DoThrow);
@@ -447,7 +447,7 @@ namespace storage
 	// There is no btrfs command line way to just query if quota is enabled. So we
 	// assume it is enabled if 'btrfs qgroup show' does not report an error.
 
-	const bool json = BtrfsVersion::supports_json_option_for_qgroup_show();
+	const bool json = CmdBtrfsVersion::supports_json_option_for_qgroup_show();
 
 	const string tmp = BTRFS_BIN " " + string(json ? "--format json " : "") + "qgroup show -rep --raw ";
 	SystemCmd::Options cmd_options(tmp + quote(mount_point), SystemCmd::DoThrow);
@@ -628,7 +628,7 @@ namespace storage
 
 
     void
-    BtrfsVersion::query_version()
+    CmdBtrfsVersion::query_version()
     {
 	if (did_set_version)
 	    return;
@@ -642,7 +642,7 @@ namespace storage
 
 
     void
-    BtrfsVersion::parse_version(const string& version)
+    CmdBtrfsVersion::parse_version(const string& version)
     {
 	// example versions: "5.14 " (yes, with a trailing space), "6.0", "6.0.2"
 	const regex version_rx("btrfs-progs v([0-9]+)\\.([0-9]+)(\\.([0-9]+))?( )*", regex::extended);
@@ -663,7 +663,7 @@ namespace storage
 
 
     bool
-    BtrfsVersion::supports_json_option_for_filesystem_df()
+    CmdBtrfsVersion::supports_json_option_for_filesystem_df()
     {
 	query_version();
 
@@ -672,7 +672,7 @@ namespace storage
 
 
     bool
-    BtrfsVersion::supports_json_option_for_qgroup_show()
+    CmdBtrfsVersion::supports_json_option_for_qgroup_show()
     {
 	query_version();
 
@@ -681,10 +681,10 @@ namespace storage
     }
 
 
-    bool BtrfsVersion::did_set_version = false;
+    bool CmdBtrfsVersion::did_set_version = false;
 
-    int BtrfsVersion::major = 0;
-    int BtrfsVersion::minor = 0;
-    int BtrfsVersion::patchlevel = 0;
+    int CmdBtrfsVersion::major = 0;
+    int CmdBtrfsVersion::minor = 0;
+    int CmdBtrfsVersion::patchlevel = 0;
 
 }

@@ -5,7 +5,7 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/algorithm/string.hpp>
 
-#include "storage/SystemInfo/ProcMdstat.h"
+#include "storage/SystemInfo/CmdMdadm.h"
 #include "storage/Utils/Mockup.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/StorageDefines.h"
@@ -21,11 +21,11 @@ check(const string& device, const vector<string>& input, const vector<string>& o
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
     Mockup::set_command({ MDADM_BIN, "--detail", device, "--export" }, input);
 
-    MdadmDetail mdadmdetail(device);
+    CmdMdadmDetail cmd_mdadm_detail(device);
 
     ostringstream parsed;
     parsed.setf(std::ios::boolalpha);
-    parsed << mdadmdetail;
+    parsed << cmd_mdadm_detail;
 
     string lhs = parsed.str();
     string rhs = boost::join(output, "\n") + "\n";
