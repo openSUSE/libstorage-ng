@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -49,7 +49,16 @@ namespace storage
     {
     public:
 
+	/**
+	 * Get the device name.
+	 */
 	const std::string& get_name() const;
+
+	/**
+	 * Set the device name.
+	 *
+	 * @throw Exception
+	 */
 	void set_name(const std::string& name);
 
 	const Region& get_region() const;

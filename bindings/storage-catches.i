@@ -262,6 +262,7 @@
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_filesystem();
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_filesystem() const;
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::remove_encryption();
+%catches(storage::Exception) storage::BlkDevice::set_name(const std::string &name);
 %catches(storage::Exception) storage::BlkDevice::set_region(const Region &region);
 %catches(storage::Exception) storage::BlkDevice::set_size(unsigned long long size);
 %catches(storage::Exception) storage::BlkFilesystem::detect_content_info() const;
