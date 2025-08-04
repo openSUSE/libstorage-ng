@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -91,6 +91,8 @@ namespace storage
 
 	const string& get_lv_name() const { return lv_name; }
 	void set_lv_name(const string& lv_name);
+
+	static bool is_valid_lv_name(const string& lv_name);
 
 	LvType get_lv_type() const { return lv_type; }
 

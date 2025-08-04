@@ -96,7 +96,7 @@ namespace storage
     bool
     Md::is_valid_name(const std::string& name)
     {
-	return Md::Impl::is_valid_name(name);
+	return Impl::is_valid_name(name);
     }
 
 

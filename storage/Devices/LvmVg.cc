@@ -177,15 +177,7 @@ namespace storage
     bool
     LvmVg::is_valid_vg_name(const string& vg_name)
     {
-	static const regex rx("[a-zA-Z0-9+_.][a-zA-Z0-9+_.-]*", regex::extended);
-
-	if (!regex_match(vg_name, rx))
-	    return false;
-
-	if (vg_name == "." || vg_name == "..")
-	    return false;
-
-	return true;
+	return Impl::is_valid_vg_name(vg_name);
     }
 
 
