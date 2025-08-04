@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -90,6 +90,13 @@ namespace storage
     Md::get_impl() const
     {
 	return dynamic_cast<const Impl&>(Device::get_impl());
+    }
+
+
+    bool
+    Md::is_valid_name(const std::string& name)
+    {
+	return Md::Impl::is_valid_name(name);
     }
 
 
