@@ -412,7 +412,29 @@ namespace storage
     bool
     Md::Impl::is_valid_name(const string& name)
     {
-	return regex_match(name, numeric_name_regex) || regex_match(name, format1_name_regex);
+	smatch match;
+
+	if (regex_match(name, match, numeric_name_regex) && match.size() == 2)
+	{
+	    const string number = match[1];
+
+	    if (number.size() > 7 || stoi(number) > 1048575)
+		return false;
+
+	    return true;
+	}
+
+	if (regex_match(name, match, format1_name_regex) && match.size() == 2)
+	{
+	    const string short_name = match[1];
+
+	    if (short_name.size() > 32)
+		return false;
+
+	    return true;
+	}
+
+	return false;
     }
 
 

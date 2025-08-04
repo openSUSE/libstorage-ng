@@ -8,6 +8,7 @@
 
 #include "storage/Devices/LvmVg.h"
 #include "storage/Devices/LvmLv.h"
+#include "storage/Devices/Md.h"
 
 
 using namespace std;
@@ -51,4 +52,30 @@ BOOST_AUTO_TEST_CASE(invalid_lv_name)
     BOOST_CHECK(!LvmLv::is_valid_lv_name("snapshot"));
 
     BOOST_CHECK(!LvmLv::is_valid_lv_name("test_cdata"));
+}
+
+
+BOOST_AUTO_TEST_CASE(valid_md_name)
+{
+    BOOST_CHECK(Md::is_valid_name("/dev/md0"));
+    BOOST_CHECK(Md::is_valid_name("/dev/md/0"));
+
+    BOOST_CHECK(Md::is_valid_name("/dev/md100000"));
+    BOOST_CHECK(Md::is_valid_name("/dev/md/100000"));
+
+    BOOST_CHECK(Md::is_valid_name("/dev/md/007"));
+
+    BOOST_CHECK(Md::is_valid_name("/dev/md/test"));
+    BOOST_CHECK(Md::is_valid_name("/dev/md/test-test"));
+}
+
+
+BOOST_AUTO_TEST_CASE(invalid_md_name)
+{
+    BOOST_CHECK(!Md::is_valid_name("/dev/md"));
+
+    BOOST_CHECK(!Md::is_valid_name("/dev/md/a/b"));
+
+    BOOST_CHECK(!Md::is_valid_name("/dev/md12345678901234567890"));
+    BOOST_CHECK(!Md::is_valid_name("/dev/md/12345678901234567890"));
 }

@@ -544,6 +544,31 @@ namespace storage
     }
 
 
+    bool
+    LvmLv::Impl::is_valid_lv_name(const string& lv_name)
+    {
+	static const regex rx("[a-zA-Z0-9+_.][a-zA-Z0-9+_.-]*", regex::extended);
+
+	if (!regex_match(lv_name, rx))
+	    return false;
+
+	if (lv_name == "." || lv_name == ".." || lv_name == "snapshot" || lv_name == "pvmove")
+	    return false;
+
+	if (lv_name.size() > 127)
+	    return false;
+
+	static const vector<string> illegal_subnames = { "_cdata", "_cmeta", "_corig", "_mlog",
+	    "_mimage", "_pmspare", "_rimage", "_rmeta", "_tdata", "_tmeta", "_vorigin", "_vdata" };
+
+	for (const string& illegal_subname : illegal_subnames)
+	    if (boost::contains(lv_name, illegal_subname))
+		return false;
+
+	return true;
+    }
+
+
     const LvmVg*
     LvmLv::Impl::get_lvm_vg() const
     {

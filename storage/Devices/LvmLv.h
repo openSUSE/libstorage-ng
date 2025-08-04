@@ -188,7 +188,8 @@ namespace storage
 	void set_lv_name(const std::string& lv_name);
 
 	/**
-	 * Check whether a (new and public) logical volume name is valid.
+	 * Check whether a (new and public) logical volume name is valid. Does not check
+	 * for collisions.
 	 */
 	static bool is_valid_lv_name(const std::string& lv_name);
 

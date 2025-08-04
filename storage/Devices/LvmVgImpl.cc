@@ -54,8 +54,14 @@ namespace storage
     const char* DeviceTraits<LvmVg>::classname = "LvmVg";
 
 
+    LvmVg::Impl::Impl(const string& vg_name)
+	: Device::Impl(), vg_name(vg_name), region(0, 0, default_extent_size)
+    {
+    }
+
+
     LvmVg::Impl::Impl(const xmlNode* node)
-	: Device::Impl(node), vg_name(), uuid(), region(0, 0, default_extent_size), reserved_extents(0)
+	: Device::Impl(node), region(0, 0, default_extent_size)
     {
 	if (!getChildValue(node, "vg-name", vg_name))
 	    ST_THROW(Exception("no vg-name"));
@@ -293,6 +299,24 @@ namespace storage
 	Impl::vg_name = vg_name;
 
 	// TODO call set_name() for all lvm_lvs
+    }
+
+
+    bool
+    LvmVg::Impl::is_valid_vg_name(const string& vg_name)
+    {
+	static const regex rx("[a-zA-Z0-9+_.][a-zA-Z0-9+_.-]*", regex::extended);
+
+	if (!regex_match(vg_name, rx))
+	    return false;
+
+	if (vg_name == "." || vg_name == "..")
+	    return false;
+
+	if (vg_name.size() > 127)
+	    return false;
+
+	return true;
     }
 
 

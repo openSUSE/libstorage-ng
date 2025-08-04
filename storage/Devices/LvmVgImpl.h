@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2024] SUSE LLC
+ * Copyright (c) [2016-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -49,10 +49,7 @@ namespace storage
 
 	static const unsigned long long max_extent_number = std::numeric_limits<uint32_t>::max();
 
-	Impl(const string& vg_name)
-	    : Device::Impl(), vg_name(vg_name), uuid(), region(0, 0, default_extent_size),
-	      reserved_extents(0) {}
-
+	Impl(const string& vg_name);
 	Impl(const xmlNode* node);
 
 	virtual const char* get_classname() const override { return DeviceTraits<LvmVg>::classname; }
@@ -98,6 +95,8 @@ namespace storage
 
 	const string& get_vg_name() const { return vg_name; }
 	void set_vg_name(const string& vg_name);
+
+	static bool is_valid_vg_name(const string& vg_name);
 
 	const string& get_uuid() const { return uuid; }
 	void set_uuid(const string& uuid) { Impl::uuid = uuid; }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -93,6 +93,15 @@ namespace storage
 	static Md* create(Devicegraph* devicegraph, const std::string& name);
 
 	static Md* load(Devicegraph* devicegraph, const xmlNode* node);
+
+	/**
+	 * Check whether the MD name is valid. Does not check for collisions. May depend
+	 * on version of system components, e.g. mdadm.
+	 *
+	 * The name is a complete name including /dev or /dev/md, e.g. "/dev/md0" or
+	 * "/dev/md/test".
+	 */
+	static bool is_valid_name(const std::string& name);
 
 	/**
 	 * Add another device to a RAID.
