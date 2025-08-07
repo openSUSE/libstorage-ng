@@ -24,6 +24,7 @@
 #ifndef STORAGE_BLK_DEVICE_H
 #define STORAGE_BLK_DEVICE_H
 
+
 #include <vector>
 
 #include "storage/Utils/Swig.h"
@@ -169,6 +170,11 @@ namespace storage
 	 * @see get_dm_table_name()
 	 */
 	void set_dm_table_name(const std::string& dm_table_name);
+
+	/**
+	 * Check whether the DM table name is valid. Does not check for collisions.
+	 */
+	static bool is_valid_dm_table_name(const std::string& dm_table_name);
 
 	/**
 	 * Get all BlkDevices.

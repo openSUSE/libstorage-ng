@@ -724,6 +724,22 @@ namespace storage
     }
 
 
+    bool
+    BlkDevice::Impl::is_valid_dm_table_name(const string& dm_table_name)
+    {
+	if (dm_table_name.find_first_of("/") != string::npos)
+	    return false;
+
+	if (dm_table_name == "." || dm_table_name == "..")
+	    return false;
+
+	if (dm_table_name.size() > 127)
+	    return false;
+
+	return true;
+    }
+
+
     BlkFilesystem*
     BlkDevice::Impl::create_blk_filesystem(FsType fs_type)
     {

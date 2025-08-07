@@ -61,7 +61,7 @@ namespace storage
 	 *
 	 * @see Device::create(Devicegraph*)
 	 */
-	static Encryption* create(Devicegraph* devicegraph, const std::string& name);
+	static Encryption* create(Devicegraph* devicegraph, const std::string& dm_table_name);
 
 	static Encryption* load(Devicegraph* devicegraph, const xmlNode* node);
 
