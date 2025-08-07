@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -236,6 +236,13 @@ namespace storage
     BlkDevice::set_dm_table_name(const string& dm_table_name)
     {
 	get_impl().set_dm_table_name(dm_table_name);
+    }
+
+
+    bool
+    BlkDevice::is_valid_dm_table_name(const string& dm_table_name)
+    {
+	return Impl::is_valid_dm_table_name(dm_table_name);
     }
 
 

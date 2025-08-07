@@ -38,9 +38,9 @@ namespace storage
 
 
     Encryption*
-    Encryption::create(Devicegraph* devicegraph, const string& name)
+    Encryption::create(Devicegraph* devicegraph, const string& dm_table_name)
     {
-	shared_ptr<Encryption> encryption = make_shared<Encryption>(new Encryption::Impl(name));
+	shared_ptr<Encryption> encryption = make_shared<Encryption>(new Encryption::Impl(dm_table_name));
 	Device::Impl::create(devicegraph, encryption);
 	return encryption.get();
     }

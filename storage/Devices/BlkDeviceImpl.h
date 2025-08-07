@@ -119,6 +119,8 @@ namespace storage
 	const string& get_dm_table_name() const { return dm_table_name; }
 	virtual void set_dm_table_name(const string& dm_table_name) { Impl::dm_table_name = dm_table_name; }
 
+	static bool is_valid_dm_table_name(const string& dm_table_name);
+
 	BlkFilesystem* create_blk_filesystem(FsType fs_type);
 
 	bool has_blk_filesystem() const;

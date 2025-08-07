@@ -9,6 +9,7 @@
 #include "storage/Devices/LvmVg.h"
 #include "storage/Devices/LvmLv.h"
 #include "storage/Devices/Md.h"
+#include "storage/Devices/BlkDevice.h"
 
 
 using namespace std;
@@ -78,4 +79,16 @@ BOOST_AUTO_TEST_CASE(invalid_md_name)
 
     BOOST_CHECK(!Md::is_valid_name("/dev/md12345678901234567890"));
     BOOST_CHECK(!Md::is_valid_name("/dev/md/12345678901234567890"));
+}
+
+
+BOOST_AUTO_TEST_CASE(valid_dm_table_name)
+{
+    BOOST_CHECK(BlkDevice::is_valid_dm_table_name("cr-1"));
+}
+
+
+BOOST_AUTO_TEST_CASE(invalid_dm_table_name)
+{
+    BOOST_CHECK(!BlkDevice::is_valid_dm_table_name("cr/1"));
 }
