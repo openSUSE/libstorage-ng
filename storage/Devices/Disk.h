@@ -172,8 +172,10 @@ namespace storage
 	const Impl& get_impl() const;
 
 	virtual Disk* clone() const override;
+	virtual std::unique_ptr<Device> clone_v2() const override;
 
 	Disk(Impl* impl);
+	ST_NO_SWIG Disk(std::unique_ptr<Device::Impl>&& impl);
 
     };
 

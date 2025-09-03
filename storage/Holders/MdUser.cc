@@ -30,7 +30,7 @@ namespace storage
     MdUser*
     MdUser::create(Devicegraph* devicegraph, const Device* source, const Device* target)
     {
-	shared_ptr<MdUser> md_user = make_shared<MdUser>(new MdUser::Impl());
+	shared_ptr<MdUser> md_user = make_shared<MdUser>(make_unique<MdUser::Impl>());
 	Holder::Impl::create(devicegraph, source, target, md_user);
 	return md_user.get();
     }
@@ -39,7 +39,7 @@ namespace storage
     MdUser*
     MdUser::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<MdUser> md_user = make_shared<MdUser>(new MdUser::Impl(node));
+	shared_ptr<MdUser> md_user = make_shared<MdUser>(make_unique<MdUser::Impl>(node));
 	Holder::Impl::load(devicegraph, node, md_user);
 	return md_user.get();
     }
@@ -51,10 +51,23 @@ namespace storage
     }
 
 
+    MdUser::MdUser(unique_ptr<Holder::Impl>&& impl)
+	: User(std::move(impl))
+    {
+    }
+
+
     MdUser*
     MdUser::clone() const
     {
 	return new MdUser(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Holder>
+    MdUser::clone_v2() const
+    {
+	return make_unique<MdUser>(get_impl().clone());
     }
 
 

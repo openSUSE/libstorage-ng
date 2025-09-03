@@ -33,7 +33,7 @@ namespace storage
     PlainEncryption*
     PlainEncryption::create(Devicegraph* devicegraph, const string& dm_table_name)
     {
-	shared_ptr<PlainEncryption> plain_encryption = make_shared<PlainEncryption>(new PlainEncryption::Impl(dm_table_name));
+	shared_ptr<PlainEncryption> plain_encryption = make_shared<PlainEncryption>(make_unique<PlainEncryption::Impl>(dm_table_name));
 	Device::Impl::create(devicegraph, plain_encryption);
 	return plain_encryption.get();
     }
@@ -42,7 +42,7 @@ namespace storage
     PlainEncryption*
     PlainEncryption::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<PlainEncryption> plain_encryption = make_shared<PlainEncryption>(new PlainEncryption::Impl(node));
+	shared_ptr<PlainEncryption> plain_encryption = make_shared<PlainEncryption>(make_unique<PlainEncryption::Impl>(node));
 	Device::Impl::load(devicegraph, plain_encryption);
 	return plain_encryption.get();
     }
@@ -54,10 +54,23 @@ namespace storage
     }
 
 
+    PlainEncryption::PlainEncryption(unique_ptr<Device::Impl>&& impl)
+	: Encryption(std::move(impl))
+    {
+    }
+
+
     PlainEncryption*
     PlainEncryption::clone() const
     {
 	return new PlainEncryption(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Device>
+    PlainEncryption::clone_v2() const
+    {
+	return make_unique<PlainEncryption>(get_impl().clone());
     }
 
 

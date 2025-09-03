@@ -33,7 +33,7 @@ namespace storage
     BitlockerV2*
     BitlockerV2::create(Devicegraph* devicegraph, const string& dm_table_name)
     {
-	shared_ptr<BitlockerV2> bitlocker_v2 = make_shared<BitlockerV2>(new BitlockerV2::Impl(dm_table_name));
+	shared_ptr<BitlockerV2> bitlocker_v2 = make_shared<BitlockerV2>(make_unique<BitlockerV2::Impl>(dm_table_name));
 	Device::Impl::create(devicegraph, bitlocker_v2);
 	return bitlocker_v2.get();
     }
@@ -42,7 +42,7 @@ namespace storage
     BitlockerV2*
     BitlockerV2::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<BitlockerV2> bitlocker_v2 = make_shared<BitlockerV2>(new BitlockerV2::Impl(node));
+	shared_ptr<BitlockerV2> bitlocker_v2 = make_shared<BitlockerV2>(make_unique<BitlockerV2::Impl>(node));
 	Device::Impl::load(devicegraph, bitlocker_v2);
 	return bitlocker_v2.get();
     }
@@ -54,10 +54,23 @@ namespace storage
     }
 
 
+    BitlockerV2::BitlockerV2(unique_ptr<Device::Impl>&& impl)
+	: Encryption(std::move(impl))
+    {
+    }
+
+
     BitlockerV2*
     BitlockerV2::clone() const
     {
 	return new BitlockerV2(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Device>
+    BitlockerV2::clone_v2() const
+    {
+	return make_unique<BitlockerV2>(get_impl().clone());
     }
 
 

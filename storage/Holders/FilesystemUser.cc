@@ -30,7 +30,7 @@ namespace storage
     FilesystemUser*
     FilesystemUser::create(Devicegraph* devicegraph, const Device* source, const Device* target)
     {
-	shared_ptr<FilesystemUser> filesystem_user = make_shared<FilesystemUser>(new FilesystemUser::Impl());
+	shared_ptr<FilesystemUser> filesystem_user = make_shared<FilesystemUser>(make_unique<FilesystemUser::Impl>());
 	Holder::Impl::create(devicegraph, source, target, filesystem_user);
 	return filesystem_user.get();
     }
@@ -39,7 +39,7 @@ namespace storage
     FilesystemUser*
     FilesystemUser::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<FilesystemUser> filesystem_user = make_shared<FilesystemUser>(new FilesystemUser::Impl(node));
+	shared_ptr<FilesystemUser> filesystem_user = make_shared<FilesystemUser>(make_unique<FilesystemUser::Impl>(node));
 	Holder::Impl::load(devicegraph, node, filesystem_user);
 	return filesystem_user.get();
     }
@@ -51,10 +51,23 @@ namespace storage
     }
 
 
+    FilesystemUser::FilesystemUser(unique_ptr<Holder::Impl>&& impl)
+	: User(std::move(impl))
+    {
+    }
+
+
     FilesystemUser*
     FilesystemUser::clone() const
     {
 	return new FilesystemUser(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Holder>
+    FilesystemUser::clone_v2() const
+    {
+	return make_unique<FilesystemUser>(get_impl().clone());
     }
 
 

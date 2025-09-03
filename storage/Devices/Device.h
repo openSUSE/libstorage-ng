@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -298,13 +298,15 @@ namespace storage
 	Impl& get_impl() { return *impl; }
 	const Impl& get_impl() const { return *impl; }
 
-	virtual Device* clone() const = 0;
+	virtual Device* clone() const ST_DEPRECATED = 0;
+	virtual std::unique_ptr<Device> clone_v2() const = 0;
 
 	void save(xmlNode* node) const ST_DEPRECATED;
 
     protected:
 
-	Device(Impl* impl);
+	Device(Impl* impl) ST_DEPRECATED;
+	ST_NO_SWIG Device(std::unique_ptr<Impl>&& impl);
 
 	/**
 	 * Create a device in the devicegraph.

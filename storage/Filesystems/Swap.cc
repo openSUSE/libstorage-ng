@@ -34,7 +34,7 @@ namespace storage
     Swap*
     Swap::create(Devicegraph* devicegraph)
     {
-	shared_ptr<Swap> swap = make_shared<Swap>(new Swap::Impl());
+	shared_ptr<Swap> swap = make_shared<Swap>(make_unique<Swap::Impl>());
 	Device::Impl::create(devicegraph, swap);
 	return swap.get();
     }
@@ -43,7 +43,7 @@ namespace storage
     Swap*
     Swap::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<Swap> swap = make_shared<Swap>(new Swap::Impl(node));
+	shared_ptr<Swap> swap = make_shared<Swap>(make_unique<Swap::Impl>(node));
 	Device::Impl::load(devicegraph, swap);
 	return swap.get();
     }
@@ -55,10 +55,23 @@ namespace storage
     }
 
 
+    Swap::Swap(unique_ptr<Device::Impl>&& impl)
+	: BlkFilesystem(std::move(impl))
+    {
+    }
+
+
     Swap*
     Swap::clone() const
     {
 	return new Swap(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Device>
+    Swap::clone_v2() const
+    {
+	return make_unique<Swap>(get_impl().clone());
     }
 
 

@@ -54,6 +54,7 @@ namespace storage
 	static MdSubdevice* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	virtual MdSubdevice* clone() const override;
+	virtual std::unique_ptr<Holder> clone_v2() const override;
 
 	/**
 	 * The "member" string of the MdMember in the MdContainer.
@@ -70,6 +71,7 @@ namespace storage
 	const Impl& get_impl() const;
 
 	MdSubdevice(Impl* impl);
+	ST_NO_SWIG MdSubdevice(std::unique_ptr<Holder::Impl>&& impl);
 
     };
 

@@ -61,6 +61,7 @@ namespace storage
 	const Impl& get_impl() const;
 
 	virtual ImplicitPt* clone() const override;
+	virtual std::unique_ptr<Device> clone_v2() const override;
 
 	/**
 	 * Create the implicit partition.
@@ -70,6 +71,7 @@ namespace storage
 	void create_implicit_partition();
 
 	ImplicitPt(Impl* impl);
+	ST_NO_SWIG ImplicitPt(std::unique_ptr<Device::Impl>&& impl);
 
     };
 

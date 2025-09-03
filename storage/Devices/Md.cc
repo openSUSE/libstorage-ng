@@ -51,7 +51,7 @@ namespace storage
     Md*
     Md::create(Devicegraph* devicegraph, const string& name)
     {
-	shared_ptr<Md> md = make_shared<Md>(new Md::Impl(name));
+	shared_ptr<Md> md = make_shared<Md>(make_unique<Md::Impl>(name));
 	Device::Impl::create(devicegraph, md);
 	return md.get();
     }
@@ -60,7 +60,7 @@ namespace storage
     Md*
     Md::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<Md> md = make_shared<Md>(new Md::Impl(node));
+	shared_ptr<Md> md = make_shared<Md>(make_unique<Md::Impl>(node));
 	Device::Impl::load(devicegraph, md);
 	return md.get();
     }
@@ -72,10 +72,23 @@ namespace storage
     }
 
 
+    Md::Md(unique_ptr<Device::Impl>&& impl)
+	: Partitionable(std::move(impl))
+    {
+    }
+
+
     Md*
     Md::clone() const
     {
 	return new Md(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Device>
+    Md::clone_v2() const
+    {
+	return make_unique<Md>(get_impl().clone());
     }
 
 

@@ -56,8 +56,10 @@ namespace storage
 	const Impl& get_impl() const;
 
 	virtual F2fs* clone() const override;
+	virtual std::unique_ptr<Device> clone_v2() const override;
 
 	F2fs(Impl* impl);
+	ST_NO_SWIG F2fs(std::unique_ptr<Device::Impl>&& impl);
 
     };
 

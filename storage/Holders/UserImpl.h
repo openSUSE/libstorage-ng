@@ -43,7 +43,7 @@ namespace storage
 
 	Impl(const xmlNode* node);
 
-	virtual Impl* clone() const override { return new Impl(*this); }
+	virtual unique_ptr<Holder::Impl> clone() const override { return make_unique<Impl>(*this); }
 
 	virtual void save(xmlNode* node) const override;
 

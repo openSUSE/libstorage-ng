@@ -53,8 +53,10 @@ namespace storage
 	const Impl& get_impl() const;
 
 	virtual DasdPt* clone() const override;
+	virtual std::unique_ptr<Device> clone_v2() const override;
 
 	DasdPt(Impl* impl);
+	ST_NO_SWIG DasdPt(std::unique_ptr<Device::Impl>&& impl);
 
     };
 

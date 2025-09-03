@@ -466,8 +466,10 @@ namespace storage
 	const Impl& get_impl() const;
 
 	virtual Partition* clone() const override;
+	virtual std::unique_ptr<Device> clone_v2() const override;
 
 	Partition(Impl* impl);
+	ST_NO_SWIG Partition(std::unique_ptr<Device::Impl>&& impl);
 
     };
 

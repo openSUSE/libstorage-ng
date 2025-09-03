@@ -33,7 +33,7 @@ namespace storage
     Jfs*
     Jfs::create(Devicegraph* devicegraph)
     {
-	shared_ptr<Jfs> jfs = make_shared<Jfs>(new Jfs::Impl());
+	shared_ptr<Jfs> jfs = make_shared<Jfs>(make_unique<Jfs::Impl>());
 	Device::Impl::create(devicegraph, jfs);
 	return jfs.get();
     }
@@ -42,7 +42,7 @@ namespace storage
     Jfs*
     Jfs::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<Jfs> jfs = make_shared<Jfs>(new Jfs::Impl(node));
+	shared_ptr<Jfs> jfs = make_shared<Jfs>(make_unique<Jfs::Impl>(node));
 	Device::Impl::load(devicegraph, jfs);
 	return jfs.get();
     }
@@ -54,10 +54,23 @@ namespace storage
     }
 
 
+    Jfs::Jfs(unique_ptr<Device::Impl>&& impl)
+	: BlkFilesystem(std::move(impl))
+    {
+    }
+
+
     Jfs*
     Jfs::clone() const
     {
 	return new Jfs(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Device>
+    Jfs::clone_v2() const
+    {
+	return make_unique<Jfs>(get_impl().clone());
     }
 
 

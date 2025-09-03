@@ -237,6 +237,7 @@ namespace storage
     protected:
 
 	PartitionTable(Impl* impl);
+	ST_NO_SWIG PartitionTable(std::unique_ptr<Device::Impl>&& impl);
 
     };
 

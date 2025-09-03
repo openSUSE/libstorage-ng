@@ -35,7 +35,7 @@ namespace storage
     StrayBlkDevice*
     StrayBlkDevice::create(Devicegraph* devicegraph, const string& name)
     {
-	shared_ptr<StrayBlkDevice> stray_blk_device = make_shared<StrayBlkDevice>(new StrayBlkDevice::Impl(name));
+	shared_ptr<StrayBlkDevice> stray_blk_device = make_shared<StrayBlkDevice>(make_unique<StrayBlkDevice::Impl>(name));
 	Device::Impl::create(devicegraph, stray_blk_device);
 	return stray_blk_device.get();
     }
@@ -44,7 +44,7 @@ namespace storage
     StrayBlkDevice*
     StrayBlkDevice::create(Devicegraph* devicegraph, const string& name, const Region& region)
     {
-	shared_ptr<StrayBlkDevice> stray_blk_device = make_shared<StrayBlkDevice>(new StrayBlkDevice::Impl(name, region));
+	shared_ptr<StrayBlkDevice> stray_blk_device = make_shared<StrayBlkDevice>(make_unique<StrayBlkDevice::Impl>(name, region));
 	Device::Impl::create(devicegraph, stray_blk_device);
 	return stray_blk_device.get();
     }
@@ -53,7 +53,7 @@ namespace storage
     StrayBlkDevice*
     StrayBlkDevice::create(Devicegraph* devicegraph, const string& name, unsigned long long size)
     {
-	shared_ptr<StrayBlkDevice> stray_blk_device = make_shared<StrayBlkDevice>(new StrayBlkDevice::Impl(name, Region(0, size / 512, 512)));
+	shared_ptr<StrayBlkDevice> stray_blk_device = make_shared<StrayBlkDevice>(make_unique<StrayBlkDevice::Impl>(name, Region(0, size / 512, 512)));
 	Device::Impl::create(devicegraph, stray_blk_device);
 	return stray_blk_device.get();
     }
@@ -62,7 +62,7 @@ namespace storage
     StrayBlkDevice*
     StrayBlkDevice::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<StrayBlkDevice> stray_blk_device = make_shared<StrayBlkDevice>(new StrayBlkDevice::Impl(node));
+	shared_ptr<StrayBlkDevice> stray_blk_device = make_shared<StrayBlkDevice>(make_unique<StrayBlkDevice::Impl>(node));
 	Device::Impl::load(devicegraph, stray_blk_device);
 	return stray_blk_device.get();
     }
@@ -74,10 +74,23 @@ namespace storage
     }
 
 
+    StrayBlkDevice::StrayBlkDevice(unique_ptr<Device::Impl>&& impl)
+	: BlkDevice(std::move(impl))
+    {
+    }
+
+
     StrayBlkDevice*
     StrayBlkDevice::clone() const
     {
 	return new StrayBlkDevice(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Device>
+    StrayBlkDevice::clone_v2() const
+    {
+	return make_unique<StrayBlkDevice>(get_impl().clone());
     }
 
 

@@ -47,6 +47,7 @@ namespace storage
     protected:
 
 	Ext(Impl* impl);
+	ST_NO_SWIG Ext(std::unique_ptr<Device::Impl>&& impl);
 
     };
 

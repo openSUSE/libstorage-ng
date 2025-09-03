@@ -76,7 +76,7 @@ namespace storage
 	Devicegraph::Impl::vertex_descriptor source = devicegraph->get_impl().find_vertex(source_sid);
 	Devicegraph::Impl::vertex_descriptor target = devicegraph->get_impl().find_vertex(target_sid);
 
-	shared_ptr<Holder> holder = shared_ptr<Holder>(get_non_impl()->clone());
+	shared_ptr<Holder> holder = get_non_impl()->clone_v2();
 
 	Devicegraph::Impl::edge_descriptor edge = devicegraph->get_impl().add_edge_v2(source, target, holder);
 	holder->get_impl().set_devicegraph_and_edge(devicegraph, edge);

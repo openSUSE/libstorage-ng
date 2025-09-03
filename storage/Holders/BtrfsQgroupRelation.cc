@@ -30,7 +30,7 @@ namespace storage
     BtrfsQgroupRelation*
     BtrfsQgroupRelation::create(Devicegraph* devicegraph, const Device* source, const Device* target)
     {
-	shared_ptr<BtrfsQgroupRelation> btrfs_qgroup_relation = make_shared<BtrfsQgroupRelation>(new BtrfsQgroupRelation::Impl());
+	shared_ptr<BtrfsQgroupRelation> btrfs_qgroup_relation = make_shared<BtrfsQgroupRelation>(make_unique<BtrfsQgroupRelation::Impl>());
 	Holder::Impl::create(devicegraph, source, target, btrfs_qgroup_relation);
 	return btrfs_qgroup_relation.get();
     }
@@ -39,7 +39,7 @@ namespace storage
     BtrfsQgroupRelation*
     BtrfsQgroupRelation::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<BtrfsQgroupRelation> btrfs_qgroup_relation = make_shared<BtrfsQgroupRelation>(new BtrfsQgroupRelation::Impl(node));
+	shared_ptr<BtrfsQgroupRelation> btrfs_qgroup_relation = make_shared<BtrfsQgroupRelation>(make_unique<BtrfsQgroupRelation::Impl>(node));
 	Holder::Impl::load(devicegraph, node, btrfs_qgroup_relation);
 	return btrfs_qgroup_relation.get();
     }
@@ -51,10 +51,23 @@ namespace storage
     }
 
 
+    BtrfsQgroupRelation::BtrfsQgroupRelation(unique_ptr<Holder::Impl>&& impl)
+	: Holder(std::move(impl))
+    {
+    }
+
+
     BtrfsQgroupRelation*
     BtrfsQgroupRelation::clone() const
     {
 	return new BtrfsQgroupRelation(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Holder>
+    BtrfsQgroupRelation::clone_v2() const
+    {
+	return make_unique<BtrfsQgroupRelation>(get_impl().clone());
     }
 
 

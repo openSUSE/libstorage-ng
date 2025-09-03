@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2017-2023] SUSE LLC
+ * Copyright (c) [2017-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -185,13 +185,15 @@ namespace storage
 	Impl& get_impl() { return *impl; }
 	const Impl& get_impl() const { return *impl; }
 
-	virtual Holder* clone() const = 0;
+	virtual Holder* clone() const ST_DEPRECATED = 0;
+	virtual std::unique_ptr<Holder> clone_v2() const = 0;
 
 	void save(xmlNode* node) const ST_DEPRECATED;
 
     protected:
 
-	Holder(Impl* impl);
+	Holder(Impl* impl) ST_DEPRECATED;
+	ST_NO_SWIG Holder(std::unique_ptr<Impl>&& impl);
 
 	/**
 	 * Create a holder between source and target in the devicegraph. Duplicate holders

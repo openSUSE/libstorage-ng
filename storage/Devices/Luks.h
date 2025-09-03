@@ -112,8 +112,10 @@ namespace storage
 	const Impl& get_impl() const;
 
 	virtual Luks* clone() const override;
+	virtual std::unique_ptr<Device> clone_v2() const override;
 
 	Luks(Impl* impl);
+	ST_NO_SWIG Luks(std::unique_ptr<Device::Impl>&& impl);
 
     };
 

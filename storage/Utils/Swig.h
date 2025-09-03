@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -28,6 +28,16 @@
 #define ST_DEPRECATED __attribute__((deprecated))
 #else
 #define ST_DEPRECATED
+#endif
+
+
+// For some function I could not get %ignore working in storage.i. Here is another way to
+// ignore functions. But this also does not always work.
+
+#ifndef SWIG
+#define ST_NO_SWIG
+#else
+#define ST_NO_SWIG %ignore
 #endif
 
 

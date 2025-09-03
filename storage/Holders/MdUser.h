@@ -52,6 +52,7 @@ namespace storage
 	static MdUser* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	virtual MdUser* clone() const override;
+	virtual std::unique_ptr<Holder> clone_v2() const override;
 
 	/**
 	 * Return whether the target device is a spare device.
@@ -128,6 +129,7 @@ namespace storage
 	const Impl& get_impl() const;
 
 	MdUser(Impl* impl);
+	ST_NO_SWIG MdUser(std::unique_ptr<Holder::Impl>&& impl);
 
     };
 

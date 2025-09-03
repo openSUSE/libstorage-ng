@@ -34,7 +34,7 @@ namespace storage
     Ext2*
     Ext2::create(Devicegraph* devicegraph)
     {
-	shared_ptr<Ext2> ext2 = make_shared<Ext2>(new Ext2::Impl());
+	shared_ptr<Ext2> ext2 = make_shared<Ext2>(make_unique<Ext2::Impl>());
 	Device::Impl::create(devicegraph, ext2);
 	return ext2.get();
     }
@@ -43,7 +43,7 @@ namespace storage
     Ext2*
     Ext2::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<Ext2> ext2 = make_shared<Ext2>(new Ext2::Impl(node));
+	shared_ptr<Ext2> ext2 = make_shared<Ext2>(make_unique<Ext2::Impl>(node));
 	Device::Impl::load(devicegraph, ext2);
 	return ext2.get();
     }
@@ -55,10 +55,23 @@ namespace storage
     }
 
 
+    Ext2::Ext2(unique_ptr<Device::Impl>&& impl)
+	: Ext(std::move(impl))
+    {
+    }
+
+
     Ext2*
     Ext2::clone() const
     {
 	return new Ext2(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Device>
+    Ext2::clone_v2() const
+    {
+	return make_unique<Ext2>(get_impl().clone());
     }
 
 

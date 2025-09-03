@@ -58,8 +58,10 @@ namespace storage
 	const Impl& get_impl() const;
 
 	virtual Udf* clone() const override;
+	virtual std::unique_ptr<Device> clone_v2() const override;
 
 	Udf(Impl* impl);
+	ST_NO_SWIG Udf(std::unique_ptr<Device::Impl>&& impl);
 
     };
 

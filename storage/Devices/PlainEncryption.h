@@ -69,8 +69,10 @@ namespace storage
 	const Impl& get_impl() const;
 
 	virtual PlainEncryption* clone() const override;
+	virtual std::unique_ptr<Device> clone_v2() const override;
 
 	PlainEncryption(Impl* impl);
+	ST_NO_SWIG PlainEncryption(std::unique_ptr<Device::Impl>&& impl);
 
     };
 

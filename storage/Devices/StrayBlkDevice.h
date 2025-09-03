@@ -102,8 +102,10 @@ namespace storage
 	const Impl& get_impl() const;
 
 	virtual StrayBlkDevice* clone() const override;
+	virtual std::unique_ptr<Device> clone_v2() const override;
 
 	StrayBlkDevice(Impl* impl);
+	ST_NO_SWIG StrayBlkDevice(std::unique_ptr<Device::Impl>&& impl);
 
     };
 

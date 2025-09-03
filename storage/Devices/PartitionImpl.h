@@ -59,7 +59,7 @@ namespace storage
 
 	virtual string get_name_sort_key() const override;
 
-	virtual Impl* clone() const override { return new Impl(*this); }
+	virtual unique_ptr<Device::Impl> clone() const override { return make_unique<Impl>(*this); }
 
 	virtual void probe_pass_1a(Prober& prober) override;
 

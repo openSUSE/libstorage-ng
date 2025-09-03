@@ -53,6 +53,7 @@ namespace storage
 	static FilesystemUser* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	virtual FilesystemUser* clone() const override;
+	virtual std::unique_ptr<Holder> clone_v2() const override;
 
 	/**
 	 * Indicates whether the block device is used as an external journal device.
@@ -75,6 +76,7 @@ namespace storage
 	const Impl& get_impl() const;
 
 	FilesystemUser(Impl* impl);
+	ST_NO_SWIG FilesystemUser(std::unique_ptr<Holder::Impl>&& impl);
 
     };
 

@@ -53,6 +53,7 @@ namespace storage
 	const Impl& get_impl() const;
 
 	virtual Msdos* clone() const override;
+	virtual std::unique_ptr<Device> clone_v2() const override;
 
 	/**
 	 * Get the size of the MBR gap (see
@@ -71,6 +72,7 @@ namespace storage
 	void set_minimal_mbr_gap(unsigned long minimal_mbr_gap);
 
 	Msdos(Impl* impl);
+	ST_NO_SWIG Msdos(std::unique_ptr<Device::Impl>&& impl);
 
     };
 

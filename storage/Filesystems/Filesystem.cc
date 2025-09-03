@@ -38,6 +38,12 @@ namespace storage
     }
 
 
+    Filesystem::Filesystem(unique_ptr<Device::Impl>&& impl)
+	: Mountable(std::move(impl))
+    {
+    }
+
+
     Filesystem::Impl&
     Filesystem::get_impl()
     {

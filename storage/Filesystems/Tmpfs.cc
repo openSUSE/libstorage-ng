@@ -33,7 +33,7 @@ namespace storage
     Tmpfs*
     Tmpfs::create(Devicegraph* devicegraph)
     {
-	shared_ptr<Tmpfs> tmpfs = make_shared<Tmpfs>(new Tmpfs::Impl());
+	shared_ptr<Tmpfs> tmpfs = make_shared<Tmpfs>(make_unique<Tmpfs::Impl>());
 	Device::Impl::create(devicegraph, tmpfs);
 	return tmpfs.get();
     }
@@ -42,7 +42,7 @@ namespace storage
     Tmpfs*
     Tmpfs::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<Tmpfs> tmpfs = make_shared<Tmpfs>(new Tmpfs::Impl(node));
+	shared_ptr<Tmpfs> tmpfs = make_shared<Tmpfs>(make_unique<Tmpfs::Impl>(node));
 	Device::Impl::load(devicegraph, tmpfs);
 	return tmpfs.get();
     }
@@ -54,10 +54,23 @@ namespace storage
     }
 
 
+    Tmpfs::Tmpfs(unique_ptr<Device::Impl>&& impl)
+	: Filesystem(std::move(impl))
+    {
+    }
+
+
     Tmpfs*
     Tmpfs::clone() const
     {
 	return new Tmpfs(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Device>
+    Tmpfs::clone_v2() const
+    {
+	return make_unique<Tmpfs>(get_impl().clone());
     }
 
 

@@ -205,6 +205,7 @@ namespace storage
     protected:
 
 	BlkFilesystem(Impl* impl);
+	ST_NO_SWIG BlkFilesystem(std::unique_ptr<Device::Impl>&& impl);
 
     };
 

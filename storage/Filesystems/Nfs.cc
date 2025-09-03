@@ -40,7 +40,7 @@ namespace storage
     Nfs*
     Nfs::create(Devicegraph* devicegraph, const string& server, const string& path)
     {
-	shared_ptr<Nfs> nfs = make_shared<Nfs>(new Nfs::Impl(server, path));
+	shared_ptr<Nfs> nfs = make_shared<Nfs>(make_unique<Nfs::Impl>(server, path));
 	Device::Impl::create(devicegraph, nfs);
 	return nfs.get();
     }
@@ -49,7 +49,7 @@ namespace storage
     Nfs*
     Nfs::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<Nfs> nfs = make_shared<Nfs>(new Nfs::Impl(node));
+	shared_ptr<Nfs> nfs = make_shared<Nfs>(make_unique<Nfs::Impl>(node));
 	Device::Impl::load(devicegraph, nfs);
 	return nfs.get();
     }
@@ -57,6 +57,12 @@ namespace storage
 
     Nfs::Nfs(Impl* impl)
 	: Filesystem(impl)
+    {
+    }
+
+
+    Nfs::Nfs(unique_ptr<Device::Impl>&& impl)
+	: Filesystem(std::move(impl))
     {
     }
 
@@ -79,6 +85,13 @@ namespace storage
     Nfs::clone() const
     {
 	return new Nfs(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Device>
+    Nfs::clone_v2() const
+    {
+	return make_unique<Nfs>(get_impl().clone());
     }
 
 

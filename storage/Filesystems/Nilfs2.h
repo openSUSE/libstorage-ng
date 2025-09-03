@@ -56,8 +56,10 @@ namespace storage
 	const Impl& get_impl() const;
 
 	virtual Nilfs2* clone() const override;
+	virtual std::unique_ptr<Device> clone_v2() const override;
 
 	Nilfs2(Impl* impl);
+	ST_NO_SWIG Nilfs2(std::unique_ptr<Device::Impl>&& impl);
 
     };
 

@@ -69,9 +69,9 @@ namespace storage
     {
     public:
 
-	virtual ~Impl() {}
+	virtual ~Impl() = default;
 
-	virtual Impl* clone() const = 0;
+	virtual unique_ptr<Impl> clone() const = 0;
 
 	virtual const char* get_classname() const = 0;
 

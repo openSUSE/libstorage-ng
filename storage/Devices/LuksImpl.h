@@ -63,7 +63,7 @@ namespace storage
 
 	static void probe_lukses(Prober& prober);
 
-	virtual Impl* clone() const override { return new Impl(*this); }
+	virtual unique_ptr<Device::Impl> clone() const override { return make_unique<Impl>(*this); }
 
 	virtual void save(xmlNode* node) const override;
 

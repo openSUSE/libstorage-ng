@@ -281,8 +281,10 @@ namespace storage
 	const Impl& get_impl() const;
 
 	virtual Btrfs* clone() const override;
+	virtual std::unique_ptr<Device> clone_v2() const override;
 
 	Btrfs(Impl* impl);
+	ST_NO_SWIG Btrfs(std::unique_ptr<Device::Impl>&& impl);
 
     };
 

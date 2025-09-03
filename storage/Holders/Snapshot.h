@@ -55,6 +55,7 @@ namespace storage
 	static Snapshot* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	virtual Snapshot* clone() const override;
+	virtual std::unique_ptr<Holder> clone_v2() const override;
 
     public:
 
@@ -64,6 +65,7 @@ namespace storage
 	const Impl& get_impl() const;
 
 	Snapshot(Impl* impl);
+	ST_NO_SWIG Snapshot(std::unique_ptr<Holder::Impl>&& impl);
 
     };
 

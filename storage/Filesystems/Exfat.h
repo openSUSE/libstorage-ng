@@ -56,8 +56,10 @@ namespace storage
 	const Impl& get_impl() const;
 
 	virtual Exfat* clone() const override;
+	virtual std::unique_ptr<Device> clone_v2() const override;
 
 	Exfat(Impl* impl);
+	ST_NO_SWIG Exfat(std::unique_ptr<Device::Impl>&& impl);
 
     };
 

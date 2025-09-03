@@ -122,8 +122,10 @@ namespace storage
 	const Impl& get_impl() const;
 
 	virtual Multipath* clone() const override;
+	virtual std::unique_ptr<Device> clone_v2() const override;
 
 	Multipath(Impl* impl);
+	ST_NO_SWIG Multipath(std::unique_ptr<Device::Impl>&& impl);
 
     };
 

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -506,7 +506,7 @@ namespace storage
     {
 	vertex_descriptor target_vertex = boost::target(old_edge, graph);
 
-	shared_ptr<Holder> new_holder = shared_ptr<Holder>(graph[old_edge].get()->clone());
+	shared_ptr<Holder> new_holder = graph[old_edge].get()->clone_v2();
 
 	Devicegraph::Impl::edge_descriptor new_edge = add_edge_v2(source_vertex, target_vertex,
 								  new_holder);
@@ -528,7 +528,7 @@ namespace storage
     {
 	vertex_descriptor source_vertex = boost::source(old_edge, graph);
 
-	shared_ptr<Holder> new_holder = shared_ptr<Holder>(graph[old_edge].get()->clone());
+	shared_ptr<Holder> new_holder = graph[old_edge].get()->clone_v2();
 
 	Devicegraph::Impl::edge_descriptor new_edge = add_edge_v2(source_vertex, target_vertex,
 								  new_holder);

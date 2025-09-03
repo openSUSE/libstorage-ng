@@ -92,6 +92,7 @@ namespace storage
     protected:
 
 	Filesystem(Impl* impl);
+	ST_NO_SWIG Filesystem(std::unique_ptr<Device::Impl>&& impl);
 
     };
 

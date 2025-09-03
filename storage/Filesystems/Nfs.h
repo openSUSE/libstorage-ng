@@ -108,8 +108,10 @@ namespace storage
 	const Impl& get_impl() const;
 
 	virtual Nfs* clone() const override;
+	virtual std::unique_ptr<Device> clone_v2() const override;
 
 	Nfs(Impl* impl);
+	ST_NO_SWIG Nfs(std::unique_ptr<Device::Impl>&& impl);
 
     };
 

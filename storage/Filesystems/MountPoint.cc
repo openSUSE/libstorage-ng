@@ -40,7 +40,7 @@ namespace storage
     MountPoint*
     MountPoint::create(Devicegraph* devicegraph, const string& path)
     {
-	shared_ptr<MountPoint> mount_point = make_shared<MountPoint>(new MountPoint::Impl(path));
+	shared_ptr<MountPoint> mount_point = make_shared<MountPoint>(make_unique<MountPoint::Impl>(path));
 	Device::Impl::create(devicegraph, mount_point);
 	return mount_point.get();
     }
@@ -49,7 +49,7 @@ namespace storage
     MountPoint*
     MountPoint::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<MountPoint> mount_point = make_shared<MountPoint>(new MountPoint::Impl(node));
+	shared_ptr<MountPoint> mount_point = make_shared<MountPoint>(make_unique<MountPoint::Impl>(node));
 	Device::Impl::load(devicegraph, mount_point);
 	return mount_point.get();
     }
@@ -57,6 +57,12 @@ namespace storage
 
     MountPoint::MountPoint(Impl* impl)
 	: Device(impl)
+    {
+    }
+
+
+    MountPoint::MountPoint(unique_ptr<Device::Impl>&& impl)
+	: Device(std::move(impl))
     {
     }
 
@@ -279,6 +285,13 @@ namespace storage
     MountPoint::clone() const
     {
 	return new MountPoint(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Device>
+    MountPoint::clone_v2() const
+    {
+	return make_unique<MountPoint>(get_impl().clone());
     }
 
 

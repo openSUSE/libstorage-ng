@@ -347,8 +347,10 @@ namespace storage
 	const Impl& get_impl() const;
 
 	virtual Md* clone() const override;
+	virtual std::unique_ptr<Device> clone_v2() const override;
 
 	Md(Impl* impl);
+	ST_NO_SWIG Md(std::unique_ptr<Device::Impl>&& impl);
 
     };
 

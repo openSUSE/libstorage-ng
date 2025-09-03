@@ -39,6 +39,12 @@ namespace storage
     }
 
 
+    BlkDevice::BlkDevice(unique_ptr<Device::Impl>&& impl)
+	: Device(std::move(impl))
+    {
+    }
+
+
     BlkDevice::Impl&
     BlkDevice::get_impl()
     {

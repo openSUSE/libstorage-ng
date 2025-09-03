@@ -39,6 +39,12 @@ namespace storage
     }
 
 
+    BlkFilesystem::BlkFilesystem(unique_ptr<Device::Impl>&& impl)
+       : Filesystem(std::move(impl))
+    {
+    }
+
+
     BlkFilesystem::Impl&
     BlkFilesystem::get_impl()
     {

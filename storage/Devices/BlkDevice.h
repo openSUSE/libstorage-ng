@@ -406,6 +406,7 @@ namespace storage
     protected:
 
 	BlkDevice(Impl* impl);
+	ST_NO_SWIG BlkDevice(std::unique_ptr<Device::Impl>&& impl);
 
     };
 

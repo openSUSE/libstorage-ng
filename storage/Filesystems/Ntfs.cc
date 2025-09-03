@@ -34,7 +34,7 @@ namespace storage
     Ntfs*
     Ntfs::create(Devicegraph* devicegraph)
     {
-	shared_ptr<Ntfs> ntfs = make_shared<Ntfs>(new Ntfs::Impl());
+	shared_ptr<Ntfs> ntfs = make_shared<Ntfs>(make_unique<Ntfs::Impl>());
 	Device::Impl::create(devicegraph, ntfs);
 	return ntfs.get();
     }
@@ -43,7 +43,7 @@ namespace storage
     Ntfs*
     Ntfs::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<Ntfs> ntfs = make_shared<Ntfs>(new Ntfs::Impl(node));
+	shared_ptr<Ntfs> ntfs = make_shared<Ntfs>(make_unique<Ntfs::Impl>(node));
 	Device::Impl::load(devicegraph, ntfs);
 	return ntfs.get();
     }
@@ -55,10 +55,23 @@ namespace storage
     }
 
 
+    Ntfs::Ntfs(unique_ptr<Device::Impl>&& impl)
+	: BlkFilesystem(std::move(impl))
+    {
+    }
+
+
     Ntfs*
     Ntfs::clone() const
     {
 	return new Ntfs(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Device>
+    Ntfs::clone_v2() const
+    {
+	return make_unique<Ntfs>(get_impl().clone());
     }
 
 

@@ -55,7 +55,7 @@ namespace storage
 
 	virtual PtType get_type() const override { return PtType::IMPLICIT; }
 
-	virtual Impl* clone() const override { return new Impl(*this); }
+	virtual unique_ptr<Device::Impl> clone() const override { return make_unique<Impl>(*this); }
 
 	virtual void probe_pass_1c(Prober& prober) override;
 

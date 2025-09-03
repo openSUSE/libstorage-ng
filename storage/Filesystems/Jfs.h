@@ -57,8 +57,10 @@ namespace storage
 	const Impl& get_impl() const;
 
 	virtual Jfs* clone() const override;
+	virtual std::unique_ptr<Device> clone_v2() const override;
 
 	Jfs(Impl* impl);
+	ST_NO_SWIG Jfs(std::unique_ptr<Device::Impl>&& impl);
 
     };
 

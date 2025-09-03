@@ -58,8 +58,10 @@ namespace storage
 	const Impl& get_impl() const;
 
 	virtual Iso9660* clone() const override;
+	virtual std::unique_ptr<Device> clone_v2() const override;
 
 	Iso9660(Impl* impl);
+	ST_NO_SWIG Iso9660(std::unique_ptr<Device::Impl>&& impl);
 
     };
 

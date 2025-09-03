@@ -72,6 +72,12 @@ namespace storage
     }
 
 
+    Mountable::Mountable(unique_ptr<Device::Impl>&& impl)
+	: Device(std::move(impl))
+    {
+    }
+
+
     Mountable::Impl&
     Mountable::get_impl()
     {

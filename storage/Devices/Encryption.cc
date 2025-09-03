@@ -40,7 +40,7 @@ namespace storage
     Encryption*
     Encryption::create(Devicegraph* devicegraph, const string& dm_table_name)
     {
-	shared_ptr<Encryption> encryption = make_shared<Encryption>(new Encryption::Impl(dm_table_name));
+	shared_ptr<Encryption> encryption = make_shared<Encryption>(make_unique<Encryption::Impl>(dm_table_name));
 	Device::Impl::create(devicegraph, encryption);
 	return encryption.get();
     }
@@ -49,7 +49,7 @@ namespace storage
     Encryption*
     Encryption::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<Encryption> encryption = make_shared<Encryption>(new Encryption::Impl(node));
+	shared_ptr<Encryption> encryption = make_shared<Encryption>(make_unique<Encryption::Impl>(node));
 	Device::Impl::load(devicegraph, encryption);
 	return encryption.get();
     }
@@ -57,6 +57,12 @@ namespace storage
 
     Encryption::Encryption(Impl* impl)
 	: BlkDevice(impl)
+    {
+    }
+
+
+    Encryption::Encryption(unique_ptr<Device::Impl>&& impl)
+	: BlkDevice(std::move(impl))
     {
     }
 
@@ -114,6 +120,13 @@ namespace storage
     Encryption::clone() const
     {
 	return new Encryption(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Device>
+    Encryption::clone_v2() const
+    {
+	return make_unique<Encryption>(get_impl().clone());
     }
 
 

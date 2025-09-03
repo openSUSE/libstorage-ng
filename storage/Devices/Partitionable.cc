@@ -43,6 +43,12 @@ namespace storage
     }
 
 
+    Partitionable::Partitionable(unique_ptr<Device::Impl>&& impl)
+	: BlkDevice(std::move(impl))
+    {
+    }
+
+
     Partitionable::Impl&
     Partitionable::get_impl()
     {
