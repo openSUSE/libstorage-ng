@@ -67,7 +67,7 @@ namespace storage
 	virtual void probe_pass_1a(Prober& prober) override;
 	virtual void probe_pass_1b(Prober& prober) override;
 
-	virtual Impl* clone() const override { return new Impl(*this); }
+	virtual unique_ptr<Device::Impl> clone() const override { return make_unique<Impl>(*this); }
 
 	virtual ResizeInfo detect_resize_info(const BlkDevice* blk_device = nullptr) const override;
 

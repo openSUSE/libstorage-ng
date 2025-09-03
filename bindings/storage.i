@@ -6,6 +6,7 @@
 
 %ignore "get_impl";
 %ignore "clone";
+%ignore "clone_v2";
 %ignore "operator <<";
 %ignore "get_all_if";
 

@@ -34,7 +34,7 @@ namespace storage
     Gpt*
     Gpt::create(Devicegraph* devicegraph)
     {
-	shared_ptr<Gpt> gpt = make_shared<Gpt>(new Gpt::Impl());
+	shared_ptr<Gpt> gpt = make_shared<Gpt>(make_unique<Gpt::Impl>());
 	Device::Impl::create(devicegraph, gpt);
 	return gpt.get();
     }
@@ -43,7 +43,7 @@ namespace storage
     Gpt*
     Gpt::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<Gpt> gpt = make_shared<Gpt>(new Gpt::Impl(node));
+	shared_ptr<Gpt> gpt = make_shared<Gpt>(make_unique<Gpt::Impl>(node));
 	Device::Impl::load(devicegraph, gpt);
 	return gpt.get();
     }
@@ -55,10 +55,23 @@ namespace storage
     }
 
 
+    Gpt::Gpt(unique_ptr<Device::Impl>&& impl)
+	: PartitionTable(std::move(impl))
+    {
+    }
+
+
     Gpt*
     Gpt::clone() const
     {
 	return new Gpt(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Device>
+    Gpt::clone_v2() const
+    {
+	return make_unique<Gpt>(get_impl().clone());
     }
 
 

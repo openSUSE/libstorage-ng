@@ -30,7 +30,7 @@ namespace storage
     Snapshot*
     Snapshot::create(Devicegraph* devicegraph, const Device* source, const Device* target)
     {
-	shared_ptr<Snapshot> snapshot = make_shared<Snapshot>(new Snapshot::Impl());
+	shared_ptr<Snapshot> snapshot = make_shared<Snapshot>(make_unique<Snapshot::Impl>());
 	Holder::Impl::create(devicegraph, source, target, snapshot);
 	return snapshot.get();
     }
@@ -39,7 +39,7 @@ namespace storage
     Snapshot*
     Snapshot::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<Snapshot> snapshot = make_shared<Snapshot>(new Snapshot::Impl(node));
+	shared_ptr<Snapshot> snapshot = make_shared<Snapshot>(make_unique<Snapshot::Impl>(node));
 	Holder::Impl::load(devicegraph, node, snapshot);
 	return snapshot.get();
     }
@@ -51,10 +51,23 @@ namespace storage
     }
 
 
+    Snapshot::Snapshot(unique_ptr<Holder::Impl>&& impl)
+	: Holder(std::move(impl))
+    {
+    }
+
+
     Snapshot*
     Snapshot::clone() const
     {
 	return new Snapshot(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Holder>
+    Snapshot::clone_v2() const
+    {
+	return make_unique<Snapshot>(get_impl().clone());
     }
 
 

@@ -34,7 +34,7 @@ namespace storage
     BcacheCset*
     BcacheCset::create(Devicegraph* devicegraph)
     {
-	shared_ptr<BcacheCset> bcache_cset = make_shared<BcacheCset>(new BcacheCset::Impl());
+	shared_ptr<BcacheCset> bcache_cset = make_shared<BcacheCset>(make_unique<BcacheCset::Impl>());
 	Device::Impl::create(devicegraph, bcache_cset);
 	return bcache_cset.get();
     }
@@ -43,7 +43,7 @@ namespace storage
     BcacheCset*
     BcacheCset::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<BcacheCset> bcache_cset = make_shared<BcacheCset>(new BcacheCset::Impl(node));
+	shared_ptr<BcacheCset> bcache_cset = make_shared<BcacheCset>(make_unique<BcacheCset::Impl>(node));
 	Device::Impl::load(devicegraph, bcache_cset);
 	return bcache_cset.get();
     }
@@ -55,10 +55,23 @@ namespace storage
     }
 
 
+    BcacheCset::BcacheCset(unique_ptr<Device::Impl>&& impl)
+	: Device(std::move(impl))
+    {
+    }
+
+
     BcacheCset*
     BcacheCset::clone() const
     {
 	return new BcacheCset(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Device>
+    BcacheCset::clone_v2() const
+    {
+	return make_unique<BcacheCset>(get_impl().clone());
     }
 
 

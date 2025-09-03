@@ -83,8 +83,10 @@ namespace storage
 	const Impl& get_impl() const;
 
 	virtual BitlockerV2* clone() const override;
+	virtual std::unique_ptr<Device> clone_v2() const override;
 
 	BitlockerV2(Impl* impl);
+	ST_NO_SWIG BitlockerV2(std::unique_ptr<Device::Impl>&& impl);
 
     };
 

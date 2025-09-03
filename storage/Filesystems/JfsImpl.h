@@ -74,7 +74,7 @@ namespace storage
 
 	virtual string get_displayname() const override { return "jfs"; }
 
-	virtual Impl* clone() const override { return new Impl(*this); }
+	virtual unique_ptr<Device::Impl> clone() const override { return make_unique<Impl>(*this); }
 
 	virtual uf_t used_features_pure() const override { return UF_JFS; }
 

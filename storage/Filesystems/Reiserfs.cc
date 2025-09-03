@@ -33,7 +33,7 @@ namespace storage
     Reiserfs*
     Reiserfs::create(Devicegraph* devicegraph)
     {
-	shared_ptr<Reiserfs> reiserfs = make_shared<Reiserfs>(new Reiserfs::Impl());
+	shared_ptr<Reiserfs> reiserfs = make_shared<Reiserfs>(make_unique<Reiserfs::Impl>());
 	Device::Impl::create(devicegraph, reiserfs);
 	return reiserfs.get();
     }
@@ -42,7 +42,7 @@ namespace storage
     Reiserfs*
     Reiserfs::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<Reiserfs> reiserfs = make_shared<Reiserfs>(new Reiserfs::Impl(node));
+	shared_ptr<Reiserfs> reiserfs = make_shared<Reiserfs>(make_unique<Reiserfs::Impl>(node));
 	Device::Impl::load(devicegraph, reiserfs);
 	return reiserfs.get();
     }
@@ -54,10 +54,23 @@ namespace storage
     }
 
 
+    Reiserfs::Reiserfs(unique_ptr<Device::Impl>&& impl)
+	: BlkFilesystem(std::move(impl))
+    {
+    }
+
+
     Reiserfs*
     Reiserfs::clone() const
     {
 	return new Reiserfs(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Device>
+    Reiserfs::clone_v2() const
+    {
+	return make_unique<Reiserfs>(get_impl().clone());
     }
 
 

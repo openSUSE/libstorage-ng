@@ -33,7 +33,7 @@ namespace storage
     Exfat*
     Exfat::create(Devicegraph* devicegraph)
     {
-	shared_ptr<Exfat> exfat = make_shared<Exfat>(new Exfat::Impl());
+	shared_ptr<Exfat> exfat = make_shared<Exfat>(make_unique<Exfat::Impl>());
 	Device::Impl::create(devicegraph, exfat);
 	return exfat.get();
     }
@@ -42,7 +42,7 @@ namespace storage
     Exfat*
     Exfat::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<Exfat> exfat = make_shared<Exfat>(new Exfat::Impl(node));
+	shared_ptr<Exfat> exfat = make_shared<Exfat>(make_unique<Exfat::Impl>(node));
 	Device::Impl::load(devicegraph, exfat);
 	return exfat.get();
     }
@@ -54,10 +54,23 @@ namespace storage
     }
 
 
+    Exfat::Exfat(unique_ptr<Device::Impl>&& impl)
+	: BlkFilesystem(std::move(impl))
+    {
+    }
+
+
     Exfat*
     Exfat::clone() const
     {
 	return new Exfat(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Device>
+    Exfat::clone_v2() const
+    {
+	return make_unique<Exfat>(get_impl().clone());
     }
 
 

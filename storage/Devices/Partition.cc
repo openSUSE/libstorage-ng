@@ -141,7 +141,7 @@ namespace storage
 	if (!boost::starts_with(name, DEV_DIR "/"))
 	    ST_THROW(Exception("invalid partition name"));
 
-	shared_ptr<Partition> partition = make_shared<Partition>(new Partition::Impl(name, region, type));
+	shared_ptr<Partition> partition = make_shared<Partition>(make_unique<Partition::Impl>(name, region, type));
 	Device::Impl::create(devicegraph, partition);
 	return partition.get();
     }
@@ -150,7 +150,7 @@ namespace storage
     Partition*
     Partition::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<Partition> partition = make_shared<Partition>(new Partition::Impl(node));
+	shared_ptr<Partition> partition = make_shared<Partition>(make_unique<Partition::Impl>(node));
 	Device::Impl::load(devicegraph, partition);
 	return partition.get();
     }
@@ -162,10 +162,23 @@ namespace storage
     }
 
 
+    Partition::Partition(unique_ptr<Device::Impl>&& impl)
+	: BlkDevice(std::move(impl))
+    {
+    }
+
+
     Partition*
     Partition::clone() const
     {
 	return new Partition(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Device>
+    Partition::clone_v2() const
+    {
+	return make_unique<Partition>(get_impl().clone());
     }
 
 

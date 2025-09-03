@@ -33,7 +33,7 @@ namespace storage
     Luks*
     Luks::create(Devicegraph* devicegraph, const string& dm_table_name)
     {
-	shared_ptr<Luks> luks = make_shared<Luks>(new Luks::Impl(dm_table_name));
+	shared_ptr<Luks> luks = make_shared<Luks>(make_unique<Luks::Impl>(dm_table_name));
 	Device::Impl::create(devicegraph, luks);
 	return luks.get();
     }
@@ -42,7 +42,7 @@ namespace storage
     Luks*
     Luks::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<Luks> luks = make_shared<Luks>(new Luks::Impl(node));
+	shared_ptr<Luks> luks = make_shared<Luks>(make_unique<Luks::Impl>(node));
 	Device::Impl::load(devicegraph, luks);
 	return luks.get();
     }
@@ -54,10 +54,23 @@ namespace storage
     }
 
 
+    Luks::Luks(unique_ptr<Device::Impl>&& impl)
+	: Encryption(std::move(impl))
+    {
+    }
+
+
     Luks*
     Luks::clone() const
     {
 	return new Luks(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Device>
+    Luks::clone_v2() const
+    {
+	return make_unique<Luks>(get_impl().clone());
     }
 
 

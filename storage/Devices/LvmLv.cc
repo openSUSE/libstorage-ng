@@ -60,7 +60,7 @@ namespace storage
     LvmLv::create(Devicegraph* devicegraph, const string& vg_name, const string& lv_name,
 		  LvType lv_type)
     {
-	shared_ptr<LvmLv> lvm_lv = make_shared<LvmLv>(new LvmLv::Impl(vg_name, lv_name, lv_type));
+	shared_ptr<LvmLv> lvm_lv = make_shared<LvmLv>(make_unique<LvmLv::Impl>(vg_name, lv_name, lv_type));
 	Device::Impl::create(devicegraph, lvm_lv);
 	return lvm_lv.get();
     }
@@ -69,7 +69,7 @@ namespace storage
     LvmLv*
     LvmLv::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<LvmLv> lvm_lv = make_shared<LvmLv>(new LvmLv::Impl(node));
+	shared_ptr<LvmLv> lvm_lv = make_shared<LvmLv>(make_unique<LvmLv::Impl>(node));
 	Device::Impl::load(devicegraph, lvm_lv);
 	return lvm_lv.get();
     }
@@ -81,10 +81,23 @@ namespace storage
     }
 
 
+    LvmLv::LvmLv(unique_ptr<Device::Impl>&& impl)
+	: BlkDevice(std::move(impl))
+    {
+    }
+
+
     LvmLv*
     LvmLv::clone() const
     {
 	return new LvmLv(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Device>
+    LvmLv::clone_v2() const
+    {
+	return make_unique<LvmLv>(get_impl().clone());
     }
 
 

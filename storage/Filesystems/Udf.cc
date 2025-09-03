@@ -33,7 +33,7 @@ namespace storage
     Udf*
     Udf::create(Devicegraph* devicegraph)
     {
-	shared_ptr<Udf> udf = make_shared<Udf>(new Udf::Impl());
+	shared_ptr<Udf> udf = make_shared<Udf>(make_unique<Udf::Impl>());
 	Device::Impl::create(devicegraph, udf);
 	return udf.get();
     }
@@ -42,7 +42,7 @@ namespace storage
     Udf*
     Udf::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<Udf> udf = make_shared<Udf>(new Udf::Impl(node));
+	shared_ptr<Udf> udf = make_shared<Udf>(make_unique<Udf::Impl>(node));
 	Device::Impl::load(devicegraph, udf);
 	return udf.get();
     }
@@ -54,10 +54,23 @@ namespace storage
     }
 
 
+    Udf::Udf(unique_ptr<Device::Impl>&& impl)
+	: BlkFilesystem(std::move(impl))
+    {
+    }
+
+
     Udf*
     Udf::clone() const
     {
 	return new Udf(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Device>
+    Udf::clone_v2() const
+    {
+	return make_unique<Udf>(get_impl().clone());
     }
 
 

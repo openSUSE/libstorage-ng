@@ -31,7 +31,7 @@ namespace storage
     Subdevice*
     Subdevice::create(Devicegraph* devicegraph, const Device* source, const Device* target)
     {
-	shared_ptr<Subdevice> subdevice = make_shared<Subdevice>(new Subdevice::Impl());
+	shared_ptr<Subdevice> subdevice = make_shared<Subdevice>(make_unique<Subdevice::Impl>());
 	Holder::Impl::create(devicegraph, source, target, subdevice);
 	return subdevice.get();
     }
@@ -40,7 +40,7 @@ namespace storage
     Subdevice*
     Subdevice::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<Subdevice> subdevice = make_shared<Subdevice>(new Subdevice::Impl(node));
+	shared_ptr<Subdevice> subdevice = make_shared<Subdevice>(make_unique<Subdevice::Impl>(node));
 	Holder::Impl::load(devicegraph, node, subdevice);
 	return subdevice.get();
     }
@@ -52,10 +52,23 @@ namespace storage
     }
 
 
+    Subdevice::Subdevice(unique_ptr<Holder::Impl>&& impl)
+	: Holder(std::move(impl))
+    {
+    }
+
+
     Subdevice*
     Subdevice::clone() const
     {
 	return new Subdevice(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Holder>
+    Subdevice::clone_v2() const
+    {
+	return make_unique<Subdevice>(get_impl().clone());
     }
 
 

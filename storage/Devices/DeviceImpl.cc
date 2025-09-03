@@ -76,7 +76,7 @@ namespace storage
 	if (exists_in_devicegraph(devicegraph))
 	    ST_THROW(Exception(sformat("device already exists, sid:%d", get_sid())));
 
-	shared_ptr<Device> device = shared_ptr<Device>(get_non_impl()->clone());
+	shared_ptr<Device> device = get_non_impl()->clone_v2();
 
 	Devicegraph::Impl::vertex_descriptor vertex = devicegraph->get_impl().add_vertex_v2(device);
 	device->get_impl().set_devicegraph_and_vertex(devicegraph, vertex);

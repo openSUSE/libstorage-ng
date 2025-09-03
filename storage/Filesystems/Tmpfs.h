@@ -69,8 +69,10 @@ namespace storage
 	const Impl& get_impl() const;
 
 	virtual Tmpfs* clone() const override;
+	virtual std::unique_ptr<Device> clone_v2() const override;
 
 	Tmpfs(Impl* impl);
+	ST_NO_SWIG Tmpfs(std::unique_ptr<Device::Impl>&& impl);
 
     };
 

@@ -55,6 +55,7 @@ namespace storage
 	static Subdevice* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	virtual Subdevice* clone() const override;
+	virtual std::unique_ptr<Holder> clone_v2() const override;
 
     public:
 
@@ -64,6 +65,7 @@ namespace storage
 	const Impl& get_impl() const;
 
 	Subdevice(Impl* impl);
+	ST_NO_SWIG Subdevice(std::unique_ptr<Holder::Impl>&& impl);
 
     };
 

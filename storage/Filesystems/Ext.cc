@@ -37,6 +37,12 @@ namespace storage
     }
 
 
+    Ext::Ext(unique_ptr<Device::Impl>&& impl)
+	: BlkFilesystem(std::move(impl))
+    {
+    }
+
+
     Ext::Impl&
     Ext::get_impl()
     {

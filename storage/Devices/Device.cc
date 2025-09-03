@@ -47,6 +47,13 @@ namespace storage
     }
 
 
+    Device::Device(unique_ptr<Impl>&& impl)
+	: impl(std::move(impl))
+    {
+	ST_CHECK_PTR(Device::impl);
+    }
+
+
     Device::~Device() = default;
 
 

@@ -45,6 +45,13 @@ namespace storage
     }
 
 
+    Holder::Holder(unique_ptr<Impl>&& impl)
+	: impl(std::move(impl))
+    {
+	ST_CHECK_PTR(Holder::impl);
+    }
+
+
     Holder::~Holder() = default;
 
 

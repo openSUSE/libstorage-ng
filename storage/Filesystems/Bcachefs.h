@@ -56,8 +56,11 @@ namespace storage
 	const Impl& get_impl() const;
 
 	virtual Bcachefs* clone() const override;
+	virtual std::unique_ptr<Device> clone_v2() const override;
 
 	Bcachefs(Impl* impl);
+
+	ST_NO_SWIG Bcachefs(std::unique_ptr<Device::Impl>&& impl);
 
     };
 

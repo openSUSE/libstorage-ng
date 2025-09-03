@@ -34,7 +34,7 @@ namespace storage
     Msdos*
     Msdos::create(Devicegraph* devicegraph)
     {
-	shared_ptr<Msdos> msdos = make_shared<Msdos>(new Msdos::Impl());
+	shared_ptr<Msdos> msdos = make_shared<Msdos>(make_unique<Msdos::Impl>());
 	Device::Impl::create(devicegraph, msdos);
 	return msdos.get();
     }
@@ -43,7 +43,7 @@ namespace storage
     Msdos*
     Msdos::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<Msdos> msdos = make_shared<Msdos>(new Msdos::Impl(node));
+	shared_ptr<Msdos> msdos = make_shared<Msdos>(make_unique<Msdos::Impl>(node));
 	Device::Impl::load(devicegraph, msdos);
 	return msdos.get();
     }
@@ -55,10 +55,23 @@ namespace storage
     }
 
 
+    Msdos::Msdos(unique_ptr<Device::Impl>&& impl)
+	: PartitionTable(std::move(impl))
+    {
+    }
+
+
     Msdos*
     Msdos::clone() const
     {
 	return new Msdos(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Device>
+    Msdos::clone_v2() const
+    {
+	return make_unique<Msdos>(get_impl().clone());
     }
 
 

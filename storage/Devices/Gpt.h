@@ -73,8 +73,10 @@ namespace storage
 	const Impl& get_impl() const;
 
 	virtual Gpt* clone() const override;
+	virtual std::unique_ptr<Device> clone_v2() const override;
 
 	Gpt(Impl* impl);
+	ST_NO_SWIG Gpt(std::unique_ptr<Device::Impl>&& impl);
 
     };
 

@@ -35,7 +35,7 @@ namespace storage
     BtrfsQgroup*
     BtrfsQgroup::create(Devicegraph* devicegraph, const id_t& id)
     {
-	shared_ptr<BtrfsQgroup> btrfs_qgroup = make_shared<BtrfsQgroup>(new BtrfsQgroup::Impl(id));
+	shared_ptr<BtrfsQgroup> btrfs_qgroup = make_shared<BtrfsQgroup>(make_unique<BtrfsQgroup::Impl>(id));
 	Device::Impl::create(devicegraph, btrfs_qgroup);
 	return btrfs_qgroup.get();
     }
@@ -44,7 +44,7 @@ namespace storage
     BtrfsQgroup*
     BtrfsQgroup::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<BtrfsQgroup> btrfs_qgroup = make_shared<BtrfsQgroup>(new BtrfsQgroup::Impl(node));
+	shared_ptr<BtrfsQgroup> btrfs_qgroup = make_shared<BtrfsQgroup>(make_unique<BtrfsQgroup::Impl>(node));
 	Device::Impl::load(devicegraph, btrfs_qgroup);
 	return btrfs_qgroup.get();
     }
@@ -52,6 +52,12 @@ namespace storage
 
     BtrfsQgroup::BtrfsQgroup(Impl* impl)
 	: Device(impl)
+    {
+    }
+
+
+    BtrfsQgroup::BtrfsQgroup(unique_ptr<Device::Impl>&& impl)
+	: Device(std::move(impl))
     {
     }
 
@@ -192,6 +198,13 @@ namespace storage
     BtrfsQgroup::clone() const
     {
 	return new BtrfsQgroup(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Device>
+    BtrfsQgroup::clone_v2() const
+    {
+	return make_unique<BtrfsQgroup>(get_impl().clone());
     }
 
 

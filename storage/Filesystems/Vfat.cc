@@ -33,7 +33,7 @@ namespace storage
     Vfat*
     Vfat::create(Devicegraph* devicegraph)
     {
-	shared_ptr<Vfat> vfat = make_shared<Vfat>(new Vfat::Impl());
+	shared_ptr<Vfat> vfat = make_shared<Vfat>(make_unique<Vfat::Impl>());
 	Device::Impl::create(devicegraph, vfat);
 	return vfat.get();
     }
@@ -42,7 +42,7 @@ namespace storage
     Vfat*
     Vfat::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<Vfat> vfat = make_shared<Vfat>(new Vfat::Impl(node));
+	shared_ptr<Vfat> vfat = make_shared<Vfat>(make_unique<Vfat::Impl>(node));
 	Device::Impl::load(devicegraph, vfat);
 	return vfat.get();
     }
@@ -54,10 +54,23 @@ namespace storage
     }
 
 
+    Vfat::Vfat(unique_ptr<Device::Impl>&& impl)
+	: BlkFilesystem(std::move(impl))
+    {
+    }
+
+
     Vfat*
     Vfat::clone() const
     {
 	return new Vfat(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Device>
+    Vfat::clone_v2() const
+    {
+	return make_unique<Vfat>(get_impl().clone());
     }
 
 

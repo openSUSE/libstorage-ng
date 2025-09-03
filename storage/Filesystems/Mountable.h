@@ -203,6 +203,7 @@ namespace storage
     protected:
 
 	Mountable(Impl* impl);
+	ST_NO_SWIG Mountable(std::unique_ptr<Device::Impl>&& impl);
 
     };
 

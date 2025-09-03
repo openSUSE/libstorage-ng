@@ -50,7 +50,7 @@ namespace storage
     Disk*
     Disk::create(Devicegraph* devicegraph, const string& name)
     {
-	shared_ptr<Disk> disk = make_shared<Disk>(new Disk::Impl(name));
+	shared_ptr<Disk> disk = make_shared<Disk>(make_unique<Disk::Impl>(name));
 	Device::Impl::create(devicegraph, disk);
 	return disk.get();
     }
@@ -59,7 +59,7 @@ namespace storage
     Disk*
     Disk::create(Devicegraph* devicegraph, const string& name, const Region& region)
     {
-	shared_ptr<Disk> disk = make_shared<Disk>(new Disk::Impl(name, region));
+	shared_ptr<Disk> disk = make_shared<Disk>(make_unique<Disk::Impl>(name, region));
 	Device::Impl::create(devicegraph, disk);
 	return disk.get();
     }
@@ -68,7 +68,7 @@ namespace storage
     Disk*
     Disk::create(Devicegraph* devicegraph, const string& name, unsigned long long size)
     {
-	shared_ptr<Disk> disk = make_shared<Disk>(new Disk::Impl(name, Region(0, size / 512, 512)));
+	shared_ptr<Disk> disk = make_shared<Disk>(make_unique<Disk::Impl>(name, Region(0, size / 512, 512)));
 	Device::Impl::create(devicegraph, disk);
 	return disk.get();
     }
@@ -77,7 +77,7 @@ namespace storage
     Disk*
     Disk::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<Disk> disk = make_shared<Disk>(new Disk::Impl(node));
+	shared_ptr<Disk> disk = make_shared<Disk>(make_unique<Disk::Impl>(node));
 	Device::Impl::load(devicegraph, disk);
 	return disk.get();
     }
@@ -89,10 +89,23 @@ namespace storage
     }
 
 
+    Disk::Disk(unique_ptr<Device::Impl>&& impl)
+	: Partitionable(std::move(impl))
+    {
+    }
+
+
     Disk*
     Disk::clone() const
     {
 	return new Disk(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Device>
+    Disk::clone_v2() const
+    {
+	return make_unique<Disk>(get_impl().clone());
     }
 
 

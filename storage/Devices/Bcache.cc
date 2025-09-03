@@ -54,7 +54,7 @@ namespace storage
     Bcache*
     Bcache::create(Devicegraph* devicegraph, const string& name, BcacheType type)
     {
-	shared_ptr<Bcache> bcache = make_shared<Bcache>(new Bcache::Impl(name, type));
+	shared_ptr<Bcache> bcache = make_shared<Bcache>(make_unique<Bcache::Impl>(name, type));
 	Device::Impl::create(devicegraph, bcache);
 	return bcache.get();
     }
@@ -63,7 +63,7 @@ namespace storage
     Bcache*
     Bcache::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<Bcache> bcache = make_shared<Bcache>(new Bcache::Impl(node));
+	shared_ptr<Bcache> bcache = make_shared<Bcache>(make_unique<Bcache::Impl>(node));
 	Device::Impl::load(devicegraph, bcache);
 	return bcache.get();
     }
@@ -75,10 +75,23 @@ namespace storage
     }
 
 
+    Bcache::Bcache(unique_ptr<Device::Impl>&& impl)
+	: Partitionable(std::move(impl))
+    {
+    }
+
+
     Bcache*
     Bcache::clone() const
     {
 	return new Bcache(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Device>
+    Bcache::clone_v2() const
+    {
+	return make_unique<Bcache>(get_impl().clone());
     }
 
 

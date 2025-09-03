@@ -33,7 +33,7 @@ namespace storage
     Iso9660*
     Iso9660::create(Devicegraph* devicegraph)
     {
-	shared_ptr<Iso9660> iso9660 = make_shared<Iso9660>(new Iso9660::Impl());
+	shared_ptr<Iso9660> iso9660 = make_shared<Iso9660>(make_unique<Iso9660::Impl>());
 	Device::Impl::create(devicegraph, iso9660);
 	return iso9660.get();
     }
@@ -42,7 +42,7 @@ namespace storage
     Iso9660*
     Iso9660::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<Iso9660> iso9660 = make_shared<Iso9660>(new Iso9660::Impl(node));
+	shared_ptr<Iso9660> iso9660 = make_shared<Iso9660>(make_unique<Iso9660::Impl>(node));
 	Device::Impl::load(devicegraph, iso9660);
 	return iso9660.get();
     }
@@ -54,10 +54,23 @@ namespace storage
     }
 
 
+    Iso9660::Iso9660(unique_ptr<Device::Impl>&& impl)
+	: BlkFilesystem(std::move(impl))
+    {
+    }
+
+
     Iso9660*
     Iso9660::clone() const
     {
 	return new Iso9660(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Device>
+    Iso9660::clone_v2() const
+    {
+	return make_unique<Iso9660>(get_impl().clone());
     }
 
 

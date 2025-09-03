@@ -74,7 +74,7 @@ namespace storage
 
 	virtual string get_displayname() const override { return "vfat"; }
 
-	virtual Impl* clone() const override { return new Impl(*this); }
+	virtual unique_ptr<Device::Impl> clone() const override { return make_unique<Impl>(*this); }
 
 	virtual ContentInfo detect_content_info_on_disk() const override;
 

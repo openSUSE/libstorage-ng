@@ -249,8 +249,10 @@ namespace storage
 	const Impl& get_impl() const;
 
 	virtual Bcache* clone() const override;
+	virtual std::unique_ptr<Device> clone_v2() const override;
 
 	Bcache(Impl* impl);
+	ST_NO_SWIG Bcache(std::unique_ptr<Device::Impl>&& impl);
 
     };
 

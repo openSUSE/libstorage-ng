@@ -33,7 +33,7 @@ namespace storage
     F2fs*
     F2fs::create(Devicegraph* devicegraph)
     {
-	shared_ptr<F2fs> f2fs = make_shared<F2fs>(new F2fs::Impl());
+	shared_ptr<F2fs> f2fs = make_shared<F2fs>(make_unique<F2fs::Impl>());
 	Device::Impl::create(devicegraph, f2fs);
 	return f2fs.get();
     }
@@ -42,7 +42,7 @@ namespace storage
     F2fs*
     F2fs::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<F2fs> f2fs = make_shared<F2fs>(new F2fs::Impl(node));
+	shared_ptr<F2fs> f2fs = make_shared<F2fs>(make_unique<F2fs::Impl>(node));
 	Device::Impl::load(devicegraph, f2fs);
 	return f2fs.get();
     }
@@ -54,10 +54,23 @@ namespace storage
     }
 
 
+    F2fs::F2fs(unique_ptr<Device::Impl>&& impl)
+	: BlkFilesystem(std::move(impl))
+    {
+    }
+
+
     F2fs*
     F2fs::clone() const
     {
 	return new F2fs(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Device>
+    F2fs::clone_v2() const
+    {
+	return make_unique<F2fs>(get_impl().clone());
     }
 
 

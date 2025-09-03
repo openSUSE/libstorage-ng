@@ -166,8 +166,10 @@ namespace storage
 	const Impl& get_impl() const;
 
 	virtual BtrfsQgroup* clone() const override;
+	virtual std::unique_ptr<Device> clone_v2() const override;
 
 	BtrfsQgroup(Impl* impl);
+	ST_NO_SWIG BtrfsQgroup(std::unique_ptr<Device::Impl>&& impl);
 
     };
 

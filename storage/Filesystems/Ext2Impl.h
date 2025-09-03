@@ -63,7 +63,7 @@ namespace storage
 	 */
 	virtual unsigned long long max_size() const override { return Ext::Impl::max_size(4 * KiB, false); }
 
-	virtual Impl* clone() const override { return new Impl(*this); }
+	virtual unique_ptr<Device::Impl> clone() const override { return make_unique<Impl>(*this); }
 
 	virtual uf_t used_features_pure() const override { return UF_EXT2; }
 

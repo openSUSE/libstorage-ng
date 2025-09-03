@@ -34,7 +34,7 @@ namespace storage
     DasdPt*
     DasdPt::create(Devicegraph* devicegraph)
     {
-	shared_ptr<DasdPt> dasd_pt = make_shared<DasdPt>(new DasdPt::Impl());
+	shared_ptr<DasdPt> dasd_pt = make_shared<DasdPt>(make_unique<DasdPt::Impl>());
 	Device::Impl::create(devicegraph, dasd_pt);
 	return dasd_pt.get();
     }
@@ -43,7 +43,7 @@ namespace storage
     DasdPt*
     DasdPt::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<DasdPt> dasd_pt = make_shared<DasdPt>(new DasdPt::Impl(node));
+	shared_ptr<DasdPt> dasd_pt = make_shared<DasdPt>(make_unique<DasdPt::Impl>(node));
 	Device::Impl::load(devicegraph, dasd_pt);
 	return dasd_pt.get();
     }
@@ -55,10 +55,23 @@ namespace storage
     }
 
 
+    DasdPt::DasdPt(unique_ptr<Device::Impl>&& impl)
+	: PartitionTable(std::move(impl))
+    {
+    }
+
+
     DasdPt*
     DasdPt::clone() const
     {
 	return new DasdPt(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Device>
+    DasdPt::clone_v2() const
+    {
+	return make_unique<DasdPt>(get_impl().clone());
     }
 
 

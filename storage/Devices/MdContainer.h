@@ -58,8 +58,10 @@ namespace storage
 	const Impl& get_impl() const;
 
 	virtual MdContainer* clone() const override;
+	virtual std::unique_ptr<Device> clone_v2() const override;
 
 	MdContainer(Impl* impl);
+	ST_NO_SWIG MdContainer(std::unique_ptr<Device::Impl>&& impl);
 
     };
 

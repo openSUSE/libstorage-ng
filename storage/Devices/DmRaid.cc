@@ -33,7 +33,7 @@ namespace storage
     DmRaid*
     DmRaid::create(Devicegraph* devicegraph, const string& name)
     {
-	shared_ptr<DmRaid> dm_raid = make_shared<DmRaid>(new DmRaid::Impl(name));
+	shared_ptr<DmRaid> dm_raid = make_shared<DmRaid>(make_unique<DmRaid::Impl>(name));
 	Device::Impl::create(devicegraph, dm_raid);
 	return dm_raid.get();
     }
@@ -42,7 +42,7 @@ namespace storage
     DmRaid*
     DmRaid::create(Devicegraph* devicegraph, const string& name, const Region& region)
     {
-	shared_ptr<DmRaid> dm_raid = make_shared<DmRaid>(new DmRaid::Impl(name, region));
+	shared_ptr<DmRaid> dm_raid = make_shared<DmRaid>(make_unique<DmRaid::Impl>(name, region));
 	Device::Impl::create(devicegraph, dm_raid);
 	return dm_raid.get();
     }
@@ -51,7 +51,7 @@ namespace storage
     DmRaid*
     DmRaid::create(Devicegraph* devicegraph, const string& name, unsigned long long size)
     {
-	shared_ptr<DmRaid> dm_raid = make_shared<DmRaid>(new DmRaid::Impl(name, Region(0, size / 512, 512)));
+	shared_ptr<DmRaid> dm_raid = make_shared<DmRaid>(make_unique<DmRaid::Impl>(name, Region(0, size / 512, 512)));
 	Device::Impl::create(devicegraph, dm_raid);
 	return dm_raid.get();
     }
@@ -60,7 +60,7 @@ namespace storage
     DmRaid*
     DmRaid::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<DmRaid> dm_raid = make_shared<DmRaid>(new DmRaid::Impl(node));
+	shared_ptr<DmRaid> dm_raid = make_shared<DmRaid>(make_unique<DmRaid::Impl>(node));
 	Device::Impl::load(devicegraph, dm_raid);
 	return dm_raid.get();
     }
@@ -72,10 +72,23 @@ namespace storage
     }
 
 
+    DmRaid::DmRaid(unique_ptr<Device::Impl>&& impl)
+	: Partitionable(std::move(impl))
+    {
+    }
+
+
     DmRaid*
     DmRaid::clone() const
     {
 	return new DmRaid(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Device>
+    DmRaid::clone_v2() const
+    {
+	return make_unique<DmRaid>(get_impl().clone());
     }
 
 

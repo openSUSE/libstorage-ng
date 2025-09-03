@@ -138,6 +138,7 @@ namespace storage
     protected:
 
 	Partitionable(Impl* impl);
+	ST_NO_SWIG Partitionable(std::unique_ptr<Device::Impl>&& impl);
 
     };
 

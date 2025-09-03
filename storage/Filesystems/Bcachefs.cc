@@ -33,7 +33,7 @@ namespace storage
     Bcachefs*
     Bcachefs::create(Devicegraph* devicegraph)
     {
-	shared_ptr<Bcachefs> bcachefs = make_shared<Bcachefs>(new Bcachefs::Impl());
+	shared_ptr<Bcachefs> bcachefs = make_shared<Bcachefs>(make_unique<Bcachefs::Impl>());
 	Device::Impl::create(devicegraph, bcachefs);
 	return bcachefs.get();
     }
@@ -42,7 +42,7 @@ namespace storage
     Bcachefs*
     Bcachefs::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<Bcachefs> bcachefs = make_shared<Bcachefs>(new Bcachefs::Impl(node));
+	shared_ptr<Bcachefs> bcachefs = make_shared<Bcachefs>(make_unique<Bcachefs::Impl>(node));
 	Device::Impl::load(devicegraph, bcachefs);
 	return bcachefs.get();
     }
@@ -54,10 +54,23 @@ namespace storage
     }
 
 
+    Bcachefs::Bcachefs(unique_ptr<Device::Impl>&& impl)
+	: BlkFilesystem(std::move(impl))
+    {
+    }
+
+
     Bcachefs*
     Bcachefs::clone() const
     {
 	return new Bcachefs(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Device>
+    Bcachefs::clone_v2() const
+    {
+	return make_unique<Bcachefs>(get_impl().clone());
     }
 
 

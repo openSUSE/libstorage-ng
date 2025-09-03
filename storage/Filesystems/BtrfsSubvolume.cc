@@ -33,7 +33,7 @@ namespace storage
     BtrfsSubvolume*
     BtrfsSubvolume::create(Devicegraph* devicegraph, const string& path)
     {
-	shared_ptr<BtrfsSubvolume> btrfs_subvolume = make_shared<BtrfsSubvolume>(new BtrfsSubvolume::Impl(path));
+	shared_ptr<BtrfsSubvolume> btrfs_subvolume = make_shared<BtrfsSubvolume>(make_unique<BtrfsSubvolume::Impl>(path));
 	Device::Impl::create(devicegraph, btrfs_subvolume);
 	return btrfs_subvolume.get();
     }
@@ -42,7 +42,7 @@ namespace storage
     BtrfsSubvolume*
     BtrfsSubvolume::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<BtrfsSubvolume> btrfs_subvolume = make_shared<BtrfsSubvolume>(new BtrfsSubvolume::Impl(node));
+	shared_ptr<BtrfsSubvolume> btrfs_subvolume = make_shared<BtrfsSubvolume>(make_unique<BtrfsSubvolume::Impl>(node));
 	Device::Impl::load(devicegraph, btrfs_subvolume);
 	return btrfs_subvolume.get();
     }
@@ -50,6 +50,12 @@ namespace storage
 
     BtrfsSubvolume::BtrfsSubvolume(Impl* impl)
 	: Mountable(impl)
+    {
+    }
+
+
+    BtrfsSubvolume::BtrfsSubvolume(unique_ptr<Device::Impl>&& impl)
+	: Mountable(std::move(impl))
     {
     }
 
@@ -212,6 +218,13 @@ namespace storage
     BtrfsSubvolume::clone() const
     {
 	return new BtrfsSubvolume(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Device>
+    BtrfsSubvolume::clone_v2() const
+    {
+	return make_unique<BtrfsSubvolume>(get_impl().clone());
     }
 
 

@@ -99,6 +99,12 @@ namespace storage
     }
 
 
+    PartitionTable::PartitionTable(unique_ptr<Device::Impl>&& impl)
+	: Device(std::move(impl))
+    {
+    }
+
+
     PartitionTable::Impl&
     PartitionTable::get_impl()
     {

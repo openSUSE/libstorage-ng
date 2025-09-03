@@ -57,8 +57,10 @@ namespace storage
 	const Impl& get_impl() const;
 
 	virtual Ext2* clone() const override;
+	virtual std::unique_ptr<Device> clone_v2() const override;
 
 	Ext2(Impl* impl);
+	ST_NO_SWIG Ext2(std::unique_ptr<Device::Impl>&& impl);
 
     };
 

@@ -34,7 +34,7 @@ namespace storage
     ImplicitPt*
     ImplicitPt::create(Devicegraph* devicegraph)
     {
-	shared_ptr<ImplicitPt> implicit_pt = make_shared<ImplicitPt>(new ImplicitPt::Impl());
+	shared_ptr<ImplicitPt> implicit_pt = make_shared<ImplicitPt>(make_unique<ImplicitPt::Impl>());
 	Device::Impl::create(devicegraph, implicit_pt);
 	return implicit_pt.get();
     }
@@ -43,7 +43,7 @@ namespace storage
     ImplicitPt*
     ImplicitPt::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	shared_ptr<ImplicitPt> implicit_pt = make_shared<ImplicitPt>(new ImplicitPt::Impl(node));
+	shared_ptr<ImplicitPt> implicit_pt = make_shared<ImplicitPt>(make_unique<ImplicitPt::Impl>(node));
 	Device::Impl::load(devicegraph, implicit_pt);
 	return implicit_pt.get();
     }
@@ -55,10 +55,23 @@ namespace storage
     }
 
 
+    ImplicitPt::ImplicitPt(unique_ptr<Device::Impl>&& impl)
+	: PartitionTable(std::move(impl))
+    {
+    }
+
+
     ImplicitPt*
     ImplicitPt::clone() const
     {
 	return new ImplicitPt(get_impl().clone());
+    }
+
+
+    std::unique_ptr<Device>
+    ImplicitPt::clone_v2() const
+    {
+	return make_unique<ImplicitPt>(get_impl().clone());
     }
 
 

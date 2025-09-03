@@ -57,6 +57,7 @@ namespace storage
 	static BtrfsQgroupRelation* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	virtual BtrfsQgroupRelation* clone() const override;
+	virtual std::unique_ptr<Holder> clone_v2() const override;
 
 	/**
 	 * Get the btrfs the relation belongs to.
@@ -71,6 +72,7 @@ namespace storage
 	const Impl& get_impl() const;
 
 	BtrfsQgroupRelation(Impl* impl);
+	ST_NO_SWIG BtrfsQgroupRelation(std::unique_ptr<Holder::Impl>&& impl);
 
     };
 

@@ -340,8 +340,10 @@ namespace storage
 	const Impl& get_impl() const;
 
 	virtual LvmLv* clone() const override;
+	virtual std::unique_ptr<Device> clone_v2() const override;
 
 	LvmLv(Impl* impl);
+	ST_NO_SWIG LvmLv(std::unique_ptr<Device::Impl>&& impl);
 
     };
 

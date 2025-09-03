@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -276,7 +276,8 @@ namespace storage
 	void operator()(const Devicegraph::Impl::vertex_descriptor& v_in,
 			Devicegraph::Impl::vertex_descriptor& v_out)
 	{
-	    g_out.get_impl().graph[v_out].reset(g_in.get_impl().graph[v_in]->clone());
+	    shared_ptr<Device> device = g_in.get_impl().graph[v_in]->clone_v2();
+	    g_out.get_impl().graph[v_out] = device;
 
 	    Device* d_out = g_out.get_impl().graph[v_out].get();
 	    d_out->get_impl().set_devicegraph_and_vertex(&g_out, v_out);
@@ -285,7 +286,8 @@ namespace storage
 	void operator()(const Devicegraph::Impl::edge_descriptor& e_in,
 			Devicegraph::Impl::edge_descriptor& e_out)
 	{
-	    g_out.get_impl().graph[e_out].reset(g_in.get_impl().graph[e_in]->clone());
+	    shared_ptr<Holder> holder = g_in.get_impl().graph[e_in]->clone_v2();
+	    g_out.get_impl().graph[e_out] = holder;
 
 	    Holder* h_out = g_out.get_impl().graph[e_out].get();
 	    h_out->get_impl().set_devicegraph_and_edge(&g_out, e_out);

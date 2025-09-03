@@ -125,7 +125,7 @@ namespace storage
 	 */
 	virtual bool do_resize_needs_password() const { return false; }
 
-	virtual Impl* clone() const override { return new Impl(*this); }
+	virtual unique_ptr<Device::Impl> clone() const override { return make_unique<Impl>(*this); }
 
 	virtual void check(const CheckCallbacks* check_callbacks) const override;
 
