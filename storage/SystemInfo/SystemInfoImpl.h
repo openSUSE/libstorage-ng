@@ -148,9 +148,9 @@ namespace storage
 
     private:
 
-	/* LazyObject, LazyObjects and LazyObjectsWithKey cache the object and
-	   a potential exception during object construction. HelperBase does
-	   the common part. */
+	/* LazyObject, LazyObjects and LazyObjectsWithKey cache the object and a potential
+	   exception during object construction. The object is constructed during the
+	   first call of get(), thus "lazy". HelperBase does the common part. */
 
 	template <class Object, typename... Args>
 	class HelperBase
@@ -166,7 +166,7 @@ namespace storage
 		{
 		    try
 		    {
-			object = make_shared<Object>(args...);
+			object = make_unique<Object>(args...);
 		    }
 		    catch (const std::exception& e)
 		    {
@@ -190,7 +190,7 @@ namespace storage
 		{
 		    try
 		    {
-			object = make_shared<Object>(udevadm, args...);
+			object = make_unique<Object>(udevadm, args...);
 		    }
 		    catch (const std::exception& e)
 		    {
@@ -207,7 +207,7 @@ namespace storage
 
 	private:
 
-	    std::shared_ptr<Object> object;
+	    std::unique_ptr<Object> object;
 	    std::exception_ptr ep;
 
 	};
@@ -224,7 +224,7 @@ namespace storage
 	{
 	public:
 
-	    typedef HelperBase<Object, Arg> Helper;
+	    using Helper = HelperBase<Object, Arg>;
 
 	    const Object& get(const Arg& arg)
 	    {
@@ -256,9 +256,9 @@ namespace storage
 	{
 	public:
 
-	    typedef typename Object::key_t Key;
+	    using Key = typename Object::key_t;
 
-	    typedef HelperBase<Object, Key, Args...> Helper;
+	    using Helper = HelperBase<Object, Key, Args...>;
 
 	    bool includes(const Key& key) const
 	    {
