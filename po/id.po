@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-17 09:40+0100\n"
-"PO-Revision-Date: 2025-07-22 15:00+0000\n"
-"Last-Translator: Julia Faltenbacher <julia.faltenbacher@suse.com>\n"
+"PO-Revision-Date: 2025-10-04 08:59+0000\n"
+"Last-Translator: Ferdinan Rizky Budiarto <ferdinan.rizky@yahoo.com>\n"
 "Language-Team: Indonesian <https://l10n.opensuse.org/projects/libstorage/"
 "ng-master/id/>\n"
 "Language: id\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.12.2\n"
+"X-Generator: Weblate 5.13.3\n"
 
 msgid ""
 "\n"
@@ -211,7 +211,7 @@ msgstr "Tambah %1$s ke /etc/mdadm.conf"
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Add device %1$s to LVM devices file"
-msgstr ""
+msgstr "Tambahkan perangkat %1$s ke berkas perangkat LVM"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -265,7 +265,7 @@ msgstr "Menambahkan %1$s ke /etc/mdadm.conf"
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Adding device %1$s to LVM devices file"
-msgstr ""
+msgstr "Menambahkan perangkat %1$s ke berkas perangkat LVM"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -2743,7 +2743,7 @@ msgstr "Hapus %1$s dari /etc/mdadm.conf"
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Remove device %1$s from LVM devices file"
-msgstr ""
+msgstr "Hapus perangkat %1$s dari berkas perangkat LVM"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -2803,9 +2803,9 @@ msgstr "Menghapus %1$s dari /etc/mdadm.conf"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Removing device %1$s from LVM devices file"
-msgstr "Menghapus %1$s dari %2$s"
+msgstr "Menghapus perangkat %1$s dari berkas perangkat LVM"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
