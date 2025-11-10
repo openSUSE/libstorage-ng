@@ -83,11 +83,6 @@ namespace storage
 
 	if (pvs.size() != 1)
 	    ST_THROW(Exception("command pvs returned wrong number of pvs"));
-
-	const Pv& pv = pvs[0];
-
-	if (pv.pv_name != pv_name)
-	    ST_THROW(Exception("command pvs returned wrong pv_name"));
     }
 
 
