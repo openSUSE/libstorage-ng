@@ -36,6 +36,28 @@ check(const vector<string>& input, const vector<string>& output)
 }
 
 
+void
+check(const string& vg_name, const string& lv_name, const vector<string>& input, const vector<string>& output)
+{
+    Mockup::set_mode(Mockup::Mode::PLAYBACK);
+    Mockup::set_command({ LVS_BIN, "--reportformat", "json", "--config", "log { command_names = 0 prefix = \"\" }",
+	    "--units", "b", "--nosuffix", "--all", "--options lv_name,lv_uuid,vg_name,vg_uuid,lv_role,lv_attr,"
+	    "lv_size,origin_size,segtype,stripes,stripe_size,chunk_size,pool_lv,pool_lv_uuid,origin,origin_uuid,"
+	    "data_lv,data_lv_uuid,metadata_lv,metadata_lv_uuid", "--", vg_name + "/" + lv_name }, input);
+
+    CmdLvs cmd_lvs(vg_name, lv_name);
+
+    ostringstream parsed;
+    parsed.setf(std::ios::boolalpha);
+    parsed << cmd_lvs;
+
+    string lhs = parsed.str();
+    string rhs = boost::join(output, "\n") + "\n";
+
+    BOOST_CHECK_EQUAL(lhs, rhs);
+}
+
+
 BOOST_AUTO_TEST_CASE(parse1)
 {
     vector<string> input = {
@@ -385,4 +407,26 @@ BOOST_AUTO_TEST_CASE(parse9)
     };
 
     check(input, output);
+}
+
+
+BOOST_AUTO_TEST_CASE(parse10)
+{
+    vector<string> input = {
+	"  {",
+	"      \"report\": [",
+	"          {",
+	"              \"lv\": [",
+	"                  {\"lv_name\":\"c\", \"lv_uuid\":\"gqnD48-ev4p-nCdM-EWEP-RAgW-TaDC-h9Hb13\", \"vg_name\":\"b\", \"vg_uuid\":\"GbcwxM-Px5E-Xs7u-dLhx-r7RU-4LG4-uGR6Ew\", \"lv_role\":\"public\", \"lv_attr\":\"-wi-a-----\", \"lv_size\":\"107369988096\", \"origin_size\":\"\", \"segtype\":\"linear\", \"stripes\":\"1\", \"stripe_size\":\"0\", \"chunk_size\":\"0\", \"pool_lv\":\"\", \"pool_lv_uuid\":\"\", \"origin\":\"\", \"origin_uuid\":\"\", \"data_lv\":\"\", \"data_lv_uuid\":\"\", \"metadata_lv\":\"\", \"metadata_lv_uuid\":\"\"}",
+	"              ]",
+	"          }",
+	"      ]",
+	"  }"
+    };
+
+    vector<string> output = {
+	"lv:{ lv-name:c lv-uuid:gqnD48-ev4p-nCdM-EWEP-RAgW-TaDC-h9Hb13 vg-name:b vg-uuid:GbcwxM-Px5E-Xs7u-dLhx-r7RU-4LG4-uGR6Ew lv-type:normal role:public active:true size:107369988096 segments:<stripes:1> }"
+    };
+
+    check("b", "c", input, output);
 }
