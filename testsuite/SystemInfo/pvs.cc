@@ -80,7 +80,7 @@ BOOST_AUTO_TEST_CASE(parse1)
 
 BOOST_AUTO_TEST_CASE(parse2)
 {
-    // The device reported pv name can be different from the provided pv name.
+    // The reported pv name can be different from the queried pv name.
 
     vector<string> input = {
 	"  {",

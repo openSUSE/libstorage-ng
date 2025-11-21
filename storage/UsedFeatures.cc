@@ -57,7 +57,7 @@ namespace storage
 					      "multipath", "bcache", "iscsi", "fcoe", "fc",
 					      "dasd", "quota", "snapshot", "f2fs", "exfat",
 					      "udf", "plain-encryption", "bitlocker", "nvme",
-					      "pmem", "nilfs2" };
+					      "pmem", "nilfs2", "bcachefs" };
 
 	vector<string> tmp;
 
