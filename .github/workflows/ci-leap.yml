@@ -10,7 +10,7 @@ jobs:
     steps:
 
     - name: Install additional packages
-      run: zypper --non-interactive in --no-recommends autoconf automake doxygen gcc-c++ gettext-runtime glibc-locale graphviz libboost_headers-devel libboost_test-devel libjson-c-devel libtool libxml2-devel make python3-devel ruby-devel swig xz
+      run: zypper --non-interactive install --no-recommends autoconf automake doxygen gcc-c++ gettext-runtime glibc-locale graphviz libboost_headers-devel libboost_test-devel libjson-c-devel libtool libxml2-devel make python3-devel ruby-devel swig xz
 
     - name: List installed packages
       run: rpm -qa | sort
