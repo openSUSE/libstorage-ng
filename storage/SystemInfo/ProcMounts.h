@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -47,37 +47,37 @@ namespace storage
 	~ProcMounts();
 
 	/**
-	 * Return all entries for the device. Aliases, e.g. udev
-	 * symlinks, are handled by the function. This object keeps
-	 * ownership of the entries; do not delete them.
+	 * Return all entries for the device. Aliases, e.g. udev symlinks, are handled by
+	 * the function.
+	 *
+	 * This object keeps ownership of the entries; do not delete them.
 	 */
 	vector<const FstabEntry*> get_by_name(const string& name, SystemInfo::Impl& system_info) const;
 
 	/**
-	 * Return all NFS and NFS4 entries. This object keeps ownership of the entries; do
-	 * not delete them.
+	 * Return all NFS and NFS4 entries.
+	 *
+	 * This object keeps ownership of the entries; do not delete them.
 	 */
 	vector<const FstabEntry*> get_all_nfs() const;
 
 	/**
-	 * Return all tmpfs entries. This object keeps ownership of the entries; do not
-	 * delete them.
+	 * Return all tmpfs entries.
+	 *
+	 * This object keeps ownership of the entries; do not delete them.
 	 */
 	vector<const FstabEntry*> get_all_tmpfs() const;
 
-	friend std::ostream& operator<<(std::ostream& s, const ProcMounts& procmounts);
+	friend std::ostream& operator<<(std::ostream& s, const ProcMounts& proc_mounts);
 
     private:
 
-	void clear();
+	void parse_proc_mounts(const vector<string>& lines);
+	void parse_proc_swaps(const vector<string>& lines);
 
-	void parse_proc_mounts_lines(const vector<string>& lines);
-	void parse_proc_swaps_lines(const vector<string>& lines);
+	using value_type = multimap<string, FstabEntry>::value_type;
 
-	typedef multimap<string, FstabEntry*>::const_iterator const_iterator;
-	typedef multimap<string, FstabEntry*>::value_type value_type;
-
-	multimap<string, FstabEntry*> data;
+	multimap<string, FstabEntry> data;
 
     };
 

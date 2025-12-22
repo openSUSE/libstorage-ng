@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) [2016-2025] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -27,7 +27,7 @@
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/Devices/BlkDeviceImpl.h"
-#include "storage/Filesystems/FilesystemImpl.h"
+#include "storage/Filesystems/Mountable.h"
 #include "storage/Utils/StorageDefines.h"
 
 
@@ -38,11 +38,11 @@ namespace storage
 
     ProcMounts::ProcMounts()
     {
-	AsciiFile mounts(PROC_DIR "/mounts");
-	AsciiFile swaps(PROC_DIR "/swaps");
+	const AsciiFile mounts(PROC_DIR "/mounts");
+	parse_proc_mounts(mounts.get_lines());
 
-	parse_proc_mounts_lines(mounts.get_lines());
-	parse_proc_swaps_lines(swaps.get_lines());
+	const AsciiFile swaps(PROC_DIR "/swaps");
+	parse_proc_swaps(swaps.get_lines());
 
 	y2mil(*this);
     }
@@ -50,80 +50,62 @@ namespace storage
 
     ProcMounts::~ProcMounts()
     {
-        clear();
     }
 
 
     void
-    ProcMounts::clear()
+    ProcMounts::parse_proc_mounts(const vector<string>& lines)
     {
-	for (value_type& value : data)
-            delete value.second;
+	for (size_t i = 0; i < lines.size(); ++i)
+	{
+	    FstabEntry entry;
+	    entry.parse(lines[i]);
 
-        data.clear();
-    }
+	    const string& spec = entry.get_spec();
+	    const FsType fs_type = entry.get_fs_type();
 
-
-    void
-    ProcMounts::parse_proc_mounts_lines(const vector<string>& lines)
-    {
-        EtcFstab fstab("");
-        fstab.parse( lines );
-
-        while ( ! fstab.empty())
-        {
-            FstabEntry * entry = dynamic_cast<FstabEntry *>( fstab.take(0) );
-
-	    if (entry)
+	    if (boost::starts_with(spec, "/dev/") && spec != "/dev/root")
 	    {
-		const string& spec = entry->get_spec();
-		FsType fs_type = entry->get_fs_type();
-
-		if (boost::starts_with(spec, "/dev/") && spec != "/dev/root")
-		{
-		    data.emplace(spec, entry);
-		}
-		else if (fs_type == FsType::NFS || fs_type == FsType::NFS4 ||
-			 fs_type == FsType::TMPFS)
-		{
-		    data.emplace(spec, entry);
-		}
-		else
-		{
-		    // Get rid of all the useless stuff that clutters /proc/mounts
-		    delete entry;
-		}
+		data.emplace(spec, entry);
 	    }
-        }
+	    else if (fs_type == FsType::NFS || fs_type == FsType::NFS4 ||
+		     fs_type == FsType::TMPFS)
+	    {
+		data.emplace(spec, entry);
+	    }
+	}
     }
 
 
     void
-    ProcMounts::parse_proc_swaps_lines(const vector<string>& lines)
+    ProcMounts::parse_proc_swaps(const vector<string>& lines)
     {
+	if (lines.empty())
+	    ST_THROW(Exception("header missing in /proc/swaps"));
+
 	for (size_t i = 1; i < lines.size(); ++i)
 	{
 	    string spec = EtcFstab::decode(extractNthWord(0, lines[i]));
-
 	    string::size_type pos = spec.find(" (deleted)");
 	    if (pos != string::npos)
 		spec.erase(pos);
 
-	    FstabEntry* entry = new FstabEntry(spec, "swap", FsType::SWAP);
+	    FstabEntry entry(spec, "swap", FsType::SWAP);
+	    entry.populate_columns();	// TODO can this be made by the FstabEntry ctor?
+
 	    data.emplace(spec, entry);
 	}
     }
 
 
     std::ostream&
-    operator<<(std::ostream& s, const ProcMounts& procmounts)
+    operator<<(std::ostream& s, const ProcMounts& proc_mounts)
     {
-	for (ProcMounts::const_iterator it = procmounts.data.begin(); it != procmounts.data.end(); ++it)
-        {
-            FstabEntry * entry = it->second;
-            entry->populate_columns();
-	    s << "data[" << it->first << "] -> " << entry->format() << '\n';
-        }
+	for (const ProcMounts::value_type& tmp : proc_mounts.data)
+	{
+	    FstabEntry entry = tmp.second;	// TODO make FstabEntry format() const
+	    s << "data[" << tmp.first << "] -> " << entry.format() << '\n';
+	}
 
 	return s;
     }
@@ -145,7 +127,7 @@ namespace storage
 	    if (value.first == name ||
 		(BlkDevice::Impl::is_valid_name(value.first) &&
 		 system_info.getCmdUdevadmInfo(value.first).get_majorminor() == majorminor))
-		ret.push_back(value.second);
+		ret.push_back(&value.second);
 	}
 
 	return ret;
@@ -159,11 +141,10 @@ namespace storage
 
 	for (const value_type& value : data)
 	{
-	    if (value.second->get_fs_type() == FsType::NFS ||
-                value.second->get_fs_type() == FsType::NFS4)
-            {
-		ret.push_back(value.second);
-            }
+	    const FsType fs_type = value.second.get_fs_type();
+
+	    if (fs_type == FsType::NFS || fs_type == FsType::NFS4)
+		ret.push_back(&value.second);
 	}
 
 	return ret;
@@ -177,10 +158,10 @@ namespace storage
 
 	for (const value_type& value : data)
 	{
-	    if (value.second->get_fs_type() == FsType::TMPFS)
-	    {
-		ret.push_back(value.second);
-	    }
+	    const FsType fs_type = value.second.get_fs_type();
+
+	    if (fs_type == FsType::TMPFS)
+		ret.push_back(&value.second);
 	}
 
 	return ret;
