@@ -22,11 +22,11 @@ check(const vector<string>& input_mount, const vector<string>& input_swap, const
     Mockup::set_file("/proc/mounts", input_mount);
     Mockup::set_file("/proc/swaps", input_swap);
 
-    ProcMounts procmounts;
+    ProcMounts proc_mounts;
 
     ostringstream parsed;
     parsed.setf(std::ios::boolalpha);
-    parsed << procmounts;
+    parsed << proc_mounts;
 
     string actual_str = parsed.str();
     vector<string> actual_lines;
@@ -134,6 +134,25 @@ BOOST_AUTO_TEST_CASE(parse2)
         "data[/dev/sdb1] -> /dev/sdb1  /test  fuseblk  rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other,blksize=4096  0  0",	
         "data[server:/data] -> server:/data  /data  nfs  rw,nosuid,relatime,vers=3,rsize=8192,wsize=8192,namlen=255,hard,nolock,proto=tcp,timeo=600,retrans=2,sec=sys,mountaddr=1.2.3.4,mountvers=3,mountport=635,mountproto=udp,local_lock=all,addr=1.2.3.4  0  0",
         ""
+    };
+
+    check(input_mount, input_swap, output);
+}
+
+
+BOOST_AUTO_TEST_CASE(parse3)
+{
+    vector<string> input_mount = {
+    };
+
+    vector<string> input_swap = {
+	"Filename				Type		Size		Used		Priority",
+	"/dev/sda3\\040(deleted)                  partition	2098152		0		-2"
+    };
+
+    vector<string> output = {
+	"data[/dev/sda3] -> /dev/sda3  swap  swap  defaults  0  0",
+	""
     };
 
     check(input_mount, input_swap, output);
