@@ -11,7 +11,7 @@ using namespace std;
 using namespace storage;
 
 
-BOOST_AUTO_TEST_CASE(format)
+BOOST_AUTO_TEST_CASE(format1)
 {
     static const vector<NameSchema> name_schemata = {
 	NameSchema(regex("/dev/sd([a-z]+)", regex::extended), { { PadInfo::A1, 5 } }),
