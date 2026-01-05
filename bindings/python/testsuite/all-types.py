@@ -4,7 +4,8 @@ import unittest
 
 from storage import (Environment, ProbeMode_NONE, TargetMode_DIRECT, Storage,
                      Devicegraph, Disk, Region, PtType_GPT, PartitionType_PRIMARY, FsType_EXT4,
-                     UF_EXT4, UF_BTRFS, LIBSTORAGE_NG_VERSION_STRING, VectorString)
+                     UF_EXT4, UF_BTRFS, LIBSTORAGE_NG_VERSION_STRING, VectorString,
+                     UsedFeaturesDependencyType_SUGGESTED)
 
 
 class TestCreate(unittest.TestCase):
@@ -43,8 +44,8 @@ class TestCreate(unittest.TestCase):
         self.assertEqual(mount_point.get_mount_options().size(), 1)
         self.assertEqual(mount_point.get_mount_options()[0], "ro")
 
-        self.assertTrue(devicegraph.used_features() & UF_EXT4)
-        self.assertFalse(devicegraph.used_features() & UF_BTRFS)
+        self.assertTrue(devicegraph.used_features(UsedFeaturesDependencyType_SUGGESTED) & UF_EXT4)
+        self.assertFalse(devicegraph.used_features(UsedFeaturesDependencyType_SUGGESTED) & UF_BTRFS)
 
         self.assertTrue(LIBSTORAGE_NG_VERSION_STRING)
 
