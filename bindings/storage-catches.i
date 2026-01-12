@@ -61,6 +61,7 @@
 %catches(storage::NullPointerException) storage::is_disk(const Device *device);
 %catches(storage::NullPointerException) storage::is_dm_raid(const Device *device);
 %catches(storage::NullPointerException) storage::is_encryption(const Device *device);
+%catches(storage::NullPointerException) storage::is_erofs(const Device *device);
 %catches(storage::NullPointerException) storage::is_exfat(const Device *device);
 %catches(storage::NullPointerException) storage::is_ext(const Device *device);
 %catches(storage::NullPointerException) storage::is_ext2(const Device *device);
@@ -96,6 +97,7 @@
 %catches(storage::NullPointerException) storage::is_plain_encryption(const Device *device);
 %catches(storage::NullPointerException) storage::is_reiserfs(const Device *device);
 %catches(storage::NullPointerException) storage::is_snapshot(const Holder *holder);
+%catches(storage::NullPointerException) storage::is_squashfs(const Device *device);
 %catches(storage::NullPointerException) storage::is_stray_blk_device(const Device *device);
 %catches(storage::NullPointerException) storage::is_subdevice(const Holder *holder);
 %catches(storage::NullPointerException) storage::is_swap(const Device *device);
@@ -140,6 +142,8 @@
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_dm_raid(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_encryption(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_encryption(const Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_erofs(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_erofs(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_exfat(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_exfat(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_ext(Device *device);
@@ -208,6 +212,8 @@
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_reiserfs(const Device *device);
 %catches(storage::HolderHasWrongType, storage::NullPointerException) storage::to_snapshot(Holder *holder);
 %catches(storage::HolderHasWrongType, storage::NullPointerException) storage::to_snapshot(const Holder *holder);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_squashfs(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_squashfs(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_stray_blk_device(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_stray_blk_device(const Device *device);
 %catches(storage::HolderHasWrongType, storage::NullPointerException) storage::to_subdevice(Holder *holder);

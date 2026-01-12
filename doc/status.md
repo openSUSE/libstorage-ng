@@ -154,9 +154,11 @@ Implemented:
 
 * For btrfs, ext2, ext3, ext4, ReiserFS, NTFS, VFat, ExFat, XFS, JFS,
   swap, F2FS (excluding multiple devices), NILFS2 (excluding
-  checkpoints), ISO9660, UDF, NFS, bcachefs and tmpfs the most important
+  checkpoints), UDF, NFS, bcachefs and tmpfs the most important
   operations (probing, creating, deleting, resizing, mounting and
   unmounting).
+* For ISO9660, Squashfs and EROFS less operations (probing, deleting,
+  mounting and unmounting).
 * Handling of /etc/fstab.
 * Handling different mount-by options.
 * btrfs subvolumes, btrfs multiple-device, quota and qgroup support.

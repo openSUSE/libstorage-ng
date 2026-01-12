@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -60,7 +60,7 @@ namespace storage
     const vector<string> EnumTraits<FsType>::names({
 	"unknown", "auto", "reiserfs", "ext2", "ext3", "ext4", "btrfs", "vfat", "xfs", "jfs", "hfs",
 	"ntfs", "swap", "hfsplus", "nfs", "nfs4", "tmpfs", "iso9660", "udf", "nilfs2", "minix",
-	"ntfs-3g", "f2fs", "exfat", "BitLocker", "vboxsf", "bcachefs"
+	"ntfs-3g", "f2fs", "exfat", "BitLocker", "vboxsf", "bcachefs", "squashfs", "erofs"
     });
 
 
