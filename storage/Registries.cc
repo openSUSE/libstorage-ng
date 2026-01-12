@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2024] SUSE LLC
+ * Copyright (c) [2016-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -64,6 +64,8 @@
 #include "storage/Filesystems/Swap.h"
 #include "storage/Filesystems/Iso9660.h"
 #include "storage/Filesystems/Udf.h"
+#include "storage/Filesystems/Squashfs.h"
+#include "storage/Filesystems/Erofs.h"
 #include "storage/Filesystems/Bitlocker.h"
 #include "storage/Filesystems/Nfs.h"
 #include "storage/Filesystems/Tmpfs.h"
@@ -94,6 +96,7 @@ namespace storage
 	{ "Disk", &Disk::load },
 	{ "DmRaid", &DmRaid::load },
 	{ "Encryption", &Encryption::load },
+	{ "Erofs", &Erofs::load },
 	{ "Exfat", &Exfat::load },
 	{ "Ext2", &Ext2::load },
 	{ "Ext3", &Ext3::load },
@@ -119,6 +122,7 @@ namespace storage
 	{ "Partition", &Partition::load },
 	{ "PlainEncryption", &PlainEncryption::load },
 	{ "Reiserfs", &Reiserfs::load },
+	{ "Squashfs", &Squashfs::load },
 	{ "StrayBlkDevice", &StrayBlkDevice::load },
 	{ "Swap", &Swap::load },
 	{ "Tmpfs", &Tmpfs::load },
@@ -143,6 +147,7 @@ namespace storage
 	{ FsType::BCACHEFS, &Bcachefs::create },
 	{ FsType::BITLOCKER, &Bitlocker::create },
 	{ FsType::BTRFS, &Btrfs::create },
+	{ FsType::EROFS1, &Erofs::create },
 	{ FsType::EXFAT, &Exfat::create },
 	{ FsType::EXT2, &Ext2::create },
 	{ FsType::EXT3, &Ext3::create },
@@ -153,6 +158,7 @@ namespace storage
 	{ FsType::NILFS2, &Nilfs2::create },
 	{ FsType::NTFS, &Ntfs::create },
 	{ FsType::REISERFS, &Reiserfs::create },
+	{ FsType::SQUASHFS, &Squashfs::create },
 	{ FsType::SWAP, &Swap::create },
 	{ FsType::UDF, &Udf::create },
 	{ FsType::VFAT, &Vfat::create },

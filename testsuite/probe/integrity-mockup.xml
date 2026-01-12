@@ -198,6 +198,26 @@
       <stdout></stdout>
     </Command>
     <Command>
+      <name>/usr/bin/udevadm info /dev/loop0</name>
+      <stdout>P: /devices/virtual/block/loop0</stdout>
+      <stdout>N: loop1</stdout>
+      <stdout>L: 0</stdout>
+      <stdout>E: DEVPATH=/devices/virtual/block/loop0</stdout>
+      <stdout>E: DEVNAME=/dev/loop0</stdout>
+      <stdout>E: DEVTYPE=disk</stdout>
+      <stdout>E: DISKSEQ=1</stdout>
+      <stdout>E: MAJOR=7</stdout>
+      <stdout>E: MINOR=0</stdout>
+      <stdout>E: SUBSYSTEM=block</stdout>
+      <stdout>E: USEC_INITIALIZED=7052380</stdout>
+      <stdout>E: ID_FS_VERSION=4.0</stdout>
+      <stdout>E: ID_FS_TYPE=squashfs</stdout>
+      <stdout>E: ID_FS_USAGE=filesystem</stdout>
+      <stdout>E: TAGS=:systemd:</stdout>
+      <stdout>E: CURRENT_TAGS=:systemd:</stdout>
+      <stdout></stdout>
+    </Command>
+    <Command>
       <name>/usr/bin/udevadm info /dev/loop1</name>
       <stdout>P: /devices/virtual/block/loop1</stdout>
       <stdout>N: loop1</stdout>

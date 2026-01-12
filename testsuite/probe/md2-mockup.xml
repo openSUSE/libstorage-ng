@@ -81,14 +81,7 @@
       <stdout>/dev/sda: UUID="3e531727-0857-f684-cd2e-394b62046b74" UUID_SUB="ad3cff36-a8fd-6728-2f2d-8c348472cddd" LABEL="any:1" TYPE="linux_raid_member" </stdout>
       <stdout>/dev/sdb: UUID="3e531727-0857-f684-cd2e-394b62046b74" UUID_SUB="6ba92495-88b5-33a4-ed2b-1fb1fa6387f7" LABEL="any:1" TYPE="linux_raid_member" </stdout>
       <stdout>/dev/sdc: UUID="c8440826-8e55-745c-d7e1-4cddac26716d" UUID_SUB="df4a8d48-2a56-b0b2-3cfb-7fd99bf196ac" LABEL="any:2" TYPE="linux_raid_member" </stdout>
-      <stdout>/dev/loop0: TYPE="squashfs" </stdout>
       <stdout>/dev/sdd: UUID="c8440826-8e55-745c-d7e1-4cddac26716d" UUID_SUB="bec2677c-33ad-1e4a-75f5-ce58baffb776" LABEL="any:2" TYPE="linux_raid_member" </stdout>
-      <stdout>/dev/loop1: TYPE="squashfs" </stdout>
-      <stdout>/dev/loop2: TYPE="squashfs" </stdout>
-      <stdout>/dev/loop3: TYPE="squashfs" </stdout>
-      <stdout>/dev/loop4: TYPE="squashfs" </stdout>
-      <stdout>/dev/loop5: TYPE="squashfs" </stdout>
-      <stdout>/dev/loop6: TYPE="squashfs" </stdout>
       <stdout>/dev/sr0: UUID="2014-10-27-14-56-02-00" LABEL="openSUSE-13.2-DVD-x86_640051" TYPE="iso9660" PTUUID="10ce3e4f" PTTYPE="dos" </stdout>
       <stdout>/dev/md1: UUID="d11cbd17-b4fa-9ccd-bb7b-9bab557d863c" UUID_SUB="a400c8f9-ceae-e29a-b7b3-c1c868974711" LABEL="any:0" TYPE="linux_raid_member" </stdout>
       <stdout>/dev/md2: UUID="d11cbd17-b4fa-9ccd-bb7b-9bab557d863c" UUID_SUB="3ed18246-99c6-a49a-36ef-fe7c90029c93" LABEL="any:0" TYPE="linux_raid_member" </stdout>

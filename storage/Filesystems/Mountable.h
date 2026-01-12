@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -41,7 +41,8 @@ namespace storage
     enum class FsType {
 	UNKNOWN, AUTO, REISERFS, EXT2, EXT3, EXT4, BTRFS, VFAT, XFS, JFS, HFS, NTFS,
 	SWAP, HFSPLUS, NFS, NFS4, TMPFS, ISO9660, UDF, NILFS2, MINIX, NTFS3G, F2FS,
-	EXFAT, BITLOCKER, VBOXSF, BCACHEFS
+	EXFAT, BITLOCKER, VBOXSF, BCACHEFS, SQUASHFS, EROFS1 /* EROFS is a POSIX
+	define */
     };
 
 

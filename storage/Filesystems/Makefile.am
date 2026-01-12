@@ -45,7 +45,11 @@ libfilesystems_la_SOURCES =				\
 	Iso9660Impl.h		Iso9660Impl.cc		\
 	Udf.h			Udf.cc			\
 	UdfImpl.h		UdfImpl.cc		\
+	Squashfs.h		Squashfs.cc		\
+	SquashfsImpl.h		SquashfsImpl.cc		\
 	Swap.h			Swap.cc			\
+	Erofs.h			Erofs.cc		\
+	ErofsImpl.h		ErofsImpl.cc		\
 	SwapImpl.h		SwapImpl.cc		\
 	Nfs.h			Nfs.cc			\
 	NfsImpl.h		NfsImpl.cc		\
@@ -81,6 +85,8 @@ pkginclude_HEADERS =		\
 	Exfat.h			\
 	Iso9660.h		\
 	Udf.h			\
+	Squashfs.h		\
+	Erofs.h			\
 	Swap.h			\
 	Nfs.h			\
 	Tmpfs.h			\
