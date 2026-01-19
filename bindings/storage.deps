@@ -44,28 +44,31 @@ DEPENDENCIES =							\
 	${top_srcdir}/storage/Devices/Partitionable.h		\
 	${top_srcdir}/storage/Devices/PlainEncryption.h		\
 	${top_srcdir}/storage/Devices/StrayBlkDevice.h		\
+	${top_srcdir}/storage/Filesystems/Bcachefs.h		\
 	${top_srcdir}/storage/Filesystems/Bitlocker.h		\
 	${top_srcdir}/storage/Filesystems/BlkFilesystem.h	\
 	${top_srcdir}/storage/Filesystems/Btrfs.h		\
 	${top_srcdir}/storage/Filesystems/BtrfsQgroup.h		\
 	${top_srcdir}/storage/Filesystems/BtrfsSubvolume.h	\
+	${top_srcdir}/storage/Filesystems/Erofs.h		\
 	${top_srcdir}/storage/Filesystems/Exfat.h		\
 	${top_srcdir}/storage/Filesystems/Ext.h			\
 	${top_srcdir}/storage/Filesystems/Ext2.h		\
 	${top_srcdir}/storage/Filesystems/Ext3.h		\
 	${top_srcdir}/storage/Filesystems/Ext4.h		\
 	${top_srcdir}/storage/Filesystems/F2fs.h		\
-	${top_srcdir}/storage/Filesystems/Nilfs2.h		\
 	${top_srcdir}/storage/Filesystems/Filesystem.h		\
 	${top_srcdir}/storage/Filesystems/Iso9660.h		\
 	${top_srcdir}/storage/Filesystems/Jfs.h			\
 	${top_srcdir}/storage/Filesystems/MountPoint.h		\
 	${top_srcdir}/storage/Filesystems/Mountable.h		\
 	${top_srcdir}/storage/Filesystems/Nfs.h 		\
-	${top_srcdir}/storage/Filesystems/Tmpfs.h 		\
+	${top_srcdir}/storage/Filesystems/Nilfs2.h		\
 	${top_srcdir}/storage/Filesystems/Ntfs.h		\
 	${top_srcdir}/storage/Filesystems/Reiserfs.h		\
+	${top_srcdir}/storage/Filesystems/Squashfs.h		\
 	${top_srcdir}/storage/Filesystems/Swap.h		\
+	${top_srcdir}/storage/Filesystems/Tmpfs.h 		\
 	${top_srcdir}/storage/Filesystems/Udf.h			\
 	${top_srcdir}/storage/Filesystems/Vfat.h		\
 	${top_srcdir}/storage/Filesystems/Xfs.h			\
