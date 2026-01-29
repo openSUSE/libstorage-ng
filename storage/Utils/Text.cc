@@ -22,7 +22,6 @@
 
 
 #include <libintl.h>
-#include <boost/algorithm/string.hpp>
 
 #include "storage/Utils/Text.h"
 #include "storage/Utils/AppUtil.h"

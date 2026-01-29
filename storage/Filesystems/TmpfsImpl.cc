@@ -20,8 +20,6 @@
  */
 
 
-#include <boost/algorithm/string.hpp>
-
 #include "storage/Utils/XmlFile.h"
 #include "storage/Filesystems/TmpfsImpl.h"
 #include "storage/Filesystems/MountPointImpl.h"

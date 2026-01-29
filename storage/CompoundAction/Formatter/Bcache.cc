@@ -20,8 +20,6 @@
  */
 
 
-#include <boost/algorithm/string.hpp>
-
 #include "storage/CompoundAction/Formatter/Bcache.h"
 #include "storage/Devices/BcacheImpl.h"
 #include "storage/Filesystems/Swap.h"
