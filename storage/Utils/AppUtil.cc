@@ -33,7 +33,6 @@
 #include <dirent.h>
 #include <string>
 #include <boost/algorithm/string.hpp>
-#include <boost/io/ios_state.hpp>
 
 #include "config.h"
 #include "storage/Utils/AsciiFile.h"

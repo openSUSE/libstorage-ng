@@ -20,8 +20,6 @@
  */
 
 
-#include <boost/algorithm/string.hpp>
-
 #include "storage/Utils/XmlFile.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Filesystems/MountPointImpl.h"
