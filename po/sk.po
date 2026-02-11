@@ -6,8 +6,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-29 14:48+0100\n"
-"PO-Revision-Date: 2025-07-22 15:00+0000\n"
-"Last-Translator: Julia Faltenbacher <julia.faltenbacher@suse.com>\n"
+"PO-Revision-Date: 2026-02-11 19:04+0000\n"
+"Last-Translator: Ferdinand Galko <galko.ferdinand@gmail.com>\n"
 "Language-Team: Slovak <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/sk/>\n"
 "Language: sk\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 5.12.2\n"
+"X-Generator: Weblate 5.15.2\n"
 
 msgid ""
 "\n"
@@ -1923,7 +1923,7 @@ msgstr "Šifrovanie"
 
 #. TRANSLATORS: name of object
 msgid "Erofs"
-msgstr ""
+msgstr "Erofs"
 
 #. TRANSLATORS: name of object
 msgid "Ext2"
@@ -3303,7 +3303,7 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Squashfs"
-msgstr ""
+msgstr "Squashfs"
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"
