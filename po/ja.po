@@ -10,11 +10,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-17 09:40+0100\n"
+"POT-Creation-Date: 2026-01-29 14:48+0100\n"
 "PO-Revision-Date: 2025-07-22 15:00+0000\n"
 "Last-Translator: Julia Faltenbacher <julia.faltenbacher@suse.com>\n"
-"Language-Team: Japanese <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/ja/>\n"
+"Language-Team: Japanese <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -100,7 +100,8 @@ msgstr "ボリュームグループ %3$s に対する論理ボリューム %1$s 
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activate thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s に対する thin 論理ボリューム %1$s (%2$s) の有効化"
+msgstr ""
+"ボリュームグループ %3$s に対する thin 論理ボリューム %1$s (%2$s) の有効化"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -108,8 +109,9 @@ msgstr "ボリュームグループ %3$s に対する thin 論理ボリューム
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s に対する thin プール論理ボリューム %1$s (%2$s) "
-"の有効化"
+msgstr ""
+"ボリュームグループ %3$s に対する thin プール論理ボリューム %1$s (%2$s) の有効"
+"化"
 
 #. TRANSLATORS: progress message
 #, c-format
@@ -158,7 +160,8 @@ msgstr "ハードディスク %1$s (%2$s) を有効化しています"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activating logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s 内の論理ボリューム %1$s (%2$s) を有効化しています"
+msgstr ""
+"ボリュームグループ %3$s 内の論理ボリューム %1$s (%2$s) を有効化しています"
 
 #. TRANSLATORS: progress message
 msgid "Activating multipath"
@@ -174,8 +177,9 @@ msgstr "マルチパスの有効化に失敗しました"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s 内の thin 論理ボリューム %1$s (%2$s) "
-"を有効化しています"
+msgstr ""
+"ボリュームグループ %3$s 内の thin 論理ボリューム %1$s (%2$s) を有効化していま"
+"す"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -183,8 +187,9 @@ msgstr "ボリュームグループ %3$s 内の thin 論理ボリューム %1$s 
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s 内の thin プール論理ボリューム %1$s (%2$s) "
-"を有効化しています"
+msgstr ""
+"ボリュームグループ %3$s 内の thin プール論理ボリューム %1$s (%2$s) を有効化し"
+"ています"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the device name (e.g. /dev/sdc1),
@@ -238,8 +243,9 @@ msgstr "マウントポイント %1$s (%2$s) の /etc/fstab への追加"
 #. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Add mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
-msgstr "%3$s 内にあるサブボリューム %2$s のマウントポイント %1$s の /etc/fstab "
-"への追加"
+msgstr ""
+"%3$s 内にあるサブボリューム %2$s のマウントポイント %1$s の /etc/fstab への追"
+"加"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/sdc1),
@@ -293,8 +299,9 @@ msgstr "マウントポイント %1$s (%2$s) を /etc/fstab に追加してい�
 #. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Adding mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
-msgstr "%3$s 内にあるサブボリューム %2$s のマウントポイント %1$s を /etc/fstab "
-"に追加しています"
+msgstr ""
+"%3$s 内にあるサブボリューム %2$s のマウントポイント %1$s を /etc/fstab に追加"
+"しています"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
@@ -330,7 +337,8 @@ msgstr "qgroup %1$s を %3$s にある qgroup %2$s に割り当てています"
 #. and /dev/sdb2 (2.00 GiB))
 #, c-format
 msgid "Assigning qgroup of subvolume %1$s to qgroup %2$s on %3$s"
-msgstr "サブボリューム %1$s の qgroup を %3$s にある qgroup %2$s に割り当てています"
+msgstr ""
+"サブボリューム %1$s の qgroup を %3$s にある qgroup %2$s に割り当てています"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -346,7 +354,8 @@ msgstr "%1$s にある Bcache キャッシュセットを Bcache %2$s (%3$s) に
 #. %3$s is replaced by size (e.g. 2.00 GiB)
 #, c-format
 msgid "Attaching bcache cache set on %1$s to bcache %2$s (%3$s)"
-msgstr "%1$s にある Bcache キャッシュセットを Bcache %2$s (%3$s) に接続しています"
+msgstr ""
+"%1$s にある Bcache キャッシュセットを Bcache %2$s (%3$s) に接続しています"
 
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 msgid "B"
@@ -422,7 +431,8 @@ msgstr "パーティション %1$s の no-automount フラグの消去"
 #. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Clear option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr "%2$s 内のサブボリューム %1$s に対する 'no copy on write' オプションの消去"
+msgstr ""
+"%2$s 内のサブボリューム %1$s に対する 'no copy on write' オプションの消去"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -468,8 +478,9 @@ msgstr "パーティション %1$s の no-automount フラグを消去してい�
 #. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Clearing option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr "%2$s 内のサブボリューム %1$s に対して 'no copy on write' "
-"オプションを消去しています"
+msgstr ""
+"%2$s 内のサブボリューム %1$s に対して 'no copy on write' オプションを消去して"
+"います"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -567,7 +578,8 @@ msgstr "ボリュームグループ %3$s に対する LVM 論理ボリューム 
 #, c-format
 msgid ""
 "Create LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr "ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) の作成 (%4$s "
+msgstr ""
+"ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) の作成 (%4$s "
 "向け, %5$s)"
 
 #. TRANSLATORS:
@@ -576,8 +588,9 @@ msgstr "ボリュームグループ %3$s に対する LVM 論理ボリューム 
 #. %3$s is replaced with the volume group name (e.g. system)
 #, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
-msgstr "ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) の作成 "
-"(スワップ向け)"
+msgstr ""
+"ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) の作成 (ス"
+"ワップ向け)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -586,7 +599,8 @@ msgstr "ボリュームグループ %3$s に対する LVM 論理ボリューム 
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr "ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) の作成 (%4$s)"
+msgstr ""
+"ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) の作成 (%4$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -735,7 +749,8 @@ msgstr "%5$s からの暗号化された %1$s %2$s (%3$s) の作成 (%4$s)"
 #. %3$s is replaced with the volume group name (e.g. system)
 #, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s に対する暗号化された LVM 論理ボリューム %1$s (%2$s) "
+msgstr ""
+"ボリュームグループ %3$s に対する暗号化された LVM 論理ボリューム %1$s (%2$s) "
 "の作成"
 
 #. TRANSLATORS:
@@ -748,7 +763,8 @@ msgstr "ボリュームグループ %3$s に対する暗号化された LVM 論�
 msgid ""
 "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for "
 "%4$s with %5$s"
-msgstr "ボリュームグループ %3$s に対する暗号化された LVM 論理ボリューム %1$s (%2$s) "
+msgstr ""
+"ボリュームグループ %3$s に対する暗号化された LVM 論理ボリューム %1$s (%2$s) "
 "の作成 (%4$s 向け, %5$s)"
 
 #. TRANSLATORS:
@@ -758,7 +774,8 @@ msgstr "ボリュームグループ %3$s に対する暗号化された LVM 論�
 #, c-format
 msgid ""
 "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
-msgstr "ボリュームグループ %3$s に対する暗号化された LVM 論理ボリューム %1$s (%2$s) "
+msgstr ""
+"ボリュームグループ %3$s に対する暗号化された LVM 論理ボリューム %1$s (%2$s) "
 "の作成 (スワップ向け)"
 
 #. TRANSLATORS:
@@ -770,7 +787,8 @@ msgstr "ボリュームグループ %3$s に対する暗号化された LVM 論�
 msgid ""
 "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s with "
 "%4$s"
-msgstr "ボリュームグループ %3$s に対する暗号化された LVM 論理ボリューム %1$s (%2$s) "
+msgstr ""
+"ボリュームグループ %3$s に対する暗号化された LVM 論理ボリューム %1$s (%2$s) "
 "の作成 (%4$s)"
 
 #. TRANSLATORS:
@@ -997,7 +1015,8 @@ msgstr "%2$s に対するサブボリューム %1$s の作成"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Create thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s に対する thin 論理ボリューム %1$s (%2$s) の作成"
+msgstr ""
+"ボリュームグループ %3$s に対する thin 論理ボリューム %1$s (%2$s) の作成"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1005,7 +1024,8 @@ msgstr "ボリュームグループ %3$s に対する thin 論理ボリューム
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Create thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s に対する thin プール論理ボリューム %1$s (%2$s) の作成"
+msgstr ""
+"ボリュームグループ %3$s に対する thin プール論理ボリューム %1$s (%2$s) の作成"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced with the volume group name (e.g. system),
@@ -1128,7 +1148,8 @@ msgstr "論理パーティション %1$s (%2$s) を作成しています"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Creating logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s 内に論理ボリューム %1$s (%2$s) を作成しています"
+msgstr ""
+"ボリュームグループ %3$s 内に論理ボリューム %1$s (%2$s) を作成しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1172,7 +1193,8 @@ msgstr "%2$s 内にサブボリューム %1$s を作成しています"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Creating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s 内に thin 論理ボリューム %1$s (%2$s) を作成しています"
+msgstr ""
+"ボリュームグループ %3$s 内に thin 論理ボリューム %1$s (%2$s) を作成しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1180,8 +1202,9 @@ msgstr "ボリュームグループ %3$s 内に thin 論理ボリューム %1$s 
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Creating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s 内に thin プール論理ボリューム %1$s (%2$s) "
-"を作成しています"
+msgstr ""
+"ボリュームグループ %3$s 内に thin プール論理ボリューム %1$s (%2$s) を作成して"
+"います"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -1265,7 +1288,8 @@ msgstr "マルチパス %1$s (%2$s) の無効化"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivate thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s に対する thin 論理ボリューム %1$s (%2$s) の無効化"
+msgstr ""
+"ボリュームグループ %3$s に対する thin 論理ボリューム %1$s (%2$s) の無効化"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1273,8 +1297,9 @@ msgstr "ボリュームグループ %3$s に対する thin 論理ボリューム
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivate thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s に対する thin プール論理ボリューム %1$s (%2$s) "
-"の無効化"
+msgstr ""
+"ボリュームグループ %3$s に対する thin プール論理ボリューム %1$s (%2$s) の無効"
+"化"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -1310,7 +1335,8 @@ msgstr "%1$s 内の暗号化ループデバイスを無効化しています"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivating logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s 内の論理ボリューム %1$s (%2$s) を無効化しています"
+msgstr ""
+"ボリュームグループ %3$s 内の論理ボリューム %1$s (%2$s) を無効化しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by multipath name (e.g. /dev/mapper/36005076305ffc73a00000000000013b4),
@@ -1325,8 +1351,9 @@ msgstr "マルチパス %1$s (%2$s) を無効化しています"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s 内の thin 論理ボリューム %1$s (%2$s) "
-"を無効化しています"
+msgstr ""
+"ボリュームグループ %3$s 内の thin 論理ボリューム %1$s (%2$s) を無効化していま"
+"す"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1334,8 +1361,9 @@ msgstr "ボリュームグループ %3$s 内の thin 論理ボリューム %1$s 
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s 内の thin プール論理ボリューム %1$s (%2$s) "
-"を無効化しています"
+msgstr ""
+"ボリュームグループ %3$s 内の thin プール論理ボリューム %1$s (%2$s) を無効化し"
+"ています"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -1490,7 +1518,8 @@ msgstr "%2$s 内のサブボリューム %1$s の削除"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Delete thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s に対する thin 論理ボリューム %1$s (%2$s) の削除"
+msgstr ""
+"ボリュームグループ %3$s に対する thin 論理ボリューム %1$s (%2$s) の削除"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1498,7 +1527,8 @@ msgstr "ボリュームグループ %3$s に対する thin 論理ボリューム
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Delete thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s に対する thin プール論理ボリューム %1$s (%2$s) の削除"
+msgstr ""
+"ボリュームグループ %3$s に対する thin プール論理ボリューム %1$s (%2$s) の削除"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -1594,7 +1624,8 @@ msgstr "論理パーティション %1$s (%2$s) を削除しています"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deleting logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s 内の論理ボリューム %1$s (%2$s) を削除しています"
+msgstr ""
+"ボリュームグループ %3$s 内の論理ボリューム %1$s (%2$s) を削除しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1630,7 +1661,8 @@ msgstr "%2$s 内のサブボリューム %1$s を削除しています"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deleting thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s 内の thin 論理ボリューム %1$s (%2$s) を削除しています"
+msgstr ""
+"ボリュームグループ %3$s 内の thin 論理ボリューム %1$s (%2$s) を削除しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1638,8 +1670,9 @@ msgstr "ボリュームグループ %3$s 内の thin 論理ボリューム %1$s 
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deleting thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s 内の thin プール論理ボリューム %1$s (%2$s) "
-"を削除しています"
+msgstr ""
+"ボリュームグループ %3$s 内の thin プール論理ボリューム %1$s (%2$s) を削除して"
+"います"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -1662,7 +1695,8 @@ msgstr "Bcache %2$s (%3$s) から Bcache キャッシュセット %1$s の接続
 #. %3$s is replaced by size (e.g. 2.00 GiB)
 #, c-format
 msgid "Detaching bcache cache set on %1$s from bcache %2$s (%3$s)"
-msgstr "Bcache %2$s (%3$s) から Bcache キャッシュセット %1$s の接続を解除しています"
+msgstr ""
+"Bcache %2$s (%3$s) から Bcache キャッシュセット %1$s の接続を解除しています"
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by a list of device names joined by newlines (e.g.
@@ -1824,7 +1858,8 @@ msgstr "%1$s %2$s (%3$s) の暗号化 (%4$s)"
 #. %3$s is replaced with the volume group name (e.g. system)
 #, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) の暗号化"
+msgstr ""
+"ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) の暗号化"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -1836,8 +1871,9 @@ msgstr "ボリュームグループ %3$s に対する LVM 論理ボリューム 
 msgid ""
 "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with "
 "%5$s"
-msgstr "ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) の暗号化 (%4$"
-"s 向け, %5$s)"
+msgstr ""
+"ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) の暗号化 "
+"(%4$s 向け, %5$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -1846,7 +1882,8 @@ msgstr "ボリュームグループ %3$s に対する LVM 論理ボリューム 
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr "ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) の暗号化 "
+msgstr ""
+"ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) の暗号化 "
 "(%4$s)"
 
 #. TRANSLATORS:
@@ -1905,6 +1942,10 @@ msgid "Encryption"
 msgstr "暗号化"
 
 #. TRANSLATORS: name of object
+msgid "Erofs"
+msgstr ""
+
+#. TRANSLATORS: name of object
 msgid "Ext2"
 msgstr "Ext2"
 
@@ -1957,8 +1998,9 @@ msgstr "%1$s %2$s (%3$s) のフォーマット (%4$s)"
 #, c-format
 msgid ""
 "Format LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr "ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) "
-"のフォーマット (%4$s 向け, %5$s)"
+msgstr ""
+"ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) のフォーマッ"
+"ト (%4$s 向け, %5$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -1967,8 +2009,9 @@ msgstr "ボリュームグループ %3$s に対する LVM 論理ボリューム 
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr "ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) "
-"のフォーマット (%4$s)"
+msgstr ""
+"ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) のフォーマッ"
+"ト (%4$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -2071,7 +2114,8 @@ msgstr "%1$s にある暗号化レイヤデバイスを %2$s から %3$s へ拡�
 #. %4$s is replaced by new size (e.g. 2.00 GiB)
 #, c-format
 msgid "Grow logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "ボリュームグループ %2$s 内の論理ボリューム %1$s を %3$s から %4$s へ拡大"
+msgstr ""
+"ボリュームグループ %2$s 内の論理ボリューム %1$s を %3$s から %4$s へ拡大"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -2096,8 +2140,9 @@ msgstr "%1$s にある物理ボリュームを %2$s から %3$s へ拡大"
 #. %4$s is replaced by new size (e.g. 2.00 GiB)
 #, c-format
 msgid "Grow thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "ボリュームグループ %2$s 内の thin 論理ボリューム %1$s の %3$s から %4$s "
-"への拡大"
+msgstr ""
+"ボリュームグループ %2$s 内の thin 論理ボリューム %1$s の %3$s から %4$s への"
+"拡大"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2107,8 +2152,9 @@ msgstr "ボリュームグループ %2$s 内の thin 論理ボリューム %1$s 
 #, c-format
 msgid ""
 "Grow thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "ボリュームグループ %2$s 内の thin プール論理ボリューム %1$s の %3$s から %4$"
-"s への拡大"
+msgstr ""
+"ボリュームグループ %2$s 内の thin プール論理ボリューム %1$s の %3$s から "
+"%4$s への拡大"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -2145,8 +2191,9 @@ msgstr "%1$s にある暗号化レイヤデバイスを %2$s から %3$s に拡�
 #. %4$s is replaced by new size (e.g. 2.00 GiB)
 #, c-format
 msgid "Growing logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "ボリュームグループ %2$s 内の論理ボリューム %1$s を %3$s から %4$s "
-"に拡大しています"
+msgstr ""
+"ボリュームグループ %2$s 内の論理ボリューム %1$s を %3$s から %4$s に拡大して"
+"います"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -2171,8 +2218,9 @@ msgstr "%1$s 内の物理ボリュームを %2$s から %3$s に拡大してい�
 #. %4$s is replaced by new size (e.g. 2.00 GiB)
 #, c-format
 msgid "Growing thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "ボリュームグループ %2$s 内の thin 論理ボリューム %1$s を %3$s から %4$s "
-"に拡大しています"
+msgstr ""
+"ボリュームグループ %2$s 内の thin 論理ボリューム %1$s を %3$s から %4$s に拡"
+"大しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2182,8 +2230,9 @@ msgstr "ボリュームグループ %2$s 内の thin 論理ボリューム %1$s 
 #, c-format
 msgid ""
 "Growing thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "ボリュームグループ %2$s 内の thin プール論理ボリューム %1$s を %3$s から %4$"
-"s に拡大しています"
+msgstr ""
+"ボリュームグループ %2$s 内の thin プール論理ボリューム %1$s を %3$s から "
+"%4$s に拡大しています"
 
 #. TRANSLATORS: name of object
 msgid "ISO 9660"
@@ -2396,8 +2445,9 @@ msgstr "%1$s に対する %2$s へのマウント"
 #. %4$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Mount LVM logical volume %1$s (%2$s) on volume group %3$s at %4$s"
-msgstr "ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) の %4$s "
-"へのマウント"
+msgstr ""
+"ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) の %4$s への"
+"マウント"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the nfs name (e.g. 99.99.00.00:path),
@@ -2700,7 +2750,8 @@ msgstr "存在しない物理ボリュームによるボリュームグループ
 #. %1$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Reducing volume group %1$s by missing physical volumes"
-msgstr "存在しない物理ボリュームによってボリュームグループ %1$s を縮小しています"
+msgstr ""
+"存在しない物理ボリュームによってボリュームグループ %1$s を縮小しています"
 
 #. TRANSLATORS: name of object
 msgid "ReiserFS"
@@ -2758,8 +2809,9 @@ msgstr "マウントポイント %1$s (%2$s) の /etc/fstab からの削除"
 #. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Remove mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
-msgstr "%3$s 内のサブボリューム %2$s のマウントポイント %1$s に対する /etc/fstab "
-"からの削除"
+msgstr ""
+"%3$s 内のサブボリューム %2$s のマウントポイント %1$s に対する /etc/fstab から"
+"の削除"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
@@ -2821,8 +2873,9 @@ msgstr "マウントポイント %1$s (%2$s) を /etc/fstab から削除して�
 #. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
-msgstr "%3$s 内のサブボリューム %2$s のマウントポイント %1$s を /etc/fstab "
-"から削除しています"
+msgstr ""
+"%3$s 内のサブボリューム %2$s のマウントポイント %1$s を /etc/fstab から削除し"
+"ています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
@@ -2837,7 +2890,8 @@ msgstr "qgroup %1$s を %2$s から削除しています"
 #. %2$s is replaced by device name (e.g. /dev/sda5)
 #, c-format
 msgid "Rename encryption layer device from %1$s to %2$s in /etc/crypttab"
-msgstr "暗号化レイヤデバイス %1$s に対する /etc/crypttab 内での %2$s への名称変更"
+msgstr ""
+"暗号化レイヤデバイス %1$s に対する /etc/crypttab 内での %2$s への名称変更"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the old logical volume name (e.g. foo),
@@ -2853,7 +2907,8 @@ msgstr "ボリュームグループ %3$s 内の論理ボリューム名 %1$s を
 #. %3$s is replaced by device name (e.g. /dev/sda5)
 #, c-format
 msgid "Rename mount point %1$s from %2$s to %3$s in /etc/fstab"
-msgstr "マウントポイント %1$s に対する /etc/fstab 内での %2$s から %3$s への名称変更"
+msgstr ""
+"マウントポイント %1$s に対する /etc/fstab 内での %2$s から %3$s への名称変更"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the old volume group name (e.g. foo),
@@ -2867,7 +2922,8 @@ msgstr "ボリュームグループ名 %1$s を %2$s に変更"
 #. %2$s is replaced by device name (e.g. /dev/sda5)
 #, c-format
 msgid "Renaming encryption layer device from %1$s to %2$s in /etc/crypttab"
-msgstr "暗号化レイヤデバイス %1$s を /etc/crypttab 内で %2$s に名称変更しています"
+msgstr ""
+"暗号化レイヤデバイス %1$s を /etc/crypttab 内で %2$s に名称変更しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -2875,7 +2931,8 @@ msgstr "暗号化レイヤデバイス %1$s を /etc/crypttab 内で %2$s に名
 #. %3$s is replaced by device name (e.g. /dev/sda5)
 #, c-format
 msgid "Renaming mount point %1$s from %2$s to %3$s in /etc/fstab"
-msgstr "マウントポイント %1$s を /etc/fstab 内で %2$s から %3$s に名称変更しています"
+msgstr ""
+"マウントポイント %1$s を /etc/fstab 内で %2$s から %3$s に名称変更しています"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -2992,7 +3049,8 @@ msgstr "パーティション %1$s の no-automount フラグの設定"
 #. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Set option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr "%2$s 内のサブボリューム %1$s に対する 'no copy on write' オプションの設定"
+msgstr ""
+"%2$s 内のサブボリューム %1$s に対する 'no copy on write' オプションの設定"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -3111,8 +3169,9 @@ msgstr "パーティション %1$s の no-automount フラグを設定してい�
 #. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Setting option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr "%2$s 内のサブボリューム %1$s に対して 'no copy on write' "
-"オプションを設定しています"
+msgstr ""
+"%2$s 内のサブボリューム %1$s に対して 'no copy on write' オプションを設定して"
+"います"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -3163,7 +3222,8 @@ msgstr "%1$s にある暗号化レイヤデバイスを %2$s から %3$s へ縮�
 #. %4$s is replaced by new size (e.g. 1.00 GiB)
 #, c-format
 msgid "Shrink logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "ボリュームグループ %2$s 内にある論理ボリューム %1$s を %3$s から %4$s へ縮小"
+msgstr ""
+"ボリュームグループ %2$s 内にある論理ボリューム %1$s を %3$s から %4$s へ縮小"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -3188,8 +3248,9 @@ msgstr "%1$s にある物理ボリュームを %2$s から %3$s へ縮小"
 #. %4$s is replaced by new size (e.g. 1.00 GiB)
 #, c-format
 msgid "Shrink thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "ボリュームグループ %2$s 内の thin 論理ボリューム %1$s の %3$s から %4$s "
-"への縮小"
+msgstr ""
+"ボリュームグループ %2$s 内の thin 論理ボリューム %1$s の %3$s から %4$s への"
+"縮小"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -3199,8 +3260,9 @@ msgstr "ボリュームグループ %2$s 内の thin 論理ボリューム %1$s 
 #, c-format
 msgid ""
 "Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "ボリュームグループ %2$s 内の thin プール論理ボリューム %1$s の %3$s から %4$"
-"s への縮小"
+msgstr ""
+"ボリュームグループ %2$s 内の thin プール論理ボリューム %1$s の %3$s から "
+"%4$s への縮小"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -3237,8 +3299,9 @@ msgstr "%1$s にある暗号化レイヤデバイスを %2$s から %3$s まで�
 #. %4$s is replaced by new size (e.g. 1.00 GiB)
 #, c-format
 msgid "Shrinking logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "ボリュームグループ %2$s 内の論理ボリューム %1$s を %3$s から %4$s "
-"まで縮小しています"
+msgstr ""
+"ボリュームグループ %2$s 内の論理ボリューム %1$s を %3$s から %4$s まで縮小し"
+"ています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -3264,8 +3327,9 @@ msgstr "%1$s 内の物理ボリュームを %2$s から %3$s まで縮小して�
 #, c-format
 msgid ""
 "Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "ボリュームグループ %2$s 内の thin 論理ボリューム %1$s を %3$s から %4$s "
-"まで縮小しています"
+msgstr ""
+"ボリュームグループ %2$s 内の thin 論理ボリューム %1$s を %3$s から %4$s まで"
+"縮小しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -3276,8 +3340,13 @@ msgstr "ボリュームグループ %2$s 内の thin 論理ボリューム %1$s 
 msgid ""
 "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to "
 "%4$s"
-msgstr "ボリュームグループ %2$s 内の thin プール論理ボリューム %1$s を %3$s から %4$"
-"s まで縮小しています"
+msgstr ""
+"ボリュームグループ %2$s 内の thin プール論理ボリューム %1$s を %3$s から "
+"%4$s まで縮小しています"
+
+#. TRANSLATORS: name of object
+msgid "Squashfs"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"
@@ -3319,7 +3388,8 @@ msgstr "qgroup %1$s を %3$s にある qgroup %2$s から割り当て解除"
 #. and /dev/sdb2 (2.00 GiB))
 #, c-format
 msgid "Unassign qgroup of subvolume %1$s from qgroup %2$s on %3$s"
-msgstr "サブボリューム %1$s の qgroup を %3$s にある qgroup %2$s から割り当て解除"
+msgstr ""
+"サブボリューム %1$s の qgroup を %3$s にある qgroup %2$s から割り当て解除"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
@@ -3337,8 +3407,9 @@ msgstr "qgroup %1$s を %3$s にある qgroup %2$s から割り当て解除し�
 #. and /dev/sdb2 (2.00 GiB))
 #, c-format
 msgid "Unassigning qgroup of subvolume %1$s from qgroup %2$s on %3$s"
-msgstr "サブボリューム %1$s の qgroup を %3$s にある qgroup %2$s "
-"から割り当て解除しています"
+msgstr ""
+"サブボリューム %1$s の qgroup を %3$s にある qgroup %2$s から割り当て解除して"
+"います"
 
 #. TRANSLATORS: name of partition type
 msgid "Unknown"

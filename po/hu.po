@@ -12,11 +12,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-17 09:40+0100\n"
+"POT-Creation-Date: 2026-01-29 14:48+0100\n"
 "PO-Revision-Date: 2025-07-22 15:00+0000\n"
 "Last-Translator: Julia Faltenbacher <julia.faltenbacher@suse.com>\n"
-"Language-Team: Hungarian <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/hu/>\n"
+"Language-Team: Hungarian <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/hu/>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -607,8 +607,8 @@ msgstr "%1$s LVM logikai kötet (%2$s) létrehozása a(z) %3$s kötetcsoportban"
 msgid ""
 "Create LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
 msgstr ""
-"%1$s LVM logikai kötet (%2$s) létrehozása a(z) %3$s kötetcsoportban a(z) %4$"
-"s számára a(z) %5$s fájlrendszerrel"
+"%1$s LVM logikai kötet (%2$s) létrehozása a(z) %3$s kötetcsoportban a(z) "
+"%4$s számára a(z) %5$s fájlrendszerrel"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS:
@@ -630,8 +630,8 @@ msgstr ""
 #, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
 msgstr ""
-"%1$s LVM logikai kötet (%2$s) létrehozása a(z) %3$s kötetcsoportban a(z) %4$"
-"s fájlrendszerrel"
+"%1$s LVM logikai kötet (%2$s) létrehozása a(z) %3$s kötetcsoportban a(z) "
+"%4$s fájlrendszerrel"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -1389,7 +1389,8 @@ msgstr "%1$s többutas partíció (%2$s) inaktiválása"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivate thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "%1$s vékony logikai kötet (%2$s) inaktiválása a(z) %3$s kötetcsoportban"
+msgstr ""
+"%1$s vékony logikai kötet (%2$s) inaktiválása a(z) %3$s kötetcsoportban"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1454,7 +1455,8 @@ msgstr "%1$s többutas partíció (%2$s) inaktiválása"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "%1$s vékony logikai kötet (%2$s) inaktiválása a(z) %3$s kötetcsoportban"
+msgstr ""
+"%1$s vékony logikai kötet (%2$s) inaktiválása a(z) %3$s kötetcsoportban"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1996,8 +1998,8 @@ msgid ""
 "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with "
 "%5$s"
 msgstr ""
-"%1$s LVM logikai kötet (%2$s) titkosítása a(z) %3$s kötetcsoportban a(z) %4$"
-"s csatlakoztatási pontnál (%5$s fájlrendszer)"
+"%1$s LVM logikai kötet (%2$s) titkosítása a(z) %3$s kötetcsoportban a(z) "
+"%4$s csatlakoztatási pontnál (%5$s fájlrendszer)"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS:
@@ -2074,6 +2076,10 @@ msgstr "%1$s partíció (%2$s) titkosítása (%3$s fájlrendszer)"
 #. TRANSLATORS: name of object
 msgid "Encryption"
 msgstr "Titkosítás"
+
+#. TRANSLATORS: name of object
+msgid "Erofs"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Ext2"
@@ -2300,8 +2306,8 @@ msgstr ""
 #, c-format
 msgid "Grow thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
-"%1$s vékony logikai kötet növelése a(z) %2$s kötetcsoportban, régi méret: %3$"
-"s, új méret: %4$s"
+"%1$s vékony logikai kötet növelése a(z) %2$s kötetcsoportban, régi méret: "
+"%3$s, új méret: %4$s"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS: displayed before action,
@@ -2387,8 +2393,8 @@ msgstr ""
 #, c-format
 msgid "Growing thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
-"%1$s vékony logikai kötet növelése a(z) %2$s kötetcsoportban, régi méret: %3$"
-"s, új méret: %4$s"
+"%1$s vékony logikai kötet növelése a(z) %2$s kötetcsoportban, régi méret: "
+"%3$s, új méret: %4$s"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS: displayed during action,
@@ -3581,6 +3587,10 @@ msgid ""
 msgstr ""
 "A(z) %2$s kötetcsoportban lévő, vékony készlethez tartozó %1$s logikai kötet "
 "méretének csökkentése, régi méret: %3$s, új méret: %4$s"
+
+#. TRANSLATORS: name of object
+msgid "Squashfs"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"

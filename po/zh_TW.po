@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-17 09:40+0100\n"
+"POT-Creation-Date: 2026-01-29 14:48+0100\n"
 "PO-Revision-Date: 2025-07-22 15:01+0000\n"
 "Last-Translator: Julia Faltenbacher <julia.faltenbacher@suse.com>\n"
 "Language-Team: Chinese (Taiwan) <https://l10n.opensuse.org/projects/"
@@ -754,7 +754,8 @@ msgstr "在磁碟區群組 %3$s 上建立加密的 LVM 邏輯磁碟區 %1$s (%2$
 msgid ""
 "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for "
 "%4$s with %5$s"
-msgstr "在 %4$s (%5$s) 的磁碟區群組 %3$s 上建立加密的 LVM 邏輯磁碟區 %1$s (%2$s)"
+msgstr ""
+"在 %4$s (%5$s) 的磁碟區群組 %3$s 上建立加密的 LVM 邏輯磁碟區 %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -1905,6 +1906,10 @@ msgstr "加密包含 %3$s 的分割區 %1$s (%2$s)"
 #. TRANSLATORS: name of object
 msgid "Encryption"
 msgstr "加密"
+
+#. TRANSLATORS: name of object
+msgid "Erofs"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Ext2"
@@ -3272,6 +3277,10 @@ msgid ""
 "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to "
 "%4$s"
 msgstr "正在將磁碟區群組 %2$s 上的簡易池邏輯磁碟區 %1$s 從 %3$s 縮減到 %4$s"
+
+#. TRANSLATORS: name of object
+msgid "Squashfs"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"

@@ -6,11 +6,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-17 09:40+0100\n"
+"POT-Creation-Date: 2026-01-29 14:48+0100\n"
 "PO-Revision-Date: 2025-07-22 14:59+0000\n"
 "Last-Translator: Julia Faltenbacher <julia.faltenbacher@suse.com>\n"
-"Language-Team: Arabic <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/ar/>\n"
+"Language-Team: Arabic <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/ar/>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -428,7 +428,8 @@ msgstr "مسح علامة تشغيل القسم %1$s"
 #. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Clear option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr "مسح الخيار \"عدم النسخ عند الكتابة\" لوحدة التخزين الفرعية %1$s في %2$s"
+msgstr ""
+"مسح الخيار \"عدم النسخ عند الكتابة\" لوحدة التخزين الفرعية %1$s في %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -773,8 +774,8 @@ msgid ""
 "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for "
 "%4$s with %5$s"
 msgstr ""
-"إنشاء وحدة التخزين المنطقية LVM المشفرة %1$s (‏%2$s) بمجموعة وحدات التخزين %3$"
-"s لـ %4$s مع %5$s"
+"إنشاء وحدة التخزين المنطقية LVM المشفرة %1$s (‏%2$s) بمجموعة وحدات التخزين "
+"%3$s لـ %4$s مع %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -796,8 +797,8 @@ msgid ""
 "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s with "
 "%4$s"
 msgstr ""
-"إنشاء وحدة التخزين المنطقية LVM المشفرة %1$s (‏%2$s) بمجموعة وحدات التخزين %3$"
-"s مع %4$s"
+"إنشاء وحدة التخزين المنطقية LVM المشفرة %1$s (‏%2$s) بمجموعة وحدات التخزين "
+"%3$s مع %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -1960,6 +1961,10 @@ msgid "Encryption"
 msgstr "تشفير"
 
 #. TRANSLATORS: name of object
+msgid "Erofs"
+msgstr ""
+
+#. TRANSLATORS: name of object
 msgid "Ext2"
 msgstr "Ext2"
 
@@ -2014,8 +2019,8 @@ msgstr "قم بتنسيق %1$s %2$s (%3$s) بنظام الملفات %4$s"
 msgid ""
 "Format LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
 msgstr ""
-"تنسيق وحدة التخزين المنطقية LVM %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s لـ %4$"
-"s بـ %5$s"
+"تنسيق وحدة التخزين المنطقية LVM %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s لـ "
+"%4$s بـ %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -2170,8 +2175,8 @@ msgstr ""
 msgid ""
 "Grow thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
-"زيادة حجم مجمع وحدة التخزين المنطقية التابعة %1$s في مجموعة وحدات التخزين %2$"
-"s من %3$s إلى %4$s"
+"زيادة حجم مجمع وحدة التخزين المنطقية التابعة %1$s في مجموعة وحدات التخزين "
+"%2$s من %3$s إلى %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -2236,8 +2241,8 @@ msgstr "تتم الآن زيادة حجم وحدة التخزين الفعلية
 #, c-format
 msgid "Growing thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
-"زيادة حجم مجمع وحدة التخزين المنطقية التابعة %1$s في مجموعة وحدات التخزين %2$"
-"s من %3$s إلى %4$s"
+"زيادة حجم مجمع وحدة التخزين المنطقية التابعة %1$s في مجموعة وحدات التخزين "
+"%2$s من %3$s إلى %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2770,13 +2775,15 @@ msgstr "فشل البحث"
 #. %1$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Reduce volume group %1$s by missing physical volumes"
-msgstr "تقليل حجم مجموعة وحدات التخزين %1$s عن طريق تفادي وحدات التخزين الفعلية"
+msgstr ""
+"تقليل حجم مجموعة وحدات التخزين %1$s عن طريق تفادي وحدات التخزين الفعلية"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Reducing volume group %1$s by missing physical volumes"
-msgstr "تقليل حجم مجموعة وحدات التخزين %1$s عن طريق تفادي وحدات التخزين الفعلية"
+msgstr ""
+"تقليل حجم مجموعة وحدات التخزين %1$s عن طريق تفادي وحدات التخزين الفعلية"
 
 #. TRANSLATORS: name of object
 #, fuzzy
@@ -3287,8 +3294,8 @@ msgstr ""
 msgid ""
 "Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
-"تقليص حجم مجمع وحدة التخزين المنطقية التابع %1$s في مجموعة وحدات التخزين %2$"
-"s من %3$s إلى %4$s"
+"تقليص حجم مجمع وحدة التخزين المنطقية التابع %1$s في مجموعة وحدات التخزين "
+"%2$s من %3$s إلى %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -3369,6 +3376,10 @@ msgid ""
 msgstr ""
 "يتم الآن تقليص حجم مجمع وحدة التخزين المنطقية التابعة %1$s في مجموعة وحدات "
 "التخزين %2$s من %3$s إلى %4$s"
+
+#. TRANSLATORS: name of object
+msgid "Squashfs"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"

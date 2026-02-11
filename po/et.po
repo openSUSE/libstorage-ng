@@ -6,11 +6,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: autoinst.fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-17 09:40+0100\n"
+"POT-Creation-Date: 2026-01-29 14:48+0100\n"
 "PO-Revision-Date: 2025-07-22 15:00+0000\n"
 "Last-Translator: Julia Faltenbacher <julia.faltenbacher@suse.com>\n"
-"Language-Team: Estonian <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/et/>\n"
+"Language-Team: Estonian <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/et/>\n"
 "Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -177,7 +177,8 @@ msgstr "Aktiveeritakse 'thin' loogilist andmeruumi %1$s (%2$s) grupis %3$s"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Aktiveeritakse 'thin pool' loogilist andmeruumi %1$s (%2$s) grupis %3$s"
+msgstr ""
+"Aktiveeritakse 'thin pool' loogilist andmeruumi %1$s (%2$s) grupis %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the device name (e.g. /dev/sdc1),
@@ -285,7 +286,8 @@ msgstr "Ühenduskoha %1$s lisamine %2$s /etc/fstab"
 #. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Adding mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
-msgstr "Lisades seadme %3$s alammahu %2$s haakepunkti %1$s kataloogi /etc/fstab"
+msgstr ""
+"Lisades seadme %3$s alammahu %2$s haakepunkti %1$s kataloogi /etc/fstab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
@@ -461,7 +463,8 @@ msgstr "Partitsiooni %1$s loomine"
 #. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Clearing option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr "%2$s alamosa %1$s tühjendamise võimalus 'kirjutamisel koopiat ei tehta'"
+msgstr ""
+"%2$s alamosa %1$s tühjendamise võimalus 'kirjutamisel koopiat ei tehta'"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1886,6 +1889,10 @@ msgid "Encryption"
 msgstr "Krüptimine"
 
 #. TRANSLATORS: name of object
+msgid "Erofs"
+msgstr ""
+
+#. TRANSLATORS: name of object
 msgid "Ext2"
 msgstr "Ext2"
 
@@ -3288,6 +3295,10 @@ msgid ""
 msgstr ""
 "Loogilise 'thin pool' andmeruumi %1$s vähendamine grupis %2$s suuruselt %3$s "
 "kuni %4$s"
+
+#. TRANSLATORS: name of object
+msgid "Squashfs"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"

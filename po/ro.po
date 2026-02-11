@@ -20,11 +20,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenSUSE\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-17 09:40+0100\n"
+"POT-Creation-Date: 2026-01-29 14:48+0100\n"
 "PO-Revision-Date: 2025-07-22 15:00+0000\n"
 "Last-Translator: Julia Faltenbacher <julia.faltenbacher@suse.com>\n"
-"Language-Team: Romanian <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/ro/>\n"
+"Language-Team: Romanian <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/ro/>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1885,6 +1885,10 @@ msgid "Encryption"
 msgstr ""
 
 #. TRANSLATORS: name of object
+msgid "Erofs"
+msgstr ""
+
+#. TRANSLATORS: name of object
 msgid "Ext2"
 msgstr ""
 
@@ -3256,6 +3260,10 @@ msgid ""
 "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to "
 "%4$s"
 msgstr "Restrâng volumul logic %1$s la %2$s"
+
+#. TRANSLATORS: name of object
+msgid "Squashfs"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"
