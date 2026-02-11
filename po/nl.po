@@ -14,11 +14,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.nl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-17 09:40+0100\n"
+"POT-Creation-Date: 2026-01-29 14:48+0100\n"
 "PO-Revision-Date: 2025-07-22 15:00+0000\n"
 "Last-Translator: Julia Faltenbacher <julia.faltenbacher@suse.com>\n"
-"Language-Team: Dutch <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/nl/>\n"
+"Language-Team: Dutch <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -752,7 +752,8 @@ msgstr ""
 #. %3$s is replaced with the volume group name (e.g. system)
 #, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Versleuteld LVM logisch volume %1$s (%2$s) op volumegroep %3$s aanmaken"
+msgstr ""
+"Versleuteld LVM logisch volume %1$s (%2$s) op volumegroep %3$s aanmaken"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -1730,8 +1731,8 @@ msgid ""
 "Detected a LVM logical volume next to a partition table of type %1$s on the\n"
 "device %2$s. The LVM logical volume will be ignored as good as possible."
 msgstr ""
-"Een LVM logisch volume gedetecteerd naast een partitietabel van het type %1$"
-"s op het\n"
+"Een LVM logisch volume gedetecteerd naast een partitietabel van het type "
+"%1$s op het\n"
 "apparaat %2$s. Het LVM logische volume zal zo goed al mogelijk is genegeerd "
 "worden."
 
@@ -1924,6 +1925,10 @@ msgid "Encryption"
 msgstr "Versleuteling"
 
 #. TRANSLATORS: name of object
+msgid "Erofs"
+msgstr ""
+
+#. TRANSLATORS: name of object
 msgid "Ext2"
 msgstr "Ext2"
 
@@ -1987,7 +1992,8 @@ msgstr ""
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr "LVM logisch volume %1$s (%2$s) op volumegroep %3$s met %4$s formatteren"
+msgstr ""
+"LVM logisch volume %1$s (%2$s) op volumegroep %3$s met %4$s formatteren"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -2778,7 +2784,8 @@ msgstr "Aankoppelpunt %1$s op %2$s verwijderen uit /etc/fstab"
 #. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Remove mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
-msgstr "Aankoppelpunt %1$s op subvolume %2$s op %3$s verwijderen uit /etc/fstab"
+msgstr ""
+"Aankoppelpunt %1$s op subvolume %2$s op %3$s verwijderen uit /etc/fstab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
@@ -2840,7 +2847,8 @@ msgstr "Aankoppelpunt %1$s op %2$s verwijderen uit /etc/fstab"
 #. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
-msgstr "Aankoppelpunt %1$s op subvolume %2$s op %3$s verwijderen uit /etc/fstab"
+msgstr ""
+"Aankoppelpunt %1$s op subvolume %2$s op %3$s verwijderen uit /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
@@ -3301,6 +3309,10 @@ msgid ""
 msgstr ""
 "Thin logisch volume %1$s op volumegroep %2$s wordt ingekrompen van %3$s naar "
 "%4$s"
+
+#. TRANSLATORS: name of object
+msgid "Squashfs"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"

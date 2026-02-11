@@ -5,11 +5,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-17 09:40+0100\n"
+"POT-Creation-Date: 2026-01-29 14:48+0100\n"
 "PO-Revision-Date: 2025-07-22 15:00+0000\n"
 "Last-Translator: Julia Faltenbacher <julia.faltenbacher@suse.com>\n"
-"Language-Team: Slovak <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/sk/>\n"
+"Language-Team: Slovak <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -340,7 +340,8 @@ msgstr "Pripojiť sadu vyrovnávacej pamäte bcache na %1$s k bcache %2$s (%3$s)
 #. %3$s is replaced by size (e.g. 2.00 GiB)
 #, c-format
 msgid "Attaching bcache cache set on %1$s to bcache %2$s (%3$s)"
-msgstr "Pripojenie sady vyrovnávacej pamäte bcache na %1$s k bcache %2$s (%3$s)"
+msgstr ""
+"Pripojenie sady vyrovnávacej pamäte bcache na %1$s k bcache %2$s (%3$s)"
 
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 msgid "B"
@@ -586,7 +587,8 @@ msgstr ""
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr "Vytvoriť logický zväzok swap %1$s (%2$s) na skupine zväzkov %3$s s %4$s"
+msgstr ""
+"Vytvoriť logický zväzok swap %1$s (%2$s) na skupine zväzkov %3$s s %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -757,8 +759,8 @@ msgid ""
 "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for "
 "%4$s with %5$s"
 msgstr ""
-"Vytvoriť šifrovaný logický zväzok %1$s (%2$s) na skupine zväzkov %3$s pre %4$"
-"s s %5$s"
+"Vytvoriť šifrovaný logický zväzok %1$s (%2$s) na skupine zväzkov %3$s pre "
+"%4$s s %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -1015,7 +1017,8 @@ msgstr "Vytvoriť tenký logický zväzok %1$s (%2$s) na skupine zväzkov %3$s"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Create thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Vytvoriť tenký logický zväzok fondu %1$s (%2$s) na skupine zväzkov %3$s"
+msgstr ""
+"Vytvoriť tenký logický zväzok fondu %1$s (%2$s) na skupine zväzkov %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced with the volume group name (e.g. system),
@@ -1182,7 +1185,8 @@ msgstr "Vytvorenie podzväzku %1$s na %2$s"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Creating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Vytvorenie tenkého logického zväzku %1$s (%2$s) na skupine zväzkov %3$s"
+msgstr ""
+"Vytvorenie tenkého logického zväzku %1$s (%2$s) na skupine zväzkov %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1673,7 +1677,8 @@ msgstr "Odpojiť sadu vyrovnávacej pamäte bcache na %1$s od bcache %2$s (%3$s)
 #. %3$s is replaced by size (e.g. 2.00 GiB)
 #, c-format
 msgid "Detaching bcache cache set on %1$s from bcache %2$s (%3$s)"
-msgstr "Odpojenie sady vyrovnávacej pamäte bcache na %1$s od bcache %2$s (%3$s)"
+msgstr ""
+"Odpojenie sady vyrovnávacej pamäte bcache na %1$s od bcache %2$s (%3$s)"
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by a list of device names joined by newlines (e.g.
@@ -1915,6 +1920,10 @@ msgstr "Šifrovať oddiel %1$s (%2$s) s %3$s"
 #. TRANSLATORS: name of object
 msgid "Encryption"
 msgstr "Šifrovanie"
+
+#. TRANSLATORS: name of object
+msgid "Erofs"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Ext2"
@@ -3291,6 +3300,10 @@ msgid ""
 msgstr ""
 "Zmenšenie tenkého logického zväzku fondu %1$s na skupine zväzkov %2$s z %3$s "
 "na %4$s"
+
+#. TRANSLATORS: name of object
+msgid "Squashfs"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"

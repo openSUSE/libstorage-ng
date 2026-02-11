@@ -12,11 +12,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-17 09:40+0100\n"
+"POT-Creation-Date: 2026-01-29 14:48+0100\n"
 "PO-Revision-Date: 2025-07-22 15:00+0000\n"
 "Last-Translator: Julia Faltenbacher <julia.faltenbacher@suse.com>\n"
-"Language-Team: Galician <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/gl/>\n"
+"Language-Team: Galician <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/gl/>\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -176,7 +176,8 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Activando o volume lóxico reducido %1$s (%2$s) no grupo de volumes %3$s"
+msgstr ""
+"Activando o volume lóxico reducido %1$s (%2$s) no grupo de volumes %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -279,7 +280,8 @@ msgstr ""
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Adding encryption layer device on %1$s to /etc/crypttab"
-msgstr "Engadindo unha capa de cifrado de dispositivo a %1$s para /etc/crypttab"
+msgstr ""
+"Engadindo unha capa de cifrado de dispositivo a %1$s para /etc/crypttab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the mount point (e.g. /home),
@@ -600,7 +602,8 @@ msgstr ""
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr "Crear o volume lóxico LVM %1$s (%2$s) no grupo de volumes %3$s con %4$s"
+msgstr ""
+"Crear o volume lóxico LVM %1$s (%2$s) no grupo de volumes %3$s con %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -1931,6 +1934,10 @@ msgid "Encryption"
 msgstr "Cifrado"
 
 #. TRANSLATORS: name of object
+msgid "Erofs"
+msgstr ""
+
+#. TRANSLATORS: name of object
 msgid "Ext2"
 msgstr "Ext2"
 
@@ -2175,7 +2182,8 @@ msgstr "Aumentando a capa de cifrado de dispositivo en %1$s de %2$s a %3$s"
 #. %4$s is replaced by new size (e.g. 2.00 GiB)
 #, c-format
 msgid "Growing logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Aumentando o volume lóxico %1$s do grupo de volumes %2$s de %3$s a %4$s"
+msgstr ""
+"Aumentando o volume lóxico %1$s do grupo de volumes %2$s de %3$s a %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -2428,7 +2436,8 @@ msgstr "Montar %1$s en %2$s"
 #. %4$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Mount LVM logical volume %1$s (%2$s) on volume group %3$s at %4$s"
-msgstr "Montar o volume lóxico LVM %1$s (%2$s) no grupo de volumes %3$s en %4$s"
+msgstr ""
+"Montar o volume lóxico LVM %1$s (%2$s) no grupo de volumes %3$s en %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the nfs name (e.g. 99.99.00.00:path),
@@ -3247,8 +3256,8 @@ msgstr ""
 msgid ""
 "Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
-"Minguar a área reducida de volume lóxico %1$s do grupo de volumes %2$s de %3$"
-"s a %4$s"
+"Minguar a área reducida de volume lóxico %1$s do grupo de volumes %2$s de "
+"%3$s a %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -3327,6 +3336,10 @@ msgid ""
 msgstr ""
 "Minguouse a área reducida de volume lóxico %1$s do grupo de volumes %2$s de "
 "%3$s a %4$s"
+
+#. TRANSLATORS: name of object
+msgid "Squashfs"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"

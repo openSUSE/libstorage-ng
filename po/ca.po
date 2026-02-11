@@ -8,11 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-17 09:40+0100\n"
+"POT-Creation-Date: 2026-01-29 14:48+0100\n"
 "PO-Revision-Date: 2025-07-22 14:59+0000\n"
 "Last-Translator: Julia Faltenbacher <julia.faltenbacher@suse.com>\n"
-"Language-Team: Catalan <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/ca/>\n"
+"Language-Team: Catalan <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/ca/>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -235,7 +235,8 @@ msgstr "Afegeix el punt de muntatge %1$s de %2$s a /etc/fstab"
 #. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Add mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
-msgstr "Afegeix el punt de muntatge %1$s del subvolum %2$s de %3$s a /etc/fstab"
+msgstr ""
+"Afegeix el punt de muntatge %1$s del subvolum %2$s de %3$s a /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/sdc1),
@@ -289,7 +290,8 @@ msgstr "Afegint el punt de muntatge %1$s de %2$s a /etc/fstab"
 #. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Adding mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
-msgstr "Afegint el punt de muntatge %1$s del subvolum %2$s de %3$s a /etc/fstab"
+msgstr ""
+"Afegint el punt de muntatge %1$s del subvolum %2$s de %3$s a /etc/fstab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
@@ -1924,6 +1926,10 @@ msgid "Encryption"
 msgstr "Encriptació"
 
 #. TRANSLATORS: name of object
+msgid "Erofs"
+msgstr ""
+
+#. TRANSLATORS: name of object
 msgid "Ext2"
 msgstr "Ext2"
 
@@ -3307,6 +3313,10 @@ msgid ""
 msgstr ""
 "Encongint el volum lògic d'agrupació prima %1$s del grup de volums %2$s de "
 "%3$s a %4$s"
+
+#. TRANSLATORS: name of object
+msgid "Squashfs"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"

@@ -16,11 +16,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-17 09:40+0100\n"
+"POT-Creation-Date: 2026-01-29 14:48+0100\n"
 "PO-Revision-Date: 2025-07-22 15:00+0000\n"
 "Last-Translator: Julia Faltenbacher <julia.faltenbacher@suse.com>\n"
-"Language-Team: Spanish <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/es/>\n"
+"Language-Team: Spanish <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -302,7 +302,8 @@ msgstr "Añadiendo punto de montaje %1$s de %2$s a /etc/fstab"
 #. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Adding mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
-msgstr "Añadiendo punto de montaje %1$s de subvolumen %2$s en %3$s a /etc/fstab"
+msgstr ""
+"Añadiendo punto de montaje %1$s de subvolumen %2$s en %3$s a /etc/fstab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
@@ -431,7 +432,8 @@ msgstr "Borrar indicador no-automount de partición %1$s"
 #. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Clear option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr "Borrar opción \"no copiar al escribor\" para el subvolumen %1$s en %2$s"
+msgstr ""
+"Borrar opción \"no copiar al escribor\" para el subvolumen %1$s en %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1886,8 +1888,8 @@ msgid ""
 "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with "
 "%5$s"
 msgstr ""
-"Cifrar volumen lógico LVM %1$s (%2$s) en el grupo de volúmenes %3$s para %4$"
-"s con %5$s"
+"Cifrar volumen lógico LVM %1$s (%2$s) en el grupo de volúmenes %3$s para "
+"%4$s con %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -1953,6 +1955,10 @@ msgstr "Cifrar partición %1$s (%2$s) con %3$s"
 #. TRANSLATORS: name of object
 msgid "Encryption"
 msgstr "Cifrado"
+
+#. TRANSLATORS: name of object
+msgid "Erofs"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Ext2"
@@ -2227,8 +2233,8 @@ msgstr "Aumentando volumen físico en %1$s de %2$s a %3$s"
 #, c-format
 msgid "Growing thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
-"Aumentando el volumen lógico ligero %1$s en el grupo de volúmenes %2$s de %3$"
-"s a %4$s"
+"Aumentando el volumen lógico ligero %1$s en el grupo de volúmenes %2$s de "
+"%3$s a %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2815,7 +2821,8 @@ msgstr "Eliminar punto montaje %1$s de %2$s de /etc/fstab"
 #. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Remove mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
-msgstr "Eliminar punto de montaje %1$s de subvolumen %2$s en %3$s de /etc/fstab"
+msgstr ""
+"Eliminar punto de montaje %1$s de subvolumen %2$s en %3$s de /etc/fstab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the btrfs qgroup id (e.g. 1/0),
@@ -3343,6 +3350,10 @@ msgid ""
 msgstr ""
 "Reduciendo volumen lógico de grupo ligero %1$s en el grupo de volúmenes %2$s "
 "de %3$s a %4$s"
+
+#. TRANSLATORS: name of object
+msgid "Squashfs"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"

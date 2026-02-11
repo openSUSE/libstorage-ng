@@ -12,11 +12,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-17 09:40+0100\n"
+"POT-Creation-Date: 2026-01-29 14:48+0100\n"
 "PO-Revision-Date: 2025-07-22 15:00+0000\n"
 "Last-Translator: Julia Faltenbacher <julia.faltenbacher@suse.com>\n"
-"Language-Team: Italian <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/it/>\n"
+"Language-Team: Italian <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -473,7 +473,8 @@ msgstr "Cancellazione dell'obsoleto flag di avvio della partizione %1$s"
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #, c-format
 msgid "Clearing no-automount flag of partition %1$s"
-msgstr "Cancellazione del flag senza montaggio automatico della partizione %1$s"
+msgstr ""
+"Cancellazione del flag senza montaggio automatico della partizione %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -789,7 +790,8 @@ msgstr ""
 #. %3$s is replaced with the volume group name (e.g. system)
 #, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Crea il volume logico LVM cifrato %1$s (%2$s) sul gruppo di volumi %3$s"
+msgstr ""
+"Crea il volume logico LVM cifrato %1$s (%2$s) sul gruppo di volumi %3$s"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2474
@@ -1387,7 +1389,8 @@ msgstr "Disattiva volume logico thin %1$s (%2$s) sul gruppo di volumi %3$s"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivate thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Disattiva volume logico pool thin %1$s (%2$s) sul gruppo di volumi %3$s"
+msgstr ""
+"Disattiva volume logico pool thin %1$s (%2$s) sul gruppo di volumi %3$s"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2472
@@ -2085,6 +2088,10 @@ msgstr "Cifra la partizione %1$s (%2$s) con %3$s"
 #. TRANSLATORS: name of object
 msgid "Encryption"
 msgstr "Cifratura"
+
+#. TRANSLATORS: name of object
+msgid "Erofs"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Ext2"
@@ -3537,6 +3544,10 @@ msgid ""
 msgstr ""
 "Riduzione del volume logico pool thin %1$s sul gruppo di volumi %2$s da %3$s "
 "a %4$s"
+
+#. TRANSLATORS: name of object
+msgid "Squashfs"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"

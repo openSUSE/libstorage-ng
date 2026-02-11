@@ -4,11 +4,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-17 09:40+0100\n"
+"POT-Creation-Date: 2026-01-29 14:48+0100\n"
 "PO-Revision-Date: 2025-07-22 15:00+0000\n"
 "Last-Translator: Julia Faltenbacher <julia.faltenbacher@suse.com>\n"
-"Language-Team: Russian <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/ru/>\n"
+"Language-Team: Russian <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -574,7 +574,8 @@ msgstr ""
 #. %3$s is replaced with the volume group name (e.g. system)
 #, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
-msgstr "Создать логический том LVM %1$s (%2$s) в группе томов %3$s для подкачки"
+msgstr ""
+"Создать логический том LVM %1$s (%2$s) в группе томов %3$s для подкачки"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -1297,7 +1298,8 @@ msgstr "Отключить «тонкий» логический том %1$s (%2
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivate thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Отключить логический том «тонкого» пула %1$s (%2$s) в группе томов %3$s"
+msgstr ""
+"Отключить логический том «тонкого» пула %1$s (%2$s) в группе томов %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -1935,6 +1937,10 @@ msgstr "Зашифровать раздел %1$s (%2$s) с файловой си
 #. TRANSLATORS: name of object
 msgid "Encryption"
 msgstr "Шифрование"
+
+#. TRANSLATORS: name of object
+msgid "Erofs"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Ext2"
@@ -2907,7 +2913,8 @@ msgstr "Переименовать группу томов %1$s в %2$s"
 #. %2$s is replaced by device name (e.g. /dev/sda5)
 #, c-format
 msgid "Renaming encryption layer device from %1$s to %2$s in /etc/crypttab"
-msgstr "Переименование зашифрованного устройства из %1$s в %2$s в /etc/crypttab"
+msgstr ""
+"Переименование зашифрованного устройства из %1$s в %2$s в /etc/crypttab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -3318,6 +3325,10 @@ msgid ""
 msgstr ""
 "Уменьшение логического тома «тонкого» пула %1$s в группе томов %2$s с %3$s "
 "до %4$s"
+
+#. TRANSLATORS: name of object
+msgid "Squashfs"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"

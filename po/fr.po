@@ -10,11 +10,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-17 09:40+0100\n"
+"POT-Creation-Date: 2026-01-29 14:48+0100\n"
 "PO-Revision-Date: 2025-07-22 14:59+0000\n"
 "Last-Translator: Julia Faltenbacher <julia.faltenbacher@suse.com>\n"
-"Language-Team: French <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/fr/>\n"
+"Language-Team: French <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -818,8 +818,8 @@ msgid ""
 "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for "
 "%4$s with %5$s"
 msgstr ""
-"Créer le volume logique LVM chiffré %1$s (%2$s) sur le groupe de volumes %3$"
-"s pour le point de montage %4$s avec le système de fichiers %5$s"
+"Créer le volume logique LVM chiffré %1$s (%2$s) sur le groupe de volumes "
+"%3$s pour le point de montage %4$s avec le système de fichiers %5$s"
 
 # TLABEL partitioning_2002_03_14_2340__121
 #. TRANSLATORS:
@@ -830,8 +830,8 @@ msgstr ""
 msgid ""
 "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
 msgstr ""
-"Créer le volume logique LVM chiffré %1$s (%2$s) sur le groupe de volumes %3$"
-"s pour l'échange"
+"Créer le volume logique LVM chiffré %1$s (%2$s) sur le groupe de volumes "
+"%3$s pour l'échange"
 
 # TLABEL partitioning_2002_03_14_2340__121
 #. TRANSLATORS:
@@ -844,8 +844,8 @@ msgid ""
 "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s with "
 "%4$s"
 msgstr ""
-"Créer le volume logique LVM chiffré %1$s (%2$s) sur le groupe de volumes %3$"
-"s avec le système de fichiers %4$s"
+"Créer le volume logique LVM chiffré %1$s (%2$s) sur le groupe de volumes "
+"%3$s avec le système de fichiers %4$s"
 
 # TLABEL partitioning_2002_01_04_0147__351
 #. TRANSLATORS:
@@ -897,7 +897,8 @@ msgstr "Créer la partition chiffrée %1$s (%2$s)"
 #. %2$s is replaced with the size (e.g. 2.00 GiB)
 #, c-format
 msgid "Create encrypted partition %1$s (%2$s) as LVM physical volume"
-msgstr "Créer la partition chiffrée %1$s (%2$s) en tant que volume physique LVM"
+msgstr ""
+"Créer la partition chiffrée %1$s (%2$s) en tant que volume physique LVM"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -1091,7 +1092,8 @@ msgstr "Créer le sous-volume %1$s sur %2$s"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Create thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Créer le volume logique léger %1$s (%2$s) sur le groupe de volumes %3$s"
+msgstr ""
+"Créer le volume logique léger %1$s (%2$s) sur le groupe de volumes %3$s"
 
 # TLABEL partitioning_2002_03_14_2340__121
 #. TRANSLATORS: displayed before action,
@@ -1758,7 +1760,8 @@ msgstr "Suppression de la partition logique %1$s (%2$s)"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deleting logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Suppression du volume logique %1$s (%2$s) sur le groupe de volumes %3$s"
+msgstr ""
+"Suppression du volume logique %1$s (%2$s) sur le groupe de volumes %3$s"
 
 # TLABEL partitioning_2002_01_04_0147__422
 #. TRANSLATORS: displayed during action,
@@ -2099,6 +2102,10 @@ msgstr "Chiffrer la partition %1$s (%2$s) avec le système de fichiers %3$s"
 #. TRANSLATORS: name of object
 msgid "Encryption"
 msgstr "Chiffrement"
+
+#. TRANSLATORS: name of object
+msgid "Erofs"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Ext2"
@@ -3520,8 +3527,8 @@ msgstr ""
 msgid ""
 "Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
-"Réduire le volume logique de pool léger %1$s du groupe de volumes %2$s de %3$"
-"s à %4$s"
+"Réduire le volume logique de pool léger %1$s du groupe de volumes %2$s de "
+"%3$s à %4$s"
 
 # TLABEL partitioning_2002_01_04_0147__78
 #. TRANSLATORS: displayed during action,
@@ -3604,6 +3611,10 @@ msgid ""
 msgstr ""
 "Réduction du volume logique de pool léger %1$s sur le groupe de volumes %2$s "
 "de %3$s à %4$s"
+
+#. TRANSLATORS: name of object
+msgid "Squashfs"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"
@@ -3699,7 +3710,8 @@ msgstr "Démonter le système de fichiers NFS %1$s de %2$s"
 #. %2$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Unmount file system btrfs on %1$s at %2$s"
-msgstr "Démonter le système de fichiers Btrfs sur %1$s au point de montage %2$s"
+msgstr ""
+"Démonter le système de fichiers Btrfs sur %1$s au point de montage %2$s"
 
 # TLABEL partitioning_2002_01_04_0147__92
 #. TRANSLATORS: displayed before action,
