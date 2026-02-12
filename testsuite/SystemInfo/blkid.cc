@@ -37,6 +37,28 @@ check(const vector<string>& input, const vector<string>& output)
 
 
 void
+check(const string& device, const vector<string>& input, const vector<string>& output)
+{
+    Mockup::set_mode(Mockup::Mode::PLAYBACK);
+    Mockup::set_command(BLKID_BIN " -c /dev/null " + device, input);
+    Mockup::set_command({ UDEVADM_BIN_SETTLE }, {});
+
+    Udevadm udevadm;
+
+    Blkid blkid(udevadm, device);
+
+    ostringstream parsed;
+    parsed.setf(std::ios::boolalpha);
+    parsed << blkid;
+
+    string lhs = parsed.str();
+    string rhs = boost::join(output, "\n") + "\n";
+
+    BOOST_CHECK_EQUAL(lhs, rhs);
+}
+
+
+void
 check_split_line( const string & input, const string & output )
 {
     string result = boost::join( Blkid::split_line( input ), "|" );
@@ -180,6 +202,20 @@ BOOST_AUTO_TEST_CASE(parse6)
     };
 
     check(input, output);
+}
+
+
+BOOST_AUTO_TEST_CASE(parse7)
+{
+    vector<string> input = {
+	"/dev/sda1: LABEL=\"BOOT\" UUID=\"14875716-b8e3-4c83-ac86-48c20682b63a\" TYPE=\"ext3\" PTTYPE=\"dos\" "
+    };
+
+    vector<string> output = {
+	"data[/dev/sda1] -> is-fs:true fs-type:ext3 fs-uuid:14875716-b8e3-4c83-ac86-48c20682b63a fs-label:BOOT"
+    };
+
+    check("/dev/sda1", input, output);
 }
 
 
