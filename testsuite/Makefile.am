@@ -21,7 +21,7 @@ check_PROGRAMS =								\
 	copy-individual.test mountpoint.test bcache1.test graph.test 		\
 	restore.test set-source.test valid-names.test mount-by2.test		\
 	resize1.test partition-id.test used-features.test			\
-	fstab-encoding.test crypttab-encoding.test
+	fstab-encoding.test crypttab-encoding.test versions.test
 
 AM_DEFAULT_SOURCE_EXT = .cc
 
