@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-29 14:48+0100\n"
-"PO-Revision-Date: 2025-10-04 08:59+0000\n"
-"Last-Translator: Ferdinan Rizky Budiarto <ferdinan.rizky@yahoo.com>\n"
+"PO-Revision-Date: 2026-02-13 19:04+0000\n"
+"Last-Translator: Arif Budiman <arifpedia@gmail.com>\n"
 "Language-Team: Indonesian <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/id/>\n"
 "Language: id\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.13.3\n"
+"X-Generator: Weblate 5.15.2\n"
 
 msgid ""
 "\n"
@@ -1915,7 +1915,7 @@ msgstr "Enkripsi"
 
 #. TRANSLATORS: name of object
 msgid "Erofs"
-msgstr ""
+msgstr "Erofs"
 
 #. TRANSLATORS: name of object
 msgid "Ext2"
@@ -3299,7 +3299,7 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Squashfs"
-msgstr ""
+msgstr "Squashfs"
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"
