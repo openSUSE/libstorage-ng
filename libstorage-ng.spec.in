@@ -83,7 +83,7 @@ Recommends:     %{name}-lang
 Requires:       coreutils
 Suggests:       cryptsetup
 Requires:       device-mapper
-%if 0%{suse_version} <= 1600
+%if 0%{?suse_version} <= 1600
 Suggests:       dmraid
 %endif
 Requires:       lsscsi >= 0.26
