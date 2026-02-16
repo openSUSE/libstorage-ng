@@ -218,7 +218,7 @@ namespace storage
     };
 
 
-    class PartedVersion
+    class CmdPartedVersion
     {
     public:
 

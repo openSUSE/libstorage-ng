@@ -223,7 +223,7 @@ namespace storage
 
 	// For more ids the type command of parted 3.6 is needed.
 
-	if (!PartedVersion::supports_type_command())
+	if (!CmdPartedVersion::supports_type_command())
 	    return false;
 
 	static const vector<unsigned int> more_supported_ids = {
@@ -244,7 +244,7 @@ namespace storage
     bool
     Gpt::Impl::is_partition_no_automount_flag_supported() const
     {
-	return PartedVersion::supports_no_automount_flag();
+	return CmdPartedVersion::supports_no_automount_flag();
     }
 
 
