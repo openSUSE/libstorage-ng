@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -372,5 +372,48 @@ namespace storage
 
 	return s;
     }
+
+
+    void
+    CmdBlkidVersion::query_version()
+    {
+	if (did_set_version)
+	    return;
+
+	SystemCmd cmd({ BLKID_BIN, "--version" }, SystemCmd::DoThrow);
+	if (cmd.stdout().empty())
+	    ST_THROW(SystemCmdException(&cmd, "failed to query blkid version"));
+
+	parse_version(cmd.stdout()[0]);
+    }
+
+
+    void
+    CmdBlkidVersion::parse_version(const string& version)
+    {
+	// example versions: "2.41.3"
+	const regex version_rx("blkid from util-linux ([0-9]+)\\.([0-9]+)(\\.([0-9]+))?.*",
+			       regex::extended);
+
+	smatch match;
+
+	if (!regex_match(version, match, version_rx))
+	    ST_THROW(Exception("failed to parse blkid version '" + version + "'"));
+
+	major = stoi(match[1]);
+	minor = stoi(match[2]);
+	patchlevel = match[4].length() == 0 ? 0 : stoi(match[4]);
+
+	y2mil("major:" << major << " minor:" << minor << " patchlevel:" << patchlevel);
+
+	did_set_version = true;
+    }
+
+
+    bool CmdBlkidVersion::did_set_version = false;
+
+    int CmdBlkidVersion::major = 0;
+    int CmdBlkidVersion::minor = 0;
+    int CmdBlkidVersion::patchlevel = 0;
 
 }

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -117,6 +117,24 @@ namespace storage
 	void parse(const vector<string>& lines);
 
 	map<string, Entry> data;
+
+    };
+
+
+    class CmdBlkidVersion
+    {
+    public:
+
+	static void query_version();
+	static void parse_version(const string& version);
+
+    private:
+
+	static bool did_set_version;
+
+	static int major;
+	static int minor;
+	static int patchlevel;
 
     };
 
