@@ -171,7 +171,7 @@ namespace storage
 	// For more ids the type command of parted 3.6 or the old suse specific type flag
 	// is needed.
 
-	if (!PartedVersion::supports_type_command() && !PartedVersion::supports_old_type_flag())
+	if (!CmdPartedVersion::supports_type_command() && !CmdPartedVersion::supports_old_type_flag())
 	    return false;
 
 	return id > 0 && id <= 255;

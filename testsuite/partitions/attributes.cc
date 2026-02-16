@@ -22,7 +22,7 @@ using namespace storage;
 
 BOOST_AUTO_TEST_CASE(test_attributes_on_msdos)
 {
-    PartedVersion::parse_version("parted (GNU parted) 3.5");
+    CmdPartedVersion::parse_version("parted (GNU parted) 3.5");
 
     Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
 
@@ -52,7 +52,7 @@ BOOST_AUTO_TEST_CASE(test_attributes_on_msdos)
 
 BOOST_AUTO_TEST_CASE(test_attributes_on_gpt)
 {
-    PartedVersion::parse_version("parted (GNU parted) 3.5");
+    CmdPartedVersion::parse_version("parted (GNU parted) 3.5");
 
     Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
 
@@ -84,7 +84,7 @@ BOOST_AUTO_TEST_CASE(test_attributes_on_gpt)
 
 BOOST_AUTO_TEST_CASE(test_id_on_gpt_old_parted)
 {
-    PartedVersion::parse_version("parted (GNU parted) 3.4");
+    CmdPartedVersion::parse_version("parted (GNU parted) 3.4");
 
     Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
 

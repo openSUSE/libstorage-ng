@@ -45,7 +45,7 @@ namespace storage
     Parted::Parted(Udevadm& udevadm, const string& device)
 	: device(device)
     {
-	const bool json = PartedVersion::supports_json_option();
+	const bool json = CmdPartedVersion::supports_json_option();
 
 	SystemCmd::Options options({ PARTED_BIN, "--script", json ? "--json" : "--machine", device,
 		"unit", "s", "print" }, SystemCmd::DoThrow);
@@ -82,7 +82,7 @@ namespace storage
 
 	parse(cmd.stdout(), cmd.stderr());
 
-	if (PartedVersion::print_triggers_udev())
+	if (CmdPartedVersion::print_triggers_udev())
 	    udevadm.set_settle_needed();
     }
 
@@ -97,7 +97,7 @@ namespace storage
 	gpt_pmbr_boot = false;
 	entries.clear();
 
-	if (PartedVersion::supports_json_option())
+	if (CmdPartedVersion::supports_json_option())
 	{
 	    JsonFile json_file(stdout);
 
@@ -671,7 +671,7 @@ namespace storage
 
 
     void
-    PartedVersion::query_version()
+    CmdPartedVersion::query_version()
     {
 	if (did_set_version)
 	    return;
@@ -685,7 +685,7 @@ namespace storage
 
 
     void
-    PartedVersion::parse_version(const string& version)
+    CmdPartedVersion::parse_version(const string& version)
     {
 	// example versions: "3.4", "3.5", "3.5.1", "3.5.1-cec5"
 	const regex version_rx("parted \\(GNU parted\\) ([0-9]+)\\.([0-9]+)(\\.([0-9]+)(-([0-9a-z]+))?)?",
@@ -707,7 +707,7 @@ namespace storage
 
 
     bool
-    PartedVersion::supports_json_option()
+    CmdPartedVersion::supports_json_option()
     {
 	query_version();
 
@@ -716,7 +716,7 @@ namespace storage
 
 
     bool
-    PartedVersion::supports_type_command()
+    CmdPartedVersion::supports_type_command()
     {
 	query_version();
 
@@ -728,7 +728,7 @@ namespace storage
 
 
     bool
-    PartedVersion::supports_old_type_flag()
+    CmdPartedVersion::supports_old_type_flag()
     {
 	query_version();
 
@@ -737,7 +737,7 @@ namespace storage
 
 
     bool
-    PartedVersion::supports_wipe_signatures()
+    CmdPartedVersion::supports_wipe_signatures()
     {
 	// Option --wipesignatures is not available in upstream parted (2021-07-26).
 
@@ -746,7 +746,7 @@ namespace storage
 
 
     bool
-    PartedVersion::supports_ignore_busy()
+    CmdPartedVersion::supports_ignore_busy()
     {
 	// Option --ignore-busy is not available in upstream parted (2021-07-26).
 
@@ -755,7 +755,7 @@ namespace storage
 
 
     bool
-    PartedVersion::print_triggers_udev()
+    CmdPartedVersion::print_triggers_udev()
     {
 	// SUSE has a patch to open the device read-only if only e.g. print is executed.
 
@@ -764,7 +764,7 @@ namespace storage
 
 
     bool
-    PartedVersion::supports_no_automount_flag()
+    CmdPartedVersion::supports_no_automount_flag()
     {
 	query_version();
 
@@ -772,10 +772,10 @@ namespace storage
     }
 
 
-    bool PartedVersion::did_set_version = false;
+    bool CmdPartedVersion::did_set_version = false;
 
-    int PartedVersion::major = 0;
-    int PartedVersion::minor = 0;
-    int PartedVersion::patchlevel = 0;
+    int CmdPartedVersion::major = 0;
+    int CmdPartedVersion::minor = 0;
+    int CmdPartedVersion::patchlevel = 0;
 
 }

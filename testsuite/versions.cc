@@ -59,5 +59,5 @@ BOOST_AUTO_TEST_CASE(parted_version)
     if (access(PARTED_BIN, X_OK) != 0)
 	return;
 
-    BOOST_CHECK_NO_THROW(PartedVersion::query_version());
+    BOOST_CHECK_NO_THROW(CmdPartedVersion::query_version());
 }

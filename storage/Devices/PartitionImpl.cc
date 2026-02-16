@@ -965,7 +965,7 @@ namespace storage
 
 	SystemCmd::Args cmd_args = { PARTED_BIN, "--script" };
 
-	if (PartedVersion::supports_wipe_signatures())
+	if (CmdPartedVersion::supports_wipe_signatures())
 	    cmd_args << "--wipesignatures";
 
 	cmd_args << partitionable->get_name() << "unit" << "s" << "mkpart";
@@ -1020,7 +1020,7 @@ namespace storage
 
 	if (get_type() == PartitionType::PRIMARY || get_type() == PartitionType::LOGICAL)
 	{
-	    if (!PartedVersion::supports_wipe_signatures())
+	    if (!CmdPartedVersion::supports_wipe_signatures())
 	    {
 		udev_settle();
 		wipe_device();
@@ -1097,7 +1097,7 @@ namespace storage
 	{
 	    SystemCmd::Args cmd_args = { PARTED_BIN, "--script" };
 
-	    if (PartedVersion::supports_wipe_signatures())
+	    if (CmdPartedVersion::supports_wipe_signatures())
 		cmd_args << "--wipesignatures";
 
 	    cmd_args << partitionable->get_name() << "unit" << "s" << "mkpart";
@@ -1246,12 +1246,12 @@ namespace storage
 	}
 	else if (is_msdos(partition_table))
 	{
-	    if (PartedVersion::supports_type_command())
+	    if (CmdPartedVersion::supports_type_command())
 		cmd_args << "type" << to_string(get_number()) << sformat("0x%02x", get_id());
 	    else
 		cmd_args << "set" << to_string(get_number()) << "type" << to_string(get_id());
 	}
-	else if (is_gpt(partition_table) && PartedVersion::supports_type_command())
+	else if (is_gpt(partition_table) && CmdPartedVersion::supports_type_command())
 	{
 	    map<unsigned int, const char*>::const_iterator it2 = Parted::id_to_uuid.find(get_id());
 	    if (it2 != Parted::id_to_uuid.end())
@@ -1614,7 +1614,7 @@ namespace storage
 
 	SystemCmd::Args cmd_args = { PARTED_BIN, "--script" };
 
-	if (PartedVersion::supports_ignore_busy())
+	if (CmdPartedVersion::supports_ignore_busy())
 	    cmd_args << "--ignore-busy";
 
 	cmd_args << partitionable->get_name() << "unit" << "s" << "resizepart" << to_string(get_number());
