@@ -8,7 +8,12 @@
       <stdout>sda</stdout>
     </Command>
     <Command>
-      <name>/sbin/blkid -c /dev/null</name>
+      <!-- output faked -->
+      <name>/sbin/blkid --version</name>
+      <stdout>blkid from util-linux 2.41.3  (libblkid 2.41.3, 15-Dec-2025)</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/blkid --cache-file /dev/null</name>
       <stdout>/dev/sr0: BLOCK_SIZE="2048" UUID="2023-01-16-00-17-36-48" LABEL="openSUSE-Tumbleweed-DVD-x86_64" TYPE="iso9660" PTUUID="7923e922" PTTYPE="dos"</stdout>
       <stdout>/dev/sda4: UUID="cfaace10-22a9-4598-8468-a50b52dd5914" TYPE="swap" PARTUUID="aaf1bcfc-b925-431b-a007-af6a6581cb8b"</stdout>
       <stdout>/dev/sda2: UUID="0787c43b-2e18-4690-9d4c-d9a9bf2e8711" UUID_SUB="70c6ab0b-2e9a-4246-ac3b-5b7642fc5e6c" BLOCK_SIZE="4096" TYPE="btrfs" PARTUUID="1f941fb4-50a7-499a-b37f-0a35a11acfa5"</stdout>

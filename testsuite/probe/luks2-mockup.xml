@@ -10,7 +10,12 @@
       <stdout>dm-6</stdout>
     </Command>
     <Command>
-      <name>/sbin/blkid -c /dev/null</name>
+      <!-- output faked -->
+      <name>/sbin/blkid --version</name>
+      <stdout>blkid from util-linux 2.41.3  (libblkid 2.41.3, 15-Dec-2025)</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/blkid --cache-file /dev/null</name>
       <stdout>/dev/sdb1: UUID="109ae070-3bf4-452c-9680-93df9b01a368" TYPE="crypto_LUKS" PARTUUID="cfbfee80-68d6-458a-b40f-d3d88d93802d"</stdout>
       <stdout>/dev/sdb2: UUID="cf01696e-1c94-40be-8088-4ad33c8a539b" TYPE="crypto_LUKS" PARTUUID="85157169-6340-4077-9558-72c86feed83d"</stdout>
       <stdout>/dev/sdb3: UUID="aa68b93d-a5f9-4294-80a8-c4e660cc56dd" TYPE="crypto_LUKS" PARTUUID="06f9594b-16cd-4bf4-a6b8-657123af74c3"</stdout>

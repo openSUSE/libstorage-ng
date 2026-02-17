@@ -73,7 +73,12 @@
       <stdout>loop53</stdout>
     </Command>
     <Command>
-      <name>/sbin/blkid -c /dev/null</name>
+      <!-- output faked -->
+      <name>/sbin/blkid --version</name>
+      <stdout>blkid from util-linux 2.41.3  (libblkid 2.41.3, 15-Dec-2025)</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/blkid --cache-file /dev/null</name>
       <stdout>/dev/loop0: TYPE="squashfs"</stdout>
       <stdout>/dev/loop1: TYPE="squashfs"</stdout>
       <stdout>/dev/loop2: TYPE="squashfs"</stdout>

@@ -49,7 +49,12 @@
       <stdout>congested_read_threshold_us</stdout>
     </Command>
     <Command>
-      <name>/sbin/blkid -c /dev/null</name>
+      <!-- output faked -->
+      <name>/sbin/blkid --version</name>
+      <stdout>blkid from util-linux 2.41.3  (libblkid 2.41.3, 15-Dec-2025)</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/blkid --cache-file /dev/null</name>
       <stdout>/dev/sda1: UUID="d1ea1be5-6c19-4b3f-a279-4a60bbddfbf4" TYPE="ext4" PARTUUID="b3ebf520-c53b-448c-903b-91fe80cfe0cc"</stdout>
       <stdout>/dev/sda2: PARTUUID="ff7469c5-d706-4408-b11c-dee3d83c5d67"</stdout>
       <stdout>/dev/sda3: UUID="9b357750-7a80-4217-af7a-ae99a52b454e" TYPE="swap" PARTUUID="1352e018-27e4-4db5-9226-37af93d07773"</stdout>

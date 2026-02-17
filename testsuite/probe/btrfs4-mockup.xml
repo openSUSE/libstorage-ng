@@ -7,7 +7,12 @@
       <stdout>sdd</stdout>
     </Command>
     <Command>
-      <name>/sbin/blkid -c /dev/null</name>
+      <!-- output faked -->
+      <name>/sbin/blkid --version</name>
+      <stdout>blkid from util-linux 2.41.3  (libblkid 2.41.3, 15-Dec-2025)</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/blkid --cache-file /dev/null</name>
       <stdout>/dev/sdd1: UUID="048815b8-5bea-423d-a739-51c81c3eba2c" UUID_SUB="87592a17-fcab-4ebb-8e29-22b29480a75d" TYPE="btrfs" PARTUUID="db35c54e-4869-4976-90aa-f91eb380fc6d"</stdout>
     </Command>
     <Command>

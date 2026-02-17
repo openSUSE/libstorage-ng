@@ -15,7 +15,12 @@
       <stdout>dm-3</stdout>
     </Command>
     <Command>
-      <name>/sbin/blkid -c /dev/null</name>
+      <!-- output faked -->
+      <name>/sbin/blkid --version</name>
+      <stdout>blkid from util-linux 2.41.3  (libblkid 2.41.3, 15-Dec-2025)</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/blkid --cache-file /dev/null</name>
       <stdout>/dev/sda1: UUID="c0007ded-8168-453b-b818-3b3e7bf6b87d" TYPE="ext4" PTTYPE="dos" PARTUUID="c64661b6-01"</stdout>
       <stdout>/dev/sda2: UUID="QFKFMR-Lz4J-mm8p-gom1-48id-SQpF-OFVjF7" TYPE="LVM2_member" PARTUUID="c64661b6-02"</stdout>
       <stdout>/dev/sr0: UUID="2017-09-14-11-02-47-00" LABEL="openSUSE-Tumbleweed-DVD-x86_6400" TYPE="iso9660" PTUUID="133d779e" PTTYPE="dos"</stdout>

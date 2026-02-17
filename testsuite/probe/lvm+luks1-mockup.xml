@@ -12,7 +12,12 @@
       <stdout>dm-3</stdout>
     </Command>
     <Command>
-      <name>/sbin/blkid -c /dev/null</name>
+      <!-- output faked -->
+      <name>/sbin/blkid --version</name>
+      <stdout>blkid from util-linux 2.41.3  (libblkid 2.41.3, 15-Dec-2025)</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/blkid --cache-file /dev/null</name>
       <stdout>/dev/sda1: PARTUUID="08f6f145-9f0e-4eb8-ab29-970d52f5f450"</stdout>
       <stdout>/dev/sda2: UUID="LUccrU-BPDa-B4ys-jt56-7LNc-V9O7-SWSF4Z" TYPE="LVM2_member" PARTUUID="39bed96f-570d-47a1-aa94-b3d746a15b5e"</stdout>
       <stdout>/dev/sr0: UUID="2018-02-14-08-49-58-00" LABEL="SLE-15-Installer-DVD-x86_644.001" TYPE="iso9660" PTUUID="27199cde" PTTYPE="dos"</stdout>

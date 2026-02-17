@@ -18,7 +18,12 @@
       <stdout>lrwxrwxrwx 1 root root 8 Jun  4 09:24 md-b -&gt; ../md127</stdout>
     </Command>
     <Command>
-      <name>/sbin/blkid -c /dev/null</name>
+      <!-- output faked -->
+      <name>/sbin/blkid --version</name>
+      <stdout>blkid from util-linux 2.41.3  (libblkid 2.41.3, 15-Dec-2025)</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/blkid --cache-file /dev/null</name>
       <stdout>/dev/sdc1: UUID="623f3da0-9f31-bf71-164f-bf5358ffcd65" UUID_SUB="1565e1c3-2b64-68e2-cb60-aa4a082995a3" LABEL="any:0" TYPE="linux_raid_member" PARTUUID="bdc63351-757d-4201-b49e-5d360119d4f7"</stdout>
       <stdout>/dev/sdc2: UUID="fcb43c8a-ec95-3676-9d0a-703d89cf2f42" UUID_SUB="1fd1c1e0-2849-4053-e654-7c55beffeb87" LABEL="any:md-b" TYPE="linux_raid_member" PARTUUID="204185a2-15f9-47ba-9155-3ef7bc917034"</stdout>
       <stdout>/dev/sdd1: UUID="623f3da0-9f31-bf71-164f-bf5358ffcd65" UUID_SUB="ab1cca43-62cf-5fd1-fb8c-d44e452facad" LABEL="any:0" TYPE="linux_raid_member" PARTUUID="beb395a9-e6cf-4240-a36f-a0ecedd6edc3"</stdout>

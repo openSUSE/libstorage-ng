@@ -7,7 +7,12 @@
       <stdout>sdd</stdout>
     </Command>
     <Command>
-      <name>/sbin/blkid -c /dev/null</name>
+      <!-- output faked -->
+      <name>/sbin/blkid --version</name>
+      <stdout>blkid from util-linux 2.41.3  (libblkid 2.41.3, 15-Dec-2025)</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/blkid --cache-file /dev/null</name>
       <stdout>/dev/sdc1: BLOCK_SIZE="1024" TYPE="minix" PARTUUID="5d543afa-1d1c-4373-8565-1c417156e893"</stdout>
       <stdout>/dev/sdd: PTTYPE="PMBR"</stdout>
     </Command>

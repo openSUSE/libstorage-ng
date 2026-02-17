@@ -11,7 +11,12 @@
       <stdout>sr0</stdout>
     </Command>
     <Command>
-      <name>/sbin/blkid -c /dev/null</name>
+      <!-- output faked -->
+      <name>/sbin/blkid --version</name>
+      <stdout>blkid from util-linux 2.41.3  (libblkid 2.41.3, 15-Dec-2025)</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/blkid --cache-file /dev/null</name>
       <stdout>/dev/sde1: UUID="b7b96325-feb5-4e7e-a7f4-014ce2402e71" UUID_SUB="01341db4-53a2-47e2-bf46-745bffb595e3" TYPE="btrfs" PARTUUID="165c5614-4a94-44cb-9a1f-6642f2e0e9e9"</stdout>
       <stdout>/dev/sdb1: UUID="b7b96325-feb5-4e7e-a7f4-014ce2402e71" UUID_SUB="6c6352f7-9f7f-411c-b01b-d406ac59fed4" TYPE="btrfs" PARTUUID="54826369-b9f4-49ce-8c0c-2664b1c59f9c"</stdout>
       <stdout>/dev/sdd1: UUID="b7b96325-feb5-4e7e-a7f4-014ce2402e71" UUID_SUB="7a23d238-9363-4db7-97e6-d035440cf505" TYPE="btrfs" PARTUUID="01ac1c26-e386-4d2f-a26f-dd52705ead64"</stdout>

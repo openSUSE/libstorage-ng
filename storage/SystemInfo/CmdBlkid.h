@@ -128,6 +128,8 @@ namespace storage
 	static void query_version();
 	static void parse_version(const string& version);
 
+	static bool supports_json_option_v2();
+
     private:
 
 	static bool did_set_version;

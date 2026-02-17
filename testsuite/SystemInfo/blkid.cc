@@ -18,7 +18,9 @@ void
 check(const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command(BLKID_BIN " -c /dev/null", input);
+    Mockup::set_command(BLKID_BIN " --version",
+			RemoteCommand({ "blkid from util-linux 2.41.3  (libblkid 2.41.3, 15-Dec-2025)" }, {}, 0));
+    Mockup::set_command(BLKID_BIN " --cache-file /dev/null", input);
     Mockup::set_command({ UDEVADM_BIN_SETTLE }, {});
 
     Udevadm udevadm;
@@ -40,7 +42,9 @@ void
 check(const string& device, const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command(BLKID_BIN " -c /dev/null " + device, input);
+    Mockup::set_command(BLKID_BIN " --version",
+			RemoteCommand({ "blkid from util-linux 2.41.3  (libblkid 2.41.3, 15-Dec-2025)" }, {}, 0));
+    Mockup::set_command(BLKID_BIN " --cache-file /dev/null " + device, input);
     Mockup::set_command({ UDEVADM_BIN_SETTLE }, {});
 
     Udevadm udevadm;

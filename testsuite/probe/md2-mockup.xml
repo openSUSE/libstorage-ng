@@ -77,7 +77,12 @@
       <stdout>loop63</stdout>
     </Command>
     <Command>
-      <name>/sbin/blkid -c /dev/null</name>
+      <!-- output faked -->
+      <name>/sbin/blkid --version</name>
+      <stdout>blkid from util-linux 2.41.3  (libblkid 2.41.3, 15-Dec-2025)</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/blkid --cache-file /dev/null</name>
       <stdout>/dev/sda: UUID="3e531727-0857-f684-cd2e-394b62046b74" UUID_SUB="ad3cff36-a8fd-6728-2f2d-8c348472cddd" LABEL="any:1" TYPE="linux_raid_member" </stdout>
       <stdout>/dev/sdb: UUID="3e531727-0857-f684-cd2e-394b62046b74" UUID_SUB="6ba92495-88b5-33a4-ed2b-1fb1fa6387f7" LABEL="any:1" TYPE="linux_raid_member" </stdout>
       <stdout>/dev/sdc: UUID="c8440826-8e55-745c-d7e1-4cddac26716d" UUID_SUB="df4a8d48-2a56-b0b2-3cfb-7fd99bf196ac" LABEL="any:2" TYPE="linux_raid_member" </stdout>

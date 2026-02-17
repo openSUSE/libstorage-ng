@@ -74,7 +74,12 @@
       <stdout>loop39</stdout>
     </Command>
     <Command>
-      <name>/sbin/blkid -c /dev/null</name>
+      <!-- output faked -->
+      <name>/sbin/blkid --version</name>
+      <stdout>blkid from util-linux 2.41.3  (libblkid 2.41.3, 15-Dec-2025)</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/blkid --cache-file /dev/null</name>
       <stdout>/dev/sda1: UUID="2162322e-f6e3-4575-bcbc-df7f0ff0c76b" BLOCK_SIZE="4096" TYPE="ext4" PARTUUID="ddbf3a29-4fa3-48e5-8d56-391844006671"</stdout>
       <stdout>/dev/sda2: UUID="ffdedb10-5a78-4d49-868a-f8abe9e4f329" BLOCK_SIZE="4096" TYPE="ext4" PARTUUID="94edec53-e8c5-4158-8b99-80fc1e4cfab1"</stdout>
       <stdout>/dev/zram0: UUID="858aa176-dfb0-4d87-89fe-1d0ef4c673db" BLOCK_SIZE="4096" TYPE="ext2"</stdout>

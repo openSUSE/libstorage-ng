@@ -9,7 +9,12 @@
       <stdout>dm-7</stdout>
     </Command>
     <Command>
-      <name>/sbin/blkid -c /dev/null</name>
+      <!-- output faked -->
+      <name>/sbin/blkid --version</name>
+      <stdout>blkid from util-linux 2.41.3  (libblkid 2.41.3, 15-Dec-2025)</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/blkid --cache-file /dev/null</name>
       <stdout>/dev/sdc1: PARTUUID="6ff11cf3-cdda-4ca3-88ca-faff87c3dffe"</stdout>
       <stdout>/dev/sdc2: PARTUUID="f645b83c-005f-42cd-baf6-2ae82dc9f767"</stdout>
       <stdout>/dev/sdc3: PARTUUID="56bcdb52-1b46-4485-a4af-d9430c2bf36f"</stdout>

@@ -30,7 +30,12 @@
       <name>/bin/umount /tmp/libstorage-zs0TkS/tmp-mount-ZbJYMD</name>
     </Command>
     <Command>
-      <name>/sbin/blkid -c /dev/null</name>
+      <!-- output faked -->
+      <name>/sbin/blkid --version</name>
+      <stdout>blkid from util-linux 2.41.3  (libblkid 2.41.3, 15-Dec-2025)</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/blkid --cache-file /dev/null</name>
       <stdout>/dev/sdb1: UUID="3ce5edf6-49bc-4a9e-8e71-7f27e9ee07fa" TYPE="crypto_LUKS" PARTUUID="1cdc4f50-3a0f-4861-90de-566137c91a49"</stdout>
       <stdout>/dev/sr0: BLOCK_SIZE="2048" UUID="2025-07-18-21-26-50-38" LABEL="openSUSE-Tumbleweed-DVD-x86_64" TYPE="iso9660" PTUUID="7ffbd0ff" PTTYPE="dos"</stdout>
       <stdout>/dev/mapper/cr\x20#1: UUID="f38ab61c-30c0-4e74-a3eb-f26971721749" BLOCK_SIZE="512" TYPE="xfs"</stdout>

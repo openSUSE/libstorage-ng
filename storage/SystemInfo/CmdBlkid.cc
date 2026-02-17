@@ -41,9 +41,11 @@ namespace storage
 
     Blkid::Blkid(Udevadm& udevadm)
     {
+	const bool json = CmdBlkidVersion::supports_json_option_v2();
+
 	udevadm.settle();
 
-	SystemCmd::Options options({ BLKID_BIN, "-c", DEV_NULL_FILE }, SystemCmd::DoThrow);
+	SystemCmd::Options options({ BLKID_BIN, "--cache-file", DEV_NULL_FILE }, SystemCmd::DoThrow);
 
 	// If blkid does not find anything it returns 2 (see bsc #1203285).
 	options.verify = [](int exit_code) { return exit_code == 0 || exit_code == 2; };
@@ -56,9 +58,11 @@ namespace storage
 
     Blkid::Blkid(Udevadm& udevadm, const string& device)
     {
+	const bool json = CmdBlkidVersion::supports_json_option_v2();
+
 	udevadm.settle();
 
-	SystemCmd::Options options({ BLKID_BIN, "-c", DEV_NULL_FILE, device }, SystemCmd::DoThrow);
+	SystemCmd::Options options({ BLKID_BIN, "--cache-file", DEV_NULL_FILE, device }, SystemCmd::DoThrow);
 	options.verify = [](int exit_code) { return exit_code == 0 || exit_code == 2; };
 
 	SystemCmd cmd(options);
@@ -407,6 +411,17 @@ namespace storage
 	y2mil("major:" << major << " minor:" << minor << " patchlevel:" << patchlevel);
 
 	did_set_version = true;
+    }
+
+
+    bool
+    CmdBlkidVersion::supports_json_option_v2()
+    {
+	query_version();
+
+	// Format of JSON output is supposed to change. Thus this function is called _v2.
+
+	return false;
     }
 
 

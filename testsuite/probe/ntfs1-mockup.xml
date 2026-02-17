@@ -7,7 +7,12 @@
       <stdout>sdc</stdout>
     </Command>
     <Command>
-      <name>/sbin/blkid -c /dev/null</name>
+      <!-- output faked -->
+      <name>/sbin/blkid --version</name>
+      <stdout>blkid from util-linux 2.41.3  (libblkid 2.41.3, 15-Dec-2025)</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/blkid --cache-file /dev/null</name>
       <stdout>/dev/sdc1: UUID="6D0EF67C257F7035" TYPE="ntfs" PARTUUID="69b45287-55e4-4365-aacb-fc154be9d848"</stdout>
       <stdout>/dev/sdc2: UUID="172A54612F0EC61E" TYPE="ntfs" PARTUUID="ed234211-acfd-4e4b-b417-94f9b90ae8b5"</stdout>
       <stdout>/dev/sdc3: UUID="3C03540236D27F38" TYPE="ntfs" PARTUUID="42186f98-cd68-4aa7-916f-c53aea3b22ad"</stdout>
