@@ -16,7 +16,12 @@
       <stdout>dm-3</stdout>
     </Command>
     <Command>
-      <name>/sbin/blkid -c /dev/null</name>
+      <!-- output faked -->
+      <name>/sbin/blkid --version</name>
+      <stdout>blkid from util-linux 2.41.3  (libblkid 2.41.3, 15-Dec-2025)</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/blkid --cache-file /dev/null</name>
       <stdout>/dev/dasda1: UUID="dfbde9dc-d646-40ce-941f-ca7e8799a15d" TYPE="ext2"</stdout>
       <stdout>/dev/dasda2: UUID="01f660ee-1a3e-45bc-8e4c-fb7c7ab3bd1d" TYPE="ext4"</stdout>
       <stdout>/dev/dasda3: UUID="523bf89a-41a7-4697-bda1-7415e73e76ec" TYPE="swap"</stdout>

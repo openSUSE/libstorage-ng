@@ -21,7 +21,12 @@
       <stdout>lrwxrwxrwx 1 root root 8 Aug  7 13:41 imsm0 -> ../md127</stdout>
     </Command>
     <Command>
-      <name>/sbin/blkid -c /dev/null</name>
+      <!-- output faked -->
+      <name>/sbin/blkid --version</name>
+      <stdout>blkid from util-linux 2.41.3  (libblkid 2.41.3, 15-Dec-2025)</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/blkid --cache-file /dev/null</name>
       <stdout>/dev/sda1: UUID="691eb75f-2f8f-4ec9-8515-60b34237bd6d" TYPE="swap" PARTUUID="321b4d22-01"</stdout>
       <stdout>/dev/sda2: UUID="4d2e6fde-d105-4f15-b8e1-4173badc8c66" TYPE="ext4" PTTYPE="dos" PARTUUID="321b4d22-02"</stdout>
       <stdout>/dev/sdb: TYPE="isw_raid_member"</stdout>

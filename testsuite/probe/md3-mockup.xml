@@ -25,7 +25,12 @@
       <stdout>lrwxrwxrwx 1 root root 8 Aug  7 13:31 test5p1 -> ../md_test5p1</stdout>
     </Command>
     <Command>
-      <name>/sbin/blkid -c /dev/null</name>
+      <!-- output faked -->
+      <name>/sbin/blkid --version</name>
+      <stdout>blkid from util-linux 2.41.3  (libblkid 2.41.3, 15-Dec-2025)</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/blkid --cache-file /dev/null</name>
       <stdout>/dev/sda1: UUID="2fd6a519-1b93-42dc-bc8f-99ac033a17a9" TYPE="ext4" PTTYPE="dos" PARTUUID="7ec989ba-839c-4991-8a13-b66eab52c828"</stdout>
       <stdout>/dev/sda2: PARTUUID="2a68a80b-94f7-4770-abf5-058f9660e791"</stdout>
       <stdout>/dev/sda3: UUID="fd1d0005-fb00-4cf8-ac57-c480276afbe8" TYPE="swap" PARTUUID="8e2978ee-6ecb-4f3d-98d6-3a19ae5b1744"</stdout>

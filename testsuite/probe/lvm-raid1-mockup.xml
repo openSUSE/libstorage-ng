@@ -23,7 +23,12 @@
       <stdout>dm-3</stdout>
     </Command>
     <Command>
-      <name>/sbin/blkid -c /dev/null</name>
+      <!-- output faked -->
+      <name>/sbin/blkid --version</name>
+      <stdout>blkid from util-linux 2.41.3  (libblkid 2.41.3, 15-Dec-2025)</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/blkid --cache-file /dev/null</name>
       <stdout>/dev/sdb1: UUID="NckLF5-ANBL-jQ8s-pdVM-N5vO-amnj-DrVeSO" TYPE="LVM2_member" PARTUUID="f9590da6-b0b1-4a9a-a96e-ad4cce9b38ec"</stdout>
       <stdout>/dev/sdc1: UUID="olCBzh-Ryv2-EAqo-odFV-jVfq-yhZP-Ucu2o0" TYPE="LVM2_member" PARTUUID="3f101065-3c66-4442-ae53-d34387b0d388"</stdout>
       <stdout>/dev/sdd1: UUID="23noYM-jaV9-qgmv-gX36-ee6q-3Dsx-JW1n6H" TYPE="LVM2_member" PARTUUID="7918ca97-b0ce-4a41-b14d-c20787b9ee25"</stdout>

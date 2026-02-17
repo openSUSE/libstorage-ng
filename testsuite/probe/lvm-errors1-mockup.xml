@@ -8,7 +8,12 @@
       <stdout>sdc</stdout>
     </Command>
     <Command>
-      <name>/sbin/blkid -c /dev/null</name>
+      <!-- output faked -->
+      <name>/sbin/blkid --version</name>
+      <stdout>blkid from util-linux 2.41.3  (libblkid 2.41.3, 15-Dec-2025)</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/blkid --cache-file /dev/null</name>
       <stdout>/dev/sdb1: UUID="u6c690-dm2j-IC7t-v8Lg-3Ylk-sUXY-BHsVmY" TYPE="LVM2_member" PARTUUID="6d4c5707-349f-44bd-b121-9a3c703c459a"</stdout>
       <stdout>/dev/sdb2: UUID="u6c690-dm2j-IC7t-v8Lg-3Ylk-sUXY-BHsVmY" TYPE="LVM2_member" PARTUUID="a23655a2-486c-4b77-8a48-f469e127773e"</stdout>
       <stdout>/dev/sdc1: UUID="mGE1D8-R1d2-H4ue-qhhp-yZNL-RJ5o-gYkrwS" TYPE="LVM2_member" PARTUUID="02a97d80-5580-4199-832c-79a0a9eac9b1"</stdout>

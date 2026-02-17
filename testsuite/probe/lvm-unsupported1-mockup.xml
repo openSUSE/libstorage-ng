@@ -12,7 +12,12 @@
       <stdout>dm-3</stdout>
     </Command>
     <Command>
-      <name>/sbin/blkid -c /dev/null</name>
+      <!-- output faked -->
+      <name>/sbin/blkid --version</name>
+      <stdout>blkid from util-linux 2.41.3  (libblkid 2.41.3, 15-Dec-2025)</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/blkid --cache-file /dev/null</name>
       <stdout>/dev/sdb1: UUID="5BCmwE-mBgc-rGp1-ZH2R-KHq3-RrBJ-kTsJhu" TYPE="LVM2_member" PARTUUID="f9590da6-b0b1-4a9a-a96e-ad4cce9b38ec"</stdout>
       <stdout>/dev/sdc1: UUID="APNIVK-BRs2-POnd-yHX7-QYHS-Dmwp-0MVvLH" TYPE="LVM2_member" PARTUUID="3f101065-3c66-4442-ae53-d34387b0d388"</stdout>
       <stdout>/dev/sr0: UUID="2020-04-14-20-39-57-61" LABEL="openSUSE-Tumbleweed-DVD-x86_6422" TYPE="iso9660" PTUUID="02815942" PTTYPE="dos"</stdout>

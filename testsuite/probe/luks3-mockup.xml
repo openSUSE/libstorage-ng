@@ -7,7 +7,12 @@
       <stdout>dm-5</stdout>
     </Command>
     <Command>
-      <name>/sbin/blkid -c /dev/null</name>
+      <!-- output faked -->
+      <name>/sbin/blkid --version</name>
+      <stdout>blkid from util-linux 2.41.3  (libblkid 2.41.3, 15-Dec-2025)</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/blkid --cache-file /dev/null</name>
       <stdout>/dev/sdc1: UUID="9a80f55f-c8a8-4767-8852-92eccf494a58" TYPE="crypto_LUKS" PARTUUID="41f58dd7-bd8b-4a2b-af17-43b998b46719"</stdout>
       <stdout>/dev/mapper/cr-test2: UUID="c3d92f3c-e127-4bcc-9274-7dd95a634aa6" TYPE="ext4"</stdout>
     </Command>

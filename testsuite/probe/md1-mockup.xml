@@ -76,7 +76,12 @@
       <stderr></stderr>
     </Command>
     <Command>
-      <name>/sbin/blkid -c /dev/null</name>
+      <!-- output faked -->
+      <name>/sbin/blkid --version</name>
+      <stdout>blkid from util-linux 2.41.3  (libblkid 2.41.3, 15-Dec-2025)</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/blkid --cache-file /dev/null</name>
       <stdout>/dev/sda: UUID="2ce25515-3d25-5c09-a0e9-1f18d9c098d3" UUID_SUB="0193d8d8-ba9f-1a0d-3dad-ae7e9d264336" LABEL="(none):0" TYPE="linux_raid_member" </stdout>
       <stdout>/dev/sdb: UUID="2ce25515-3d25-5c09-a0e9-1f18d9c098d3" UUID_SUB="d49e9bf5-6946-5039-0c60-23d3d6f3c1fb" LABEL="(none):0" TYPE="linux_raid_member" </stdout>
       <stdout>/dev/sdc: UUID="2ce25515-3d25-5c09-a0e9-1f18d9c098d3" UUID_SUB="96411a8d-e9c9-b287-4be7-c3f0343693be" LABEL="(none):0" TYPE="linux_raid_member" </stdout>

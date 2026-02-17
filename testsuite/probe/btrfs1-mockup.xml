@@ -8,7 +8,12 @@
       <stdout>sda</stdout>
     </Command>
     <Command>
-      <name>/sbin/blkid -c /dev/null</name>
+      <!-- output faked -->
+      <name>/sbin/blkid --version</name>
+      <stdout>blkid from util-linux 2.41.3  (libblkid 2.41.3, 15-Dec-2025)</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/blkid --cache-file /dev/null</name>
       <stdout>/dev/sda1: PARTUUID="cd6c52e1-4fcd-4404-9a84-12d64719f0ac"</stdout>
       <stdout>/dev/sda2: UUID="3df53f69-df60-4481-888f-99072f9c516f" UUID_SUB="8af7625c-0d6f-453a-adee-850dcceb5f1b" BLOCK_SIZE="4096" TYPE="btrfs" PARTUUID="2c5cd4b4-a2a4-433f-bda9-1b505fc38594"</stdout>
       <stdout>/dev/sda3: UUID="68c946ab-e975-44b9-a7df-dfa52b987e83" UUID_SUB="42c2ddfb-e5c6-4130-8372-489d2654148e" BLOCK_SIZE="4096" TYPE="btrfs" PARTUUID="c9978b13-bff5-4c9e-9c33-75a231323afb"</stdout>

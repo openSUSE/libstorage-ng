@@ -9,7 +9,12 @@
       <stdout>dm-0</stdout>
     </Command>
     <Command>
-      <name>/sbin/blkid -c /dev/null</name>
+      <!-- output faked -->
+      <name>/sbin/blkid --version</name>
+      <stdout>blkid from util-linux 2.41.3  (libblkid 2.41.3, 15-Dec-2025)</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/blkid --cache-file /dev/null</name>
       <stdout>/dev/sda1: UUID="2c724d55-2b15-4cf4-afa6-2b8abe968ffb" TYPE="ext4" PTTYPE="dos" PARTUUID="36f7ecf1-01"</stdout>
       <stdout>/dev/sda2: UUID="90da7454-0be6-4b44-957a-61a05408b8fb" TYPE="crypto_LUKS" PARTUUID="36f7ecf1-02"</stdout>
       <stdout>/dev/sr0: UUID="2016-05-17-02-06-58-00" LABEL="openSUSE-Tumbleweed-DVD-x86_6400" TYPE="iso9660" PTUUID="6b8b4567" PTTYPE="dos"</stdout>

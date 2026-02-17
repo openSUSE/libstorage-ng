@@ -9,7 +9,12 @@
       <stderr></stderr>
     </Command>
     <Command>
-      <name>/sbin/blkid -c /dev/null</name>
+      <!-- output faked -->
+      <name>/sbin/blkid --version</name>
+      <stdout>blkid from util-linux 2.41.3  (libblkid 2.41.3, 15-Dec-2025)</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/blkid --cache-file /dev/null</name>
       <stdout>/dev/sda1: UUID="86b64dbc-0530-4a4b-bca7-72e2c8b4e317" TYPE="swap" PARTUUID="00032f15-01" </stdout>
       <stdout>/dev/sda2: UUID="9f0f12c5-4d18-494b-b234-7342c953e99a" TYPE="ext4" PTTYPE="dos" PARTUUID="00032f15-02" </stdout>
       <stdout>/dev/sr0: UUID="2014-10-27-14-56-02-00" LABEL="openSUSE-13.2-DVD-x86_640051" TYPE="iso9660" PTUUID="10ce3e4f" PTTYPE="dos" </stdout>

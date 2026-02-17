@@ -7,7 +7,12 @@
       <stdout>dasda</stdout>
     </Command>
     <Command>
-      <name>/sbin/blkid -c /dev/null</name>
+      <!-- output faked -->
+      <name>/sbin/blkid --version</name>
+      <stdout>blkid from util-linux 2.41.3  (libblkid 2.41.3, 15-Dec-2025)</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/blkid --cache-file /dev/null</name>
       <stdout>/dev/dasda1: UUID="26343be9-0042-4188-a5d0-e816cd3362f0" TYPE="ext2"</stdout>
       <stdout>/dev/dasda2: UUID="1623c840-f97a-4121-9322-456ed6eb5fbc" TYPE="swap"</stdout>
       <stdout>/dev/dasda3: UUID="9bb4594e-8ffd-4aea-b137-a89c22815724" TYPE="ext4"</stdout>
