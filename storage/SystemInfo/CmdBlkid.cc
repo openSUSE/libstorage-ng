@@ -40,29 +40,30 @@ namespace storage
 
 
     Blkid::Blkid(Udevadm& udevadm)
+	: Blkid(udevadm, std::nullopt)
     {
-	const bool json = CmdBlkidVersion::supports_json_option_v2();
-
-	udevadm.settle();
-
-	SystemCmd::Options options({ BLKID_BIN, "--cache-file", DEV_NULL_FILE }, SystemCmd::DoThrow);
-
-	// If blkid does not find anything it returns 2 (see bsc #1203285).
-	options.verify = [](int exit_code) { return exit_code == 0 || exit_code == 2; };
-
-	SystemCmd cmd(options);
-
-	parse(cmd.stdout());
     }
 
 
     Blkid::Blkid(Udevadm& udevadm, const string& device)
+	: Blkid(udevadm, make_optional(device))
+    {
+    }
+
+
+    Blkid::Blkid(Udevadm& udevadm, const std::optional<string>& device)
     {
 	const bool json = CmdBlkidVersion::supports_json_option_v2();
 
 	udevadm.settle();
 
-	SystemCmd::Options options({ BLKID_BIN, "--cache-file", DEV_NULL_FILE, device }, SystemCmd::DoThrow);
+	SystemCmd::Args cmd_args({ BLKID_BIN, "--cache-file", DEV_NULL_FILE });
+	if (device)
+	    cmd_args << device.value();
+
+	SystemCmd::Options options(cmd_args, SystemCmd::DoThrow);
+
+	// If blkid does not find anything it returns 2 (see bsc #1203285).
 	options.verify = [](int exit_code) { return exit_code == 0 || exit_code == 2; };
 
 	SystemCmd cmd(options);
