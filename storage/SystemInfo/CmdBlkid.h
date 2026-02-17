@@ -29,6 +29,7 @@
 #include <map>
 #include <list>
 #include <vector>
+#include <optional>
 
 #include "storage/Utils/Udev.h"
 #include "storage/Filesystems/Filesystem.h"
@@ -113,6 +114,8 @@ namespace storage
         static list<string> split_line( const string & line );
 
     private:
+
+	Blkid(Udevadm& udevadm, const std::optional<string>& device);
 
 	void parse(const vector<string>& lines);
 
