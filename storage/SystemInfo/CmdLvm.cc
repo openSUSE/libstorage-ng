@@ -76,8 +76,8 @@ namespace storage
 
     CmdPvs::CmdPvs(const string& pv_name)
     {
-	SystemCmd cmd({ PVS_BIN, COMMON_LVM_OPTIONS, "--all", "--options",  "pv_name,pv_uuid,"
-		"vg_name,vg_uuid,pv_attr,pe_start", pv_name }, SystemCmd::DoThrow);
+	SystemCmd cmd({ PVS_BIN, COMMON_LVM_OPTIONS, "--all", "--options", PVS_OPTIONS, pv_name },
+		      SystemCmd::DoThrow);
 
 	parse(cmd.stdout());
 
