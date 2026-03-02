@@ -179,7 +179,7 @@ namespace storage
 
 	for (const string& line : lines)
 	{
-	    list<string> tmp = splitString(line);
+	    vector<string> tmp = split_string(line);
 	    if (tmp.size() >= 3)
 	    {
 		string v = tmp.back();

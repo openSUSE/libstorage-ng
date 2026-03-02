@@ -86,7 +86,7 @@ namespace storage
 
 	    string name = extractNthWord(0, line);
 
-            if(name.empty())
+            if (name.empty())
             {
                 ++it1;
                 continue;
@@ -96,10 +96,10 @@ namespace storage
 
 	    bool has_alias = boost::starts_with(extractNthWord(1, line), "(");
 
-	    list<string> tmp = splitString(extractNthWord(has_alias ? 3 : 2, line, true), ",");
+	    vector<string> tmp = split_string(extractNthWord(has_alias ? 3 : 2, line, true), ",");
 	    if (tmp.size() >= 2)
 	    {
-		list<string>::const_iterator it2 = tmp.begin();
+		vector<string>::const_iterator it2 = tmp.begin();
 		entry.vendor = boost::trim_copy(*it2++, locale::classic());
 		entry.model = boost::trim_copy(*it2++, locale::classic());
 	    }

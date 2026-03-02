@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -220,14 +220,14 @@ namespace storage
     }
 
 
-    list<string> splitString( const string& s, const string& delChars,
-                              bool multipleDelim, bool skipEmpty,
-                              const string& quotes )
+    vector<string>
+    split_string(const string& s, const string& delChars, bool multipleDelim,
+		 bool skipEmpty, const string& quotes)
     {
         string::size_type pos;
         string::size_type cur = 0;
         string::size_type nfind = 0;
-        list<string> ret;
+        vector<string> ret;
 
         while( cur<s.size() && (pos=s.find_first_of(delChars,nfind))!=string::npos )
         {
@@ -260,25 +260,26 @@ namespace storage
             ret.push_back( s.substr( cur ));
         if( !skipEmpty && !s.empty() && s.find_last_of(delChars)==s.size()-1 )
             ret.push_back( "" );
-        //y2mil( "ret:" << ret );
-        return( ret );
+
+        return ret;
     }
 
 
-    map<string,string>
-    makeMap( const list<string>& l, const string& delim, const string& removeSur )
+    map<string, string>
+    make_map(const vector<string>& l, const string& delim, const string& removeSur)
     {
-        map<string,string> ret;
-        for( list<string>::const_iterator i=l.begin(); i!=l.end(); ++i )
+        map<string, string> ret;
+
+        for (const string& s : l)
         {
             string k, v;
             string::size_type pos;
-            if( (pos=i->find_first_of( delim ))!=string::npos )
+            if ((pos = s.find_first_of(delim)) != string::npos)
             {
-                k = i->substr( 0, pos );
-                string::size_type pos2 = i->find_first_not_of( delim, pos+1 );
+                k = s.substr(0, pos);
+                string::size_type pos2 = s.find_first_not_of(delim, pos + 1);
                 if( pos2 != string::npos )
-                    v = i->substr( pos2 );
+                    v = s.substr(pos2);
             }
             if( !removeSur.empty() )
             {
@@ -294,7 +295,8 @@ namespace storage
             if( !k.empty() && !v.empty() )
                 ret[k] = v;
         }
-        return( ret );
+
+        return ret;
     }
 
 

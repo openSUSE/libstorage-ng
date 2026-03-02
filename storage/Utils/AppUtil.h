@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2019] SUSE LLC
+ * Copyright (c) [2016-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -31,7 +31,6 @@
 #include <locale>
 #include <string>
 #include <vector>
-#include <list>
 #include <map>
 #include <regex>
 #include <utility>
@@ -43,7 +42,6 @@ namespace storage
 {
     using std::string;
     using std::vector;
-    using std::list;
     using std::map;
     using std::regex;
     using std::pair;
@@ -82,13 +80,12 @@ namespace storage
 
     string extractNthWord(int Num_iv, const string& Line_Cv, bool GetRest_bi = false);
 
-    std::list<string> splitString( const string& s, const string& delChars=" \t\n",
-                                   bool multipleDelim=true, bool skipEmpty=true,
-                                   const string& quotes="" );
+    vector<string> split_string(const string& s, const string& delChars = " \t\n",
+				bool multipleDelim = true, bool skipEmpty = true,
+				const string& quotes = "");
 
-    std::map<string,string> makeMap( const std::list<string>& l,
-                                     const string& delim = "=",
-                                     const string& removeSur = " \t\n" );
+    map<string, string> make_map(const vector<string>& l, const string& delim = "=",
+				 const string& removeSur = " \t\n");
 
     string normalizeDevice(const string& dev);
 

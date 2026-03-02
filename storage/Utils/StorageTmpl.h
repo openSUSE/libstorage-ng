@@ -31,7 +31,6 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
-#include <list>
 #include <map>
 #include <set>
 #include <optional>
@@ -60,21 +59,6 @@ namespace storage
 	Value v;
 	d >> v;
 	ov = v;
-    }
-
-
-    template<class Value>
-    std::ostream& operator<<(std::ostream& s, const std::list<Value>& l)
-    {
-	s << "<";
-	for (typename std::list<Value>::const_iterator it = l.begin(); it != l.end(); ++it)
-	{
-	    if (it != l.begin())
-		s << " ";
-	    s << *it;
-	}
-	s << ">";
-	return s;
     }
 
 
