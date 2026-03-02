@@ -96,10 +96,10 @@ namespace storage
 
 	    bool has_alias = boost::starts_with(extractNthWord(1, line), "(");
 
-	    vector<string> tmp = split_string(extractNthWord(has_alias ? 3 : 2, line, true), ",");
-	    if (tmp.size() >= 2)
+	    vector<string> tmp1 = split_string(extractNthWord(has_alias ? 3 : 2, line, true), ",");
+	    if (tmp1.size() >= 2)
 	    {
-		vector<string>::const_iterator it2 = tmp.begin();
+		vector<string>::const_iterator it2 = tmp1.begin();
 		entry.vendor = boost::trim_copy(*it2++, locale::classic());
 		entry.model = boost::trim_copy(*it2++, locale::classic());
 	    }
@@ -116,9 +116,9 @@ namespace storage
 
 		if (regex_search(*it1, lun))
 		{
-		    string tmp = it1->substr(5);
-		    y2mil("mp element:" << tmp);
-		    string dev = "/dev/" + extractNthWord(1, tmp);
+		    string tmp2 = it1->substr(5);
+		    y2mil("mp element:" << tmp2);
+		    string dev = "/dev/" + extractNthWord(1, tmp2);
 		    if (find(entry.devices.begin(), entry.devices.end(), dev) == entry.devices.end())
 			entry.devices.push_back(dev);
 		}
