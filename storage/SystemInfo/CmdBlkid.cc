@@ -84,11 +84,11 @@ namespace storage
 		continue;
 
 	    string device = string(line, 0, pos);
-	    list<string> l = split_line(string(line, pos + 1));
+	    vector<string> l = split_line(string(line, pos + 1));
 
 	    Entry entry;
 
-	    const map<string, string> m = makeMap(l, "=", "\"");
+	    const map<string, string> m = make_map(l, "=", "\"");
 
 	    map<string, string>::const_iterator it1 = m.find("TYPE");
 	    if (it1 != m.end())
@@ -181,10 +181,10 @@ namespace storage
     }
 
 
-    list<string>
-    Blkid::split_line( const string & line )
+    vector<string>
+    Blkid::split_line(const string& line)
     {
-        list<string> result;
+        vector<string> result;
 
         string::size_type start = 0;
         const string::size_type len = line.length();

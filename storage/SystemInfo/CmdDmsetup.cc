@@ -50,12 +50,12 @@ namespace storage
     {
 	for (const string& line : lines)
 	{
-	    list<string> sl = splitString(line, "/");
+	    vector<string> sl = split_string(line, "/");
 	    if (sl.size() >= 6)
 	    {
 		Entry entry;
 
-		list<string>::const_iterator ci = sl.begin();
+		vector<string>::const_iterator ci = sl.begin();
 		string name = *ci++;
 
 		unsigned int major, minor;
@@ -127,8 +127,7 @@ namespace storage
 
 	    string name = line.substr(0, pos);
 
-	    list<string> tmp = splitString(line.substr(pos + 1));
-	    vector<string> params = vector<string>(tmp.begin(), tmp.end());
+	    vector<string> params = split_string(line.substr(pos + 1));
 
 	    if (params.size() < 3)
 		ST_THROW(Exception("failed to parse dmsetup table output"));

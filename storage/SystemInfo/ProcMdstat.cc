@@ -165,14 +165,14 @@ namespace storage
 	    }
 	    if (!entry.is_container && boost::starts_with(entry.super, "external:"))
 	    {
-		string::size_type pos1 = entry.super.find_first_of("/");
-		string::size_type pos2 = entry.super.find_last_of("/");
+		string::size_type pos3 = entry.super.find_first_of("/");
+		string::size_type pos4 = entry.super.find_last_of("/");
 
-		if (pos1 != string::npos && pos2 != string::npos && pos1 != pos2)
+		if (pos3 != string::npos && pos4 != string::npos && pos3 != pos4)
 		{
 		    entry.has_container = true;
-		    entry.container_name = string(entry.super, pos1 + 1, pos2 - pos1 - 1);
-		    entry.container_member = string(entry.super, pos2 + 1);
+		    entry.container_name = string(entry.super, pos3 + 1, pos4 - pos3 - 1);
+		    entry.container_member = string(entry.super, pos4 + 1);
 		}
 	    }
 	}

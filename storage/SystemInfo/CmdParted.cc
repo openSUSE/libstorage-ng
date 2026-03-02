@@ -177,12 +177,12 @@ namespace storage
 	if (!get_child_nodes(node, "flags", nodes))
 	    return;
 
-	for (json_object* node : nodes)
+	for (json_object* node2 : nodes)
 	{
-	    if (!json_object_is_type(node, json_type_string))
+	    if (!json_object_is_type(node2, json_type_string))
 		continue;
 
-	    string flag = json_object_get_string(node);
+	    string flag = json_object_get_string(node2);
 
 	    if (flag == "pmbr_boot")
 		gpt_pmbr_boot = true;
@@ -273,12 +273,12 @@ namespace storage
 	if (!get_child_nodes(node, "flags", nodes))
 	    return;
 
-	for (json_object* node : nodes)
+	for (json_object* node2 : nodes)
 	{
-	    if (!json_object_is_type(node, json_type_string))
+	    if (!json_object_is_type(node2, json_type_string))
 		continue;
 
-	    string flag = json_object_get_string(node);
+	    string flag = json_object_get_string(node2);
 
 	    for (map<unsigned int, const char*>::value_type tmp : id_to_name)
 	    {
