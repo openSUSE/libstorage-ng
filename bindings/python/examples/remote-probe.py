@@ -16,7 +16,9 @@ save_devicegraph = False
 
 def run_command(name):
 
-    cmd = "ssh -l root %s -p %s %s" % (host, port, name)
+    control_master = "-o ControlMaster=auto -o ControlPath=\"~/.ssh/remote-probe-%C\" -o ControlPersist=30s"
+
+    cmd = "ssh -l root " + control_master + " %s -p %s %s" % (host, port, name)
 
     p = Popen(cmd, shell = True, stdout = PIPE, stderr = PIPE, close_fds = True)
     stdout, stderr = p.communicate()
