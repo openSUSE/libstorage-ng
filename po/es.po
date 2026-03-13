@@ -17,16 +17,16 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2021-03-31 14:56+0000\n"
-"Last-Translator: Antonio Simón <antonio@trans-mission.com>\n"
-"Language-Team: Spanish <https://l10n.opensuse.org/projects/libstorage/"
-"ng-sle-15-sp1/es/>\n"
+"PO-Revision-Date: 2026-03-13 16:04+0000\n"
+"Last-Translator: \"Marina J. Donis\" <marinajdonis@gmail.com>\n"
+"Language-Team: Spanish <https://l10n.opensuse.org/projects/libstorage/ng-sle-"
+"15-sp1/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.6.1\n"
+"X-Generator: Weblate 5.16.2\n"
 "X-Poedit-Language: Spanish\n"
 
 msgid ""
@@ -1848,7 +1848,7 @@ msgstr "GPT"
 
 #. TRANSLATORS: symbol for "gibi bytes" (best keep untranslated)
 msgid "GiB"
-msgstr "GB"
+msgstr "GiB"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -2172,7 +2172,7 @@ msgstr "Partición"
 
 #. TRANSLATORS: symbol for "pebi bytes" (best keep untranslated)
 msgid "PiB"
-msgstr "PB"
+msgstr "PiB"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -2787,7 +2787,7 @@ msgstr "TB"
 
 #. TRANSLATORS: symbol for "tebi bytes" (best keep untranslated)
 msgid "TiB"
-msgstr "TB"
+msgstr "TiB"
 
 #. TRANSLATORS: name of object
 msgid "UDF"
