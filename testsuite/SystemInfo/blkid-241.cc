@@ -25,11 +25,11 @@ check(const vector<string>& input, const vector<string>& output)
 
     Udevadm udevadm;
 
-    Blkid blkid(udevadm);
+    CmdBlkid cmd_blkid(udevadm);
 
     ostringstream parsed;
     parsed.setf(std::ios::boolalpha);
-    parsed << blkid;
+    parsed << cmd_blkid;
 
     string lhs = parsed.str();
     string rhs = boost::join(output, "\n") + "\n";
@@ -49,11 +49,11 @@ check(const string& device, const vector<string>& input, const vector<string>& o
 
     Udevadm udevadm;
 
-    Blkid blkid(udevadm, device);
+    CmdBlkid cmd_blkid(udevadm, device);
 
     ostringstream parsed;
     parsed.setf(std::ios::boolalpha);
-    parsed << blkid;
+    parsed << cmd_blkid;
 
     string lhs = parsed.str();
     string rhs = boost::join(output, "\n") + "\n";
@@ -65,7 +65,7 @@ check(const string& device, const vector<string>& input, const vector<string>& o
 void
 check_split_line( const string & input, const string & output )
 {
-    string result = boost::join( Blkid::split_line( input ), "|" );
+    string result = boost::join(CmdBlkid::split_line(input), "|");
 
     BOOST_CHECK_EQUAL( result, output );
 }

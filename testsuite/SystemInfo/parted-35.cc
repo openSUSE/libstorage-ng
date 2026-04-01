@@ -28,11 +28,11 @@ check(const string& device, const vector<string>& stdout, const vector<string>& 
 
     Udevadm udevadm;
 
-    Parted parted(udevadm, device);
+    CmdParted cmd_parted(udevadm, device);
 
     ostringstream parsed;
     parsed.setf(std::ios::boolalpha);
-    parsed << parted;
+    parsed << cmd_parted;
 
     string lhs = parsed.str();
     string rhs = boost::join(result, "\n") + "\n";
@@ -57,7 +57,7 @@ check_exception(const string& device, const vector<string>& input)
 
     Udevadm udevadm;
 
-    BOOST_CHECK_THROW({ Parted parted(udevadm, device); }, Exception);
+    BOOST_CHECK_THROW({ CmdParted cmd_parted(udevadm, device); }, Exception);
 }
 
 

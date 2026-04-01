@@ -45,12 +45,12 @@ namespace storage
     /**
      * Run and parse the "blkid" command.
      */
-    class Blkid
+    class CmdBlkid
     {
     public:
 
-	Blkid(Udevadm& udevadm);
-	Blkid(Udevadm& udevadm, const string& device);
+	CmdBlkid(Udevadm& udevadm);
+	CmdBlkid(Udevadm& udevadm, const string& device);
 
 	struct Entry
 	{
@@ -84,7 +84,7 @@ namespace storage
 	const_iterator begin() const { return data.begin(); }
 	const_iterator end() const { return data.end(); }
 
-	friend std::ostream& operator<<(std::ostream& s, const Blkid& blkid);
+	friend std::ostream& operator<<(std::ostream& s, const CmdBlkid& cmd_blkid);
 	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
 
 	/**
@@ -113,13 +113,17 @@ namespace storage
 
     private:
 
-	Blkid(Udevadm& udevadm, const std::optional<string>& device);
+	CmdBlkid(Udevadm& udevadm, const std::optional<string>& device);
 
 	void parse(const vector<string>& lines);
+	void parse_json(const vector<string>& lines);
 
 	map<string, Entry> data;
 
     };
+
+
+    using Blkid = CmdBlkid;
 
 
     class CmdBlkidVersion

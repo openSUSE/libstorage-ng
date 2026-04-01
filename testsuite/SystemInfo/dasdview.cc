@@ -21,11 +21,11 @@ check(const string& device, const vector<string>& input, const vector<string>& o
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
     Mockup::set_command({ DASDVIEW_BIN, "--extended", device }, input);
 
-    Dasdview dasdview(device);
+    CmdDasdview cmd_dasdview(device);
 
     ostringstream parsed;
     parsed.setf(std::ios::boolalpha);
-    parsed << dasdview;
+    parsed << cmd_dasdview;
 
     string lhs = parsed.str();
     string rhs = boost::join(output, "\n");

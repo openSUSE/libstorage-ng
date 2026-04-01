@@ -31,7 +31,7 @@
 namespace storage
 {
 
-    Dasdview::Dasdview(const string& device)
+    CmdDasdview::CmdDasdview(const string& device)
 	: device(device)
     {
 	SystemCmd cmd({ DASDVIEW_BIN, "--extended", device }, SystemCmd::DoThrow);
@@ -41,7 +41,7 @@ namespace storage
 
 
     void
-    Dasdview::parse(const vector<string>& lines)
+    CmdDasdview::parse(const vector<string>& lines)
     {
 	vector<string>::const_iterator pos;
 
@@ -82,10 +82,10 @@ namespace storage
 
 
     std::ostream&
-    operator<<(std::ostream& s, const Dasdview& dasdview)
+    operator<<(std::ostream& s, const CmdDasdview& cmd_dasdview)
     {
-	s << "device:" << dasdview.device << " bus-id:" << dasdview.bus_id << " type:"
-	  << toString(dasdview.type) << " format:" << toString(dasdview.format);
+	s << "device:" << cmd_dasdview.device << " bus-id:" << cmd_dasdview.bus_id << " type:"
+	  << toString(cmd_dasdview.type) << " format:" << toString(cmd_dasdview.format);
 
 	return s;
     }

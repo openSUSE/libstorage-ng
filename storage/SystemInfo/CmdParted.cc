@@ -42,7 +42,7 @@ namespace storage
     using namespace std;
 
 
-    Parted::Parted(Udevadm& udevadm, const string& device)
+    CmdParted::CmdParted(Udevadm& udevadm, const string& device)
 	: device(device)
     {
 	const bool json = CmdPartedVersion::supports_json_option();
@@ -88,7 +88,7 @@ namespace storage
 
 
     void
-    Parted::parse(const vector<string>& stdout, const vector<string>& stderr)
+    CmdParted::parse(const vector<string>& stdout, const vector<string>& stderr)
     {
 	primary_slots = -1;
 	implicit = false;
@@ -147,7 +147,7 @@ namespace storage
 
 
     void
-    Parted::scan_device(json_object* node)
+    CmdParted::scan_device(json_object* node)
     {
 	string tmp;
 
@@ -171,7 +171,7 @@ namespace storage
 
 
     void
-    Parted::scan_device_flags(json_object* node)
+    CmdParted::scan_device_flags(json_object* node)
     {
 	vector<json_object*> nodes;
 	if (!get_child_nodes(node, "flags", nodes))
@@ -193,7 +193,7 @@ namespace storage
 
 
     void
-    Parted::scan_entry(json_object* node)
+    CmdParted::scan_entry(json_object* node)
     {
 	Entry entry;
 
@@ -262,7 +262,7 @@ namespace storage
 
 
     void
-    Parted::scan_entry_flags(json_object* node, Entry& entry) const
+    CmdParted::scan_entry_flags(json_object* node, Entry& entry) const
     {
 	entry.id = ID_LINUX;
 	entry.boot = false;
@@ -311,7 +311,7 @@ namespace storage
 
 
     void
-    Parted::scan_device_line(const string& line)
+    CmdParted::scan_device_line(const string& line)
     {
 	vector<string> tmp = tokenize(line);
 
@@ -335,7 +335,7 @@ namespace storage
 
 
     void
-    Parted::scan_device_flags(const string& s)
+    CmdParted::scan_device_flags(const string& s)
     {
 	implicit = boost::contains(s, "implicit_partition_table");
 
@@ -344,7 +344,7 @@ namespace storage
 
 
     PtType
-    Parted::scan_partition_table_type(const string& s) const
+    CmdParted::scan_partition_table_type(const string& s) const
     {
 	for (map<const char*, PtType>::value_type tmp : name_to_pt_type)
 	{
@@ -357,7 +357,7 @@ namespace storage
 
 
     void
-    Parted::scan_entry_line(const string& line)
+    CmdParted::scan_entry_line(const string& line)
     {
 	vector<string> tmp = tokenize(line);
 
@@ -385,7 +385,7 @@ namespace storage
 
 
     void
-    Parted::scan_entry_flags(const string& s, Entry& entry) const
+    CmdParted::scan_entry_flags(const string& s, Entry& entry) const
     {
 	entry.type = PartitionType::PRIMARY;
 
@@ -445,7 +445,7 @@ namespace storage
 
 
     unsigned long long
-    Parted::scan_sectors(const string& s) const
+    CmdParted::scan_sectors(const string& s) const
     {
 	if (s.empty() || s.back() != 's')
 	    ST_THROW(ParseException("bad sector value", s, "1024s"));
@@ -461,7 +461,7 @@ namespace storage
 
 
     void
-    Parted::scan_stderr(const vector<string>& stderr)
+    CmdParted::scan_stderr(const vector<string>& stderr)
     {
 	gpt_undersized = contains_if(stderr, string_contains("fix the GPT to use all"));
 
@@ -471,7 +471,7 @@ namespace storage
 
 
     void
-    Parted::fix_dasd_sector_size()
+    CmdParted::fix_dasd_sector_size()
     {
 	// see do_resize() and do_create() in PartitionImpl.cc
 	if (label == PtType::DASD && logical_sector_size == 512 &&
@@ -496,7 +496,7 @@ namespace storage
 
 
     bool
-    Parted::get_entry(unsigned number, Entry& entry) const
+    CmdParted::get_entry(unsigned number, Entry& entry) const
     {
 	for (const_iterator it = entries.begin(); it != entries.end(); ++it)
 	{
@@ -512,7 +512,7 @@ namespace storage
 
 
     vector<string>
-    Parted::tokenize(const string& line) const
+    CmdParted::tokenize(const string& line) const
     {
 	if (!boost::ends_with(line, ";"))
 	    ST_THROW(ParseException("missing semicolon", "", ";"));
@@ -557,29 +557,29 @@ namespace storage
 
 
     std::ostream&
-    operator<<(std::ostream& s, const Parted& parted)
+    operator<<(std::ostream& s, const CmdParted& cmd_parted)
     {
-	s << "device:" << parted.device << " label:" << get_pt_type_name(parted.label)
-	  << " region:" << parted.region;
+	s << "device:" << cmd_parted.device << " label:" << get_pt_type_name(cmd_parted.label)
+	  << " region:" << cmd_parted.region;
 
-	if (parted.primary_slots >= 0)
-	    s << " primary-slots:" << parted.primary_slots;
+	if (cmd_parted.primary_slots >= 0)
+	    s << " primary-slots:" << cmd_parted.primary_slots;
 
-	if (parted.implicit)
+	if (cmd_parted.implicit)
 	    s << " implicit";
 
-	if (parted.gpt_undersized)
+	if (cmd_parted.gpt_undersized)
 	    s << " gpt-undersized";
 
-	if (parted.gpt_backup_broken)
+	if (cmd_parted.gpt_backup_broken)
 	    s << " gpt-backup-broken";
 
-	if (parted.gpt_pmbr_boot)
+	if (cmd_parted.gpt_pmbr_boot)
 	    s << " gpt-pmbr-boot";
 
 	s << '\n';
 
-	for (const Parted::Entry& entry : parted.entries)
+	for (const CmdParted::Entry& entry : cmd_parted.entries)
 	    s << entry << '\n';
 
 	return s;
@@ -587,7 +587,7 @@ namespace storage
 
 
     std::ostream&
-    operator<<(std::ostream& s, const Parted::Entry& entry)
+    operator<<(std::ostream& s, const CmdParted::Entry& entry)
     {
 	s << "number:" << entry.number << " region:" << entry.region << " type:"
 	  << get_partition_type_name(entry.type) << " id:" << sformat("0x%02x", entry.id);
@@ -608,7 +608,7 @@ namespace storage
     }
 
 
-    const map<unsigned int, const char*> Parted::id_to_name = {
+    const map<unsigned int, const char*> CmdParted::id_to_name = {
 	{ ID_BIOS_BOOT, "bios_grub" },
 	{ ID_DIAG, "diag" },
 	{ ID_ESP, "esp" },
@@ -623,7 +623,7 @@ namespace storage
     };
 
 
-    const map<unsigned int, const char*> Parted::id_to_uuid = {
+    const map<unsigned int, const char*> CmdParted::id_to_uuid = {
 	{ ID_LINUX, "0fc63daf-8483-4772-8e79-3d69d8477de4" },
 	{ ID_LINUX_ROOT_ARM, "69dad710-2ce4-4e3c-b16c-21a1d49abed3" },
 	{ ID_LINUX_ROOT_AARCH64, "b921b045-1df0-41c3-af44-4c6f280d3fae" },
@@ -652,7 +652,7 @@ namespace storage
     };
 
 
-    const map<const char*, PtType> Parted::name_to_pt_type = {
+    const map<const char*, PtType> CmdParted::name_to_pt_type = {
 	{ "aix", PtType::AIX },
 	{ "amiga", PtType::AMIGA },
 	{ "atari", PtType::ATARI },
