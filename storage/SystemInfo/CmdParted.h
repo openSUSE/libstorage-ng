@@ -41,7 +41,7 @@ namespace storage
     /**
      * Class for probing for partitions with the 'parted' command.
      */
-    class Parted
+    class CmdParted
     {
 
     public:
@@ -51,7 +51,7 @@ namespace storage
 	 * with the 'parted' command and parse its output.
 	 * This may throw a SystemCmdException or a ParseException.
 	 */
-	Parted(Udevadm& udevadm, const string& device);
+	CmdParted(Udevadm& udevadm, const string& device);
 
 	/**
 	 * Entry for one partition.
@@ -83,7 +83,7 @@ namespace storage
 	    string name;
 	};
 
-	friend std::ostream& operator<<(std::ostream& s, const Parted& parted);
+	friend std::ostream& operator<<(std::ostream& s, const CmdParted& cmd_parted);
 	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
 
 	/**
@@ -216,6 +216,9 @@ namespace storage
 	static const map<const char*, PtType> name_to_pt_type;
 
     };
+
+
+    using Parted = CmdParted;
 
 
     class CmdPartedVersion

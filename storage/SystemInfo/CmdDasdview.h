@@ -33,14 +33,14 @@ namespace storage
     using std::string;
 
 
-    class Dasdview
+    class CmdDasdview
     {
 
     public:
 
-	Dasdview(const string& device);
+	CmdDasdview(const string& device);
 
-	friend std::ostream& operator<<(std::ostream& s, const Dasdview& dasdview);
+	friend std::ostream& operator<<(std::ostream& s, const CmdDasdview& cmd_dasdview);
 
 	string get_bus_id() const { return bus_id; }
 
@@ -59,6 +59,9 @@ namespace storage
 	DasdFormat format = DasdFormat::NONE;
 
     };
+
+
+    using Dasdview = CmdDasdview;
 
 }
 
