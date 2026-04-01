@@ -7,8 +7,8 @@ AM_CPPFLAGS = -I$(top_srcdir)
 LDADD = ../../storage/libstorage-ng.la -lboost_unit_test_framework
 
 check_PROGRAMS =								\
-	blkid.test btrfs-filesystem-df-60.test btrfs-filesystem-df-61.test 	\
-	btrfs-filesystem-show.test 						\
+	blkid-241.test blkid-242.test btrfs-filesystem-df-60.test		\
+	btrfs-filesystem-df-61.test btrfs-filesystem-show.test			\
 	btrfs-subvolume-get-default.test btrfs-subvolume-list.test		\
 	btrfs-subvolume-show.test btrfs-qgroup-show-60.test 			\
 	btrfs-qgroup-show-602.test btrfs-qgroup-show-62.test			\

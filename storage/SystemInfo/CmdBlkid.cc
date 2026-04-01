@@ -32,6 +32,7 @@
 #include "storage/SystemInfo/SystemInfoImpl.h"
 #include "storage/Filesystems/FilesystemImpl.h"
 #include "storage/EnvironmentImpl.h"
+#include "storage/Utils/JsonFile.h"
 
 
 namespace storage
@@ -39,25 +40,27 @@ namespace storage
     using namespace std;
 
 
-    Blkid::Blkid(Udevadm& udevadm)
-	: Blkid(udevadm, std::nullopt)
+    CmdBlkid::CmdBlkid(Udevadm& udevadm)
+	: CmdBlkid(udevadm, std::nullopt)
     {
     }
 
 
-    Blkid::Blkid(Udevadm& udevadm, const string& device)
-	: Blkid(udevadm, make_optional(device))
+    CmdBlkid::CmdBlkid(Udevadm& udevadm, const string& device)
+	: CmdBlkid(udevadm, make_optional(device))
     {
     }
 
 
-    Blkid::Blkid(Udevadm& udevadm, const std::optional<string>& device)
+    CmdBlkid::CmdBlkid(Udevadm& udevadm, const std::optional<string>& device)
     {
 	const bool json = CmdBlkidVersion::supports_json_option_v2();
 
 	udevadm.settle();
 
 	SystemCmd::Args cmd_args({ BLKID_BIN, "--cache-file", DEV_NULL_FILE });
+	if (json)
+	    cmd_args << "--output" << "json";
 	if (device)
 	    cmd_args << device.value();
 
@@ -68,12 +71,18 @@ namespace storage
 
 	SystemCmd cmd(options);
 
-	parse(cmd.stdout());
+	if (!json)
+	    parse(cmd.stdout());
+	else
+	    parse_json(cmd.stdout());
+
+	if (device && data.size() > 1)
+	    ST_THROW(Exception("command blkid returned wrong number of devices"));
     }
 
 
     void
-    Blkid::parse(const vector<string>& lines)
+    CmdBlkid::parse(const vector<string>& lines)
     {
 	data.clear();
 
@@ -182,7 +191,7 @@ namespace storage
 
 
     vector<string>
-    Blkid::split_line(const string& line)
+    CmdBlkid::split_line(const string& line)
     {
         vector<string> result;
 
@@ -236,8 +245,85 @@ namespace storage
     }
 
 
-    Blkid::const_iterator
-    Blkid::find_by_any_name(const string& device, SystemInfo::Impl& system_info) const
+    void
+    CmdBlkid::parse_json(const vector<string>& lines)
+    {
+	data.clear();
+
+	JsonFile json_file(lines);
+
+	vector<json_object*> tmp1;
+	if (!get_child_nodes(json_file.get_root(), "blkid", tmp1))
+	    ST_THROW(Exception("\"blkid\" not found in json output of 'blkid'"));
+
+	for (json_object* tmp2 : tmp1)
+	{
+	    string device;
+	    if (!get_child_value(tmp2, "device", device))
+		continue;
+
+	    string type;
+	    if (!get_child_value(tmp2, "type", type))
+		continue;
+
+	    Entry entry;
+
+	    if (type == "BitLocker" && cryptsetup_for_bitlocker())
+	    {
+		entry.is_bitlocker = true;
+
+		// Unfortunately no UUID although BitLocker has one.
+	    }
+	    else if (toValue(type, entry.fs_type, false))
+	    {
+		entry.is_fs = true;
+
+		get_child_value(tmp2, "uuid", entry.fs_uuid);
+		get_child_value(tmp2, "label", entry.fs_label);
+		get_child_value(tmp2, "ext_journal", entry.fs_journal_uuid);
+		get_child_value(tmp2, "uuid_sub",  entry.fs_sub_uuid);
+	    }
+	    else if (type == "jbd" || type == "xfs_external_log")
+	    {
+		entry.is_journal = true;
+
+		get_child_value(tmp2, "loguuid", entry.journal_uuid);
+	    }
+	    else if (boost::ends_with(type, "_raid_member"))
+	    {
+		entry.is_md = true;
+
+		// Does include the UUID but in a different format than reported by mdadm.
+	    }
+	    else if (type == "LVM2_member")
+	    {
+		entry.is_lvm = true;
+	    }
+	    else if (type == "crypto_LUKS")
+	    {
+		entry.is_luks = true;
+
+		get_child_value(tmp2, "uuid", entry.luks_uuid);
+		get_child_value(tmp2, "label", entry.luks_label);
+	    }
+	    else if (type == "bcache")
+	    {
+		entry.is_bcache = true;
+
+		get_child_value(tmp2, "uuid", entry.bcache_uuid);
+	    }
+
+	    if (entry.is_fs || entry.is_journal || entry.is_md || entry.is_lvm || entry.is_luks ||
+		entry.is_bitlocker || entry.is_bcache)
+		data[device] = entry;
+	}
+
+	y2mil(*this);
+    }
+
+
+    CmdBlkid::const_iterator
+    CmdBlkid::find_by_any_name(const string& device, SystemInfo::Impl& system_info) const
     {
 	const_iterator it = data.find(device);
 	if (it != end())
@@ -250,8 +336,8 @@ namespace storage
     }
 
 
-    Blkid::const_iterator
-    Blkid::find_by_journal_uuid(const string& journal_uuid) const
+    CmdBlkid::const_iterator
+    CmdBlkid::find_by_journal_uuid(const string& journal_uuid) const
     {
 	return find_if(begin(), end(), [&journal_uuid](const value_type& tmp) {
 	    return tmp.second.is_journal && tmp.second.journal_uuid == journal_uuid;
@@ -259,50 +345,50 @@ namespace storage
     }
 
 
-    Blkid::const_iterator
-    Blkid::get_sole_entry() const
+    CmdBlkid::const_iterator
+    CmdBlkid::get_sole_entry() const
     {
 	return data.size() == 1 ? begin() : end();
     }
 
 
     bool
-    Blkid::any_md() const
+    CmdBlkid::any_md() const
     {
 	return std::any_of(data.begin(), data.end(), [](const value_type& value) { return value.second.is_md; });
     }
 
 
     bool
-    Blkid::any_lvm() const
+    CmdBlkid::any_lvm() const
     {
 	return std::any_of(data.begin(), data.end(), [](const value_type& value) { return value.second.is_lvm; });
     }
 
 
     bool
-    Blkid::any_luks() const
+    CmdBlkid::any_luks() const
     {
 	return std::any_of(data.begin(), data.end(), [](const value_type& value) { return value.second.is_luks; });
     }
 
 
     bool
-    Blkid::any_bitlocker() const
+    CmdBlkid::any_bitlocker() const
     {
 	return std::any_of(data.begin(), data.end(), [](const value_type& value) { return value.second.is_bitlocker; });
     }
 
 
     bool
-    Blkid::any_bcache() const
+    CmdBlkid::any_bcache() const
     {
 	return std::any_of(data.begin(), data.end(), [](const value_type& value) { return value.second.is_bcache; });
     }
 
 
     bool
-    Blkid::any_btrfs() const
+    CmdBlkid::any_btrfs() const
     {
 	return std::any_of(data.begin(), data.end(), [](const value_type& value) {
 	    return value.second.is_fs && value.second.fs_type == FsType::BTRFS;
@@ -311,17 +397,17 @@ namespace storage
 
 
     std::ostream&
-    operator<<(std::ostream& s, const Blkid& blkid)
+    operator<<(std::ostream& s, const CmdBlkid& cmd_blkid)
     {
-	for (Blkid::const_iterator it = blkid.data.begin(); it != blkid.data.end(); ++it)
-	    s << "data[" << it->first << "] -> " << it->second << '\n';
+	for (const map<string, CmdBlkid::Entry>::value_type& value : cmd_blkid)
+	    s << "data[" << value.first << "] -> " << value.second << '\n';
 
 	return s;
     }
 
 
     std::ostream&
-    operator<<(std::ostream& s, const Blkid::Entry& entry)
+    operator<<(std::ostream& s, const CmdBlkid::Entry& entry)
     {
 	if (entry.is_fs)
 	{
@@ -396,7 +482,7 @@ namespace storage
     void
     CmdBlkidVersion::parse_version(const string& version)
     {
-	// example versions: "2.41.3"
+	// example versions: "2.41.3", "2.42-start-1440-edadb", "2.42-rc1", "2.42", "2.43.devel"
 	const regex version_rx("blkid from util-linux ([0-9]+)\\.([0-9]+)(\\.([0-9]+))?.*",
 			       regex::extended);
 
@@ -420,9 +506,10 @@ namespace storage
     {
 	query_version();
 
-	// Format of JSON output is supposed to change. Thus this function is called _v2.
+	// Format of JSON output changed with version 2.42. Thus this function is called
+	// _v2.
 
-	return false;
+	return major >= 3 || (major == 2 && minor >= 42);
     }
 
 
