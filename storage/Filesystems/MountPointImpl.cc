@@ -412,7 +412,7 @@ namespace storage
 	    actions.push_back(make_shared<Action::RemoveFromEtcFstab>(get_sid()));
 	}
 
-	// A unmount action could be required when the device is set as unmounted in the target system
+	// An unmount action could be required when the device is set as unmounted in the target system
 	// or when some of its mount properties have changed (e.g., path, mount type). But the unmount
 	// action only makes sense if the device is currently mounted in the system.
 	if (lhs.active && (!active || lhs.path != path || lhs.rootprefixed != rootprefixed ||

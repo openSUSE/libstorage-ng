@@ -129,7 +129,7 @@ namespace storage
     /**
      * The main container of the libstorage-ng.
      *
-     * The devicegraph contains Devices (node) and Holders (edge). A
+     * The devicegraph contains Devices (nodes) and Holders (edges). A
      * device represent a storage object, e.g. a disk, a LVM volume
      * group, a file systems or a mount point. A holder represent the
      * connection between two devices, e.g. that a disk is used by a

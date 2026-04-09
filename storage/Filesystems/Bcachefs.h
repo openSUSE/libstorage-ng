@@ -66,7 +66,7 @@ namespace storage
 
 
     /**
-     * Checks whether device points to an Bcachefs.
+     * Checks whether device points to a Bcachefs.
      *
      * @throw NullPointerException
      */

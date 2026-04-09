@@ -77,7 +77,7 @@ namespace storage
 
 
     /**
-     * Checks whether device points to a ImplicitPt.
+     * Checks whether device points to an ImplicitPt.
      *
      * @throw NullPointerException
      */

@@ -67,7 +67,7 @@ namespace storage
 
 
     /**
-     * Checks whether device points to a Iso9660.
+     * Checks whether device points to an Iso9660.
      *
      * @throw NullPointerException
      */

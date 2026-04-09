@@ -23,7 +23,7 @@
 
 #include <stdio.h>
 #include <fcntl.h>
-/* Not technically required, but needed on some UNIX distributions */
+#include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 
