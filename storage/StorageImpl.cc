@@ -394,7 +394,7 @@ namespace storage
     Devicegraph*
     Storage::Impl::copy_devicegraph(const string& source_name, const string& dest_name)
     {
-	const Devicegraph* tmp1 = static_cast<const Impl*>(this)->get_devicegraph(source_name);
+	const Devicegraph* tmp1 = std::as_const(*this).get_devicegraph(source_name);
 
 	Devicegraph* tmp2 = create_devicegraph(dest_name);
 
