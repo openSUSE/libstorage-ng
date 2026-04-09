@@ -65,7 +65,7 @@ namespace storage
 
 
     /**
-     * Checks whether device points to an Reiserfs.
+     * Checks whether device points to a Reiserfs.
      *
      * @throw NullPointerException
      */

@@ -161,7 +161,7 @@ namespace storage
 	bool is_alias_of(const string& name) const;
 
 	/**
-	 * This is a invasive version of BlkDevice::find_by_name(). If no
+	 * This is an invasive version of BlkDevice::find_by_name(). If no
 	 * block device is found via the name a second search via the sysfs
 	 * path is done. This requires system lookups and is also the reason
 	 * the function needs an SystemInfo object and must be used on the

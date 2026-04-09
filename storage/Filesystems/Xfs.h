@@ -66,7 +66,7 @@ namespace storage
 
 
     /**
-     * Checks whether device points to a Xfs.
+     * Checks whether device points to an Xfs.
      *
      * @throw NullPointerException
      */

@@ -135,7 +135,7 @@ namespace storage
 
 
     /**
-     * Get a ActiongraphStyleCallbacks object for debugging. Attributes
+     * Get an ActiongraphStyleCallbacks object for debugging. Attributes
      * are likely colorful and include information like the action text
      * and the storage id. The attributes may change any time.
      */

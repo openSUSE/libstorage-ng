@@ -86,7 +86,7 @@ namespace storage
 	/**
 	 * Create a partition table on the partitionable.
 	 *
-	 * When creating a implicit partition table this function also creates
+	 * When creating an implicit partition table this function also creates
 	 * the implicit partition.
 	 *
 	 * @throw WrongNumberOfChildren, UnsupportedException, Exception

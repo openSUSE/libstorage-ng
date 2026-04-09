@@ -121,7 +121,7 @@ namespace storage
 	unsigned int max_primary() const;
 
 	/**
-	 * Returns whether a extended partition is supported.
+	 * Returns whether an extended partition is supported.
 	 *
 	 * This function is independent of existing partitions.
 	 */
