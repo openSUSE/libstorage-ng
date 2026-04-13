@@ -398,7 +398,7 @@ namespace storage
 
 	Devicegraph* tmp2 = create_devicegraph(dest_name);
 
-	tmp1->copy(*tmp2);
+	tmp1->get_impl().copy(*tmp2);
 
 	return tmp2;
     }
