@@ -96,6 +96,8 @@ namespace storage
 
 	void log_diff(std::ostream& log, const Impl& rhs) const;
 
+	void copy(Devicegraph& dest) const;
+
 	/**
 	 * Check if this devicegraph is the probed devicegraph.
 	 */

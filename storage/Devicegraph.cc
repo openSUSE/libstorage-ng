@@ -265,42 +265,6 @@ namespace storage
     }
 
 
-    class CloneCopier
-    {
-
-    public:
-
-	CloneCopier(const Devicegraph& g_in, Devicegraph& g_out)
-	    : g_in(g_in), g_out(g_out) {}
-
-	void operator()(const Devicegraph::Impl::vertex_descriptor& v_in,
-			Devicegraph::Impl::vertex_descriptor& v_out)
-	{
-	    shared_ptr<Device> device = g_in.get_impl().graph[v_in]->clone_v2();
-	    g_out.get_impl().graph[v_out] = device;
-
-	    Device* d_out = g_out.get_impl().graph[v_out].get();
-	    d_out->get_impl().set_devicegraph_and_vertex(&g_out, v_out);
-	}
-
-	void operator()(const Devicegraph::Impl::edge_descriptor& e_in,
-			Devicegraph::Impl::edge_descriptor& e_out)
-	{
-	    shared_ptr<Holder> holder = g_in.get_impl().graph[e_in]->clone_v2();
-	    g_out.get_impl().graph[e_out] = holder;
-
-	    Holder* h_out = g_out.get_impl().graph[e_out].get();
-	    h_out->get_impl().set_devicegraph_and_edge(&g_out, e_out);
-	}
-
-    private:
-
-	const Devicegraph& g_in;
-	Devicegraph& g_out;
-
-    };
-
-
     Device*
     Devicegraph::find_device(sid_t sid)
     {
@@ -436,15 +400,7 @@ namespace storage
     void
     Devicegraph::copy(Devicegraph& dest) const
     {
-	dest.get_impl().clear();
-
-	VertexIndexMapGenerator<Impl::graph_t> vertex_index_map_generator(get_impl().graph);
-
-	CloneCopier copier(*this, dest);
-
-	boost::copy_graph(get_impl().graph, dest.get_impl().graph,
-			  vertex_index_map(vertex_index_map_generator.get()).
-			  vertex_copy(copier).edge_copy(copier));
+	get_impl().copy(dest);
     }
 
 

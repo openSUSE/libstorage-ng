@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2025] SUSE LLC
+ * Copyright (c) [2016-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -161,6 +161,58 @@ namespace storage
 		}
 	    }
 	}
+    }
+
+
+    namespace
+    {
+
+	class CloneCopier
+	{
+
+	public:
+
+	    CloneCopier(const Devicegraph::Impl& g_in, Devicegraph& g_out)
+		: g_in(g_in), g_out(g_out) {}
+
+	    void operator()(const Devicegraph::Impl::vertex_descriptor& v_in,
+			    Devicegraph::Impl::vertex_descriptor& v_out)
+	    {
+		shared_ptr<Device> device = g_in.graph[v_in]->clone_v2();
+		g_out.get_impl().graph[v_out] = device;
+		device->get_impl().set_devicegraph_and_vertex(&g_out, v_out);
+	    }
+
+	    void operator()(const Devicegraph::Impl::edge_descriptor& e_in,
+			    Devicegraph::Impl::edge_descriptor& e_out)
+	    {
+		shared_ptr<Holder> holder = g_in.graph[e_in]->clone_v2();
+		g_out.get_impl().graph[e_out] = holder;
+		holder->get_impl().set_devicegraph_and_edge(&g_out, e_out);
+	    }
+
+	private:
+
+	    const Devicegraph::Impl& g_in;
+	    Devicegraph& g_out;
+
+	};
+
+    }
+
+
+    void
+    Devicegraph::Impl::copy(Devicegraph& dest) const
+    {
+	dest.get_impl().clear();
+
+	VertexIndexMapGenerator<graph_t> vertex_index_map_generator(graph);
+
+	CloneCopier copier(*this, dest);
+
+	boost::copy_graph(graph, dest.get_impl().graph,
+			  vertex_index_map(vertex_index_map_generator.get()).
+			  vertex_copy(copier).edge_copy(copier));
     }
 
 

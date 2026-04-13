@@ -396,8 +396,7 @@ namespace storage
 	 */
 	uf_t used_features(UsedFeaturesDependencyType used_features_dependency_type) const;
 
-	// TODO move to Impl
-	void copy(Devicegraph& dest) const;
+	void copy(Devicegraph& dest) const ST_DEPRECATED;
 
 	/**
 	 * Writes the devicegraph in graphviz format. The node id is

@@ -174,6 +174,9 @@ namespace storage
 	Impl::vertex = vertex;
 
 	const Device* device = devicegraph->get_impl()[vertex];
+	if (!device)
+	    ST_THROW(LogicException("device not set for node"));
+
 	if (&device->get_impl() != this)
 	    ST_THROW(LogicException("wrong vertex for back references"));
     }
