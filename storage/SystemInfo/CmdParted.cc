@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -518,6 +518,8 @@ namespace storage
 	    ST_THROW(ParseException("missing semicolon", "", ";"));
 
 	string line_without_semicolon = line.substr(0, line.size() - 1);
+	if (line_without_semicolon.empty())
+	    ST_THROW(ParseException("empty before semicolon", "", "a:b:c"));
 
 	vector<string> ret;
 

@@ -399,8 +399,20 @@ BOOST_AUTO_TEST_CASE(parse_missing_semicolon)
 {
     vector<string> input = {
 	"BYT;",
-	"/dev/sdc:160086528s:scsi:512:512:gpt:Maxtor 6 Y080L0:;"
-	"1:2048s:923647s:921600s:ext4::",
+	"/dev/sdc:160086528s:scsi:512:512:gpt:Maxtor 6 Y080L0:;",
+	"1:2048s:923647s:921600s:ext4::"
+    };
+
+    check_exception("/dev/sdc", input);
+}
+
+
+BOOST_AUTO_TEST_CASE(parse_empty_before_semicolon)
+{
+    vector<string> input = {
+	"BYT;",
+	"/dev/sdc:160086528s:scsi:512:512:gpt:Maxtor 6 Y080L0:;",
+	";"
     };
 
     check_exception("/dev/sdc", input);
