@@ -18,18 +18,6 @@
       <stdout>loop3</stdout>
     </Command>
     <Command>
-      <name>/bin/mount --read-only /dev/sda2 /tmp/libstorage-zs0TkS/tmp-mount-DCr0Cr -o subvol=/</name>
-    </Command>
-    <Command>
-      <name>/bin/mount --read-only /dev/sda2 /tmp/libstorage-zs0TkS/tmp-mount-ZbJYMD -o subvol=/</name>
-    </Command>
-    <Command>
-      <name>/bin/umount /tmp/libstorage-zs0TkS/tmp-mount-DCr0Cr</name>
-    </Command>
-    <Command>
-      <name>/bin/umount /tmp/libstorage-zs0TkS/tmp-mount-ZbJYMD</name>
-    </Command>
-    <Command>
       <!-- output faked -->
       <name>/sbin/blkid --version</name>
       <stdout>blkid from util-linux 2.41.3  (libblkid 2.41.3, 15-Dec-2025)</stdout>
