@@ -33,9 +33,6 @@ namespace storage
     using std::string;
 
 
-    string udev_encode(const string&);
-    string udev_decode(const string&);
-
     void udev_settle();
 
 

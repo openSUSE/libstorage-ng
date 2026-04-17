@@ -242,8 +242,9 @@ namespace storage
 		if (blk_device == "LABEL=" + label)
 		    return entry;
 
-		if (blk_device == DEV_DISK_BY_LABEL_DIR "/" + udev_encode(label))
-		    return entry;
+		// No check for /dev/disk/by-label since 1. it would be redundant as there
+		// is a check later for major and minor number and 2. udev encoding is not
+		// documented.
 	    }
 
 	    if (boost::starts_with(blk_device, DEV_DIR "/"))
