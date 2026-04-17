@@ -730,9 +730,12 @@ namespace storage
 
 	if (!label.empty())
 	{
-	    if ((spec == "LABEL=" + label) ||
-		(spec == DEV_DISK_BY_LABEL_DIR "/" + udev_encode(label)))
+	    if (spec == "LABEL=" + label)
 		return true;
+
+	    // No check for /dev/disk/by-label since 1. it would be redundant as there is
+	    // a check later for major and minor number and 2. udev encoding is not
+	    // documented.
 	}
 
 	return false;

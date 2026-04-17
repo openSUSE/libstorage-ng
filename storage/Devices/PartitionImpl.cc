@@ -277,9 +277,12 @@ namespace storage
 
 	if (!label.empty())
 	{
-	    if ((spec == "PARTLABEL=" + label) ||
-		(spec == DEV_DISK_BY_PARTLABEL_DIR "/" + udev_encode(label)))
+	    if (spec == "PARTLABEL=" + label)
 		return true;
+
+	    // No check for /dev/disk/by-partlabel since 1. it would be redundant as there
+	    // is a check later for major and minor number and 2. udev encoding is not
+	    // documented.
 	}
 
 	return BlkDevice::Impl::spec_match(system_info, spec);
