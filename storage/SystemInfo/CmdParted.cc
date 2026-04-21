@@ -622,6 +622,7 @@ namespace storage
 	{ ID_RAID, "raid" },
 	{ ID_SWAP, "swap" },
 	{ ID_WINDOWS_BASIC_DATA, "msftdata" },
+	{ ID_XBOOTLDR, "bls_boot" },
     };
 
 
@@ -771,6 +772,15 @@ namespace storage
 	query_version();
 
 	return major >= 4 || (major == 3 && minor >= 6);
+    }
+
+
+    bool
+    CmdPartedVersion::supports_bls_boot_flag()
+    {
+	query_version();
+
+	return major >= 4 || (major == 3 && minor >= 4);
     }
 
 

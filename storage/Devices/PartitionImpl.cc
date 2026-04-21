@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2024] SUSE LLC
+ * Copyright (c) [2016-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -1728,6 +1728,10 @@ namespace storage
 	    case ID_RAID:
 		// TRANSLATORS: name of partition type
 		return _("Linux RAID");
+
+	    case ID_XBOOTLDR:
+		// TRANSLATORS: name of partition type
+		return _("Extended Boot Loader");
 
 	    case ID_ESP:
 		// TRANSLATORS: name of partition type

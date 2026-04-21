@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2024] SUSE LLC
+ * Copyright (c) [2016-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -123,6 +123,10 @@ namespace storage
 
 	/** RAID partition, for MS-DOS, GPT and DASD. */
 	ID_RAID = 0xfd,
+
+	/** Boot Loader Specification (https://uapi-group.org/specifications/specs/boot_loader_specification/),
+	    for MS-DOS and GPT. Requires parted 3.4 or higher. */
+	ID_XBOOTLDR = 0xea,
 
 	/** EFI System Partition, for MS-DOS and GPT. */
 	ID_ESP = 0xef,

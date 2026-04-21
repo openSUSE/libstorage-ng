@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -235,6 +235,7 @@ namespace storage
 	static bool supports_ignore_busy();
 	static bool print_triggers_udev();
 	static bool supports_no_automount_flag();
+	static bool supports_bls_boot_flag();
 
     private:
 
