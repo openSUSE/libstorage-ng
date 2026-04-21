@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -219,6 +219,11 @@ namespace storage
 	};
 
 	if (contains(supported_ids, id))
+	    return true;
+
+	// For bls_boot (name of flag in parted) parted 3.4 is needed.
+
+	if (id == ID_XBOOTLDR && CmdPartedVersion::supports_bls_boot_flag())
 	    return true;
 
 	// For more ids the type command of parted 3.6 is needed.
