@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2010-2014] Novell, Inc.
- * Copyright (c) [2019-2021] SUSE LLC
+ * Copyright (c) [2019-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -106,7 +106,12 @@ namespace storage
 	vector<const xmlNode*> children = getChildNodes(node, name);
 
 	for (const xmlNode*& child : children)
-	    values.push_back((const char*) child->content);
+	{
+	    if (child && child->content)
+		values.push_back((const char*) child->content);
+	    else
+		values.push_back(Type {});
+	}
 
 	return !children.empty();
     }

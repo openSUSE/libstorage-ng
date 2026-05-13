@@ -21,11 +21,11 @@ check(const vector<string>& input, const vector<string>& output)
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
     Mockup::set_command(DMSETUP_BIN " table", input);
 
-    CmdDmsetupTable cmddmsetuptable;
+    CmdDmsetupTable cmd_dmsetup_table;
 
     ostringstream parsed;
     parsed.setf(std::ios::boolalpha);
-    parsed << cmddmsetuptable;
+    parsed << cmd_dmsetup_table;
 
     string lhs = parsed.str();
     string rhs = output.empty() ? "" : boost::join(output, "\n") + "\n";

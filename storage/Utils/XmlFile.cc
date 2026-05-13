@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2010-2014] Novell, Inc.
- * Copyright (c) 2019 SUSE LLC
+ * Copyright (c) [2019-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,7 +21,7 @@
  */
 
 
-#include <string.h>
+#include <cstring>
 #include <libxml/parser.h>
 
 #include "storage/Utils/XmlFile.h"
@@ -121,8 +121,7 @@ namespace storage
 	    if (cur_node->type == XML_ELEMENT_NODE &&
 		strcmp(name, (const char*) cur_node->name) == 0)
 	    {
-		if (cur_node->children)
-		    ret.push_back(cur_node->children);
+		ret.push_back(cur_node->children);
 	    }
 	}
 
@@ -139,8 +138,7 @@ namespace storage
 	{
 	    if (cur_node->type == XML_ELEMENT_NODE)
 	    {
-		if (cur_node->children)
-		    ret.push_back(cur_node->children);
+		ret.push_back(cur_node->children);
 	    }
 	}
 

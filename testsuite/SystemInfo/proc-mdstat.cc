@@ -20,11 +20,11 @@ check(const vector<string>& input, const vector<string>& output)
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
     Mockup::set_file("/proc/mdstat", input);
 
-    ProcMdstat procmdstat;
+    ProcMdstat proc_mdstat;
 
     ostringstream parsed;
     parsed.setf(std::ios::boolalpha);
-    parsed << procmdstat;
+    parsed << proc_mdstat;
 
     string lhs = parsed.str();
     string rhs = accumulate(output.begin(), output.end(), ""s,
