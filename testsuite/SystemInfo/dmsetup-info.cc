@@ -22,11 +22,11 @@ check(const vector<string>& input, const vector<string>& output)
     Mockup::set_command(DMSETUP_BIN " --columns --separator / --noheadings -o name,major,minor,"
 			"segments,subsystem,uuid info", input);
 
-    CmdDmsetupInfo cmddmsetupinfo;
+    CmdDmsetupInfo cmd_dmsetup_info;
 
     ostringstream parsed;
     parsed.setf(std::ios::boolalpha);
-    parsed << cmddmsetupinfo;
+    parsed << cmd_dmsetup_info;
 
     string lhs = parsed.str();
     string rhs = boost::join(output, "\n") + "\n";
