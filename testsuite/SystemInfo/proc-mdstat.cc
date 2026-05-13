@@ -2,6 +2,7 @@
 #define BOOST_TEST_DYN_LINK
 #define BOOST_TEST_MODULE libstorage
 
+#include <numeric>
 #include <boost/test/unit_test.hpp>
 #include <boost/algorithm/string.hpp>
 
@@ -26,7 +27,8 @@ check(const vector<string>& input, const vector<string>& output)
     parsed << procmdstat;
 
     string lhs = parsed.str();
-    string rhs = boost::join(output, "\n") + "\n";
+    string rhs = accumulate(output.begin(), output.end(), ""s,
+			    [](auto a, auto b) { return a + b + "\n"; });
 
     BOOST_CHECK_EQUAL(lhs, rhs);
 }
@@ -127,7 +129,7 @@ BOOST_AUTO_TEST_CASE(parse5)
     vector<string> input = {
 	"Personalities : [raid1] [raid0] ",
 	"md_test : active raid0 sda1[1] sdb1[0]",
-	"      8000512 blocks super 1.2 512k chunks"
+	"      8000512 blocks super 1.2 512k chunks",
 	"      ",
 	"unused devices: <none>"
     };
@@ -194,6 +196,32 @@ BOOST_AUTO_TEST_CASE(parse_inactive_noncontainer)
     vector<string> output = {
 	"data[md126] -> md-level:unknown super:1.0 size:103772160 read-only inactive devices:</dev/sde1(S)>",
 	"data[md127] -> md-level:RAID5 md-parity:left-symmetric super:1.0 chunk-size:131072 size:2145124352 devices:</dev/sda1 /dev/sdb1 /dev/sdc1>"
+    };
+
+    check(input, output);
+}
+
+
+BOOST_AUTO_TEST_CASE(parse_empty1)
+{
+    vector<string> input = {
+    };
+
+    vector<string> output = {
+    };
+
+    check(input, output);
+}
+
+
+BOOST_AUTO_TEST_CASE(parse_empty2)
+{
+    vector<string> input = {
+	"Personalities : [raid0] ",
+	"unused devices: <none>"
+    };
+
+    vector<string> output = {
     };
 
     check(input, output);
