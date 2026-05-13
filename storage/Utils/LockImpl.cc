@@ -21,11 +21,10 @@
  */
 
 
-#include <stdio.h>
+#include <cstdio>
 #include <unistd.h>
 #include <fcntl.h>
-#include <string.h>
-#include <errno.h>
+#include <cerrno>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <stdlib.h>
@@ -75,10 +74,10 @@ namespace storage
 		ST_THROW(LockException(0));
 	    }
 
-	    struct flock lock;
-	    memset(&lock, 0, sizeof(lock));
+	    struct flock lock {};
 	    lock.l_type = (read_only ? F_RDLCK : F_WRLCK);
 	    lock.l_whence = SEEK_SET;
+
 	    if (fcntl(fd, F_SETLK, &lock) < 0)
 	    {
 		switch (errno)
