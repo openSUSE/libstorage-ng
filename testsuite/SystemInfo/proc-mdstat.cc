@@ -127,7 +127,7 @@ BOOST_AUTO_TEST_CASE(parse5)
     vector<string> input = {
 	"Personalities : [raid1] [raid0] ",
 	"md_test : active raid0 sda1[1] sdb1[0]",
-	"      8000512 blocks super 1.2 512k chunks"
+	"      8000512 blocks super 1.2 512k chunks",
 	"      ",
 	"unused devices: <none>"
     };
