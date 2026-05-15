@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2017-2023] SUSE LLC
+ * Copyright (c) [2017-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,6 +21,7 @@
  */
 
 
+#include <cctype>
 #include <locale>
 #include <boost/algorithm/string.hpp>
 
@@ -50,14 +51,26 @@ namespace storage
     void
     ProcMdstat::parse(const vector<string>& lines)
     {
-	for (vector<string>::const_iterator it1 = lines.begin(); it1 != lines.end(); ++it1)
+	auto is_blank = [](const string& s) {
+	    return std::all_of(s.begin(), s.end(), [](unsigned char c) {
+		return std::isspace(c);
+	    });
+	};
+
+	if (lines.empty())
+	    return;
+
+	vector<string>::const_iterator b = std::find_if_not(std::next(lines.begin()), lines.end(), is_blank);
+
+	while (b != lines.end())
 	{
-	    if (extractNthWord(1, *it1) == ":")
-	    {
-		string name = extractNthWord(0, *it1);
-		if (boost::starts_with(name, "md"))
-		    data[name] = parse_entry(*it1, *(it1 + 1));
-	    }
+	    vector<string>::const_iterator e = std::find_if(b, lines.end(), is_blank);
+
+	    string name = extractNthWord(0, *b);
+	    if (boost::starts_with(name, "md"))
+		data[name] = parse_entry(b, e);
+
+	    b = std::find_if_not(e, lines.end(), is_blank);
 	}
 
 	y2mil(*this);
@@ -65,58 +78,62 @@ namespace storage
 
 
     ProcMdstat::Entry
-    ProcMdstat::parse_entry(const string& line1, const string& line2) const
+    ProcMdstat::parse_entry(vector<string>::const_iterator b, vector<string>::const_iterator e) const
     {
+	if (std::distance(b, e) < 2)
+	    ST_THROW(ParseException("truncated raid entry", "just one line", "at least two lines"));
+
 	ProcMdstat::Entry entry;
 
 	string::size_type pos;
 	string tmp;
 
-	string line = line1;
-	if( (pos=line.find( ':' ))!=string::npos )
-	    line.erase( 0, pos+1 );
-	boost::trim_left(line, locale::classic());
-	if( (pos=line.find_first_of( app_ws ))!=string::npos )
+	string line1 = *b++;
+
+	if( (pos=line1.find( ':' ))!=string::npos )
+	    line1.erase( 0, pos+1 );
+	boost::trim_left(line1, locale::classic());
+	if( (pos=line1.find_first_of( app_ws ))!=string::npos )
 	{
-	    if (line.substr(0, pos) == "active")
-		line.erase(0, pos);
+	    if (line1.substr(0, pos) == "active")
+		line1.erase(0, pos);
 	}
-	boost::trim_left(line, locale::classic());
-	if( (pos=line.find_first_of( app_ws ))!=string::npos )
+	boost::trim_left(line1, locale::classic());
+	if( (pos=line1.find_first_of( app_ws ))!=string::npos )
 	{
-	    tmp = line.substr( 0, pos );
+	    tmp = line1.substr( 0, pos );
 	    if( tmp=="(read-only)" || tmp=="(auto-read-only)" || tmp=="inactive" )
 	    {
 		entry.read_only = true;
 		entry.inactive = tmp=="inactive";
-		line.erase( 0, pos );
-		boost::trim_left(line, locale::classic());
+		line1.erase( 0, pos );
+		boost::trim_left(line1, locale::classic());
 	    }
 	}
-	boost::trim_left(line, locale::classic());
-	if( (pos=line.find_first_of( app_ws ))!=string::npos )
+	boost::trim_left(line1, locale::classic());
+	if( (pos=line1.find_first_of( app_ws ))!=string::npos )
 	{
-	    if( line.substr( 0, pos ).find( "active" )!=string::npos )
-		line.erase( 0, pos );
+	    if( line1.substr( 0, pos ).find( "active" )!=string::npos )
+		line1.erase( 0, pos );
 	}
-	boost::trim_left(line, locale::classic());
+	boost::trim_left(line1, locale::classic());
 
-	tmp = extractNthWord( 0, line );
+	tmp = extractNthWord( 0, line1 );
 	if (boost::starts_with(tmp, "raid") || tmp == "linear")
 	{
 	    entry.md_level = toValueWithFallback(boost::to_upper_copy(tmp, locale::classic()), MdLevel::UNKNOWN);
 	    if (entry.md_level == MdLevel::UNKNOWN)
 		y2war("unknown raid type " << tmp);
 
-	    if( (pos=line.find_first_of( app_ws ))!=string::npos )
-		line.erase( 0, pos );
-	    if( (pos=line.find_first_not_of( app_ws ))!=string::npos && pos!=0 )
-		line.erase( 0, pos );
+	    if( (pos=line1.find_first_of( app_ws ))!=string::npos )
+		line1.erase( 0, pos );
+	    if( (pos=line1.find_first_not_of( app_ws ))!=string::npos && pos!=0 )
+		line1.erase( 0, pos );
 	}
 
-	while( (pos=line.find_first_not_of( app_ws ))==0 )
+	while( (pos=line1.find_first_not_of( app_ws ))==0 )
 	{
-	    tmp = extractNthWord( 0, line );
+	    tmp = extractNthWord( 0, line1 );
 
 	    string d;
 	    string::size_type bracket = tmp.find( '[' );
@@ -132,12 +149,14 @@ namespace storage
 
 	    entry.devices.emplace_back(d, is_spare, is_faulty, is_journal);
 
-	    line.erase( 0, tmp.length() );
-	    if( (pos=line.find_first_not_of( app_ws ))!=string::npos && pos!=0 )
-		line.erase( 0, pos );
+	    line1.erase( 0, tmp.length() );
+	    if( (pos=line1.find_first_not_of( app_ws ))!=string::npos && pos!=0 )
+		line1.erase( 0, pos );
 	}
 
 	sort(entry.devices.begin(), entry.devices.end());
+
+	string line2 = *b++;
 
 	extractNthWord(0, line2) >> entry.size;
 	entry.size *= KiB;

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2017-2022] SUSE LLC
+ * Copyright (c) [2017-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -102,7 +102,7 @@ namespace storage
 
 	void parse(const vector<string>& lines);
 
-	Entry parse_entry(const string& line1, const string& line2) const;
+	Entry parse_entry(vector<string>::const_iterator b, vector<string>::const_iterator e) const;
 
 	map<string, Entry> data;
 
