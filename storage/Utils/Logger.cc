@@ -21,7 +21,7 @@
  */
 
 
-#include <stdio.h>
+#include <cstdio>
 #include <fcntl.h>
 #include <unistd.h>
 #include <sys/types.h>
