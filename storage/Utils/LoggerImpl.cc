@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -45,12 +45,17 @@ namespace storage
     }
 
 
-    void
-    prepare_log_stream(ostringstream& stream)
+    namespace
     {
-	stream.imbue(std::locale::classic());
-	stream.setf(std::ios::boolalpha);
-	stream.setf(std::ios::showbase);
+
+	void
+	prepare_log_stream(ostringstream& stream)
+	{
+	    stream.imbue(std::locale::classic());
+	    stream.setf(std::ios::boolalpha);
+	    stream.setf(std::ios::showbase);
+	}
+
     }
 
 
@@ -70,12 +75,13 @@ namespace storage
 	Logger* logger = get_logger();
 	if (logger)
 	{
-	    string content = stream->str();
+	    const string content = stream->str();
+
 	    string::size_type pos1 = 0;
 	    while (true)
 	    {
 		string::size_type pos2 = content.find('\n', pos1);
-		if (pos2 != string::npos || pos1 != content.length())
+		if (pos1 == 0 || pos2 != string::npos || pos1 != content.length())
 		    logger->write(log_level, component, file, line, func,
 				  content.substr(pos1, pos2 - pos1));
 		if (pos2 == string::npos)
