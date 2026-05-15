@@ -36,10 +36,9 @@ namespace storage
     query_log_level(LogLevel log_level)
     {
 	Logger* logger = get_logger();
+
 	if (logger)
-	{
 	    return logger->test(log_level, component);
-	}
 
 	return false;
     }
@@ -73,21 +72,22 @@ namespace storage
 		     ostringstream* stream)
     {
 	Logger* logger = get_logger();
-	if (logger)
-	{
-	    const string content = stream->str();
 
-	    string::size_type pos1 = 0;
-	    while (true)
-	    {
-		string::size_type pos2 = content.find('\n', pos1);
-		if (pos1 == 0 || pos2 != string::npos || pos1 != content.length())
-		    logger->write(log_level, component, file, line, func,
-				  content.substr(pos1, pos2 - pos1));
-		if (pos2 == string::npos)
-		    break;
-		pos1 = pos2 + 1;
-	    }
+	// No need to check if logger is set since close_log_stream is only called from
+	// y2log_op if logger is set.
+
+	const string content = stream->str();
+
+	string::size_type pos1 = 0;
+	while (true)
+	{
+	    string::size_type pos2 = content.find('\n', pos1);
+	    if (pos1 == 0 || pos2 != string::npos || pos1 != content.length())
+		logger->write(log_level, component, file, line, func,
+			      content.substr(pos1, pos2 - pos1));
+	    if (pos2 == string::npos)
+		break;
+	    pos1 = pos2 + 1;
 	}
 
 	delete stream;

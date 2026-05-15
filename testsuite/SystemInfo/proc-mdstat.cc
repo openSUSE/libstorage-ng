@@ -4,7 +4,6 @@
 
 #include <numeric>
 #include <boost/test/unit_test.hpp>
-#include <boost/algorithm/string.hpp>
 
 #include "storage/SystemInfo/ProcMdstat.h"
 #include "storage/Utils/Mockup.h"
@@ -225,4 +224,20 @@ BOOST_AUTO_TEST_CASE(parse_empty2)
     };
 
     check(input, output);
+}
+
+
+BOOST_AUTO_TEST_CASE(parse_error1)
+{
+    // Truncated input.
+
+    vector<string> input = {
+	"Personalities : [raid1] ",
+	"md0 : active raid1 sda1[1] sdb1[0]"
+    };
+
+    vector<string> output = {
+    };
+
+    BOOST_CHECK_THROW({ check(input, output); }, ParseException);
 }

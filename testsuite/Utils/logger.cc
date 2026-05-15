@@ -17,7 +17,7 @@ public:
 
     bool test(LogLevel log_level, const std::string& component) override
     {
-	return true;
+	return log_level > LogLevel::DEBUG;
     }
 
     void write(LogLevel log_level, const std::string& component, const string& file,
@@ -128,4 +128,32 @@ BOOST_AUTO_TEST_CASE(multiline4)
     BOOST_CHECK_EQUAL(recorder.entries[2].content, "");
     BOOST_CHECK_EQUAL(recorder.entries[3].content, "world");
     BOOST_CHECK_EQUAL(recorder.entries[4].content, "");
+}
+
+
+BOOST_AUTO_TEST_CASE(no_logger)
+{
+    set_logger(nullptr);
+
+    y2mil("no logger, no crash");
+}
+
+
+BOOST_AUTO_TEST_CASE(conditional_expansion)
+{
+    Recorder recorder;
+
+    set_logger(&recorder);
+
+    size_t n_mil = 0;
+    size_t n_deb = 0;
+
+    y2mil("test mil " << ++n_mil);
+    y2deb("test deb " << ++n_deb);
+
+    BOOST_REQUIRE_EQUAL(recorder.entries.size(), 1);
+    BOOST_CHECK_EQUAL(recorder.entries[0].content, "test mil 1");
+
+    BOOST_CHECK_EQUAL(n_mil, 1);
+    BOOST_CHECK_EQUAL(n_deb, 0);
 }
