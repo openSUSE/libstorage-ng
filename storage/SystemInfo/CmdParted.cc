@@ -315,6 +315,9 @@ namespace storage
     {
 	vector<string> tmp = tokenize(line);
 
+	if (tmp.size() < 8)
+	    ST_THROW(ParseException("too few fields", line, "a:b:c:d:e:f:g:h;"));
+
 	unsigned long long num_sectors = 0;
 	tmp[1] >> num_sectors;
 
@@ -360,6 +363,9 @@ namespace storage
     CmdParted::scan_entry_line(const string& line)
     {
 	vector<string> tmp = tokenize(line);
+
+	if (tmp.size() < 7)
+	    ST_THROW(ParseException("too few fields", line, "a:b:c:d:e:f:g;"));
 
 	Entry entry;
 

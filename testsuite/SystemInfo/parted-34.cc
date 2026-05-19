@@ -417,3 +417,26 @@ BOOST_AUTO_TEST_CASE(parse_empty_before_semicolon)
 
     check_exception("/dev/sdc", input);
 }
+
+
+BOOST_AUTO_TEST_CASE(parse_error1)
+{
+    vector<string> input = {
+	"BYT;",
+	"/dev/sdc:160086528s:scsi:512:512:gpt;"
+    };
+
+    check_exception("/dev/sdc", input);
+}
+
+
+BOOST_AUTO_TEST_CASE(parse_error2)
+{
+    vector<string> input = {
+	"BYT;",
+	"/dev/sdc:160086528s:scsi:512:512:gpt:Maxtor 42:;",
+	"1:2048s:923647s:;"
+    };
+
+    check_exception("/dev/sdc", input);
+}
