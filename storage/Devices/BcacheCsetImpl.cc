@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -242,7 +242,12 @@ namespace storage
     {
 	// TODO handle multiple BlkDevices
 
-	const BlkDevice* blk_device = get_blk_devices()[0];
+	vector<const BlkDevice*> blk_devices = get_blk_devices();
+
+	if (blk_devices.empty())
+	    ST_THROW(DeviceNotFound("No caching devices"));
+
+	const BlkDevice* blk_device = blk_devices[0];
 
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
@@ -265,7 +270,12 @@ namespace storage
 
 	// TODO handle multiple BlkDevices?
 
-	const BlkDevice* blk_device = get_blk_devices()[0];
+	vector<const BlkDevice*> blk_devices = get_blk_devices();
+
+	if (blk_devices.empty())
+	    ST_THROW(DeviceNotFound("No caching devices"));
+
+	const BlkDevice* blk_device = blk_devices[0];
 
 	SystemCmd::Args cmd_args = { BCACHE_BIN, "make", "-C", blk_device->get_name() };
 
@@ -292,7 +302,12 @@ namespace storage
     {
 	// TODO handle multiple BlkDevices
 
-	const BlkDevice* blk_device = get_blk_devices()[0];
+	vector<const BlkDevice*> blk_devices = get_blk_devices();
+
+	if (blk_devices.empty())
+	    ST_THROW(DeviceNotFound("No caching devices"));
+
+	const BlkDevice* blk_device = blk_devices[0];
 
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
@@ -321,7 +336,12 @@ namespace storage
     {
 	// TODO handle multiple BlkDevices
 
-	const BlkDevice* blk_device = get_blk_devices()[0];
+	vector<const BlkDevice*> blk_devices = get_blk_devices();
+
+	if (blk_devices.empty())
+	    ST_THROW(DeviceNotFound("No caching devices"));
+
+	const BlkDevice* blk_device = blk_devices[0];
 
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
@@ -342,10 +362,12 @@ namespace storage
     {
 	// TODO handle multiple caching devices?
 
-	if (get_blk_devices().empty())
+	vector<const BlkDevice*> blk_devices = get_blk_devices();
+
+	if (blk_devices.empty())
 	    ST_THROW(DeviceNotFound("No caching devices"));
 
-	const BlkDevice* blk_device = get_blk_devices().front();
+	const BlkDevice* blk_device = blk_devices[0];
 
 	SystemCmd::Args cmd_args = { BCACHE_BIN, "unregister", blk_device->get_name() };
 

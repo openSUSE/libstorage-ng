@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -774,7 +774,12 @@ namespace storage
 
 	const BcacheCset* bcache_cset = get_bcache_cset();
 
-	const BlkDevice* blk_device = bcache_cset->get_blk_devices()[0];
+	vector<const BlkDevice*> blk_devices = bcache_cset->get_blk_devices();
+
+	if (blk_devices.empty())
+	    ST_THROW(DeviceNotFound("No caching devices"));
+
+	const BlkDevice* blk_device = blk_devices[0];
 
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
@@ -807,7 +812,12 @@ namespace storage
     {
 	// TODO handle multiple BlkDevices of BcacheCset
 
-	const BlkDevice* blk_device = bcache_cset->get_blk_devices()[0];
+	vector<const BlkDevice*> blk_devices = bcache_cset->get_blk_devices();
+
+	if (blk_devices.empty())
+	    ST_THROW(DeviceNotFound("No caching devices"));
+
+	const BlkDevice* blk_device = blk_devices[0];
 
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
