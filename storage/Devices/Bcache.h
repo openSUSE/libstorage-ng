@@ -131,6 +131,8 @@ namespace storage
 	 *
 	 * Note that a bcache device can be created without a caching set associated to it.
 	 * In case of a Flash-only bcache, there is always a caching set holding it.
+	 *
+	 * @throw DeviceNotFound
 	 */
 	const BcacheCset* get_bcache_cset() const;
 

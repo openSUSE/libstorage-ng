@@ -409,6 +409,9 @@ namespace storage
 
 	vector<const BcacheCset*> ret = devicegraph.filter_devices_of_type<const BcacheCset>(devicegraph.parents(vertex));
 
+	if (ret.empty())
+	    ST_THROW(DeviceNotFound("No bcache cset"));
+
 	return ret.front();
     }
 

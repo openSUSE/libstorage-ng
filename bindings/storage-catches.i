@@ -242,6 +242,7 @@
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Bcache::find_by_name(const Devicegraph *devicegraph, const std::string &name);
 %catches(storage::Exception) storage::Bcache::find_free_name(const Devicegraph *devicegraph);
 %catches(storage::DeviceNotFound) storage::Bcache::get_backing_device() const;
+%catches(storage::DeviceNotFound) storage::Bcache::get_bcache_cset() const;
 %catches(storage::DeviceNotFound) storage::Bcache::get_blk_device() const;
 %catches(storage::LogicException, storage::Exception) storage::Bcache::remove_bcache_cset();
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::BcacheCset::find_by_uuid(Devicegraph *devicegraph, const std::string &uuid);
