@@ -21,13 +21,13 @@ jobs:
         elif [ "${{ matrix.compiler }}" = "clang" ]; then
           zypper --non-interactive install --no-recommends clang
         fi
-        zypper --non-interactive install --no-recommends autoconf automake awk doxygen gettext-runtime glibc-locale graphviz libboost_headers-devel libboost_test-devel libjson-c-devel libtool libxml2-devel make python3-devel ruby-devel swig xz
+        zypper --non-interactive install --no-recommends autoconf automake awk doxygen gettext-runtime git glibc-locale graphviz libboost_headers-devel libboost_test-devel libjson-c-devel libtool libxml2-devel make python3-devel ruby-devel swig xz
 
     - name: List installed packages
       run: rpm -qa | sort
 
     - name: Git checkout
-      uses: actions/checkout@v1
+      uses: actions/checkout@v6
 
     - name: Configure
       run: |
