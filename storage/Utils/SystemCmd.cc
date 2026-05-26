@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2024] SUSE LLC
+ * Copyright (c) [2016-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -80,25 +80,38 @@ namespace storage
     }
 
 
+    vector<string>::iterator
+    SystemCmd::Options::findenv(const char* name)
+    {
+	return find_if(envs.begin(), envs.end(), [name](const string& env) {
+	    string::size_type pos = env.find("=");
+	    return env.compare(0, pos, name) == 0;
+	});
+    }
+
+
     void
     SystemCmd::Options::setenv(const char* name, const char* value)
     {
 	// Environment variables should be present only once in the environment.
 	// https://pubs.opengroup.org/onlinepubs/009695399/basedefs/xbd_chap08.html
 
-	unsetenv(name);
+	string tmp = string(name) + "=" + value;
 
-	envs.emplace_back(string(name) + "=" + value);
+	vector<string>::iterator it = findenv(name);
+	if (it != envs.end())
+	    *it = tmp;
+	else
+	    envs.push_back(std::move(tmp));
     }
 
 
     void
     SystemCmd::Options::unsetenv(const char* name)
     {
-	erase_if(envs, [name](const string& env) {
-	    string::size_type pos = env.find("=");
-	    return env.substr(0, pos) == name;
-	});
+	vector<string>::iterator it = findenv(name);
+	if (it != envs.end())
+	    envs.erase(it);
     }
 
 

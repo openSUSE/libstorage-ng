@@ -21,7 +21,7 @@
  */
 
 
-#include <locale.h>
+#include <clocale>
 #include <langinfo.h>
 #include <libintl.h>
 #include <cstring>
