@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2024] SUSE LLC
+ * Copyright (c) [2016-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -133,6 +133,8 @@ namespace storage
 	private:
 
 	    void init_envs();
+
+	    vector<string>::iterator findenv(const char* name);
 
 	};
 
