@@ -412,13 +412,13 @@ namespace storage
 	y2deb("step fork and exec");
 
 	if (fcntl(stdin_pipe.write_end.fd, F_SETFL, O_NONBLOCK) != 0)
-	    SYSCALL_FAILED("pipe stdin O_NONBLOCK failed");
+	    SYSCALL_FAILED("fcntl stdin O_NONBLOCK failed");
 
 	if (fcntl(stdout_pipe.read_end.fd, F_SETFL, O_NONBLOCK) != 0)
-	    SYSCALL_FAILED("pipe stdout O_NONBLOCK failed");
+	    SYSCALL_FAILED("fcntl stdout O_NONBLOCK failed");
 
 	if (fcntl(stderr_pipe.read_end.fd, F_SETFL, O_NONBLOCK) != 0)
-	    SYSCALL_FAILED("pipe stderr O_NONBLOCK failed");
+	    SYSCALL_FAILED("fcntl stderr O_NONBLOCK failed");
 
 	Pipe child_failure_info_pipe;
 
