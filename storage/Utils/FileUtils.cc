@@ -41,7 +41,8 @@ namespace storage
 	: path(path), name(name_template)
     {
 	char* t = strdup(get_fullname().c_str());
-	ST_CHECK_PTR(t);
+	if (!t)
+	    ST_THROW(OutOfMemoryException());
 
 	if (mkdtemp(t) == NULL)
 	{

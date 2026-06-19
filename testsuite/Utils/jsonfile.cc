@@ -54,7 +54,9 @@ BOOST_AUTO_TEST_CASE(bad1)
     vector<string> lines = {
     };
 
-    BOOST_CHECK_THROW({ JsonFile json_file(lines); }, Exception);
+    BOOST_CHECK_EXCEPTION({ JsonFile json_file(lines); }, Exception, [](const Exception& e) {
+	return strcmp(e.what(), "json parser failed: runaway") == 0;
+    });
 }
 
 
@@ -64,5 +66,19 @@ BOOST_AUTO_TEST_CASE(bad2)
 	"{"
     };
 
-    BOOST_CHECK_THROW({ JsonFile json_file(lines); }, Exception);
+    BOOST_CHECK_EXCEPTION({ JsonFile json_file(lines); }, Exception, [](const Exception& e) {
+	return strcmp(e.what(), "json parser failed: runaway") == 0;
+    });
+}
+
+
+BOOST_AUTO_TEST_CASE(bad3)
+{
+    vector<string> lines = {
+	"{ \"fun\": true, \"tonight\": maybe }"
+    };
+
+    BOOST_CHECK_EXCEPTION({ JsonFile json_file(lines); }, Exception, [](const Exception& e) {
+	return strcmp(e.what(), "json parser failed: unexpected character") == 0;
+    });
 }
