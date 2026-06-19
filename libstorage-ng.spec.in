@@ -62,6 +62,7 @@ BuildRequires:  glibc-langpack-en
 BuildRequires:  libjson-c-devel
 BuildRequires:  glibc-locale
 %endif
+BuildRequires:  strace
 
 %description
 This package contains libstorage-ng, a library for storage management.

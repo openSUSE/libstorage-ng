@@ -11,11 +11,14 @@ libhelpers_la_SOURCES =						\
 
 noinst_PROGRAMS =	\
 	echoargs	\
-	echoargs_stderr	\
-	echoargs_mixed	\
+	echoargs-stderr	\
+	echoargs-mixed	\
 	repeat		\
 	retcode		\
-	segfaulter
+	segfaulter	\
+	test-systemcmd
 
 AM_DEFAULT_SOURCE_EXT = .cc
 
+test_systemcmd_LDADD = ../../storage/libstorage-ng.la
+test_systemcmd_LDFLAGS = -no-install
