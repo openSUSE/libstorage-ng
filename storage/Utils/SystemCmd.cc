@@ -29,7 +29,6 @@
 #include <langinfo.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-#include <string>
 #include <sstream>
 #include <boost/algorithm/string.hpp>
 
@@ -323,6 +322,54 @@ namespace storage
 	    int errnum = 0;
 	};
 
+
+	/**
+	 * RAII for pid of child.
+	 */
+	class Child : boost::noncopyable
+	{
+	public:
+
+	    ~Child()
+	    {
+		if (pid != -1)
+		    waitpid(NULL);
+	    }
+
+	    int get_pid() const { return pid; }
+
+	    int fork();
+	    int waitpid(int* wstatus);
+
+	private:
+
+	    int pid = -1;
+
+	};
+
+
+	int
+	Child::fork()
+	{
+	    pid = ::fork();
+	    return pid;
+	}
+
+
+	int
+	Child::waitpid(int* wstatus)
+	{
+	    int ret = TEMP_FAILURE_RETRY(::waitpid(pid, wstatus, 0));
+
+	    // Since waitpid is called with options = 0 the child is dead if waitpid
+	    // does not report an error.
+
+	    if (ret != -1)
+		pid = -1;
+
+	    return ret;
+	}
+
     }
 
 
@@ -367,7 +414,7 @@ namespace storage
 
 	SystemCmd& system_cmd;
 
-	pid_t child_pid = -1;
+	Child child;
 
 	Pipe stdin_pipe;
 	Pipe stdout_pipe;
@@ -427,15 +474,16 @@ namespace storage
 	const vector<const char*> args_p(make_args());
 	const vector<const char*> env_p(make_env());
 
-	child_pid = fork();
-	if (child_pid == -1)
+	child.fork();
+	if (child.get_pid() == -1)
 	    SYSCALL_FAILED("fork failed");
 
-	if (child_pid == 0)
+	if (child.get_pid() == 0)
 	{
 	    // child process
 
-	    // Do not use exit() here. Use _exit() instead.
+	    // Do not use exit() here. Use _exit() instead. Thus no destructors are
+	    // called.
 
 	    // Only use async‐signal‐safe functions here, see fork(2) and
 	    // signal-safety(7).
@@ -497,7 +545,7 @@ namespace storage
 
 	// parent process
 
-	y2mil("child_pid:" << child_pid);
+	y2mil("child.pid:" << child.get_pid());
 
 	if (stdin_pipe.read_end.close() != 0)
 	    SYSCALL_FAILED("close stdin in parent failed");
@@ -506,7 +554,7 @@ namespace storage
 	    SYSCALL_FAILED("close stdout in parent failed");
 
 	if (stderr_pipe.write_end.close() != 0)
-	    SYSCALL_FAILED("close stderr in parent failed" );
+	    SYSCALL_FAILED("close stderr in parent failed");
 
 	if (child_failure_info_pipe.write_end.close() != 0)
 	    SYSCALL_FAILED("close child_failure_info_pipe failed");
@@ -592,7 +640,7 @@ namespace storage
 	y2deb("step wait");
 
 	int wstatus;
-	int waitpid_ret = TEMP_FAILURE_RETRY(waitpid(child_pid, &wstatus, 0));
+	int waitpid_ret = child.waitpid(&wstatus);
 	if (waitpid_ret < 0)
 	    SYSCALL_FAILED("waitpid failed");
 

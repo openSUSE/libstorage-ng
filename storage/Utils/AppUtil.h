@@ -56,6 +56,11 @@ namespace storage
     string dirname(const string& name);
     string basename(const string& name);
 
+    /**
+     * An improved usleep implementation. Takes care of EINTR.
+     */
+    int usleep(useconds_t usec);
+
     string make_dev_block_name(dev_t majorminor);
 
     pair<string, unsigned int> device_to_name_and_number(const string& full_name);

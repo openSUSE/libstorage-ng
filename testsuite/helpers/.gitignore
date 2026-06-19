@@ -1,8 +1,9 @@
 libhelpers.la
 *.lo
 echoargs
-echoargs_mixed
-echoargs_stderr
+echoargs-mixed
+echoargs-stderr
 repeat
 retcode
 segfaulter
+test-systemcmd

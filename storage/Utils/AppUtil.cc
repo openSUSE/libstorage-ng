@@ -100,6 +100,27 @@ namespace storage
     }
 
 
+    int
+    usleep(useconds_t usec)
+    {
+	struct timespec duration {
+	    .tv_sec = usec / 1000000,
+	    .tv_nsec = (usec % 1000000) * 1000
+	};
+
+	while (true)
+	{
+	    struct timespec rem;
+	    int ret = nanosleep(&duration, &rem);
+
+	    if (ret == -1 && errno == EINTR)
+		duration = rem;
+	    else
+		return ret;
+	}
+    }
+
+
     string
     make_dev_block_name(dev_t majorminor)
     {
@@ -115,10 +136,13 @@ namespace storage
 	glob_t globbuf;
 	if (glob(path.c_str(), flags, 0, &globbuf) == 0)
 	{
-	    for (char** p = globbuf.gl_pathv; *p != 0; p++)
-		ret.push_back(*p);
+	    ret.reserve(globbuf.gl_pathc);
+
+	    for (char** p = globbuf.gl_pathv; *p != 0; ++p)
+		ret.emplace_back(*p);
+
+	    globfree(&globbuf);
 	}
-	globfree (&globbuf);
 
 	return ret;
     }

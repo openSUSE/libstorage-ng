@@ -1043,7 +1043,7 @@ namespace storage
 		// Waits a max of 5 seconds
 		for (int count = 0; count < 500; ++count)
 		{
-		    if((count % 100) == 0)
+		    if ((count % 100) == 0)
 			y2mil("waiting for detach " << name);
 
 		    usleep(10000);

@@ -66,7 +66,7 @@ namespace storage
 	{
 	    root = json_tokener_parse_ex(tokener.get(), line.c_str(), line.size());
 
-	    switch (json_tokener_get_error(tokener.get()))
+	    switch (json_tokener_error jerr = json_tokener_get_error(tokener.get()))
 	    {
 		case json_tokener_continue:
 		    continue;
@@ -75,11 +75,11 @@ namespace storage
 		    return;
 
 		default:
-		    break;
+		    ST_THROW(Exception(sformat("json parser failed: %s", json_tokener_error_desc(jerr))));
 	    }
 	}
 
-	ST_THROW(Exception("json parser failed"));
+	ST_THROW(Exception(sformat("json parser failed: runaway")));
     }
 
 

@@ -93,7 +93,7 @@ BOOST_AUTO_TEST_CASE(hello_stderr)
 	"stderr #2: stderr"
     };
 
-    SystemCmd cmd("../helpers/echoargs_stderr hello stderr");
+    SystemCmd cmd("../helpers/echoargs-stderr hello stderr");
 
     BOOST_CHECK_EQUAL(join(cmd.stderr()),join(stderr));
     BOOST_CHECK(cmd.stdout().empty());
@@ -113,7 +113,7 @@ BOOST_AUTO_TEST_CASE(hello_mixed)
 	"line #4: stderr #2: and"
     };
 
-    SystemCmd cmd("../helpers/echoargs_mixed mixed to stdout and stderr");
+    SystemCmd cmd("../helpers/echoargs-mixed mixed to stdout and stderr");
 
     BOOST_CHECK_EQUAL(join(cmd.stdout()), join(stdout));
     BOOST_CHECK_EQUAL(join(cmd.stderr()), join(stderr));
@@ -338,4 +338,38 @@ BOOST_AUTO_TEST_CASE(close_fds)
 
     // same number of open fds as before
     BOOST_CHECK_EQUAL(num_open_fds(), n);
+}
+
+
+BOOST_AUTO_TEST_CASE(fault_poll)
+{
+    // strace does not work in the openSUSE build service for RISC V. Never mind, two
+    // architectures should be enough for this test.
+
+    // This test shows that no zombie is left if a syscall after fork fails and requires
+    // the waitpid in ~Child().
+
+#if defined(__x86_64__) || defined(__aarch64__)
+
+    vector<string> stdout = {
+    };
+
+    vector<string> stderr = {
+	"failed",
+	"poll failed: Cannot allocate memory",
+	"num children: 0"
+    };
+
+    const int n = num_open_fds();
+
+    SystemCmd cmd({ "strace", "-o", "/dev/null", "-e", "fault=poll,ppoll:error=ENOMEM",
+	    "../helpers/test-systemcmd" });
+
+    BOOST_CHECK_EQUAL(join(cmd.stdout()), join(stdout));
+    BOOST_CHECK_EQUAL(join(cmd.stderr()), join(stderr));
+    BOOST_CHECK_EQUAL(cmd.retcode(), 1);
+
+    BOOST_CHECK_EQUAL(num_open_fds(), n);
+
+#endif
 }
