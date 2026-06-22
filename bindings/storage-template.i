@@ -115,6 +115,9 @@
 %template(VectorConstDevicegraphPtr) std::vector<const Devicegraph*>;
 %template(MapStringConstDevicegraphPtr) std::map<std::string, const Devicegraph*>;
 
+%template(VectorPoolPtr) std::vector<Pool*>;
 %template(VectorConstPoolPtr) std::vector<const Pool*>;
+
+%template(MapStringPoolPtr) std::map<std::string, Pool*>;
 %template(MapStringConstPoolPtr) std::map<std::string, const Pool*>;
 
