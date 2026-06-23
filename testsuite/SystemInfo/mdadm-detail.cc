@@ -19,7 +19,7 @@ void
 check(const string& device, const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command({ MDADM_BIN, "--detail", device, "--export" }, input);
+    Mockup::set_command({ MDADM_BIN, "--detail", "--export", device }, input);
 
     CmdMdadmDetail cmd_mdadm_detail(device);
 

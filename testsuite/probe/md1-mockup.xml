@@ -483,7 +483,7 @@
       <stderr>Error: /dev/md0: unrecognised disk label</stderr>
     </Command>
     <Command>
-      <name>/sbin/mdadm --detail /dev/md0 --export</name>
+      <name>/sbin/mdadm --detail --export /dev/md0</name>
       <!-- output faked and incomplete -->
       <stdout>MD_LEVEL=raid5</stdout>
       <stdout>MD_METADATA=1.2</stdout>

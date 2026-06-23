@@ -1281,14 +1281,14 @@ namespace storage
 	if (!spares.empty())
 	    cmd_args << "--spare-devices=" + to_string(spares.size());
 
+	if (!journals.empty())
+	    cmd_args << "--write-journal=" + journals.front();
+
 	for (const pair<const unsigned int, string>& value : devices)
 	    cmd_args << value.second;
 
 	for (const pair<const unsigned int, string>& value : spares)
 	    cmd_args << value.second;
-
-	if (!journals.empty())
-	    cmd_args << "--write-journal=" + journals.front();
 
 	wait_for_devices(std::as_const(*this).get_blk_devices());
 

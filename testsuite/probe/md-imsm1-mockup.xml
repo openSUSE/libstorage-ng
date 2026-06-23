@@ -50,8 +50,8 @@
       <name>/sbin/dmsetup table</name>
     </Command>
     <Command>
-      <name>/sbin/mdadm --detail /dev/md/a --export</name>
-      <name>/sbin/mdadm --detail /dev/md126 --export</name>
+      <name>/sbin/mdadm --detail --export /dev/md/a</name>
+      <name>/sbin/mdadm --detail --export /dev/md126</name>
       <stdout>MD_LEVEL=raid0</stdout>
       <stdout>MD_DEVICES=2</stdout>
       <stdout>MD_CONTAINER=/dev/md/imsm0</stdout>
@@ -64,8 +64,8 @@
       <stdout>MD_DEVICE_sdb_DEV=/dev/sdb</stdout>
     </Command>
     <Command>
-      <name>/sbin/mdadm --detail /dev/md/b --export</name>
-      <name>/sbin/mdadm --detail /dev/md125 --export</name>
+      <name>/sbin/mdadm --detail --export /dev/md/b</name>
+      <name>/sbin/mdadm --detail --export /dev/md125</name>
       <stdout>MD_LEVEL=raid1</stdout>
       <stdout>MD_DEVICES=2</stdout>
       <stdout>MD_CONTAINER=/dev/md/imsm0</stdout>
@@ -78,8 +78,8 @@
       <stdout>MD_DEVICE_sdb_DEV=/dev/sdb</stdout>
     </Command>
     <Command>
-      <name>/sbin/mdadm --detail /dev/md/imsm0 --export</name>
-      <name>/sbin/mdadm --detail /dev/md127 --export</name>
+      <name>/sbin/mdadm --detail --export /dev/md/imsm0</name>
+      <name>/sbin/mdadm --detail --export /dev/md127</name>
       <stdout>MD_LEVEL=container</stdout>
       <stdout>MD_DEVICES=3</stdout>
       <stdout>MD_METADATA=imsm</stdout>

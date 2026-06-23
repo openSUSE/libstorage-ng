@@ -58,8 +58,8 @@
       <stdout>/dev/md_test5p1: UUID="4603e3eb-e21b-46f5-9d5d-c31536f064fa" TYPE="ext4" PARTUUID="6977800c-4983-4319-bfcf-906265e05745"</stdout>
     </Command>
     <Command>
-      <name>/sbin/mdadm --detail /dev/md/test2 --export</name>
-      <name>/sbin/mdadm --detail /dev/md127 --export</name>
+      <name>/sbin/mdadm --detail --export /dev/md/test2</name>
+      <name>/sbin/mdadm --detail --export /dev/md127</name>
       <stdout>MD_LEVEL=raid0</stdout>
       <stdout>MD_DEVICES=2</stdout>
       <stdout>MD_METADATA=1.2</stdout>
@@ -72,8 +72,8 @@
       <stdout>MD_DEVICE_sdb5_DEV=/dev/sdb5</stdout>
     </Command>
     <Command>
-      <name>/sbin/mdadm --detail /dev/md/test3 --export</name>
-      <name>/sbin/mdadm --detail /dev/md126 --export</name>
+      <name>/sbin/mdadm --detail --export /dev/md/test3</name>
+      <name>/sbin/mdadm --detail --export /dev/md126</name>
       <stdout>MD_LEVEL=raid0</stdout>
       <stdout>MD_DEVICES=2</stdout>
       <stdout>MD_METADATA=1.2</stdout>
@@ -86,8 +86,8 @@
       <stdout>MD_DEVICE_sdb8_DEV=/dev/sdb8</stdout>
     </Command>
     <Command>
-      <name>/sbin/mdadm --detail /dev/md/test4 --export</name>
-      <name>/sbin/mdadm --detail /dev/md_test4 --export</name>
+      <name>/sbin/mdadm --detail --export /dev/md/test4</name>
+      <name>/sbin/mdadm --detail --export /dev/md_test4</name>
       <stdout>MD_LEVEL=raid0</stdout>
       <stdout>MD_DEVICES=2</stdout>
       <stdout>MD_METADATA=1.2</stdout>
@@ -100,8 +100,8 @@
       <stdout>MD_DEVICE_sdb10_DEV=/dev/sdb10</stdout>
     </Command>
     <Command>
-      <name>/sbin/mdadm --detail /dev/md/test5 --export</name>
-      <name>/sbin/mdadm --detail /dev/md_test5 --export</name>
+      <name>/sbin/mdadm --detail --export /dev/md/test5</name>
+      <name>/sbin/mdadm --detail --export /dev/md_test5</name>
       <stdout>MD_LEVEL=raid0</stdout>
       <stdout>MD_DEVICES=2</stdout>
       <stdout>MD_METADATA=1.2</stdout>
@@ -114,7 +114,7 @@
       <stdout>MD_DEVICE_sdb12_DEV=/dev/sdb12</stdout>
     </Command>
     <Command>
-      <name>/sbin/mdadm --detail /dev/md0 --export</name>
+      <name>/sbin/mdadm --detail --export /dev/md0</name>
       <stdout>MD_LEVEL=raid0</stdout>
       <stdout>MD_DEVICES=2</stdout>
       <stdout>MD_METADATA=1.2</stdout>
@@ -126,7 +126,7 @@
       <stdout>MD_DEVICE_sdb1_DEV=/dev/sdb1</stdout>
     </Command>
     <Command>
-      <name>/sbin/mdadm --detail /dev/md1 --export</name>
+      <name>/sbin/mdadm --detail --export /dev/md1</name>
       <stdout>MD_LEVEL=raid0</stdout>
       <stdout>MD_DEVICES=2</stdout>
       <stdout>MD_METADATA=1.2</stdout>

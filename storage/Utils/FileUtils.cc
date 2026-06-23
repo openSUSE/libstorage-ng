@@ -91,10 +91,10 @@ namespace storage
 	if (read_only)
 	    cmd_args << "--read-only";
 
-	cmd_args << device << get_fullname();
-
 	if (!options.empty())
 	    cmd_args << "-o" << boost::join(options, ",");
+
+	cmd_args << device << get_fullname();
 
 	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }

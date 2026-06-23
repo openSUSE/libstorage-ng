@@ -39,7 +39,7 @@ namespace storage
     CmdMdadmDetail::CmdMdadmDetail(const string& device)
 	: device(device)
     {
-	SystemCmd cmd({ MDADM_BIN, "--detail", device, "--export" }, SystemCmd::DoThrow);
+	SystemCmd cmd({ MDADM_BIN, "--detail", "--export", device }, SystemCmd::DoThrow);
 
 	parse(cmd.stdout());
     }
