@@ -56,8 +56,8 @@
       <stdout>  }</stdout>
     </Command>
     <Command>
-      <name>/sbin/mdadm --detail /dev/md/md-b --export</name>
-      <name>/sbin/mdadm --detail /dev/md127 --export</name>
+      <name>/sbin/mdadm --detail --export /dev/md/md-b</name>
+      <name>/sbin/mdadm --detail --export /dev/md127</name>
       <stdout>MD_LEVEL=raid1</stdout>
       <stdout>MD_DEVICES=2</stdout>
       <stdout>MD_METADATA=1.0</stdout>
@@ -70,7 +70,7 @@
       <stdout>MD_DEVICE_dev_sdc2_DEV=/dev/sdc2</stdout>
     </Command>
     <Command>
-      <name>/sbin/mdadm --detail /dev/md0 --export</name>
+      <name>/sbin/mdadm --detail --export /dev/md0</name>
       <stdout>MD_LEVEL=raid1</stdout>
       <stdout>MD_DEVICES=2</stdout>
       <stdout>MD_METADATA=1.0</stdout>
