@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2017-2023] SUSE LLC
+ * Copyright (c) [2017-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -30,6 +30,7 @@
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/ExceptionImpl.h"
 #include "storage/Utils/JsonFile.h"
+#include "storage/Utils/Mockup.h"
 #include "storage/SystemInfo/CmdBtrfs.h"
 #include "storage/Filesystems/BtrfsImpl.h"
 
@@ -162,9 +163,16 @@ namespace storage
 
     CmdBtrfsSubvolumeList::CmdBtrfsSubvolumeList(const key_t& key, const string& mount_point)
     {
-	const string tmp = BTRFS_BIN " subvolume list -a -puq ";
-	SystemCmd::Options cmd_options(tmp + quote(mount_point), SystemCmd::DoThrow);
-	cmd_options.mockup_key = tmp + "(device:" + key + ")";
+	SystemCmd::Args cmd_args = { BTRFS_BIN, "subvolume", "list", "-a", "-puq", mount_point };
+
+	SystemCmd::Options cmd_options(cmd_args, SystemCmd::DoThrow);
+
+	if (Mockup::get_mode() != Mockup::Mode::NONE)
+	{
+	    // replace mount point by special key
+	    cmd_args.get_values().back() = "(device:" + key + ")";
+	    cmd_options.mockup_key = boost::join(cmd_args.get_values(), " ");
+	}
 
 	SystemCmd cmd(cmd_options);
 	parse(cmd.stdout());
@@ -259,9 +267,16 @@ namespace storage
 
     CmdBtrfsSubvolumeShow::CmdBtrfsSubvolumeShow(const key_t& key, const string& mount_point)
     {
-	const string tmp = BTRFS_BIN " subvolume show ";
-	SystemCmd::Options cmd_options(tmp + quote(mount_point), SystemCmd::DoThrow);
-	cmd_options.mockup_key = tmp + "(device:" + key + ")";
+	SystemCmd::Args cmd_args = { BTRFS_BIN, "subvolume", "show", mount_point };
+
+	SystemCmd::Options cmd_options(cmd_args, SystemCmd::DoThrow);
+
+	if (Mockup::get_mode() != Mockup::Mode::NONE)
+	{
+	    // replace mount point by special key
+	    cmd_args.get_values().back() = "(device:" + key + ")";
+	    cmd_options.mockup_key = boost::join(cmd_args.get_values(), " ");
+	}
 
 	SystemCmd cmd(cmd_options);
 	parse(cmd.stdout());
@@ -314,9 +329,16 @@ namespace storage
 
     CmdBtrfsSubvolumeGetDefault::CmdBtrfsSubvolumeGetDefault(const key_t& key, const string& mount_point)
     {
-	const string tmp = BTRFS_BIN " subvolume get-default ";
-	SystemCmd::Options cmd_options(tmp + quote(mount_point), SystemCmd::DoThrow);
-	cmd_options.mockup_key = tmp + "(device:" + key + ")";
+	SystemCmd::Args cmd_args = { BTRFS_BIN, "subvolume", "get-default", mount_point };
+
+	SystemCmd::Options cmd_options(cmd_args, SystemCmd::DoThrow);
+
+	if (Mockup::get_mode() != Mockup::Mode::NONE)
+	{
+	    // replace mount point by special key
+	    cmd_args.get_values().back() = "(device:" + key + ")";
+	    cmd_options.mockup_key = boost::join(cmd_args.get_values(), " ");
+	}
 
 	SystemCmd cmd(cmd_options);
 	parse(cmd.stdout());
@@ -353,9 +375,20 @@ namespace storage
     {
 	const bool json = CmdBtrfsVersion::supports_json_option_for_filesystem_df();
 
-	const string tmp = BTRFS_BIN " " + string(json ? "--format json " : "") + "filesystem df ";
-	SystemCmd::Options cmd_options(tmp + quote(mount_point), SystemCmd::DoThrow);
-	cmd_options.mockup_key = tmp + "(device:" + key + ")";
+	SystemCmd::Args cmd_args = { BTRFS_BIN };
+	if (json)
+	    cmd_args << "--format" << "json";
+	cmd_args << "filesystem" << "df" << mount_point;
+
+	SystemCmd::Options cmd_options(cmd_args, SystemCmd::DoThrow);
+	cmd_options.verify = [](int exit_code) { return exit_code == 0 || exit_code == 1; };
+
+	if (Mockup::get_mode() != Mockup::Mode::NONE)
+	{
+	    // replace mount point by special key
+	    cmd_args.get_values().back() = "(device:" + key + ")";
+	    cmd_options.mockup_key = boost::join(cmd_args.get_values(), " ");
+	}
 
 	SystemCmd cmd(cmd_options);
 	if (json)
@@ -449,10 +482,20 @@ namespace storage
 
 	const bool json = CmdBtrfsVersion::supports_json_option_for_qgroup_show();
 
-	const string tmp = BTRFS_BIN " " + string(json ? "--format json " : "") + "qgroup show -rep --raw ";
-	SystemCmd::Options cmd_options(tmp + quote(mount_point), SystemCmd::DoThrow);
-	cmd_options.mockup_key = tmp + "(device:" + key + ")";
+	SystemCmd::Args cmd_args = { BTRFS_BIN };
+	if (json)
+	    cmd_args << "--format" << "json";
+	cmd_args << "qgroup" << "show" << "-rep" << "--raw" << mount_point;
+
+	SystemCmd::Options cmd_options(cmd_args, SystemCmd::DoThrow);
 	cmd_options.verify = [](int exit_code) { return exit_code == 0 || exit_code == 1; };
+
+	if (Mockup::get_mode() != Mockup::Mode::NONE)
+	{
+	    // replace mount point by special key
+	    cmd_args.get_values().back() = "(device:" + key + ")";
+	    cmd_options.mockup_key = boost::join(cmd_args.get_values(), " ");
+	}
 
 	SystemCmd cmd(cmd_options);
 	if (cmd.retcode() == 0)
