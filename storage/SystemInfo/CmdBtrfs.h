@@ -114,7 +114,7 @@ namespace storage
     {
     public:
 
-	typedef string key_t;
+	using key_t = string;
 
 	CmdBtrfsSubvolumeList(const key_t& key, const string& mount_point);
 
@@ -162,7 +162,7 @@ namespace storage
     {
     public:
 
-	typedef string key_t;
+	using key_t = string;
 
 	CmdBtrfsSubvolumeShow(const key_t& key, const string& mount_point);
 
@@ -188,7 +188,7 @@ namespace storage
     {
     public:
 
-	typedef string key_t;
+	using key_t = string;
 
 	CmdBtrfsSubvolumeGetDefault(const key_t& key, const string& mount_point);
 
@@ -214,7 +214,7 @@ namespace storage
     {
     public:
 
-	typedef string key_t;
+	using key_t = string;
 
 	CmdBtrfsFilesystemDf(const key_t& key, const string& mount_point);
 
@@ -242,7 +242,7 @@ namespace storage
     {
     public:
 
-	typedef string key_t;
+	using key_t = string;
 
 	CmdBtrfsQgroupShow(const key_t& key, const string& mount_point);
 

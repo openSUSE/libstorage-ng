@@ -57,6 +57,7 @@ namespace storage
 	    Args(std::initializer_list<string> init)
 		: values(init) {}
 
+	    vector<string>& get_values() { return values; }
 	    const vector<string>& get_values() const { return values; }
 
 	    Args& operator<<(const char* arg) { values.push_back(arg); return *this; }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2015-2017] SUSE LLC
+ * Copyright (c) [2015-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -25,6 +25,7 @@
 #include "storage/SystemInfo/CmdLsattr.h"
 #include "storage/Utils/ExceptionImpl.h"
 #include "storage/Utils/LoggerImpl.h"
+#include "storage/Utils/Mockup.h"
 
 
 namespace storage
@@ -36,7 +37,12 @@ namespace storage
 	: mount_point(mount_point), path(path)
     {
 	SystemCmd::Options cmd_options({ LSATTR_BIN, "-d", mount_point + "/" + path }, SystemCmd::DoThrow);
-	cmd_options.mockup_key = LSATTR_BIN " -d (device:" + get<0>(key) + " path:" + get<1>(key) + ")";
+
+	if (Mockup::get_mode() != Mockup::Mode::NONE)
+	{
+	    // replace mount point and path by special keys
+	    cmd_options.mockup_key = LSATTR_BIN " -d (device:" + get<0>(key) + " path:" + get<1>(key) + ")";
+	}
 
 	SystemCmd cmd(cmd_options);
 

@@ -39,7 +39,7 @@ namespace storage
     {
     public:
 
-	typedef std::tuple<string, string> key_t;
+	using key_t = std::tuple<string, string>;
 
 	CmdLsattr(const key_t& key, const string& mount_point, const string& path);
 
