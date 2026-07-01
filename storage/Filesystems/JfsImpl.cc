@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2018-2023] SUSE LLC
+ * Copyright (c) [2018-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -56,12 +56,24 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = MKFS_JFS_BIN " -q " + get_mkfs_options() + " " +
-	    quote(blk_device->get_name());
+	if (get_mkfs_options().empty())
+	{
+	    SystemCmd::Args cmd_args = { MKFS_JFS_BIN, "-q" };
+	    cmd_args << get_mkfs_options_v2() << blk_device->get_name();
 
-	wait_for_devices();
+	    wait_for_devices();
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	    SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
+	}
+	else
+	{
+	    string cmd_line = MKFS_JFS_BIN " -q " + get_mkfs_options() + " " +
+		quote(blk_device->get_name());
+
+	    wait_for_devices();
+
+	    SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	}
 
 	if (get_uuid().empty())
 	{

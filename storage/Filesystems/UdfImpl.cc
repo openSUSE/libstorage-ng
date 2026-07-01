@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2021] SUSE LLC
+ * Copyright (c) [2017-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -74,16 +74,30 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = MKFS_UDF_BIN " " + get_mkfs_options() + " --label=" + quote(get_label());
+	if (get_mkfs_options().empty())
+	{
+	    SystemCmd::Args cmd_args = { MKFS_UDF_BIN, "--label", get_label() };
+	    if (!get_uuid().empty())
+		cmd_args << "--uuid" << get_uuid();
+	    cmd_args << get_mkfs_options_v2() << blk_device->get_name();
 
-	if (!get_uuid().empty())
-	    cmd_line += " --uuid=" + quote(get_uuid());
+	    wait_for_devices();
 
-	cmd_line += " " + quote(blk_device->get_name());
+	    SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
+	}
+	else
+	{
+	    string cmd_line = MKFS_UDF_BIN " " + get_mkfs_options() + " --label=" + quote(get_label());
 
-	wait_for_devices();
+	    if (!get_uuid().empty())
+		cmd_line += " --uuid=" + quote(get_uuid());
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	    cmd_line += " " + quote(blk_device->get_name());
+
+	    wait_for_devices();
+
+	    SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	}
 
 	if (get_uuid().empty())
 	{

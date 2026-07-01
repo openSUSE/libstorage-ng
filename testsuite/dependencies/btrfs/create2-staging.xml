@@ -77,7 +77,9 @@
       <sid>46</sid>
       <metadata-raid-level>RAID1</metadata-raid-level>
       <data-raid-level>RAID0</data-raid-level>
-      <mkfs-options>--nodiscard</mkfs-options>
+      <mkfs-options-v2>--nodiscard</mkfs-options-v2>
+      <mkfs-options-v2>--checksum</mkfs-options-v2>
+      <mkfs-options-v2>sha256</mkfs-options-v2>
     </Btrfs>
     <BtrfsSubvolume>
       <sid>47</sid>

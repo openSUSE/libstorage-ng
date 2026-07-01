@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -91,36 +91,44 @@ namespace storage
 	 */
 	void set_uuid(const std::string& uuid);
 
+	const std::string& get_mkfs_options() const ST_DEPRECATED;
+	void set_mkfs_options(const std::string& mkfs_options) ST_DEPRECATED;
+
 	/**
 	 * Get extra options for the filesystem mkfs command.
 	 */
-	const std::string& get_mkfs_options() const;
+	const std::vector<std::string>& get_mkfs_options_v2() const;
 
 	/**
-	 * Set extra options for the filesystem mkfs command. The
-	 * options are injected as-is to the command so must be
-	 * properly quoted.
+	 * Set extra options for the filesystem mkfs command. No quoting required. It is
+	 * undefined where exactly the extra options are inserted into the command line
+	 * options of the external program.
 	 */
-	void set_mkfs_options(const std::string& mkfs_options);
+	void set_mkfs_options_v2(const std::vector<std::string>& mkfs_options_v2);
 
 	/**
 	 * Checks whether the filesystem supports tune options.
 	 */
 	bool supports_tune_options() const;
 
+	const std::string& get_tune_options() const ST_DEPRECATED;
+	void set_tune_options(const std::string& tune_options) ST_DEPRECATED;
+
 	/**
 	 * Get extra options for the filesystem tune command.
 	 */
-	const std::string& get_tune_options() const;
+	const std::vector<std::string>& get_tune_options_v2() const;
 
 	/**
-	 * Set extra options for the filesystem tune command. The
-	 * options are injected as-is to the command so must be
-	 * properly quoted. May not work if the filesystem is mounted.
+	 * Set extra options for the filesystem tune command. No quoting required. It is
+	 * undefined where exactly the extra options are inserted into the command line
+	 * options of the external program.
+	 *
+	 * May not work if the filesystem is mounted.
 	 *
 	 * Only supported on Ext, Reiserfs and Nilfs2.
 	 */
-	void set_tune_options(const std::string& tune_options);
+	void set_tune_options_v2(const std::vector<std::string>& tune_options);
 
 	/**
 	 * Checks whether shrinking the filesystem is supported.

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -986,33 +986,66 @@ namespace storage
     void
     Btrfs::Impl::do_create()
     {
-	string cmd_line = MKFS_BTRFS_BIN " --force";
-
-	if (metadata_raid_level != BtrfsRaidLevel::DEFAULT)
-	    cmd_line += " --metadata=" + toString(metadata_raid_level);
-
-	if (data_raid_level != BtrfsRaidLevel::DEFAULT)
-	    cmd_line += " --data=" + toString(data_raid_level);
-
-	if (!get_uuid().empty())
-	    cmd_line += " --uuid=" + quote(get_uuid());
-
-	if (!get_mkfs_options().empty())
-	    cmd_line += " " + get_mkfs_options();
-
-	// sort is required for testsuite
-	vector<const BlkDevice*> blk_devices = std::as_const(*this).get_blk_devices();
-	sort(blk_devices.begin(), blk_devices.end(), BlkDevice::compare_by_name);
-	for (const BlkDevice* blk_device : blk_devices)
-	    cmd_line += " " + quote(blk_device->get_name());
-
-	wait_for_devices();
-
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
-
-	if (get_uuid().empty())
+	if (get_mkfs_options().empty())
 	{
-	    parse_mkfs_output(cmd.stdout());
+	    SystemCmd::Args cmd_args = { MKFS_BTRFS_BIN, "--force" };
+
+	    if (metadata_raid_level != BtrfsRaidLevel::DEFAULT)
+		cmd_args << "--metadata" << toString(metadata_raid_level);
+
+	    if (data_raid_level != BtrfsRaidLevel::DEFAULT)
+		cmd_args << "--data" << toString(data_raid_level);
+
+	    if (!get_uuid().empty())
+		cmd_args << "--uuid" << get_uuid();
+
+	    cmd_args << get_mkfs_options_v2();
+
+	    // sort is required for testsuite
+	    vector<const BlkDevice*> blk_devices = std::as_const(*this).get_blk_devices();
+	    sort(blk_devices.begin(), blk_devices.end(), BlkDevice::compare_by_name);
+	    for (const BlkDevice* blk_device : blk_devices)
+		cmd_args << blk_device->get_name();
+
+	    wait_for_devices();
+
+	    SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
+
+	    if (get_uuid().empty())
+	    {
+		parse_mkfs_output(cmd.stdout());
+	    }
+	}
+	else
+	{
+	    string cmd_line = MKFS_BTRFS_BIN " --force";
+
+	    if (metadata_raid_level != BtrfsRaidLevel::DEFAULT)
+		cmd_line += " --metadata=" + toString(metadata_raid_level);
+
+	    if (data_raid_level != BtrfsRaidLevel::DEFAULT)
+		cmd_line += " --data=" + toString(data_raid_level);
+
+	    if (!get_uuid().empty())
+		cmd_line += " --uuid=" + quote(get_uuid());
+
+	    if (!get_mkfs_options().empty())
+		cmd_line += " " + get_mkfs_options();
+
+	    // sort is required for testsuite
+	    vector<const BlkDevice*> blk_devices = std::as_const(*this).get_blk_devices();
+	    sort(blk_devices.begin(), blk_devices.end(), BlkDevice::compare_by_name);
+	    for (const BlkDevice* blk_device : blk_devices)
+		cmd_line += " " + quote(blk_device->get_name());
+
+	    wait_for_devices();
+
+	    SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+
+	    if (get_uuid().empty())
+	    {
+		parse_mkfs_output(cmd.stdout());
+	    }
 	}
 
         // This would fit better in do_mount(), but that one is a const method

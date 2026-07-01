@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016,2018] SUSE LLC
+ * Copyright (c) [2016-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -26,6 +26,7 @@
 
 
 #include <string>
+#include <string_view>
 #include <vector>
 
 
@@ -36,16 +37,15 @@ namespace storage
 
 
     /**
-     * Simple class to keep a native and a translated string in
-     * parallel. Purpose is to be able to log user messages in English.
+     * Simple class to keep a native and a translated string in parallel. Purpose is to be
+     * able to log user messages in English even when another locale is selected.
      */
     class Text
     {
     public:
 
 	Text() = default;
-	Text(const char* native, const char* translated) : native(native), translated(translated) {}
-	Text(const string& native, const string& translated) : native(native), translated(translated) {}
+	Text(string_view native, string_view translated) : native(native), translated(translated) {}
 
 	bool empty() const { return native.empty(); }
 
@@ -67,8 +67,7 @@ namespace storage
     {
     public:
 
-	UntranslatedText(const char* native) : Text(native, native) {}
-	UntranslatedText(const string& native) : Text(native, native) {}
+	UntranslatedText(string_view native) : Text(native, native) {}
     };
 
 
