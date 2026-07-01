@@ -26,6 +26,7 @@
 
 
 #include <string>
+#include <string_view>
 #include <vector>
 #include <functional>
 #include <initializer_list>
@@ -37,6 +38,7 @@
 namespace storage
 {
     using std::string;
+    using std::string_view;
     using std::vector;
 
 
@@ -60,8 +62,7 @@ namespace storage
 	    vector<string>& get_values() { return values; }
 	    const vector<string>& get_values() const { return values; }
 
-	    Args& operator<<(const char* arg) { values.push_back(arg); return *this; }
-	    Args& operator<<(const string& arg) { values.push_back(arg); return *this; }
+	    Args& operator<<(string_view arg) { values.emplace_back(arg); return *this; }
 
 	    Args& operator<<(const vector<string>& args)
 		{ values.insert(values.end(), args.begin(), args.end()); return *this; }
