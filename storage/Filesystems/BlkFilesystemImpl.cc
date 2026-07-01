@@ -69,7 +69,9 @@ namespace storage
 	getChildValue(node, "uuid", uuid);
 
 	getChildValue(node, "mkfs-options", mkfs_options);
+	getChildValue(node, "mkfs-options-v2", mkfs_options_v2);
 	getChildValue(node, "tune-options", tune_options);
+	getChildValue(node, "tune-options-v2", tune_options_v2);
 
 	const xmlNode* resize_info_node = getChildNode(node, "ResizeInfo");
 	if (resize_info_node)
@@ -156,7 +158,9 @@ namespace storage
 	setChildValueIf(node, "uuid", uuid, !uuid.empty());
 
 	setChildValueIf(node, "mkfs-options", mkfs_options, !mkfs_options.empty());
+	setChildValueIf(node, "mkfs-options-v2", mkfs_options_v2, !mkfs_options_v2.empty());
 	setChildValueIf(node, "tune-options", tune_options, !tune_options.empty());
+	setChildValueIf(node, "tune-options-v2", tune_options_v2, !tune_options_v2.empty());
 
 	if (resize_info.has_value())
 	{
@@ -532,7 +536,7 @@ namespace storage
 	if (!get_uuid().empty() && supports_modify_uuid())
 	    actions.push_back(make_shared<Action::SetUuid>(get_sid()));
 
-	if (!tune_options.empty())
+	if (!tune_options.empty() || !tune_options_v2.empty())
 	    actions.push_back(make_shared<Action::SetTuneOptions>(get_sid()));
 
 	actiongraph.add_chain(actions);
@@ -563,7 +567,7 @@ namespace storage
 	    actions.push_back(make_shared<Action::SetUuid>(get_sid()));
 	}
 
-	if (get_tune_options() != lhs.get_tune_options())
+	if (get_tune_options() != lhs.get_tune_options() || get_tune_options_v2() != lhs.get_tune_options_v2())
 	{
 	    actions.push_back(make_shared<Action::SetTuneOptions>(get_sid()));
 	}
@@ -620,7 +624,8 @@ namespace storage
 	    return false;
 
 	return label == rhs.label && uuid == rhs.uuid && mkfs_options == rhs.mkfs_options &&
-	    tune_options == rhs.tune_options;
+	    mkfs_options_v2 == rhs.mkfs_options_v2 && tune_options == rhs.tune_options &&
+	    tune_options_v2 == rhs.tune_options_v2;
     }
 
 
@@ -635,7 +640,9 @@ namespace storage
 	storage::log_diff(log, "uuid", uuid, rhs.uuid);
 
 	storage::log_diff(log, "mkfs-options", mkfs_options, rhs.mkfs_options);
+	storage::log_diff(log, "mkfs-options-v2", mkfs_options_v2, rhs.mkfs_options_v2);
 	storage::log_diff(log, "tune-options", tune_options, rhs.tune_options);
+	storage::log_diff(log, "tune-options-v2", tune_options_v2, rhs.tune_options_v2);
     }
 
 
@@ -653,8 +660,14 @@ namespace storage
 	if (!mkfs_options.empty())
 	    out << " mkfs-options:" << mkfs_options;
 
+	if (!mkfs_options_v2.empty())
+	    out << " mkfs-options-v2:" << mkfs_options_v2;
+
 	if (!tune_options.empty())
 	    out << " tune-options:" << tune_options;
+
+	if (!tune_options_v2.empty())
+	    out << " tune-options-v2:" << tune_options_v2;
     }
 
 

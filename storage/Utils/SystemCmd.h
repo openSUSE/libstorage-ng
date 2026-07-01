@@ -63,6 +63,9 @@ namespace storage
 	    Args& operator<<(const char* arg) { values.push_back(arg); return *this; }
 	    Args& operator<<(const string& arg) { values.push_back(arg); return *this; }
 
+	    Args& operator<<(const vector<string>& args)
+		{ values.insert(values.end(), args.begin(), args.end()); return *this; }
+
 	private:
 
 	    vector<string> values;

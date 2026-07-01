@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -83,10 +83,16 @@ namespace storage
 	const string& get_mkfs_options() const { return mkfs_options; }
 	void set_mkfs_options(const string& mkfs_options) { Impl::mkfs_options = mkfs_options; }
 
+	const vector<string>& get_mkfs_options_v2() const { return mkfs_options_v2; }
+	void set_mkfs_options_v2(const vector<string>& mkfs_options_v2) { Impl::mkfs_options_v2 = mkfs_options_v2; }
+
 	virtual bool supports_tune_options() const { return false; }
 
 	const string& get_tune_options() const { return tune_options; }
 	void set_tune_options(const string& tune_options) { Impl::tune_options = tune_options; }
+
+	const vector<string>& get_tune_options_v2() const { return tune_options_v2; }
+	void set_tune_options_v2(const vector<string>& tune_options_v2) { Impl::tune_options_v2 = tune_options_v2; }
 
 	virtual MountByType get_default_mount_by() const override;
 
@@ -193,7 +199,9 @@ namespace storage
 	string uuid;
 
 	string mkfs_options;
+	vector<string> mkfs_options_v2;
 	string tune_options;
+	vector<string> tune_options_v2;
 
 	/**
 	 * mutable to allow updating cache from const functions. Otherwise

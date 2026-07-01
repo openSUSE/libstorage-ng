@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2023] SUSE LLC
+ * Copyright (c) [2017-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -57,12 +57,24 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = MKFS_REISERFS_BIN " -f -f " + get_mkfs_options() + " " +
-	    quote(blk_device->get_name());
+	if (get_mkfs_options().empty())
+	{
+	    SystemCmd::Args cmd_args = { MKFS_REISERFS_BIN, "-f", "-f" };
+	    cmd_args << get_mkfs_options_v2() << blk_device->get_name();
 
-	wait_for_devices();
+	    wait_for_devices();
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	    SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
+	}
+	else
+	{
+	    string cmd_line = MKFS_REISERFS_BIN " -f -f " + get_mkfs_options() + " " +
+		quote(blk_device->get_name());
+
+	    wait_for_devices();
+
+	    SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	}
 
 	if (get_uuid().empty())
 	{
@@ -104,9 +116,19 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = TUNEREISERFS_BIN " " + get_tune_options() + " " + quote(blk_device->get_name());
+	if (get_tune_options().empty())
+	{
+	    SystemCmd::Args cmd_args = { TUNEREISERFS_BIN };
+	    cmd_args << get_tune_options_v2() << blk_device->get_name();
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	    SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
+	}
+	else
+	{
+	    string cmd_line = TUNEREISERFS_BIN " " + get_tune_options() + " " + quote(blk_device->get_name());
+
+	    SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	}
     }
 
 

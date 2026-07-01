@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -136,6 +136,20 @@ namespace storage
     }
 
 
+    const vector<string>&
+    BlkFilesystem::get_mkfs_options_v2() const
+    {
+	return get_impl().get_mkfs_options_v2();
+    }
+
+
+    void
+    BlkFilesystem::set_mkfs_options_v2(const vector<string>& mkfs_options_v2)
+    {
+	get_impl().set_mkfs_options_v2(mkfs_options_v2);
+    }
+
+
     bool
     BlkFilesystem::supports_tune_options() const
     {
@@ -154,6 +168,20 @@ namespace storage
     BlkFilesystem::set_tune_options(const string& tune_options)
     {
 	get_impl().set_tune_options(tune_options);
+    }
+
+
+    const vector<string>&
+    BlkFilesystem::get_tune_options_v2() const
+    {
+	return get_impl().get_tune_options_v2();
+    }
+
+
+    void
+    BlkFilesystem::set_tune_options_v2(const vector<string>& tune_options_v2)
+    {
+	get_impl().set_tune_options_v2(tune_options_v2);
     }
 
 

@@ -5,7 +5,7 @@
       <name>/usr/bin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
-      <name>/sbin/mkfs.btrfs --force --metadata=RAID1 --data=RAID0 --nodiscard '/dev/sda' '/dev/sdb' '/dev/sdc' '/dev/sdd'</name>
+      <name>/sbin/mkfs.btrfs --force --metadata RAID1 --data RAID0 --nodiscard --checksum sha256 /dev/sda /dev/sdb /dev/sdc /dev/sdd</name>
       <stdout>btrfs-progs v4.19.1 </stdout>
       <stdout>See http://btrfs.wiki.kernel.org for more information.</stdout>
       <stdout></stdout>

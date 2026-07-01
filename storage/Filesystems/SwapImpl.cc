@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -102,14 +102,26 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = MKSWAP_BIN " -f " + quote(blk_device->get_name());
+	if (get_mkfs_options().empty())
+	{
+	    SystemCmd::Args cmd_args = { MKSWAP_BIN, "--force" };
+	    cmd_args << get_mkfs_options_v2() << blk_device->get_name();
 
-	if (!get_mkfs_options().empty())
-	    cmd_line += " " + get_mkfs_options();
+	    wait_for_devices();
 
-	wait_for_devices();
+	    SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
+	}
+	else
+	{
+	    string cmd_line = MKSWAP_BIN " -f " + quote(blk_device->get_name());
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	    if (!get_mkfs_options().empty())
+		cmd_line += " " + get_mkfs_options();
+
+	    wait_for_devices();
+
+	    SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	}
 
 	if (get_uuid().empty())
 	{
