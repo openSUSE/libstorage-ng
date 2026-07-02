@@ -22,7 +22,7 @@ sdc1 = BlkDevice.find_by_name(staging, "/dev/sdc1")
 
 ext4 = sdc1.get_blk_filesystem()
 
-ext4.set_tune_options("-c 20")
+ext4.set_tune_options_v2(VectorString([ "-c", "20" ]))
 
 print(staging)
 

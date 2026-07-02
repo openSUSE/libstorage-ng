@@ -22,7 +22,7 @@ sdc1 = BlkDevice.find_by_name(staging, "/dev/sdc1")
 
 reiserfs = sdc1.get_blk_filesystem()
 
-reiserfs.set_tune_options("-m 20")
+reiserfs.set_tune_options_v2(VectorString([ "-m", "20" ]))
 
 print(staging)
 

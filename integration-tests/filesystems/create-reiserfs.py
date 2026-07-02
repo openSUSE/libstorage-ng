@@ -23,7 +23,7 @@ partition.set_id(ID_LINUX)
 
 reiserfs = partition.create_blk_filesystem(FsType_REISERFS)
 reiserfs.set_label("TEST")
-reiserfs.set_tune_options("-m 10")
+reiserfs.set_tune_options_v2(VectorString([ "-m", "10" ]))
 
 mount_point = reiserfs.create_mount_point("/test")
 
