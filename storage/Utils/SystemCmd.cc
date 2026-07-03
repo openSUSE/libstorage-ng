@@ -192,7 +192,24 @@ namespace storage
     string
     SystemCmd::display_command() const
     {
-	return command().empty() ? boost::join(args(), " ") : command();
+	if (!command().empty())
+	    return command();
+
+	string ret;
+
+	for (const string& s : args())
+	{
+	    if (!ret.empty())
+		ret += ' ';
+
+	    // For display only. No proper check needed.
+	    if (s.empty() || s.find_first_of(" $&();<>|") != string::npos)
+		ret += quote(s);
+	    else
+		ret += s;
+	}
+
+	return ret;
     }
 
 
