@@ -24,7 +24,7 @@ luks.set_pbkdf("argon2i")
 luks.set_format_options_v2(VectorString([ "--pbkdf-memory", "1024" ]))
 luks.set_open_options_v2(VectorString([ "--key-slot", "0" ]))
 luks.set_password("12345678")
-luks.set_label("TOP-SECRET")
+luks.set_label("-TOP-SECRET-")
 luks.set_mount_by(MountByType_LABEL)
 
 print(staging)

@@ -32,6 +32,8 @@ partition.set_label("" if partition.get_label() != "" else "TEST")
 # partition.set_label("\"'test'\"")
 # partition.set_label("'\"test\"'")
 
+# partition.set_label("-test-")
+
 print(staging)
 
 commit(storage)
