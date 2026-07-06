@@ -121,6 +121,8 @@ namespace storage
 	}
 	else
 	{
+	    // code path deprecated
+
 	    string cmd_line = MKFS_NTFS_BIN " --fast --with-uuid " + get_mkfs_options() + " " +
 		quote(blk_device->get_name());
 

@@ -69,6 +69,8 @@ namespace storage
 	}
 	else
 	{
+	    // code path deprecated
+
 	    string cmd_line = MKFS_F2FS_BIN " " + get_mkfs_options();
 
 	    if (!get_label().empty())

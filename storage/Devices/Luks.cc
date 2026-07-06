@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -138,9 +138,23 @@ namespace storage
 
 
     void
-    Luks::set_format_options(const std::string& format_options)
+    Luks::set_format_options(const string& format_options)
     {
 	get_impl().set_format_options(format_options);
+    }
+
+
+    const vector<string>&
+    Luks::get_format_options_v2() const
+    {
+	return get_impl().get_format_options_v2();
+    }
+
+
+    void
+    Luks::set_format_options_v2(const vector<string>& format_options_v2)
+    {
+	get_impl().set_format_options_v2(format_options_v2);
     }
 
 

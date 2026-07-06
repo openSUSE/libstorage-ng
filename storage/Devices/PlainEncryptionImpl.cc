@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2019-2023] SUSE LLC
+ * Copyright (c) [2019-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -196,17 +196,31 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = CRYPTSETUP_BIN " --batch-mode plainOpen " + quote(blk_device->get_name()) + " "
-	    + quote(get_dm_table_name()) + " --tries 1 " + get_open_options();
+	if (get_open_options().empty())
+	{
+	    SystemCmd::Args cmd_args = { CRYPTSETUP_BIN, "--batch-mode", "--tries", "1" };
 
-	add_key_file_option_and_execute(cmd_line);
+	    cmd_args << get_open_options_v2();
+
+	    add_key_file_option_and_execute_v2(cmd_args, "plainOpen", { blk_device->get_name(),
+		    get_dm_table_name() } );
+	}
+	else
+	{
+	    // code path deprecated
+
+	    string cmd_line = CRYPTSETUP_BIN " --batch-mode plainOpen " + quote(blk_device->get_name()) + " "
+		+ quote(get_dm_table_name()) + " --tries 1 " + get_open_options();
+
+	    add_key_file_option_and_execute(cmd_line);
+	}
     }
 
 
     void
     PlainEncryption::Impl::do_deactivate()
     {
-	SystemCmd::Args cmd_args = { CRYPTSETUP_BIN, "--batch-mode", "close", get_dm_table_name() };
+	SystemCmd::Args cmd_args = { CRYPTSETUP_BIN, "--batch-mode", "--", "close", get_dm_table_name() };
 
 	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }

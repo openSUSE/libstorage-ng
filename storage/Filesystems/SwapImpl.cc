@@ -113,6 +113,8 @@ namespace storage
 	}
 	else
 	{
+	    // code path deprecated
+
 	    string cmd_line = MKSWAP_BIN " -f " + quote(blk_device->get_name());
 
 	    if (!get_mkfs_options().empty())

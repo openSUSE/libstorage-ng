@@ -39,7 +39,7 @@ namespace storage
     CmdCryptsetupStatus::CmdCryptsetupStatus(const string& name)
 	: name(name)
     {
-	SystemCmd cmd({ CRYPTSETUP_BIN, "status", name }, SystemCmd::DoThrow);
+	SystemCmd cmd({ CRYPTSETUP_BIN, "--", "status", name }, SystemCmd::DoThrow);
 
 	parse(cmd.stdout());
     }
@@ -99,7 +99,7 @@ namespace storage
     CmdCryptsetupLuksDump::CmdCryptsetupLuksDump(const string& name)
 	: name(name)
     {
-	SystemCmd cmd({ CRYPTSETUP_BIN, "luksDump", name }, SystemCmd::DoThrow);
+	SystemCmd cmd({ CRYPTSETUP_BIN, "--", "luksDump", name }, SystemCmd::DoThrow);
 
 	parse(cmd.stdout());
     }
@@ -292,7 +292,7 @@ namespace storage
     CmdCryptsetupBitlkDump::CmdCryptsetupBitlkDump(const string& name)
 	: name(name)
     {
-	SystemCmd cmd({ CRYPTSETUP_BIN, "bitlkDump", name }, SystemCmd::DoThrow);
+	SystemCmd cmd({ CRYPTSETUP_BIN, "--", "bitlkDump", name }, SystemCmd::DoThrow);
 
 	parse(cmd.stdout());
     }

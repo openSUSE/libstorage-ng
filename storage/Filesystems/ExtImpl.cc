@@ -163,6 +163,8 @@ namespace storage
 	}
 	else
 	{
+	    // code path deprecated
+
 	    string cmd_line = MKFS_EXT2_BIN " -v -t " + toString(get_type()) + " -F " +
 		get_mkfs_options() + " " + quote(blk_device->get_name());
 
@@ -216,6 +218,8 @@ namespace storage
 	}
 	else
 	{
+	    // code path deprecated
+
 	    string cmd_line = TUNE2FS_BIN " " + get_tune_options() + " " + quote(blk_device->get_name());
 
 	    SystemCmd cmd(cmd_line, SystemCmd::DoThrow);

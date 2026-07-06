@@ -87,6 +87,8 @@ namespace storage
 	}
 	else
 	{
+	    // code path deprecated
+
 	    string cmd_line = MKFS_UDF_BIN " " + get_mkfs_options() + " --label=" + quote(get_label());
 
 	    if (!get_uuid().empty())

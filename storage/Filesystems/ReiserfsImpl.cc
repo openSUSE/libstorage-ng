@@ -68,6 +68,8 @@ namespace storage
 	}
 	else
 	{
+	    // code path deprecated
+
 	    string cmd_line = MKFS_REISERFS_BIN " -f -f " + get_mkfs_options() + " " +
 		quote(blk_device->get_name());
 
@@ -125,6 +127,8 @@ namespace storage
 	}
 	else
 	{
+	    // code path deprecated
+
 	    string cmd_line = TUNEREISERFS_BIN " " + get_tune_options() + " " + quote(blk_device->get_name());
 
 	    SystemCmd cmd(cmd_line, SystemCmd::DoThrow);

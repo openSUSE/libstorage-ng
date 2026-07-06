@@ -97,7 +97,7 @@
       <stdout>/dev/loop3: TYPE="squashfs"</stdout>
     </Command>
     <Command>
-      <name>/sbin/cryptsetup bitlkDump /dev/sda3</name>
+      <name>/sbin/cryptsetup -- bitlkDump /dev/sda3</name>
       <stdout>Info for BITLK device /dev/sda3.</stdout>
       <stdout>Version:      	2</stdout>
       <stdout>GUID:         	dc2541db-275b-4c84-85e0-0a743b3ff229</stdout>

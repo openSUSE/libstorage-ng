@@ -286,7 +286,7 @@
       <stdout>	  Usage exclusive:	16.00KiB</stdout>
     </Command>
     <Command>
-      <name>/sbin/cryptsetup luksDump /dev/sdb1</name>
+      <name>/sbin/cryptsetup -- luksDump /dev/sdb1</name>
       <stdout>LUKS header information for /dev/sdb1</stdout>
       <stdout></stdout>
       <stdout>Version:       	1</stdout>

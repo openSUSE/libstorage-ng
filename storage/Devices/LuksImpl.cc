@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2025] SUSE LLC
+ * Copyright (c) [2016-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -53,6 +53,7 @@ namespace storage
 	getChildValue(node, "label", label);
 
 	getChildValue(node, "format-options", format_options);
+	getChildValue(node, "format-options-v2", format_options_v2);
     }
 
 
@@ -73,6 +74,7 @@ namespace storage
 	setChildValueIf(node, "label", label, !label.empty());
 
 	setChildValueIf(node, "format-options", format_options, !format_options.empty());
+	setChildValueIf(node, "format-options-v2", format_options_v2, !format_options_v2.empty());
     }
 
 
@@ -263,8 +265,8 @@ namespace storage
 	    // TRANSLATORS: progress message
 	    message_callback(activate_callbacks, sformat(_("Activating LUKS %s"), uuid));
 
-	    SystemCmd::Args cmd_args = { CRYPTSETUP_BIN, "--batch-mode", "open", "--type", "luks",
-		name, dm_table_name, "--tries", "1", "--key-file", "-" };
+	    SystemCmd::Args cmd_args = { CRYPTSETUP_BIN, "--batch-mode", "--type", "luks",
+		"--tries", "1", "--key-file", "-", "--", "open", name, dm_table_name };
 
 	    SystemCmd::Options cmd_options(cmd_args, SystemCmd::DoThrow);
 	    cmd_options.stdin_text = password;
@@ -369,7 +371,7 @@ namespace storage
 	    if (!boost::starts_with(value.second.uuid, "CRYPT-LUKS"))
 		continue;
 
-	    SystemCmd::Args cmd_args { CRYPTSETUP_BIN, "--batch-mode", "close", value.first };
+	    SystemCmd::Args cmd_args { CRYPTSETUP_BIN, "--batch-mode", "--", "close", value.first };
 
 	    SystemCmd cmd(cmd_args);
 
@@ -581,7 +583,8 @@ namespace storage
 	if (!Encryption::Impl::equal(rhs))
 	    return false;
 
-	return uuid == rhs.uuid && label == rhs.label && format_options == rhs.format_options;
+	return uuid == rhs.uuid && label == rhs.label && format_options == rhs.format_options &&
+	    format_options_v2 == rhs.format_options_v2;
     }
 
 
@@ -596,6 +599,7 @@ namespace storage
 	storage::log_diff(log, "label", label, rhs.label);
 
 	storage::log_diff(log, "format-options", format_options, rhs.format_options);
+	storage::log_diff(log, "format-options-v2", format_options_v2, rhs.format_options_v2);
     }
 
 
@@ -611,6 +615,9 @@ namespace storage
 
 	if (!format_options.empty())
 	    out << " format-options:" << format_options;
+
+	if (!format_options_v2.empty())
+	    out << " format-options-v2:" << format_options_v2;
     }
 
 
@@ -655,46 +662,93 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = CRYPTSETUP_BIN " --batch-mode luksFormat " + quote(blk_device->get_name());
-
-	switch (get_type())
+	if (format_options.empty())
 	{
-	    case EncryptionType::LUKS1:
-		cmd_line += " --type luks1";
-		break;
+	    SystemCmd::Args cmd_args = { CRYPTSETUP_BIN, "--batch-mode" };
 
-	    case EncryptionType::LUKS2:
-		cmd_line += " --type luks2";
-		if (!label.empty())
-		    cmd_line += " --label " + quote(label);
-		break;
+	    switch (get_type())
+	    {
+		case EncryptionType::LUKS1:
+		    cmd_args << "--type" << "luks1";
+		    break;
 
-	    default:
-		ST_THROW(Exception("invalid encryption type"));
+		case EncryptionType::LUKS2:
+		    cmd_args << "--type" << "luks2";
+		    if (!label.empty())
+			cmd_args << "--label" << label;
+		    break;
+
+		default:
+		    ST_THROW(Exception("invalid encryption type"));
+	    }
+
+	    cmd_args << "--tries" << "1";
+
+	    if (!uuid.empty())
+		cmd_args << "--uuid" << uuid;
+
+	    if (!get_cipher().empty())
+		cmd_args << "--cipher" << get_cipher();
+
+	    if (get_key_size() != 0)
+		cmd_args << "--key-size" << to_string(get_key_size() * 8);
+
+	    if (!get_pbkdf().empty())
+		cmd_args << "--pbkdf" << get_pbkdf();
+
+	    // TODO(check the LUKS version and the cipher)
+	    if (!get_integrity().empty())
+		cmd_args << "--integrity" << get_integrity();
+
+	    cmd_args << get_format_options_v2();
+
+	    add_key_file_option_and_execute_v2(cmd_args, "luksFormat", { blk_device->get_name() });
 	}
+	else
+	{
+	    // code path deprecated
 
-	cmd_line += " --tries 1";
+	    string cmd_line = CRYPTSETUP_BIN " --batch-mode luksFormat " + quote(blk_device->get_name());
 
-	if (!uuid.empty())
-	    cmd_line += " --uuid " + quote(uuid);
+	    switch (get_type())
+	    {
+		case EncryptionType::LUKS1:
+		    cmd_line += " --type luks1";
+		    break;
 
-	if (!get_cipher().empty())
-	    cmd_line += " --cipher " + quote(get_cipher());
+		case EncryptionType::LUKS2:
+		    cmd_line += " --type luks2";
+		    if (!label.empty())
+			cmd_line += " --label " + quote(label);
+		    break;
 
-	if (get_key_size() != 0)
-	    cmd_line += " --key-size " + to_string(get_key_size() * 8);
+		default:
+		    ST_THROW(Exception("invalid encryption type"));
+	    }
 
-	if (!get_pbkdf().empty())
-	    cmd_line += " --pbkdf " + quote(get_pbkdf());
+	    cmd_line += " --tries 1";
 
-	// TODO(check the LUKS version and the cipher)
-	if (!get_integrity().empty())
-	    cmd_line += " --integrity " + quote(get_integrity());
+	    if (!uuid.empty())
+		cmd_line += " --uuid " + quote(uuid);
 
-	if (!get_format_options().empty())
-	    cmd_line += " " + get_format_options();
+	    if (!get_cipher().empty())
+		cmd_line += " --cipher " + quote(get_cipher());
 
-	add_key_file_option_and_execute(cmd_line);
+	    if (get_key_size() != 0)
+		cmd_line += " --key-size " + to_string(get_key_size() * 8);
+
+	    if (!get_pbkdf().empty())
+		cmd_line += " --pbkdf " + quote(get_pbkdf());
+
+	    // TODO(check the LUKS version and the cipher)
+	    if (!get_integrity().empty())
+		cmd_line += " --integrity " + quote(get_integrity());
+
+	    if (!get_format_options().empty())
+		cmd_line += " " + get_format_options();
+
+	    add_key_file_option_and_execute(cmd_line);
+	}
 
 	if (uuid.empty())
 	{
@@ -708,7 +762,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	SystemCmd::Args cmd_args = { CRYPTSETUP_BIN, "--batch-mode", "erase", blk_device->get_name() };
+	SystemCmd::Args cmd_args = { CRYPTSETUP_BIN, "--batch-mode", "--", "erase", blk_device->get_name() };
 
 	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
 
@@ -724,10 +778,24 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = CRYPTSETUP_BIN " --batch-mode open --type luks " + quote(blk_device->get_name()) +
-	    " " + quote(get_dm_table_name()) + " --tries 1 " + get_open_options();
+	if (get_open_options().empty())
+	{
+	    SystemCmd::Args cmd_args = { CRYPTSETUP_BIN, "--batch-mode", "--type", "luks",
+		"--tries", "1" };
 
-	add_key_file_option_and_execute(cmd_line);
+	    cmd_args << get_open_options_v2();
+
+	    add_key_file_option_and_execute_v2(cmd_args, "open", { blk_device->get_name(), get_dm_table_name() });
+	}
+	else
+	{
+	    // code path deprecated
+
+	    string cmd_line = CRYPTSETUP_BIN " --batch-mode open --type luks " + quote(blk_device->get_name()) +
+		" " + quote(get_dm_table_name()) + " --tries 1 " + get_open_options();
+
+	    add_key_file_option_and_execute(cmd_line);
+	}
 
 	SystemInfo::Impl system_info;
 	const CmdUdevadmInfo& cmd_udevadm_info = system_info.getCmdUdevadmInfo(get_name());
@@ -757,7 +825,7 @@ namespace storage
     void
     Luks::Impl::do_deactivate()
     {
-	SystemCmd::Args cmd_args = { CRYPTSETUP_BIN, "--batch-mode", "close", get_dm_table_name() };
+	SystemCmd::Args cmd_args = { CRYPTSETUP_BIN, "--batch-mode", "--", "close", get_dm_table_name() };
 
 	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
 

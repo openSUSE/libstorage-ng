@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 # requirements: partition /dev/sdc1 with at least 512MiB space behind
-# /dev/sdc1 and luks on it, possible also something on luks, e.g. filesystem
+# /dev/sdc1 and luks1 on it, possible also something on luks, e.g. filesystem
 # or lvm pv
 
 

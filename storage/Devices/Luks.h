@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2021] SUSE LLC
+ * Copyright (c) [2016-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -83,19 +83,23 @@ namespace storage
 	 */
 	void set_label(const std::string& label);
 
+	const std::string& get_format_options() const ST_DEPRECATED;
+	void set_format_options(const std::string& format_options) ST_DEPRECATED;
+
 	/**
 	 * Get extra options for luks format call.
 	 */
-	const std::string& get_format_options() const;
+	const std::vector<std::string>& get_format_options_v2() const;
 
 	/**
-	 * Set extra options for luks format call. The options are
-	 * injected as-is to the command so must be properly quoted.
+	 * Set extra options for luks format call. No quoting required. It is undefined
+	 * where exactly the extra options are inserted into the command line options of
+	 * the external program.
 	 *
 	 * Options that modify the size of the resulting blk device
 	 * (e.g. --integrity) are not allowed.
 	 */
-	void set_format_options(const std::string& format_options);
+	void set_format_options_v2(const std::vector<std::string>& format_options_v2);
 
 	/**
 	 * The library keeps track of whether the activation of a specific LUKS device was
