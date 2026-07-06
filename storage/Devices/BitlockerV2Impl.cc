@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2022-2023] SUSE LLC
+ * Copyright (c) [2022-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -216,8 +216,8 @@ namespace storage
 	    // TRANSLATORS: progress message
 	    message_callback(activate_callbacks, sformat(_("Activating BitLocker %s"), uuid));
 
-	    SystemCmd::Args cmd_args = { CRYPTSETUP_BIN, "--batch-mode", "open", "--type", "bitlk", name,
-		dm_table_name, "--tries", "1", "--key-file", "-" };
+	    SystemCmd::Args cmd_args = { CRYPTSETUP_BIN, "--batch-mode", "--type", "bitlk", "--tries", "1",
+		"--key-file", "-", "--", "open", name, dm_table_name,  };
 
 	    SystemCmd::Options cmd_options(cmd_args, SystemCmd::DoThrow);
 	    cmd_options.stdin_text = password;
@@ -325,7 +325,7 @@ namespace storage
 	    if (!boost::starts_with(value.second.uuid, "CRYPT-BITLK"))
 		continue;
 
-	    SystemCmd::Args cmd_args = { CRYPTSETUP_BIN, "--batch-mode", "close", value.first };
+	    SystemCmd::Args cmd_args = { CRYPTSETUP_BIN, "--batch-mode", "--", "close", value.first };
 
 	    SystemCmd cmd(cmd_args);
 
@@ -477,7 +477,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	SystemCmd::Args cmd_args = { CRYPTSETUP_BIN, "--batch-mode", "erase", blk_device->get_name() };
+	SystemCmd::Args cmd_args = { CRYPTSETUP_BIN, "--batch-mode", "--", "erase", blk_device->get_name() };
 
 	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
 
@@ -493,17 +493,30 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = CRYPTSETUP_BIN " --batch-mode open --type bitlk " + quote(blk_device->get_name()) +
-	    " " + quote(get_dm_table_name()) + " --tries 1 " + get_open_options();
+	if (get_open_options().empty())
+	{
+	    SystemCmd::Args cmd_args = { CRYPTSETUP_BIN, "--batch-mode", "--type", "bitlk", "--tries", "1" };
 
-	add_key_file_option_and_execute(cmd_line);
+	    cmd_args << get_open_options_v2();
+
+	    add_key_file_option_and_execute_v2(cmd_args, "open", { blk_device->get_name(), get_dm_table_name() });
+	}
+	else
+	{
+	    // code path deprecated
+
+	    string cmd_line = CRYPTSETUP_BIN " --batch-mode open --type bitlk " + quote(blk_device->get_name()) +
+		" " + quote(get_dm_table_name()) + " --tries 1 " + get_open_options();
+
+	    add_key_file_option_and_execute(cmd_line);
+	}
     }
 
 
     void
     BitlockerV2::Impl::do_deactivate()
     {
-	SystemCmd::Args cmd_args = { CRYPTSETUP_BIN, "--batch-mode", "close", get_dm_table_name() };
+	SystemCmd::Args cmd_args = { CRYPTSETUP_BIN, "--batch-mode", "--", "close", get_dm_table_name() };
 
 	SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
     }

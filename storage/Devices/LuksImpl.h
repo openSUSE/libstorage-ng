@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2022] SUSE LLC
+ * Copyright (c) [2016-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -84,6 +84,9 @@ namespace storage
 	const string& get_format_options() const { return format_options; }
 	void set_format_options(const string& format_options) { Impl::format_options = format_options; }
 
+	const vector<string>& get_format_options_v2() const { return format_options_v2; }
+	void set_format_options_v2(const vector<string>& format_options_v2) { Impl::format_options_v2 = format_options_v2; }
+
 	virtual void parent_has_new_region(const Device* parent) override;
 
 	virtual bool do_resize_needs_password() const override;
@@ -134,6 +137,7 @@ namespace storage
 	string label;
 
 	string format_options;
+	vector<string> format_options_v2;
 
     };
 

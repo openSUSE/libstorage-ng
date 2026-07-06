@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2025] SUSE LLC
+ * Copyright (c) [2016-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -95,6 +95,7 @@ namespace storage
 	getChildValue(node, "in-etc-crypttab", in_etc_crypttab);
 
 	getChildValue(node, "open-options", open_options);
+	getChildValue(node, "open-options-v2", open_options_v2);
     }
 
 
@@ -229,6 +230,7 @@ namespace storage
 	setChildValue(node, "in-etc-crypttab", in_etc_crypttab);
 
 	setChildValueIf(node, "open-options", open_options, !open_options.empty());
+	setChildValueIf(node, "open-options-v2", open_options_v2, !open_options_v2.empty());
     }
 
 
@@ -351,7 +353,8 @@ namespace storage
 	    use_key_file_in_commit == rhs.use_key_file_in_commit &&
 	    cipher == rhs.cipher && key_size == rhs.key_size && pbkdf == rhs.pbkdf &&
 	    integrity == rhs.integrity && mount_by == rhs.mount_by && crypt_options == rhs.crypt_options &&
-	    in_etc_crypttab == rhs.in_etc_crypttab && open_options == rhs.open_options;
+	    in_etc_crypttab == rhs.in_etc_crypttab && open_options == rhs.open_options &&
+	    open_options_v2 == rhs.open_options_v2;
     }
 
 
@@ -382,6 +385,7 @@ namespace storage
 	storage::log_diff(log, "in-etc-crypttab", in_etc_crypttab, rhs.in_etc_crypttab);
 
 	storage::log_diff(log, "open-options", open_options, rhs.open_options);
+	storage::log_diff(log, "open-options-v2", open_options_v2, rhs.open_options_v2);
     }
 
 
@@ -422,12 +426,17 @@ namespace storage
 
 	if (!open_options.empty())
 	    out << " open-options:" << open_options;
+
+	if (!open_options_v2.empty())
+	    out << " open-options-v2:" << open_options_v2;
     }
 
 
     void
     Encryption::Impl::add_key_file_option_and_execute(const string& cmd_line) const
     {
+	// code path deprecated
+
 	const BlkDevice* blk_device = get_blk_device();
 
 	SystemCmd::Options cmd_options(cmd_line, SystemCmd::DoThrow);
@@ -441,6 +450,33 @@ namespace storage
 	    cmd_options.command += " --key-file -";
 	    cmd_options.stdin_text = get_password();
 	}
+
+	wait_for_devices({ blk_device });
+
+	SystemCmd cmd(cmd_options);
+    }
+
+
+    void
+    Encryption::Impl::add_key_file_option_and_execute_v2(const SystemCmd::Args& cmd_args, const string& action,
+							 const vector<string>& action_args) const
+    {
+	const BlkDevice* blk_device = get_blk_device();
+
+	SystemCmd::Options cmd_options(cmd_args, SystemCmd::DoThrow);
+
+	if (!get_key_file().empty() && use_key_file_in_commit)
+	{
+	    cmd_options.args.insert(cmd_options.args.end(), { "--key-file", get_key_file() });
+	}
+	else
+	{
+	    cmd_options.args.insert(cmd_options.args.end(), { "--key-file", "-" });
+	    cmd_options.stdin_text = get_password();
+	}
+
+	cmd_options.args.insert(cmd_options.args.end(), { "--", action });
+	cmd_options.args.insert(cmd_options.args.end(), action_args.begin(), action_args.end());
 
 	wait_for_devices({ blk_device });
 
@@ -530,15 +566,20 @@ namespace storage
     {
 	const Encryption* encryption_rhs = to_encryption(action->get_device(commit_data.actiongraph, RHS));
 
-	string cmd_line = CRYPTSETUP_BIN " resize " + quote(get_dm_table_name());
+	SystemCmd::Args cmd_args = { CRYPTSETUP_BIN };
 
 	if (action->resize_mode == ResizeMode::SHRINK)
-	    cmd_line += " --size " + to_string(encryption_rhs->get_impl().get_size() / (512 * B));
+	    cmd_args << "--size" << to_string(encryption_rhs->get_impl().get_size() / (512 * B));
 
 	if (do_resize_needs_password())
-	    add_key_file_option_and_execute(cmd_line);
+	{
+	    add_key_file_option_and_execute_v2(cmd_args, "resize", { get_dm_table_name() });
+	}
 	else
-	    SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	{
+	    cmd_args << "--" << "resize" << get_dm_table_name();
+	    SystemCmd cmd(cmd_args, SystemCmd::DoThrow);
+	}
     }
 
 

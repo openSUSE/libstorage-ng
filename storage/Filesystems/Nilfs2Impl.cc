@@ -67,6 +67,8 @@ namespace storage
 	}
 	else
 	{
+	    // code path deprecated
+
 	    string cmd_line = MKFS_NILFS2_BIN " -v -f " + get_mkfs_options() + " " + quote(blk_device->get_name());
 
 	    wait_for_devices();
@@ -117,6 +119,8 @@ namespace storage
 	}
 	else
 	{
+	    // code path deprecated
+
 	    string cmd_line = NILFS_TUNE_BIN " " + get_tune_options() + " " + quote(blk_device->get_name());
 
 	    SystemCmd cmd(cmd_line, SystemCmd::DoThrow);

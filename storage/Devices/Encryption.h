@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -235,16 +235,20 @@ namespace storage
 	 */
 	const BlkDevice* get_blk_device() const;
 
+	const std::string& get_open_options() const ST_DEPRECATED;
+	void set_open_options(const std::string& open_options) ST_DEPRECATED;
+
 	/**
 	 * Get extra options for open calls.
 	 */
-	const std::string& get_open_options() const;
+	const std::vector<std::string>& get_open_options_v2() const;
 
 	/**
-	 * Set extra options for open calls. The options are
-	 * injected as-is to the command so must be properly quoted.
+	 * Set extra options for open calls. No quoting required. It is undefined where
+	 * exactly the extra options are inserted into the command line options of the
+	 * external program.
 	 */
-	void set_open_options(const std::string& open_options);
+	void set_open_options_v2(const std::vector<std::string>& open_options_v2);
 
 	/**
 	 * Get all Encryption objects of the devicegraph.

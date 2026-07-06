@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -26,6 +26,7 @@
 
 #include "storage/Utils/Enum.h"
 #include "storage/Utils/StorageDefines.h"
+#include "storage/Utils/SystemCmd.h"
 #include "storage/Devices/Encryption.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/EtcCrypttab.h"
@@ -79,6 +80,9 @@ namespace storage
 
 	const string& get_open_options() const { return open_options; }
 	void set_open_options(const string& open_options) { Impl::open_options = open_options; }
+
+	const vector<string>& get_open_options_v2() const { return open_options_v2; }
+	void set_open_options_v2(const vector<string>& open_options_v2) { Impl::open_options_v2 = open_options_v2; }
 
 	const string& get_cipher() const { return cipher; }
 	void set_cipher(const string& cipher) { Impl::cipher = cipher; }
@@ -170,6 +174,8 @@ namespace storage
 	static string next_free_cr_auto_name(const Storage& storage, SystemInfo::Impl& system_info);
 
 	void add_key_file_option_and_execute(const string& cmd_line) const;
+	void add_key_file_option_and_execute_v2(const SystemCmd::Args& options, const string& action,
+						const vector<string>& action_args) const;
 
     private:
 
@@ -199,6 +205,7 @@ namespace storage
 	string crypttab_blk_device_name; // block device name as found in /etc/crypttab
 
 	string open_options;
+	vector<string> open_options_v2;
 
     };
 

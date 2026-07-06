@@ -109,6 +109,8 @@ namespace storage
 	}
 	else
 	{
+	    // code path deprecated
+
 	    string cmd_line = MKFS_XFS_BIN " -q -f " + get_mkfs_options() + " " +
 		quote(blk_device->get_name());
 

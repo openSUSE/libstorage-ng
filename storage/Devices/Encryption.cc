@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2023] SUSE LLC
+ * Copyright (c) [2016-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -236,7 +236,7 @@ namespace storage
 
 
     void
-    Encryption::set_pbkdf(const std::string& pbkdf)
+    Encryption::set_pbkdf(const string& pbkdf)
     {
 	get_impl().set_pbkdf(pbkdf);
     }
@@ -250,7 +250,7 @@ namespace storage
 
 
     void
-    Encryption::set_integrity(const std::string& integrity)
+    Encryption::set_integrity(const string& integrity)
     {
 	get_impl().set_integrity(integrity);
     }
@@ -281,6 +281,20 @@ namespace storage
     Encryption::set_open_options(const string& open_options)
     {
 	get_impl().set_open_options(open_options);
+    }
+
+
+    const vector<string>&
+    Encryption::get_open_options_v2() const
+    {
+	return get_impl().get_open_options_v2();
+    }
+
+
+    void
+    Encryption::set_open_options_v2(const vector<string>& open_options_v2)
+    {
+	get_impl().set_open_options_v2(open_options_v2);
     }
 
 

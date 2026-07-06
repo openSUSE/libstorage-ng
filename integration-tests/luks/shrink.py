@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 # requirements: partition /dev/sdc1 with size at least 1 GiB and luks on it,
-# possible also something on luks, e.g. filesystem or lvm pv
+# possible also something on luks1, e.g. filesystem or lvm pv
 
 
 from storage import *

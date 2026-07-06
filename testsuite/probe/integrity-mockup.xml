@@ -86,7 +86,7 @@
       <stdout>	Snapshot(s):</stdout>
     </Command>
     <Command>
-      <name>/sbin/cryptsetup luksDump /dev/sda3</name>
+      <name>/sbin/cryptsetup -- luksDump /dev/sda3</name>
       <stdout>LUKS header information</stdout>
       <stdout>Version:       	2</stdout>
       <stdout>Epoch:         	3</stdout>

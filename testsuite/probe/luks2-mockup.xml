@@ -23,7 +23,7 @@
     </Command>
     <Command>
       <!-- output faked and incomplete -->
-      <name>/sbin/cryptsetup luksDump /dev/sdb1</name>
+      <name>/sbin/cryptsetup -- luksDump /dev/sdb1</name>
       <stdout>Version:       	1</stdout>
       <stdout>Cipher name:    aes</stdout>
       <stdout>Cipher mode:    xts-plain64</stdout>
@@ -31,7 +31,7 @@
     </Command>
     <Command>
       <!-- output faked and incomplete -->
-      <name>/sbin/cryptsetup luksDump /dev/sdb2</name>
+      <name>/sbin/cryptsetup -- luksDump /dev/sdb2</name>
       <stdout>Version:       	1</stdout>
       <stdout>Cipher name:    aes</stdout>
       <stdout>Cipher mode:    xts-plain64</stdout>
@@ -39,7 +39,7 @@
     </Command>
     <Command>
       <!-- output faked and incomplete -->
-      <name>/sbin/cryptsetup luksDump /dev/sdb3</name>
+      <name>/sbin/cryptsetup -- luksDump /dev/sdb3</name>
       <stdout>Version:       	1</stdout>
       <stdout>Cipher name:    aes</stdout>
       <stdout>Cipher mode:    xts-plain64</stdout>
@@ -47,7 +47,7 @@
     </Command>
     <Command>
       <!-- output faked and incomplete -->
-      <name>/sbin/cryptsetup luksDump /dev/sdb4</name>
+      <name>/sbin/cryptsetup -- luksDump /dev/sdb4</name>
       <stdout>Version:       	1</stdout>
       <stdout>Cipher name:    aes</stdout>
       <stdout>Cipher mode:    xts-plain64</stdout>

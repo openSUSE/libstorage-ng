@@ -84,6 +84,8 @@ namespace storage
 	}
 	else
 	{
+	    // code path deprecated
+
 	    string cmd_line = MKFS_FAT_BIN " -v " + get_mkfs_options() + " " + quote(blk_device->get_name());
 
 	    wait_for_devices();

@@ -25,7 +25,8 @@ dasdb1 = Partition.find_by_name(staging, "/dev/dasdb1")
 luks = to_luks(dasdb1.create_encryption("cr-dasdb1", EncryptionType_LUKS2))
 
 luks.set_key_file("/etc/luks_keys/dasdb1.key")
-luks.set_format_options("--master-key-file '/etc/zkey/repository/secure_xtskey1.skey' --key-size 1024 --cipher paes-xts-plain64 --sector-size 4096")
+luks.set_format_options_v2([ "--master-key-file", "/etc/zkey/repository/secure_xtskey1.skey", "--key-size", "1024",
+                             "--cipher", "paes-xts-plain64", "--sector-size", "4096" ])
 
 ext4 = luks.create_blk_filesystem(FsType_EXT4)
 

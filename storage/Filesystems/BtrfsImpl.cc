@@ -1018,6 +1018,8 @@ namespace storage
 	}
 	else
 	{
+	    // code path deprecated
+
 	    string cmd_line = MKFS_BTRFS_BIN " --force";
 
 	    if (metadata_raid_level != BtrfsRaidLevel::DEFAULT)

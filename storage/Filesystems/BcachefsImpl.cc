@@ -72,6 +72,8 @@ namespace storage
 	}
 	else
 	{
+	    // code path deprecated
+
 	    string cmd_line = MKFS_BCACHEFS_BIN;
 
 	    if (!get_label().empty())
