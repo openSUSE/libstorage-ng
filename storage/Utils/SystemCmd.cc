@@ -202,9 +202,9 @@ namespace storage
 	    if (!ret.empty())
 		ret += ' ';
 
-	    // For display only. No proper check needed.
-	    if (s.empty() || s.find_first_of(" $&();<>|") != string::npos)
-		ret += quote(s);
+	    // For display only. No proper check or quoting needed.
+	    if (s.empty() || s.find_first_of(" ") != string::npos)
+		ret += "'" + s + "'";
 	    else
 		ret += s;
 	}

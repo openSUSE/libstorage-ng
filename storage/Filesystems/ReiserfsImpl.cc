@@ -145,7 +145,7 @@ namespace storage
 
 	string cmd_line = REISERFSRESIZE_BIN " -f";
 	if (action->resize_mode == ResizeMode::SHRINK)
-	    cmd_line = "echo y | " + cmd_line + " -s " +
+	    cmd_line = ECHO_BIN " y | " + cmd_line + " -s " +
 		to_string(blk_device_rhs->get_size() / KiB) + "K";
 	cmd_line += " " + quote(action->blk_device->get_name());
 

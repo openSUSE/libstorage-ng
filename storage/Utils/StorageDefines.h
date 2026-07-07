@@ -67,6 +67,7 @@
 
 #define ECHO_BIN "/usr/bin/echo"
 #define CAT_BIN "/usr/bin/cat"
+#define ENV_BIN "/usr/bin/env"
 
 #define UNAME_BIN "/usr/bin/uname"
 #define GETCONF_BIN "/usr/bin/getconf"
