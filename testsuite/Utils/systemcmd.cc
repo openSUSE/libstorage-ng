@@ -256,7 +256,7 @@ BOOST_AUTO_TEST_CASE(env1)
 {
     setenv("TWO", "2", 1);
 
-    SystemCmd::Options options("env");
+    SystemCmd::Options options({ ENV_BIN });
 
     BOOST_CHECK(find(options.envs.begin(), options.envs.end(), "TWO=2") != options.envs.end());
 
@@ -295,7 +295,7 @@ BOOST_AUTO_TEST_CASE(env2)
     setenv("FUNNY", "++", 1);		// will not be overridden
     setenv("AMUSING", "no", 1);		// will be overridden (by addition to options.env)
 
-    SystemCmd::Options options("echo $LC_ALL $FUNNY $AMUSING");
+    SystemCmd::Options options({ SH_BIN, "-c", ECHO_BIN " $LC_ALL $FUNNY $AMUSING" });
 
     options.setenv("AMUSING", "sure");
 

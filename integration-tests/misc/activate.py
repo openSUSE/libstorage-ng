@@ -6,6 +6,7 @@
 from sys import exit
 from storage import *
 from storageitu import *
+from os import environ
 
 
 set_logger(get_logfile_logger())
@@ -55,6 +56,8 @@ class MyActivateCallbacks(ActivateCallbacksV3):
 
 
 my_activate_callbacks = MyActivateCallbacks()
+
+# environ["LIBSTORAGE_MDADM_ACTIVATE_METHOD"] = "1"
 
 environment = Environment(False)
 

@@ -155,7 +155,7 @@ namespace storage
 
 	const BlkDevice* blk_device_rhs = ntfs_rhs->get_impl().get_blk_device();
 
-	string cmd_line = "echo y | " NTFSRESIZE_BIN " --force";
+	string cmd_line = ECHO_BIN " y | " NTFSRESIZE_BIN " --force";
 	if (action->resize_mode == ResizeMode::SHRINK)
 	    cmd_line += " --size " + to_string(blk_device_rhs->get_size());
 	cmd_line += " " + quote(action->blk_device->get_name());
