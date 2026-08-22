@@ -6,33 +6,37 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2006-01-04 08:58+0100\n"
-"Last-Translator: i18n@suse.de\n"
-"Language-Team: Lao <i18n@suse.de>\n"
-"Language: \n"
+"PO-Revision-Date: 2026-08-22 20:13+0000\n"
+"Last-Translator: Bone NI <bounkirdni@gmail.com>\n"
+"Language-Team: Lao <https://l10n.opensuse.org/projects/libstorage/ng-sle-15-"
+"sp1/lo/>\n"
+"Language: lo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 msgid ""
 "\n"
 "are you serious?!"
 msgstr ""
+"\n"
+"ເຈົ້າເວົ້າແທ້ຫວາ?!"
 
 #. TRANSLATORS: appended after list of value to indicate that some
 #. values have been omitted
 #. %1$d is replaced by the number of elements omitted
 #, c-format
 msgid "%1$d more"
-msgstr ""
+msgstr "ອີກ %1$d ລາຍການ"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the device name (e.g. /dev/sdc1),
 #. %2$s is replaced with the size (e.g. 60 GiB)
 #, c-format
 msgid "%1$s (%2$s)"
-msgstr ""
+msgstr "%1$s (%2$s)"
 
 #. TRANSLATORS: appended after list of value to indicate that some
 #. values have been omitted
@@ -40,14 +44,14 @@ msgstr ""
 #. %2$s is replaced by the number of elements omitted
 #, c-format
 msgid "%1$s and %2$d more"
-msgstr ""
+msgstr "%1$s ແລະ ອີກ %2$d ລາຍການ"
 
 #. TRANSLATORS: used to construct list of values
 #. %1$s is replaced by first value
 #. %2$s is replaced by second value
 #, c-format
 msgid "%1$s and %2$s"
-msgstr ""
+msgstr "%1$s ແລະ %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the the bcache name (e.g. /dev/bcache0),
@@ -55,20 +59,20 @@ msgstr ""
 #. (e.g. "/dev/sdb1 (64 GiB), /dev/sdc1 (160 GiB)")
 #, c-format
 msgid "%1$s is cached by %2$s"
-msgstr ""
+msgstr "%1$s ຖືກແຄຊ໌ໂດຍ %2$s"
 
 #. TRANSLATORS: used to construct list of values
 #. %1$s is replaced by first value
 #. %2$s is replaced by second value
 #, c-format
 msgid "%1$s, %2$s"
-msgstr ""
+msgstr "%1$s, %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Activate encryption layer device on %1$s"
-msgstr ""
+msgstr "ເປີດໃຊ້ງານອຸປະກອນຊັ້ນການເຂົ້າລະຫັດໃນ %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -76,7 +80,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activate logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
+msgstr "ເປີດໃຊ້ງານ logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -84,7 +88,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activate thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
+msgstr "ເປີດໃຊ້ງານ thin logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -92,31 +96,31 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
+msgstr "ເປີດໃຊ້ງານ thin pool logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s"
 
 #. TRANSLATORS: progress message
 #, c-format
 msgid "Activating LUKS %s"
-msgstr ""
+msgstr "ກຳລັງເປີດໃຊ້ງານ LUKS %s"
 
 #. TRANSLATORS: error message
 #, c-format
 msgid "Activating LUKS %s failed"
-msgstr ""
+msgstr "ການເປີດໃຊ້ງານ LUKS %s ຫຼົ້ມເຫຼວ"
 
 #. TRANSLATORS: progress message
 msgid "Activating LVM"
-msgstr ""
+msgstr "ກຳລັງເປີດໃຊ້ງານ LVM"
 
 #. TRANSLATORS: error message
 msgid "Activating LVM failed"
-msgstr ""
+msgstr "ການເປີດໃຊ້ງານ LVM ຫຼົ້ມເຫຼວ"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Activating encryption layer device on %1$s"
-msgstr ""
+msgstr "ກຳລັງເປີດໃຊ້ງານອຸປະກອນຊັ້ນການເຂົ້າລະຫັດໃນ %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -124,15 +128,15 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activating logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
+msgstr "ກຳລັງເປີດໃຊ້ງານ logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s"
 
 #. TRANSLATORS: progress message
 msgid "Activating multipath"
-msgstr ""
+msgstr "ກຳລັງເປີດໃຊ້ງານ multipath"
 
 #. TRANSLATORS: error message
 msgid "Activating multipath failed"
-msgstr ""
+msgstr "ການເປີດໃຊ້ງານ multipath ຫຼົ້ມເຫຼວ"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -140,7 +144,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
+msgstr "ກຳລັງເປີດໃຊ້ງານ thin logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -148,7 +152,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
+msgstr "ກຳລັງເປີດໃຊ້ງານ thin pool logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -158,26 +162,26 @@ msgstr ""
 #. %2$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Add %1$s to %2$s"
-msgstr ""
+msgstr "ເພີ່ມ %1$s ເຂົ້າໃນ %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
 #, c-format
 msgid "Add %1$s to /etc/mdadm.conf"
-msgstr ""
+msgstr "ເພີ່ມ %1$s ເຂົ້າໃນ /etc/mdadm.conf"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Add encryption layer device on %1$s to /etc/crypttab"
-msgstr ""
+msgstr "ເພີ່ມອຸປະກອນຊັ້ນການເຂົ້າລະຫັດໃນ %1$s ເຂົ້າໃນ /etc/crypttab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Add mount point %1$s of %2$s to /etc/fstab"
-msgstr ""
+msgstr "ເພີ່ມຈຸດເມົາທ໌ (mount point) %1$s ຂອງ %2$s ເຂົ້າໃນ /etc/fstab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -186,6 +190,7 @@ msgstr ""
 #, c-format
 msgid "Add mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
 msgstr ""
+"ເພີ່ມຈຸດເມົາທ໌ %1$s ຂອງຊັບວໍລຸມ (subvolume) %2$s ຢູ່ %3$s ເຂົ້າໃນ /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -195,26 +200,26 @@ msgstr ""
 #. %2$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Adding %1$s to %2$s"
-msgstr ""
+msgstr "ກຳລັງເພີ່ມ %1$s ເຂົ້າໃນ %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
 #, c-format
 msgid "Adding %1$s to /etc/mdadm.conf"
-msgstr ""
+msgstr "ກຳລັງເພີ່ມ %1$s ເຂົ້າໃນ /etc/mdadm.conf"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Adding encryption layer device on %1$s to /etc/crypttab"
-msgstr ""
+msgstr "ກຳລັງເພີ່ມອຸປະກອນຊັ້ນການເຂົ້າລະຫັດໃນ %1$s ເຂົ້າໃນ /etc/crypttab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Adding mount point %1$s of %2$s to /etc/fstab"
-msgstr ""
+msgstr "ກຳລັງເພີ່ມຈຸດເມົາທ໌ %1$s ຂອງ %2$s ເຂົ້າໃນ /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -222,7 +227,7 @@ msgstr ""
 #. %3$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Adding mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
-msgstr ""
+msgstr "ກຳລັງເພີ່ມຈຸດເມົາທ໌ %1$s ຂອງຊັບວໍລຸມ %2$s ຢູ່ %3$s ເຂົ້າໃນ /etc/fstab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -242,77 +247,77 @@ msgstr ""
 
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 msgid "B"
-msgstr ""
+msgstr "B"
 
 #. TRANSLATORS: name of partition type
 msgid "BIOS Boot Partition"
-msgstr ""
+msgstr "ພາທິຊັນ BIOS Boot"
 
 #. TRANSLATORS: name of object
 msgid "Bcache"
-msgstr ""
+msgstr "Bcache"
 
 #. TRANSLATORS: name of object
 msgid "Bcache Cache Set"
-msgstr ""
+msgstr "Bcache Cache Set"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs"
-msgstr ""
+msgstr "Btrfs"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs Subvolume"
-msgstr ""
+msgstr "Btrfs Subvolume"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #, c-format
 msgid "Clear boot flag of partition %1$s"
-msgstr ""
+msgstr "ລ້າງທຸງບູດ (boot flag) ຂອງພາທິຊັນ %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #, c-format
 msgid "Clear legacy boot flag of partition %1$s"
-msgstr ""
+msgstr "ລ້າງທຸງບູດແບບເກົ່າ (legacy boot flag) ຂອງພາທິຊັນ %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Clear option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr ""
+msgstr "ລ້າງຕົວເລືອກ 'no copy on write' ສຳລັບຊັບວໍລຸມ %1$s ໃນ %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Clear protective MBR boot flag of GPT on %1$s"
-msgstr ""
+msgstr "ລ້າງທຸງບູດ MBR ປ້ອງກັນຂອງ GPT ໃນ %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #, c-format
 msgid "Clearing boot flag of partition %1$s"
-msgstr ""
+msgstr "ກຳລັງລ້າງທຸງບູດຂອງພາທິຊັນ %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #, c-format
 msgid "Clearing legacy boot flag of partition %1$s"
-msgstr ""
+msgstr "ກຳລັງລ້າງທຸງບູດແບບເກົ່າຂອງພາທິຊັນ %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Clearing option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr ""
+msgstr "ກຳລັງລ້າງຕົວເລືອກ 'no copy on write' ສຳລັບຊັບວໍລຸມ %1$s ໃນ %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Clearing protective MBR boot flag of GPT on %1$s"
-msgstr ""
+msgstr "ກຳລັງລ້າງທຸງບູດ MBR ປ້ອງກັນຂອງ GPT ໃນ %1$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -328,6 +333,8 @@ msgid ""
 "Create %1$s %2$s (%3$s) for %4$s with %5$s\n"
 "from %6$s"
 msgstr ""
+"ສ້າງ %1$s %2$s (%3$s) ສຳລັບ %4$s ດ້ວຍ %5$s\n"
+"ຈາກ %6$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -341,6 +348,8 @@ msgid ""
 "Create %1$s %2$s (%3$s) for swap\n"
 "from %4$s"
 msgstr ""
+"ສ້າງ %1$s %2$s (%3$s) ສຳລັບ swap\n"
+"ຈາກ %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -351,7 +360,7 @@ msgstr ""
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
 #, c-format
 msgid "Create %1$s %2$s (%3$s) from %4$s"
-msgstr ""
+msgstr "ສ້າງ %1$s %2$s (%3$s) ຈາກ %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
@@ -366,6 +375,8 @@ msgid ""
 "Create %1$s %2$s (%3$s) with %4$s\n"
 "from %5$s"
 msgstr ""
+"ສ້າງ %1$s %2$s (%3$s) ດ້ວຍ %4$s\n"
+"ຈາກ %5$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
@@ -393,13 +404,13 @@ msgstr ""
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Create DASD partition table on %1$s"
-msgstr ""
+msgstr "ສ້າງຕາຕະລາງພາທິຊັນ DASD ໃນ %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Create GPT on %1$s"
-msgstr ""
+msgstr "ສ້າງ GPT ໃນ %1$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -407,7 +418,7 @@ msgstr ""
 #. %3$s is replaced with the volume group name (e.g. system)
 #, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
+msgstr "ສ້າງ LVM logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -419,6 +430,7 @@ msgstr ""
 msgid ""
 "Create LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
 msgstr ""
+"ສ້າງ LVM logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s ສຳລັບ %4$s ດ້ວຍ %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -426,7 +438,7 @@ msgstr ""
 #. %3$s is replaced with the volume group name (e.g. system)
 #, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
-msgstr ""
+msgstr "ສ້າງ LVM logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s ສຳລັບ swap"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -435,28 +447,28 @@ msgstr ""
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr ""
+msgstr "ສ້າງ LVM logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s ດ້ວຍ %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Create LVM physical volume over %1$s (%2$s)"
-msgstr ""
+msgstr "ສ້າງ LVM physical volume ເທິງ %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Create LVM physical volume over encrypted %1$s (%2$s)"
-msgstr ""
+msgstr "ສ້າງ LVM physical volume ເທິງ %1$s ທີ່ເຂົ້າລະຫັດ (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Create LVM volume device over %1$s (%2$s)"
-msgstr ""
+msgstr "ສ້າງອຸປະກອນວໍລຸມ LVM ເທິງ %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -466,13 +478,13 @@ msgstr ""
 #. /dev/sdb2 (1 GiB))
 #, c-format
 msgid "Create MD %1$s %2$s (%3$s) from %4$s"
-msgstr ""
+msgstr "ສ້າງ MD %1$s %2$s (%3$s) ຈາກ %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Create MS-DOS partition table on %1$s"
-msgstr ""
+msgstr "ສ້າງຕາຕະລາງພາທິຊັນ MS-DOS ໃນ %1$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -480,7 +492,7 @@ msgstr ""
 #. %3$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Create bcache %1$s on %2$s (%3$s)"
-msgstr ""
+msgstr "ສ້າງ bcache %1$s ໃນ %2$s (%3$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -490,7 +502,7 @@ msgstr ""
 #. %5$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Create bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
-msgstr ""
+msgstr "ສ້າງ bcache %1$s ໃນ %2$s (%3$s) ສຳລັບ %4$s ດ້ວຍ %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -498,7 +510,7 @@ msgstr ""
 #. %3$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Create bcache %1$s on %2$s (%3$s) for swap"
-msgstr ""
+msgstr "ສ້າງ bcache %1$s ໃນ %2$s (%3$s) ສຳລັບ swap"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -507,7 +519,7 @@ msgstr ""
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Create bcache %1$s on %2$s (%3$s) with %4$s"
-msgstr ""
+msgstr "ສ້າງ bcache %1$s ໃນ %2$s (%3$s) ດ້ວຍ %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
@@ -521,6 +533,8 @@ msgid ""
 "Create encrypted %1$s %2$s (%3$s)\n"
 "from %4$s"
 msgstr ""
+"ສ້າງ %1$s %2$s (%3$s) ທີ່ເຂົ້າລະຫັດ\n"
+"ຈາກ %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
@@ -536,6 +550,8 @@ msgid ""
 "Create encrypted %1$s %2$s (%3$s) for %4$s with %5$s\n"
 "from %6$s"
 msgstr ""
+"ສ້າງ %1$s %2$s (%3$s) ທີ່ເຂົ້າລະຫັດ ສຳລັບ %4$s ດ້ວຍ %5$s\n"
+"ຈາກ %6$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -549,6 +565,8 @@ msgid ""
 "Create encrypted %1$s %2$s (%3$s) for swap\n"
 "from %4$s"
 msgstr ""
+"ສ້າງ %1$s %2$s (%3$s) ທີ່ເຂົ້າລະຫັດ ສຳລັບ swap\n"
+"ຈາກ %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
@@ -563,6 +581,8 @@ msgid ""
 "Create encrypted %1$s %2$s (%3$s) with %4$s\n"
 "from %5$s"
 msgstr ""
+"ສ້າງ %1$s %2$s (%3$s) ທີ່ເຂົ້າລະຫັດ ດ້ວຍ %4$s\n"
+"ຈາກ %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -570,7 +590,7 @@ msgstr ""
 #. %3$s is replaced with the volume group name (e.g. system)
 #, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
+msgstr "ສ້າງ LVM logical volume ທີ່ເຂົ້າລະຫັດ %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -583,6 +603,7 @@ msgid ""
 "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for "
 "%4$s with %5$s"
 msgstr ""
+"ສ້າງ LVM logical volume ທີ່ເຂົ້າລະຫັດ %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s ສຳລັບ %4$s ດ້ວຍ %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -592,6 +613,7 @@ msgstr ""
 msgid ""
 "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
 msgstr ""
+"ສ້າງ LVM logical volume ທີ່ເຂົ້າລະຫັດ %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s ສຳລັບ swap"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -603,6 +625,7 @@ msgid ""
 "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s with "
 "%4$s"
 msgstr ""
+"ສ້າງ LVM logical volume ທີ່ເຂົ້າລະຫັດ %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s ດ້ວຍ %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -610,7 +633,7 @@ msgstr ""
 #. %3$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s)"
-msgstr ""
+msgstr "ສ້າງ bcache ທີ່ເຂົ້າລະຫັດ %1$s ໃນ %2$s (%3$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -620,7 +643,7 @@ msgstr ""
 #. %5$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
-msgstr ""
+msgstr "ສ້າງ bcache ທີ່ເຂົ້າລະຫັດ %1$s ໃນ %2$s (%3$s) ສຳລັບ %4$s ດ້ວຍ %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -628,7 +651,7 @@ msgstr ""
 #. %3$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s) for swap"
-msgstr ""
+msgstr "ສ້າງ bcache ທີ່ເຂົ້າລະຫັດ %1$s ໃນ %2$s (%3$s) ສຳລັບ swap"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -637,21 +660,21 @@ msgstr ""
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s) with %4$s"
-msgstr ""
+msgstr "ສ້າງ bcache ທີ່ເຂົ້າລະຫັດ %1$s ໃນ %2$s (%3$s) ດ້ວຍ %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Create encrypted partition %1$s (%2$s)"
-msgstr ""
+msgstr "ສ້າງພາທິຊັນທີ່ເຂົ້າລະຫັດ %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Create encrypted partition %1$s (%2$s) as LVM physical volume"
-msgstr ""
+msgstr "ສ້າງພາທິຊັນທີ່ເຂົ້າລະຫັດ %1$s (%2$s) ເປັນ LVM physical volume"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -660,14 +683,14 @@ msgstr ""
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Create encrypted partition %1$s (%2$s) for %3$s with %4$s"
-msgstr ""
+msgstr "ສ້າງພາທິຊັນທີ່ເຂົ້າລະຫັດ %1$s (%2$s) ສຳລັບ %3$s ດ້ວຍ %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Create encrypted partition %1$s (%2$s) for swap"
-msgstr ""
+msgstr "ສ້າງພາທິຊັນທີ່ເຂົ້າລະຫັດ %1$s (%2$s) ສຳລັບ swap"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -675,60 +698,60 @@ msgstr ""
 #. %3$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Create encrypted partition %1$s (%2$s) with %3$s"
-msgstr ""
+msgstr "ສ້າງພາທິຊັນທີ່ເຂົ້າລະຫັດ %1$s (%2$s) ດ້ວຍ %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Create encryption layer device on %1$s"
-msgstr ""
+msgstr "ສ້າງອຸປະກອນຊັ້ນການເຂົ້າລະຫັດໃນ %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Create extended partition %1$s (%2$s)"
-msgstr ""
+msgstr "ສ້າງພາທິຊັນແບບຂະຫຍາຍ %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2)
 #, c-format
 msgid "Create file system btrfs on %1$s"
-msgstr ""
+msgstr "ສ້າງລະບົບໄຟລ໌ btrfs ໃນ %1$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
 #. %2$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Create file system btrfs on %1$s and mount at %2$s"
-msgstr ""
+msgstr "ສ້າງລະບົບໄຟລ໌ btrfs ໃນ %1$s ແລະ ເມົາທ໌ທີ່ %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the device name (e.g. /dev/vda),
 #. %2$s is replaced by the size (e.g. 20 GiB)
 #, c-format
 msgid "Create hard disk %1$s (%2$s)"
-msgstr ""
+msgstr "ສ້າງຮາດດິດ %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Create implicit partition %1$s (%2$s)"
-msgstr ""
+msgstr "ສ້າງ implicit partition %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/dasda)
 #, c-format
 msgid "Create implicit partition table on %1$s"
-msgstr ""
+msgstr "ສ້າງຕາຕະລາງພາທິຊັນແບບ implicit ໃນ %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Create logical partition %1$s (%2$s)"
-msgstr ""
+msgstr "ສ້າງ logical partition %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -736,7 +759,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Create logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
+msgstr "ສ້າງ logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -746,7 +769,7 @@ msgstr ""
 #. %2$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Create partition %1$s (%2$s)"
-msgstr ""
+msgstr "ສ້າງພາທິຊັນ %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -754,14 +777,14 @@ msgstr ""
 #. %3$s is replaced with the partition id string (e.g. Linux LVM)
 #, c-format
 msgid "Create partition %1$s (%2$s) as %3$s"
-msgstr ""
+msgstr "ສ້າງພາທິຊັນ %1$s (%2$s) ເປັນ %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Create partition %1$s (%2$s) as LVM physical volume"
-msgstr ""
+msgstr "ສ້າງພາທິຊັນ %1$s (%2$s) ເປັນ LVM physical volume"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -770,14 +793,14 @@ msgstr ""
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Create partition %1$s (%2$s) for %3$s with %4$s"
-msgstr ""
+msgstr "ສ້າງພາທິຊັນ %1$s (%2$s) ສຳລັບ %3$s ດ້ວຍ %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Create partition %1$s (%2$s) for swap"
-msgstr ""
+msgstr "ສ້າງພາທິຊັນ %1$s (%2$s) ສຳລັບ swap"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -785,20 +808,20 @@ msgstr ""
 #. %3$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Create partition %1$s (%2$s) with %3$s"
-msgstr ""
+msgstr "ສ້າງພາທິຊັນ %1$s (%2$s) ດ້ວຍ %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Create physical volume on %1$s"
-msgstr ""
+msgstr "ສ້າງ physical volume ໃນ %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Create primary partition %1$s (%2$s)"
-msgstr ""
+msgstr "ສ້າງ primary partition %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -808,7 +831,7 @@ msgstr ""
 #. %2$s is replaced with the block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Create subvolume %1$s on %2$s"
-msgstr ""
+msgstr "ສ້າງຊັບວໍລຸມ %1$s ໃນ %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the subvolume path (e.g. var/log),
@@ -823,7 +846,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Create thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
+msgstr "ສ້າງ thin logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -831,14 +854,14 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Create thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
+msgstr "ສ້າງ thin pool logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced with the volume group name (e.g. system),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #, c-format
 msgid "Create volume group %1$s (%2$s)"
-msgstr ""
+msgstr "ສ້າງກຸ່ມວໍລຸມ %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -847,7 +870,7 @@ msgstr ""
 #. /dev/sdb2 (1 GiB))
 #, c-format
 msgid "Create volume group %1$s (%2$s) from %3$s"
-msgstr ""
+msgstr "ສ້າງກຸ່ມວໍລຸມ %1$s (%2$s) ຈາກ %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced with the volume group name (e.g. system),
@@ -855,7 +878,7 @@ msgstr ""
 #. %3$s is replaced with the name of devices (e.g. /dev/sda1, /dev/sda2)
 #, c-format
 msgid "Create volume group %1$s (%2$s) with %3$s"
-msgstr ""
+msgstr "ສ້າງກຸ່ມວໍລຸມ %1$s (%2$s) ດ້ວຍ %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
@@ -883,13 +906,13 @@ msgstr ""
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Creating DASD partition table on %1$s"
-msgstr ""
+msgstr "ກຳລັງສ້າງຕາຕະລາງພາທິຊັນ DASD ໃນ %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Creating GPT on %1$s"
-msgstr ""
+msgstr "ກຳລັງສ້າງ GPT ໃນ %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -899,53 +922,53 @@ msgstr ""
 #. /dev/sdb2 (1 GiB))
 #, c-format
 msgid "Creating MD %1$s %2$s (%3$s) from %4$s"
-msgstr ""
+msgstr "ກຳລັງສ້າງ MD %1$s %2$s (%3$s) ຈາກ %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Creating MS-DOS partition table on %1$s"
-msgstr ""
+msgstr "ກຳລັງສ້າງຕາຕະລາງພາທິຊັນ MS-DOS ໃນ %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Creating encryption layer device on %1$s"
-msgstr ""
+msgstr "ກຳລັງສ້າງອຸປະກອນຊັ້ນການເຂົ້າລະຫັດໃນ %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Creating extended partition %1$s (%2$s)"
-msgstr ""
+msgstr "ກຳລັງສ້າງ extended partition %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/vda),
 #. %2$s is replaced by the size (e.g. 20 GiB)
 #, c-format
 msgid "Creating hard disk %1$s (%2$s)"
-msgstr ""
+msgstr "ກຳລັງສ້າງຮາດດິດ %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Creating implicit partition %1$s (%2$s)"
-msgstr ""
+msgstr "ກຳລັງສ້າງ implicit partition %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/dasda)
 #, c-format
 msgid "Creating implicit partition table on %1$s"
-msgstr ""
+msgstr "ກຳລັງສ້າງຕາຕະລາງພາທິຊັນແບບ implicit ໃນ %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Creating logical partition %1$s (%2$s)"
-msgstr ""
+msgstr "ກຳລັງສ້າງ logical partition %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -953,34 +976,34 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Creating logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
+msgstr "ກຳລັງສ້າງ logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Creating partition %1$s (%2$s)"
-msgstr ""
+msgstr "ກຳລັງສ້າງພາທິຊັນ %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Creating physical volume on %1$s"
-msgstr ""
+msgstr "ກຳລັງສ້າງ physical volume ໃນ %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Creating primary partition %1$s (%2$s)"
-msgstr ""
+msgstr "ກຳລັງສ້າງ primary partition %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Creating subvolume %1$s on %2$s"
-msgstr ""
+msgstr "ກຳລັງສ້າງຊັບວໍລຸມ %1$s ໃນ %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -988,7 +1011,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Creating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
+msgstr "ກຳລັງສ້າງ thin logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -996,7 +1019,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Creating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
+msgstr "ກຳລັງສ້າງ thin pool logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -1005,19 +1028,19 @@ msgstr ""
 #. /dev/sdb2 (1 GiB))
 #, c-format
 msgid "Creating volume group %1$s (%2$s) from %3$s"
-msgstr ""
+msgstr "ກຳລັງສ້າງກຸ່ມວໍລຸມ %1$s (%2$s) ຈາກ %3$s"
 
 #. TRANSLATORS: name of object
 msgid "DASD"
-msgstr ""
+msgstr "DASD"
 
 #. TRANSLATORS: name of object
 msgid "DASD Partition Table"
-msgstr ""
+msgstr "ຕາຕະລາງພາທິຊັນ DASD"
 
 #. TRANSLATORS: name of object
 msgid "DM RAID"
-msgstr ""
+msgstr "DM RAID"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
@@ -1039,13 +1062,13 @@ msgstr ""
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Deactivate MD %1$s %2$s (%3$s)"
-msgstr ""
+msgstr "ປິດໃຊ້ງານ MD %1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Deactivate encryption layer device on %1$s"
-msgstr ""
+msgstr "ປິດໃຊ້ງານອຸປະກອນຊັ້ນການເຂົ້າລະຫັດໃນ %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1053,14 +1076,14 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivate logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
+msgstr "ປິດໃຊ້ງານ logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by multipath name (e.g. /dev/mapper/36005076305ffc73a00000000000013b4),
 #. %2$s is replaced by size (e.g. 1 TiB)
 #, c-format
 msgid "Deactivate multipath %1$s (%2$s)"
-msgstr ""
+msgstr "ປິດໃຊ້ງານ multipath %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1068,7 +1091,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivate thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
+msgstr "ປິດໃຊ້ງານ thin logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1076,7 +1099,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivate thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
+msgstr "ປິດໃຊ້ງານ thin pool logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
@@ -1098,13 +1121,13 @@ msgstr ""
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Deactivating MD %1$s %2$s (%3$s)"
-msgstr ""
+msgstr "ກຳລັງປິດໃຊ້ງານ MD %1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Deactivating encryption layer device on %1$s"
-msgstr ""
+msgstr "ກຳລັງປິດໃຊ້ງານອຸປະກອນຊັ້ນການເຂົ້າລະຫັດໃນ %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1112,14 +1135,14 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivating logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
+msgstr "ກຳລັງປິດໃຊ້ງານ logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by multipath name (e.g. /dev/mapper/36005076305ffc73a00000000000013b4),
 #. %2$s is replaced by size (e.g. 1 TiB)
 #, c-format
 msgid "Deactivating multipath %1$s (%2$s)"
-msgstr ""
+msgstr "ກຳລັງປິດໃຊ້ງານ multipath %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1127,7 +1150,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
+msgstr "ກຳລັງປິດໃຊ້ງານ thin logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1135,7 +1158,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
+msgstr "ກຳລັງປິດໃຊ້ງານ thin pool logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -1143,7 +1166,7 @@ msgstr ""
 #. %3$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Delete %1$s %2$s (%3$s)"
-msgstr ""
+msgstr "ລຶບ %1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
@@ -1151,7 +1174,7 @@ msgstr ""
 #. and /dev/sdb2 (1 GiB))
 #, c-format
 msgid "Delete %1$s on %2$s"
-msgstr ""
+msgstr "ລຶບ %1$s ໃນ %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
@@ -1171,13 +1194,13 @@ msgstr ""
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Delete DASD partition table on %1$s"
-msgstr ""
+msgstr "ລຶບຕາຕະລາງພາທິຊັນ DASD ໃນ %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Delete GPT on %1$s"
-msgstr ""
+msgstr "ລຶບ GPT ໃນ %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -1185,13 +1208,13 @@ msgstr ""
 #. %3$s is replaced by size (e.g. 2GiB)
 #, c-format
 msgid "Delete MD %1$s %2$s (%3$s)"
-msgstr ""
+msgstr "ລຶບ MD %1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Delete MS-DOS partition table on %1$s"
-msgstr ""
+msgstr "ລຶບຕາຕະລາງພາທິຊັນ MS-DOS ໃນ %1$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -1199,46 +1222,46 @@ msgstr ""
 #. %3$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Delete bcache %1$s on %2$s (%3$s)"
-msgstr ""
+msgstr "ລຶບ bcache %1$s ໃນ %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Delete encryption layer device on %1$s"
-msgstr ""
+msgstr "ລຶບອຸປະກອນຊັ້ນການເຂົ້າລະຫັດໃນ %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Delete extended partition %1$s (%2$s)"
-msgstr ""
+msgstr "ລຶບ extended partition %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2)
 #, c-format
 msgid "Delete file system btrfs on %1$s"
-msgstr ""
+msgstr "ລຶບລະບົບໄຟລ໌ btrfs ໃນ %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Delete implicit partition %1$s (%2$s)"
-msgstr ""
+msgstr "ລຶບ implicit partition %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/dasda)
 #, c-format
 msgid "Delete implicit partition table on %1$s"
-msgstr ""
+msgstr "ລຶບຕາຕະລາງພາທິຊັນແບບ implicit ໃນ %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Delete logical partition %1$s (%2$s)"
-msgstr ""
+msgstr "ລຶບ logical partition %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1246,7 +1269,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Delete logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
+msgstr "ລຶບ logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1256,20 +1279,20 @@ msgstr ""
 #. %2$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Delete partition %1$s (%2$s)"
-msgstr ""
+msgstr "ລຶບພາທິຊັນ %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Delete physical volume on %1$s"
-msgstr ""
+msgstr "ລຶບ physical volume ໃນ %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Delete primary partition %1$s (%2$s)"
-msgstr ""
+msgstr "ລຶບ primary partition %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -1279,7 +1302,7 @@ msgstr ""
 #. %2$s is replaced with the block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Delete subvolume %1$s on %2$s"
-msgstr ""
+msgstr "ລຶບຊັບວໍລຸມ %1$s ໃນ %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1287,7 +1310,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Delete thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
+msgstr "ລຶບ thin logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1295,14 +1318,14 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Delete thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
+msgstr "ລຶບ thin pool logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB)
 #, c-format
 msgid "Delete volume group %1$s (%2$s)"
-msgstr ""
+msgstr "ລຶບກຸ່ມວໍລຸມ %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
@@ -1310,7 +1333,7 @@ msgstr ""
 #. and /dev/sdb2 (1 GiB))
 #, c-format
 msgid "Deleting %1$s on %2$s"
-msgstr ""
+msgstr "ກຳລັງລຶບ %1$s ໃນ %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
@@ -1330,13 +1353,13 @@ msgstr ""
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Deleting DASD partition table on %1$s"
-msgstr ""
+msgstr "ກຳລັງລຶບຕາຕະລາງພາທິຊັນ DASD ໃນ %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Deleting GPT on %1$s"
-msgstr ""
+msgstr "ກຳລັງລຶບ GPT ໃນ %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -1344,46 +1367,46 @@ msgstr ""
 #. %3$s is replaced by size (e.g. 2GiB)
 #, c-format
 msgid "Deleting MD %1$s %2$s (%3$s)"
-msgstr ""
+msgstr "ກຳລັງລຶບ MD %1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Deleting MS-DOS partition table on %1$s"
-msgstr ""
+msgstr "ກຳລັງລຶບຕາຕະລາງພາທິຊັນ MS-DOS ໃນ %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Deleting encryption layer device on %1$s"
-msgstr ""
+msgstr "ກຳລັງລຶບອຸປະກອນຊັ້ນການເຂົ້າລະຫັດໃນ %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Deleting extended partition %1$s (%2$s)"
-msgstr ""
+msgstr "ກຳລັງລຶບ extended partition %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Deleting implicit partition %1$s (%2$s)"
-msgstr ""
+msgstr "ກຳລັງລຶບ implicit partition %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/dasda)
 #, c-format
 msgid "Deleting implicit partition table on %1$s"
-msgstr ""
+msgstr "ກຳລັງລຶບຕາຕະລາງພາທິຊັນແບບ implicit ໃນ %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Deleting logical partition %1$s (%2$s)"
-msgstr ""
+msgstr "ກຳລັງລຶບ logical partition %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1391,34 +1414,34 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deleting logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
+msgstr "ກຳລັງລຶບ logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Deleting partition %1$s (%2$s)"
-msgstr ""
+msgstr "ກຳລັງລຶບພາທິຊັນ %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Deleting physical volume on %1$s"
-msgstr ""
+msgstr "ກຳລັງລຶບ physical volume ໃນ %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Deleting primary partition %1$s (%2$s)"
-msgstr ""
+msgstr "ກຳລັງລຶບ primary partition %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Deleting subvolume %1$s on %2$s"
-msgstr ""
+msgstr "ກຳລັງລຶບຊັບວໍລຸມ %1$s ໃນ %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1426,7 +1449,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deleting thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
+msgstr "ກຳລັງລຶບ thin logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1434,14 +1457,14 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deleting thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
+msgstr "ກຳລັງລຶບ thin pool logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB)
 #, c-format
 msgid "Deleting volume group %1$s (%2$s)"
-msgstr ""
+msgstr "ກຳລັງລຶບກຸ່ມວໍລຸມ %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -1498,27 +1521,27 @@ msgstr ""
 
 #. TRANSLATORS: name of partition type
 msgid "Diagnostics Partition"
-msgstr ""
+msgstr "ພາທິຊັນການກວດວິເຄາະ (Diagnostics)"
 
 #. TRANSLATORS: name of object
 msgid "Disk"
-msgstr ""
+msgstr "ດິສກ໌"
 
 #. TRANSLATORS: symbol for "exa" (best keep untranslated)
 msgid "E"
-msgstr ""
+msgstr "E"
 
 #. TRANSLATORS: symbol for "exa bytes" (best keep untranslated)
 msgid "EB"
-msgstr ""
+msgstr "EB"
 
 #. TRANSLATORS: name of partition type
 msgid "EFI System Partition"
-msgstr ""
+msgstr "ພາກສ່ວນລະບົບ EFI"
 
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
 msgid "EiB"
-msgstr ""
+msgstr "EiB"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -1526,7 +1549,7 @@ msgstr ""
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #, c-format
 msgid "Encrypt %1$s %2$s (%3$s)"
-msgstr ""
+msgstr "ເຂົ້າລະຫັດ %1$s %2$s (%3$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -1536,7 +1559,7 @@ msgstr ""
 #. %5$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Encrypt %1$s %2$s (%3$s) for %4$s with %5$s"
-msgstr ""
+msgstr "ເຂົ້າລະຫັດ %1$s %2$s (%3$s) ສຳລັບ %4$s ດ້ວຍ %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -1545,7 +1568,7 @@ msgstr ""
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Encrypt %1$s %2$s (%3$s) with %4$s"
-msgstr ""
+msgstr "ເຂົ້າລະຫັດ %1$s %2$s (%3$s) ດ້ວຍ %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -1553,7 +1576,7 @@ msgstr ""
 #. %3$s is replaced with the volume group name (e.g. system)
 #, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
+msgstr "ເຂົ້າລະຫັດ LVM logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -1566,6 +1589,7 @@ msgid ""
 "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with "
 "%5$s"
 msgstr ""
+"ເຂົ້າລະຫັດ LVM logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s ສຳລັບ %4$s ດ້ວຍ %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -1574,7 +1598,7 @@ msgstr ""
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr ""
+msgstr "ເຂົ້າລະຫັດ LVM logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s ດ້ວຍ %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -1582,7 +1606,7 @@ msgstr ""
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #, c-format
 msgid "Encrypt bcache %1$s on %2$s (%3$s)"
-msgstr ""
+msgstr "ເຂົ້າລະຫັດ bcache %1$s ໃນ %2$s (%3$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -1592,7 +1616,7 @@ msgstr ""
 #. %5$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Encrypt bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
-msgstr ""
+msgstr "ເຂົ້າລະຫັດ bcache %1$s ໃນ %2$s (%3$s) ສຳລັບ %4$s ດ້ວຍ %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -1601,14 +1625,14 @@ msgstr ""
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Encrypt bcache %1$s on %2$s (%3$s) with %4$s"
-msgstr ""
+msgstr "ເຂົ້າລະຫັດ bcache %1$s ໃນ %2$s (%3$s) ດ້ວຍ %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #, c-format
 msgid "Encrypt partition %1$s (%2$s)"
-msgstr ""
+msgstr "ເຂົ້າລະຫັດພາກສ່ວນ %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -1617,7 +1641,7 @@ msgstr ""
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Encrypt partition %1$s (%2$s) for %3$s with %4$s"
-msgstr ""
+msgstr "ເຂົ້າລະຫັດພາກສ່ວນ %1$s (%2$s) ສຳລັບ %3$s ດ້ວຍ %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -1625,27 +1649,27 @@ msgstr ""
 #. %3$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Encrypt partition %1$s (%2$s) with %3$s"
-msgstr ""
+msgstr "ເຂົ້າລະຫັດພາກສ່ວນ %1$s (%2$s) ດ້ວຍ %3$s"
 
 #. TRANSLATORS: name of object
 msgid "Encryption"
-msgstr ""
+msgstr "ການເຂົ້າລະຫັດ"
 
 #. TRANSLATORS: name of object
 msgid "Ext2"
-msgstr ""
+msgstr "Ext2"
 
 #. TRANSLATORS: name of object
 msgid "Ext3"
-msgstr ""
+msgstr "Ext3"
 
 #. TRANSLATORS: name of object
 msgid "Ext4"
-msgstr ""
+msgstr "Ext4"
 
 #. TRANSLATORS: name of object
 msgid "F2FS"
-msgstr ""
+msgstr "F2FS"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -1655,7 +1679,7 @@ msgstr ""
 #. %5$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Format %1$s %2$s (%3$s) for %4$s with %5$s"
-msgstr ""
+msgstr "ຟໍແມັດ %1$s %2$s (%3$s) ສຳລັບ %4$s ດ້ວຍ %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -1664,7 +1688,7 @@ msgstr ""
 #. %4$s is replaced with the file system type (e.g. ext4)
 #, c-format
 msgid "Format %1$s %2$s (%3$s) with %4$s"
-msgstr ""
+msgstr "ຟໍແມັດ %1$s %2$s (%3$s) ດ້ວຍ %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -1676,6 +1700,7 @@ msgstr ""
 msgid ""
 "Format LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
 msgstr ""
+"ຟໍແມັດ LVM logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s ສຳລັບ %4$s ດ້ວຍ %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -1684,7 +1709,7 @@ msgstr ""
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr ""
+msgstr "ຟໍແມັດ LVM logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s ດ້ວຍ %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -1694,7 +1719,7 @@ msgstr ""
 #. %5$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Format bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
-msgstr ""
+msgstr "ຟໍແມັດ bcache %1$s ໃນ %2$s (%3$s) ສຳລັບ %4$s ດ້ວຍ %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -1703,7 +1728,7 @@ msgstr ""
 #. %4$s is replaced with the file system type (e.g. ext4)
 #, c-format
 msgid "Format bcache %1$s on %2$s (%3$s) with %4$s"
-msgstr ""
+msgstr "ຟໍແມັດ bcache %1$s ໃນ %2$s (%3$s) ດ້ວຍ %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -1717,7 +1742,7 @@ msgstr ""
 #. %2$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Format partition %1$s (%2$s) as swap"
-msgstr ""
+msgstr "ຟໍແມັດພາກສ່ວນ %1$s (%2$s) ເປັນ swap"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -1726,7 +1751,7 @@ msgstr ""
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Format partition %1$s (%2$s) for %3$s with %4$s"
-msgstr ""
+msgstr "ຟໍແມັດພາກສ່ວນ %1$s (%2$s) ສຳລັບ %3$s ດ້ວຍ %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -1734,23 +1759,23 @@ msgstr ""
 #. %3$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Format partition %1$s (%2$s) with %3$s"
-msgstr ""
+msgstr "ຟໍແມັດພາທິຊັນ %1$s (%2$s) ດ້ວຍ %3$s"
 
 #. TRANSLATORS: symbol for "giga" (best keep untranslated)
 msgid "G"
-msgstr ""
+msgstr "G"
 
 #. TRANSLATORS: symbol for "giga bytes" (best keep untranslated)
 msgid "GB"
-msgstr ""
+msgstr "GB"
 
 #. TRANSLATORS: name of object
 msgid "GPT"
-msgstr ""
+msgstr "GPT"
 
 #. TRANSLATORS: symbol for "gibi bytes" (best keep untranslated)
 msgid "GiB"
-msgstr ""
+msgstr "GiB"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -1759,7 +1784,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Grow %1$s on %2$s from %3$s to %4$s"
-msgstr ""
+msgstr "ຂະຫຍາຍ %1$s ໃນ %2$s ຈາກ %3$s ຫາ %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1767,7 +1792,7 @@ msgstr ""
 #. %3$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Grow encryption layer device on %1$s from %2$s to %3$s"
-msgstr ""
+msgstr "ຂະຫຍາຍຊັ້ນອຸປະກອນການເຂົ້າລະຫັດໃນ %1$s ຈາກ %2$s ຫາ %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1776,7 +1801,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Grow logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
+msgstr "ຂະຫຍາຍ logical volume %1$s ໃນກຸ່ມວໍລຸມ %2$s ຈາກ %3$s ຫາ %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1784,7 +1809,7 @@ msgstr ""
 #. %3$s is replaced by new size (e.g. 2 GiB)
 #, c-format
 msgid "Grow partition %1$s from %2$s to %3$s"
-msgstr ""
+msgstr "ຂະຫຍາຍພາກສ່ວນ %1$s ຈາກ %2$s ຫາ %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
@@ -1792,7 +1817,7 @@ msgstr ""
 #. %3$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Grow physical volume on %1$s from %2$s to %3$s"
-msgstr ""
+msgstr "ຂະຫຍາຍ physical volume ໃນ %1$s ຈາກ %2$s ຫາ %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1801,7 +1826,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Grow thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
+msgstr "ຂະຫຍາຍ thin logical volume %1$s ໃນກຸ່ມວໍລຸມ %2$s ຈາກ %3$s ຫາ %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1811,7 +1836,7 @@ msgstr ""
 #, c-format
 msgid ""
 "Grow thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
+msgstr "ຂະຫຍາຍ thin pool logical volume %1$s ໃນກຸ່ມວໍລຸມ %2$s ຈາກ %3$s ຫາ %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -1820,7 +1845,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Growing %1$s on %2$s from %3$s to %4$s"
-msgstr ""
+msgstr "ກຳລັງຂະຫຍາຍ %1$s ໃນ %2$s ຈາກ %3$s ຫາ %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1828,7 +1853,7 @@ msgstr ""
 #. %3$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Growing encryption layer device on %1$s from %2$s to %3$s"
-msgstr ""
+msgstr "ກຳລັງຂະຫຍາຍຊັ້ນອຸປະກອນການເຂົ້າລະຫັດໃນ %1$s ຈາກ %2$s ຫາ %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1837,7 +1862,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Growing logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
+msgstr "ກຳລັງຂະຫຍາຍ logical volume %1$s ໃນກຸ່ມວໍລຸມ %2$s ຈາກ %3$s ຫາ %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1845,7 +1870,7 @@ msgstr ""
 #. %3$s is replaced by new size (e.g. 2 GiB)
 #, c-format
 msgid "Growing partition %1$s from %2$s to %3$s"
-msgstr ""
+msgstr "ກຳລັງຂະຫຍາຍພາກສ່ວນ %1$s ຈາກ %2$s ຫາ %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
@@ -1853,7 +1878,7 @@ msgstr ""
 #. %3$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Growing physical volume on %1$s from %2$s to %3$s"
-msgstr ""
+msgstr "ກຳລັງຂະຫຍາຍ physical volume ໃນ %1$s ຈາກ %2$s ຫາ %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1862,7 +1887,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Growing thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
+msgstr "ກຳລັງຂະຫຍາຍ thin logical volume %1$s ໃນກຸ່ມວໍລຸມ %2$s ຈາກ %3$s ຫາ %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1873,82 +1898,83 @@ msgstr ""
 msgid ""
 "Growing thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
+"ກຳລັງຂະຫຍາຍ thin pool logical volume %1$s ໃນກຸ່ມວໍລຸມ %2$s ຈາກ %3$s ຫາ %4$s"
 
 #. TRANSLATORS: name of object
 msgid "ISO 9660"
-msgstr ""
+msgstr "ISO 9660"
 
 #. TRANSLATORS: name of object
 msgid "Implicit Partition Table"
-msgstr ""
+msgstr "ຕາຕະລາງພາກສ່ວນແບບ Implicit"
 
 #. TRANSLATORS: name of partition type
 msgid "Intel RST"
-msgstr ""
+msgstr "Intel RST"
 
 #. TRANSLATORS: name of object
 msgid "JFS"
-msgstr ""
+msgstr "JFS"
 
 #. TRANSLATORS: symbol for "kibi bytes" (best keep untranslated)
 msgid "KiB"
-msgstr ""
+msgstr "KiB"
 
 #. TRANSLATORS: name of object
 msgid "LUKS"
-msgstr ""
+msgstr "LUKS"
 
 #. TRANSLATORS: name of object
 msgid "LVM Logical Volume"
-msgstr ""
+msgstr "LVM Logical Volume"
 
 #. TRANSLATORS: name of object
 msgid "LVM Physical Volume"
-msgstr ""
+msgstr "LVM Physical Volume"
 
 #. TRANSLATORS: name of object
 msgid "LVM Volume Group"
-msgstr ""
+msgstr "LVM Volume Group"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux"
-msgstr ""
+msgstr "Linux"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux LVM"
-msgstr ""
+msgstr "Linux LVM"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux RAID"
-msgstr ""
+msgstr "Linux RAID"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Swap"
-msgstr ""
+msgstr "Linux Swap"
 
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
 msgid "M"
-msgstr ""
+msgstr "M"
 
 #. TRANSLATORS: symbol for "mega bytes" (best keep untranslated)
 msgid "MB"
-msgstr ""
+msgstr "MB"
 
 #. TRANSLATORS: name of object
 msgid "MD RAID"
-msgstr ""
+msgstr "MD RAID"
 
 #. TRANSLATORS: name of object
 msgid "MS-DOS Partition Table"
-msgstr ""
+msgstr "ຕາຕະລາງພາກສ່ວນ MS-DOS"
 
 #. TRANSLATORS: symbol for "mebi bytes" (best keep untranslated)
 msgid "MiB"
-msgstr ""
+msgstr "MiB"
 
 #. TRANSLATORS: name of partition type
 msgid "Microsoft Reserved Partition"
-msgstr ""
+msgstr "Microsoft Reserved Partition"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -1957,14 +1983,14 @@ msgstr ""
 #. %4$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Mount %1$s %2$s (%3$s) at %4$s"
-msgstr ""
+msgstr "ເມົາທ໌ (Mount) %1$s %2$s (%3$s) ທີ່ %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #, c-format
 msgid "Mount %1$s at %2$s"
-msgstr ""
+msgstr "ເມົາທ໌ %1$s ທີ່ %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -1973,18 +1999,18 @@ msgstr ""
 #. %4$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Mount LVM logical volume %1$s (%2$s) on volume group %3$s at %4$s"
-msgstr ""
+msgstr "ເມົາທ໌ LVM logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s ທີ່ %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the nfs name (e.g. 99.99.00.00:path),
 #. %2$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Mount NFS %1$s on %2$s"
-msgstr ""
+msgstr "ເມົາທ໌ NFS %1$s ໃນ %2$s"
 
 #. TRANSLATORS: name of object
 msgid "Mount Point"
-msgstr ""
+msgstr "ຈຸດເມົາທ໌"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -1993,14 +2019,14 @@ msgstr ""
 #. %4$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Mount bcache %1$s on %2$s (%3$s) at %4$s"
-msgstr ""
+msgstr "ເມົາທ໌ bcache %1$s ໃນ %2$s (%3$s) ທີ່ %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
 #. %2$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Mount file system btrfs on %1$s at %2$s"
-msgstr ""
+msgstr "ເມົາທ໌ລະບົບໄຟລ໌ btrfs ໃນ %1$s ທີ່ %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -2008,7 +2034,7 @@ msgstr ""
 #. %3$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Mount partition %1$s (%2$s) at %3$s"
-msgstr ""
+msgstr "ເມົາທ໌ພາກສ່ວນ %1$s (%2$s) ທີ່ %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. home),
@@ -2016,14 +2042,14 @@ msgstr ""
 #. %3$s is replaced by mount point (e.g. /home)
 #, c-format
 msgid "Mount subvolume %1$s on %2$s at %3$s"
-msgstr ""
+msgstr "ເມົາທ໌ subvolume %1$s ໃນ %2$s ທີ່ %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #, c-format
 msgid "Mounting %1$s at %2$s"
-msgstr ""
+msgstr "ກຳລັງເມົາທ໌ %1$s ທີ່ %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. home),
@@ -2031,202 +2057,202 @@ msgstr ""
 #. %3$s is replaced by mount point (e.g. /home)
 #, c-format
 msgid "Mounting subvolume %1$s on %2$s at %3$s"
-msgstr ""
+msgstr "ກຳລັງເມົາທ໌ subvolume %1$s ໃນ %2$s ທີ່ %3$s"
 
 #. TRANSLATORS: name of object
 msgid "Multipath"
-msgstr ""
+msgstr "Multipath"
 
 #. TRANSLATORS: name of object
 msgid "NFS"
-msgstr ""
+msgstr "NFS"
 
 #. TRANSLATORS: name of object
 msgid "NTFS"
-msgstr ""
+msgstr "NTFS"
 
 #. TRANSLATORS: symbol for "peta" (best keep untranslated)
 msgid "P"
-msgstr ""
+msgstr "P"
 
 #. TRANSLATORS: symbol for "peta bytes" (best keep untranslated)
 msgid "PB"
-msgstr ""
+msgstr "PB"
 
 #. TRANSLATORS: name of partition type
 msgid "PReP Boot Partition"
-msgstr ""
+msgstr "ພາກສ່ວນບູດ PReP"
 
 #. TRANSLATORS: name of object
 msgid "Partition"
-msgstr ""
+msgstr "ພາທິຊັນ"
 
 #. TRANSLATORS: symbol for "pebi bytes" (best keep untranslated)
 msgid "PiB"
-msgstr ""
+msgstr "PiB"
 
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing DASD %s failed"
-msgstr ""
+msgstr "ການກວດສອບ DASD %s ຫຼົ້ມເຫຼວ"
 
 #. TRANSLATORS: progress message
 msgid "Probing DASDs"
-msgstr ""
+msgstr "ກຳລັງກວດສອບ DASDs"
 
 #. TRANSLATORS: error message
 msgid "Probing DASDs failed"
-msgstr ""
+msgstr "ການກວດສອບ DASDs ຫຼົ້ມເຫຼວ"
 
 #. TRANSLATORS: progress message
 msgid "Probing DM RAIDs"
-msgstr ""
+msgstr "ກຳລັງກວດສອບ DM RAIDs"
 
 #. TRANSLATORS: error message
 msgid "Probing DM RAIDs failed"
-msgstr ""
+msgstr "ການກວດສອບ DM RAIDs ຫຼົ້ມເຫຼວ"
 
 #. TRANSLATORS: progress message
 msgid "Probing LUKS"
-msgstr ""
+msgstr "ກຳລັງກວດສອບ LUKS"
 
 #. TRANSLATORS: error message
 msgid "Probing LUKS failed"
-msgstr ""
+msgstr "ການກວດສອບ LUKS ຫຼົ້ມເຫຼວ"
 
 #. TRANSLATORS: progress message
 msgid "Probing LVM"
-msgstr ""
+msgstr "ກຳລັງກວດສອບ LVM"
 
 #. TRANSLATORS: error message
 msgid "Probing LVM failed"
-msgstr ""
+msgstr "ການກວດສອບ LVM ຫຼົ້ມເຫຼວ"
 
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing MD RAID %s failed"
-msgstr ""
+msgstr "ການກວດສອບ MD RAID %s ຫຼົ້ມເຫຼວ"
 
 #. TRANSLATORS: progress message
 msgid "Probing MD RAIDs"
-msgstr ""
+msgstr "ກຳລັງກວດສອບ MD RAIDs"
 
 #. TRANSLATORS: error message
 msgid "Probing MD RAIDs failed"
-msgstr ""
+msgstr "ການກວດສອບ MD RAIDs ຫຼົ້ມເຫຼວ"
 
 #. TRANSLATORS: progress message
 msgid "Probing NFS"
-msgstr ""
+msgstr "ກຳລັງກວດສອບ NFS"
 
 #. TRANSLATORS: error message
 msgid "Probing NFS failed"
-msgstr ""
+msgstr "ການກວດສອບ NFS ຫຼົ້ມເຫຼວ"
 
 #. TRANSLATORS: progress message
 msgid "Probing additional attributes"
-msgstr ""
+msgstr "ກຳລັງກວດສອບຄຸນລັກສະນະເພີ່ມເຕີມ"
 
 #. TRANSLATORS: error message
 msgid "Probing additional attributes failed"
-msgstr ""
+msgstr "ການກວດສອບຄຸນລັກສະນະເພີ່ມເຕີມຫຼົ້ມເຫຼວ"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
-msgstr ""
+msgstr "ກຳລັງກວດສອບ bcache"
 
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing bcache %s failed"
-msgstr ""
+msgstr "ການກວດສອບ bcache %s ຫຼົ້ມເຫຼວ"
 
 #. TRANSLATORS: error message
 msgid "Probing bcache failed"
-msgstr ""
+msgstr "ການກວດສອບ bcache ຫຼົ້ມເຫຼວ"
 
 #. TRANSLATORS: progress message
 msgid "Probing device relationships"
-msgstr ""
+msgstr "ກຳລັງກວດສອບຄວາມສຳພັນຂອງອຸປະກອນ"
 
 #. TRANSLATORS: error message
 msgid "Probing device relationships failed"
-msgstr ""
+msgstr "ການກວດສອບຄວາມສຳພັນຂອງອຸປະກອນຫຼົ້ມເຫຼວ"
 
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing disk %s failed"
-msgstr ""
+msgstr "ການກວດສອບດິສກ໌ %s ຫຼົ້ມເຫຼວ"
 
 #. TRANSLATORS: progress message
 msgid "Probing disks"
-msgstr ""
+msgstr "ກຳລັງກວດສອບດິສກ໌"
 
 #. TRANSLATORS: error message
 msgid "Probing disks failed"
-msgstr ""
+msgstr "ການກວດສອບດິສກ໌ຫຼົ້ມເຫຼວ"
 
 #. TRANSLATORS: error message
 msgid "Probing failed"
-msgstr ""
+msgstr "ການກວດສອບຫຼົ້ມເຫຼວ"
 
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing file system on %s failed"
-msgstr ""
+msgstr "ການກວດສອບລະບົບໄຟລ໌ໃນ %s ຫຼົ້ມເຫຼວ"
 
 #. TRANSLATORS: progress message
 msgid "Probing file systems"
-msgstr ""
+msgstr "ກຳລັງກວດສອບລະບົບໄຟລ໌"
 
 #. TRANSLATORS: error message
 msgid "Probing file systems failed"
-msgstr ""
+msgstr "ການກວດສອບລະບົບໄຟລ໌ຫຼົ້ມເຫຼວ"
 
 #. TRANSLATORS: progress message
 msgid "Probing multipath"
-msgstr ""
+msgstr "ກຳລັງກວດສອບ multipath"
 
 #. TRANSLATORS: error message
 msgid "Probing multipath failed"
-msgstr ""
+msgstr "ການກວດສອບ multipath ຫຼົ້ມເຫຼວ"
 
 #. TRANSLATORS: progress message
 msgid "Probing partitions"
-msgstr ""
+msgstr "ກຳລັງກວດສອບພາກສ່ວນ"
 
 #. TRANSLATORS: error message
 msgid "Probing partitions failed"
-msgstr ""
+msgstr "ການກວດສອບພາກສ່ວນຫຼົ້ມເຫຼວ"
 
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing partitions on %s failed"
-msgstr ""
+msgstr "ການກວດສອບພາກສ່ວນໃນ %s ຫຼົ້ມເຫຼວ"
 
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing stray block device %s failed"
-msgstr ""
+msgstr "ການກວດສອບ stray block device %s ຫຼົ້ມເຫຼວ"
 
 #. TRANSLATORS: progress message
 msgid "Probing stray block devices"
-msgstr ""
+msgstr "ກຳລັງກວດສອບ stray block devices"
 
 #. TRANSLATORS: error message
 msgid "Probing stray block devices failed"
-msgstr ""
+msgstr "ການກວດສອບ stray block devices ຫຼົ້ມເຫຼວ"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Reduce volume group %1$s by missing physical volumes"
-msgstr ""
+msgstr "ຫຼຸດກຸ່ມວໍລຸມ %1$s ໂດຍການເອົາ physical volumes ທີ່ຫາຍໄປອອກ"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Reducing volume group %1$s by missing physical volumes"
-msgstr ""
+msgstr "ກຳລັງຫຼຸດກຸ່ມວໍລຸມ %1$s ໂດຍການເອົາ physical volumes ທີ່ຫາຍໄປອອກ"
 
 #. TRANSLATORS: name of object
 msgid "Reiserfs"
@@ -2240,26 +2266,26 @@ msgstr ""
 #. %2$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Remove %1$s from %2$s"
-msgstr ""
+msgstr "ລຶບ %1$s ອອກຈາກ %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
 #, c-format
 msgid "Remove %1$s from /etc/mdadm.conf"
-msgstr ""
+msgstr "ລຶບ %1$s ອອກຈາກ /etc/mdadm.conf"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Remove encryption layer device on %1$s from /etc/crypttab"
-msgstr ""
+msgstr "ລຶບຊັ້ນອຸປະກອນການເຂົ້າລະຫັດໃນ %1$s ອອກຈາກ /etc/crypttab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Remove mount point %1$s of %2$s from /etc/fstab"
-msgstr ""
+msgstr "ລຶບຈຸດເມົາທ໌ %1$s ຂອງ %2$s ອອກຈາກ /etc/fstab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -2267,7 +2293,7 @@ msgstr ""
 #. %3$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Remove mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
-msgstr ""
+msgstr "ລຶບຈຸດເມົາທ໌ %1$s ຂອງ subvolume %2$s ໃນ %3$s ອອກຈາກ /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -2277,26 +2303,26 @@ msgstr ""
 #. %2$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Removing %1$s from %2$s"
-msgstr ""
+msgstr "ກຳລັງລຶບ %1$s ອອກຈາກ %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
 #, c-format
 msgid "Removing %1$s from /etc/mdadm.conf"
-msgstr ""
+msgstr "ກຳລັງລຶບ %1$s ອອກຈາກ /etc/mdadm.conf"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Removing encryption layer device on %1$s from /etc/crypttab"
-msgstr ""
+msgstr "ກຳລັງລຶບຊັ້ນອຸປະກອນການເຂົ້າລະຫັດໃນ %1$s ອອກຈາກ /etc/crypttab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Removing mount point %1$s of %2$s from /etc/fstab"
-msgstr ""
+msgstr "ກຳລັງລຶບຈຸດເມົາທ໌ %1$s ຂອງ %2$s ອອກຈາກ /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -2304,7 +2330,7 @@ msgstr ""
 #. %3$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
-msgstr ""
+msgstr "ກຳລັງລຶບຈຸດເມົາທ໌ %1$s ຂອງ subvolume %2$s ໃນ %3$s ອອກຈາກ /etc/fstab"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the old logical volume name (e.g. foo),
@@ -2318,7 +2344,7 @@ msgstr ""
 #. %2$s is replaced by device name (e.g. /dev/sda5)
 #, c-format
 msgid "Rename encryption layer device from %1$s to %2$s in /etc/crypttab"
-msgstr ""
+msgstr "ປ່ຽນຊື່ຊັ້ນອຸປະກອນການເຂົ້າລະຫັດຈາກ %1$s ເປັນ %2$s ໃນ /etc/crypttab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -2326,14 +2352,14 @@ msgstr ""
 #. %3$s is replaced by device name (e.g. /dev/sda5)
 #, c-format
 msgid "Rename mount point %1$s from %2$s to %3$s in /etc/fstab"
-msgstr ""
+msgstr "ປ່ຽນຊື່ຈຸດເມົາທ໌ %1$s ຈາກ %2$s ເປັນ %3$s ໃນ /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
 #. %2$s is replaced by device name (e.g. /dev/sda5)
 #, c-format
 msgid "Renaming encryption layer device from %1$s to %2$s in /etc/crypttab"
-msgstr ""
+msgstr "ກຳລັງປ່ຽນຊື່ຊັ້ນອຸປະກອນການເຂົ້າລະຫັດຈາກ %1$s ເປັນ %2$s ໃນ /etc/crypttab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -2341,19 +2367,19 @@ msgstr ""
 #. %3$s is replaced by device name (e.g. /dev/sda5)
 #, c-format
 msgid "Renaming mount point %1$s from %2$s to %3$s in /etc/fstab"
-msgstr ""
+msgstr "ກຳລັງປ່ຽນຊື່ຈຸດເມົາທ໌ %1$s ຈາກ %2$s ເປັນ %3$s ໃນ /etc/fstab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Repair GPT on %1$s"
-msgstr ""
+msgstr "ສ້ອມແຊມ GPT ໃນ %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Repairing GPT on %1$s"
-msgstr ""
+msgstr "ກຳລັງສ້ອມແຊມ GPT ໃນ %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -2366,7 +2392,7 @@ msgstr ""
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #, c-format
 msgid "Set boot flag of partition %1$s"
-msgstr ""
+msgstr "ຕັ້ງຄ່າ boot flag ໃຫ້ພາກສ່ວນ %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by cache mode (e.g. writeback),
@@ -2381,14 +2407,14 @@ msgstr ""
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Set default subvolume to subvolume %1$s on %2$s"
-msgstr ""
+msgstr "ຕັ້ງຄ່າ subvolume ເລີ່ມຕົ້ນເປັນ %1$s ໃນ %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM)
 #, c-format
 msgid "Set id of partition %1$s to %2$s"
-msgstr ""
+msgstr "ຕັ້ງຄ່າໄອດີ ຂອງພາກສ່ວນ %1$s ເປັນ %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -2396,14 +2422,14 @@ msgstr ""
 #. 0x%3$02X is replaced by partition id (e.g. 0x8E)
 #, c-format
 msgid "Set id of partition %1$s to %2$s (0x%3$02X)"
-msgstr ""
+msgstr "ຕັ້ງຄ່າໄອດີ ຂອງພາກສ່ວນ %1$s ເປັນ %2$s (0x%3$02X)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. 0x%2$02X is replaced by partition id (e.g. 0x8E)
 #, c-format
 msgid "Set id of partition %1$s to 0x%2$02X"
-msgstr ""
+msgstr "ຕັ້ງຄ່າໄອດີ ຂອງພາກສ່ວນ %1$s ເປັນ 0x%2$02X"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -2416,20 +2442,20 @@ msgstr ""
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #, c-format
 msgid "Set legacy boot flag of partition %1$s"
-msgstr ""
+msgstr "ຕັ້ງຄ່າ legacy boot flag ໃຫ້ພາກສ່ວນ %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Set option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr ""
+msgstr "ຕັ້ງຄ່າຕົວເລືອກ 'no copy on write' ສຳລັບ subvolume %1$s ໃນ %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Set protective MBR boot flag of GPT on %1$s"
-msgstr ""
+msgstr "ຕັ້ງຄ່າ protective MBR boot flag ຂອງ GPT ໃນ %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -2448,7 +2474,7 @@ msgstr ""
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #, c-format
 msgid "Setting boot flag of partition %1$s"
-msgstr ""
+msgstr "ກຳລັງຕັ້ງຄ່າ boot flag ໃຫ້ພາກສ່ວນ %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by cache mode (e.g. writeback),
@@ -2463,14 +2489,14 @@ msgstr ""
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Setting default subvolume to subvolume %1$s on %2$s"
-msgstr ""
+msgstr "ກຳລັງຕັ້ງຄ່າ subvolume ເລີ່ມຕົ້ນເປັນ %1$s ໃນ %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM)
 #, c-format
 msgid "Setting id of partition %1$s to %2$s"
-msgstr ""
+msgstr "ກຳລັງຕັ້ງຄ່າໄອດີ ຂອງພາກສ່ວນ %1$s ເປັນ %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -2478,14 +2504,14 @@ msgstr ""
 #. 0x%3$02X is replaced by partition id (e.g. 0x8E)
 #, c-format
 msgid "Setting id of partition %1$s to %2$s (0x%3$02X)"
-msgstr ""
+msgstr "ກຳລັງຕັ້ງຄ່າໄອດີ ຂອງພາກສ່ວນ %1$s ເປັນ %2$s (0x%3$02X)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. 0x%2$02X is replaced by partition id (e.g. 0x8E)
 #, c-format
 msgid "Setting id of partition %1$s to 0x%2$02X"
-msgstr ""
+msgstr "ກຳລັງຕັ້ງຄ່າໄອດີ ຂອງພາກສ່ວນ %1$s ເປັນ 0x%2$02X"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -2498,20 +2524,20 @@ msgstr ""
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #, c-format
 msgid "Setting legacy boot flag of partition %1$s"
-msgstr ""
+msgstr "ກຳລັງຕັ້ງຄ່າ legacy boot flag ໃຫ້ພາກສ່ວນ %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Setting option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr ""
+msgstr "ກຳລັງຕັ້ງຄ່າຕົວເລືອກ 'no copy on write' ສຳລັບ subvolume %1$s ໃນ %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Setting protective MBR boot flag of GPT on %1$s"
-msgstr ""
+msgstr "ກຳລັງຕັ້ງຄ່າ protective MBR boot flag ຂອງ GPT ໃນ %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -2526,7 +2552,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrink %1$s on %2$s from %3$s to %4$s"
-msgstr ""
+msgstr "ຫຍໍ້ %1$s ໃນ %2$s ຈາກ %3$s ຫາ %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -2534,7 +2560,7 @@ msgstr ""
 #. %3$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrink encryption layer device on %1$s from %2$s to %3$s"
-msgstr ""
+msgstr "ຫຍໍ້ຊັ້ນອຸປະກອນການເຂົ້າລະຫັດໃນ %1$s ຈາກ %2$s ຫາ %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2543,7 +2569,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrink logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
+msgstr "ຫຍໍ້ logical volume %1$s ໃນກຸ່ມວໍລຸມ %2$s ຈາກ %3$s ຫາ %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -2551,7 +2577,7 @@ msgstr ""
 #. %3$s is replaced by new size (e.g. 1 GiB)
 #, c-format
 msgid "Shrink partition %1$s from %2$s to %3$s"
-msgstr ""
+msgstr "ຫຍໍ້ພາກສ່ວນ %1$s ຈາກ %2$s ຫາ %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
@@ -2559,7 +2585,7 @@ msgstr ""
 #. %3$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrink physical volume on %1$s from %2$s to %3$s"
-msgstr ""
+msgstr "ຫຍໍ້ physical volume ໃນ %1$s ຈາກ %2$s ຫາ %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2568,7 +2594,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrink thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
+msgstr "ຫຍໍ້ thin logical volume %1$s ໃນກຸ່ມວໍລຸມ %2$s ຈາກ %3$s ຫາ %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2578,7 +2604,7 @@ msgstr ""
 #, c-format
 msgid ""
 "Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
+msgstr "ຫຍໍ້ thin pool logical volume %1$s ໃນກຸ່ມວໍລຸມ %2$s ຈາກ %3$s ຫາ %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -2587,7 +2613,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrinking %1$s on %2$s from %3$s to %4$s"
-msgstr ""
+msgstr "ກຳລັງຫຍໍ້ %1$s ໃນ %2$s ຈາກ %3$s ຫາ %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -2595,7 +2621,7 @@ msgstr ""
 #. %3$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrinking encryption layer device on %1$s from %2$s to %3$s"
-msgstr ""
+msgstr "ກຳລັງຫຍໍ້ຊັ້ນອຸປະກອນການເຂົ້າລະຫັດໃນ %1$s ຈາກ %2$s ຫາ %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2604,7 +2630,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrinking logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
+msgstr "ກຳລັງຫຍໍ້ logical volume %1$s ໃນກຸ່ມວໍລຸມ %2$s ຈາກ %3$s ຫາ %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -2612,7 +2638,7 @@ msgstr ""
 #. %3$s is replaced by new size (e.g. 1 GiB)
 #, c-format
 msgid "Shrinking partition %1$s from %2$s to %3$s"
-msgstr ""
+msgstr "ກຳລັງຫຍໍ້ພາກສ່ວນ %1$s ຈາກ %2$s ຫາ %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
@@ -2620,7 +2646,7 @@ msgstr ""
 #. %3$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrinking physical volume on %1$s from %2$s to %3$s"
-msgstr ""
+msgstr "ກຳລັງຫຍໍ້ physical volume ໃນ %1$s ຈາກ %2$s ຫາ %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2630,7 +2656,7 @@ msgstr ""
 #, c-format
 msgid ""
 "Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
+msgstr "ກຳລັງຫຍໍ້ thin logical volume %1$s ໃນກຸ່ມວໍລຸມ %2$s ຈາກ %3$s ຫາ %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2642,51 +2668,52 @@ msgid ""
 "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to "
 "%4$s"
 msgstr ""
+"ກຳລັງຫຍໍ້ thin pool logical volume %1$s ໃນກຸ່ມວໍລຸມ %2$s ຈາກ %3$s ຫາ %4$s"
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"
-msgstr ""
+msgstr "Stray Block Device"
 
 #. TRANSLATORS: name of object
 msgid "Swap"
-msgstr ""
+msgstr "Swap"
 
 #. TRANSLATORS: symbol for "tera" (best keep untranslated)
 msgid "T"
-msgstr ""
+msgstr "T"
 
 #. TRANSLATORS: symbol for "tera bytes" (best keep untranslated)
 msgid "TB"
-msgstr ""
+msgstr "TB"
 
 #. TRANSLATORS: symbol for "tebi bytes" (best keep untranslated)
 msgid "TiB"
-msgstr ""
+msgstr "TiB"
 
 #. TRANSLATORS: name of object
 msgid "UDF"
-msgstr ""
+msgstr "UDF"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #, c-format
 msgid "Unmount %1$s at %2$s"
-msgstr ""
+msgstr "ຍົກເລີກການເມົາທ໌ %1$s ທີ່ %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the nfs name (e.g. 99.99.00.00:path),
 #. %2$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Unmount NFS %1$s at %2$s"
-msgstr ""
+msgstr "ຍົກເລີກການເມົາທ໌ NFS %1$s ທີ່ %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
 #. %2$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Unmount file system btrfs on %1$s at %2$s"
-msgstr ""
+msgstr "ຍົກເລີກການເມົາທ໌ລະບົບໄຟລ໌ btrfs ໃນ %1$s ທີ່ %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. home),
@@ -2694,14 +2721,14 @@ msgstr ""
 #. %3$s is replaced by mount point (e.g. /home)
 #, c-format
 msgid "Unmount subvolume %1$s on %2$s at %3$s"
-msgstr ""
+msgstr "ຍົກເລີກການເມົາທ໌ subvolume %1$s ໃນ %2$s ທີ່ %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #, c-format
 msgid "Unmounting %1$s at %2$s"
-msgstr ""
+msgstr "ກຳລັງຍົກເລີກການເມົາທ໌ %1$s ທີ່ %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. home),
@@ -2709,42 +2736,42 @@ msgstr ""
 #. %3$s is replaced by mount point (e.g. /home)
 #, c-format
 msgid "Unmounting subvolume %1$s on %2$s at %3$s"
-msgstr ""
+msgstr "ກຳລັງຍົກເລີກການເມົາທ໌ subvolume %1$s ໃນ %2$s ທີ່ %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Update mount point %1$s of %2$s in /etc/fstab"
-msgstr ""
+msgstr "ອັບເດດຈຸດເມົາທ໌ %1$s ຂອງ %2$s ໃນ /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Updating mount point %1$s of %2$s in /etc/fstab"
-msgstr ""
+msgstr "ກຳລັງອັບເດດຈຸດເມົາທ໌ %1$s ຂອງ %2$s ໃນ /etc/fstab"
 
 #. TRANSLATORS: name of object
 msgid "VFAT"
-msgstr ""
+msgstr "VFAT"
 
 #. TRANSLATORS: name of partition type
 msgid "Windows Data Partition"
-msgstr ""
+msgstr "ພາກສ່ວນຂໍ້ມູນ Windows"
 
 #. TRANSLATORS: name of object
 msgid "XFS"
-msgstr ""
+msgstr "XFS"
 
 #. TRANSLATORS: name of a filesystem object in the storage devicegraph
 msgid "exFAT"
-msgstr ""
+msgstr "exFAT"
 
 #. TRANSLATORS: symbol for "kilo" (best keep untranslated)
 msgid "k"
-msgstr ""
+msgstr "k"
 
 #. TRANSLATORS: symbol for "kilo bytes" (best keep untranslated)
 msgid "kB"
-msgstr ""
+msgstr "kB"
