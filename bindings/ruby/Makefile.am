@@ -30,7 +30,7 @@ storage_la_DEPENDENCIES =				\
 	${top_builddir}/storage/libstorage-ng.la
 
 storage_wrap.cxx: storage-ruby.i $(DEPENDENCIES)
-	swig -o storage_wrap.cxx -c++ -ruby -autorename ${AM_CPPFLAGS} storage-ruby.i
+	swig -o storage_wrap.cxx -c++ -ruby ${AM_CPPFLAGS} storage-ruby.i
 
 CLEANFILES = storage.so storage_wrap.cxx storage_wrap.h
 
