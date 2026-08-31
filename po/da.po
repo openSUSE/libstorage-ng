@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-29 14:48+0100\n"
-"PO-Revision-Date: 2026-06-10 16:12+0000\n"
+"PO-Revision-Date: 2026-08-31 23:13+0000\n"
 "Last-Translator: Peter Andreasen <noesgaard@gmail.com>\n"
 "Language-Team: Danish <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/da/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 msgid ""
 "\n"
@@ -35,9 +35,9 @@ msgstr "%1$d flere"
 #. TRANSLATORS:
 #. %1$s is replaced with the device name (e.g. /dev/sdc1),
 #. %2$s is replaced with the size (e.g. 60.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "%1$s (%2$s)"
-msgstr "Udvid %1$s til %2$s"
+msgstr "%1$s (%2$s)"
 
 #. TRANSLATORS: appended after list of value to indicate that some
 #. values have been omitted
@@ -3419,8 +3419,9 @@ msgid "kB"
 msgstr "kB"
 
 #. TRANSLATORS: name of object
+#, fuzzy
 msgid "tmpfs"
-msgstr ""
+msgstr "tmpfs"
 
 #, fuzzy, c-format
 #~ msgid "Rename %1$s to %2$s"
