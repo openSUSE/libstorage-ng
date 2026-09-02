@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -35,6 +35,7 @@
 #include <ostream>
 
 #include "storage/Utils/Logger.h"
+#include "storage/Utils/Swig.h"
 
 
 namespace storage
@@ -82,7 +83,9 @@ namespace storage
 	/**
 	 * Returns the location in normalized string format.
 	 **/
-	std::string asString() const;
+	std::string as_string() const;
+
+	std::string asString() const ST_DEPRECATED;
 
 	/**
 	 * Stream output
@@ -145,7 +148,7 @@ namespace storage
 	/**
 	 * Return the message string provided to the constructor.
 	 * Note: This is not necessarily the complete error message.
-	 * The whole error message is provided by asString or dumpOn.
+	 * The whole error message is provided by as_string or dumpOn.
 	 **/
 	const std::string& msg() const { return _msg; }
 
@@ -162,7 +165,9 @@ namespace storage
 	/**
 	 * Error message provided by dumpOn as string.
 	 **/
-	std::string asString() const;
+	std::string as_string() const;
+
+	std::string asString() const ST_DEPRECATED;
 
 	/**
 	 * Make a string from errno_r.
@@ -307,17 +312,23 @@ namespace storage
 	/**
 	 * Return the offending index value.
 	 **/
-	int invalidIndex() const	{ return _invalidIndex; }
+	int invalid_index() const { return _invalidIndex; }
+
+	int invalidIndex() const ST_DEPRECATED { return _invalidIndex; }
 
 	/**
 	 * Return the valid minimum index.
 	 **/
-	int validMin() const	{ return _validMin; }
+	int valid_min() const { return _validMin; }
+
+	int validMin() const ST_DEPRECATED { return _validMin; }
 
 	/**
 	 * Return the valid maximum index.
 	 **/
-	int validMax() const	{ return _validMax; }
+	int valid_max() const { return _validMax; }
+
+	int validMax() const ST_DEPRECATED { return _validMax; }
 
     protected:
 
