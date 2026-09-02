@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -35,6 +35,7 @@
 #include <ostream>
 
 #include "storage/Utils/Logger.h"
+#include "storage/Utils/Swig.h"
 
 
 namespace storage
@@ -47,6 +48,7 @@ namespace storage
     class CodeLocation
     {
     public:
+
 	/**
 	 * Constructor.
 	 * Commonly called using the ST_EXCEPTION_CODE_LOCATION macro.
@@ -82,7 +84,9 @@ namespace storage
 	/**
 	 * Returns the location in normalized string format.
 	 **/
-	std::string asString() const;
+	std::string as_string() const;
+
+	std::string asString() const ST_DEPRECATED;
 
 	/**
 	 * Stream output
@@ -90,11 +94,12 @@ namespace storage
 	friend std::ostream & operator<<( std::ostream & str, const CodeLocation & obj );
 
     private:
+
 	std::string	_file;
 	std::string	_func;
 	int		_line;
 
-    }; // CodeLocation
+    };
 
 
     /**
@@ -113,6 +118,7 @@ namespace storage
     class Exception : public std::exception
     {
     public:
+
 	/**
 	 * Default constructor.
 	 * Use ST_THROW to throw exceptions.
@@ -145,7 +151,7 @@ namespace storage
 	/**
 	 * Return the message string provided to the constructor.
 	 * Note: This is not necessarily the complete error message.
-	 * The whole error message is provided by asString or dumpOn.
+	 * The whole error message is provided by as_string or dumpOn.
 	 **/
 	const std::string& msg() const { return _msg; }
 
@@ -162,7 +168,9 @@ namespace storage
 	/**
 	 * Error message provided by dumpOn as string.
 	 **/
-	std::string asString() const;
+	std::string as_string() const;
+
+	std::string asString() const ST_DEPRECATED;
 
 	/**
 	 * Make a string from errno_r.
@@ -196,10 +204,9 @@ namespace storage
 	 **/
 	virtual std::ostream& dumpOn(std::ostream& str) const;
 
-
     private:
-	friend std::ostream& operator<<(std::ostream& str, const Exception& obj);
 
+	friend std::ostream& operator<<(std::ostream& str, const Exception& obj);
 
 	mutable CodeLocation	_where;
 	std::string		_msg;
@@ -211,7 +218,7 @@ namespace storage
 	 **/
 	std::ostream & dumpError( std::ostream & str ) const;
 
-    }; // class Exception
+    };
 
 
     /**
@@ -227,12 +234,14 @@ namespace storage
     class NullPointerException : public Exception
     {
     public:
+
 	NullPointerException()
 	    : Exception("Null pointer", LogLevel::ERROR)
 	    {}
 
 	virtual ~NullPointerException() noexcept
 	    {}
+
     };
 
 
@@ -243,8 +252,10 @@ namespace storage
     class UnsupportedException : public Exception
     {
     public:
+
 	UnsupportedException(const std::string& msg) : Exception(msg) {}
 	virtual ~UnsupportedException() noexcept {}
+
     };
 
 
@@ -255,8 +266,10 @@ namespace storage
     class LogicException : public Exception
     {
     public:
+
 	LogicException(const std::string& msg) : Exception(msg) {}
 	virtual ~LogicException() noexcept {}
+
     };
 
 
@@ -267,6 +280,7 @@ namespace storage
     class OutOfMemoryException : public Exception
     {
     public:
+
 	OutOfMemoryException()
 	    : Exception("Out of memory", LogLevel::ERROR)
 	    {}
@@ -283,6 +297,7 @@ namespace storage
     class IndexOutOfRangeException : public Exception
     {
     public:
+
 	/**
 	 * Constructor.
 	 *
@@ -307,17 +322,23 @@ namespace storage
 	/**
 	 * Return the offending index value.
 	 **/
-	int invalidIndex() const	{ return _invalidIndex; }
+	int invalid_index() const { return _invalidIndex; }
+
+	int invalidIndex() const ST_DEPRECATED { return _invalidIndex; }
 
 	/**
 	 * Return the valid minimum index.
 	 **/
-	int validMin() const	{ return _validMin; }
+	int valid_min() const { return _validMin; }
+
+	int validMin() const ST_DEPRECATED { return _validMin; }
 
 	/**
 	 * Return the valid maximum index.
 	 **/
-	int validMax() const	{ return _validMax; }
+	int valid_max() const { return _validMax; }
+
+	int validMax() const ST_DEPRECATED { return _validMax; }
 
     protected:
 
@@ -342,6 +363,7 @@ namespace storage
 	int _invalidIndex;
 	int _validMin;
 	int _validMax;
+
     };
 
 
@@ -431,6 +453,7 @@ namespace storage
 
 	std::string _seen;
 	std::string _expected;
+
     };
 
 

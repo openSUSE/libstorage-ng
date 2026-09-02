@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
+ * Copyright (c) 2026 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -25,8 +26,8 @@
  */
 
 
-#include <stdio.h>
-#include <string.h>
+#include <cstdio>
+#include <cstring>
 #include <sstream>
 
 #include "storage/Utils/Exception.h"
@@ -37,8 +38,8 @@
 namespace storage
 {
 
-    std::string
-    CodeLocation::asString() const
+    string
+    CodeLocation::as_string() const
     {
 	// Format as "MySource.cc(myFunc):177"
 	std::string str( _file );
@@ -48,10 +49,17 @@ namespace storage
     }
 
 
+    string
+    CodeLocation::asString() const
+    {
+	return as_string();
+    }
+
+
     std::ostream &
     operator<<( std::ostream & str, const CodeLocation & obj )
     {
-	return str << obj.asString();
+	return str << obj.as_string();
     }
 
 
@@ -75,12 +83,19 @@ namespace storage
     }
 
 
-    std::string
-    Exception::asString() const
+    string
+    Exception::as_string() const
     {
 	std::ostringstream str;
 	dumpOn( str );
 	return str.str();
+    }
+
+
+    string
+    Exception::asString() const
+    {
+	return as_string();
     }
 
 
@@ -128,7 +143,7 @@ namespace storage
 		  location.file().c_str(),
 		  location.line(),
 		  location.func().c_str(),
-		  prefix << " " << exception.asString() );
+		  prefix << " " << exception.as_string() );
     }
 
 }
