@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-29 14:48+0100\n"
-"PO-Revision-Date: 2026-08-31 23:13+0000\n"
+"PO-Revision-Date: 2026-09-02 10:13+0000\n"
 "Last-Translator: Peter Andreasen <noesgaard@gmail.com>\n"
 "Language-Team: Danish <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/da/>\n"
@@ -50,9 +50,9 @@ msgstr "%1$s og %2$d flere"
 #. TRANSLATORS: used to construct list of values
 #. %1$s is replaced by first value
 #. %2$s is replaced by second value
-#, fuzzy, c-format
+#, c-format
 msgid "%1$s and %2$s"
-msgstr "Udvid %1$s til %2$s"
+msgstr "%1$s og %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -65,30 +65,30 @@ msgstr "%1$s er mellemlagret af %2$s"
 #. TRANSLATORS: used to construct list of values
 #. %1$s is replaced by first value
 #. %2$s is replaced by second value
-#, fuzzy, c-format
+#, c-format
 msgid "%1$s, %2$s"
-msgstr "Udvid %1$s til %2$s"
+msgstr "%1$s, %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Activate encryption layer device on %1$s"
-msgstr "Sæt krypteret løkkeenhed op på %1$s"
+msgstr "Aktiver krypteringslag på %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the device name (e.g. /dev/loop0),
 #. %2$s is replaced by the size (e.g. 20.00 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Activate hard disk %1$s (%2$s)"
-msgstr "Opret swap-diskområde %1$s (%2$s)"
+msgstr "Aktiver harddisk %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activate logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Opret logisk diskområde %1$s (%2$s) til %4$s med %3$s"
+msgstr "Opret logisk volume %1$s (%2$s) på volume group %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
