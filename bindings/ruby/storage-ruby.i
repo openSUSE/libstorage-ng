@@ -8,6 +8,8 @@
 
 %rename("empty?") "empty";
 
+%rename("logger=") storage::set_ruby_logger;
+
 %rename("%(regex:/^(get_)(.*)/\\2/)s") "";
 %rename("%(regex:/^(set_)(.*)/\\2=/)s") "";
 %rename("%(regex:/^(is_)(.*)/\\2?/)s") "";
