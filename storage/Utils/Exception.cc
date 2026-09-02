@@ -26,8 +26,8 @@
  */
 
 
-#include <stdio.h>
-#include <string.h>
+#include <cstdio>
+#include <cstring>
 #include <sstream>
 
 #include "storage/Utils/Exception.h"
