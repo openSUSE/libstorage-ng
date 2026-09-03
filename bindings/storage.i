@@ -160,41 +160,6 @@ use_ostream(storage::PartitionSlot);
 
 %include "../../storage/Utils/Swig.h"
 
-#ifdef SWIGRUBY
-%inline %{
-namespace storage {
-class RubyLogger : public storage::Logger
-{
-private:
-    storage::Logger* _real_logger;
-public:
-    RubyLogger(storage::Logger* real_logger) : _real_logger(real_logger) {}
-    virtual ~RubyLogger() {}
-
-    virtual void write(storage::LogLevel log_level, const std::string& component, const std::string& file,
-                       int line, const std::string& function, const std::string& content) override
-    {
-        if (rb_during_gc()) {
-            return;
-        }
-        _real_logger->write(log_level, component, file, line, function, content);
-    }
-};
-
-void set_ruby_logger(storage::Logger* logger) {
-    static RubyLogger* wrapper = nullptr;
-    if (wrapper) {
-        delete wrapper;
-    }
-    wrapper = new RubyLogger(logger);
-    storage::set_logger(wrapper);
-}
-}
-%}
-
-%ignore storage::set_logger;
-#endif
-
 %include "../../storage/Utils/Logger.h"
 %include "../../storage/Utils/Exception.h"
 %include "../../storage/Utils/HumanString.h"
