@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-29 14:48+0100\n"
-"PO-Revision-Date: 2026-09-20 16:13+0000\n"
+"PO-Revision-Date: 2026-09-25 12:13+0000\n"
 "Last-Translator: Peter Andreasen <noesgaard@gmail.com>\n"
 "Language-Team: Danish <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/da/>\n"
@@ -151,19 +151,17 @@ msgstr "Aktiverer harddisk %1$s (%2$s)"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activating logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Formaterer logisk diskområde %1$s (%2$s) med %3$s"
+msgstr "Aktiverer logisk diskområde %1$s (%2$s) på gruppen %3$s"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Activating multipath"
-msgstr "Opret multipath-partition %1$s (%2$s)"
+msgstr "Aktiverer multipath"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Activating multipath failed"
-msgstr "Opret multipath-partition %1$s (%2$s)"
+msgstr "Kunne ikke aktivere multipath"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
