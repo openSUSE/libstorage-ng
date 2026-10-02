@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-29 14:48+0100\n"
+"POT-Creation-Date: 2026-09-10 09:59+0200\n"
 "PO-Revision-Date: 2026-09-25 12:13+0000\n"
 "Last-Translator: Peter Andreasen <noesgaard@gmail.com>\n"
 "Language-Team: Danish <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -231,7 +231,8 @@ msgstr "Tilføj indgang for monteringspunktet %1$s til %2$s"
 #. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Add mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
-msgstr "Tilføj monteringspunktet %1$s fra subvolume %2$s på %3$s til /etc/fstab"
+msgstr ""
+"Tilføj monteringspunktet %1$s fra subvolume %2$s på %3$s til /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/sdc1),
@@ -1889,6 +1890,10 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Ext4"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Extended Boot Loader"
 msgstr ""
 
 #. TRANSLATORS: name of partition type

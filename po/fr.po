@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-29 14:48+0100\n"
+"POT-Creation-Date: 2026-09-10 09:59+0200\n"
 "PO-Revision-Date: 2026-05-18 18:12+0000\n"
 "Last-Translator: Sophie Leroy <sophie@stoquart.com>\n"
 "Language-Team: French <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -2118,6 +2118,10 @@ msgstr "Ext3"
 #. TRANSLATORS: name of object
 msgid "Ext4"
 msgstr "Ext4"
+
+#. TRANSLATORS: name of partition type
+msgid "Extended Boot Loader"
+msgstr ""
 
 # TLABEL packages_2002_01_04_0147__160
 #. TRANSLATORS: name of partition type

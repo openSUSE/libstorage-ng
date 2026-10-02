@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Greek (libstorage)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-29 14:48+0100\n"
+"POT-Creation-Date: 2026-09-10 09:59+0200\n"
 "PO-Revision-Date: 2025-07-22 15:00+0000\n"
 "Last-Translator: Julia Faltenbacher <julia.faltenbacher@suse.com>\n"
 "Language-Team: Greek <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -1878,6 +1878,10 @@ msgstr "Ext3"
 #. TRANSLATORS: name of object
 msgid "Ext4"
 msgstr "Ext4"
+
+#. TRANSLATORS: name of partition type
+msgid "Extended Boot Loader"
+msgstr ""
 
 #. TRANSLATORS: name of partition type
 #, fuzzy
