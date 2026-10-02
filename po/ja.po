@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-10 09:59+0200\n"
-"PO-Revision-Date: 2026-02-17 03:04+0000\n"
+"PO-Revision-Date: 2026-10-02 10:13+0000\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
 "Language-Team: Japanese <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/ja/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.16\n"
+"X-Generator: Weblate 2026.10\n"
 
 msgid ""
 "\n"
@@ -1959,7 +1959,7 @@ msgstr "Ext4"
 
 #. TRANSLATORS: name of partition type
 msgid "Extended Boot Loader"
-msgstr ""
+msgstr "拡張ブートローダ"
 
 #. TRANSLATORS: name of partition type
 msgid "Extended Partition"
