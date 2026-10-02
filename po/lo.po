@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-29 14:48+0100\n"
+"POT-Creation-Date: 2026-09-10 09:59+0200\n"
 "PO-Revision-Date: 2026-08-22 20:13+0000\n"
 "Last-Translator: Bone NI <bounkirdni@gmail.com>\n"
 "Language-Team: Lao <https://l10n.opensuse.org/projects/libstorage/ng-master/"
@@ -230,8 +230,7 @@ msgstr "ເພີ່ມຈຸດເມົາທ໌ (mount point) %1$s ຂອງ 
 #. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Add mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
-msgstr ""
-"ເພີ່ມຈຸດເມົາທ໌ %1$s ຂອງຊັບວໍລຸມ (subvolume) %2$s ຢູ່ %3$s ເຂົ້າໃນ /etc/fstab"
+msgstr "ເພີ່ມຈຸດເມົາທ໌ %1$s ຂອງຊັບວໍລຸມ (subvolume) %2$s ຢູ່ %3$s ເຂົ້າໃນ /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/sdc1),
@@ -563,8 +562,7 @@ msgstr "ສ້າງ LVM logical volume %1$s (%2$s) ໃນກຸ່ມວໍລ�
 #, c-format
 msgid ""
 "Create LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr ""
-"ສ້າງ LVM logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s ສຳລັບ %4$s ດ້ວຍ %5$s"
+msgstr "ສ້າງ LVM logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s ສຳລັບ %4$s ດ້ວຍ %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -760,8 +758,7 @@ msgstr ""
 #, c-format
 msgid ""
 "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
-msgstr ""
-"ສ້າງ LVM logical volume ທີ່ເຂົ້າລະຫັດ %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s ສຳລັບ swap"
+msgstr "ສ້າງ LVM logical volume ທີ່ເຂົ້າລະຫັດ %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s ສຳລັບ swap"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -772,8 +769,7 @@ msgstr ""
 msgid ""
 "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s with "
 "%4$s"
-msgstr ""
-"ສ້າງ LVM logical volume ທີ່ເຂົ້າລະຫັດ %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s ດ້ວຍ %4$s"
+msgstr "ສ້າງ LVM logical volume ທີ່ເຂົ້າລະຫັດ %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s ດ້ວຍ %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -1833,8 +1829,7 @@ msgstr "ເຂົ້າລະຫັດ LVM logical volume %1$s (%2$s) ໃນກ�
 msgid ""
 "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with "
 "%5$s"
-msgstr ""
-"ເຂົ້າລະຫັດ LVM logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s ສຳລັບ %4$s ດ້ວຍ %5$s"
+msgstr "ເຂົ້າລະຫັດ LVM logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s ສຳລັບ %4$s ດ້ວຍ %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -1917,6 +1912,10 @@ msgid "Ext4"
 msgstr "Ext4"
 
 #. TRANSLATORS: name of partition type
+msgid "Extended Boot Loader"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
 msgid "Extended Partition"
 msgstr "ພາກສ່ວນເສີມ (Extended Partition)"
 
@@ -1957,8 +1956,7 @@ msgstr "ຟໍແມັດ %1$s %2$s (%3$s) ດ້ວຍ %4$s"
 #, c-format
 msgid ""
 "Format LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr ""
-"ຟໍແມັດ LVM logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s ສຳລັບ %4$s ດ້ວຍ %5$s"
+msgstr "ຟໍແມັດ LVM logical volume %1$s (%2$s) ໃນກຸ່ມວໍລຸມ %3$s ສຳລັບ %4$s ດ້ວຍ %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -2177,8 +2175,7 @@ msgstr "ກຳລັງຂະຫຍາຍ thin logical volume %1$s ໃນກຸ�
 #, c-format
 msgid ""
 "Growing thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"ກຳລັງຂະຫຍາຍ thin pool logical volume %1$s ໃນກຸ່ມວໍລຸມ %2$s ຈາກ %3$s ຫາ %4$s"
+msgstr "ກຳລັງຂະຫຍາຍ thin pool logical volume %1$s ໃນກຸ່ມວໍລຸມ %2$s ຈາກ %3$s ຫາ %4$s"
 
 #. TRANSLATORS: name of object
 msgid "ISO 9660"
@@ -3263,8 +3260,7 @@ msgstr "ກຳລັງຫຍໍ້ thin logical volume %1$s ໃນກຸ່ມ�
 msgid ""
 "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to "
 "%4$s"
-msgstr ""
-"ກຳລັງຫຍໍ້ thin pool logical volume %1$s ໃນກຸ່ມວໍລຸມ %2$s ຈາກ %3$s ຫາ %4$s"
+msgstr "ກຳລັງຫຍໍ້ thin pool logical volume %1$s ໃນກຸ່ມວໍລຸມ %2$s ຈາກ %3$s ຫາ %4$s"
 
 #. TRANSLATORS: name of object
 msgid "Squashfs"
