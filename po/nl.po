@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: libstorage.nl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-10 09:59+0200\n"
-"PO-Revision-Date: 2026-02-12 13:04+0000\n"
+"PO-Revision-Date: 2026-10-03 12:13+0000\n"
 "Last-Translator: Freek de Kruijf <freek@opensuse.org>\n"
 "Language-Team: Dutch <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/nl/>\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15.2\n"
+"X-Generator: Weblate 2026.10\n"
 
 msgid ""
 "\n"
@@ -1942,7 +1942,7 @@ msgstr "Ext4"
 
 #. TRANSLATORS: name of partition type
 msgid "Extended Boot Loader"
-msgstr ""
+msgstr "Uitgebreide bootloader"
 
 #. TRANSLATORS: name of partition type
 msgid "Extended Partition"
