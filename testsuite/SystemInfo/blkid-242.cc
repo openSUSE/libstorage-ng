@@ -65,24 +65,24 @@ check(const string& device, const vector<string>& input, const vector<string>& o
 BOOST_AUTO_TEST_CASE(parse1)
 {
     vector<string> input = {
-	"{",
-	"   \"blkid\": [",
-	"      {",
-	"         \"device\": \"/dev/mapper/system-root\",",
-	"         \"uuid\": \"72e2918a-b8a8-494c-abd7-2090ebf34e64\",",
-	"         \"block_size\": \"4096\",",
-	"         \"type\": \"ext4\"",
-	"      },{",
-	"         \"device\": \"/dev/sda2\",",
-	"         \"uuid\": \"Ni5zl4-XUxV-0DxM-aUe1-eQpN-JHId-RDj9fa\",",
-	"         \"type\": \"LVM2_member\",",
-	"         \"partuuid\": \"65867d0b-0150-4af6-966c-fe82cdb180cd\"",
-	"      },{",
-	"         \"device\": \"/dev/sda1\",",
-	"         \"partuuid\": \"54b83199-0935-41b7-b982-08c11a7cc47a\"",
-	"      }",
-	"   ]",
-	"}"
+	R"({)",
+	R"(   "blkid": [)",
+	R"(      {)",
+	R"(         "device": "/dev/mapper/system-root",)",
+	R"(         "uuid": "72e2918a-b8a8-494c-abd7-2090ebf34e64",)",
+	R"(         "block_size": "4096",)",
+	R"(         "type": "ext4")",
+	R"(      },{)",
+	R"(         "device": "/dev/sda2",)",
+	R"(         "uuid": "Ni5zl4-XUxV-0DxM-aUe1-eQpN-JHId-RDj9fa",)",
+	R"(         "type": "LVM2_member",)",
+	R"(         "partuuid": "65867d0b-0150-4af6-966c-fe82cdb180cd")",
+	R"(      },{)",
+	R"(         "device": "/dev/sda1",)",
+	R"(         "partuuid": "54b83199-0935-41b7-b982-08c11a7cc47a")",
+	R"(      })",
+	R"(   ])",
+	R"(})"
     };
 
     vector<string> output = {
@@ -97,17 +97,17 @@ BOOST_AUTO_TEST_CASE(parse1)
 BOOST_AUTO_TEST_CASE(parse2)
 {
     vector<string> input = {
-	"{",
-	"   \"blkid\": [",
-	"      {",
-	"         \"device\": \"/dev/sdc1\",",
-	"         \"uuid\": \"43653208-6196-4d1d-8823-fb735b2c66e9\",",
-	"         \"block_size\": \"4096\",",
-	"         \"type\": \"ext4\",",
-	"         \"partuuid\": \"dc2fd0b9-7957-4183-b357-f9d482d43b7d\"",
-	"      }",
-	"   ]",
-	"}"
+	R"({)",
+	R"(   "blkid": [)",
+	R"(      {)",
+	R"(         "device": "/dev/sdc1",)",
+	R"(         "uuid": "43653208-6196-4d1d-8823-fb735b2c66e9",)",
+	R"(         "block_size": "4096",)",
+	R"(         "type": "ext4",)",
+	R"(         "partuuid": "dc2fd0b9-7957-4183-b357-f9d482d43b7d")",
+	R"(      })",
+	R"(   ])",
+	R"(})"
     };
 
     vector<string> output = {

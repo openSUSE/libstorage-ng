@@ -59,15 +59,15 @@ check(const string& vg_name, const vector<string>& input, const vector<string>& 
 BOOST_AUTO_TEST_CASE(parse1)
 {
     vector<string> input = {
-	"  {",
-	"      \"report\": [",
-	"          {",
-	"              \"vg\": [",
-	"                  {\"vg_name\":\"system\", \"vg_uuid\":\"OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn\", \"vg_attr\":\"wz--n-\", \"vg_extent_size\":\"4194304\", \"vg_extent_count\":\"230400\", \"vg_free_count\":\"71666\"}",
-	"              ]",
-	"          }",
-	"      ]",
-	"  }"
+	R"(  {)",
+	R"(      "report": [)",
+	R"(          {)",
+	R"(              "vg": [)",
+	R"(                  {"vg_name":"system", "vg_uuid":"OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn", "vg_attr":"wz--n-", "vg_extent_size":"4194304", "vg_extent_count":"230400", "vg_free_count":"71666"})",
+	R"(              ])",
+	R"(          })",
+	R"(      ])",
+	R"(  })"
     };
 
     vector<string> output = {
@@ -81,15 +81,15 @@ BOOST_AUTO_TEST_CASE(parse1)
 BOOST_AUTO_TEST_CASE(parse2)
 {
     vector<string> input = {
-	"  {",
-	"      \"report\": [",
-	"          {",
-	"              \"vg\": [",
-	"                  {\"vg_name\":\"b\", \"vg_uuid\":\"GbcwxM-Px5E-Xs7u-dLhx-r7RU-4LG4-uGR6Ew\", \"vg_attr\":\"wz--n-\", \"vg_extent_size\":\"4194304\", \"vg_extent_count\":\"25640\", \"vg_free_count\":\"25640\"}",
-	"              ]",
-	"          }",
-	"      ]",
-	"  }"
+	R"(  {)",
+	R"(      "report": [)",
+	R"(          {)",
+	R"(              "vg": [)",
+	R"(                  {"vg_name":"b", "vg_uuid":"GbcwxM-Px5E-Xs7u-dLhx-r7RU-4LG4-uGR6Ew", "vg_attr":"wz--n-", "vg_extent_size":"4194304", "vg_extent_count":"25640", "vg_free_count":"25640"})",
+	R"(              ])",
+	R"(          })",
+	R"(      ])",
+	R"(  })"
     };
 
     vector<string> output = {
