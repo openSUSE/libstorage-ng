@@ -59,15 +59,15 @@ check(const string& pv_name, const vector<string>& input, const vector<string>& 
 BOOST_AUTO_TEST_CASE(parse1)
 {
     vector<string> input = {
-	"  {",
-	"      \"report\": [",
-	"          {",
-	"              \"pv\": [",
-	"                  {\"pv_name\":\"/dev/sda2\", \"pv_uuid\":\"qquP1O-WWoh-Ofas-Rbx0-y72T-0sNe-Wnyc33\", \"vg_name\":\"system\", \"vg_uuid\":\"OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn\", \"pv_attr\":\"a--\", \"pe_start\":\"1048576\"}",
-	"              ]",
-	"          }",
-	"      ]",
-	"  }"
+	R"(  {)",
+	R"(      "report": [)",
+	R"(          {)",
+	R"(              "pv": [)",
+	R"(                  {"pv_name":"/dev/sda2", "pv_uuid":"qquP1O-WWoh-Ofas-Rbx0-y72T-0sNe-Wnyc33", "vg_name":"system", "vg_uuid":"OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn", "pv_attr":"a--", "pe_start":"1048576"})",
+	R"(              ])",
+	R"(          })",
+	R"(      ])",
+	R"(  })"
     };
 
     vector<string> output = {
@@ -83,15 +83,15 @@ BOOST_AUTO_TEST_CASE(parse2)
     // The reported pv name can be different from the queried pv name.
 
     vector<string> input = {
-	"  {",
-	"      \"report\": [",
-	"          {",
-	"              \"pv\": [",
-	"                  {\"pv_name\":\"/dev/md127\", \"pv_uuid\":\"nA8nKb-VSgN-fRvo-pGqm-pRBl-MX3M-Hf2sjT\", \"vg_name\":\"\", \"vg_uuid\":\"\", \"pv_attr\":\"---\", \"pe_start\":\"1048576\"}",
-	"              ]",
-	"          }",
-	"      ]",
-	"  }"
+	R"(  {)",
+	R"(      "report": [)",
+	R"(          {)",
+	R"(              "pv": [)",
+	R"(                  {"pv_name":"/dev/md127", "pv_uuid":"nA8nKb-VSgN-fRvo-pGqm-pRBl-MX3M-Hf2sjT", "vg_name":"", "vg_uuid":"", "pv_attr":"---", "pe_start":"1048576"})",
+	R"(              ])",
+	R"(          })",
+	R"(      ])",
+	R"(  })"
     };
 
     vector<string> output = {
@@ -105,16 +105,16 @@ BOOST_AUTO_TEST_CASE(parse2)
 BOOST_AUTO_TEST_CASE(parse_missing)
 {
     vector<string> input = {
-	"  {",
-	"      \"report\": [",
-	"          {",
-	"              \"pv\": [",
-	"                  {\"pv_name\":\"/dev/sda1\", \"pv_uuid\":\"smMwqo-zDbE-fa6S-ouy2-MmJN-pxlg-VOjrOX\", \"vg_name\":\"test\", \"vg_uuid\":\"dl6cxn-1P1U-SWjT-Ckhq-viMD-GF9z-SU9XvE\", \"pv_attr\":\"a--\", \"pe_start\":\"1048576\"},",
-	"                  {\"pv_name\":\"[unknown]\", \"pv_uuid\":\"vfbt1o-rEi2-ph1Q-ksMt-qhTw-4lwl-iruKqS\", \"vg_name\":\"test\", \"vg_uuid\":\"dl6cxn-1P1U-SWjT-Ckhq-viMD-GF9z-SU9XvE\", \"pv_attr\":\"a-m\", \"pe_start\":\"1048576\"}",
-	"              ]",
-	"          }",
-	"      ]",
-	"  }"
+	R"(  {)",
+	R"(      "report": [)",
+	R"(          {)",
+	R"(              "pv": [)",
+	R"(                  {"pv_name":"/dev/sda1", "pv_uuid":"smMwqo-zDbE-fa6S-ouy2-MmJN-pxlg-VOjrOX", "vg_name":"test", "vg_uuid":"dl6cxn-1P1U-SWjT-Ckhq-viMD-GF9z-SU9XvE", "pv_attr":"a--", "pe_start":"1048576"},)",
+	R"(                  {"pv_name":"[unknown]", "pv_uuid":"vfbt1o-rEi2-ph1Q-ksMt-qhTw-4lwl-iruKqS", "vg_name":"test", "vg_uuid":"dl6cxn-1P1U-SWjT-Ckhq-viMD-GF9z-SU9XvE", "pv_attr":"a-m", "pe_start":"1048576"})",
+	R"(              ])",
+	R"(          })",
+	R"(      ])",
+	R"(  })"
     };
 
     vector<string> output = {

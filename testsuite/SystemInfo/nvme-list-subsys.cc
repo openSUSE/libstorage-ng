@@ -40,26 +40,26 @@ BOOST_AUTO_TEST_CASE(parse1)
     set_logger(get_stdout_logger());
 
     vector<string> input = {
-	"[",
-	"  {",
-	"    \"HostNQN\":\"nqn.2014-08.org.nvmexpress:uuid:afb211cc-32bb-11b2-a85c-8b99b656b4d1\",",
-	"    \"HostID\":\"8aa6c093-7e2f-4b59-93dd-9374345abed8\",",
-	"    \"Subsystems\":[",
-	"      {",
-	"        \"Name\":\"nvme-subsys0\",",
-	"        \"NQN\":\"nqn.2014.08.org.nvmexpress:17aa17aa1142267006586\",",
-	"        \"Paths\":[",
-	"          {",
-	"            \"Name\":\"nvme0\",",
-	"            \"Transport\":\"pcie\",",
-	"            \"Address\":\"0000:3e:00.0\",",
-	"            \"State\":\"live\"",
-	"          }",
-	"        ]",
-	"      }",
-	"    ]",
-	"  }",
-	"]"
+	R"([)",
+	R"(  {)",
+	R"(    "HostNQN":"nqn.2014-08.org.nvmexpress:uuid:afb211cc-32bb-11b2-a85c-8b99b656b4d1",)",
+	R"(    "HostID":"8aa6c093-7e2f-4b59-93dd-9374345abed8",)",
+	R"(    "Subsystems":[)",
+	R"(      {)",
+	R"(        "Name":"nvme-subsys0",)",
+	R"(        "NQN":"nqn.2014.08.org.nvmexpress:17aa17aa1142267006586",)",
+	R"(        "Paths":[)",
+	R"(          {)",
+	R"(            "Name":"nvme0",)",
+	R"(            "Transport":"pcie",)",
+	R"(            "Address":"0000:3e:00.0",)",
+	R"(            "State":"live")",
+	R"(          })",
+	R"(        ])",
+	R"(      })",
+	R"(    ])",
+	R"(  })",
+	R"(])"
     };
 
     vector<string> output = {
