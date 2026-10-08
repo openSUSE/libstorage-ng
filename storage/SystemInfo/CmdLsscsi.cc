@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2010-2020] Novell, Inc.
- * Copyright (c) [2023-2025] SUSE LLC
+ * Copyright (c) [2023-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -39,6 +39,12 @@ namespace storage
     CmdLsscsi::CmdLsscsi()
     {
 	const bool json = CmdLsscsiVersion::supports_json_option();
+
+	if (json)
+	{
+	    // For the time being just to gather data.
+	    SystemCmd cmd({ LSSCSI_BIN, "--transport", "--json" }, SystemCmd::NoThrow);
+	}
 
 	SystemCmd cmd({ LSSCSI_BIN, "--transport" }, SystemCmd::DoThrow);
 
