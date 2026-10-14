@@ -418,14 +418,14 @@ namespace storage
 	/**
 	 * Constructs the args for the child process.
 	 *
-	 * Not async‐signal‐safe, see fork(2) and signal-safety(7).
+	 * Not async-signal-safe, see fork(2) and signal-safety(7).
 	 */
 	vector<const char*> make_args() const;
 
 	/**
 	 * Constructs the environment for the child process.
 	 *
-	 * Not async‐signal‐safe, see fork(2) and signal-safety(7).
+	 * Not async-signal-safe, see fork(2) and signal-safety(7).
 	 */
 	vector<const char*> make_env() const;
 
@@ -502,7 +502,7 @@ namespace storage
 	    // Do not use exit() here. Use _exit() instead. Thus no destructors are
 	    // called.
 
-	    // Only use async‐signal‐safe functions here, see fork(2) and
+	    // Only use async-signal-safe functions here, see fork(2) and
 	    // signal-safety(7).
 
 	    if (dup2(stdin_pipe.read_end.fd, STDIN_FILENO) < 0)
