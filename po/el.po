@@ -3,21 +3,23 @@ msgstr ""
 "Project-Id-Version: Greek (libstorage)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2018-05-06 20:25+0000\n"
-"Last-Translator: Konstantina Tsolakoglou <konstantina@accountant.com>\n"
-"Language-Team: Greek <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/el/>\n"
+"PO-Revision-Date: 2026-10-25 21:21+0000\n"
+"Last-Translator: Efstathios Iosifidis <eiosifidis@gmail.com>\n"
+"Language-Team: Greek <https://l10n.opensuse.org/projects/libstorage/ng-sle-"
+"15-sp1/el/>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 2026.10.1\n"
 
 msgid ""
 "\n"
 "are you serious?!"
 msgstr ""
+"\n"
+"σοβαρολογείτε;!"
 
 #. TRANSLATORS: appended after list of value to indicate that some
 #. values have been omitted
@@ -29,9 +31,9 @@ msgstr ""
 #. TRANSLATORS:
 #. %1$s is replaced with the device name (e.g. /dev/sdc1),
 #. %2$s is replaced with the size (e.g. 60 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "%1$s (%2$s)"
-msgstr "Προσθήκη %1$s σε %2$s"
+msgstr "%1$s (%2$s)"
 
 #. TRANSLATORS: appended after list of value to indicate that some
 #. values have been omitted
@@ -44,9 +46,9 @@ msgstr ""
 #. TRANSLATORS: used to construct list of values
 #. %1$s is replaced by first value
 #. %2$s is replaced by second value
-#, fuzzy, c-format
+#, c-format
 msgid "%1$s and %2$s"
-msgstr "Προσθήκη %1$s σε %2$s"
+msgstr "%1$s και %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the the bcache name (e.g. /dev/bcache0),
@@ -54,7 +56,7 @@ msgstr "Προσθήκη %1$s σε %2$s"
 #. (e.g. "/dev/sdb1 (64 GiB), /dev/sdc1 (160 GiB)")
 #, c-format
 msgid "%1$s is cached by %2$s"
-msgstr ""
+msgstr "%1$s διαθέτει κρυφή μνήμη από %2$s"
 
 #. TRANSLATORS: used to construct list of values
 #. %1$s is replaced by first value
@@ -65,33 +67,33 @@ msgstr "Προσθήκη %1$s σε %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Activate encryption layer device on %1$s"
-msgstr "Ορισμός κρυπτογραφημένης loop device στο %1$s"
+msgstr "Ενεργοποίηση συσκευής επιπέδου κρυπτογράφησης στο %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activate logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Δημιουργία λογικού τόμου %1$s (%2$s) για %4$s με %3$s"
+msgstr "Ενεργοποίηση λογικού τόμου %1$s (%2$s) στην ομάδα τόμων %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activate thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Διαμόρφωση λογικού τόμου %1$s (%2$s) με %3$s"
+msgstr "Ενεργοποίηση thin λογικού τόμου %1$s (%2$s) στην ομάδα τόμων %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Διαμόρφωση λογικού τόμου %1$s (%2$s) με %3$s"
+msgstr "Ενεργοποίηση λογικού τόμου thin pool %1$s (%2$s) στην ομάδα τόμων %3$s"
 
 #. TRANSLATORS: progress message
 #, c-format
@@ -113,43 +115,41 @@ msgstr "Αποτυχία ενεργοποίησης LVM"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Activating encryption layer device on %1$s"
-msgstr "Ορισμός κρυπτογραφημένης loop device στο %1$s"
+msgstr "Ενεργοποίηση συσκευής επιπέδου κρυπτογράφησης στο %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activating logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Διαμόρφωση λογικού τόμου %1$s (%2$s) με %3$s"
+msgstr "Ενεργοποίηση λογικού τόμου %1$s (%2$s) στην ομάδα τόμων %3$s"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Activating multipath"
-msgstr "Δημιουργία κατάτμησης %1$s (%2$s)"
+msgstr "Ενεργοποίηση multipath"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Activating multipath failed"
-msgstr "Δημιουργία κατάτμησης %1$s (%2$s)"
+msgstr "Αποτυχία ενεργοποίησης multipath"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Διαμόρφωση λογικού τόμου %1$s (%2$s) με %3$s"
+msgstr "Ενεργοποίηση thin λογικού τόμου %1$s (%2$s) στην ομάδα τόμων %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Διαμόρφωση λογικού τόμου %1$s (%2$s) με %3$s"
+msgstr "Ενεργοποίηση λογικού τόμου thin pool %1$s (%2$s) στην ομάδα τόμων %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -171,7 +171,7 @@ msgstr "Προσθήκη %1$s στο /etc/mdadm.conf"
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Add encryption layer device on %1$s to /etc/crypttab"
-msgstr ""
+msgstr "Προσθήκη συσκευής επιπέδου κρυπτογράφησης στο %1$s στο /etc/crypttab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -187,6 +187,7 @@ msgstr "Προσθήκη σημείου προσάρτησης %1$s του %2$s 
 #, c-format
 msgid "Add mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
 msgstr ""
+"Προσθήκη σημείου προσάρτησης %1$s του υποτόμου %2$s στο %3$s στο /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -208,7 +209,7 @@ msgstr "Προσθήκη %1$s στο /etc/mdadm.conf"
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Adding encryption layer device on %1$s to /etc/crypttab"
-msgstr ""
+msgstr "Προσθήκη συσκευής επιπέδου κρυπτογράφησης στο %1$s στο /etc/crypttab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -224,6 +225,7 @@ msgstr "Προσθήκη σημείου προσάρτησης %1$s του %2$s 
 #, c-format
 msgid "Adding mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
 msgstr ""
+"Προσθήκη σημείου προσάρτησης %1$s του υποτόμου %2$s στο %3$s στο /etc/fstab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -246,9 +248,8 @@ msgid "B"
 msgstr "B"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "BIOS Boot Partition"
-msgstr "Κατάτμηση"
+msgstr "Κατάτμηση εκκίνησης BIOS"
 
 #. TRANSLATORS: name of object
 msgid "Bcache"
@@ -256,7 +257,7 @@ msgstr "Bcache"
 
 #. TRANSLATORS: name of object
 msgid "Bcache Cache Set"
-msgstr ""
+msgstr "Σύνολο κρυφής μνήμης Bcache"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs"
@@ -268,22 +269,22 @@ msgstr "Υποτόμος Btrfs"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Clear boot flag of partition %1$s"
-msgstr "Δημιουργία κατάτμησης RAID %1$s"
+msgstr "Εκκαθάριση σημαίας εκκίνησης της κατάτμησης %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Clear legacy boot flag of partition %1$s"
-msgstr "Δημιουργία κατάτμησης RAID %1$s"
+msgstr "Εκκαθάριση σημαίας εκκίνησης legacy της κατάτμησης %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Clear option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr "Δημιουργία Λογικού Τόμου %1$s στη συσκευή %2$s"
+msgstr "Εκκαθάριση επιλογής 'no copy on write' για τον υποτόμο %1$s στο %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -293,28 +294,28 @@ msgstr ""
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Clearing boot flag of partition %1$s"
-msgstr "Δημιουργία πολυκατευθυντικής κατάτμησης %1$s"
+msgstr "Εκκαθάριση σημαίας εκκίνησης της κατάτμησης %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Clearing legacy boot flag of partition %1$s"
-msgstr "Δημιουργία πολυκατευθυντικής κατάτμησης %1$s"
+msgstr "Εκκαθάριση σημαίας εκκίνησης legacy της κατάτμησης %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Clearing option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr ""
+msgstr "Εκκαθάριση επιλογής 'no copy on write' για τον υποτόμο %1$s στο %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Clearing protective MBR boot flag of GPT on %1$s"
-msgstr ""
+msgstr "Εκκαθάριση προστατευτικής σημαίας εκκίνησης MBR του GPT στο %1$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -325,11 +326,13 @@ msgstr ""
 #. %6$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create %1$s %2$s (%3$s) for %4$s with %5$s\n"
 "from %6$s"
-msgstr "Δημιουργία κατάτμησης RAID %1$s (%2$s)"
+msgstr ""
+"Δημιουργία %1$s %2$s (%3$s) για %4$s με %5$s\n"
+"από %6$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -338,11 +341,13 @@ msgstr "Δημιουργία κατάτμησης RAID %1$s (%2$s)"
 #. %4$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create %1$s %2$s (%3$s) for swap\n"
 "from %4$s"
-msgstr "Δημιουργία %1$s στο %2$s (%3$s)"
+msgstr ""
+"Δημιουργία %1$s %2$s (%3$s) για swap\n"
+"από %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -351,9 +356,9 @@ msgstr "Δημιουργία %1$s στο %2$s (%3$s)"
 #. %4$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create %1$s %2$s (%3$s) from %4$s"
-msgstr "Δημιουργία %1$s στο %2$s (%3$s)"
+msgstr "Δημιουργία %1$s %2$s (%3$s) από %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
@@ -363,11 +368,13 @@ msgstr "Δημιουργία %1$s στο %2$s (%3$s)"
 #. %5$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create %1$s %2$s (%3$s) with %4$s\n"
 "from %5$s"
-msgstr "Δημιουργία κατάτμησης RAID %1$s (%2$s)"
+msgstr ""
+"Δημιουργία %1$s %2$s (%3$s) με %4$s\n"
+"από %5$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
@@ -407,9 +414,9 @@ msgstr "Δημιουργία GPT στο %1$s"
 #. %1$s is replaced with the logical volume name (e.g. root),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #. %3$s is replaced with the volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Δημιουργία λογικού τόμου %1$s (%2$s) για %4$s με %3$s"
+msgstr "Δημιουργία λογικού τόμου LVM %1$s (%2$s) στην ομάδα τόμων %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -417,48 +424,50 @@ msgstr "Δημιουργία λογικού τόμου %1$s (%2$s) για %4$s �
 #. %3$s is replaced with the volume group name (e.g. system),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr "Δημιουργία λογικού τόμου %1$s (%2$s) για %4$s με %3$s"
+msgstr ""
+"Δημιουργία λογικού τόμου LVM %1$s (%2$s) στην ομάδα τόμων %3$s για %4$s με "
+"%5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #. %3$s is replaced with the volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
-msgstr "Δημιουργία λογικού τόμου %1$s (%2$s) για %4$s με %3$s"
+msgstr "Δημιουργία λογικού τόμου LVM %1$s (%2$s) στην ομάδα τόμων %3$s για swap"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #. %3$s is replaced with the volume group name (e.g. system),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr "Δημιουργία λογικού τόμου %1$s (%2$s) για %4$s με %3$s"
+msgstr "Δημιουργία λογικού τόμου LVM %1$s (%2$s) στην ομάδα τόμων %3$s με %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM physical volume over %1$s (%2$s)"
-msgstr "Δημιουργία Λογικού Τόμου %1$s"
+msgstr "Δημιουργία φυσικού τόμου LVM στο %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM physical volume over encrypted %1$s (%2$s)"
-msgstr "Δημιουργία Λογικού Τόμου %1$s"
+msgstr "Δημιουργία φυσικού τόμου LVM στο κρυπτογραφημένο %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM volume device over %1$s (%2$s)"
-msgstr "Δημιουργία Λογικού Τόμου %1$s (%2$s)"
+msgstr "Δημιουργία συσκευής τόμου LVM στο %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -466,9 +475,9 @@ msgstr "Δημιουργία Λογικού Τόμου %1$s (%2$s)"
 #. %3$s is replaced by size (e.g. 2 GiB),
 #. %4$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
 #. /dev/sdb2 (1 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Create MD %1$s %2$s (%3$s) from %4$s"
-msgstr "Δημιουργία %1$s στο %2$s (%3$s)"
+msgstr "Δημιουργία MD %1$s %2$s (%3$s) από %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -480,9 +489,9 @@ msgstr "Δημιουργία πίνακα κατατμήσων MS-DOS στο %1$
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s on %2$s (%3$s)"
-msgstr "Δημιουργία %1$s στο %2$s (%3$s)"
+msgstr "Δημιουργία bcache %1$s στο %2$s (%3$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -490,26 +499,26 @@ msgstr "Δημιουργία %1$s στο %2$s (%3$s)"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
-msgstr "Δημιουργία κατάτμησης RAID %1$s (%2$s)"
+msgstr "Δημιουργία bcache %1$s στο %2$s (%3$s) για %4$s με %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s on %2$s (%3$s) for swap"
-msgstr "Δημιουργία %1$s στο %2$s (%3$s)"
+msgstr "Δημιουργία bcache %1$s στο %2$s (%3$s) για swap"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s on %2$s (%3$s) with %4$s"
-msgstr "Δημιουργία %1$s στο %2$s (%3$s)"
+msgstr "Δημιουργία bcache %1$s στο %2$s (%3$s) με %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
@@ -518,11 +527,13 @@ msgstr "Δημιουργία %1$s στο %2$s (%3$s)"
 #. %4$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create encrypted %1$s %2$s (%3$s)\n"
 "from %4$s"
-msgstr "Δημιουργία εκτεταμένης κατάτμησης %1$s (%2$s)"
+msgstr ""
+"Δημιουργία κρυπτογραφημένου %1$s %2$s (%3$s)\n"
+"από %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
@@ -533,11 +544,13 @@ msgstr "Δημιουργία εκτεταμένης κατάτμησης %1$s (%
 #. %6$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create encrypted %1$s %2$s (%3$s) for %4$s with %5$s\n"
 "from %6$s"
-msgstr "Δημιουργία εκτεταμένης κατάτμησης %1$s (%2$s)"
+msgstr ""
+"Δημιουργία κρυπτογραφημένου %1$s %2$s (%3$s) για %4$s με %5$s\n"
+"από %6$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -546,11 +559,13 @@ msgstr "Δημιουργία εκτεταμένης κατάτμησης %1$s (%
 #. %4$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create encrypted %1$s %2$s (%3$s) for swap\n"
 "from %4$s"
-msgstr "Δημιουργία εκτεταμένης κατάτμησης %1$s (%2$s)"
+msgstr ""
+"Δημιουργία κρυπτογραφημένου %1$s %2$s (%3$s) για swap\n"
+"από %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
@@ -560,19 +575,23 @@ msgstr "Δημιουργία εκτεταμένης κατάτμησης %1$s (%
 #. %5$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create encrypted %1$s %2$s (%3$s) with %4$s\n"
 "from %5$s"
-msgstr "Δημιουργία εκτεταμένης κατάτμησης %1$s (%2$s)"
+msgstr ""
+"Δημιουργία κρυπτογραφημένου %1$s %2$s (%3$s) με %4$s\n"
+"από %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #. %3$s is replaced with the volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Δημιουργία λογικού τόμου %1$s (%2$s) για %4$s με %3$s"
+msgstr ""
+"Δημιουργία κρυπτογραφημένου λογικού τόμου LVM %1$s (%2$s) στην ομάδα τόμων "
+"%3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -580,39 +599,45 @@ msgstr "Δημιουργία λογικού τόμου %1$s (%2$s) για %4$s �
 #. %3$s is replaced with the volume group name (e.g. system),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for "
 "%4$s with %5$s"
-msgstr "Δημιουργία λογικού τόμου %1$s (%2$s) για %4$s με %3$s"
+msgstr ""
+"Δημιουργία κρυπτογραφημένου λογικού τόμου LVM %1$s (%2$s) στην ομάδα τόμων "
+"%3$s για %4$s με %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #. %3$s is replaced with the volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
-msgstr "Δημιουργία λογικού τόμου %1$s (%2$s) για %4$s με %3$s"
+msgstr ""
+"Δημιουργία κρυπτογραφημένου λογικού τόμου LVM %1$s (%2$s) στην ομάδα τόμων "
+"%3$s για swap"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #. %3$s is replaced with the volume group name (e.g. system),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s with "
 "%4$s"
-msgstr "Δημιουργία λογικού τόμου %1$s (%2$s) για %4$s με %3$s"
+msgstr ""
+"Δημιουργία κρυπτογραφημένου λογικού τόμου LVM %1$s (%2$s) στην ομάδα τόμων "
+"%3$s με %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s)"
-msgstr "Δημιουργία %1$s στο %2$s (%3$s)"
+msgstr "Δημιουργία κρυπτογραφημένου bcache %1$s στο %2$s (%3$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -620,70 +645,71 @@ msgstr "Δημιουργία %1$s στο %2$s (%3$s)"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
-msgstr "Δημιουργία εκτεταμένης κατάτμησης %1$s (%2$s)"
+msgstr ""
+"Δημιουργία κρυπτογραφημένου bcache %1$s στο %2$s (%3$s) για %4$s με %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s) for swap"
-msgstr "Δημιουργία εκτεταμένης κατάτμησης %1$s (%2$s)"
+msgstr "Δημιουργία κρυπτογραφημένου bcache %1$s στο %2$s (%3$s) για swap"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s) with %4$s"
-msgstr "Δημιουργία εκτεταμένης κατάτμησης %1$s (%2$s)"
+msgstr "Δημιουργία κρυπτογραφημένου bcache %1$s στο %2$s (%3$s) με %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted partition %1$s (%2$s)"
-msgstr "Δημιουργία εκτεταμένης κατάτμησης %1$s (%2$s)"
+msgstr "Δημιουργία κρυπτογραφημένης κατάτμησης %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted partition %1$s (%2$s) as LVM physical volume"
-msgstr "Δημιουργία εκτεταμένης κατάτμησης %1$s (%2$s)"
+msgstr "Δημιουργία κρυπτογραφημένης κατάτμησης %1$s (%2$s) ως φυσικού τόμου LVM"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #. %3$s is replaced with the mount point (e.g. /home),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted partition %1$s (%2$s) for %3$s with %4$s"
-msgstr "Δημιουργία εκτεταμένης κατάτμησης %1$s (%2$s)"
+msgstr "Δημιουργία κρυπτογραφημένης κατάτμησης %1$s (%2$s) για %3$s με %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted partition %1$s (%2$s) for swap"
-msgstr "Δημιουργία εκτεταμένης κατάτμησης %1$s (%2$s)"
+msgstr "Δημιουργία κρυπτογραφημένης κατάτμησης %1$s (%2$s) για swap"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #. %3$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted partition %1$s (%2$s) with %3$s"
-msgstr "Δημιουργία εκτεταμένης κατάτμησης %1$s (%2$s)"
+msgstr "Δημιουργία κρυπτογραφημένης κατάτμησης %1$s (%2$s) με %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encryption layer device on %1$s"
-msgstr "Ορισμός κρυπτογραφημένης loop device στο %1$s"
+msgstr "Δημιουργία συσκευής επιπέδου κρυπτογράφησης στο %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -703,7 +729,7 @@ msgstr "Δημιουργία συστήματος αρχείων btrfs στο %1
 #. %2$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Create file system btrfs on %1$s and mount at %2$s"
-msgstr ""
+msgstr "Δημιουργία συστήματος αρχείων btrfs στο %1$s και προσάρτηση στο %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the device name (e.g. /dev/vda),
@@ -715,30 +741,30 @@ msgstr "Δημιουργία σκληρού δίσκου %1$s (%2$s)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create implicit partition %1$s (%2$s)"
-msgstr "Δημιουργία κατάτμησης %1$s (%2$s)"
+msgstr "Δημιουργία άδηλης κατάτμησης %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/dasda)
-#, fuzzy, c-format
+#, c-format
 msgid "Create implicit partition table on %1$s"
-msgstr "Δημιουργία κατάτμησης RAID %1$s"
+msgstr "Δημιουργία άδηλου πίνακα κατατμήσεων στο %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create logical partition %1$s (%2$s)"
-msgstr "Δημιουργία κατάτμησης %1$s (%2$s)"
+msgstr "Δημιουργία λογικής κατάτμησης %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Create logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Δημιουργία λογικού τόμου %1$s (%2$s) για %4$s με %3$s"
+msgstr "Δημιουργία λογικού τόμου %1$s (%2$s) στην ομάδα τόμων %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -754,40 +780,40 @@ msgstr "Δημιουργία κατάτμησης %1$s (%2$s)"
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #. %3$s is replaced with the partition id string (e.g. Linux LVM)
-#, fuzzy, c-format
+#, c-format
 msgid "Create partition %1$s (%2$s) as %3$s"
-msgstr "Δημιουργία κατάτμησης RAID %1$s (%2$s)"
+msgstr "Δημιουργία κατάτμησης %1$s (%2$s) ως %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create partition %1$s (%2$s) as LVM physical volume"
-msgstr "Δημιουργία κατάτμησης RAID %1$s (%2$s)"
+msgstr "Δημιουργία κατάτμησης %1$s (%2$s) ως φυσικού τόμου LVM"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #. %3$s is replaced with the mount point (e.g. /home),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create partition %1$s (%2$s) for %3$s with %4$s"
-msgstr "Δημιουργία κατάτμησης RAID %1$s (%2$s)"
+msgstr "Δημιουργία κατάτμησης %1$s (%2$s) για %3$s με %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create partition %1$s (%2$s) for swap"
-msgstr "Δημιουργία κατάτμησης RAID %1$s (%2$s)"
+msgstr "Δημιουργία κατάτμησης %1$s (%2$s) για swap"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #. %3$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create partition %1$s (%2$s) with %3$s"
-msgstr "Δημιουργία κατάτμησης RAID %1$s (%2$s)"
+msgstr "Δημιουργία κατάτμησης %1$s (%2$s) με %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -798,9 +824,9 @@ msgstr "Δημιουργία φυσικού τόμου στο %1$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create primary partition %1$s (%2$s)"
-msgstr "Δημιουργία κατάτμησης RAID %1$s (%2$s)"
+msgstr "Δημιουργία πρωτεύουσας κατάτμησης %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -808,9 +834,9 @@ msgstr "Δημιουργία κατάτμησης RAID %1$s (%2$s)"
 #. TRANSLATORS:
 #. %1$s is replaced with the subvolume path (e.g. var/log),
 #. %2$s is replaced with the block device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Create subvolume %1$s on %2$s"
-msgstr "Δημιουργία Λογικού Τόμου %1$s στη συσκευή %2$s"
+msgstr "Δημιουργία υποτόμου %1$s στο %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the subvolume path (e.g. var/log),
@@ -823,17 +849,17 @@ msgstr "Δημιουργία Λογικού Τόμου %1$s στη συσκευ�
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Create thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Δημιουργία λογικού τόμου %1$s (%2$s) για %4$s με %3$s"
+msgstr "Δημιουργία thin λογικού τόμου %1$s (%2$s) στην ομάδα τόμων %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Create thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Δημιουργία λογικού τόμου %1$s (%2$s) για %4$s με %3$s"
+msgstr "Δημιουργία λογικού τόμου thin pool %1$s (%2$s) στην ομάδα τόμων %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced with the volume group name (e.g. system),
@@ -847,17 +873,17 @@ msgstr "Δημιουργία ομάδας τόμων %1$s (%2$s)"
 #. %2$s is replaced by size (e.g. 2 GiB),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
 #. /dev/sdb2 (1 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Create volume group %1$s (%2$s) from %3$s"
-msgstr "Δημιουργία Λογικού Τόμου %1$s (%2$s)"
+msgstr "Δημιουργία ομάδας τόμων %1$s (%2$s) από %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced with the volume group name (e.g. system),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #. %3$s is replaced with the name of devices (e.g. /dev/sda1, /dev/sda2)
-#, fuzzy, c-format
+#, c-format
 msgid "Create volume group %1$s (%2$s) with %3$s"
-msgstr "Δημιουργία Λογικού Τόμου %1$s (%2$s)"
+msgstr "Δημιουργία ομάδας τόμων %1$s (%2$s) με %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
@@ -883,9 +909,9 @@ msgstr "Δημιουργία κατάτμησης %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating DASD partition table on %1$s"
-msgstr "Δημιουργία κατάτμησης RAID %1$s"
+msgstr "Δημιουργία πίνακα κατατμήσεων DASD στο %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -899,63 +925,63 @@ msgstr "Δημιουργία GPT στο %1$s"
 #. %3$s is replaced by size (e.g. 2 GiB),
 #. %4$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
 #. /dev/sdb2 (1 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Creating MD %1$s %2$s (%3$s) from %4$s"
-msgstr "Δημιουργία %1$s στο %2$s (%3$s)"
+msgstr "Δημιουργία MD %1$s %2$s (%3$s) από %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating MS-DOS partition table on %1$s"
-msgstr "Δημιουργία κατάτμησης RAID %1$s"
+msgstr "Δημιουργία πίνακα κατατμήσεων MS-DOS στο %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating encryption layer device on %1$s"
-msgstr "Ορισμός κρυπτογραφημένης loop device στο %1$s"
+msgstr "Δημιουργία συσκευής επιπέδου κρυπτογράφησης στο %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating extended partition %1$s (%2$s)"
 msgstr "Δημιουργία εκτεταμένης κατάτμησης %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/vda),
 #. %2$s is replaced by the size (e.g. 20 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating hard disk %1$s (%2$s)"
 msgstr "Δημιουργία σκληρού δίσκου %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating implicit partition %1$s (%2$s)"
-msgstr "Δημιουργία κατάτμησης %1$s (%2$s)"
+msgstr "Δημιουργία άδηλης κατάτμησης %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/dasda)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating implicit partition table on %1$s"
-msgstr "Δημιουργία κατάτμησης RAID %1$s"
+msgstr "Δημιουργία άδηλου πίνακα κατατμήσεων στο %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating logical partition %1$s (%2$s)"
-msgstr "Δημιουργία κατάτμησης %1$s (%2$s)"
+msgstr "Δημιουργία λογικής κατάτμησης %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Δημιουργία λογικού τόμου %1$s (%2$s) για %4$s με %3$s"
+msgstr "Δημιουργία λογικού τόμου %1$s (%2$s) στην ομάδα τόμων %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -973,41 +999,41 @@ msgstr "Δημιουργία φυσικού τόμου στο %1$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating primary partition %1$s (%2$s)"
-msgstr "Δημιουργία κατάτμησης %1$s (%2$s)"
+msgstr "Δημιουργία πρωτεύουσας κατάτμησης %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating subvolume %1$s on %2$s"
-msgstr "Δημιουργία Λογικού Τόμου %1$s στη συσκευή %2$s"
+msgstr "Δημιουργία υποτόμου %1$s στο %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Δημιουργία λογικού τόμου %1$s (%2$s) για %4$s με %3$s"
+msgstr "Δημιουργία thin λογικού τόμου %1$s (%2$s) στην ομάδα τόμων %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Δημιουργία λογικού τόμου %1$s (%2$s) για %4$s με %3$s"
+msgstr "Δημιουργία λογικού τόμου thin pool %1$s (%2$s) στην ομάδα τόμων %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2 GiB),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
 #. /dev/sdb2 (1 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Creating volume group %1$s (%2$s) from %3$s"
-msgstr "Δημιουργία ομάδας τόμων %1$s (%2$s)"
+msgstr "Δημιουργία ομάδας τόμων %1$s (%2$s) από %3$s"
 
 #. TRANSLATORS: name of object
 msgid "DASD"
@@ -1039,46 +1065,47 @@ msgstr "Δημιουργία κατάτμησης %1$s (%2$s)"
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate MD %1$s %2$s (%3$s)"
-msgstr "Δημιουργία λογισμικού RAID %1$s (%2$s) από %3$s"
+msgstr "Απενεργοποίηση MD %1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate encryption layer device on %1$s"
-msgstr "Ορισμός κρυπτογραφημένης loop device στο %1$s"
+msgstr "Απενεργοποίηση συσκευής επιπέδου κρυπτογράφησης στο %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Δημιουργία λογικού τόμου %1$s (%2$s) για %4$s με %3$s"
+msgstr "Απενεργοποίηση λογικού τόμου %1$s (%2$s) στην ομάδα τόμων %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by multipath name (e.g. /dev/mapper/36005076305ffc73a00000000000013b4),
 #. %2$s is replaced by size (e.g. 1 TiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate multipath %1$s (%2$s)"
-msgstr "Δημιουργία κατάτμησης %1$s (%2$s)"
+msgstr "Απενεργοποίηση multipath %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Διαμόρφωση λογικού τόμου %1$s (%2$s) με %3$s"
+msgstr "Απενεργοποίηση thin λογικού τόμου %1$s (%2$s) στην ομάδα τόμων %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Διαμόρφωση λογικού τόμου %1$s (%2$s) με %3$s"
+msgstr ""
+"Απενεργοποίηση λογικού τόμου thin pool %1$s (%2$s) στην ομάδα τόμων %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
@@ -1098,62 +1125,63 @@ msgstr "Δημιουργία κατάτμησης %1$s (%2$s)"
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating MD %1$s %2$s (%3$s)"
-msgstr "Διαγραφή κατάτμησης %1$s (%2$s)"
+msgstr "Απενεργοποίηση MD %1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating encryption layer device on %1$s"
-msgstr "Ορισμός κρυπτογραφημένης loop device στο %1$s"
+msgstr "Απενεργοποίηση συσκευής επιπέδου κρυπτογράφησης στο %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Διαμόρφωση λογικού τόμου %1$s (%2$s) με %3$s"
+msgstr "Απενεργοποίηση λογικού τόμου %1$s (%2$s) στην ομάδα τόμων %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by multipath name (e.g. /dev/mapper/36005076305ffc73a00000000000013b4),
 #. %2$s is replaced by size (e.g. 1 TiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating multipath %1$s (%2$s)"
-msgstr "Δημιουργία κατάτμησης %1$s (%2$s)"
+msgstr "Απενεργοποίηση multipath %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Διαμόρφωση λογικού τόμου %1$s (%2$s) με %3$s"
+msgstr "Απενεργοποίηση thin λογικού τόμου %1$s (%2$s) στην ομάδα τόμων %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Διαμόρφωση λογικού τόμου %1$s (%2$s) με %3$s"
+msgstr ""
+"Απενεργοποίηση λογικού τόμου thin pool %1$s (%2$s) στην ομάδα τόμων %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0)
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete %1$s %2$s (%3$s)"
-msgstr "Διαγραφή κατάτμησης %1$s (%2$s)"
+msgstr "Διαγραφή %1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1 GiB)
 #. and /dev/sdb2 (1 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Delete %1$s on %2$s"
-msgstr "Διαγραφή κατάτμησης %1$s (%2$s)"
+msgstr "Διαγραφή %1$s στο %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
@@ -1171,9 +1199,9 @@ msgstr "Δημιουργία κατάτμησης %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete DASD partition table on %1$s"
-msgstr "Διαγραφή κατάτμησης RAID %1$s"
+msgstr "Διαγραφή πίνακα κατατμήσεων DASD στο %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1199,22 +1227,22 @@ msgstr "Διαγραφή πίνακα κατατμήσεων MS-DOS στο %1$s"
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete bcache %1$s on %2$s (%3$s)"
-msgstr "Διαγραφή κατάτμησης %1$s (%2$s)"
+msgstr "Διαγραφή bcache %1$s στο %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete encryption layer device on %1$s"
-msgstr "Ορισμός κρυπτογραφημένης loop device στο %1$s"
+msgstr "Διαγραφή συσκευής επιπέδου κρυπτογράφησης στο %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete extended partition %1$s (%2$s)"
-msgstr "Δημιουργία εκτεταμένης κατάτμησης %1$s (%2$s)"
+msgstr "Διαγραφή εκτεταμένης κατάτμησης %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2)
@@ -1225,30 +1253,30 @@ msgstr "Διαγραφή συστήματος αρχείων btrfs στο %1$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete implicit partition %1$s (%2$s)"
-msgstr "Διαγραφή κατάτμησης %1$s (%2$s)"
+msgstr "Διαγραφή άδηλης κατάτμησης %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/dasda)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete implicit partition table on %1$s"
-msgstr "Διαγραφή κατάτμησης RAID %1$s"
+msgstr "Διαγραφή άδηλου πίνακα κατατμήσεων στο %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete logical partition %1$s (%2$s)"
-msgstr "Δημιουργία κατάτμησης %1$s (%2$s)"
+msgstr "Διαγραφή λογικής κατάτμησης %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Αφαίρεση του λογικού τόμου %1$s (%2$s)"
+msgstr "Διαγραφή λογικού τόμου %1$s (%2$s) στην ομάδα τόμων %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1269,9 +1297,9 @@ msgstr "Διαγραφή φυσικού τόμου στο %1$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete primary partition %1$s (%2$s)"
-msgstr "Δημιουργία κατάτμησης RAID %1$s (%2$s)"
+msgstr "Διαγραφή κύριας κατάτμησης %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -1279,25 +1307,25 @@ msgstr "Δημιουργία κατάτμησης RAID %1$s (%2$s)"
 #. TRANSLATORS:
 #. %1$s is replaced with the subvolume path (e.g. var/log),
 #. %2$s is replaced with the block device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete subvolume %1$s on %2$s"
-msgstr "Δημιουργία Λογικού Τόμου %1$s στη συσκευή %2$s"
+msgstr "Διαγραφή υποτόμου %1$s στο %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Αφαίρεση του λογικού τόμου %1$s (%2$s)"
+msgstr "Διαγραφή thin λογικού τόμου %1$s (%2$s) στην ομάδα τόμων %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Αφαίρεση του λογικού τόμου %1$s (%2$s)"
+msgstr "Διαγραφή λογικού τόμου thin pool %1$s (%2$s) στην ομάδα τόμων %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -1310,9 +1338,9 @@ msgstr "Διαγραφή ομάδας τομέων %1$s (%2$s)"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1 GiB)
 #. and /dev/sdb2 (1 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting %1$s on %2$s"
-msgstr "Διαγραφή %1$s στο %2$s (%3$s)"
+msgstr "Διαγραφή %1$s στο %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
@@ -1330,9 +1358,9 @@ msgstr "Δημιουργία κατάτμησης %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting DASD partition table on %1$s"
-msgstr "Διαγραφή κατάτμησης RAID %1$s"
+msgstr "Διαγραφή πίνακα κατατμήσεων DASD στο %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1356,44 +1384,44 @@ msgstr "Διαγραφή πίνακα κατατμήσεων MS-DOS στο %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting encryption layer device on %1$s"
-msgstr "Ορισμός κρυπτογραφημένης loop device στο %1$s"
+msgstr "Διαγραφή συσκευής επιπέδου κρυπτογράφησης στο %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting extended partition %1$s (%2$s)"
-msgstr "Δημιουργία εκτεταμένης κατάτμησης %1$s (%2$s)"
+msgstr "Διαγραφή εκτεταμένης κατάτμησης %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting implicit partition %1$s (%2$s)"
-msgstr "Διαγραφή κατάτμησης %1$s (%2$s)"
+msgstr "Διαγραφή άδηλης κατάτμησης %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/dasda)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting implicit partition table on %1$s"
-msgstr "Διαγραφή κατάτμησης RAID %1$s"
+msgstr "Διαγραφή άδηλου πίνακα κατατμήσεων στο %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting logical partition %1$s (%2$s)"
-msgstr "Δημιουργία κατάτμησης %1$s (%2$s)"
+msgstr "Διαγραφή λογικής κατάτμησης %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Αφαίρεση του λογικού τόμου %1$s (%2$s)"
+msgstr "Διαγραφή λογικού τόμου %1$s (%2$s) στην ομάδα τόμων %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1404,39 +1432,39 @@ msgstr "Διαγραφή κατάτμησης %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting physical volume on %1$s"
-msgstr "Αφαίρεση του λογικού τόμου %1$s"
+msgstr "Διαγραφή φυσικού τόμου στο %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting primary partition %1$s (%2$s)"
-msgstr "Δημιουργία κατάτμησης %1$s (%2$s)"
+msgstr "Διαγραφή κύριας κατάτμησης %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting subvolume %1$s on %2$s"
-msgstr "Δημιουργία Λογικού Τόμου %1$s στη συσκευή %2$s"
+msgstr "Διαγραφή υποτόμου %1$s στο %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Αφαίρεση του λογικού τόμου %1$s (%2$s)"
+msgstr "Διαγραφή thin λογικού τόμου %1$s (%2$s) στην ομάδα τόμων %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Αφαίρεση του λογικού τόμου %1$s (%2$s)"
+msgstr "Διαγραφή λογικού τόμου thin pool %1$s (%2$s) στην ομάδα τόμων %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -1528,9 +1556,9 @@ msgstr "EiB"
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2 GiB),
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt %1$s %2$s (%3$s)"
-msgstr "Δημιουργία MD %1$s %2$s (%3$s)"
+msgstr "Κρυπτογράφηση %1$s %2$s (%3$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -1538,26 +1566,26 @@ msgstr "Δημιουργία MD %1$s %2$s (%3$s)"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt %1$s %2$s (%3$s) for %4$s with %5$s"
-msgstr "Διαμόρφωση κατάτμησης %1$s (%2$s) με %3$s"
+msgstr "Κρυπτογράφηση %1$s %2$s (%3$s) για το %4$s με %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt %1$s %2$s (%3$s) with %4$s"
-msgstr "Διαμόρφωση κατάτμησης %1$s (%2$s) με %3$s"
+msgstr "Κρυπτογράφηση %1$s %2$s (%3$s) με %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #. %3$s is replaced with the volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Δημιουργία λογικού τόμου %1$s (%2$s) για %4$s με %3$s"
+msgstr "Κρυπτογράφηση λογικού τόμου LVM %1$s (%2$s) στην ομάδα τόμων %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -1565,28 +1593,31 @@ msgstr "Δημιουργία λογικού τόμου %1$s (%2$s) για %4$s �
 #. %3$s is replaced with the volume group name (e.g. system),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with "
 "%5$s"
-msgstr "Δημιουργία λογικού τόμου %1$s (%2$s) για %4$s με %3$s"
+msgstr ""
+"Κρυπτογράφηση λογικού τόμου LVM %1$s (%2$s) στην ομάδα τόμων %3$s για το "
+"%4$s με %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #. %3$s is replaced with the volume group name (e.g. system),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr "Δημιουργία λογικού τόμου %1$s (%2$s) για %4$s με %3$s"
+msgstr ""
+"Κρυπτογράφηση λογικού τόμου LVM %1$s (%2$s) στην ομάδα τόμων %3$s με %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt bcache %1$s on %2$s (%3$s)"
-msgstr "Δημιουργία %1$s στο %2$s (%3$s)"
+msgstr "Κρυπτογράφηση bcache %1$s στο %2$s (%3$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -1594,18 +1625,18 @@ msgstr "Δημιουργία %1$s στο %2$s (%3$s)"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
-msgstr "Διαμόρφωση κατάτμησης %1$s (%2$s) με %3$s"
+msgstr "Κρυπτογράφηση bcache %1$s στο %2$s (%3$s) για το %4$s με %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt bcache %1$s on %2$s (%3$s) with %4$s"
-msgstr "Διαμόρφωση κατάτμησης %1$s (%2$s) με %3$s"
+msgstr "Κρυπτογράφηση bcache %1$s στο %2$s (%3$s) με %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -1619,17 +1650,17 @@ msgstr "Κρυπτογράφηση κατάτμησης %1$s (%2$s)"
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #. %3$s is replaced with the mount point (e.g. /home),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt partition %1$s (%2$s) for %3$s with %4$s"
-msgstr "Διαμόρφωση κατάτμησης %1$s (%2$s) με %3$s"
+msgstr "Κρυπτογράφηση κατάτμησης %1$s (%2$s) για το %3$s με %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #. %3$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt partition %1$s (%2$s) with %3$s"
-msgstr "Διαμόρφωση κατάτμησης %1$s (%2$s) με %3$s"
+msgstr "Κρυπτογράφηση κατάτμησης %1$s (%2$s) με %3$s"
 
 #. TRANSLATORS: name of object
 msgid "Encryption"
@@ -1657,18 +1688,18 @@ msgstr ""
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format %1$s %2$s (%3$s) for %4$s with %5$s"
-msgstr "Διαμόρφωση κατάτμησης %1$s (%2$s) με %3$s"
+msgstr "Διαμόρφωση %1$s %2$s (%3$s) για το %4$s με %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system type (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format %1$s %2$s (%3$s) with %4$s"
-msgstr "Διαμόρφωση κατάτμησης %1$s (%2$s) με %3$s"
+msgstr "Διαμόρφωση %1$s %2$s (%3$s) με %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -1676,19 +1707,21 @@ msgstr "Διαμόρφωση κατάτμησης %1$s (%2$s) με %3$s"
 #. %3$s is replaced with the volume group name (e.g. system),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Format LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr "Δημιουργία λογικού τόμου %1$s (%2$s) για %4$s με %3$s"
+msgstr ""
+"Διαμόρφωση λογικού τόμου LVM %1$s (%2$s) στην ομάδα τόμων %3$s για το %4$s "
+"με %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #. %3$s is replaced with the volume group name (e.g. system),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr "Δημιουργία λογικού τόμου %1$s (%2$s) για %4$s με %3$s"
+msgstr "Διαμόρφωση λογικού τόμου LVM %1$s (%2$s) στην ομάδα τόμων %3$s με %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -1696,18 +1729,18 @@ msgstr "Δημιουργία λογικού τόμου %1$s (%2$s) για %4$s �
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
-msgstr "Διαμόρφωση κατάτμησης %1$s (%2$s) με %3$s"
+msgstr "Διαμόρφωση bcache %1$s στο %2$s (%3$s) για το %4$s με %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system type (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format bcache %1$s on %2$s (%3$s) with %4$s"
-msgstr "Διαμόρφωση κατάτμησης %1$s (%2$s) με %3$s"
+msgstr "Διαμόρφωση bcache %1$s στο %2$s (%3$s) με %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -1719,26 +1752,26 @@ msgstr "Δημιουργία κατάτμησης RAID %1$s (%2$s)"
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Format partition %1$s (%2$s) as swap"
-msgstr "Δημιουργία κατάτμησης RAID %1$s (%2$s)"
+msgstr "Διαμόρφωση κατάτμησης %1$s (%2$s) ως swap"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #. %3$s is replaced with the mount point (e.g. /home),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format partition %1$s (%2$s) for %3$s with %4$s"
-msgstr "Διαμόρφωση κατάτμησης %1$s (%2$s) με %3$s"
+msgstr "Διαμόρφωση κατάτμησης %1$s (%2$s) για το %3$s με %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #. %3$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format partition %1$s (%2$s) with %3$s"
-msgstr "Δημιουργία κατάτμησης RAID %1$s (%2$s)"
+msgstr "Διαμόρφωση κατάτμησης %1$s (%2$s) με %3$s"
 
 #. TRANSLATORS: symbol for "giga" (best keep untranslated)
 msgid "G"
@@ -1761,122 +1794,124 @@ msgstr "GiB"
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Grow %1$s on %2$s from %3$s to %4$s"
-msgstr "Δημιουργία λογικού τόμου %1$s (%2$s) για %4$s με %3$s"
+msgstr "Επέκταση του %1$s στο %2$s από %3$s σε %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Grow encryption layer device on %1$s from %2$s to %3$s"
-msgstr "Διαμόρφωση κρυπτογραφημένης συσκευής %1$s (%2$s) για %4$s με %3$s"
+msgstr "Επέκταση συσκευής επιπέδου κρυπτογράφησης στο %1$s από %2$s σε %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Grow logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Δημιουργία λογικού τόμου %1$s (%2$s) για %4$s με %3$s"
+msgstr "Επέκταση λογικού τόμου %1$s στην ομάδα τόμων %2$s από %3$s σε %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 1 GiB),
 #. %3$s is replaced by new size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Grow partition %1$s from %2$s to %3$s"
-msgstr "Διαμόρφωση κατάτμησης %1$s (%2$s) με %3$s"
+msgstr "Επέκταση κατάτμησης %1$s από %2$s σε %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Grow physical volume on %1$s from %2$s to %3$s"
-msgstr "Διαμόρφωση λογικού τόμου %1$s (%2$s) με %3$s"
+msgstr "Επέκταση φυσικού τόμου στο %1$s από %2$s σε %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Grow thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Δημιουργία λογικού τόμου %1$s (%2$s) για %4$s με %3$s"
+msgstr "Επέκταση thin λογικού τόμου %1$s στην ομάδα τόμων %2$s από %3$s σε %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Grow thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Δημιουργία λογικού τόμου %1$s (%2$s) για %4$s με %3$s"
+msgstr ""
+"Επέκταση λογικού τόμου thin pool %1$s στην ομάδα τόμων %2$s από %3$s σε %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Growing %1$s on %2$s from %3$s to %4$s"
-msgstr "Διαμόρφωση κατάτμησης %1$s (%2$s) για %4$s με %3$s"
+msgstr "Επέκταση του %1$s στο %2$s από %3$s σε %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Growing encryption layer device on %1$s from %2$s to %3$s"
-msgstr "Διαμόρφωση κρυπτογραφημένης συσκευής %1$s (%2$s) για %4$s με %3$s"
+msgstr "Επέκταση συσκευής επιπέδου κρυπτογράφησης στο %1$s από %2$s σε %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Growing logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Δημιουργία λογικού τόμου %1$s (%2$s) για %4$s με %3$s"
+msgstr "Επέκταση λογικού τόμου %1$s στην ομάδα τόμων %2$s από %3$s σε %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 1 GiB),
 #. %3$s is replaced by new size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Growing partition %1$s from %2$s to %3$s"
-msgstr "Διαμόρφωση κατάτμησης %1$s (%2$s) με  %3$s "
+msgstr "Επέκταση κατάτμησης %1$s από %2$s σε %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Growing physical volume on %1$s from %2$s to %3$s"
-msgstr "Διαμόρφωση λογικού τόμου %1$s (%2$s) με %3$s"
+msgstr "Επέκταση φυσικού τόμου στο %1$s από %2$s σε %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Growing thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Δημιουργία λογικού τόμου %1$s (%2$s) για %4$s με %3$s"
+msgstr "Επέκταση thin λογικού τόμου %1$s στην ομάδα τόμων %2$s από %3$s σε %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Growing thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Δημιουργία λογικού τόμου %1$s (%2$s) για %4$s με %3$s"
+msgstr ""
+"Επέκταση λογικού τόμου thin pool %1$s στην ομάδα τόμων %2$s από %3$s σε %4$s"
 
 #. TRANSLATORS: name of object
 msgid "ISO 9660"
@@ -1884,7 +1919,7 @@ msgstr "ISO 9660"
 
 #. TRANSLATORS: name of object
 msgid "Implicit Partition Table"
-msgstr ""
+msgstr "Άδηλος πίνακας κατατμήσεων"
 
 #. TRANSLATORS: name of partition type
 msgid "Intel RST"
@@ -1960,32 +1995,32 @@ msgstr ""
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount %1$s %2$s (%3$s) at %4$s"
-msgstr "Προσάρτηση του %1$s στο %2$s"
+msgstr "Προσάρτηση %1$s %2$s (%3$s) στο %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount %1$s at %2$s"
-msgstr "Προσάρτηση του %1$s στο %2$s"
+msgstr "Προσάρτηση %1$s στο %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #. %3$s is replaced with the volume group name (e.g. system),
 #. %4$s is replaced with the mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount LVM logical volume %1$s (%2$s) on volume group %3$s at %4$s"
-msgstr "Δημιουργία λογικού τόμου %1$s (%2$s) για %4$s με %3$s"
+msgstr "Προσάρτηση λογικού τόμου LVM %1$s (%2$s) στην ομάδα τόμων %3$s στο %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the nfs name (e.g. 99.99.00.00:path),
 #. %2$s is replaced with the mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount NFS %1$s on %2$s"
-msgstr "Προσάρτηση του %1$s στο %2$s"
+msgstr "Προσάρτηση NFS %1$s στο %2$s"
 
 #. TRANSLATORS: name of object
 msgid "Mount Point"
@@ -1996,47 +2031,47 @@ msgstr "Σημείο προσάρτησης"
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount bcache %1$s on %2$s (%3$s) at %4$s"
-msgstr "Δημιουργία κατάτμησης εκκίνησης %1$s (%2$s) με %3$s"
+msgstr "Προσάρτηση bcache %1$s στο %2$s (%3$s) στο %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
 #. %2$s is replaced with the mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount file system btrfs on %1$s at %2$s"
-msgstr "Προσάρτηση του %1$s στο %2$s"
+msgstr "Προσάρτηση συστήματος αρχείων btrfs στο %1$s στο %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #. %3$s is replaced with the mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount partition %1$s (%2$s) at %3$s"
-msgstr "Διαμόρφωση κατάτμησης %1$s (%2$s) με %3$s"
+msgstr "Προσάρτηση κατάτμησης %1$s (%2$s) στο %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. home),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount subvolume %1$s on %2$s at %3$s"
-msgstr "Δημιουργία κατάτμησης εκκίνησης %1$s (%2$s) με %3$s"
+msgstr "Προσάρτηση υποτόμου %1$s στο %2$s στο %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Mounting %1$s at %2$s"
-msgstr "Προσάρτηση του %1$s στο %2$s"
+msgstr "Προσάρτηση %1$s στο %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. home),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mounting subvolume %1$s on %2$s at %3$s"
-msgstr "Δημιουργία Λογικού Τόμου %1$s στη συσκευή %2$s"
+msgstr "Προσάρτηση υποτόμου %1$s στο %2$s στο %3$s"
 
 #. TRANSLATORS: name of object
 msgid "Multipath"
@@ -2059,9 +2094,8 @@ msgid "PB"
 msgstr "PB"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "PReP Boot Partition"
-msgstr "Κατάτμηση"
+msgstr "Κατάτμηση εκκίνησης PReP"
 
 #. TRANSLATORS: name of object
 msgid "Partition"
@@ -2074,7 +2108,7 @@ msgstr "PiB"
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing DASD %s failed"
-msgstr ""
+msgstr "Αποτυχία ανίχνευσης DASD %s"
 
 #. TRANSLATORS: progress message
 msgid "Probing DASDs"
@@ -2082,7 +2116,7 @@ msgstr ""
 
 #. TRANSLATORS: error message
 msgid "Probing DASDs failed"
-msgstr ""
+msgstr "Αποτυχία ανίχνευσης DASDs"
 
 #. TRANSLATORS: progress message
 msgid "Probing DM RAIDs"
@@ -2090,7 +2124,7 @@ msgstr ""
 
 #. TRANSLATORS: error message
 msgid "Probing DM RAIDs failed"
-msgstr ""
+msgstr "Αποτυχία ανίχνευσης DM RAIDs"
 
 #. TRANSLATORS: progress message
 msgid "Probing LUKS"
@@ -2098,7 +2132,7 @@ msgstr ""
 
 #. TRANSLATORS: error message
 msgid "Probing LUKS failed"
-msgstr ""
+msgstr "Αποτυχία ανίχνευσης LUKS"
 
 #. TRANSLATORS: progress message
 msgid "Probing LVM"
@@ -2106,12 +2140,12 @@ msgstr ""
 
 #. TRANSLATORS: error message
 msgid "Probing LVM failed"
-msgstr ""
+msgstr "Αποτυχία ανίχνευσης LVM"
 
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing MD RAID %s failed"
-msgstr ""
+msgstr "Αποτυχία ανίχνευσης MD RAID %s"
 
 #. TRANSLATORS: progress message
 msgid "Probing MD RAIDs"
@@ -2119,7 +2153,7 @@ msgstr ""
 
 #. TRANSLATORS: error message
 msgid "Probing MD RAIDs failed"
-msgstr ""
+msgstr "Αποτυχία ανίχνευσης MD RAIDs"
 
 #. TRANSLATORS: progress message
 msgid "Probing NFS"
@@ -2127,17 +2161,15 @@ msgstr ""
 
 #. TRANSLATORS: error message
 msgid "Probing NFS failed"
-msgstr ""
+msgstr "Αποτυχία ανίχνευσης NFS"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing additional attributes"
-msgstr "Δημιουργία κατάτμησης RAID %1$s (%2$s)"
+msgstr "Ανίχνευση πρόσθετων γνωρισμάτων"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing additional attributes failed"
-msgstr "Δημιουργία κατάτμησης RAID %1$s (%2$s)"
+msgstr "Αποτυχία ανίχνευσης πρόσθετων γνωρισμάτων"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
@@ -2146,24 +2178,24 @@ msgstr ""
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing bcache %s failed"
-msgstr ""
+msgstr "Αποτυχία ανίχνευσης bcache %s"
 
 #. TRANSLATORS: error message
 msgid "Probing bcache failed"
-msgstr ""
+msgstr "Αποτυχία ανίχνευσης bcache"
 
 #. TRANSLATORS: progress message
 msgid "Probing device relationships"
-msgstr ""
+msgstr "Ανίχνευση σχέσεων συσκευών"
 
 #. TRANSLATORS: error message
 msgid "Probing device relationships failed"
-msgstr ""
+msgstr "Αποτυχία ανίχνευσης σχέσεων συσκευών"
 
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing disk %s failed"
-msgstr ""
+msgstr "Αποτυχία ανίχνευσης δίσκου %s"
 
 #. TRANSLATORS: progress message
 msgid "Probing disks"
@@ -2171,17 +2203,16 @@ msgstr ""
 
 #. TRANSLATORS: error message
 msgid "Probing disks failed"
-msgstr ""
+msgstr "Αποτυχία ανίχνευσης δίσκων"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing failed"
-msgstr "Δημιουργία κατάτμησης RAID %1$s (%2$s)"
+msgstr "Αποτυχία ανίχνευσης"
 
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing file system on %s failed"
-msgstr ""
+msgstr "Αποτυχία ανίχνευσης συστήματος αρχείων στο %s"
 
 #. TRANSLATORS: progress message
 msgid "Probing file systems"
@@ -2189,56 +2220,53 @@ msgstr ""
 
 #. TRANSLATORS: error message
 msgid "Probing file systems failed"
-msgstr ""
+msgstr "Αποτυχία ανίχνευσης συστημάτων αρχείων"
 
 #. TRANSLATORS: progress message
 msgid "Probing multipath"
-msgstr ""
+msgstr "Ανίχνευση multipath"
 
 #. TRANSLATORS: error message
 msgid "Probing multipath failed"
-msgstr ""
+msgstr "Αποτυχία ανίχνευσης multipath"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing partitions"
-msgstr "Δημιουργία κατάτμησης RAID %1$s (%2$s)"
+msgstr "Ανίχνευση κατατμήσεων"
 
 #. TRANSLATORS: error message
 msgid "Probing partitions failed"
-msgstr ""
+msgstr "Αποτυχία ανίχνευσης κατατμήσεων"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing partitions on %s failed"
-msgstr "Δημιουργία κατάτμησης RAID %1$s (%2$s)"
+msgstr "Αποτυχία ανίχνευσης κατατμήσεων στο %s"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing stray block device %s failed"
-msgstr "Δημιουργία κατάτμησης RAID %1$s (%2$s)"
+msgstr "Αποτυχία ανίχνευσης αδέσποτης συσκευής μπλοκ %s"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing stray block devices"
-msgstr "Δημιουργία κατάτμησης RAID %1$s (%2$s)"
+msgstr "Ανίχνευση αδέσποτων συσκευών μπλοκ"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing stray block devices failed"
-msgstr "Δημιουργία κατάτμησης RAID %1$s (%2$s)"
+msgstr "Αποτυχία ανίχνευσης αδέσποτων συσκευών μπλοκ"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Reduce volume group %1$s by missing physical volumes"
-msgstr ""
+msgstr "Μείωση της ομάδας τόμων %1$s κατά τους φυσικούς τόμους που λείπουν"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Reducing volume group %1$s by missing physical volumes"
-msgstr ""
+msgstr "Μείωση της ομάδας τόμων %1$s κατά τους φυσικούς τόμους που λείπουν"
 
 #. TRANSLATORS: name of object
 msgid "Reiserfs"
@@ -2256,22 +2284,22 @@ msgstr "Αφαίρεση του%1$s  από το %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
-#, fuzzy, c-format
+#, c-format
 msgid "Remove %1$s from /etc/mdadm.conf"
-msgstr "Αφαίρεση του%1$s  από το %2$s"
+msgstr "Αφαίρεση του %1$s από το /etc/mdadm.conf"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Remove encryption layer device on %1$s from /etc/crypttab"
-msgstr ""
+msgstr "Αφαίρεση συσκευής επιπέδου κρυπτογράφησης στο %1$s από το /etc/crypttab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Remove mount point %1$s of %2$s from /etc/fstab"
-msgstr "Μετακίνηση σημείου προσάρτησης του%1$s  σε %2$s"
+msgstr "Αφαίρεση σημείου προσάρτησης %1$s του %2$s από το /etc/fstab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -2280,6 +2308,8 @@ msgstr "Μετακίνηση σημείου προσάρτησης του%1$s  �
 #, c-format
 msgid "Remove mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
 msgstr ""
+"Αφαίρεση σημείου προσάρτησης %1$s του υποτόμου %2$s στο %3$s από το /etc/"
+"fstab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -2287,36 +2317,38 @@ msgstr ""
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
 #. %2$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Removing %1$s from %2$s"
-msgstr "Αφαίρεση του%1$s  από το %2$s"
+msgstr "Αφαίρεση του %1$s από το %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
 #, c-format
 msgid "Removing %1$s from /etc/mdadm.conf"
-msgstr ""
+msgstr "Αφαίρεση του %1$s από το /etc/mdadm.conf"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Removing encryption layer device on %1$s from /etc/crypttab"
-msgstr ""
+msgstr "Αφαίρεση συσκευής επιπέδου κρυπτογράφησης στο %1$s από το /etc/crypttab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Removing mount point %1$s of %2$s from /etc/fstab"
-msgstr "Μετακίνηση σημείου προσάρτησης του %1$s σε %2$s"
+msgstr "Αφαίρεση σημείου προσάρτησης %1$s του %2$s από το /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by subvolume path (e.g. home),
 #. %3$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
-msgstr "Μετακίνηση σημείου προσάρτησης του %1$s σε %2$s"
+msgstr ""
+"Αφαίρεση σημείου προσάρτησης %1$s του υποτόμου %2$s στο %3$s από το /etc/"
+"fstab"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the old logical volume name (e.g. foo),
@@ -2331,14 +2363,16 @@ msgstr "Αφαίρεση του%1$s  από το %2$s"
 #, c-format
 msgid "Rename encryption layer device from %1$s to %2$s in /etc/crypttab"
 msgstr ""
+"Μετονομασία συσκευής επιπέδου κρυπτογράφησης από %1$s σε %2$s στο /etc/"
+"crypttab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda6),
 #. %3$s is replaced by device name (e.g. /dev/sda5)
-#, fuzzy, c-format
+#, c-format
 msgid "Rename mount point %1$s from %2$s to %3$s in /etc/fstab"
-msgstr "Μετακίνηση σημείου προσάρτησης του%1$s  σε %2$s"
+msgstr "Μετονομασία σημείου προσάρτησης %1$s από %2$s σε %3$s στο /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
@@ -2346,26 +2380,28 @@ msgstr "Μετακίνηση σημείου προσάρτησης του%1$s  �
 #, c-format
 msgid "Renaming encryption layer device from %1$s to %2$s in /etc/crypttab"
 msgstr ""
+"Μετονομασία συσκευής επιπέδου κρυπτογράφησης από %1$s σε %2$s στο /etc/"
+"crypttab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda6),
 #. %3$s is replaced by device name (e.g. /dev/sda5)
-#, fuzzy, c-format
+#, c-format
 msgid "Renaming mount point %1$s from %2$s to %3$s in /etc/fstab"
-msgstr "Μετακίνηση σημείου προσάρτησης του %1$s σε %2$s"
+msgstr "Μετονομασία σημείου προσάρτησης %1$s από %2$s σε %3$s στο /etc/fstab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Repair GPT on %1$s"
-msgstr "Δημιουργία GPT στο %1$s"
+msgstr "Επιδιόρθωση GPT στο %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Repairing GPT on %1$s"
-msgstr "Δημιουργία GPT στο %1$s"
+msgstr "Επιδιόρθωση GPT στο %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -2376,9 +2412,9 @@ msgstr "Ορισμός ετικέτας του %1$s σε %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Set boot flag of partition %1$s"
-msgstr "Ορισμός τύπου κατάτμησης %1$s στο %2$X"
+msgstr "Ορισμός σημαίας εκκίνησης της κατάτμησης %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by cache mode (e.g. writeback),
@@ -2391,31 +2427,31 @@ msgstr "Δημιουργία %1$s στο %2$s (%3$s)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Set default subvolume to subvolume %1$s on %2$s"
-msgstr "Δημιουργία Λογικού Τόμου %1$s στη συσκευή %2$s"
+msgstr "Ορισμός προεπιλεγμένου υποτόμου στον υποτόμο %1$s στο %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM)
-#, fuzzy, c-format
+#, c-format
 msgid "Set id of partition %1$s to %2$s"
-msgstr "Ορισμός τύπου κατάτμησης %1$s στο %2$X"
+msgstr "Ορισμός id της κατάτμησης %1$s σε %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM),
 #. 0x%3$02X is replaced by partition id (e.g. 0x8E)
-#, fuzzy, c-format
+#, c-format
 msgid "Set id of partition %1$s to %2$s (0x%3$02X)"
-msgstr "Ορισμός τύπου της κατάτμησης %1$s σε %2$s (%3$X)"
+msgstr "Ορισμός id της κατάτμησης %1$s σε %2$s (0x%3$02X)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. 0x%2$02X is replaced by partition id (e.g. 0x8E)
-#, fuzzy, c-format
+#, c-format
 msgid "Set id of partition %1$s to 0x%2$02X"
-msgstr "Ορισμός τύπου κατάτμησης %1$s στο %2$X"
+msgstr "Ορισμός id της κατάτμησης %1$s σε 0x%2$02X"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -2426,22 +2462,22 @@ msgstr "Ορισμός ετικέτας του %1$s σε %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Set legacy boot flag of partition %1$s"
-msgstr "Διαγραφή κατάτμησης %1$s"
+msgstr "Ορισμός σημαίας εκκίνησης legacy της κατάτμησης %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Set option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr ""
+msgstr "Ορισμός της επιλογής 'no copy on write' για τον υποτόμο %1$s στο %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Set protective MBR boot flag of GPT on %1$s"
-msgstr ""
+msgstr "Ορισμός της σημαίας εκκίνησης προστατευτικού MBR του GPT στο %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -2458,9 +2494,9 @@ msgstr "Ορισμός ετικέτας του %1$s σε %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting boot flag of partition %1$s"
-msgstr "Ορισμός τύπου κατάτμησης %1$s στο %2$X"
+msgstr "Ορισμός σημαίας εκκίνησης της κατάτμησης %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by cache mode (e.g. writeback),
@@ -2473,31 +2509,31 @@ msgstr "Δημιουργία %1$s στο %2$s (%3$s)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting default subvolume to subvolume %1$s on %2$s"
-msgstr "Δημιουργία Λογικού Τόμου %1$s στη συσκευή %2$s"
+msgstr "Ορισμός προεπιλεγμένου υποτόμου στον υποτόμο %1$s στο %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting id of partition %1$s to %2$s"
-msgstr "Ορισμός τύπου κατάτμησης %1$s στο %2$X"
+msgstr "Ορισμός id της κατάτμησης %1$s σε %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM),
 #. 0x%3$02X is replaced by partition id (e.g. 0x8E)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting id of partition %1$s to %2$s (0x%3$02X)"
-msgstr "Ορισμός τύπου της κατάτμησης %1$s σε %2$s (%3$X)"
+msgstr "Ορισμός id της κατάτμησης %1$s σε %2$s (0x%3$02X)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. 0x%2$02X is replaced by partition id (e.g. 0x8E)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting id of partition %1$s to 0x%2$02X"
-msgstr "Ορισμός τύπου κατάτμησης %1$s στο %2$X"
+msgstr "Ορισμός id της κατάτμησης %1$s σε 0x%2$02X"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -2508,22 +2544,22 @@ msgstr "Ορισμός ετικέτας του %1$s σε %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting legacy boot flag of partition %1$s"
-msgstr "Ορισμός τύπου κατάτμησης %1$s στο %2$X"
+msgstr "Ορισμός σημαίας εκκίνησης legacy της κατάτμησης %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Setting option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr ""
+msgstr "Ορισμός της επιλογής 'no copy on write' για τον υποτόμο %1$s στο %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Setting protective MBR boot flag of GPT on %1$s"
-msgstr ""
+msgstr "Ορισμός της σημαίας εκκίνησης προστατευτικού MBR του GPT στο %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -2536,128 +2572,130 @@ msgstr "Ορισμός τύπου κατάτμησης %1$s στο %2$X"
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrink %1$s on %2$s from %3$s to %4$s"
-msgstr "Σύμπτυξη %1$s σε %2$s"
+msgstr "Σύμπτυξη του %1$s στο %2$s από %3$s σε %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrink encryption layer device on %1$s from %2$s to %3$s"
-msgstr "Διαμόρφωση κρυπτογραφημένης συσκευής %1$s (%2$s) για %4$s με %3$s"
+msgstr "Σύμπτυξη συσκευής επιπέδου κρυπτογράφησης στο %1$s από %2$s σε %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrink logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Σύμπτυξη του λογικού τόμου %1$s σε %2$s"
+msgstr "Σύμπτυξη λογικού τόμου %1$s στην ομάδα τόμων %2$s από %3$s σε %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 2 GiB),
 #. %3$s is replaced by new size (e.g. 1 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrink partition %1$s from %2$s to %3$s"
-msgstr "Σύμπτυξη κατάτμησης %1$s στο %2$s"
+msgstr "Σύμπτυξη κατάτμησης %1$s από %2$s σε %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrink physical volume on %1$s from %2$s to %3$s"
-msgstr "Σύμπτυξη του λογικού τόμου %1$s σε %2$s"
+msgstr "Σύμπτυξη φυσικού τόμου στο %1$s από %2$s σε %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrink thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Σύμπτυξη λογικού τόμου %1$s σε %2$s"
+msgstr "Σύμπτυξη thin λογικού τόμου %1$s στην ομάδα τόμων %2$s από %3$s σε %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Σύμπτυξη λογικού τόμου %1$s σε %2$s"
+msgstr ""
+"Σύμπτυξη λογικού τόμου thin pool %1$s στην ομάδα τόμων %2$s από %3$s σε %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrinking %1$s on %2$s from %3$s to %4$s"
-msgstr "Σύμπτυξη %1$s σε %2$s"
+msgstr "Σύμπτυξη του %1$s στο %2$s από %3$s σε %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrinking encryption layer device on %1$s from %2$s to %3$s"
-msgstr "Διαμόρφωση κρυπτογραφημένης συσκευής %1$s (%2$s) για %4$s με %3$s"
+msgstr "Σύμπτυξη συσκευής επιπέδου κρυπτογράφησης στο %1$s από %2$s σε %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrinking logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Σύμπτυξη λογικού τόμου %1$s σε %2$s"
+msgstr "Σύμπτυξη λογικού τόμου %1$s στην ομάδα τόμων %2$s από %3$s σε %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 2 GiB),
 #. %3$s is replaced by new size (e.g. 1 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrinking partition %1$s from %2$s to %3$s"
-msgstr "Σύμπτυξη κατάτμησης %1$s στο %2$s"
+msgstr "Σύμπτυξη κατάτμησης %1$s από %2$s σε %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrinking physical volume on %1$s from %2$s to %3$s"
-msgstr "Σύμπτυξη λογικού τόμου %1$s σε %2$s"
+msgstr "Σύμπτυξη φυσικού τόμου στο %1$s από %2$s σε %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Σύμπτυξη λογικού τόμου %1$s σε %2$s"
+msgstr "Σύμπτυξη thin λογικού τόμου %1$s στην ομάδα τόμων %2$s από %3$s σε %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to "
 "%4$s"
-msgstr "Σύμπτυξη λογικού τόμου %1$s σε %2$s"
+msgstr ""
+"Σύμπτυξη λογικού τόμου thin pool %1$s στην ομάδα τόμων %2$s από %3$s σε %4$s"
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"
-msgstr ""
+msgstr "Αδέσποτη συσκευή μπλοκ"
 
 #. TRANSLATORS: name of object
 msgid "Swap"
@@ -2682,60 +2720,60 @@ msgstr "UDF"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Unmount %1$s at %2$s"
-msgstr "Προσάρτηση του %1$s στο %2$s"
+msgstr "Αποπροσάρτηση %1$s στο %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the nfs name (e.g. 99.99.00.00:path),
 #. %2$s is replaced with the mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Unmount NFS %1$s at %2$s"
-msgstr "Προσάρτηση του %1$s στο %2$s"
+msgstr "Αποπροσάρτηση NFS %1$s στο %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
 #. %2$s is replaced with the mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Unmount file system btrfs on %1$s at %2$s"
-msgstr "Προσάρτηση του %1$s στο %2$s"
+msgstr "Αποπροσάρτηση συστήματος αρχείων btrfs στο %1$s στο %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. home),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Unmount subvolume %1$s on %2$s at %3$s"
-msgstr "Αφαίρεση του υπο-τόμου %1$s στην συσκευή %2$s"
+msgstr "Αποπροσάρτηση υποτόμου %1$s στο %2$s στο %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Unmounting %1$s at %2$s"
-msgstr "Προσάρτηση του %1$s στο %2$s"
+msgstr "Αποπροσάρτηση %1$s στο %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. home),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Unmounting subvolume %1$s on %2$s at %3$s"
-msgstr "Αφαίρεση του υπο-τόμου %1$s στην συσκευή %2$s"
+msgstr "Αποπροσάρτηση υποτόμου %1$s στο %2$s στο %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Update mount point %1$s of %2$s in /etc/fstab"
-msgstr "Ενημέρωση σημείου προσάρτησης του %1$s σε %2$s"
+msgstr "Ενημέρωση σημείου προσάρτησης %1$s του %2$s στο /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Updating mount point %1$s of %2$s in /etc/fstab"
-msgstr "Ενημέρωση σημείου προσάρτησης του %1$s σε %2$s"
+msgstr "Ενημέρωση σημείου προσάρτησης %1$s του %2$s στο /etc/fstab"
 
 #. TRANSLATORS: name of object
 msgid "VFAT"
@@ -2743,7 +2781,7 @@ msgstr "VFAT"
 
 #. TRANSLATORS: name of partition type
 msgid "Windows Data Partition"
-msgstr ""
+msgstr "Κατάτμηση δεδομένων Windows"
 
 #. TRANSLATORS: name of object
 msgid "XFS"
