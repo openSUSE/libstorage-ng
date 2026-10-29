@@ -4,7 +4,14 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include <memory>
+
+#include <unistd.h>
+
 #include "storage/Utils/LoggerImpl.h"
+#include "storage/Storage.h"
+#include "storage/StorageImpl.h"
+#include "storage/Environment.h"
 
 
 using namespace std;
@@ -56,7 +63,7 @@ BOOST_AUTO_TEST_CASE(logger1)
 
     BOOST_CHECK(recorder.entries[0].log_level == LogLevel::MILESTONE);
     BOOST_CHECK_EQUAL(recorder.entries[0].file, "logger.cc");
-    BOOST_CHECK_EQUAL(recorder.entries[0].line, 53);
+    BOOST_CHECK_EQUAL(recorder.entries[0].line, 60);
     BOOST_CHECK_EQUAL(recorder.entries[0].content, "milestone");
 }
 
@@ -187,6 +194,43 @@ BOOST_AUTO_TEST_CASE(destroyed_old_logger_keeps_new_logger)
     }
 
     BOOST_CHECK(get_logger() == &recorder2);
+
+    set_logger(nullptr);
+}
+
+
+BOOST_AUTO_TEST_CASE(no_logging_while_storage_is_destroyed)
+{
+    // The destructor of a Storage can be run by the garbage collector of a scripting language
+    // (e.g. Ruby) where the logger, which can be a SWIG director, must not be called.
+
+    Recorder recorder;
+
+    set_logger(&recorder);
+
+    {
+	Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
+
+	unique_ptr<Storage> storage = make_unique<Storage>(environment);
+
+	// Without the temporary directory ~TmpDir fails and logs an error.
+	const string tmp_dir = storage->get_impl().get_tmp_dir().get_fullname();
+	BOOST_REQUIRE_EQUAL(rmdir(tmp_dir.c_str()), 0);
+
+	recorder.entries.clear();
+
+	storage.reset();
+
+	BOOST_CHECK_EQUAL(recorder.entries.size(), 0);
+    }
+
+    // The logger must be restored after destroying the Storage
+
+    BOOST_CHECK(get_logger() == &recorder);
+
+    y2mil("after destroying the storage");
+
+    BOOST_CHECK_EQUAL(recorder.entries.size(), 1);
 
     set_logger(nullptr);
 }

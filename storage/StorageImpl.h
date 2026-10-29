@@ -30,6 +30,7 @@
 #include "storage/Devices/Device.h"
 #include "storage/Utils/FileUtils.h"
 #include "storage/Utils/LockImpl.h"
+#include "storage/Utils/Logger.h"
 #include "storage/Storage.h"
 #include "storage/Environment.h"
 #include "storage/SystemInfo/Arch.h"
@@ -83,6 +84,45 @@ namespace storage
 	bool lvm_lv = false;
 	bool luks = false;
 	bool bitlocker = false;
+
+    };
+
+
+    /**
+     * Suspends the current logger until the object is destroyed.
+     *
+     * Used while a Storage is destroyed. The destructor can be run by the garbage collector of a
+     * scripting language (e.g. Ruby) and in that situation the logger, which can be a SWIG
+     * director object calling back into the scripting language, must not be called.
+     */
+    class LoggerSuspension
+    {
+    public:
+
+	LoggerSuspension() = default;
+	LoggerSuspension(const LoggerSuspension&) = delete;
+	LoggerSuspension& operator=(const LoggerSuspension&) = delete;
+
+	void suspend()
+	{
+	    if (!suspended)
+	    {
+		logger = get_logger();
+		set_logger(nullptr);
+		suspended = true;
+	    }
+	}
+
+	~LoggerSuspension()
+	{
+	    if (suspended)
+		set_logger(logger);
+	}
+
+    private:
+
+	Logger* logger = nullptr;
+	bool suspended = false;
 
     };
 
@@ -182,6 +222,10 @@ namespace storage
 	const set<sid_t>& get_taboos() const { return taboos; }
 
     private:
+
+	// Must be the first member, so that it is destroyed after all other members (which
+	// can log while being destroyed).
+	LoggerSuspension logger_suspension;
 
 	void verify_devicegraph_name(const string& name) const;
 	void verify_pool_name(const string& name) const;

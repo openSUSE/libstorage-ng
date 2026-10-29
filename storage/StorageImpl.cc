@@ -74,7 +74,9 @@ namespace storage
 
     Storage::Impl::~Impl()
     {
-	// TODO: Make sure logger is destroyed after this object
+	// Do not log (and so do not call the logger) while the members are destroyed, see
+	// LoggerSuspension. The logger is restored when logger_suspension is destroyed.
+	logger_suspension.suspend();
     }
 
 
