@@ -157,3 +157,36 @@ BOOST_AUTO_TEST_CASE(conditional_expansion)
     BOOST_CHECK_EQUAL(n_mil, 1);
     BOOST_CHECK_EQUAL(n_deb, 0);
 }
+
+
+BOOST_AUTO_TEST_CASE(destroyed_logger_is_unregistered)
+{
+    {
+	Recorder recorder;
+
+	set_logger(&recorder);
+
+	BOOST_CHECK(get_logger() == &recorder);
+    }
+
+    BOOST_CHECK(get_logger() == nullptr);
+
+    y2mil("logger destroyed, no crash");
+}
+
+
+BOOST_AUTO_TEST_CASE(destroyed_old_logger_keeps_new_logger)
+{
+    Recorder recorder2;
+
+    {
+	Recorder recorder1;
+
+	set_logger(&recorder1);
+	set_logger(&recorder2);
+    }
+
+    BOOST_CHECK(get_logger() == &recorder2);
+
+    set_logger(nullptr);
+}

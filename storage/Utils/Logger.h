@@ -45,7 +45,10 @@ namespace storage
     public:
 
 	Logger() {}
-	virtual ~Logger() {}
+	/**
+	 * If the logger is the current logger, it is unregistered.
+	 */
+	virtual ~Logger();
 
 	/**
 	 * Function to control whether a log line with level and component
@@ -70,7 +73,8 @@ namespace storage
 
     /**
      * Set the current logger object. The logger object must be valid until
-     * replaced by another logger object.
+     * replaced by another logger object or destroyed (a logger that is destroyed
+     * while being the current logger unregisters itself).
      */
     void set_logger(Logger* logger);
 

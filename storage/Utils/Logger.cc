@@ -56,6 +56,15 @@ namespace storage
     }
 
 
+    Logger::~Logger()
+    {
+	// The logger can be destroyed by its owner (e.g. a garbage collected SWIG director)
+	// while it is still the current logger. Do not leave a dangling pointer behind.
+	if (current_logger == this)
+	    current_logger = nullptr;
+    }
+
+
     bool
     Logger::test(LogLevel log_level, const string& component)
     {
