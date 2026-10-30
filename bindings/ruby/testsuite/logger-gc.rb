@@ -33,11 +33,6 @@ class TestLoggerGc < Test::Unit::TestCase
     Storage::Storage.new(environment)
   end
 
-  # Creates storage objects and forgets them. In a method to avoid references from the stack.
-  def create_garbage(count)
-    count.times { new_storage; nil }
-  end
-
   def test_logging_in_destructor_during_gc
 
     Dir.mktmpdir do |tmpdir|
@@ -50,11 +45,15 @@ class TestLoggerGc < Test::Unit::TestCase
         logger = MyLogger.new
         Storage::logger = logger
 
-        create_garbage(20)
+        # The storage objects are kept in a list so that the garbage collector cannot destroy any of
+        # them before all temporary directories are removed.
+        storages = Array.new(20) { new_storage }
 
         # The temporary directories of the storage objects are removed so that their destructors
         # log an error.
         Dir.children(tmpdir).each { |name| Dir.rmdir(File.join(tmpdir, name)) }
+
+        storages.clear
 
         # Sweep lazily so that the storage objects are destroyed while Ruby allocates objects.
         GC.start(full_mark: true, immediate_sweep: false)
