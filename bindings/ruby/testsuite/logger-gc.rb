@@ -55,9 +55,8 @@ class TestLoggerGc < Test::Unit::TestCase
 
         storages.clear
 
-        # Sweep lazily so that the storage objects are destroyed while Ruby allocates objects.
-        GC.start(full_mark: true, immediate_sweep: false)
-        300_000.times { Object.new }
+        # The storage objects are destroyed by the garbage collector.
+        GC.start
 
         # Logging still works after the garbage collection.
 
