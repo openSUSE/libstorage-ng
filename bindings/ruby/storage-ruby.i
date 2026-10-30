@@ -76,7 +76,7 @@ namespace storage
 
 %feature("action") storage::get_logger
 {
-    result = (storage::Logger*) storage::get_ruby_logger();
+    result = storage::get_ruby_logger();
 }
 
 %feature("action") storage::set_logger
