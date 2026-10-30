@@ -3,7 +3,7 @@
 #
 
 check_SCRIPTS = polymorphism.rb sid.rb all-types.rb logger.rb function-call.rb	\
-	to_s.rb
+	to_s.rb logger-gc.rb
 
 TESTS = $(check_SCRIPTS)
 
