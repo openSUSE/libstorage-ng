@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: libstorage.ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-10 09:59+0200\n"
-"PO-Revision-Date: 2026-02-16 16:04+0000\n"
+"PO-Revision-Date: 2026-11-03 17:13+0000\n"
 "Last-Translator: Aleksey Fedorov <Aleksejfedorov963@gmail.com>\n"
 "Language-Team: Russian <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/ru/>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.15.2\n"
+"X-Generator: Weblate 2026.11\n"
 
 msgid ""
 "\n"
@@ -1956,7 +1956,7 @@ msgstr "Еxt4"
 
 #. TRANSLATORS: name of partition type
 msgid "Extended Boot Loader"
-msgstr ""
+msgstr "Расширенный загрузчик"
 
 #. TRANSLATORS: name of partition type
 msgid "Extended Partition"
