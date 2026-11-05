@@ -27,6 +27,14 @@ BOOST_AUTO_TEST_CASE(test1)
     BOOST_CHECK(is_linux_partition_id(ID_LINUX_USR_X86_64));
     BOOST_CHECK(is_linux_partition_id(ID_LINUX_USR_X86_64, LinuxPartitionIdCategory::USR));
     BOOST_CHECK(!is_linux_partition_id(ID_LINUX_USR_X86_64, LinuxPartitionIdCategory::ROOT));
+
+    BOOST_CHECK(is_linux_partition_id(ID_LINUX_VAR));
+    BOOST_CHECK(!is_linux_partition_id(ID_LINUX_VAR, LinuxPartitionIdCategory::ROOT));
+    BOOST_CHECK(!is_linux_partition_id(ID_LINUX_VAR, LinuxPartitionIdCategory::USR));
+
+    BOOST_CHECK(is_linux_partition_id(ID_LINUX_VAR_TMP));
+    BOOST_CHECK(!is_linux_partition_id(ID_LINUX_VAR_TMP, LinuxPartitionIdCategory::ROOT));
+    BOOST_CHECK(!is_linux_partition_id(ID_LINUX_VAR_TMP, LinuxPartitionIdCategory::USR));
 }
 
 

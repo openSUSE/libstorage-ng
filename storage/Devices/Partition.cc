@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2024] SUSE LLC
+ * Copyright (c) [2016-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -90,6 +90,8 @@ namespace storage
 	{ ID_LINUX_USR_S390X,    LinuxPartitionIdCategory::USR,  "s390x" },
 	{ ID_LINUX_USR_X86,      LinuxPartitionIdCategory::USR,  "i[5-7]86" },
 	{ ID_LINUX_USR_X86_64,   LinuxPartitionIdCategory::USR,  "x86_64" },
+	{ ID_LINUX_VAR },
+	{ ID_LINUX_VAR_TMP },
 	{ ID_LVM },
 	{ ID_RAID },
 	{ ID_SWAP },

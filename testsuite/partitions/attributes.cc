@@ -101,4 +101,6 @@ BOOST_AUTO_TEST_CASE(test_id_on_gpt_old_parted)
     sda1->set_id(ID_SWAP);
 
     BOOST_CHECK_THROW(sda1->set_id(ID_LINUX_HOME), Exception);
+    BOOST_CHECK_THROW(sda1->set_id(ID_LINUX_VAR), Exception);
+    BOOST_CHECK_THROW(sda1->set_id(ID_LINUX_VAR_TMP), Exception);
 }

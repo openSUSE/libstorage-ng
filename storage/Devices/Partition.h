@@ -216,6 +216,16 @@ namespace storage
 	/** Linux USR Partition (x86_64), only for GPT. Requires SUSE parted 3.5 or higher. */
 	ID_LINUX_USR_X86_64,
 
+	/** Linux Variable Data, only for GPT. Requires parted 3.6 or higher. Note that
+	    according to the Discoverable Partitions Specification the partition is only
+	    mounted automatically at /var/ if the partition UUID matches the first 128 bits
+	    of HMAC-SHA256(machine-id, 0x4d21b016b53445c2a9fb5c16e091fd2d). The partition
+	    UUID is not set by libstorage-ng. */
+	ID_LINUX_VAR,
+
+	/** Linux Temporary Data (/var/tmp/), only for GPT. Requires parted 3.6 or higher. */
+	ID_LINUX_VAR_TMP,
+
     };
 
 
