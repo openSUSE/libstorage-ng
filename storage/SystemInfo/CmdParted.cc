@@ -657,6 +657,8 @@ namespace storage
 	{ ID_LINUX_USR_S390X, "8a4f5770-50aa-4ed3-874a-99b710db6fea" },
 	{ ID_LINUX_USR_X86, "75250d76-8cc6-458e-bd66-bd47cc81a812" },
 	{ ID_LINUX_USR_X86_64, "8484680c-9521-48c6-9c11-b0720656f69e" },
+	{ ID_LINUX_VAR, "4d21b016-b534-45c2-a9fb-5c16e091fd2d" },
+	{ ID_LINUX_VAR_TMP, "7ec6f557-3bc5-4aca-b293-16ef5df639d1" },
 	{ ID_SWAP, "0657fd6d-a4ab-43c4-84e5-0933c84b4f4f" },
     };
 
