@@ -1842,6 +1842,14 @@ namespace storage
 	    case ID_LINUX_USR_X86_64:
 		// TRANSLATORS: name of partition type
 		return _("Linux USR Partition (x86 64-bit)");
+
+	    case ID_LINUX_VAR:
+		// TRANSLATORS: name of partition type
+		return _("Linux Variable Data");
+
+	    case ID_LINUX_VAR_TMP:
+		// TRANSLATORS: name of partition type
+		return _("Linux Temporary Data");
 	}
 
 	return Text();
